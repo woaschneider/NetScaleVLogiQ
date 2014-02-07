@@ -1,0 +1,122 @@
+﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.AuftragsListeFrm"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
+                        xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+                        x:Name="Window"
+                        Title="Auftragsliste"
+                        Width="1065"
+                        Height="584"
+                        AllowsTransparency="False"
+                        Background="#FFBEC8D8"
+                        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
+        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="LightGray" />
+
+        <!--  Border Brushes  -->
+
+        <!--  Miscellaneous Brushes  -->
+
+        <Style TargetType="TextBox">
+
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            <ScrollViewer Name="PART_ContentHost"
+                                          Background="{TemplateBinding Background}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
+                                <Setter TargetName="PART_ContentHost" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="BlanchedAlmond" />
+                                <Setter Property="Foreground" Value="Black" />
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot" Background="WhiteSmoke">
+
+        <DataGrid Name="dataGrid1"
+                  Width="1033"
+                  Height="427"
+                  Margin="1,106,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  AlternatingRowBackground="#FFDCE2E8"
+                  AutoGenerateColumns="False"
+                  DataContext="{Binding}"
+                  FontSize="15"
+                  IsReadOnly="True"
+                  SelectionChanged="dataGrid1_SelectionChanged"
+                  SelectionMode="Single"
+                  TabIndex="50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Firma}" Header="Firma" />
+                <DataGridTextColumn Binding="{Binding Path=Name1}" Header="Name" />
+                <DataGridTextColumn Binding="{Binding Path=KontraktNr}" Header="Kontrakt-Nr." />
+                <DataGridTextColumn Binding="{Binding Path=nr}" Header="Kunden-Nr." />
+                <DataGridTextColumn Binding="{Binding Path=wefirma}" Header="Baustelle 1" />
+                <DataGridTextColumn Binding="{Binding Path=wename1}" Header="Baustelle 2" />
+                <!--
+                    <DataGridTextColumn Binding="{Binding Path=auftragsart}" Header="Auftragsart" />
+                    <DataGridTextColumn Binding="{Binding Path=mandant}" Header="Mandant" />
+                    <DataGridTextColumn Binding="{Binding Path=werksnr}" Header="Werks-Nr" />
+                -->
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox Name="tb_firma"
+                 Width="358"
+                 Height="28"
+                 Margin="181,23,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 FontSize="14"
+                 TabIndex="20" />
+        <TextBox Name="tb_baustelle"
+                 Width="358"
+                 Height="28"
+                 Margin="181,52,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 FontSize="14"
+                 TabIndex="40"
+                 TextChanged="tb_baustelle_TextChanged" />
+        <Label Name="label1"
+               Width="70"
+               Height="28"
+               Margin="85,22,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Firma"
+               FontSize="14"
+               TabIndex="10" />
+        <Label Name="label2"
+               Width="70"
+               Height="28"
+               Margin="85,52,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Baustelle"
+               FontSize="14"
+               TabIndex="30" />
+    </Grid>
+</mmwpf:mmBusinessWindow>

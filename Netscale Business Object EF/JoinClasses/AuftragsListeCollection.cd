@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="HWB.NETSCALE.BOEF.JoinClasses.AuftragsListe">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAgAAAEAAIAAAAAAAAAEAIAAAAAAAAAgCACAEgA=</HashCode>
+      <FileName>JoinClasses\AuftragsListeCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.BOEF.KKEntity">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>zAATgTqHGAQagDQISBBCQlhvwiNECAqQiIBgGSIl3gI=</HashCode>
+      <FileName>EntityDataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.BOEF.Mandant">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAAAARAQACAAAAAAAAAAAAAFABAAAIAAAAAEAAAAAA=</HashCode>
+      <FileName>Mandant\Mandant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,14 @@
+﻿<mmwpf:mmBusinessWindow
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
+	x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.TaabFrm"
+	x:Name="Window"
+	Title="Export Tagesabschluss "
+	Width="168" Height="131" AllowsTransparency="False" Background="#FFC1D5F2" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Grid x:Name="LayoutRoot">
+        <DatePicker Height="25" HorizontalAlignment="Left" Margin="10,10,0,0" Name="TaabDatePicker" VerticalAlignment="Top" Width="127" />
+        <Button Content="Start" Height="24" HorizontalAlignment="Left" Margin="10,56,0,0" Name="cmdExport" VerticalAlignment="Top" Width="127" Click="cmdExport_Click" />
+    </Grid>
+</mmwpf:mmBusinessWindow>

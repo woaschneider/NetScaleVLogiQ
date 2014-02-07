@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.App" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.AppWPF" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppWPF.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.BrokenRulesWindow" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BrokenRulesWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Factory" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.LanguageWindow" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LanguageWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.MainEntry" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIEAABEAAAAAAAAAABAAgAAA=</HashCode>
+      <FileName>MainEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.MainWindow" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAEAAACAIAACAABAAAAQAAAICIAAAAAQAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.UserLoginWindow" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAEAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserLoginWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.UserWindow" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.WindowExtensions" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAACIAAAAAAIAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.TreeHelper" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAARAAAAAAAAAAAgACAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindowExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.APEditFrm" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQAAAAAAAAgAAEAAAAAAAAAgAAAAAAQAAAAAA=</HashCode>
+      <FileName>Forms\APEditFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.APFrm" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAIACAgAAAAAgAAAAABgIAAEAAAAAAAAA=</HashCode>
+      <FileName>Forms\APListFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.MGEditFrm" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQAAAAAAAAgAAEAAAABAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Forms\MGEditFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.MGListFrm" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIACAgAAAAAgAFAAAAAIAAEAAAAAAAAA=</HashCode>
+      <FileName>Forms\MGListFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.PortListFrm" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAgAAAAAkAEAAAAAAAAAAAAAACAQA=</HashCode>
+      <FileName>Forms\PortListFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.WaageneinstellungenFrm" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQQAAAAAACAgAAEAAAAAAACEAAQAAAABBAAAAA=</HashCode>
+      <FileName>Forms\WaageneinstellungenFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.WaagenTypenListeFrm" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAgAAAAAgAEAAgAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Forms\WaagenTypenListeFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.FRONTEND.WPF.Forms.WiegeFrm">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAQEAAAAADAAAEEAggAEAAAABAMAAAACAAASAA=</HashCode>
+      <FileName>Forms\WiegeFrm.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Properties.Resources" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Properties.Settings" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

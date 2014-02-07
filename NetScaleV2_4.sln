@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetScaleGlobal", "NetScaleGlobal\NetScaleGlobal.csproj", "{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareDevices", "HardwareDevices\HardwareDevices.csproj", "{24233E34-5147-4C08-B585-B8AEDA90FF7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netscale Business Object EF", "Netscale Business Object EF\Netscale Business Object EF.csproj", "{6E80C63E-1268-4C3C-90A6-688EBDADE587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetScale", "NetScale\NetScale.csproj", "{5F3347FB-8DC4-41D7-85D4-4687C77F9C50}"
+EndProject
+Global
+	GlobalSection(MercurialSourceControlSolutionProperties) = preSolution
+		SolutionIsControlled = True
+		SolutionBindings = <Solution Location In Database>
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24233E34-5147-4C08-B585-B8AEDA90FF7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24233E34-5147-4C08-B585-B8AEDA90FF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24233E34-5147-4C08-B585-B8AEDA90FF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24233E34-5147-4C08-B585-B8AEDA90FF7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E80C63E-1268-4C3C-90A6-688EBDADE587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E80C63E-1268-4C3C-90A6-688EBDADE587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E80C63E-1268-4C3C-90A6-688EBDADE587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E80C63E-1268-4C3C-90A6-688EBDADE587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F3347FB-8DC4-41D7-85D4-4687C77F9C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3347FB-8DC4-41D7-85D4-4687C77F9C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3347FB-8DC4-41D7-85D4-4687C77F9C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3347FB-8DC4-41D7-85D4-4687C77F9C50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

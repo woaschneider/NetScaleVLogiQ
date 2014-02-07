@@ -1,0 +1,59 @@
+﻿<mmwpf:mmBusinessWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" x:Class="HWB.NETSCALE.FRONTEND.WPF.LanguageWindow" x:Name="Window" Title="Languages" Width="550" Height="450" AllowsTransparency="False" Background="#FFFFFFFF" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+	<Border Background="#FF969696">
+		<Grid x:Name="LayoutRoot">
+			<TabControl IsSynchronizedWithCurrentItem="True" Margin="10" Name="tabControl">
+				<TabItem Header="List" x:Name="tabList">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="48" />
+							<ColumnDefinition Width="14" />
+							<ColumnDefinition Width="320" />
+							<ColumnDefinition Width="114*" />
+						</Grid.ColumnDefinitions>
+						<Custom:DataGrid Margin="5" x:Name="grdUsers" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="Column" SelectionMode="Single" Grid.ColumnSpan="3">
+							<Custom:DataGrid.Columns>
+								<Custom:DataGridTextColumn Width="*" Header="Language" Binding="{Binding Description, Mode=Default}" />
+							</Custom:DataGrid.Columns>
+						</Custom:DataGrid>
+						<StackPanel Grid.Column="3" Margin="10,10,10,10" x:Name="stpButtons" VerticalAlignment="Center">
+							<mmwpf:mmButtonNew VerticalAlignment="Center" Margin="0,0,0,30" x:Name="btnNew" BindingSource="Language" />
+							<mmwpf:mmButtonDelete VerticalAlignment="Center" Margin="0,0,0,10" x:Name="btnDelete" BindingSource="Language" />
+							<mmwpf:mmButtonClose VerticalAlignment="Center" x:Name="btnClose" />
+						</StackPanel>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Properties" x:Name="tabProperties">
+					<Grid Margin="25,25,25,25">
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+							<mmwpf:mmButtonSave RenderTransformOrigin="0.892,8.988" d:LayoutOverrides="Height" Margin="5,20,5,5" x:Name="btnSave" BindingSource="Language" />
+							<mmwpf:mmButtonCancel Margin="5,20,5,5" x:Name="btnCancel" BindingSource="Language" />
+						</StackPanel>
+						<GroupBox Grid.RowSpan="1" Padding="20,20,20,20">
+							<Grid x:Name="grdControls" DataContext="{Binding SelectedItem, ElementName=grdUsers}">
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="0.3*" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+								<Label HorizontalAlignment="Right" Content="Language:" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,10,0" />
+								<Label HorizontalAlignment="Right" Content="Culture:" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,10,0" />
+								<TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Width" Margin="0,0,0,0" Text="{Binding Description, Mode=Default}" x:Name="txtLanguage" />
+								<ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" d:LayoutOverrides="Width" Margin="0,0,0,0" DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Culture, Mode=Default}" x:Name="cboCulture" />
+							</Grid>
+						</GroupBox>
+					</Grid>
+				</TabItem>
+			</TabControl>
+		</Grid>
+	</Border>
+</mmwpf:mmBusinessWindow>
