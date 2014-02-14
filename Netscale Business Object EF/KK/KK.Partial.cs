@@ -82,6 +82,49 @@ namespace HWB.NETSCALE.BOEF
         
         }
 
+        public mmBindingList<Auftragsdetailliste> GetAuftragsDetailliste(int kkpk)
+        {
+            var query = from a in ObjectContext.APEntities
+                        from k in ObjectContext.KKEntities
+                        from km in ObjectContext.KMEntities
+                        from m in ObjectContext.MGEntities
+
+
+
+
+                        where k.pk == kkpk && a.PK == k.APFK && km.kkpk == kkpk && m.PK == km.mgpk
+                        select new Auftragsdetailliste
+                                   {
+                                       appk = a.PK,
+                                       nrKU = a.Nr,
+                                       FirmaKU = a.Firma,
+                                       Name1KU = a.Name1,
+                                       PlzKU = a.Plz,
+                                       OrtKU = a.Ort,
+                                       AnschriftKU = a.Anschrift,
+
+                                       kkpk = k.pk,
+                                       mandant = k.mandant,
+                                       werksnr = k.werksnr,
+
+                                       auftragsart = k.auftragsart,
+                                       kontraktart = k.kontraktart,
+                                       KontraktNr = k.kontraktnr,
+                                       wefirma = k.wefirma,
+                                       wename1 = k.wename1,
+
+                                       posnr = km.posnr,
+                                       Sortennr = m.SortenNr,
+                                       Sortenbezeichnung1 = m.Sortenbezeichnung1,
+                                       Sortenbezeichnung2 = m.Sortenbezeichnung2
+
+                                                    };
+
+            var x = query.ToString();
+            return GetEntityList(query);
+          
+        }
+
         public void SetAllTouch2False()
         {
             IQueryable<KKEntity> query = from a in ObjectContext.KKEntities

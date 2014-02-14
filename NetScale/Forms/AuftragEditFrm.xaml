@@ -1,64 +1,279 @@
-﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.AuftragEditFrm" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF" xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary" x:Name="Window" Title="BusinessWindow" Width="917" Height="526" AllowsTransparency="False" Background="#FFC2CCDB" WindowStartupLocation="CenterScreen">
+﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.AuftragEditFrm"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
+                        xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+                        x:Name="Window"
+                        Title="BusinessWindow"
+                        Width="917"
+                        Height="526"
+                        AllowsTransparency="False"
+                        Background="#FFC2CCDB"
+                        WindowStartupLocation="CenterScreen">
 
-	<Grid x:Name="LayoutRoot">
-		<ribbon:Ribbon x:Name="Ribbon" Height="120" Margin="-2,-21,2,0" VerticalAlignment="Top" Background="#FF77ABDC">
-			<ribbon:Ribbon.ApplicationMenu>
-				<ribbon:RibbonApplicationMenu>
-					<ribbon:RibbonApplicationMenuItem x:Name="MenuItemClose" Click="MenuItemClose_Click" Header="Schließen" ImageSource="..\Images\1297283615_Log Out.png" />
+    <Grid x:Name="LayoutRoot">
+        <ribbon:Ribbon x:Name="Ribbon"
+                       Height="120"
+                       Margin="-2,-21,2,0"
+                       VerticalAlignment="Top"
+                       Background="#FF77ABDC">
+            <ribbon:Ribbon.ApplicationMenu>
+                <ribbon:RibbonApplicationMenu>
+                    <ribbon:RibbonApplicationMenuItem x:Name="MenuItemClose"
+                                                      Click="MenuItemClose_Click"
+                                                      Header="Schließen"
+                                                      ImageSource="..\Images\1297283615_Log Out.png" />
 
-				</ribbon:RibbonApplicationMenu>
-			</ribbon:Ribbon.ApplicationMenu>
-			<ribbon:RibbonTab x:Name="wiegen" Background="#FFB9C9DA" Header="Bearbeiten">
-				<ribbon:RibbonGroup x:Name="Group1" Header="Betrieb">
-					<ribbon:RibbonButton x:Name="cmdSave" Width="100" Click="cmdSave_Click" FontSize="14" Label=" Speichern " LargeImageSource="..\Images\1328252493_save.png" />
-					<ribbon:RibbonButton x:Name="cmdDelete" Width="100" Click="cmdDelete_Click" FontSize="14" Label=" Löschen  " LargeImageSource="..\Images\1328520403_delete.png" />
-					<ribbon:RibbonButton x:Name="cmdCancel" Width="100" Click="cmdCancel_Click" FontSize="14" Label=" Abbrechen " LargeImageSource="..\Images\1328708757_cancel.png" />
-					<ribbon:RibbonButton x:Name="cmdSelect" Width="80" Click="cmdSelect_Click" FontSize="14" Label=" Auswählen " LargeImageSource="..\Images\1328252503_ok.png" />
+                </ribbon:RibbonApplicationMenu>
+            </ribbon:Ribbon.ApplicationMenu>
+            <ribbon:RibbonTab x:Name="wiegen"
+                              Background="#FFB9C9DA"
+                              Header="Bearbeiten">
+                <ribbon:RibbonGroup x:Name="Group1" Header="Betrieb">
+                    <ribbon:RibbonButton x:Name="cmdSave"
+                                         Width="100"
+                                         Click="cmdSave_Click"
+                                         FontSize="14"
+                                         Label=" Speichern "
+                                         LargeImageSource="..\Images\1328252493_save.png" />
+                    <ribbon:RibbonButton x:Name="cmdDelete"
+                                         Width="100"
+                                         Click="cmdDelete_Click"
+                                         FontSize="14"
+                                         Label=" Löschen  "
+                                         LargeImageSource="..\Images\1328520403_delete.png" />
+                    <ribbon:RibbonButton x:Name="cmdCancel"
+                                         Width="100"
+                                         Click="cmdCancel_Click"
+                                         FontSize="14"
+                                         Label=" Abbrechen "
+                                         LargeImageSource="..\Images\1328708757_cancel.png" />
+                    <ribbon:RibbonButton x:Name="cmdSelect"
+                                         Width="80"
+                                         Click="cmdSelect_Click"
+                                         FontSize="14"
+                                         Label=" Auswählen "
+                                         LargeImageSource="..\Images\1328252503_ok.png" />
 
-				</ribbon:RibbonGroup>
-			</ribbon:RibbonTab>
-		</ribbon:Ribbon>
-		<GroupBox Name="groupBox1" Width="424" Height="227" Margin="24,113,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Adressdaten">
-			<Grid>
-				<TextBox Name="tb_FirmaKU" Width="257" Height="23" Margin="138,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" MaxLength="50" TabIndex="240" Text="{Binding Path=FirmaKU,
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+        </ribbon:Ribbon>
+        <GroupBox Name="groupBox1"
+                  Width="424"
+                  Height="227"
+                  Margin="24,113,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Header="Adressdaten">
+            <Grid>
+                <TextBox Name="tb_FirmaKU"
+                         Width="257"
+                         Height="23"
+                         Margin="138,60,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         FontSize="14"
+                         MaxLength="50"
+                         TabIndex="240"
+                         Text="{Binding Path=FirmaKU,
                                         Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" ToolTip="Adressenliste mit F4 anzeigen" />
-				<Label Name="lblfirma" Width="102" Height="28" Margin="10,58,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="_Firma" FontWeight="Bold" TabIndex="230" />
-				<TextBox Name="tb_Name1KU" Width="257" Height="23" Margin="138,84,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" TabIndex="260" Text="{Binding Path=Name1KU,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Adressenliste mit F4 anzeigen" />
+                <Label Name="lblfirma"
+                       Width="102"
+                       Height="28"
+                       Margin="10,58,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="_Firma"
+                       FontWeight="Bold"
+                       TabIndex="230" />
+                <TextBox Name="tb_Name1KU"
+                         Width="257"
+                         Height="23"
+                         Margin="138,84,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         MaxLength="50"
+                         TabIndex="260"
+                         Text="{Binding Path=Name1KU,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
-				<TextBox Name="tb_AnschriftKU" Width="257" Height="23" Margin="138,108,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" TabIndex="280" Text="{Binding Path=AnschriftKU,
+                <TextBox Name="tb_AnschriftKU"
+                         Width="257"
+                         Height="23"
+                         Margin="138,108,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         MaxLength="50"
+                         TabIndex="280"
+                         Text="{Binding Path=AnschriftKU,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
-				<TextBox Name="tb_PlzKU" Width="67" Height="23" Margin="138,132,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="6" TabIndex="300" Text="{Binding Path=PlzKU,
+                <TextBox Name="tb_PlzKU"
+                         Width="67"
+                         Height="23"
+                         Margin="138,132,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         MaxLength="6"
+                         TabIndex="300"
+                         Text="{Binding Path=PlzKU,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
-				<Label Name="label6" Width="102" Height="28" Margin="10,82,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Name" TabIndex="250" />
-				<Label Name="label7" Width="102" Height="28" Margin="10,104,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Anschrift" TabIndex="270" />
-				<Label Name="label8" Width="102" Height="28" Margin="10,131,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Plz/Ort" TabIndex="290" />
-				<TextBox Name="tb_OrtKU" Width="189" Height="23" Margin="206,132,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" TabIndex="310" Text="{Binding Path=OrtKU,
+                <Label Name="label6"
+                       Width="102"
+                       Height="28"
+                       Margin="10,82,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="Name"
+                       TabIndex="250" />
+                <Label Name="label7"
+                       Width="102"
+                       Height="28"
+                       Margin="10,104,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="Anschrift"
+                       TabIndex="270" />
+                <Label Name="label8"
+                       Width="102"
+                       Height="28"
+                       Margin="10,131,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="Plz/Ort"
+                       TabIndex="290" />
+                <TextBox Name="tb_OrtKU"
+                         Width="189"
+                         Height="23"
+                         Margin="206,132,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         MaxLength="50"
+                         TabIndex="310"
+                         Text="{Binding Path=OrtKU,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
-				<TextBox Name="tb_NrKU" Width="94" Height="23" Margin="138,36,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="10" TabIndex="220" Text="{Binding Path=NrKU,
+                <TextBox Name="tb_NrKU"
+                         Width="94"
+                         Height="23"
+                         Margin="138,36,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         MaxLength="10"
+                         TabIndex="220"
+                         Text="{Binding Path=nrKU,
                                         Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" ToolTip="Nummer und ENTER" />
-				<Label Name="label1" Width="122" Height="28" Margin="10,34,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="K_unde/Lieferant-Nr." FontWeight="Bold" TabIndex="210" Target="{Binding ElementName=tb_NrKU}" />
-				<Label Name="label9" Width="122" Height="28" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="_Abruf-Nr." FontWeight="Bold" TabIndex="190" Target="{Binding ElementName=tb_abrufnr}" />
-				<Label Name="label22" Width="127" Height="28" Margin="10,155,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Bonität" TabIndex="320" />
-				<TextBox Name="textBox7" Width="67" Height="23" Margin="138,156,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="330" />
-				<TextBox Name="textBox8" Width="189" Height="23" Margin="206,156,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="340" />
-			</Grid>
-		</GroupBox>
-		<GroupBox Name="groupBox2" Width="424" Height="227" Margin="454,113,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Warenempfänger / Baustelle">
-			<Grid>
-				<Label Name="label3" Width="127" Height="28" Margin="10,18,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Auftrag" TabIndex="350" />
-				<TextBox Name="textBox9" Width="67" Height="23" Margin="138,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="360" />
-				<TextBox Name="textBox10" Width="257" Height="23" Margin="138,45,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="362" />
-				<TextBox Name="textBox11" Width="257" Height="23" Margin="138,69,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="370" />
-				<Label Name="label24" Width="127" Height="28" Margin="10,42,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Abladestelle" TabIndex="380" />
-				<TextBox Name="textBox13" Width="257" Height="23" Margin="138,93,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="390" />
-			</Grid>
-		</GroupBox>
-		<DataGrid Name="dataGrid1" Width="855" Height="129" Margin="23,346,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" />
-	</Grid>
+                                        UpdateSourceTrigger=PropertyChanged}"
+                         ToolTip="Nummer und ENTER" />
+                <Label Name="label1"
+                       Width="122"
+                       Height="28"
+                       Margin="10,34,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="K_unde/Lieferant-Nr."
+                       FontWeight="Bold"
+                       TabIndex="210"
+                       Target="{Binding ElementName=tb_NrKU}" />
+                <Label Name="label9"
+                       Width="122"
+                       Height="28"
+                       Margin="10,10,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="_Abruf-Nr."
+                       FontWeight="Bold"
+                       TabIndex="190"
+                       Target="{Binding ElementName=tb_abrufnr}" />
+                <Label Name="label22"
+                       Width="127"
+                       Height="28"
+                       Margin="10,155,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="Bonität"
+                       TabIndex="320" />
+                <TextBox Name="textBox7"
+                         Width="67"
+                         Height="23"
+                         Margin="138,156,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         TabIndex="330" />
+                <TextBox Name="textBox8"
+                         Width="189"
+                         Height="23"
+                         Margin="206,156,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         TabIndex="340" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Name="groupBox2"
+                  Width="424"
+                  Height="227"
+                  Margin="454,113,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Header="Warenempfänger / Baustelle">
+            <Grid>
+                <Label Name="label3"
+                       Width="127"
+                       Height="28"
+                       Margin="10,18,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="Auftrag"
+                       TabIndex="350" />
+                <TextBox Name="textBox9"
+                         Width="84"
+                         Height="23"
+                         Margin="138,20,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         TabIndex="360"
+                         Text="{Binding KontraktNr}" />
+                <TextBox Name="textBox10"
+                         Width="257"
+                         Height="23"
+                         Margin="138,45,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                            Text="{Binding wefirma}" 
+                         TabIndex="362" />
+                <TextBox Name="textBox11"
+                         Width="257"
+                         Height="23"
+                         Margin="138,69,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                            Text="{Binding wename1}" 
+                         TabIndex="370" />
+                <Label Name="label24"
+                       Width="127"
+                       Height="28"
+                       Margin="10,42,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="Abladestelle"
+                       TabIndex="380" />
+            </Grid>
+        </GroupBox>
+        <DataGrid Name="dataGrid1"
+                  Width="855"
+                  Height="129"
+                  Margin="23,346,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Sorten-Nr." Binding="{Binding Sortennr}"/>
+                <DataGridTextColumn Header="Sortenbezeichnung 1" Binding="{Binding Sortenbezeichnung1}" />
+                <DataGridTextColumn Header="Sortenbezeichnung 2" Binding="{Binding Sortenbezeichnung2}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </mmwpf:mmBusinessWindow>

@@ -9,11 +9,11 @@ using System.Windows;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.FRONTEND.WPF.Forms;
 
-// Schiewe Import
+// Schiewe Import. Ehemalig ISV. Jetzt mit Änderungen bei den Längen der Sortenbezeichnungen.
 
 namespace HWB.NETSCALE.FRONTEND.WPF
 {
-    internal class ImportISVOld : IImportInterface
+    internal class ImportOAM : IImportInterface
     {
         private string localDir;
         private string AktFileName;
@@ -38,7 +38,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private WiegeFrm oWF;
 
-        public ImportISVOld()
+        public ImportOAM()
         {
             oBE = new Lokaleeinstellungen();
             oBE = oBE.Load();

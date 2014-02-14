@@ -63,7 +63,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     e.Handled = true;
                     uRet = Convert.ToInt32(dataGrid1.SelectedValue);
-                    this.Hide();
+                   AuftragEditFrm oKMFrm = new AuftragEditFrm(uRet);
+                    oKMFrm.ShowDialog();
+                    // this.Hide();
                 }
             }
         }

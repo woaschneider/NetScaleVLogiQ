@@ -153,6 +153,7 @@
     <Compile Include="Incoterm\IncotermEntity.cs" />
     <Compile Include="Incoterm\IncotermRules.cs" />
     <Compile Include="Incoterm\IncotermRules.Partial.cs" />
+    <Compile Include="JoinClasses\Auftragsdetailliste.cs" />
     <Compile Include="JoinClasses\AuftragsListeCollection.cs" />
     <Compile Include="KbFnn\KbFnn.cs" />
     <Compile Include="KbFnn\KbFnn.Partial.cs" />

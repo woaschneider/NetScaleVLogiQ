@@ -261,7 +261,7 @@
     </Compile>
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="Import\ImportISVNew.cs" />
-    <Compile Include="Import\ImportISVOld.cs" />
+    <Compile Include="Import\ImportOAM.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />

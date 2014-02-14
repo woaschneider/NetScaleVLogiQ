@@ -436,7 +436,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdImportClick(object sender, RoutedEventArgs e)
         {
-            IImportInterface oI = new ImportISVOld();
+            IImportInterface oI = new ImportOAM();
             oI.import(this);
             progressBar1.Width = 0;
             ProgressLabel.Width = 0;
