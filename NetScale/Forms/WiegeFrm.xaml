@@ -230,7 +230,8 @@
                Margin="283,215,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Kfz-Anhänger" Visibility="Hidden" />
+               Content="Kfz-Anhänger"
+               Visibility="Hidden" />
         <TextBox Name="tb_Kfz2"
                  Width="94"
                  Height="23"
@@ -242,7 +243,8 @@
                  TabIndex="70"
                  Text="{Binding Path=Kfz2,
                                 Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden" />
+                                UpdateSourceTrigger=PropertyChanged}"
+                 Visibility="Hidden" />
         <Label Name="label2"
                Width="102"
                Height="28"

@@ -14,13 +14,13 @@ namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
 	/// Summary description for MG.
-	/// </summary>
+	//
 	public partial class MG : ABusinessObject<MGEntity>
 	{
 		
 		#region Association Properties
 
-		
+	
 		/// Business Rule object
 		/// </summary>
 		public virtual MGRules Rules

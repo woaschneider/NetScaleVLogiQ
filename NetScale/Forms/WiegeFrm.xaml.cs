@@ -1200,7 +1200,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             SvMandantEntity oMe = oM.GetDefaultMandant();
 
             mmBindingList<SvMandantEntity> oMel = oM.GetAllMandant();
-
+            goApp.Mandant_PK = oMe.PK;
             cb_Mandant.ItemsSource = oMel;
             cb_Mandant.SelectedValuePath = "PK";
             cb_Mandant.DisplayMemberPath = "MNrName";
@@ -1220,7 +1220,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 SvMandantEntity oMe = oM.GetMandantByPK((int) pkMandant);
                 if (oMe == null) throw new NotImplementedException();
                 cb_Mandant.Text = oMe.MNrName; // <--- Hiermit wird die Anzeige in der Combobox geändert
+               
             }
+          
         }
 
         // Umschaltung der Combobox aktualisiert in der Waegeentitität
