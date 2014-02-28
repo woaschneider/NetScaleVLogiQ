@@ -1374,6 +1374,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_SortenNr.Text = boMge.SortenNr;
             tb_Sortenbezeichnung1.Text = boMge.Sortenbezeichnung1;
             tb_Sortenbezeichnung2.Text = boMge.Sortenbezeichnung2;
+            tb_Sortenbezeichnung3.Text = boMge.Sortenbezeichnung3;
           //  if(_boWe.preisvk == 0) // Neu 15102013
             _boWe.preisvk = boMge.preisvk; // Bis hier ok
             _boWe.me = boMge.me;

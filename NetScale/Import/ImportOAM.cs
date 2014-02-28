@@ -102,15 +102,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             CopyAllImportFilesToLocalDrive();
 
             oAP.SetAllTouch2False();
-            ImportAp("Kunden");
-            ImportFuhrunternehmer("Fuhrunternehmer");
+            ImportAp("OAM_Export_ADRESSEN.TXT");
+            // ImportFuhrunternehmer("Fuhrunternehmer");
             oAP.DeleteAllNotTouch();
             oMG.SetAllTouch2ToFalse();
-            ImportMg("Material");
+            ImportMg("OAM_Export_SORTEN.TXT");
             oMG.DeleteAllNotTouch();
             oKK.SetAllTouch2False();
-            ImportKK("Aufträge");
+            ImportKK("OAM_Export_KONTRAKTKOPF.TXT");
             oKK.DeleteAllNotTouch();
+
+         //   ImportKm("OAM_Export_KONTRAKTDETAIL.TXT");
+            oKM.DeleteAllNotTouch();
+
         }
 
         private void CopyAllImportFilesToLocalDrive()
@@ -171,39 +175,42 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
                 lineCount++;
                 string cLine = c_TextDatei.ReadLine(c_file, lineCount);
-                string AeKz = cLine.Substring(8, 1);
+             
 
-                string apnr = cLine.Substring(3, 5);
-
-                if ((AeKz == "C" || AeKz == "N" || AeKz == " ") & cLine.Substring(0, 3) != "$$$")
-                    // $$$ Prüfen auf Kopfzeile 
-                {
+                string apnr = cLine.Substring(2, 10);
+                if (apnr == "          ") // Leere Zeile
+                    return;
+             
                     oAPE = oAP.GetAPByNr(apnr);
                     if (oAPE == null)
-                        oAPE = oAP.NewEntity();
+                           oAPE = oAP.NewEntity();
+                
 
-                    // Füllen
+                // Füllen
                     FillAp(cLine);
 
 
                     var uRet = oAP.SaveEntity(oAPE);
-                }
+              
                 // Schauen ob es den Partner gibt
             }
             reader.Close();
         }
-
+        
+        // TODO:
         private void FillAp(string cLine)
         {
-            oAPE.Mandant = cLine.Substring(0, 2);
-            oAPE.Nr = cLine.Substring(3, 6);
-            oAPE.Firma = cLine.Substring(9, 30);
-            oAPE.Name1 = cLine.Substring(39, 30);
-            oAPE.Name2 = cLine.Substring(69, 30);
-            oAPE.Anschrift = cLine.Substring(99, 30);
-            oAPE.Land = cLine.Substring(129, 3);
-            oAPE.Plz = cLine.Substring(132, 5);
-            oAPE.Ort = cLine.Substring(137, 30);
+            // oAPE.Mandant = cLine.Substring(0, 2);
+
+            oAPE.Nr = cLine.Substring(2, 10);
+           
+            oAPE.Firma = cLine.Substring(12, 50);
+            oAPE.Name1 = cLine.Substring(62, 50);
+            oAPE.Name2 = cLine.Substring(112, 50);
+           oAPE.Anschrift = cLine.Substring(162, 40);
+          oAPE.Land = cLine.Substring(202, 3);
+           oAPE.Plz = cLine.Substring(205, 6);
+           oAPE.Ort = cLine.Substring(211, 50);
             oAPE.Rolle_AU = true;
             oAPE.Rolle_LI = true;
             oAPE.Rolle_SP = false;
@@ -281,12 +288,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
                 lineCount++;
                 string cLine = c_TextDatei.ReadLine(c_file, lineCount);
-                string AeKz = cLine.Substring(14, 1);
-                string Mandant = cLine.Substring(0, 3);
-                string mgnr = cLine.Substring(8, 6);
+              
+                string mgnr = cLine.Substring(0, 8);
 
-                if ((AeKz == "C" || AeKz == "N" || AeKz == " ") && cLine.Substring(0, 3) != "$$$")
-                {
+              
                     oMGE = oMG.GetMGByNr(mgnr) ?? oMG.NewEntity();
 
                     // Füllen
@@ -294,25 +299,25 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                     // Ortsteil lassen wir erst mal weg
                     oMGE.touch = true;
                     var uRet = oMG.SaveEntity(oMGE);
-                }
             }
             reader.Close();
         }
 
         private void FillMg(string cLine)
         {
-            oMGE.Mandant = cLine.Substring(0, 2);
-            oMGE.Werksnr = cLine.Substring(5, 3);
-            oMGE.SortenNr = cLine.Substring(8, 6);
-            oMGE.Sortenbezeichnung1 = cLine.Substring(15, 40); // Von 15 auf 25 
-            oMGE.Sortenbezeichnung2 = cLine.Substring(55, 40); // 45 auf 55
-          
-            oMGE.preisvk = Convert.ToDecimal(cLine.Substring(118, 7))/1000; // // 98 auf 118
-            oMGE.ph = cLine.Substring(266, 18);    // 246 auf 266 
-            oMGE.Siegel1 = cLine.Substring(286, 1) == "1" ? true : false; // Und hier den ganzen Rest um 20 Stellen verschoben.
-            oMGE.Siegel2 = cLine.Substring(287, 1) == "1" ? true : false;
-            oMGE.Siegel3 = cLine.Substring(288, 1) == "1" ? true : false;
-            oMGE.Siegel4 = cLine.Substring(289, 1) == "1" ? true : false;
+          //  oMGE.Mandant = cLine.Substring(0, 2);
+          //  oMGE.Werksnr = cLine.Substring(5, 3);
+            oMGE.SortenNr = cLine.Substring(0, 8);
+            oMGE.Sortenbezeichnung1 = cLine.Substring(8, 50); 
+            oMGE.Sortenbezeichnung2 = cLine.Substring(58, 50);
+            oMGE.Sortenbezeichnung2 = cLine.Substring(108, 50);
+
+    //        oMGE.preisvk = Convert.ToDecimal(cLine.Substring(158, 16))/1000; // // 98 auf 118
+        //    oMGE.ph = cLine.Substring(266, 18);    // 246 auf 266 
+        //    oMGE.Siegel1 = cLine.Substring(286, 1) == "1" ? true : false; // Und hier den ganzen Rest um 20 Stellen verschoben.
+         //   oMGE.Siegel2 = cLine.Substring(287, 1) == "1" ? true : false;
+        //    oMGE.Siegel3 = cLine.Substring(288, 1) == "1" ? true : false;
+       //     oMGE.Siegel4 = cLine.Substring(289, 1) == "1" ? true : false;
             // 
             if (oMGE.me == null)
                 oMGE.me = "t";
@@ -341,7 +346,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                     oKKE = oKK.GetKKByAuftragsNr(auftragnr) ?? oKK.NewEntity();
                     oKME = oKM.GetKMByAuftragsNr(auftragnr) ?? oKM.NewEntity();
                     // Füllen
-                    FillKK_KM(cLine);
+                    FillKK(cLine);
 
 
                     var uRet = oKK.SaveEntity(oKKE);
@@ -351,8 +356,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
             reader.Close();
         }
-
-        private void FillKK_KM(string cLine)
+        private void FillKK(string cLine)
         {
             oKKE.mandant = cLine.Substring(0, 2);
             oKKE.kontraktnr = cLine.Substring(2, 8);
@@ -369,6 +373,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             oKKE.touch = true;
         }
 
+
+        private void ImportKM(string FileName)
+        {
+        }
+        private void FillKM(string cLine)
+        {
+        }
+
         private TextDatei GetCTextDatei(string FileName)
         {
             AktFileName = FileName;
@@ -376,7 +388,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             // sPath = localDir + "\\";
 
 
-            string[] oFiles = Directory.GetFiles(localDir, AktFileName.Substring(0, 1) + "*");
+            string[] oFiles = Directory.GetFiles(localDir,"*"+ FileName + "*");
             if (oFiles.Length != 0) // (oFiles[0] != null)
             {
                 c_file = oFiles[0].ToString();

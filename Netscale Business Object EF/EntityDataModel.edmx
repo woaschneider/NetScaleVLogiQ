@@ -232,7 +232,7 @@
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LSNRGlobal" Type="int" />
           <Property Name="Mandant" Type="varchar" MaxLength="10" />
-          <Property Name="MaxGewicht" Type="int" />
+          <Property Name="MaxGewicht" Type="numeric" Precision="10" Scale="2" />
           <Property Name="MaxGewichtValidieren" Type="bit" />
           <Property Name="Schwellwertampel" Type="int" />
           <Property Name="Ust" Type="numeric" Precision="4" Scale="2" />
@@ -438,6 +438,7 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="40" />
           <Property Name="LanguageFK" Type="int" />
           <Property Name="AccessLevel" Type="varchar" MaxLength="50" />
+          <Property Name="Unterschrift" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Waagentypen">
           <Key>
@@ -699,19 +700,10 @@
           <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
           <EntitySet Name="WiegeartEntities" EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" />
           <EntitySet Name="IncotermEntities" EntityType="HWB.NETSCALE.BOEF.IncotermEntity" />
-          <EntitySet Name="APEntities" EntityType="HWB.NETSCALE.BOEF.APEntity" />
           <EntitySet Name="KMEntities" EntityType="HWB.NETSCALE.BOEF.KMEntity" />
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           <EntitySet Name="CFEntities" EntityType="HWB.NETSCALE.BOEF.CFEntity" />
-          <AssociationSet Name="FU__kann_Kfz_haben" Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben">
-            <End Role="APEntity" EntitySet="APEntities" />
-            <End Role="CF" EntitySet="CFEntities" />
-          </AssociationSet>
-          <AssociationSet Name="SP_kann_Kfz_haben" Association="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben">
-            <End Role="APEntity" EntitySet="APEntities" />
-            <End Role="CF" EntitySet="CFEntities" />
-          </AssociationSet>
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Mandant_hat_Wägung" Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung">
             <End Role="MandantEntity" EntitySet="MandantEntities" />
@@ -719,11 +711,6 @@
           </AssociationSet>
           <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
           <EntitySet Name="KKEntities" EntityType="HWB.NETSCALE.BOEF.KKEntity" />
-          <EntitySet Name="MGEntities" EntityType="HWB.NETSCALE.BOEF.MGEntity" />
-          <AssociationSet Name="AP_hat_Auftraege" Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege">
-            <End Role="APEntity" EntitySet="APEntities" />
-            <End Role="KK" EntitySet="KKEntities" />
-          </AssociationSet>
           <AssociationSet Name="Kopf_hat_Details" Association="HWB.NETSCALE.BOEF.Kopf_hat_Details">
             <End Role="KK" EntitySet="KKEntities" />
             <End Role="KMEntity" EntitySet="KMEntities" />
@@ -732,6 +719,7 @@
             <End Role="MandantEntity" EntitySet="MandantEntities" />
             <End Role="KK" EntitySet="KKEntities" />
           </AssociationSet>
+          <EntitySet Name="MGEntities" EntityType="HWB.NETSCALE.BOEF.MGEntity" />
           <AssociationSet Name="Ein_Detail_hat_ein_Material" Association="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material">
             <End Role="MG" EntitySet="MGEntities" />
             <End Role="KMEntity" EntitySet="KMEntities" />
@@ -739,6 +727,19 @@
           <AssociationSet Name="Material_ist_in_Wägungen_enthalten" Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten">
             <End Role="MG" EntitySet="MGEntities" />
             <End Role="WaegeEntity" EntitySet="WaegeEntities" />
+          </AssociationSet>
+          <EntitySet Name="APEntities" EntityType="HWB.NETSCALE.BOEF.APEntity" />
+          <AssociationSet Name="AP_hat_Auftraege" Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege">
+            <End Role="AP" EntitySet="APEntities" />
+            <End Role="KKEntity" EntitySet="KKEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FU__kann_Kfz_haben" Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben">
+            <End Role="AP" EntitySet="APEntities" />
+            <End Role="CFEntity" EntitySet="CFEntities" />
+          </AssociationSet>
+          <AssociationSet Name="SP_kann_Kfz_haben" Association="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben">
+            <End Role="AP" EntitySet="APEntities" />
+            <End Role="CFEntity" EntitySet="CFEntities" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Class">
@@ -794,6 +795,7 @@
           <Property Type="String" Name="LastName" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="LanguageFK" />
           <Property Type="String" Name="AccessLevel" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Unterschrift" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ModuleEntity">
           <Key>
@@ -879,57 +881,6 @@
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="DefaultIncoterm" />
         </EntityType>
-        <EntityType Name="APEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Nr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Anschrift" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Plz" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Ort" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Telefon" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Fax" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Firma" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Land" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Umsatzsteuerid" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="bonitaet" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Rolle_AU" />
-          <Property Type="Boolean" Name="Rolle_WE" />
-          <Property Type="Boolean" Name="Rolle_RE" />
-          <Property Type="Boolean" Name="Rolle_REG" />
-          <Property Type="Boolean" Name="Rolle_WERK" />
-          <Property Type="Boolean" Name="Rolle_BF" />
-          <Property Type="Boolean" Name="Rolle_BLT" />
-          <Property Type="Boolean" Name="RolleERZ" />
-          <Property Type="Boolean" Name="Role_ABFS" />
-          <Property Type="Boolean" Name="Rolle_ENT" />
-          <Property Type="Boolean" Name="Rolle_AESA" />
-          <Property Type="Boolean" Name="Rolle_BEHOER" />
-          <Property Type="Boolean" Name="Rolle_BEFOER" />
-          <Property Type="Boolean" Name="Rolle_LI" />
-          <Property Type="Boolean" Name="Rolle_SP" />
-          <Property Type="Boolean" Name="Rolle_FU" />
-          <Property Type="Boolean" Name="Rolle_BUK" />
-          <Property Type="Boolean" Name="Rolle_VKORG" />
-          <Property Type="Boolean" Name="Rolle_VKB" />
-          <Property Type="Boolean" Name="Rolle_EKORG" />
-          <Property Type="Boolean" Name="Rolle_ZL" />
-          <Property Type="Boolean" Name="Rolle_ZW" />
-          <Property Type="Boolean" Name="Rolle_RQ" />
-          <Property Type="DateTime" Name="AEDatum" />
-          <Property Type="Int32" Name="Seitenzahl" />
-          <Property Type="String" Name="AEKZ" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Ortsteil" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="touch" />
-          <NavigationProperty Name="CFs" Relationship="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" FromRole="APEntity" ToRole="CF" />
-          <NavigationProperty Name="CFs1" Relationship="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" FromRole="APEntity" ToRole="CF" />
-          <NavigationProperty Name="KKs" Relationship="HWB.NETSCALE.BOEF.AP_hat_Auftraege" FromRole="APEntity" ToRole="KK" />
-          </EntityType>
         <EntityType Name="KMEntity">
           <Key>
             <PropertyRef Name="pk" />
@@ -1032,33 +983,9 @@
           <Property Type="Int32" Name="PKSP" />
           <Property Type="Int32" Name="PKFU" />
           <Property Type="DateTime" Name="abrufdate" />
-          <NavigationProperty Name="AP" Relationship="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" FromRole="CF" ToRole="APEntity" />
-          <NavigationProperty Name="AP1" Relationship="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" FromRole="CF" ToRole="APEntity" />
-        </EntityType>
-        <Association Name="FU__kann_Kfz_haben">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="APEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.CFEntity" Role="CF" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="CF">
-              <PropertyRef Name="PKFU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SP_kann_Kfz_haben">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="APEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.CFEntity" Role="CF" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="CF">
-              <PropertyRef Name="PKSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+          <NavigationProperty Name="AP" Relationship="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" FromRole="CFEntity" ToRole="AP" />
+          <NavigationProperty Name="AP1" Relationship="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" FromRole="CFEntity" ToRole="AP" />
+          </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1244,10 +1171,34 @@
           <Property Type="Int32" Name="MandantPK" />
           <Property Type="Boolean" Name="touch" />
           <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AP" Relationship="HWB.NETSCALE.BOEF.AP_hat_Auftraege" FromRole="KK" ToRole="APEntity" />
           <NavigationProperty Name="KMs" Relationship="HWB.NETSCALE.BOEF.Kopf_hat_Details" FromRole="KK" ToRole="KMEntity" />
           <NavigationProperty Name="Mandant1" Relationship="HWB.NETSCALE.BOEF.M__hat_Kontrakte" FromRole="KK" ToRole="MandantEntity" />
+          <NavigationProperty Name="AP" Relationship="HWB.NETSCALE.BOEF.AP_hat_Auftraege" FromRole="KKEntity" ToRole="AP" />
         </EntityType>
+        <Association Name="Kopf_hat_Details">
+          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KMEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KK">
+              <PropertyRef Name="pk" />
+            </Principal>
+            <Dependent Role="KMEntity">
+              <PropertyRef Name="kkpk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="M__hat_Kontrakte">
+          <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandantEntity">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="KK">
+              <PropertyRef Name="MandantPK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="MGEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1286,42 +1237,6 @@
           <NavigationProperty Name="KMs" Relationship="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" FromRole="MG" ToRole="KMEntity" />
           <NavigationProperty Name="Waeges" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="MG" ToRole="WaegeEntity" />
         </EntityType>
-        <Association Name="AP_hat_Auftraege">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="APEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="APFK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Kopf_hat_Details">
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KMEntity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KK">
-              <PropertyRef Name="pk" />
-            </Principal>
-            <Dependent Role="KMEntity">
-              <PropertyRef Name="kkpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="M__hat_Kontrakte">
-          <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MandantEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="MandantPK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Ein_Detail_hat_ein_Material">
           <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MG" Multiplicity="0..1" />
           <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KMEntity" Multiplicity="*" />
@@ -1343,6 +1258,93 @@
             </Principal>
             <Dependent Role="WaegeEntity">
               <PropertyRef Name="PK_MG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="APEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nr" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Anschrift" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Plz" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ort" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telefon" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Firma" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Land" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Umsatzsteuerid" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bonitaet" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Rolle_AU" />
+          <Property Type="Boolean" Name="Rolle_WE" />
+          <Property Type="Boolean" Name="Rolle_RE" />
+          <Property Type="Boolean" Name="Rolle_REG" />
+          <Property Type="Boolean" Name="Rolle_WERK" />
+          <Property Type="Boolean" Name="Rolle_BF" />
+          <Property Type="Boolean" Name="Rolle_BLT" />
+          <Property Type="Boolean" Name="RolleERZ" />
+          <Property Type="Boolean" Name="Role_ABFS" />
+          <Property Type="Boolean" Name="Rolle_ENT" />
+          <Property Type="Boolean" Name="Rolle_AESA" />
+          <Property Type="Boolean" Name="Rolle_BEHOER" />
+          <Property Type="Boolean" Name="Rolle_BEFOER" />
+          <Property Type="Boolean" Name="Rolle_LI" />
+          <Property Type="Boolean" Name="Rolle_SP" />
+          <Property Type="Boolean" Name="Rolle_FU" />
+          <Property Type="Boolean" Name="Rolle_BUK" />
+          <Property Type="Boolean" Name="Rolle_VKORG" />
+          <Property Type="Boolean" Name="Rolle_VKB" />
+          <Property Type="Boolean" Name="Rolle_EKORG" />
+          <Property Type="Boolean" Name="Rolle_ZL" />
+          <Property Type="Boolean" Name="Rolle_ZW" />
+          <Property Type="Boolean" Name="Rolle_RQ" />
+          <Property Type="DateTime" Name="AEDatum" />
+          <Property Type="Int32" Name="Seitenzahl" />
+          <Property Type="String" Name="AEKZ" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Ortsteil" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="touch" />
+          <NavigationProperty Name="KKs" Relationship="HWB.NETSCALE.BOEF.AP_hat_Auftraege" FromRole="AP" ToRole="KKEntity" />
+          <NavigationProperty Name="CFs" Relationship="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" FromRole="AP" ToRole="CFEntity" />
+          <NavigationProperty Name="CFs1" Relationship="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" FromRole="AP" ToRole="CFEntity" />
+        </EntityType>
+        <Association Name="AP_hat_Auftraege">
+          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="AP" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KKEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AP">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="KKEntity">
+              <PropertyRef Name="APFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FU__kann_Kfz_haben">
+          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="AP" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.CFEntity" Role="CFEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AP">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="CFEntity">
+              <PropertyRef Name="PKFU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SP_kann_Kfz_haben">
+          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="AP" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.CFEntity" Role="CFEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AP">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="CFEntity">
+              <PropertyRef Name="PKSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1386,6 +1388,7 @@
           <EntitySetMapping Name="UserEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.UserEntity">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Unterschrift" ColumnName="Unterschrift" />
                 <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
                 <ScalarProperty Name="LanguageFK" ColumnName="LanguageFK" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1486,55 +1489,6 @@
                 <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
                 <ScalarProperty Name="Kennung" ColumnName="Kennung" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="APEntities">
-            <EntityTypeMapping TypeName="IsTypeOf(HWB.NETSCALE.BOEF.APEntity)">
-              <MappingFragment StoreEntitySet="AP">
-                <ScalarProperty Name="PK" ColumnName="PK" />
-                <ScalarProperty Name="Nr" ColumnName="Nr" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
-                <ScalarProperty Name="Anschrift" ColumnName="Anschrift" />
-                <ScalarProperty Name="Plz" ColumnName="Plz" />
-                <ScalarProperty Name="Ort" ColumnName="Ort" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="Firma" ColumnName="Firma" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="Land" ColumnName="Land" />
-                <ScalarProperty Name="Umsatzsteuerid" ColumnName="Umsatzsteuerid" />
-                <ScalarProperty Name="bonitaet" ColumnName="bonitaet" />
-                <ScalarProperty Name="Rolle_AU" ColumnName="Rolle_AU" />
-                <ScalarProperty Name="Rolle_WE" ColumnName="Rolle_WE" />
-                <ScalarProperty Name="Rolle_RE" ColumnName="Rolle_RE" />
-                <ScalarProperty Name="Rolle_REG" ColumnName="Rolle_REG" />
-                <ScalarProperty Name="Rolle_WERK" ColumnName="Rolle_WERK" />
-                <ScalarProperty Name="Rolle_BF" ColumnName="Rolle_BF" />
-                <ScalarProperty Name="Rolle_BLT" ColumnName="Rolle_BLT" />
-                <ScalarProperty Name="RolleERZ" ColumnName="RolleERZ" />
-                <ScalarProperty Name="Role_ABFS" ColumnName="Role_ABFS" />
-                <ScalarProperty Name="Rolle_ENT" ColumnName="Rolle_ENT" />
-                <ScalarProperty Name="Rolle_AESA" ColumnName="Rolle_AESA" />
-                <ScalarProperty Name="Rolle_BEHOER" ColumnName="Rolle_BEHOER" />
-                <ScalarProperty Name="Rolle_BEFOER" ColumnName="Rolle_BEFOER" />
-                <ScalarProperty Name="Rolle_LI" ColumnName="Rolle_LI" />
-                <ScalarProperty Name="Rolle_SP" ColumnName="Rolle_SP" />
-                <ScalarProperty Name="Rolle_FU" ColumnName="Rolle_FU" />
-                <ScalarProperty Name="Rolle_BUK" ColumnName="Rolle_BUK" />
-                <ScalarProperty Name="Rolle_VKORG" ColumnName="Rolle_VKORG" />
-                <ScalarProperty Name="Rolle_VKB" ColumnName="Rolle_VKB" />
-                <ScalarProperty Name="Rolle_EKORG" ColumnName="Rolle_EKORG" />
-                <ScalarProperty Name="Rolle_ZL" ColumnName="Rolle_ZL" />
-                <ScalarProperty Name="Rolle_ZW" ColumnName="Rolle_ZW" />
-                <ScalarProperty Name="Rolle_RQ" ColumnName="Rolle_RQ" />
-                <ScalarProperty Name="AEDatum" ColumnName="AEDatum" />
-                <ScalarProperty Name="Seitenzahl" ColumnName="Seitenzahl" />
-                <ScalarProperty Name="AEKZ" ColumnName="AEKZ" />
-                <ScalarProperty Name="Ortsteil" ColumnName="Ortsteil" />
-                <ScalarProperty Name="touch" ColumnName="touch" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1853,6 +1807,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="APEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.APEntity">
+              <MappingFragment StoreEntitySet="AP">
+                <ScalarProperty Name="touch" ColumnName="touch" />
+                <ScalarProperty Name="Ortsteil" ColumnName="Ortsteil" />
+                <ScalarProperty Name="AEKZ" ColumnName="AEKZ" />
+                <ScalarProperty Name="Seitenzahl" ColumnName="Seitenzahl" />
+                <ScalarProperty Name="AEDatum" ColumnName="AEDatum" />
+                <ScalarProperty Name="Rolle_RQ" ColumnName="Rolle_RQ" />
+                <ScalarProperty Name="Rolle_ZW" ColumnName="Rolle_ZW" />
+                <ScalarProperty Name="Rolle_ZL" ColumnName="Rolle_ZL" />
+                <ScalarProperty Name="Rolle_EKORG" ColumnName="Rolle_EKORG" />
+                <ScalarProperty Name="Rolle_VKB" ColumnName="Rolle_VKB" />
+                <ScalarProperty Name="Rolle_VKORG" ColumnName="Rolle_VKORG" />
+                <ScalarProperty Name="Rolle_BUK" ColumnName="Rolle_BUK" />
+                <ScalarProperty Name="Rolle_FU" ColumnName="Rolle_FU" />
+                <ScalarProperty Name="Rolle_SP" ColumnName="Rolle_SP" />
+                <ScalarProperty Name="Rolle_LI" ColumnName="Rolle_LI" />
+                <ScalarProperty Name="Rolle_BEFOER" ColumnName="Rolle_BEFOER" />
+                <ScalarProperty Name="Rolle_BEHOER" ColumnName="Rolle_BEHOER" />
+                <ScalarProperty Name="Rolle_AESA" ColumnName="Rolle_AESA" />
+                <ScalarProperty Name="Rolle_ENT" ColumnName="Rolle_ENT" />
+                <ScalarProperty Name="Role_ABFS" ColumnName="Role_ABFS" />
+                <ScalarProperty Name="RolleERZ" ColumnName="RolleERZ" />
+                <ScalarProperty Name="Rolle_BLT" ColumnName="Rolle_BLT" />
+                <ScalarProperty Name="Rolle_BF" ColumnName="Rolle_BF" />
+                <ScalarProperty Name="Rolle_WERK" ColumnName="Rolle_WERK" />
+                <ScalarProperty Name="Rolle_REG" ColumnName="Rolle_REG" />
+                <ScalarProperty Name="Rolle_RE" ColumnName="Rolle_RE" />
+                <ScalarProperty Name="Rolle_WE" ColumnName="Rolle_WE" />
+                <ScalarProperty Name="Rolle_AU" ColumnName="Rolle_AU" />
+                <ScalarProperty Name="bonitaet" ColumnName="bonitaet" />
+                <ScalarProperty Name="Umsatzsteuerid" ColumnName="Umsatzsteuerid" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Firma" ColumnName="Firma" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Plz" ColumnName="Plz" />
+                <ScalarProperty Name="Anschrift" ColumnName="Anschrift" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Name1" ColumnName="Name1" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1892,23 +1895,10 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="2.625" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" Width="1.5" PointX="5.875" PointY="5.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.IncotermEntity" Width="1.5" PointX="4.375" PointY="4.125" Height="0.4" IsExpanded="false" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.APEntity" Width="1.5" PointX="10.625" PointY="1.75" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KMEntity" Width="1.5" PointX="10.625" PointY="4" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="10.625" PointY="0.75" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="0.5" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.CFEntity" Width="1.5" PointX="12.875" PointY="4.125" Height="0.4" IsExpanded="false" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="2.1429220769230763" />
-          <edmx:ConnectorPoint PointX="12.5" PointY="2.5179220769230763" />
-          <edmx:ConnectorPoint PointX="12.5" PointY="3.7432317692307713" />
-          <edmx:ConnectorPoint PointX="12.881768230769229" PointY="4.125" />
-        </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="2.1299989999999998" />
-          <edmx:ConnectorPoint PointX="12.65625" PointY="2.6612489999999998" />
-          <edmx:ConnectorPoint PointX="12.65625" PointY="3.91271153846154" />
-          <edmx:ConnectorPoint PointX="12.875" PointY="4.1314615384615392" />
-        </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="15.875" PointY="0.75" Height="0.4" IsExpanded="false" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" >
           <edmx:ConnectorPoint PointX="12.125" PointY="0.75" />
@@ -1918,28 +1908,51 @@
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="5.75" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KKEntity" Width="1.5" PointX="12.875" PointY="0.75" Height="6.4032194010416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MGEntity" Width="1.5" PointX="8.375" PointY="16.875" Height="7.36472656250001" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="1.9087470000000066" />
-          <edmx:ConnectorPoint PointX="12.875" PointY="1.9087470000000066" />
-        </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Kopf_hat_Details" >
-          <edmx:ConnectorPoint PointX="12.875" PointY="4.296983269230763" />
-          <edmx:ConnectorPoint PointX="12.125" PointY="4.296983269230763" />
+          <edmx:ConnectorPoint PointX="12.875" PointY="4.2" />
+          <edmx:ConnectorPoint PointX="12.125" PointY="4.2" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.M__hat_Kontrakte" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="0.98125249999999331" />
-          <edmx:ConnectorPoint PointX="12.875" PointY="0.98125249999999331" />
+          <edmx:ConnectorPoint PointX="12.125" PointY="0.981254999999987" />
+          <edmx:ConnectorPoint PointX="12.875" PointY="0.981254999999987" />
         </edmx:AssociationConnector>
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MGEntity" Width="1.5" PointX="3.375" PointY="7.25" Height="7.36472656250001" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" >
-          <edmx:ConnectorPoint PointX="9.125" PointY="16.875" />
-          <edmx:ConnectorPoint PointX="9.125" PointY="4.2" />
-          <edmx:ConnectorPoint PointX="10.625" PointY="4.2" />
+          <edmx:ConnectorPoint PointX="4.25" PointY="7.25" />
+          <edmx:ConnectorPoint PointX="4.25" PointY="4.0312500000000009" />
+          <edmx:ConnectorPoint PointX="10.291666666666666" PointY="4.03125" />
+          <edmx:ConnectorPoint PointX="10.458333333333334" PointY="4.0312500000000009" />
+          <edmx:ConnectorPoint PointX="10.625" PointY="4.0312500000000009" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" >
-          <edmx:ConnectorPoint PointX="9.875" PointY="20.557363281250005" />
-          <edmx:ConnectorPoint PointX="16.625" PointY="20.557363281250005" />
-          <edmx:ConnectorPoint PointX="16.625" PointY="1.15" />
+          <edmx:ConnectorPoint PointX="3.781248" PointY="7.25" />
+          <edmx:ConnectorPoint PointX="3.781248" PointY="4.7749999999999995" />
+          <edmx:ConnectorPoint PointX="4.166666666666667" PointY="4.7749999999999986" />
+          <edmx:ConnectorPoint PointX="4.333333333333333" PointY="4.7749999999999995" />
+          <edmx:ConnectorPoint PointX="10.375" PointY="4.7749999999999995" />
+          <edmx:ConnectorPoint PointX="10.375" PointY="0.5" />
+          <edmx:ConnectorPoint PointX="12.291666666666666" PointY="0.49999999999999944" />
+          <edmx:ConnectorPoint PointX="12.458333333333334" PointY="0.5" />
+          <edmx:ConnectorPoint PointX="15.5" PointY="0.5" />
+          <edmx:ConnectorPoint PointX="15.5" PointY="0.9812520000000502" />
+          <edmx:ConnectorPoint PointX="15.875" PointY="0.9812520000000502" />
+        </edmx:AssociationConnector>
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.APEntity" Width="1.5" PointX="10.625" PointY="6" Height="9.8646451822916674" />
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege" >
+          <edmx:ConnectorPoint PointX="12.125" PointY="6.5766097005208328" />
+          <edmx:ConnectorPoint PointX="12.875" PointY="6.5766097005208328" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" >
+          <edmx:ConnectorPoint PointX="12.125" PointY="6.025383615384615" />
+          <edmx:ConnectorPoint PointX="12.75" PointY="5.4003836153846159" />
+          <edmx:ConnectorPoint PointX="12.75" PointY="4.6567682307692309" />
+          <edmx:ConnectorPoint PointX="12.881768230769231" PointY="4.525" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" >
+          <edmx:ConnectorPoint PointX="12.125" PointY="6.0069220769230762" />
+          <edmx:ConnectorPoint PointX="12.53125" PointY="5.6006720769230753" />
+          <edmx:ConnectorPoint PointX="12.53125" PointY="4.8622884615384621" />
+          <edmx:ConnectorPoint PointX="12.875" PointY="4.5185384615384612" />
         </edmx:AssociationConnector>
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>

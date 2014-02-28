@@ -68,6 +68,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 copies = 1;
             }
 
+            PrintPaperLs(LL, Kopie, copies, isLSDruck, DruckerName);
+
+            // TODO: Diesen Abschnitt vornehmen: Export Pfad prüfen
+            //***************************************************************************
+            //  Filename und Pfad (hier: PDF)
+          //  CreateLsAsPdf(boWE, LL, oLE);
+
+            LL.Dispose();
+        }
+
+        private void PrintPaperLs(ListLabel LL, bool Kopie, int copies, bool? isLSDruck, string DruckerName)
+        {
             try
             {
                 for (int nCopy = 0; nCopy < copies; ++nCopy)
@@ -89,10 +101,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
-            // TODO: Diesen Abschnitt vornehmen: Export Pfad prüfen
-            //***************************************************************************
-            //  Filename und Pfad (hier: PDF)
+        private void CreateLsAsPdf(WaegeEntity boWE, ListLabel LL, Lokaleeinstellungen oLE)
+        {
             if (goApp.PDFEXPORT == true)
             {
                 try
@@ -112,8 +124,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                     MessageBox.Show("Exportpfad für PDF's eingerichtet?");
                 }
             }
-
-            LL.Dispose();
         }
     }
 }

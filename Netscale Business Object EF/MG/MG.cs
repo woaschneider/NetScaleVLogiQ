@@ -14,7 +14,7 @@ namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
 	/// Summary description for MG.
-	//
+	/// </summary>
 	public partial class MG : ABusinessObject<MGEntity>
 	{
 		

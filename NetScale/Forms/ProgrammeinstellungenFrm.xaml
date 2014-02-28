@@ -299,8 +299,8 @@
                              Margin="284,169,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
-                             IsEnabled="False"
-                             MaxLength="2"
+                             IsEnabled="True"
+                             MaxLength="5"
                              Text="{Binding MaxGewicht}" />
                     <Label Name="label6"
                            Height="28"

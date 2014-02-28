@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -8,7 +9,9 @@ using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Xml.XPath;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;
@@ -65,8 +68,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             var pw = boUE.Password;
             txtPassword.Password = pw;
+          
+      
+         
         }
-
+     
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -77,10 +83,27 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_catchfocus.Focus();
             mmSaveDataResult result;
             boUE.Password = txtPassword.Password;
+
+
+
             result = this.SaveEntity(boU, boUE);
             if (result != mmSaveDataResult.RulesPassed)
                 return;
         }
+       
+
+ 
+
+      
+
+    
+   
+
+
+     
+
+     
+     
 
         private void cmdDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -114,6 +137,37 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_accesslevel.Text = oURFrm.uRet;
             tb_accesslevel.Focus();
             oURFrm.Close();
+        }
+
+        private void cmdSelectBitmap_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+            // Set filter for file extension and default file extension
+            dlg.DefaultExt = ".bmp";
+
+            dlg.Filter = "Bitmaps (.bmp)|*.bmp";
+
+
+            // Display OpenFileDialog by calling ShowDialog method
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox
+
+          
+           if(dlg.FileName!=null)
+               tb_unterschrift.Text = dlg.FileName;
+
+
+          
+              
+                
+
         }
     }
 }
