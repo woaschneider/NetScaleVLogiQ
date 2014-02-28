@@ -23,10 +23,10 @@ namespace HWB.NETSCALE.BOEF
             // Place code here to be executed when the business object instantiates
         }
 
-        public KMEntity GetKMByAuftragsNr(string auftragsnr)
+        public KMEntity GetKMByAuftragsNr(string mandant, string auftragsnr, string posnr)
         {
             IQueryable<KMEntity> query = from KM in this.ObjectContext.KMEntities
-                                         where KM.Kontraktnr  == auftragsnr
+                                         where KM.Kontraktnr  == auftragsnr && KM.Mandant== mandant && KM.Kontraktnr == auftragsnr
                                          select KM;
             return this.GetEntity(query);
         }

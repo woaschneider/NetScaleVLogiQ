@@ -112,7 +112,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             ImportKK("OAM_Export_KONTRAKTKOPF.TXT");
             oKK.DeleteAllNotTouch();
 
-         //   ImportKm("OAM_Export_KONTRAKTDETAIL.TXT");
+            ImportKM("OAM_Export_KONTRAKTDETAIL.TXT");
             oKM.DeleteAllNotTouch();
 
         }
@@ -202,7 +202,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             // oAPE.Mandant = cLine.Substring(0, 2);
 
-            oAPE.Nr = cLine.Substring(2, 10);
+            oAPE.Nr = VFP.PadL(cLine.Substring(2, 10).Trim(),10,' ');
            
             oAPE.Firma = cLine.Substring(12, 50);
             oAPE.Name1 = cLine.Substring(62, 50);
@@ -336,21 +336,20 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
                 lineCount++;
                 string cLine = c_TextDatei.ReadLine(c_file, lineCount);
-                string AeKz = cLine.Substring(29, 1);
+              
 
-                string auftragnr = cLine.Substring(2, 8);
+                string mandant = cLine.Substring(9, 3);
+                string auftragnr = VFP.PadR( cLine.Substring(12, 12),10);
 
-                if ((AeKz == "C" || AeKz == "N" || AeKz == " ") & cLine.Substring(0, 3) != "$$$")
-                    // $$$ Prüfen auf Kopfzeile 
-                {
+                
                     oKKE = oKK.GetKKByAuftragsNr(auftragnr) ?? oKK.NewEntity();
-                    oKME = oKM.GetKMByAuftragsNr(auftragnr) ?? oKM.NewEntity();
+                  //  oKME = oKM.GetKMByAuftragsNr(auftragnr) ?? oKM.NewEntity();
                     // Füllen
                     FillKK(cLine);
 
 
                     var uRet = oKK.SaveEntity(oKKE);
-                }
+              
                 // Schauen ob es den Partner gibt
             }
 
@@ -358,13 +357,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         }
         private void FillKK(string cLine)
         {
-            oKKE.mandant = cLine.Substring(0, 2);
-            oKKE.kontraktnr = cLine.Substring(2, 8);
-            oKKE.werksnr = cLine.Substring(13, 3);
-            oKKE.auftragsart = cLine.Substring(30, 2);
-            oKKE.wefirma = cLine.Substring(32, 30);
-            oKKE.wename1 = cLine.Substring(62, 30);
-            oKKE.partnernrAU = cLine.Substring(93, 5);
+            oKKE.mandant = VFP.PadL( cLine.Substring(0, 12).Trim(),3,' ');
+         oKKE.kontraktnr = VFP.PadL( cLine.Substring(12,12 ).Trim(),10,' ');
+         
+
+           oKKE.partnernrAU = VFP.PadL( cLine.Substring(24,12).Trim(),10,' ');
+          oKKE.wefirma = cLine.Substring(38, 50);
+          oKKE.wename1 = cLine.Substring(88, 50);
+          
+       
+           
             var APFK = oAP.GetAPByNr(oKKE.partnernrAU);
             if (APFK != null)
                 oKKE.APFK = APFK.PK;
@@ -376,9 +378,42 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void ImportKM(string FileName)
         {
+            TextDatei c_TextDatei = GetCTextDatei(FileName);
+
+            if (c_TextDatei == null)
+                return;
+
+            while (reader.ReadLine() != null)
+            {
+                worker.ReportProgress((int)(lineCount / OneProzNlines));
+
+                lineCount++;
+                string cLine = c_TextDatei.ReadLine(c_file, lineCount);
+
+
+                string mandant = cLine.Substring(9, 3);
+                string auftragnr = VFP.PadR(cLine.Substring(12, 12), 10);
+                string posnr = VFP.PadR(cLine.Substring(24, 12).Trim(), 10);
+
+
+           
+              oKME = oKM.GetKMByAuftragsNr(mandant, auftragnr,posnr) ?? oKM.NewEntity();
+                // Füllen
+                FillKM(cLine);
+
+
+                var uRet = oKM.SaveEntity(oKME);
+
+                // Schauen ob es den Partner gibt
+            }
+
+            reader.Close();
         }
         private void FillKM(string cLine)
         {
+            oKME.Mandant= VFP.PadL(cLine.Substring(0, 12).Trim(), 3, ' ');
+            oKME.Kontraktnr = VFP.PadL(cLine.Substring(12, 12).Trim(), 10, ' ');
+         
         }
 
         private TextDatei GetCTextDatei(string FileName)
