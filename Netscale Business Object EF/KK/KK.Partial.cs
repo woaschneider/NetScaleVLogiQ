@@ -113,6 +113,7 @@ namespace HWB.NETSCALE.BOEF
                                        wefirma = k.wefirma,
                                        wename1 = k.wename1,
 
+                                       kmpk = km.pk,
                                        posnr = km.posnr,
                                        Sortennr = m.SortenNr,
                                        Sortenbezeichnung1 = m.Sortenbezeichnung1,

@@ -419,6 +419,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             oKME.SortenNr = cLine.Substring(36, 8);
             oKME.touch = true;
 
+
+
+            KK oKK = new KK();
+            KKEntity oKKE = oKK.GetKKByAuftragsNr(oKME.Kontraktnr);
+            if (oKKE != null)
+                oKME.kkpk = oKKE.pk;
+
             MG oMG = new MG();
             MGEntity oMGE = oMG.GetMGByNr(oKME.SortenNr);
             if (oMGE != null)
