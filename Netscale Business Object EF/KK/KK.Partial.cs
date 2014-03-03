@@ -33,7 +33,7 @@ namespace HWB.NETSCALE.BOEF
             return this.GetEntity(query);
         }
 
-        public KKEntity GetKKByPK(int pk)
+        public KKEntity GetKKByPK(int? pk)
         {
             IQueryable<KKEntity> query = from KK in this.ObjectContext.KKEntities
                                          where KK.pk  == pk
@@ -125,6 +125,49 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
           
         }
+        public Auftragsdetail GetAuftragDetail(int kmpk)
+      {
+          var query = from a in ObjectContext.APEntities
+                      from k in ObjectContext.KKEntities
+                      from km in ObjectContext.KMEntities
+                      from m in ObjectContext.MGEntities
+
+
+
+
+                      where km.pk == kmpk && a.PK == k.APFK && km.kkpk == k.pk && m.PK == km.mgpk
+                      select new Auftragsdetail
+                      {
+                          appk = a.PK,
+                          nrKU = a.Nr,
+                          FirmaKU = a.Firma,
+                          Name1KU = a.Name1,
+                          PlzKU = a.Plz,
+                          OrtKU = a.Ort,
+                          AnschriftKU = a.Anschrift,
+
+                          kkpk = k.pk,
+                          mandant = k.mandant,
+                          werksnr = k.werksnr,
+
+                          auftragsart = k.auftragsart,
+                          kontraktart = k.kontraktart,
+                          KontraktNr = k.kontraktnr,
+                          wefirma = k.wefirma,
+                          wename1 = k.wename1,
+
+                          kmpk = km.pk,
+                          posnr = km.posnr,
+                          Sortennr = m.SortenNr,
+                          Sortenbezeichnung1 = m.Sortenbezeichnung1,
+                          Sortenbezeichnung2 = m.Sortenbezeichnung2
+
+                      };
+
+          var x = query.ToString();
+          return GetEntity(query);
+          
+      }
 
         public void SetAllTouch2False()
         {

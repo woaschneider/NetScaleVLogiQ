@@ -30,6 +30,12 @@ namespace HWB.NETSCALE.BOEF
                                          select KM;
             return this.GetEntity(query);
         }
+        public KMEntity GetKMByPK(int kmpk)
+        {
+            IQueryable<KMEntity> query = from KM in this.ObjectContext.KMEntities
+                                         where KM.pk == kmpk                                         select KM;
+            return this.GetEntity(query);
+        }
 
         public void SetAllTouch2False()
         {

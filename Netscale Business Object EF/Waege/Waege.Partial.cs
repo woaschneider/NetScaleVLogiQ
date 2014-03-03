@@ -730,6 +730,34 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
+        public void FillMG(int? mgpk, WaegeEntity boWE)
+        {
+            MG boM = new MG();
+            MGEntity boME = boM.GetMGById(mgpk);
+            if (boWE != null)
+            {
+                if (boME != null)
+                {
+                    boWE.PK_MG = boME.PK;
+                    boWE.SortenNr = boME.SortenNr;
+                    boWE.Sortenbezeichnung1 = boME.Sortenbezeichnung1;
+                    boWE.Sortenbezeichnung2 = boME.Sortenbezeichnung2;
+                }
+                else
+                {
+                    boWE.PK_MG = null;
+                    boWE.SortenNr = "";
+                    boWE.Sortenbezeichnung1 = "";
+                    boWE.Sortenbezeichnung2 = "";
+
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
         public void Auftrag2Waege(int KKPK, WaegeEntity oWE)
         {
             KK oK = new KK();
@@ -742,6 +770,28 @@ namespace HWB.NETSCALE.BOEF
 
                 this.FillApKu((int) oKKE.APFK, oWE);
             }
+        }
+        public void AuftragDetail2Waege(int KMPK, WaegeEntity oWE)
+        {
+            KM oKM = new KM();
+            KMEntity oKME = oKM.GetKMByPK(KMPK);
+
+            KK oK = new KK();
+            int? kkpk = 0;
+            if (oKME.kkpk != null)
+                kkpk = oKME.kkpk;
+
+            KKEntity oKKE = oK.GetKKByPK(kkpk);
+            if (oKKE != null)
+            {
+                oWE.kontraktnr = oKKE.kontraktnr;
+                oWE.wefirma = oKKE.wefirma;
+                oWE.wename1 = oKKE.wename1;
+
+                this.FillApKu((int)oKKE.APFK, oWE);
+                this.FillMG(oKME.mgpk, oWE);
+            }
+
         }
     }
 }

@@ -1245,8 +1245,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             var oAlFrm = new AuftragsListeFrm(matchcode);
 
             oAlFrm.ShowDialog();
-            int uRetKKPK = oAlFrm.uRet;
-            _boW.Auftrag2Waege(uRetKKPK, _boWe);
+            int uRetKMPK = oAlFrm.uRet;
+            _boW.AuftragDetail2Waege(uRetKMPK, _boWe);
             oAlFrm.Close();
         }
 

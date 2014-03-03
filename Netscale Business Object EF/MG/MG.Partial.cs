@@ -23,7 +23,7 @@ namespace HWB.NETSCALE.BOEF
             // Place code here to be executed when the business object instantiates
         }
 
-        public MGEntity GetMGById(int PK)
+        public MGEntity GetMGById(int? PK)
         {
             IQueryable<MGEntity> query = from MG in this.ObjectContext.MGEntities
                                          where MG.PK == PK

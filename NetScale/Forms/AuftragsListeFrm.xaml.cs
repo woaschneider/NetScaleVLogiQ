@@ -49,24 +49,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key == Key.Return)
             {
-                if (dataGrid1.Items.Count == 1)
-                {
-                    dataGrid1.Focus();
-                    KBDown();
-                    KBDown();
-                    e.Handled = true;
-                    dataGrid1.SelectedItem = dataGrid1.Items[0];
-                    uRet = Convert.ToInt32(dataGrid1.SelectedValue);
-                    this.Hide();
-                }
-                else
-                {
-                    e.Handled = true;
-                    uRet = Convert.ToInt32(dataGrid1.SelectedValue);
-                   AuftragEditFrm oKMFrm = new AuftragEditFrm(uRet);
-                    oKMFrm.ShowDialog();
-                    // this.Hide();
-                }
+                dataGrid1.Focus();
+                KBDown();
+                KBDown();
+                e.Handled = true;
+                //   dataGrid1.SelectedItem = dataGrid1.Items[0];
+
+                e.Handled = true;
+                uRet = Convert.ToInt32(dataGrid1.SelectedValue);
+                AuftragEditFrm oKMFrm = new AuftragEditFrm(uRet);
+                oKMFrm.ShowDialog();
+                uRet = oKMFrm.uRet;// uRet kmpk
+                
+                this.Hide();
             }
         }
 
