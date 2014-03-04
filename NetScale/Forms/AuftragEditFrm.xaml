@@ -9,6 +9,7 @@
                         Height="526"
                         AllowsTransparency="False"
                         Background="#FFC2CCDB"
+                        Loaded="Window_Loaded"
                         WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="LayoutRoot">
@@ -73,12 +74,13 @@
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
                          FontSize="14"
+                         IsReadOnly="True"
                          MaxLength="50"
                          TabIndex="240"
                          Text="{Binding Path=FirmaKU,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
-                         ToolTip="Adressenliste mit F4 anzeigen" />
+                         ToolTip="Adressenliste mit F4 anzeigen" IsTabStop="False" AcceptsTab="True" />
                 <Label Name="lblfirma"
                        Width="102"
                        Height="28"
@@ -94,33 +96,36 @@
                          Margin="138,84,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsReadOnly="True"
                          MaxLength="50"
                          TabIndex="260"
                          Text="{Binding Path=Name1KU,
                                         Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" />
+                                        UpdateSourceTrigger=PropertyChanged}" IsTabStop="False" AcceptsTab="True" />
                 <TextBox Name="tb_AnschriftKU"
                          Width="257"
                          Height="23"
                          Margin="138,108,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsReadOnly="True"
                          MaxLength="50"
                          TabIndex="280"
                          Text="{Binding Path=AnschriftKU,
                                         Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" />
+                                        UpdateSourceTrigger=PropertyChanged}" IsTabStop="False" AcceptsTab="True" />
                 <TextBox Name="tb_PlzKU"
                          Width="67"
                          Height="23"
                          Margin="138,132,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsReadOnly="True"
                          MaxLength="6"
                          TabIndex="300"
                          Text="{Binding Path=PlzKU,
                                         Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" />
+                                        UpdateSourceTrigger=PropertyChanged}" IsTabStop="False" AcceptsTab="True" />
                 <Label Name="label6"
                        Width="102"
                        Height="28"
@@ -151,23 +156,25 @@
                          Margin="206,132,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsReadOnly="True"
                          MaxLength="50"
                          TabIndex="310"
                          Text="{Binding Path=OrtKU,
                                         Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}" />
+                                        UpdateSourceTrigger=PropertyChanged}" IsTabStop="False" AcceptsTab="True" />
                 <TextBox Name="tb_NrKU"
                          Width="94"
                          Height="23"
                          Margin="138,36,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsReadOnly="True"
                          MaxLength="10"
                          TabIndex="220"
                          Text="{Binding Path=nrKU,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
-                         ToolTip="Nummer und ENTER" />
+                         ToolTip="Nummer und ENTER" IsTabStop="False" AcceptsTab="True" />
                 <Label Name="label1"
                        Width="122"
                        Height="28"
@@ -202,14 +209,16 @@
                          Margin="138,156,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
-                         TabIndex="330" />
+                         IsReadOnly="True"
+                         TabIndex="330" IsTabStop="False" AcceptsTab="True" />
                 <TextBox Name="textBox8"
                          Width="189"
                          Height="23"
                          Margin="206,156,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
-                         TabIndex="340" />
+                         IsReadOnly="True"
+                         TabIndex="340" IsTabStop="False" AcceptsTab="True" />
             </Grid>
         </GroupBox>
         <GroupBox Name="groupBox2"
@@ -234,24 +243,27 @@
                          Margin="138,20,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
+                         IsReadOnly="True"
                          TabIndex="360"
-                         Text="{Binding KontraktNr}" />
+                         Text="{Binding KontraktNr}" IsTabStop="False" AcceptsTab="True" />
                 <TextBox Name="textBox10"
                          Width="257"
                          Height="23"
                          Margin="138,45,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
-                            Text="{Binding wefirma}" 
-                         TabIndex="362" />
+                         IsReadOnly="True"
+                         TabIndex="362"
+                         Text="{Binding wefirma}" IsTabStop="False" AcceptsTab="True" />
                 <TextBox Name="textBox11"
                          Width="257"
                          Height="23"
                          Margin="138,69,0,0"
                          HorizontalAlignment="Left"
                          VerticalAlignment="Top"
-                            Text="{Binding wename1}" 
-                         TabIndex="370" />
+                         IsReadOnly="True"
+                         TabIndex="370"
+                         Text="{Binding wename1}" IsTabStop="False" AcceptsTab="True" />
                 <Label Name="label24"
                        Width="127"
                        Height="28"
@@ -268,11 +280,12 @@
                   Margin="23,346,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  FontSize="15" TabIndex="100">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Sorten-Nr." Binding="{Binding Sortennr}"/>
-                <DataGridTextColumn Header="Sortenbezeichnung 1" Binding="{Binding Sortenbezeichnung1}" />
-                <DataGridTextColumn Header="Sortenbezeichnung 2" Binding="{Binding Sortenbezeichnung2}"/>
+                <DataGridTextColumn Binding="{Binding Sortennr}" Header="Sorten-Nr." />
+                <DataGridTextColumn Binding="{Binding Sortenbezeichnung1}" Header="Sortenbezeichnung 1" />
+                <DataGridTextColumn Binding="{Binding Sortenbezeichnung2}" Header="Sortenbezeichnung 2" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

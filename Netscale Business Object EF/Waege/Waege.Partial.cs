@@ -775,6 +775,8 @@ namespace HWB.NETSCALE.BOEF
         {
             KM oKM = new KM();
             KMEntity oKME = oKM.GetKMByPK(KMPK);
+            if (oKME == null)
+                return;
 
             KK oK = new KK();
             int? kkpk = 0;

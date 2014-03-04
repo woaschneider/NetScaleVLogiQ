@@ -39,6 +39,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             tb_firma.Text = matchcode;
             FillDataGrid(matchcode, "");
+           
         }
 
         private void HandleKey(object sender, KeyEventArgs e)
@@ -60,7 +61,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AuftragEditFrm oKMFrm = new AuftragEditFrm(uRet);
                 oKMFrm.ShowDialog();
                 uRet = oKMFrm.uRet;// uRet kmpk
-                
+                oKMFrm.Close();
                 this.Hide();
             }
         }

@@ -33,6 +33,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         public AuftragEditFrm(int kkpk)
         {
             this.InitializeComponent();
+       
             boKK = new KK();
             var dk = boKK.GetAuftragsDetailliste(kkpk);
 
@@ -48,6 +49,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (dk.Count == 1)
             {
                 uRet = dk[0].kmpk;
+               
             
             }
             //
@@ -56,8 +58,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             dataGrid1.ItemsSource = dk;
            
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
+          
 
 
+        }
+        private void KBDown()
+        {
+            KeyEventArgs args = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0,
+                                                 Key.Down);
+            args.RoutedEvent = Keyboard.KeyDownEvent;
+            InputManager.Current.ProcessInput(args);
+            args.RoutedEvent = Keyboard.KeyDownEvent;
+            InputManager.Current.ProcessInput(args);
         }
         private void HandleKey(object sender, KeyEventArgs e)
         {
@@ -97,6 +109,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            dataGrid1.SelectedItem = dataGrid1.Items[0];
+            dataGrid1.Focus();
+
+            KBDown();
+            KBDown();
+            WindowExtensions.HideCloseButton(this);
         }
     }
 }
