@@ -25,16 +25,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     public partial class AuftragEditFrm : mmBusinessWindow
     {
         public int uRet;
+        private int kk_pk;
         KK boKK;
-        private Auftragsdetailliste boADLE;
+    //    private Auftragsdetailliste boADLE;
         /// <summary>
         /// Constructor
         /// </summary>
         public AuftragEditFrm(int kkpk)
         {
+            kk_pk = kkpk;
             this.InitializeComponent();
        
             boKK = new KK();
+
             var dk = boKK.GetAuftragsDetailliste(kkpk);
 
             // 
@@ -119,6 +122,31 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             KBDown();
             KBDown();
             WindowExtensions.HideCloseButton(this);
+        }
+
+        private void cmdAddPos_Click(object sender, RoutedEventArgs e)
+        {
+           MGListFrm oMGListeFrm = new MGListFrm("");
+            oMGListeFrm.ShowDialog();
+            uRet = oMGListeFrm.uRet;
+            if(uRet!=0)
+            {
+                KM oKM = new KM();
+                oKM.AddPos(uRet,kk_pk);
+                FillGrid(kk_pk);
+                
+            }
+            
+            oMGListeFrm.Close();
+
+        }
+        private void  FillGrid(int kkpk)
+        {  
+            boKK = new KK();
+            var dk = boKK.GetAuftragsDetailliste(kkpk);
+            DataContext = dk;
+            dataGrid1.SelectedValuePath = "kmpk";
+            dataGrid1.ItemsSource = dk;
         }
     }
 }

@@ -6,7 +6,7 @@
                         x:Name="Window"
                         Title="BusinessWindow"
                         Width="917"
-                        Height="526"
+                        Height="623"
                         AllowsTransparency="False"
                         Background="#FFC2CCDB"
                         Loaded="Window_Loaded"
@@ -55,6 +55,18 @@
                                          FontSize="14"
                                          Label=" Auswählen "
                                          LargeImageSource="..\Images\1328252503_ok.png" />
+                    <ribbon:RibbonButton x:Name="cmdAddPos"
+                                         Width="80"
+                                         Click="cmdAddPos_Click"
+                                         FontSize="14"
+                                         Label=" Sorte hinzufügen "
+                                         LargeImageSource="..\Images\1298575723_advancedsettings.png" />
+                    <ribbon:RibbonButton x:Name="cmdDeletePos"
+                                         Width="80"
+                                         Click="cmdAddPos_Click"
+                                         FontSize="14"
+                                         Label=" Sorte entfernen "
+                                         LargeImageSource="..\Images\1298575723_advancedsettings.png" />
 
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
@@ -276,7 +288,7 @@
         </GroupBox>
         <DataGrid Name="dataGrid1"
                   Width="855"
-                  Height="129"
+                  Height="226"
                   Margin="23,346,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
