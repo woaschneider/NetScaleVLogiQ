@@ -36,7 +36,7 @@ namespace HWB.NETSCALE.BOEF
         public APEntity GetAPByNr(string Nr)
         {
             IQueryable<APEntity> query = from AP in this.ObjectContext.APEntities
-                                         where AP.Nr == Nr
+                                         where AP.Nr.Trim() == Nr
                                          select AP;
             return this.GetEntity(query);
         }

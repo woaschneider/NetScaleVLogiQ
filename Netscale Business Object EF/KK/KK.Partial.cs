@@ -25,10 +25,10 @@ namespace HWB.NETSCALE.BOEF
         }
 
 
-        public KKEntity GetKKByAuftragsNr(string auftragsnr)
+        public KKEntity GetKKByAuftragsNr(string mandant,string auftragsnr)
         {
             IQueryable<KKEntity> query = from KK in this.ObjectContext.KKEntities
-                                         where KK.kontraktnr == auftragsnr
+                                         where  KK.mandant.Trim()== mandant && KK.kontraktnr == auftragsnr 
                                          select KK;
             return this.GetEntity(query);
         }
@@ -36,17 +36,16 @@ namespace HWB.NETSCALE.BOEF
         public KKEntity GetKKByPK(int? pk)
         {
             IQueryable<KKEntity> query = from KK in this.ObjectContext.KKEntities
-                                         where KK.pk  == pk
+                                         where KK.pk == pk
                                          select KK;
             return this.GetEntity(query);
         }
-      
+
 
         // Dieses BO ist nicht direkt aus den Tabellen abgeleitet. Siehe Join-Klassen -> Auftragsliste:BusinessObject
         // Eigentlich ist das eine recht elegante Möglichkeit. 
-        public mmBindingList<AuftragsListe> GetAuftragsListe(string mc, string baustelle)
+        public mmBindingList<AuftragsListe> GetAuftragsListe(int mandant_pk, string mc, string baustelle)
         {
-           
             var query = from a in ObjectContext.APEntities
                         from k in ObjectContext.KKEntities
                         from km in ObjectContext.KKEntities
@@ -54,7 +53,7 @@ namespace HWB.NETSCALE.BOEF
                         orderby a.Firma
                         //<- Diesen Teil brauchen wir vielleicht später mal. Join auf KM  
                         where
-                            a.Firma.Contains(mc) && a.Rolle_AU == true && a.PK == k.APFK &&
+                         k.MandantPK == mandant_pk && a.Firma.Contains(mc) && a.Rolle_AU == true && a.PK == k.APFK &&
                             k.kontraktnr == km.kontraktnr && k.wefirma.Contains(baustelle)
                         select new AuftragsListe
                                    {
@@ -64,12 +63,10 @@ namespace HWB.NETSCALE.BOEF
                                        Name1 = a.Name1,
                                        Plz = a.Plz,
                                        Ort = a.Ort,
-                                       Anschrift= a.Anschrift,
-                                       
+                                       Anschrift = a.Anschrift,
                                        kkpk = k.pk,
                                        mandant = k.mandant,
                                        werksnr = k.werksnr,
-                                       
                                        auftragsart = k.auftragsart,
                                        kontraktart = k.kontraktart,
                                        KontraktNr = k.kontraktnr,
@@ -77,9 +74,8 @@ namespace HWB.NETSCALE.BOEF
                                        wename1 = k.wename1
                                    };
 
-           var x = query.ToString();
+            var x = query.ToString();
             return GetEntityList(query);
-        
         }
 
         public mmBindingList<Auftragsdetailliste> GetAuftragsDetailliste(int kkpk)
@@ -88,10 +84,6 @@ namespace HWB.NETSCALE.BOEF
                         from k in ObjectContext.KKEntities
                         from km in ObjectContext.KMEntities
                         from m in ObjectContext.MGEntities
-
-
-
-
                         where k.pk == kkpk && a.PK == k.APFK && km.kkpk == kkpk && m.PK == km.mgpk
                         select new Auftragsdetailliste
                                    {
@@ -102,85 +94,70 @@ namespace HWB.NETSCALE.BOEF
                                        PlzKU = a.Plz,
                                        OrtKU = a.Ort,
                                        AnschriftKU = a.Anschrift,
-
                                        kkpk = k.pk,
                                        mandant = k.mandant,
                                        werksnr = k.werksnr,
-
                                        auftragsart = k.auftragsart,
                                        kontraktart = k.kontraktart,
                                        KontraktNr = k.kontraktnr,
                                        wefirma = k.wefirma,
                                        wename1 = k.wename1,
-
                                        kmpk = km.pk,
                                        posnr = km.posnr,
                                        Sortennr = m.SortenNr,
                                        Sortenbezeichnung1 = m.Sortenbezeichnung1,
                                        Sortenbezeichnung2 = m.Sortenbezeichnung2
-
-                                                    };
+                                   };
 
             var x = query.ToString();
             return GetEntityList(query);
-          
         }
+
         public Auftragsdetail GetAuftragDetail(int kmpk)
-      {
-          var query = from a in ObjectContext.APEntities
-                      from k in ObjectContext.KKEntities
-                      from km in ObjectContext.KMEntities
-                      from m in ObjectContext.MGEntities
+        {
+            var query = from a in ObjectContext.APEntities
+                        from k in ObjectContext.KKEntities
+                        from km in ObjectContext.KMEntities
+                        from m in ObjectContext.MGEntities
+                        where km.pk == kmpk && a.PK == k.APFK && km.kkpk == k.pk && m.PK == km.mgpk
+                        select new Auftragsdetail
+                                   {
+                                       appk = a.PK,
+                                       nrKU = a.Nr,
+                                       FirmaKU = a.Firma,
+                                       Name1KU = a.Name1,
+                                       PlzKU = a.Plz,
+                                       OrtKU = a.Ort,
+                                       AnschriftKU = a.Anschrift,
+                                       kkpk = k.pk,
+                                       mandant = k.mandant,
+                                       werksnr = k.werksnr,
+                                       auftragsart = k.auftragsart,
+                                       kontraktart = k.kontraktart,
+                                       KontraktNr = k.kontraktnr,
+                                       wefirma = k.wefirma,
+                                       wename1 = k.wename1,
+                                       kmpk = km.pk,
+                                       posnr = km.posnr,
+                                       Sortennr = m.SortenNr,
+                                       Sortenbezeichnung1 = m.Sortenbezeichnung1,
+                                       Sortenbezeichnung2 = m.Sortenbezeichnung2
+                                   };
 
-
-
-
-                      where km.pk == kmpk && a.PK == k.APFK && km.kkpk == k.pk && m.PK == km.mgpk
-                      select new Auftragsdetail
-                      {
-                          appk = a.PK,
-                          nrKU = a.Nr,
-                          FirmaKU = a.Firma,
-                          Name1KU = a.Name1,
-                          PlzKU = a.Plz,
-                          OrtKU = a.Ort,
-                          AnschriftKU = a.Anschrift,
-
-                          kkpk = k.pk,
-                          mandant = k.mandant,
-                          werksnr = k.werksnr,
-
-                          auftragsart = k.auftragsart,
-                          kontraktart = k.kontraktart,
-                          KontraktNr = k.kontraktnr,
-                          wefirma = k.wefirma,
-                          wename1 = k.wename1,
-
-                          kmpk = km.pk,
-                          posnr = km.posnr,
-                          Sortennr = m.SortenNr,
-                          Sortenbezeichnung1 = m.Sortenbezeichnung1,
-                          Sortenbezeichnung2 = m.Sortenbezeichnung2
-
-                      };
-
-          var x = query.ToString();
-          return GetEntity(query);
-          
-      }
+            var x = query.ToString();
+            return GetEntity(query);
+        }
 
         public void SetAllTouch2False()
         {
             IQueryable<KKEntity> query = from a in ObjectContext.KKEntities
-                                         orderby a.kontraktnr 
+                                         orderby a.kontraktnr
                                          select a;
             var ii = GetEntityList(query);
 
-            for (int i = 0; i < (ii.Count() - 1); i++)
+            for (int i = 0; i < (ii.Count() ); i++)
             {
                 ii[i].touch = false;
-
-               
             }
             var uRet = this.SaveEntityList(ii);
         }
@@ -188,13 +165,11 @@ namespace HWB.NETSCALE.BOEF
         public void DeleteAllNotTouch()
         {
             IQueryable<KKEntity> query = from a in ObjectContext.KKEntities
-                                          where a.touch == false
+                                         where a.touch == false
                                          select a;
             var ii = GetEntityList(query);
 
             DeleteEntityList();
         }
-
-
     }
 }

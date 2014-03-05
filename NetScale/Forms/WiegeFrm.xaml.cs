@@ -1230,6 +1230,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue.ToString());
 
+          
 
             if (_boWe != null)
             {

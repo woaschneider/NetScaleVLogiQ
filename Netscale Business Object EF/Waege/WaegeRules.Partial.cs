@@ -275,7 +275,7 @@ namespace HWB.NETSCALE.BOEF
              if(oWE!=null)
              {
                  KK oKK = new KK();
-                 KKEntity oKKE = oKK.GetKKByAuftragsNr(oWE.kontraktnr);
+                 KKEntity oKKE = oKK.GetKKByAuftragsNr(goApp.Mandant, oWE.kontraktnr);
                  if(oKKE != null)
                  {
                      AP oAP = new AP();

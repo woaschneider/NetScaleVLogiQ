@@ -183,7 +183,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 if (apnr == "          ") // Leere Zeile
                     return;
 
-                oAPE = oAP.GetAPByNr(apnr);
+                oAPE = oAP.GetAPByNr(apnr.Trim());
                 if (oAPE == null)
                     oAPE = oAP.NewEntity();
 
@@ -204,7 +204,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             // oAPE.Mandant = cLine.Substring(0, 2);
 
-            oAPE.Nr = VFP.PadL(cLine.Substring(2, 10).Trim(), 10, ' ');
+            oAPE.Nr = VFP.PadL(cLine.Substring(2, 10).Trim(), 10, ' ').Trim();
 
             oAPE.Firma = cLine.Substring(12, 50);
             oAPE.Name1 = cLine.Substring(62, 50);
@@ -340,13 +340,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 string cLine = c_TextDatei.ReadLine(c_file, lineCount);
 
 
-                string mandant = cLine.Substring(9, 3);
+                string mandant = cLine.Substring(9, 3).Trim();
                 string auftragnr = VFP.PadR(cLine.Substring(12, 12), 10);
 
 
-                oKKE = oKK.GetKKByAuftragsNr(auftragnr) ?? oKK.NewEntity();
-                //  oKME = oKM.GetKMByAuftragsNr(auftragnr) ?? oKM.NewEntity();
-                // Füllen
+                oKKE = oKK.GetKKByAuftragsNr(mandant, auftragnr);
+                if(oKKE==null)
+                    oKKE = oKK.NewEntity();
+            
                 FillKK(cLine);
 
 
@@ -360,14 +361,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void FillKK(string cLine)
         {
-            oKKE.mandant = VFP.PadL(cLine.Substring(0, 12).Trim(), 3, ' ');
-            oKKE.kontraktnr = VFP.PadL(cLine.Substring(12, 12).Trim(), 10, ' ');
+            oKKE.mandant = VFP.PadL(cLine.Substring(0, 12).Trim(), 3, ' ').Trim();
+            oKKE.kontraktnr = VFP.PadL(cLine.Substring(12, 12).Trim(), 10, ' ').Trim();
 
 
-            oKKE.partnernrAU = VFP.PadL(cLine.Substring(24, 12).Trim(), 10, ' ');
+            oKKE.partnernrAU = VFP.PadL(cLine.Substring(24, 12).Trim(), 10, ' ').Trim();
             oKKE.wefirma = cLine.Substring(38, 50);
             oKKE.wename1 = cLine.Substring(88, 50);
 
+            
+             Mandant oM = new Mandant();
+            MandantEntity oME = oM.GetMandantByNr(oKKE.mandant.Trim());
+            if (oME != null)
+                oKKE.MandantPK = oME.PK;
 
             var APFK = oAP.GetAPByNr(oKKE.partnernrAU);
             if (APFK != null)
@@ -413,16 +419,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void FillKM(string cLine)
         {
-            oKME.Mandant = VFP.PadL(cLine.Substring(0, 12).Trim(), 3, ' ');
-            oKME.Kontraktnr = VFP.PadL(cLine.Substring(12, 12).Trim(), 10, ' ');
-            oKME.posnr = VFP.PadL(cLine.Substring(24, 12).Trim(), 10, ' ');
-            oKME.SortenNr = cLine.Substring(36, 8);
+            oKME.Mandant = VFP.PadL(cLine.Substring(0, 12).Trim(), 3, ' ').Trim();
+            oKME.Kontraktnr = VFP.PadL(cLine.Substring(12, 12).Trim(), 10, ' ').Trim();
+            oKME.posnr = VFP.PadL(cLine.Substring(24, 12).Trim(), 10, ' ').Trim();
+            oKME.SortenNr = cLine.Substring(36, 8).Trim();
             oKME.touch = true;
 
 
 
             KK oKK = new KK();
-            KKEntity oKKE = oKK.GetKKByAuftragsNr(oKME.Kontraktnr);
+            KKEntity oKKE = oKK.GetKKByAuftragsNr(oKME.Mandant.Trim(), oKME.Kontraktnr);
             if (oKKE != null)
                 oKME.kkpk = oKKE.pk;
 
@@ -430,6 +436,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             MGEntity oMGE = oMG.GetMGByNr(oKME.SortenNr);
             if (oMGE != null)
                 oKME.mgpk = oMGE.PK;
+
+           
         }
 
         private TextDatei GetCTextDatei(string FileName)

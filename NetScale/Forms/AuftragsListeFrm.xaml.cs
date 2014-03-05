@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.WPF;
 
@@ -90,7 +91,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             dataGrid1.SelectedValuePath = "kkpk";
 
-            dataGrid1.ItemsSource = boKK.GetAuftragsListe(matchcode, baustelle);
+            dataGrid1.ItemsSource = boKK.GetAuftragsListe(goApp.Mandant_PK,matchcode, baustelle);
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)

@@ -59,6 +59,14 @@ namespace HWB.NETSCALE.BOEF
             return this.GetEntity(query);
         }
 
+        public MandantEntity GetMandantByNr(string nr)
+        {
+            IQueryable<MandantEntity> query = from Mandant in this.ObjectContext.MandantEntities
+                                              where Mandant.MandantNr.Trim() == nr
+                                              select Mandant;
+            return this.GetEntity(query);
+        }
+
         public bool IsLsdruck(int pk)
         {
             IQueryable<MandantEntity> query = from Mandant in this.ObjectContext.MandantEntities
