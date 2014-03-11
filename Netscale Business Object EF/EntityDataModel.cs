@@ -19,14 +19,14 @@ using System.Runtime.Serialization;
 #region EDM-Beziehungsmetadaten
 
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FK_Message_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HWB.NETSCALE.BOEF.Language), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.Message), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Mandant_hat_Wägung", "MandantEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MandantEntity), "Waege", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Kopf_hat_Details", "KK", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.KKEntity), "KMEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KMEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "M__hat_Kontrakte", "MandantEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MandantEntity), "KK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KKEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Ein_Detail_hat_ein_Material", "MG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "KMEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KMEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "WaegeEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "AP_hat_Auftraege", "AP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.APEntity), "KKEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KKEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FU__kann_Kfz_haben", "AP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.APEntity), "CFEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.CFEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "SP_kann_Kfz_haben", "AP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.APEntity), "CFEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.CFEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Mandant_hat_Wägung", "MandantEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MandantEntity), "Waege", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MGEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "Waege", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
 
 #endregion
 
@@ -318,22 +318,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<EinstellungenEntity> EinstellungenEntities
-        {
-            get
-            {
-                if ((_EinstellungenEntities == null))
-                {
-                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
-                }
-                return _EinstellungenEntities;
-            }
-        }
-        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<CFEntity> CFEntities
         {
             get
@@ -346,22 +330,6 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<CFEntity> _CFEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -426,6 +394,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<APEntity> _APEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<EinstellungenEntity> EinstellungenEntities
+        {
+            get
+            {
+                if ((_EinstellungenEntities == null))
+                {
+                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
+                }
+                return _EinstellungenEntities;
+            }
+        }
+        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -551,27 +551,11 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
-        {
-            base.AddObject("EinstellungenEntities", einstellungenEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'CFEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToCFEntities(CFEntity cFEntity)
         {
             base.AddObject("CFEntities", cFEntity);
-        }
-    
-        /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
         }
     
         /// <summary>
@@ -604,6 +588,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToAPEntities(APEntity aPEntity)
         {
             base.AddObject("APEntities", aPEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
+        {
+            base.AddObject("EinstellungenEntities", einstellungenEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -3767,7 +3767,7 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MaxGewicht
+        public Nullable<global::System.Decimal> MaxGewicht
         {
             get
             {
@@ -3782,8 +3782,8 @@ namespace HWB.NETSCALE.BOEF
                 OnMaxGewichtChanged();
             }
         }
-        private Nullable<global::System.Int32> _MaxGewicht;
-        partial void OnMaxGewichtChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _MaxGewicht;
+        partial void OnMaxGewichtChanging(Nullable<global::System.Decimal> value);
         partial void OnMaxGewichtChanged();
     
         /// <summary>
@@ -3905,6 +3905,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _TaabCounterId;
         partial void OnTaabCounterIdChanging(Nullable<global::System.Int32> value);
         partial void OnTaabCounterIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> LsAsPdf
+        {
+            get
+            {
+                return _LsAsPdf;
+            }
+            set
+            {
+                OnLsAsPdfChanging(value);
+                ReportPropertyChanging("LsAsPdf");
+                _LsAsPdf = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LsAsPdf");
+                OnLsAsPdfChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _LsAsPdf;
+        partial void OnLsAsPdfChanging(Nullable<global::System.Boolean> value);
+        partial void OnLsAsPdfChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PdfCreator
+        {
+            get
+            {
+                return _PdfCreator;
+            }
+            set
+            {
+                OnPdfCreatorChanging(value);
+                ReportPropertyChanging("PdfCreator");
+                _PdfCreator = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PdfCreator");
+                OnPdfCreatorChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PdfCreator;
+        partial void OnPdfCreatorChanging(Nullable<global::System.Int32> value);
+        partial void OnPdfCreatorChanged();
 
         #endregion
     
@@ -6500,28 +6548,6 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Mandant_hat_Wägung", "Waege")]
-        public EntityCollection<WaegeEntity> Waeges
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Mandant_hat_Wägung", "Waege");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Mandant_hat_Wägung", "Waege", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "M__hat_Kontrakte", "KK")]
         public EntityCollection<KKEntity> KKs
         {
@@ -6534,6 +6560,28 @@ namespace HWB.NETSCALE.BOEF
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<KKEntity>("HWB.NETSCALE.BOEF.M__hat_Kontrakte", "KK", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Mandant_hat_Wägung", "Waege")]
+        public EntityCollection<WaegeEntity> Waeges
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Mandant_hat_Wägung", "Waege");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Mandant_hat_Wägung", "Waege", value);
                 }
             }
         }
@@ -7544,18 +7592,18 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "WaegeEntity")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "Waege")]
         public EntityCollection<WaegeEntity> Waeges
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "WaegeEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "Waege");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "WaegeEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<WaegeEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "Waege", value);
                 }
             }
         }
@@ -10504,6 +10552,30 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _Siegel4;
         partial void OnSiegel4Changing(Nullable<global::System.Boolean> value);
         partial void OnSiegel4Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> UserPK
+        {
+            get
+            {
+                return _UserPK;
+            }
+            set
+            {
+                OnUserPKChanging(value);
+                ReportPropertyChanging("UserPK");
+                _UserPK = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserPK");
+                OnUserPKChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _UserPK;
+        partial void OnUserPKChanging(Nullable<global::System.Int32> value);
+        partial void OnUserPKChanged();
 
         #endregion
     
@@ -10553,16 +10625,16 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MG")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MGEntity")]
         public MGEntity MG
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity").Value = value;
             }
         }
         /// <summary>
@@ -10574,13 +10646,13 @@ namespace HWB.NETSCALE.BOEF
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity", value);
                 }
             }
         }

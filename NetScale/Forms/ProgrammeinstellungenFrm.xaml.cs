@@ -16,6 +16,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using combit.ListLabel17;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Collections;
@@ -73,6 +74,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
 
             DataContext = boEE;
+            cbPdfaktiv.IsChecked = boEE.LsAsPdf; 
             // Nur weil man das schnell vergißt:
             // Val. MaxGewicht u. Ein/Aus der selben ist nicht lokal sondern in der Servertabelle "Einstellungen" abgelegt.
             // Aus diesem Grund sind die beiden Properties gebunden
@@ -281,6 +283,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE.ERSTWAEGUNGSWAAGE = tb_erstw.Text;
             oLE.ZWEITWAEGUNGSWAAGE = tb_zweitw.Text;
 
+            boEE.LsAsPdf = cbPdfaktiv.IsChecked; 
+
             // TODO Die folgende Zeile tut es nicht #
             // Wochenende nun!!!
             lblEinheit.Focus(); // Damit das Datagrid verlassen und richtig gesichert wird
@@ -313,6 +317,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             
            LL.Variables.Add("Scheinbezeichnung","Wiegenote");
             LL.Variables.Add("Original_Kopie", "Original");
+
+            // Unterschriftendatei
+            User boU = new User();
+          
+            UserEntity boUE = boU.GetUserById(boW);
+            LL.Variables.AddFromObject(boUE);
             LL.DataSource = oDP;
 
           
@@ -603,6 +613,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void tb_ust_TextChanged(object sender, TextChangedEventArgs e)
         {
             tb_ust.Text = WindowExtensions.TextBoxOnlyDecimal(e, tb_ust.Text);
+        }
+
+        private void checkBox1_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
 
       

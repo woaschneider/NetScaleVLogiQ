@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using combit.ListLabel17;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;
 
 namespace HWB.NETSCALE.FRONTEND.WPF
@@ -28,6 +29,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             ListLabel LL = new ListLabel();
             LL.Variables.Add("Original_Kopie", "...");
             LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
+
+            // Unterschriftendatei
+            User boU = new User();
+            UserEntity boUE = boU.GetUserById(boWE.UserPK);
+            LL.Variables.AddFromObject(boUE);
 
             Mandant boM = new Mandant();
             MandantEntity boME = boM.GetMandantByPK(Convert.ToInt32(boWE.PK_Mandant));
@@ -73,9 +79,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             // TODO: Diesen Abschnitt vornehmen: Export Pfad prüfen
             //***************************************************************************
             //  Filename und Pfad (hier: PDF)
-          //  CreateLsAsPdf(boWE, LL, oLE);
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEE = boE.GetEinstellungen();
+            if (boEE.LsAsPdf == true)
+            {
+                int? pdf = boEE.PdfCreator;
 
-            LL.Dispose();
+                switch (pdf)
+                {
+                    case 1: // List&Label
+                        CreateLsAsPdf(boWE, LL, oLE);
+                        LL.Dispose();
+                        break;
+                    case 2:
+                        CreateLsAsPdfwithStepOver(LL, false, 1, "StepOver PDF Converter");
+                        break;
+                }
+            }
         }
 
         private void PrintPaperLs(ListLabel LL, bool Kopie, int copies, bool? isLSDruck, string DruckerName)
@@ -103,6 +123,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             }
         }
 
+
         private void CreateLsAsPdf(WaegeEntity boWE, ListLabel LL, Lokaleeinstellungen oLE)
         {
             if (goApp.PDFEXPORT == true)
@@ -123,6 +144,31 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                     MessageBox.Show(ex.Message);
                     MessageBox.Show("Exportpfad für PDF's eingerichtet?");
                 }
+            }
+        }
+
+        private void CreateLsAsPdfwithStepOver(ListLabel LL, bool Kopie, int copies,string DruckerName)
+        {
+            try
+            {
+                for (int nCopy = 0; nCopy < copies; ++nCopy)
+                {
+                    if (nCopy == 0 & Kopie == false)
+                    {
+                        LL.Variables.Add("Original_Kopie", "Original");
+                    }
+                    else
+                    {
+                        LL.Variables.Add("Original_Kopie", "Kopie");
+                    }
+
+                   
+                        LL.Print(DruckerName);
+                }
+            }
+            catch (ListLabelException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

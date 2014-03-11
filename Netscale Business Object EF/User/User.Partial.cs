@@ -28,7 +28,7 @@ namespace HWB.NETSCALE.BOEF.User
             // Place code here to be executed when the business object instantiates
         }
 
-        public UserEntity GetUserById(int pk)
+        public UserEntity GetUserById(int? pk)
         {
             IQueryable<UserEntity> query = from u in ObjectContext.UserEntities
                                            where u.UserPK == pk

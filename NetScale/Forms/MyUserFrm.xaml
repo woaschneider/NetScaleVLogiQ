@@ -95,7 +95,7 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <Grid Name="grdControls"
-              Width="595"
+              Width="654"
               Height="157"
               Margin="21,117,0,0"
               HorizontalAlignment="Left"
@@ -206,11 +206,11 @@
                      Grid.Column="1"
                          Text="{Binding Unterschrift,
                                     Mode=Default}"
-                     Width="216"
+                     Width="261"
                      Height="20"
                      Margin="236,10,0,0"
                      HorizontalAlignment="Left"
-                     VerticalAlignment="Top" />
+                     VerticalAlignment="Top" TextChanged="tb_unterschrift_TextChanged" />
         </Grid>
         <TextBox Name="tb_catchfocus"
                  Width="0"
@@ -219,7 +219,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
         <Button Name="cmdSelectBitmap"
-                Width="192"
+                Width="264"
                 Height="21"
                 Margin="401,204,0,0"
                 HorizontalAlignment="Left"

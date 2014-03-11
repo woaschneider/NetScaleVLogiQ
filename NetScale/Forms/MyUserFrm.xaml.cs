@@ -159,14 +159,21 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             // Get the selected file name and display in a TextBox
 
-          
-           if(dlg.FileName!=null)
-               tb_unterschrift.Text = dlg.FileName;
+
+            if (dlg.FileName != null)
+            {
+                tb_unterschrift.Text = dlg.FileName;
+                boUE.Unterschrift = dlg.FileName;
+            }
 
 
-          
-              
-                
+
+
+
+        }
+
+        private void tb_unterschrift_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }

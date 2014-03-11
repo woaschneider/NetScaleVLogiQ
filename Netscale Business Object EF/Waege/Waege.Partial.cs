@@ -180,6 +180,7 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(WaegeEntity boWE)
         {
+            boWE.UserPK = goApp.UserPk;
             if (goApp.AutoAbruf == true)
                 CheckAndCreateAbr(boWE);
 

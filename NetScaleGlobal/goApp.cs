@@ -40,6 +40,7 @@ namespace HWB.NETSCALE.GLOBAL
         public static string acessLevel;
         public static string username;
         public static string userid;
+        public static int UserPk;
         public static string LS_DRUCKER_MANDANT_1;
         public static string LS_REPORTNAMELS1;
         public static string LS_DRUCKER_MANDANT_1_COPIES;

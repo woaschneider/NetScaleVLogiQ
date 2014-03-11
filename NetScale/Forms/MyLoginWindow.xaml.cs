@@ -64,6 +64,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 goApp.acessLevel = boUE.AccessLevel;
                 goApp.userid = boUE.UserID;
                 goApp.username = boUE.FirstName + " " + boUE.LastName;
+                goApp.UserPk = boUE.UserPK;
                 DialogResult = true;
                 Close();
             }
