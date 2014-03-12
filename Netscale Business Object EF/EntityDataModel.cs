@@ -21,12 +21,12 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FK_Message_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HWB.NETSCALE.BOEF.Language), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.Message), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Kopf_hat_Details", "KK", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.KKEntity), "KMEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KMEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "M__hat_Kontrakte", "MandantEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MandantEntity), "KK", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KKEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Ein_Detail_hat_ein_Material", "MG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "KMEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KMEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "AP_hat_Auftraege", "AP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.APEntity), "KKEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KKEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FU__kann_Kfz_haben", "AP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.APEntity), "CFEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.CFEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "SP_kann_Kfz_haben", "AP", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.APEntity), "CFEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.CFEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Ein_Detail_hat_ein_Material", "MG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "KMEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.KMEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Mandant_hat_Wägung", "MandantEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MandantEntity), "Waege", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MGEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "Waege", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MG", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.MGEntity), "Waege", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.WaegeEntity), true)]
 
 #endregion
 
@@ -334,22 +334,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AbrufEntity> AbrufEntities
-        {
-            get
-            {
-                if ((_AbrufEntities == null))
-                {
-                    _AbrufEntities = base.CreateObjectSet<AbrufEntity>("AbrufEntities");
-                }
-                return _AbrufEntities;
-            }
-        }
-        private ObjectSet<AbrufEntity> _AbrufEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<KKEntity> KKEntities
         {
             get
@@ -362,22 +346,6 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<KKEntity> _KKEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        public ObjectSet<MGEntity> MGEntities
-        {
-            get
-            {
-                if ((_MGEntities == null))
-                {
-                    _MGEntities = base.CreateObjectSet<MGEntity>("MGEntities");
-                }
-                return _MGEntities;
-            }
-        }
-        private ObjectSet<MGEntity> _MGEntities;
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -410,6 +378,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<AbrufEntity> AbrufEntities
+        {
+            get
+            {
+                if ((_AbrufEntities == null))
+                {
+                    _AbrufEntities = base.CreateObjectSet<AbrufEntity>("AbrufEntities");
+                }
+                return _AbrufEntities;
+            }
+        }
+        private ObjectSet<AbrufEntity> _AbrufEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<MGEntity> MGEntities
+        {
+            get
+            {
+                if ((_MGEntities == null))
+                {
+                    _MGEntities = base.CreateObjectSet<MGEntity>("MGEntities");
+                }
+                return _MGEntities;
+            }
+        }
+        private ObjectSet<MGEntity> _MGEntities;
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -559,27 +559,11 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AbrufEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToAbrufEntities(AbrufEntity abrufEntity)
-        {
-            base.AddObject("AbrufEntities", abrufEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'KKEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToKKEntities(KKEntity kKEntity)
         {
             base.AddObject("KKEntities", kKEntity);
-        }
-    
-        /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MGEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToMGEntities(MGEntity mGEntity)
-        {
-            base.AddObject("MGEntities", mGEntity);
         }
     
         /// <summary>
@@ -596,6 +580,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
         {
             base.AddObject("EinstellungenEntities", einstellungenEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AbrufEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToAbrufEntities(AbrufEntity abrufEntity)
+        {
+            base.AddObject("AbrufEntities", abrufEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MGEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToMGEntities(MGEntity mGEntity)
+        {
+            base.AddObject("MGEntities", mGEntity);
         }
     
         /// <summary>
@@ -982,30 +982,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Mandant
-        {
-            get
-            {
-                return _Mandant;
-            }
-            set
-            {
-                OnMandantChanging(value);
-                ReportPropertyChanging("Mandant");
-                _Mandant = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Mandant");
-                OnMandantChanged();
-            }
-        }
-        private global::System.String _Mandant;
-        partial void OnMandantChanging(global::System.String value);
-        partial void OnMandantChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Remarks3
         {
             get
@@ -1216,6 +1192,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Werksnr;
         partial void OnWerksnrChanging(global::System.String value);
         partial void OnWerksnrChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Mandant
+        {
+            get
+            {
+                return _Mandant;
+            }
+            set
+            {
+                OnMandantChanging(value);
+                ReportPropertyChanging("Mandant");
+                _Mandant = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Mandant");
+                OnMandantChanged();
+            }
+        }
+        private global::System.String _Mandant;
+        partial void OnMandantChanging(global::System.String value);
+        partial void OnMandantChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -1696,6 +1696,174 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _Siegel4;
         partial void OnSiegel4Changing(Nullable<global::System.Boolean> value);
         partial void OnSiegel4Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LandKU
+        {
+            get
+            {
+                return _LandKU;
+            }
+            set
+            {
+                OnLandKUChanging(value);
+                ReportPropertyChanging("LandKU");
+                _LandKU = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LandKU");
+                OnLandKUChanged();
+            }
+        }
+        private global::System.String _LandKU;
+        partial void OnLandKUChanging(global::System.String value);
+        partial void OnLandKUChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NrKU0
+        {
+            get
+            {
+                return _NrKU0;
+            }
+            set
+            {
+                OnNrKU0Changing(value);
+                ReportPropertyChanging("NrKU0");
+                _NrKU0 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NrKU0");
+                OnNrKU0Changed();
+            }
+        }
+        private global::System.String _NrKU0;
+        partial void OnNrKU0Changing(global::System.String value);
+        partial void OnNrKU0Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BonitaetBezeichnung
+        {
+            get
+            {
+                return _BonitaetBezeichnung;
+            }
+            set
+            {
+                OnBonitaetBezeichnungChanging(value);
+                ReportPropertyChanging("BonitaetBezeichnung");
+                _BonitaetBezeichnung = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BonitaetBezeichnung");
+                OnBonitaetBezeichnungChanged();
+            }
+        }
+        private global::System.String _BonitaetBezeichnung;
+        partial void OnBonitaetBezeichnungChanging(global::System.String value);
+        partial void OnBonitaetBezeichnungChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String posnr
+        {
+            get
+            {
+                return _posnr;
+            }
+            set
+            {
+                OnposnrChanging(value);
+                ReportPropertyChanging("posnr");
+                _posnr = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("posnr");
+                OnposnrChanged();
+            }
+        }
+        private global::System.String _posnr;
+        partial void OnposnrChanging(global::System.String value);
+        partial void OnposnrChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String wename2
+        {
+            get
+            {
+                return _wename2;
+            }
+            set
+            {
+                Onwename2Changing(value);
+                ReportPropertyChanging("wename2");
+                _wename2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("wename2");
+                Onwename2Changed();
+            }
+        }
+        private global::System.String _wename2;
+        partial void Onwename2Changing(global::System.String value);
+        partial void Onwename2Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Siegel20
+        {
+            get
+            {
+                return _Siegel20;
+            }
+            set
+            {
+                OnSiegel20Changing(value);
+                ReportPropertyChanging("Siegel20");
+                _Siegel20 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Siegel20");
+                OnSiegel20Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Siegel20;
+        partial void OnSiegel20Changing(Nullable<global::System.Boolean> value);
+        partial void OnSiegel20Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sortenbezeichnung3
+        {
+            get
+            {
+                return _Sortenbezeichnung3;
+            }
+            set
+            {
+                OnSortenbezeichnung3Changing(value);
+                ReportPropertyChanging("Sortenbezeichnung3");
+                _Sortenbezeichnung3 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sortenbezeichnung3");
+                OnSortenbezeichnung3Changed();
+            }
+        }
+        private global::System.String _Sortenbezeichnung3;
+        partial void OnSortenbezeichnung3Changing(global::System.String value);
+        partial void OnSortenbezeichnung3Changed();
 
         #endregion
     
@@ -7559,6 +7727,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Sortenbezeichnung3;
         partial void OnSortenbezeichnung3Changing(global::System.String value);
         partial void OnSortenbezeichnung3Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Siegel20
+        {
+            get
+            {
+                return _Siegel20;
+            }
+            set
+            {
+                OnSiegel20Changing(value);
+                ReportPropertyChanging("Siegel20");
+                _Siegel20 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Siegel20");
+                OnSiegel20Changed();
+            }
+        }
+        private Nullable<global::System.Boolean> _Siegel20;
+        partial void OnSiegel20Changing(Nullable<global::System.Boolean> value);
+        partial void OnSiegel20Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sortenbezeichnung30
+        {
+            get
+            {
+                return _Sortenbezeichnung30;
+            }
+            set
+            {
+                OnSortenbezeichnung30Changing(value);
+                ReportPropertyChanging("Sortenbezeichnung30");
+                _Sortenbezeichnung30 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sortenbezeichnung30");
+                OnSortenbezeichnung30Changed();
+            }
+        }
+        private global::System.String _Sortenbezeichnung30;
+        partial void OnSortenbezeichnung30Changing(global::System.String value);
+        partial void OnSortenbezeichnung30Changed();
 
         #endregion
     
@@ -10576,6 +10792,102 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _UserPK;
         partial void OnUserPKChanging(Nullable<global::System.Int32> value);
         partial void OnUserPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LandKU
+        {
+            get
+            {
+                return _LandKU;
+            }
+            set
+            {
+                OnLandKUChanging(value);
+                ReportPropertyChanging("LandKU");
+                _LandKU = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LandKU");
+                OnLandKUChanged();
+            }
+        }
+        private global::System.String _LandKU;
+        partial void OnLandKUChanging(global::System.String value);
+        partial void OnLandKUChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String posnr
+        {
+            get
+            {
+                return _posnr;
+            }
+            set
+            {
+                OnposnrChanging(value);
+                ReportPropertyChanging("posnr");
+                _posnr = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("posnr");
+                OnposnrChanged();
+            }
+        }
+        private global::System.String _posnr;
+        partial void OnposnrChanging(global::System.String value);
+        partial void OnposnrChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String wename2
+        {
+            get
+            {
+                return _wename2;
+            }
+            set
+            {
+                Onwename2Changing(value);
+                ReportPropertyChanging("wename2");
+                _wename2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("wename2");
+                Onwename2Changed();
+            }
+        }
+        private global::System.String _wename2;
+        partial void Onwename2Changing(global::System.String value);
+        partial void Onwename2Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Sortenbezeichnung3
+        {
+            get
+            {
+                return _Sortenbezeichnung3;
+            }
+            set
+            {
+                OnSortenbezeichnung3Changing(value);
+                ReportPropertyChanging("Sortenbezeichnung3");
+                _Sortenbezeichnung3 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Sortenbezeichnung3");
+                OnSortenbezeichnung3Changed();
+            }
+        }
+        private global::System.String _Sortenbezeichnung3;
+        partial void OnSortenbezeichnung3Changing(global::System.String value);
+        partial void OnSortenbezeichnung3Changed();
 
         #endregion
     
@@ -10625,16 +10937,16 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MGEntity")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Material_ist_in_Wägungen_enthalten", "MG")]
         public MGEntity MG
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG").Value = value;
             }
         }
         /// <summary>
@@ -10646,13 +10958,13 @@ namespace HWB.NETSCALE.BOEF
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MGEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MGEntity>("HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten", "MG", value);
                 }
             }
         }

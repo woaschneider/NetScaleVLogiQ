@@ -446,7 +446,8 @@ namespace HWB.NETSCALE.BOEF
             return this.GetEntityList(LSquery);
         }
 
-        public int Taab(DateTime datum)
+
+        public int TaabOAM(DateTime datum)
         {
             Einstellungen oE = new Einstellungen();
             Lokaleeinstellungen oL = new Lokaleeinstellungen();
@@ -455,113 +456,88 @@ namespace HWB.NETSCALE.BOEF
             string ex = "";
             int count = 0;
 
-
             mmBindingList<WaegeEntity> taab = Get_taabListe(datum);
 
-            string MandantNr = (new Mandant().GetMandantByPK(goApp.Mandant_PK).MandantNr).Substring(0, 2);
-            string Werknr = (new Mandant().GetMandantByPK(goApp.Mandant_PK).Werksnr).Substring(0, 3);
 
             // *************************************************
-            string FileName = GetFileName(oE, exportpath, MandantNr, Werknr);
-
+            string FileName = GetFileName(oE, exportpath);
             if (taab != null)
             {
                 foreach (WaegeEntity a in taab)
                 {
-                    if (Convert.ToChar(a.WiegeartKz) == 'A' | Convert.ToChar(a.WiegeartKz) == 'R')
-                    {
-                        ex = "3";
-                        ex = ex + MandantNr; // MandantNr = alte Firma
-                        ex = ex + VFP.PadL(Werknr, 6, '0');
-                        ex = ex + VFP.PadL(a.NrKU.Trim(), 6, '0');
-                        ex = ex + a.kontraktnr.Substring(0, 8); // ??? Das müssen wir noch klären
-                        // Abrechnungskennzeichen
+                    ex = "";
+                    ex = ex + a.WiegeartKz.Trim();
+                    ex = ex + VFP.PadR(a.lsnr.Trim(), 6, ' ');
+                    ex = ex + VFP.PadR(a.NrKU != null ? a.NrKU.Trim() : "", 12, ' ');
+                    ex = ex + VFP.PadR(a.FirmaKU != null ? a.FirmaKU.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.Name1KU != null ? a.Name1KU.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.Name2KU != null ? a.Name2KU.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.AnschriftKU != null ? a.AnschriftKU.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.LandKU != null ? a.LandKU.Trim() : "", 3, ' ');
+                    ex = ex + VFP.PadR(a.PlzKU != null ? a.PlzKU.Trim() : "", 3, ' ');
+                    ex = ex + VFP.PadR(a.OrtKU != null ? a.OrtKU.Trim() : "", 50, ' ');
+                    ex = ex + a.ZweitZeit.ToString().Substring(11, 8);
+                    ex = ex + a.LSDatum.ToString().Substring(0, 10);
 
-                        string boni = a.BonitaetKz;
-                        string akz;
-                        switch (boni)
+                    ex = ex + VFP.PadL(a.Nettogewicht.ToString().Trim(), 8, ' ');
+
+                    Mandant boM = new Mandant();
+                    string ma = boM.GetMandantByPK(a.PK_Mandant).MandantNr;
+                    ex = ex + VFP.PadL(ma != null ? ma.Trim() : "", 2, ' ');
+                    ex = ex + VFP.PadL(a.kontraktnr != null ? a.kontraktnr.Trim() : "", 8, ' ');
+                    ex = ex + VFP.PadL(a.posnr != null ? a.posnr.Trim() : "", 2, ' ');
+
+                    ex = ex + VFP.PadR(a.wefirma != null ? a.wefirma.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.wename1 != null ? a.wename1.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.wename2 != null ? a.wename2.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.SortenNr != null ? a.SortenNr.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.Sortenbezeichnung1 != null ? a.Sortenbezeichnung1.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.Sortenbezeichnung2 != null ? a.Sortenbezeichnung2.Trim() : "", 50, ' ');
+                    ex = ex + VFP.PadR(a.Sortenbezeichnung3 != null ? a.Sortenbezeichnung3.Trim() : "", 50, ' ');
+
+                    ex = ex + "        "; // Preis
+                    if (a.BonitaetKz == null)
+                    {
+                        ex = ex + "   ";
+                    }
+                    else
+                    {
+                        string s = a.BonitaetKz;
+                        switch (s)
                         {
-                            case "8":
-                                akz = "00";
-                                break;
                             case "7":
-                                akz = "01";
+                                ex = ex + "BAR";
+                                break;
+                            case "8":
+                                ex = ex + "RG ";
                                 break;
                             default:
-                                akz = "00";
+
+                                ex = ex + "   ";
                                 break;
                         }
-                        ex = ex + akz;
 
-                        // LS Datum
-                        string lsdatum = a.LSDatum.ToString().Replace(".", "").Replace("/", "").Substring(0, 8);
-                        ex = ex + lsdatum;
-                        // LS Zeit
-                        string lsZeit = a.ZweitZeit.ToString().Substring(11, 8).Replace(":", "");
-                        ex = ex + lsZeit;
-                        ex = ex + VFP.PadL(a.NrSP == null ? "  " : a.NrSP.Trim(), 2, '0');
 
-                        //  ex = ex + VFP.PadR(a.NrFU.Trim(), 6, '0');
-                        ex = ex + VFP.PadL(a.NrFU == null ? "  " : a.NrFU.Trim(), 6, '0');
+                        ex = ex + VFP.PadR(a.Kfz1 != null ? a.Kfz1.Trim() : "", 15, ' ');
 
-                        ex = ex + VFP.PadR(a.Kfz1.Trim(), 10, ' ');
+                        // Fuhrunternehmer
 
-                        // Tarifgebiet
-                        ex = ex + "0";
 
-                        // Fahrzeug und Wiegeart
-                        ex = ex + a.WiegeartKz.Trim() + a.FrachtmittelKz.Trim();
-                        //Zusatzleistung und Kilometer
-                        ex = ex + "  000";
-                        // Material
-                        ex = ex + a.SortenNr;
-
-                        // Nettogewicht 
-                        ex = ex + VFP.PadL((Convert.ToInt32(a.Nettogewicht*1000)).ToString(), 8, '0');
-                        // LSNR 
-                        ex = ex + VFP.PadL(a.lsnr.Trim(), 6, '0');
-                        // PReisebrechnung klären
-                        ex = ex + "0000000";
-                        int test = a.wefirma.Length;
-                        // ****************************************************************
-                        if (a.wefirma.Length >= 30)
-                            ex = ex + VFP.PadR(a.wefirma.Substring(0, 30).Trim(), 30, ' ');
-                        else
-                        {
-                            ex = ex + VFP.PadR(a.wefirma.Substring(0, a.wefirma.Length).Trim(), 30, ' ');
-                        }
-
-                        if (a.wename1.Length >= 30)
-                            ex = ex + VFP.PadR(a.wename1.Substring(0, 30).Trim(), 30, ' ');
-                        else
-                        {
-                            ex = ex + VFP.PadR(a.wename1.Substring(0, a.wename1.Length).Trim(), 30, ' ');
-                        }
-                        // *****************************************************************
-                        ex = ex + 'J';
-                        ex = ex + VFP.PadL("", 28, ' ');
-                        ex = ex + VFP.PadL(a.LSNRGlobal.Trim(), 7, ' ');
-                        ex = ex + "00000000000000000000000000000000000000000000000DEM000000********";
                         // Ende *************************
                         count = count + 1;
-                        ex = ex + VFP.Chr(13) + VFP.Chr(10);
-                        VFP.StrToFile(ex, FileName, true);
                     }
+                    ex = ex + VFP.Chr(13) + VFP.Chr(10);
+                    VFP.StrToFile(ex, FileName, true);
                 }
-                string ende = "3$$END" + DateTime.Now.ToString().Substring(0, 10).Replace(".", "");
-                ende = ende + DateTime.Now.ToString().Substring(11, 8).Replace(":", "") +
-                       VFP.PadL(count.ToString(), 5, ' ');
-                VFP.StrToFile(ende, FileName, true);
             }
-
             return count;
         }
 
-        private string GetFileName(Einstellungen oE, string exportpath, string MandantNr, string Werknr)
+        private string GetFileName(Einstellungen oE, string exportpath)
         {
             int? FileNameCounter = GetFileNameCounter(oE);
             //**************************************************
-            string FileName = exportpath + "L" + MandantNr + Werknr + "." + VFP.PadL(FileNameCounter.ToString(), 3, '0');
+            string FileName = exportpath + "L" + "." + VFP.PadL(FileNameCounter.ToString(), 3, '0');
             if (File.Exists(FileName))
                 File.Delete(FileName);
             return FileName;
@@ -750,7 +726,6 @@ namespace HWB.NETSCALE.BOEF
                     boWE.SortenNr = "";
                     boWE.Sortenbezeichnung1 = "";
                     boWE.Sortenbezeichnung2 = "";
-
                 }
             }
             else
@@ -768,10 +743,12 @@ namespace HWB.NETSCALE.BOEF
                 oWE.kontraktnr = oKKE.kontraktnr;
                 oWE.wefirma = oKKE.wefirma;
                 oWE.wename1 = oKKE.wename1;
+                oWE.wename2 = oKKE.wename2;
 
                 this.FillApKu((int) oKKE.APFK, oWE);
             }
         }
+
         public void AuftragDetail2Waege(int KMPK, WaegeEntity oWE)
         {
             KM oKM = new KM();
@@ -782,19 +759,23 @@ namespace HWB.NETSCALE.BOEF
             KK oK = new KK();
             int? kkpk = 0;
             if (oKME.kkpk != null)
+            {
                 kkpk = oKME.kkpk;
+                oWE.posnr = oKME.posnr;
+            }
 
             KKEntity oKKE = oK.GetKKByPK(kkpk);
             if (oKKE != null)
             {
                 oWE.kontraktnr = oKKE.kontraktnr;
+
                 oWE.wefirma = oKKE.wefirma;
                 oWE.wename1 = oKKE.wename1;
+                oWE.wename2 = oKKE.wename2;
 
-                this.FillApKu((int)oKKE.APFK, oWE);
+                this.FillApKu((int) oKKE.APFK, oWE);
                 this.FillMG(oKME.mgpk, oWE);
             }
-
         }
     }
 }

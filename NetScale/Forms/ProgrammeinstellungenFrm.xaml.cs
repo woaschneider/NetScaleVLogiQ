@@ -321,8 +321,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             // Unterschriftendatei
             User boU = new User();
           
-            UserEntity boUE = boU.GetUserById(boW);
-            LL.Variables.AddFromObject(boUE);
+          //  UserEntity boUE = boU.GetUserById(boW);
+     //       LL.Variables.AddFromObject(boUE);
             LL.DataSource = oDP;
 
           

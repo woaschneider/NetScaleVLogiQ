@@ -492,14 +492,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.Waegung = 1;
                     _boWe.wnr1 = netScaleView1.ActiveScale.ToString();
 
-                    try
-                    {
+                    //try
+                    //{
                         _result = SaveEntity(_boW, _boWe);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    MessageBox.Show(ex.Message);
+                    //}
 
                     if (_result != mmSaveDataResult.RulesPassed)
                     {
