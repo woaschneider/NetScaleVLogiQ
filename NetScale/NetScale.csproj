@@ -727,6 +727,9 @@
   <ItemGroup>
     <Resource Include="Images\sql12_rgb.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OAM Logo.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

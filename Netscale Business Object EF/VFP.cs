@@ -19,7 +19,7 @@ namespace HWB
          //Create a writer for the file	StreamWriter 
          StreamWriter oWriter = new StreamWriter(oFs);
          oWriter = new StreamWriter(oFs);	//Write the contents	
-         oWriter.Write(cExpression);	
+         oWriter.Write(cExpression,System.Text.Encoding.GetEncoding(1252));	
          oWriter.Flush();	
          oWriter.Close();	
          oFs.Close();
@@ -28,9 +28,9 @@ namespace HWB
      public static void StrToFile(string cExpression, string cFileName, bool lAdditive)
      {
          FileStream oFs = new FileStream(cFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-         StreamWriter oWriter = new StreamWriter(oFs);
+         StreamWriter oWriter = new StreamWriter(oFs,Encoding.GetEncoding(1252));
          oWriter.BaseStream.Seek(0, SeekOrigin.End);
-         oWriter.Write(cExpression);
+         oWriter.Write(cExpression,System.Text.Encoding.GetEncoding(1252)); // Änderung 
          oWriter.Flush();
          oWriter.Close();
          oFs.Close();

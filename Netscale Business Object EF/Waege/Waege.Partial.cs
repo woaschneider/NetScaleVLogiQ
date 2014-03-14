@@ -468,13 +468,13 @@ namespace HWB.NETSCALE.BOEF
                     ex = "";
                     ex = ex + a.WiegeartKz.Trim();
                     ex = ex + VFP.PadR(a.lsnr.Trim(), 6, ' ');
-                    ex = ex + VFP.PadR(a.NrKU != null ? a.NrKU.Trim() : "", 12, ' ');
+                    ex = ex + VFP.PadR(a.NrKU != null ? a.NrKU.Trim() : "", 6, ' ');
                     ex = ex + VFP.PadR(a.FirmaKU != null ? a.FirmaKU.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.Name1KU != null ? a.Name1KU.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.Name2KU != null ? a.Name2KU.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.AnschriftKU != null ? a.AnschriftKU.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.LandKU != null ? a.LandKU.Trim() : "", 3, ' ');
-                    ex = ex + VFP.PadR(a.PlzKU != null ? a.PlzKU.Trim() : "", 3, ' ');
+                    ex = ex + VFP.PadR(a.PlzKU != null ? a.PlzKU.Trim() : "", 6, ' ');
                     ex = ex + VFP.PadR(a.OrtKU != null ? a.OrtKU.Trim() : "", 50, ' ');
                     ex = ex + a.ZweitZeit.ToString().Substring(11, 8);
                     ex = ex + a.LSDatum.ToString().Substring(0, 10);
@@ -490,7 +490,8 @@ namespace HWB.NETSCALE.BOEF
                     ex = ex + VFP.PadR(a.wefirma != null ? a.wefirma.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.wename1 != null ? a.wename1.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.wename2 != null ? a.wename2.Trim() : "", 50, ' ');
-                    ex = ex + VFP.PadR(a.SortenNr != null ? a.SortenNr.Trim() : "", 50, ' ');
+
+                    ex = ex + VFP.PadR(a.SortenNr != null ? a.SortenNr.Trim() : "", 8, ' ');
                     ex = ex + VFP.PadR(a.Sortenbezeichnung1 != null ? a.Sortenbezeichnung1.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.Sortenbezeichnung2 != null ? a.Sortenbezeichnung2.Trim() : "", 50, ' ');
                     ex = ex + VFP.PadR(a.Sortenbezeichnung3 != null ? a.Sortenbezeichnung3.Trim() : "", 50, ' ');
@@ -521,6 +522,15 @@ namespace HWB.NETSCALE.BOEF
                         ex = ex + VFP.PadR(a.Kfz1 != null ? a.Kfz1.Trim() : "", 15, ' ');
 
                         // Fuhrunternehmer
+                        ex = ex + VFP.PadR(a.NrFU != null ? a.NrFU.Trim() : "", 6, ' ');
+                        ex = ex + VFP.PadR(a.FirmaFU != null ? a.FirmaFU.Trim() : "", 50, ' ');
+                        ex = ex + VFP.PadR(a.Name1FU != null ? a.Name1FU.Trim() : "", 50, ' ');
+                        ex = ex + VFP.PadR(a.Name2FU != null ? a.Name2FU.Trim() : "", 50, ' ');
+                        ex = ex + VFP.PadR(a.AnschriftFU != null ? a.AnschriftFU.Trim() : "", 50, ' ');
+                        ex = ex + VFP.PadR(a.LandFU != null ? a.LandFU.Trim() : "", 3, ' ');
+                        ex = ex + VFP.PadR(a.PlzFU != null ? a.PlzFU.Trim() : "", 6, ' ');
+                        ex = ex + VFP.PadR(a.OrtFU != null ? a.OrtFU.Trim() : "", 50, ' ');
+                        ex = ex + "<=";
 
 
                         // Ende *************************
@@ -561,6 +571,14 @@ namespace HWB.NETSCALE.BOEF
                                             select Waege;
             return this.GetEntity(query);
         }
+        public int GetLastWaegung()
+        {
+            int i = (from w in this.ObjectContext.WaegeEntities
+                     where w.Waegung==2
+                     select w.PK).DefaultIfEmpty().Max();
+            return i;
+        }
+
 
         public ObjectDataProvider GetWaegungODPByID(int pWaege_id)
         {

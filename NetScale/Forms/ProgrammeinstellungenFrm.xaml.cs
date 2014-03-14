@@ -74,7 +74,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
 
             DataContext = boEE;
-            cbPdfaktiv.IsChecked = boEE.LsAsPdf; 
+            cbPdfaktiv.IsChecked = boEE.LsAsPdf;
             // Nur weil man das schnell vergißt:
             // Val. MaxGewicht u. Ein/Aus der selben ist nicht lokal sondern in der Servertabelle "Einstellungen" abgelegt.
             // Aus diesem Grund sind die beiden Properties gebunden
@@ -174,7 +174,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void cmdSave_Click(object sender, RoutedEventArgs e)
 
         {
-            tb_incotermtext.Focus();// Dummy Ersatz
+            tb_incotermtext.Focus(); // Dummy Ersatz
             oLE.LISTENDRUCKER = combo_LISTE_InstalledPrinters.Text;
 
             if (cb_autokfz.IsChecked == true)
@@ -260,14 +260,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 goApp.WaageAn = false;
             }
 
-            if(cb_MischerExport.IsChecked==true)
+            if (cb_MischerExport.IsChecked == true)
             {
                 oLE.MISCHEREXPORT = "J";
             }
             else
             {
                 oLE.MISCHEREXPORT = "N";
-                
             }
 
             oLE.KARTENLESERCOMPORT = tb_kartenlesercomport.Text;
@@ -283,7 +282,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE.ERSTWAEGUNGSWAAGE = tb_erstw.Text;
             oLE.ZWEITWAEGUNGSWAAGE = tb_zweitw.Text;
 
-            boEE.LsAsPdf = cbPdfaktiv.IsChecked; 
+            boEE.LsAsPdf = cbPdfaktiv.IsChecked;
 
             // TODO Die folgende Zeile tut es nicht #
             // Wochenende nun!!!
@@ -305,27 +304,41 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.Hide();
         }
 
-     
+
         private void cmdEditLS_Click(object sender, RoutedEventArgs e)
         {
-
-
             ListLabel LL = new ListLabel();
             LL.LicensingInfo = "wOGzEQ";
             Waege boW = new Waege();
             combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("13");
-            
-           LL.Variables.Add("Scheinbezeichnung","Wiegenote");
+
+            LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
             LL.Variables.Add("Original_Kopie", "Original");
 
             // Unterschriftendatei
             User boU = new User();
-          
-          //  UserEntity boUE = boU.GetUserById(boW);
-     //       LL.Variables.AddFromObject(boUE);
+            int Wpk = boW.GetLastWaegung();
+            UserEntity boUE;
+            WaegeEntity boWE = null;
+
+            if (Wpk != null)
+                boWE = boW.GetWaegungByID(Wpk);
+
+            if (boWE.UserPK != null)
+            {
+                boUE = boU.GetUserById(boWE.UserPK);
+
+                if (boUE != null)
+                {
+                    LL.Variables.AddFromObject(boUE);
+                }
+            }
+            // Unterschrift Ende
+
+
             LL.DataSource = oDP;
 
-          
+
             LL.AutoProjectType = LlProject.Label;
             try
             {
@@ -339,8 +352,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             //     ExportConfiguration exportConfig = new ExportConfiguration(LlExportTarget.Pdf, , "<Projektdateiname mit Pfad>");
         }
-       
-        
+
 
         private void cmdEditAPListe_Click(object sender, RoutedEventArgs e)
         {
@@ -388,7 +400,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-       
 
         private void cmdGetDirPdf_Click(object sender, RoutedEventArgs e)
         {
@@ -489,7 +500,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
                 tb_listenfile.Text = filename;
-
             }
         }
 
@@ -521,7 +531,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
                 tb_listenKundenfile.Text = filename;
-
             }
         }
 
@@ -553,7 +562,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
                 tb_listenKfzfile.Text = filename;
-
             }
         }
 
@@ -617,17 +625,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void checkBox1_Checked(object sender, RoutedEventArgs e)
         {
-
         }
-
-      
-
-        
-
-       
-
-       
-
-       
     }
 }

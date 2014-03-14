@@ -445,33 +445,13 @@
                VerticalAlignment="Center"
                Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/Logo_Hamburger_Waagenbau_300dpi.bmp"
                Stretch="UniformToFill" />
-        <Grid Name="grid1"
-              Grid.ColumnSpan="3"
-              Width="415"
-              Height="100"
-              Margin="204,449,159,12"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="148*" />
-                <ColumnDefinition Width="159*" />
-                <ColumnDefinition Width="108*" />
-            </Grid.ColumnDefinitions>
-            <Image Name="image3"
-                   Width="88"
-                   Height="72"
-                   Margin="26,8,34,20"
-                   Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/1334650822_credit_card%20red.png" />
-            <Image Name="image2"
-                   Grid.Column="1"
-                   Height="72"
-                   Margin="32,8,39,20"
-                   Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/1334650427_remote.png" />
-            <Image Name="image4"
-                   Grid.Column="2"
-                   Height="72"
-                   Margin="14,9,22,19"
-                   Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/1335330776_Termometer.png" />
-        </Grid>
+        <Image Name="image2"
+               Grid.Column="2"
+               Width="94"
+               Height="89"
+               Margin="0,47,0,0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Stretch="Fill" Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/OAM%20Logo.bmp" />
     </Grid>
 </mmwpf:mmMainAppWindow>

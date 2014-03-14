@@ -31,9 +31,24 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
 
             // Unterschriftendatei
+            // Unterschriftendatei
             User boU = new User();
-            UserEntity boUE = boU.GetUserById(boWE.UserPK);
-            LL.Variables.AddFromObject(boUE);
+       
+            UserEntity boUE;
+           
+
+         
+
+            if (boWE.UserPK != null)
+            {
+                boUE = boU.GetUserById(boWE.UserPK);
+
+                if (boUE != null)
+                {
+                    LL.Variables.AddFromObject(boUE);
+                }
+            }
+            // Unterschrift Ende
 
             Mandant boM = new Mandant();
             MandantEntity boME = boM.GetMandantByPK(Convert.ToInt32(boWE.PK_Mandant));

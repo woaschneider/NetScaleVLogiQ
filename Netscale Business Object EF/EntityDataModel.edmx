@@ -136,6 +136,7 @@
           <Property Name="wename2" Type="varchar" MaxLength="50" />
           <Property Name="Siegel20" Type="bit" />
           <Property Name="Sortenbezeichnung3" Type="varchar" MaxLength="50" />
+          <Property Name="LandFU" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="AP">
           <Key>
@@ -558,6 +559,7 @@
           <Property Name="posnr" Type="varchar" MaxLength="2" />
           <Property Name="wename2" Type="varchar" MaxLength="50" />
           <Property Name="Sortenbezeichnung3" Type="varchar" MaxLength="50" />
+          <Property Name="LandFU" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="Wiegeart">
           <Key>
@@ -744,19 +746,19 @@
             <End Role="CFEntity" EntitySet="CFEntities" />
           </AssociationSet>
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
-          <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
           <EntitySet Name="MGEntities" EntityType="HWB.NETSCALE.BOEF.MGEntity" />
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Ein_Detail_hat_ein_Material" Association="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material">
             <End Role="MG" EntitySet="MGEntities" />
             <End Role="KMEntity" EntitySet="KMEntities" />
           </AssociationSet>
+          <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Mandant_hat_Wägung" Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung">
             <End Role="MandantEntity" EntitySet="MandantEntities" />
             <End Role="Waege" EntitySet="WaegeEntities" />
           </AssociationSet>
           <AssociationSet Name="Material_ist_in_Wägungen_enthalten" Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten">
-            <End Role="MG" EntitySet="MGEntities" />
+            <End Role="MGEntity" EntitySet="MGEntities" />
             <End Role="Waege" EntitySet="WaegeEntities" />
           </AssociationSet>
           </EntityContainer>
@@ -1150,6 +1152,58 @@
           <Property Type="Boolean" Name="LsAsPdf" />
           <Property Type="Int32" Name="PdfCreator" />
         </EntityType>
+        <EntityType Name="MGEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lagerort" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SortenNr" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sortenbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sortenbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="preisvk" Precision="12" Scale="2" />
+          <Property Type="String" Name="wkz" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="me" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="touch" />
+          <Property Type="String" Name="ph" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Materialstatus" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="no_auto_abrech" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="epznummer" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="epzdatumvon" />
+          <Property Type="DateTime" Name="epzdatumbis" />
+          <Property Type="String" Name="tb1" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tb2" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tb3" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tb4" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tb5" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tb6" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="aekz" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Materialvertriebstext2" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gbkz" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Siegel1" />
+          <Property Type="Boolean" Name="Siegel2" />
+          <Property Type="Boolean" Name="Siegel3" />
+          <Property Type="Boolean" Name="Siegel4" />
+          <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Siegel20" />
+          <Property Type="String" Name="Sortenbezeichnung30" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KMs" Relationship="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" FromRole="MG" ToRole="KMEntity" />
+          <NavigationProperty Name="Waeges" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="MGEntity" ToRole="Waege" />
+        </EntityType>
+        <Association Name="Ein_Detail_hat_ein_Material">
+          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MG" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KMEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MG">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="KMEntity">
+              <PropertyRef Name="mgpk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="AbrufEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1205,46 +1259,7 @@
           <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="Siegel20" />
           <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="MGEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Lagerort" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SortenNr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="preisvk" Precision="12" Scale="2" />
-          <Property Type="String" Name="wkz" MaxLength="5" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="me" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="touch" />
-          <Property Type="String" Name="ph" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Materialstatus" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="no_auto_abrech" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="epznummer" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="epzdatumvon" />
-          <Property Type="DateTime" Name="epzdatumbis" />
-          <Property Type="String" Name="tb1" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb2" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb3" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb4" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb5" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb6" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="aekz" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Materialvertriebstext2" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="gbkz" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Siegel1" />
-          <Property Type="Boolean" Name="Siegel2" />
-          <Property Type="Boolean" Name="Siegel3" />
-          <Property Type="Boolean" Name="Siegel4" />
-          <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Siegel20" />
-          <Property Type="String" Name="Sortenbezeichnung30" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KMs" Relationship="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" FromRole="MG" ToRole="KMEntity" />
-          <NavigationProperty Name="Waeges" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="MG" ToRole="Waege" />
+          <Property Type="String" Name="LandFU" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
@@ -1343,21 +1358,10 @@
           <Property Type="String" Name="posnr" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LandFU" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Mandant1" Relationship="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" FromRole="Waege" ToRole="MandantEntity" />
-          <NavigationProperty Name="MG" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="Waege" ToRole="MG" />
+          <NavigationProperty Name="MG" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="Waege" ToRole="MGEntity" />
         </EntityType>
-        <Association Name="Ein_Detail_hat_ein_Material">
-          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MG" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KMEntity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MG">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KMEntity">
-              <PropertyRef Name="mgpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Mandant_hat_Wägung">
           <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
           <End Type="HWB.NETSCALE.BOEF.WaegeEntity" Role="Waege" Multiplicity="*" />
@@ -1371,10 +1375,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Material_ist_in_Wägungen_enthalten">
-          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MG" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MGEntity" Multiplicity="0..1" />
           <End Type="HWB.NETSCALE.BOEF.WaegeEntity" Role="Waege" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MG">
+            <Principal Role="MGEntity">
               <PropertyRef Name="PK" />
             </Principal>
             <Dependent Role="Waege">
@@ -1711,9 +1715,49 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MGEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.MGEntity">
+              <MappingFragment StoreEntitySet="MG">
+                <ScalarProperty Name="Sortenbezeichnung30" ColumnName="Sortenbezeichnung30" />
+                <ScalarProperty Name="Siegel20" ColumnName="Siegel20" />
+                <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
+                <ScalarProperty Name="Siegel4" ColumnName="Siegel4" />
+                <ScalarProperty Name="Siegel3" ColumnName="Siegel3" />
+                <ScalarProperty Name="Siegel2" ColumnName="Siegel2" />
+                <ScalarProperty Name="Siegel1" ColumnName="Siegel1" />
+                <ScalarProperty Name="gbkz" ColumnName="gbkz" />
+                <ScalarProperty Name="Materialvertriebstext2" ColumnName="Materialvertriebstext2" />
+                <ScalarProperty Name="aekz" ColumnName="aekz" />
+                <ScalarProperty Name="tb6" ColumnName="tb6" />
+                <ScalarProperty Name="tb5" ColumnName="tb5" />
+                <ScalarProperty Name="tb4" ColumnName="tb4" />
+                <ScalarProperty Name="tb3" ColumnName="tb3" />
+                <ScalarProperty Name="tb2" ColumnName="tb2" />
+                <ScalarProperty Name="tb1" ColumnName="tb1" />
+                <ScalarProperty Name="epzdatumbis" ColumnName="epzdatumbis" />
+                <ScalarProperty Name="epzdatumvon" ColumnName="epzdatumvon" />
+                <ScalarProperty Name="epznummer" ColumnName="epznummer" />
+                <ScalarProperty Name="no_auto_abrech" ColumnName="no_auto_abrech" />
+                <ScalarProperty Name="Materialstatus" ColumnName="Materialstatus" />
+                <ScalarProperty Name="ph" ColumnName="ph" />
+                <ScalarProperty Name="touch" ColumnName="touch" />
+                <ScalarProperty Name="me" ColumnName="me" />
+                <ScalarProperty Name="wkz" ColumnName="wkz" />
+                <ScalarProperty Name="preisvk" ColumnName="preisvk" />
+                <ScalarProperty Name="Sortenbezeichnung2" ColumnName="Sortenbezeichnung2" />
+                <ScalarProperty Name="Sortenbezeichnung1" ColumnName="Sortenbezeichnung1" />
+                <ScalarProperty Name="SortenNr" ColumnName="SortenNr" />
+                <ScalarProperty Name="Lagerort" ColumnName="Lagerort" />
+                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
+                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AbrufEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AbrufEntity">
               <MappingFragment StoreEntitySet="Abruf">
+                <ScalarProperty Name="LandFU" ColumnName="LandFU" />
                 <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
                 <ScalarProperty Name="Siegel20" ColumnName="Siegel20" />
                 <ScalarProperty Name="wename2" ColumnName="wename2" />
@@ -1768,48 +1812,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MGEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.MGEntity">
-              <MappingFragment StoreEntitySet="MG">
-                <ScalarProperty Name="Sortenbezeichnung30" ColumnName="Sortenbezeichnung30" />
-                <ScalarProperty Name="Siegel20" ColumnName="Siegel20" />
-                <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
-                <ScalarProperty Name="Siegel4" ColumnName="Siegel4" />
-                <ScalarProperty Name="Siegel3" ColumnName="Siegel3" />
-                <ScalarProperty Name="Siegel2" ColumnName="Siegel2" />
-                <ScalarProperty Name="Siegel1" ColumnName="Siegel1" />
-                <ScalarProperty Name="gbkz" ColumnName="gbkz" />
-                <ScalarProperty Name="Materialvertriebstext2" ColumnName="Materialvertriebstext2" />
-                <ScalarProperty Name="aekz" ColumnName="aekz" />
-                <ScalarProperty Name="tb6" ColumnName="tb6" />
-                <ScalarProperty Name="tb5" ColumnName="tb5" />
-                <ScalarProperty Name="tb4" ColumnName="tb4" />
-                <ScalarProperty Name="tb3" ColumnName="tb3" />
-                <ScalarProperty Name="tb2" ColumnName="tb2" />
-                <ScalarProperty Name="tb1" ColumnName="tb1" />
-                <ScalarProperty Name="epzdatumbis" ColumnName="epzdatumbis" />
-                <ScalarProperty Name="epzdatumvon" ColumnName="epzdatumvon" />
-                <ScalarProperty Name="epznummer" ColumnName="epznummer" />
-                <ScalarProperty Name="no_auto_abrech" ColumnName="no_auto_abrech" />
-                <ScalarProperty Name="Materialstatus" ColumnName="Materialstatus" />
-                <ScalarProperty Name="ph" ColumnName="ph" />
-                <ScalarProperty Name="touch" ColumnName="touch" />
-                <ScalarProperty Name="me" ColumnName="me" />
-                <ScalarProperty Name="wkz" ColumnName="wkz" />
-                <ScalarProperty Name="preisvk" ColumnName="preisvk" />
-                <ScalarProperty Name="Sortenbezeichnung2" ColumnName="Sortenbezeichnung2" />
-                <ScalarProperty Name="Sortenbezeichnung1" ColumnName="Sortenbezeichnung1" />
-                <ScalarProperty Name="SortenNr" ColumnName="SortenNr" />
-                <ScalarProperty Name="Lagerort" ColumnName="Lagerort" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="LandFU" ColumnName="LandFU" />
                 <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
                 <ScalarProperty Name="wename2" ColumnName="wename2" />
                 <ScalarProperty Name="posnr" ColumnName="posnr" />
@@ -1951,6 +1957,8 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KKEntity" Width="1.5" PointX="12.875" PointY="0.75" Height="6.4032194010416674" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Kopf_hat_Details" >
           <edmx:ConnectorPoint PointX="12.875" PointY="4.2" />
+          <edmx:ConnectorPoint PointX="12.598958333333334" PointY="4.1999999999999993" />
+          <edmx:ConnectorPoint PointX="12.432291666666666" PointY="4.2" />
           <edmx:ConnectorPoint PointX="12.125" PointY="4.2" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.M__hat_Kontrakte" >
@@ -1960,8 +1968,10 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.APEntity" Width="1.5" PointX="10.625" PointY="6" Height="9.8646451822916674" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege" >
           <edmx:ConnectorPoint PointX="12.125" PointY="6.5766097005208328" />
-          <edmx:ConnectorPoint PointX="12.541666666666666" PointY="6.5766097005208319" />
-          <edmx:ConnectorPoint PointX="12.708333333333334" PointY="6.5766097005208328" />
+          <edmx:ConnectorPoint PointX="12.416666666666666" PointY="6.5766097005208319" />
+          <edmx:ConnectorPoint PointX="12.598958333333334" PointY="6.5766097005208328" />
+          <edmx:ConnectorPoint PointX="12.619553174310953" PointY="6.5766097005208319" />
+          <edmx:ConnectorPoint PointX="12.786219840977621" PointY="6.5766097005208328" />
           <edmx:ConnectorPoint PointX="12.875" PointY="6.5766097005208328" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" >
@@ -1979,25 +1989,25 @@
           <edmx:ConnectorPoint PointX="12.875" PointY="4.5185384615384612" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="5.375" PointY="7.125" Height="3.1340950520833255" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="15.25" Height="10.82615234375001" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MGEntity" Width="1.5" PointX="14" PointY="18.875" Height="7.7493294270833388" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="16.25" PointY="0.75" Height="19.287415364583325" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" >
           <edmx:ConnectorPoint PointX="14" PointY="18.875" />
           <edmx:ConnectorPoint PointX="13.625" PointY="18.5" />
-          <edmx:ConnectorPoint PointX="12.625" PointY="18.5" />
-          <edmx:ConnectorPoint PointX="12.625" PointY="4.8999999999999995" />
+          <edmx:ConnectorPoint PointX="12.5" PointY="18.5" />
+          <edmx:ConnectorPoint PointX="12.5" PointY="4.7749999999999995" />
           <edmx:ConnectorPoint PointX="12.125" PointY="4.4" />
         </edmx:AssociationConnector>
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="5.75" Height="11.018453776041667" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="16.625" PointY="4" Height="19.47971679687501" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="0.75" />
-          <edmx:ConnectorPoint PointX="12.5" PointY="0.375" />
-          <edmx:ConnectorPoint PointX="15.875" PointY="0.375" />
-          <edmx:ConnectorPoint PointX="16.25" PointY="0.75" />
+          <edmx:ConnectorPoint PointX="12.125" PointY="1.1343066923076917" />
+          <edmx:ConnectorPoint PointX="12.515625" PointY="1.5249316923076925" />
+          <edmx:ConnectorPoint PointX="12.515625" PointY="10.99865284935898" />
+          <edmx:ConnectorPoint PointX="16.625" PointY="10.99865284935898" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" >
-          <edmx:ConnectorPoint PointX="15.5" PointY="19.456207682291662" />
-          <edmx:ConnectorPoint PointX="16.25" PointY="19.456207682291662" />
+          <edmx:ConnectorPoint PointX="15.5" PointY="21.177358398437505" />
+          <edmx:ConnectorPoint PointX="16.625" PointY="21.177358398437505" />
         </edmx:AssociationConnector>
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
