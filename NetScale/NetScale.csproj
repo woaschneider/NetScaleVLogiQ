@@ -77,13 +77,13 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="combit.ListLabel17, Version=17.2.4409.26013, Culture=neutral, PublicKeyToken=a7a30592cb4a94be, processorArchitecture=MSIL">
+    <Reference Include="combit.ListLabel19, Version=19.0.5036.16013, Culture=neutral, PublicKeyToken=a7a30592cb4a94be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\combit\LL17\Redistributierbare Dateien\combit.ListLabel17.dll</HintPath>
+      <HintPath>bin\Debug\combit.ListLabel19.dll</HintPath>
     </Reference>
-    <Reference Include="combit.ListLabel17.Wpf, Version=17.0.4409.26015, Culture=neutral, PublicKeyToken=a7a30592cb4a94be, processorArchitecture=MSIL">
+    <Reference Include="combit.ListLabel19.Wpf, Version=19.0.5036.16014, Culture=neutral, PublicKeyToken=a7a30592cb4a94be, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\combit\LL17\Redistributierbare Dateien\combit.ListLabel17.Wpf.dll</HintPath>
+      <HintPath>bin\Debug\combit.ListLabel19.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="DataGridThemes">
       <HintPath>C:\Program Files (x86)\Microsoft\DataGridThemesSetup\DataGridThemes.dll</HintPath>

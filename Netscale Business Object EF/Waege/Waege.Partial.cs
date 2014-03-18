@@ -11,7 +11,7 @@ using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.Data;
 using HWB.NETSCALE.GLOBAL;
-using combit.ListLabel17.DataProviders;
+using combit.ListLabel19.DataProviders;
 
 
 namespace HWB.NETSCALE.BOEF
@@ -203,6 +203,7 @@ namespace HWB.NETSCALE.BOEF
 
             // Mandant PK eintragen
             Entity.PK_Mandant = goApp.Mandant_PK;
+            Entity.Mandantnr = goApp.MandantNr;
             // Kfz anlegen wenn unbekannt
             CreateKfz();
         }

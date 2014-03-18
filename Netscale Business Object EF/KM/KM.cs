@@ -20,6 +20,8 @@ namespace HWB.NETSCALE.BOEF
 		
 		#region Association Properties
 
+	
+
 		/// Business Rule object
 		/// </summary>
 		public virtual KMRules Rules

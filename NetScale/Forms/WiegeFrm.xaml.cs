@@ -1201,6 +1201,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             mmBindingList<SvMandantEntity> oMel = oM.GetAllMandant();
             goApp.Mandant_PK = oMe.PK;
+            goApp.MandantNr = oMe.MandantNr;
             cb_Mandant.ItemsSource = oMel;
             cb_Mandant.SelectedValuePath = "PK";
             cb_Mandant.DisplayMemberPath = "MNrName";
@@ -1235,6 +1236,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (_boWe != null)
             {
                 goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue);
+                goApp.MandantNr = boMandant.GetMandantByPK(goApp.Mandant_PK).MandantNr;
                 _boWe.PK_Mandant = Convert.ToInt32(cb_Mandant.SelectedValue);
             }
         }

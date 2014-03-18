@@ -9,7 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using combit.ListLabel17;
+using combit.ListLabel19;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
@@ -190,7 +190,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE = oLE.Load();
 
             ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "wOGzEQ";
+            LL.LicensingInfo = "tHrTEQ";
 
             boW = new Waege();
             dataGrid1.SelectedValuePath = "PK";
@@ -252,7 +252,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
            
             mmBindingList<WaegeEntity> oWL;
              ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "wOGzEQ";
+             LL.LicensingInfo = "tHrTEQ";
    
         
          

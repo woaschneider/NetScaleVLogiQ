@@ -147,9 +147,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
             // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".bmp";
+            dlg.DefaultExt = ".jpg";
 
-            dlg.Filter = "Bitmaps (.bmp)|*.bmp";
+            dlg.Filter = "Bitmaps (.jpg)|*.jpg";
 
 
             // Display OpenFileDialog by calling ShowDialog method
