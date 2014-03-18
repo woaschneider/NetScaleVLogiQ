@@ -142,6 +142,15 @@ namespace HWB.NETSCALE.BOEF
                     SaveEntity(oME);
                     lsnr = x.ToString();
                 }
+
+                if (oWE.WiegeartKz == "F")
+                {
+                    int? x = oME.lsnrfremd;
+                    x = x + 1;
+                    oME.lsnrfremd = x;
+                    SaveEntity(oME);
+                    lsnr = x.ToString();
+                }
             }
 
             return lsnr;

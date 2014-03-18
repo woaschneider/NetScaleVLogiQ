@@ -530,6 +530,7 @@ namespace HWB.NETSCALE.BOEF
                         ex = ex + VFP.PadR(a.LandFU != null ? a.LandFU.Trim() : "", 3, ' ');
                         ex = ex + VFP.PadR(a.PlzFU != null ? a.PlzFU.Trim() : "", 6, ' ');
                         ex = ex + VFP.PadR(a.OrtFU != null ? a.OrtFU.Trim() : "", 50, ' ');
+                        ex = ex + VFP.PadR(a.LSNRGlobal != null ? a.LSNRGlobal.Trim() : "", 10, ' '); // Das Feld haz 50 Stellen
                         ex = ex + "<=";
 
 

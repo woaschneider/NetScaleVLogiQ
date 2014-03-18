@@ -90,6 +90,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  FontSize="14"
+                 TextChanged="tb_firma_TextChanged"
                  TabIndex="20" />
         <TextBox Name="tb_baustelle"
                  Width="358"

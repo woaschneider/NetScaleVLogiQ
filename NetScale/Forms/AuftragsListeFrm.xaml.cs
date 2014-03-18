@@ -87,7 +87,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void FillDataGrid(string matchcode, string baustelle)
         {
             boKK = new KK();
-            boKK = new KK();
+       
 
             dataGrid1.SelectedValuePath = "kkpk";
 
