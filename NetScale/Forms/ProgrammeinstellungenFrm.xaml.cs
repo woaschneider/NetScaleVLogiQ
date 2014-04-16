@@ -14,7 +14,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using combit.ListLabel19;
+using combit.ListLabel17;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;
@@ -22,7 +22,7 @@ using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 using MessageBox = System.Windows.MessageBox;
-using ObjectDataProvider = combit.ListLabel19.DataProviders.ObjectDataProvider;
+using ObjectDataProvider = combit.ListLabel17.DataProviders.ObjectDataProvider;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 {
@@ -310,7 +310,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ListLabel LL = new ListLabel();
             LL.LicensingInfo = "tHrTEQ";
             Waege boW = new Waege();
-            combit.ListLabel19.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("13");
+            combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("13");
 
             LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
             LL.Variables.Add("Original_Kopie", "Original");

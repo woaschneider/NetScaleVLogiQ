@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using combit.ListLabel19;
+using combit.ListLabel17;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;
@@ -69,7 +69,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
             LL.LicensingInfo = "tHrTEQ";
             // combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNR(boWE.LSNR); // Wieso LSNR ???
-            combit.ListLabel19.DataProviders.ObjectDataProvider oDP = boW.GetWaegungODPByID(boWE.PK);
+            combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetWaegungODPByID(boWE.PK);
 
             LL.DataSource = oDP;
             LL.AutoProjectType = LlProject.Label;

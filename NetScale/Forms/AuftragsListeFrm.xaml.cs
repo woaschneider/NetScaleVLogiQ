@@ -32,6 +32,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.InitializeComponent();
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             FillDataGrid("", "");
+            dataGrid1.Focus();
+            KBDown();
+            KBDown();
         }
 
         public AuftragsListeFrm(string matchcode)
@@ -40,6 +43,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             tb_firma.Text = matchcode;
             FillDataGrid(matchcode, "");
+            dataGrid1.Focus();
+            KBDown();
+            KBDown();
            
         }
 
@@ -110,6 +116,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 KBDown();
 
                 KBDown();
+                tb_firma.IsEnabled = true;
+              tb_baustelle.IsEnabled = true;
             }
 
             WindowExtensions.HideCloseButton(this);

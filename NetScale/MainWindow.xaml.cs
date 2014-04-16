@@ -346,7 +346,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void cmdKFZ_Click(object sender, RoutedEventArgs e)
         {
-            CFListFrm oCFFrm = new CFListFrm(false);
+            CFListFrm oCFFrm = new CFListFrm(false,"");
             oCFFrm.ShowDialog();
             oCFFrm.Close();
         }

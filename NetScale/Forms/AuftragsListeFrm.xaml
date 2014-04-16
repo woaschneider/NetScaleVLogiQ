@@ -91,7 +91,7 @@
                  VerticalAlignment="Top"
                  FontSize="14"
                  TextChanged="tb_firma_TextChanged"
-                 TabIndex="20" />
+                 TabIndex="20" IsEnabled="False" />
         <TextBox Name="tb_baustelle"
                  Width="358"
                  Height="28"
@@ -100,7 +100,7 @@
                  VerticalAlignment="Top"
                  FontSize="14"
                  TabIndex="40"
-                 TextChanged="tb_baustelle_TextChanged" />
+                 TextChanged="tb_baustelle_TextChanged" IsEnabled="False" />
         <Label Name="label1"
                Width="70"
                Height="28"

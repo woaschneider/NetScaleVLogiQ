@@ -1165,6 +1165,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void tb_abrufnr_LostFocus(object sender, RoutedEventArgs e)
         {
+            var x = _wiegestatus;
             CheckAbrufNr();
         }
 
@@ -1175,14 +1176,22 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             var oA = new Abruf();
             AbrufEntity oAe = oA.GetAbrufByNr(tb_abrufnr.Text);
+
             if (oAe == null)
             {
-                MessageBox.Show("Diese Abruf-Nummer gibt es nicht!", "ACHTUNG", MessageBoxButton.OK,
-                                MessageBoxImage.Stop);
-                _boWe.Abrufid = null;
-                _boWe.Abrufnr = null;
-                return;
+                if (!VFP.InList(_wiegestatus,6,7))
+                {
+                    MessageBox.Show("Diese Abruf-Nummer gibt es nicht!", "ACHTUNG", MessageBoxButton.OK,
+                                    MessageBoxImage.Stop);
+                    _boWe.Abrufid = null;
+                    _boWe.Abrufnr = null;
+                    return;
+                }
             }
+
+            if (_wiegestatus == 6 | _wiegestatus == 7)
+                return;
+
 
             oA.CopyAbrufToWaege(oAe.PK, _boWe);
             DataContext = oA.CopyAbrufToWaege(oAe.PK, _boWe);
@@ -1246,8 +1255,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void LooUpAndFillAuftrag(string matchcode)
         {
             var oAlFrm = new AuftragsListeFrm(matchcode);
+       
 
             oAlFrm.ShowDialog();
+           
+
             int uRetKMPK = oAlFrm.uRet;
             _boW.AuftragDetail2Waege(uRetKMPK, _boWe);
             oAlFrm.Close();
@@ -1714,7 +1726,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key.ToString() == "F4")
             {
-                var oCfFrm = new CFListFrm(true);
+                var oCfFrm = new CFListFrm(true,tb_Kfz1.Text);
 
                 oCfFrm.ShowDialog();
                 int pk = oCfFrm.uRet;
@@ -1772,7 +1784,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             if (e.Key.ToString() == "F4")
             {
-                var oCfFrm = new CFListFrm(true);
+                var oCfFrm = new CFListFrm(true, tb_Kfz1.Text);
 
                 oCfFrm.ShowDialog();
                 int pk = oCfFrm.uRet;

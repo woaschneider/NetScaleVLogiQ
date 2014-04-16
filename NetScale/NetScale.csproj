@@ -77,13 +77,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="combit.ListLabel19, Version=19.0.5036.16013, Culture=neutral, PublicKeyToken=a7a30592cb4a94be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\combit.ListLabel19.dll</HintPath>
+    <Reference Include="combit.ListLabel17">
+      <HintPath>C:\Program Files (x86)\combit\LL17\Redistributierbare Dateien\x64\combit.ListLabel17.dll</HintPath>
     </Reference>
-    <Reference Include="combit.ListLabel19.Wpf, Version=19.0.5036.16014, Culture=neutral, PublicKeyToken=a7a30592cb4a94be, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\combit.ListLabel19.Wpf.dll</HintPath>
+    <Reference Include="combit.ListLabel17.Wpf">
+      <HintPath>C:\Program Files (x86)\combit\LL17\Redistributierbare Dateien\x64\combit.ListLabel17.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="DataGridThemes">
       <HintPath>C:\Program Files (x86)\Microsoft\DataGridThemesSetup\DataGridThemes.dll</HintPath>

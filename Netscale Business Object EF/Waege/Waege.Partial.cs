@@ -11,7 +11,7 @@ using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.Data;
 using HWB.NETSCALE.GLOBAL;
-using combit.ListLabel19.DataProviders;
+using combit.ListLabel17.DataProviders;
 
 
 namespace HWB.NETSCALE.BOEF
@@ -394,7 +394,7 @@ namespace HWB.NETSCALE.BOEF
             if (FeldName1 == "Sorten-Nr.")
                 sortennr = MatchCode1;
             if (FeldName1 == "Sortenbezeichnung 1")
-                sortenbezeichnung = FeldName1;
+                sortenbezeichnung = MatchCode1;
 
 
             if (FeldName2 == "Kunde / Lieferant")
@@ -406,7 +406,7 @@ namespace HWB.NETSCALE.BOEF
             if (FeldName2 == "Sorten-Nr.")
                 sortennr = MatchCode2;
             if (FeldName2 == "Sortenbezeichnung 1")
-                sortenbezeichnung = FeldName2;
+                sortenbezeichnung = MatchCode1;
 
             if (FeldName3 == "Kunde / Lieferant")
                 kunde = MatchCode3;
@@ -417,7 +417,7 @@ namespace HWB.NETSCALE.BOEF
             if (FeldName3 == "Sorten-Nr.")
                 sortennr = MatchCode3;
             if (FeldName3 == "Sortenbezeichnung 1")
-                sortenbezeichnung = FeldName3;
+                sortenbezeichnung = MatchCode3;
 
 
             LSquery = from w in this.ObjectContext.WaegeEntities

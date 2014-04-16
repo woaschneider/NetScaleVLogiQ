@@ -24,10 +24,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// Constructor
         private CF boCF;
 
+        private string MatchCode;
         public int uRet;
 
-        public CFListFrm(bool edit)
+        public CFListFrm(bool edit, String mc )
         {
+            MatchCode = mc;
             boCF = new CF();
             this.InitializeComponent();
             dataGrid1.SelectedValuePath = "PK";
@@ -91,7 +93,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Fillgrid()
         {
-            dataGrid1.ItemsSource = boCF.GetAllCF();
+         //   dataGrid1.ItemsSource = boCF.GetAllCF();
+            dataGrid1.ItemsSource = boCF.GetCFByKfz(MatchCode);
         }
 
         protected override void Window_Loaded(object sender, RoutedEventArgs e)

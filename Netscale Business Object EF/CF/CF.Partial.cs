@@ -104,6 +104,14 @@ namespace HWB.NETSCALE.BOEF
                                          select CF;
             return this.GetEntity(query);
         }
+        public mmBindingList<CFEntity> GetCFByKfz(string Nr)
+        {
+            string kr = ConvertKfzToKfzRaw(Nr);
+            IQueryable<CFEntity> query = from CF in this.ObjectContext.CFEntities
+                                         where CF.Kfz1Raw.Contains(kr)
+                                         select CF;
+            return this.GetEntityList(query);
+        }
 
 
         public CFEntity GetCFByKfzId(string id)
