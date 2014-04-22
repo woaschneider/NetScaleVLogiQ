@@ -37,6 +37,33 @@ namespace HWB.NETSCALE.BOEF
             return LSNRGlobal ;
         }
 
+        public int? NewAp_Id()
+        {
+            int? Ret = 0;
+            IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities
+                                                    select E;
+            EinstellungenEntity oEE = this.GetEntity(query);
+            Ret = oEE.AP_Id_counter;
+            oEE.AP_Id_counter = oEE.AP_Id_counter + 1;
+            SaveEntity(oEE);
+
+
+            return Ret;
+        }
+        public int? NewMg_Id()
+        {
+            int? Ret = 0;
+            IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities
+                                                    select E;
+            EinstellungenEntity oEE = this.GetEntity(query);
+            Ret = oEE.MG_Id_counter;
+            oEE.MG_Id_counter = oEE.MG_Id_counter + 1;
+            SaveEntity(oEE);
+
+
+            return Ret;
+        }
+
         public int GetMaxGewicht()
         {
             IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities

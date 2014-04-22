@@ -452,6 +452,7 @@
                Margin="0,66,0,0"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
-               Stretch="Fill" Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/rhenus-logo.jpg" />
+               Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/rhenus-logo.jpg"
+               Stretch="Fill" />
     </Grid>
 </mmwpf:mmMainAppWindow>

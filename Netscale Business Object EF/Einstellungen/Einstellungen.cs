@@ -20,7 +20,7 @@ namespace HWB.NETSCALE.BOEF
 		
 		#region Association Properties
 
-	
+		
 		/// Business Rule object
 		/// </summary>
 		public virtual EinstellungenRules Rules
@@ -98,6 +98,8 @@ namespace HWB.NETSCALE.BOEF
 			// Store the hard-coded default values via the entity object
 			if (entity != null)
 			{
+				entity.AP_Id_counter = (0);
+				entity.MG_Id_counter = (0);
 				entity.MischerCounterId = (0);
 			}
 		}
