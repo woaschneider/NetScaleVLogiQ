@@ -67,7 +67,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
             Waege boW = new Waege();
 
-            LL.LicensingInfo = "tHrTEQ";
+            LL.LicensingInfo = "wOGzEQ";
             // combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNR(boWE.LSNR); // Wieso LSNR ???
             combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetWaegungODPByID(boWE.PK);
 

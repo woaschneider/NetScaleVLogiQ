@@ -308,7 +308,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void cmdEditLS_Click(object sender, RoutedEventArgs e)
         {
             ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "tHrTEQ";
+            LL.LicensingInfo = "wOGzEQ";
             Waege boW = new Waege();
             combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("13");
 
@@ -357,7 +357,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void cmdEditAPListe_Click(object sender, RoutedEventArgs e)
         {
             ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "tHrTEQ";
+            LL.LicensingInfo = "wOGzEQ";
             AP boAP = new AP();
             mmBindingList<APEntity> boAPE = boAP.GetAllAP();
             LL.DataSource = boAPE;

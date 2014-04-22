@@ -447,11 +447,11 @@
                Stretch="UniformToFill" />
         <Image Name="image2"
                Grid.Column="2"
-               Width="94"
-               Height="89"
-               Margin="0,47,0,0"
+               Width="260"
+               Height="48"
+               Margin="0,66,0,0"
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
-               Stretch="Fill" Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/OAM%20Logo.bmp" />
+               Stretch="Fill" Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/rhenus-logo.jpg" />
     </Grid>
 </mmwpf:mmMainAppWindow>

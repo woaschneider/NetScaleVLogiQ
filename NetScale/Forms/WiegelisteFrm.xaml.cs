@@ -190,7 +190,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE = oLE.Load();
 
             ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "tHrTEQ";
+            LL.LicensingInfo = "wOGzEQ";
 
             boW = new Waege();
             dataGrid1.SelectedValuePath = "PK";
@@ -252,7 +252,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
            
             mmBindingList<WaegeEntity> oWL;
              ListLabel LL = new ListLabel();
-             LL.LicensingInfo = "tHrTEQ";
+             LL.LicensingInfo = "wOGzEQ";
    
         
          

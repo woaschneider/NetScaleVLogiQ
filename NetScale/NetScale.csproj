@@ -728,6 +728,9 @@
   <ItemGroup>
     <Resource Include="Images\OAM Logo.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rhenus-logo.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
