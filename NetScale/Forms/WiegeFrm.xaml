@@ -1226,14 +1226,14 @@
                Content="Baustelle 3"
                TabIndex="350" />
         <CheckBox Name="cb_Abruffest"
-                  Visibility="Collapsed"
                   Width="92"
                   Height="16"
                   Margin="255,339,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
+                  Content="Fester Abruf"
                   IsChecked="{Binding abruffest}"
-                  Content="Fester Abruf" />
+                  Visibility="Collapsed" />
     </Grid>
 
 </mmwpf:mmBusinessWindow>
