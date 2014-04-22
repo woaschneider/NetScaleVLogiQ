@@ -36,6 +36,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 this.Title = Partnerrollen.GetRollenBezeichnung(_rolle) + " - Neue Adresse anlegen";
                 boAPE = boAP.NewEntity();
+
+                if(boAPE!=null)
+                {
+                    Einstellungen oE = new Einstellungen();
+                    boAPE.Nr=  oE.NewAp_Nr();
+                }
+                if (_rolle == "AU")
+                    boAPE.Rolle_AU = true;
+                if (_rolle == "LI")
+                    boAPE.Rolle_LI = true;
                 if (_rolle == "SP")
                     boAPE.Rolle_SP = true;
                 if (_rolle == "FU")
@@ -68,6 +78,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_CatchFocus.Focus();
             // Focus auf eine nicht sichtbare Textbox setzen. Sonst werden die Änderungen an der letzen TB nicht übernommen. Trick!
             boAP.SaveEntity();
+            this.Hide();
+
         }
 
         private void cmdDelete_Click(object sender, RoutedEventArgs e)

@@ -89,6 +89,8 @@ namespace HWB.NETSCALE.BOEF
                 Entity.IncotermKz = boIE.Kennung;
                 Entity.IncotermBezeichnung = boIE.Bezeichnung;
             }
+
+            Entity.wefirma = ""; // Sonst wird in der LS Liste nichts angezeigt falls kein WE angegebene wurde
         }
 
 

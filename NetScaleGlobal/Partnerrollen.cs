@@ -33,10 +33,10 @@
             switch (rollenKz)
             {
                 case "AU":
-                    ret = false;
+                    ret = true;
                     break;
                 case "LI":
-                    ret = false;
+                    ret = true;
                     break;
                 case "SP":
                     ret = true;

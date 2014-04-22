@@ -221,7 +221,7 @@
           <Property Name="abrufdate" Type="datetime" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4_RM.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
       -->
         <EntityType Name="Classes">
           <Key>
@@ -573,7 +573,7 @@
           <Property Name="DefaultW" Type="bit" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4.dbo.svMandant' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4_RM.dbo.svMandant' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
       -->
         <EntityType Name="svMandant">
           <Key>

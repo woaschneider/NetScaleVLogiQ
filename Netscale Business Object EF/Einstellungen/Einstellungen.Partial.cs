@@ -37,26 +37,26 @@ namespace HWB.NETSCALE.BOEF
             return LSNRGlobal ;
         }
 
-        public int? NewAp_Id()
+        public string NewAp_Nr()
         {
-            int? Ret = 0;
+            string Ret = "";
             IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities
                                                     select E;
             EinstellungenEntity oEE = this.GetEntity(query);
-            Ret = oEE.AP_Id_counter;
+            Ret = oEE.AP_Id_counter.ToString();
             oEE.AP_Id_counter = oEE.AP_Id_counter + 1;
             SaveEntity(oEE);
 
 
             return Ret;
         }
-        public int? NewMg_Id()
+        public string NewMg_Id()
         {
-            int? Ret = 0;
+            string Ret = "";
             IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities
                                                     select E;
             EinstellungenEntity oEE = this.GetEntity(query);
-            Ret = oEE.MG_Id_counter;
+            Ret = oEE.MG_Id_counter.ToString();
             oEE.MG_Id_counter = oEE.MG_Id_counter + 1;
             SaveEntity(oEE);
 

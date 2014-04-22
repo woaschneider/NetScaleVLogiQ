@@ -35,6 +35,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 this.Title = "Neue Sorte anlegen";
                 boMGE = boMG.NewEntity();
+                if(boMGE!=null)
+                {
+                    Einstellungen boE = new Einstellungen();
+                    boMGE.SortenNr =  boE.NewMg_Id();
+                }
             }
             else
             {
@@ -63,7 +68,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             tb_CatchFocus.Focus();
             // Focus auf eine nicht sichtbare Textbox setzen. Sonst werden die Änderungen an der letzen TB nicht übernommen. Trick!
+            if (boMGE.me == null)
+                boMGE.me = "t";
+
             boMG.SaveEntity();
+            this.Hide();
         }
 
 

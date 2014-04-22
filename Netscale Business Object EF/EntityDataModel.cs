@@ -334,22 +334,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<EinstellungenEntity> EinstellungenEntities
-        {
-            get
-            {
-                if ((_EinstellungenEntities == null))
-                {
-                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
-                }
-                return _EinstellungenEntities;
-            }
-        }
-        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<MGEntity> MGEntities
         {
             get
@@ -426,6 +410,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<EinstellungenEntity> EinstellungenEntities
+        {
+            get
+            {
+                if ((_EinstellungenEntities == null))
+                {
+                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
+                }
+                return _EinstellungenEntities;
+            }
+        }
+        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -559,14 +559,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
-        {
-            base.AddObject("EinstellungenEntities", einstellungenEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MGEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToMGEntities(MGEntity mGEntity)
@@ -604,6 +596,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
+        {
+            base.AddObject("EinstellungenEntities", einstellungenEntity);
         }
 
         #endregion
@@ -4145,6 +4145,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _PdfCreator;
         partial void OnPdfCreatorChanging(Nullable<global::System.Int32> value);
         partial void OnPdfCreatorChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AP_Id_counter
+        {
+            get
+            {
+                return _AP_Id_counter;
+            }
+            set
+            {
+                OnAP_Id_counterChanging(value);
+                ReportPropertyChanging("AP_Id_counter");
+                _AP_Id_counter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AP_Id_counter");
+                OnAP_Id_counterChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AP_Id_counter;
+        partial void OnAP_Id_counterChanging(Nullable<global::System.Int32> value);
+        partial void OnAP_Id_counterChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MG_Id_counter
+        {
+            get
+            {
+                return _MG_Id_counter;
+            }
+            set
+            {
+                OnMG_Id_counterChanging(value);
+                ReportPropertyChanging("MG_Id_counter");
+                _MG_Id_counter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MG_Id_counter");
+                OnMG_Id_counterChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MG_Id_counter;
+        partial void OnMG_Id_counterChanging(Nullable<global::System.Int32> value);
+        partial void OnMG_Id_counterChanged();
 
         #endregion
     

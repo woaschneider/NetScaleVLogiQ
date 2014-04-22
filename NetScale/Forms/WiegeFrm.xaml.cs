@@ -661,9 +661,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.LSNRGlobal = boE.NewLsNrGlobal();
                     _boWe.lsnr = boMandant.GetLsNr(_boWe);
 
+                    
                     _boWe.ZweitZeit = DateTime.Now;
-                    _boWe.LSDatum = DateTime.Today;
-                    _boWe.Waegung = 2;
+
+                    if(_boWe.LSDatum==null)
+                        _boWe.LSDatum = DateTime.Today;
+
+
+                                        _boWe.Waegung = 2;
                 }
 
                 try
@@ -877,6 +882,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             cmdSave.IsEnabled = false;
             cmdWiegen.IsEnabled = false;
             RfidAktiv = false;
+
+            cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus1()
@@ -914,6 +921,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             cmdSave.IsEnabled = false;
             cmdWiegen.IsEnabled = true;
+            cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus2()
@@ -942,6 +950,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             cmdSave.IsEnabled = false;
             cmdWiegen.IsEnabled = true;
+            cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus3() // Einmal
@@ -969,6 +978,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             cmdSave.IsEnabled = false;
             cmdWiegen.IsEnabled = true;
+            cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus4()
@@ -996,6 +1006,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             cmdSave.IsEnabled = true;
             cmdWiegen.IsEnabled = false;
+            cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         // Erstwägung bearbeiten
@@ -1029,6 +1040,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             // Damit immer die aktuellen Werte angezeigt werden
             Abruf oAbruf = new Abruf();
             ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
+            cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus6() // Abruf anlegen
@@ -1065,6 +1077,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_kfzid.IsEnabled = false;
             tb_Kfz1.IsEnabled = false;
             tb_Kfz2.IsEnabled = false;
+            cb_Abruffest.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Wiegestatus7() // Abruf bearbeiten
@@ -1102,6 +1115,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_kfzid.IsEnabled = false;
             tb_Kfz1.IsEnabled = false;
             tb_Kfz2.IsEnabled = false;
+            cb_Abruffest.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Wiegestatus8() // LS NEU

@@ -135,10 +135,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             dataGrid1.FontSize = 12;
         }
-
         private void cmdNeu_Click(object sender, RoutedEventArgs e)
-        {  if(Partnerrollen.IsRolleEdit(_rolle)==false)
-            return;
+        { // if(Partnerrollen.IsRolleEdit(_rolle)==false)
+        //    return;
 
             APEditFrm oAPEditFrm = new APEditFrm(0, true,_rolle);
             oAPEditFrm.ShowDialog();
@@ -148,8 +147,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (Partnerrollen.IsRolleEdit(_rolle) == false)
-                return;
+           
 
             int uRet = Convert.ToInt32(dataGrid1.SelectedValue);
             if (uRet == 0)
