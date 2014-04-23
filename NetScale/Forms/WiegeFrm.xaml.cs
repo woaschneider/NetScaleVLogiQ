@@ -1317,18 +1317,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             if (uRet == 0)
                 return;
-
-            var boAp = new AP();
-            APEntity boApe = boAp.GetAPById(uRet);
-            tb_FirmaFU.Text = boApe.Firma;
-            tb_NrFU.Text = boApe.Nr;
+            _boW.FillApFu(uRet, _boWe);
+            //var boAp = new AP();
+            //APEntity boApe = boAp.GetAPById(uRet);
+            //tb_FirmaFU.Text = boApe.Firma;
+            //tb_NrFU.Text = boApe.Nr;
         }
 
-        private void FillApFu(APEntity boApe)
-        {
-            tb_NrFU.Text = boApe.Nr;
-            tb_FirmaFU.Text = boApe.Firma;
-        }
+       
 
         private void ClearApFu()
         {
@@ -1343,7 +1339,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 var oAp = new AP();
                 APEntity oApe = oAp.GetAPByNr(tb_NrFU.Text, "FU");
                 if (oApe != null)
-                    FillApFu(oApe);
+                    _boW.FillApFu(oApe.PK,_boWe);
                 else
                 {
                     ClearApFu();
@@ -1764,9 +1760,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_Kfz1.Text = oCfe.Kfz1;
             tb_Kfz2.Text = oCfe.Kfz2;
             tb_NrSP.Text = oCfe.NrSP;
-            tb_NrFU.Text = oCfe.NrFU;
+
             tb_FirmaSP.Text = oCfe.FirmaSP;
-            tb_FirmaFU.Text = oCfe.FirmaFU;
+
+            _boW.FillApFu(oCfe.ap_PKFU, _boWe);
+
+            //tb_NrFU.Text = oCfe.NrFU;
+            //tb_FirmaFU.Text = oCfe.FirmaFU;
+
             if (oCfe.MaxLademenge != null)
             {
                 if (oCfe.MaxLademenge > 0)

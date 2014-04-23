@@ -41,6 +41,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     Einstellungen oE = new Einstellungen();
                     boAPE.Nr=  oE.NewAp_Nr();
+                    boAPE.bonitaet = "8";
                 }
                 if (_rolle == "AU")
                     boAPE.Rolle_AU = true;

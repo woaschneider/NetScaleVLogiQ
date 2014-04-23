@@ -23,6 +23,7 @@ namespace HWB.NETSCALE.BOEF
         {
             WaegeEntity currentEntity = entity as WaegeEntity;
 
+            IsBoniGesperrt(currentEntity);
             IsKfz1(currentEntity.Kfz1);
             IsWiegeartEmpty(currentEntity.WiegeartKz);
             if (goApp.VALDIERUNG_ERST == true)
@@ -267,6 +268,17 @@ namespace HWB.NETSCALE.BOEF
 
             return Msg;
         }
+
+        public string IsBoniGesperrt(WaegeEntity oWE)
+    {
+        string msg = null;
+            if(oWE.BonitaetKz == "9")
+            {
+                msg = "Kundenbonität ist gesperrt!";
+                AddErrorProviderBrokenRule("BonitaetKz", msg);
+            }
+            return msg;
+    }
 
         // Passt KontraktNr zur Kundennummer
          public string IsKontraktNr_and_NrKu(WaegeEntity oWE)

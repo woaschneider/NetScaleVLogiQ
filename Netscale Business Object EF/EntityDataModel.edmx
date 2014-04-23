@@ -221,7 +221,7 @@
           <Property Name="abrufdate" Type="datetime" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4_RM.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
       -->
         <EntityType Name="Classes">
           <Key>
@@ -562,6 +562,7 @@
           <Property Name="wename2" Type="varchar" MaxLength="50" />
           <Property Name="Sortenbezeichnung3" Type="varchar" MaxLength="50" />
           <Property Name="LandFU" Type="varchar" MaxLength="3" />
+          <Property Name="abruffest" Type="bit" />
         </EntityType>
         <EntityType Name="Wiegeart">
           <Key>
@@ -573,7 +574,7 @@
           <Property Name="DefaultW" Type="bit" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4_RM.dbo.svMandant' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_4.dbo.svMandant' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
       -->
         <EntityType Name="svMandant">
           <Key>
@@ -737,7 +738,6 @@
           <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
           <EntitySet Name="KKEntities" EntityType="HWB.NETSCALE.BOEF.KKEntity" />
           <EntitySet Name="KMEntities" EntityType="HWB.NETSCALE.BOEF.KMEntity" />
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="AP_hat_Auftraege" Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege">
             <End Role="APEntity" EntitySet="APEntities" />
             <End Role="KK" EntitySet="KKEntities" />
@@ -754,6 +754,8 @@
             <End Role="MGEntity" EntitySet="MGEntities" />
             <End Role="KM" EntitySet="KMEntities" />
           </AssociationSet>
+          <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Mandant_hat_Wägung" Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung">
             <End Role="MandantEntity" EntitySet="MandantEntities" />
             <End Role="Waege" EntitySet="WaegeEntities" />
@@ -762,7 +764,6 @@
             <End Role="MGEntity" EntitySet="MGEntities" />
             <End Role="Waege" EntitySet="WaegeEntities" />
           </AssociationSet>
-          <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1199,6 +1200,72 @@
           <NavigationProperty Name="KK" Relationship="HWB.NETSCALE.BOEF.Kopf_hat_Details" FromRole="KM" ToRole="KK" />
           <NavigationProperty Name="MG" Relationship="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" FromRole="KM" ToRole="MGEntity" />
         </EntityType>
+        <Association Name="AP_hat_Auftraege">
+          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="APEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APEntity">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="KK">
+              <PropertyRef Name="APFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Kopf_hat_Details">
+          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KK">
+              <PropertyRef Name="pk" />
+            </Principal>
+            <Dependent Role="KM">
+              <PropertyRef Name="kkpk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="M__hat_Kontrakte">
+          <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MandantEntity">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="KK">
+              <PropertyRef Name="MandantPK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ein_Detail_hat_ein_Material">
+          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MGEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MGEntity">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="KM">
+              <PropertyRef Name="mgpk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EinstellungenEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="LSNRGlobal" />
+          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="MaxGewichtValidieren" />
+          <Property Type="Int32" Name="Schwellwertampel" />
+          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
+          <Property Type="Int32" Name="MischerCounterId" />
+          <Property Type="Int32" Name="TaabCounterId" />
+          <Property Type="Boolean" Name="LsAsPdf" />
+          <Property Type="Int32" Name="PdfCreator" />
+          <Property Type="Int32" Name="AP_Id_counter" />
+          <Property Type="Int32" Name="MG_Id_counter" />
+        </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1297,57 +1364,10 @@
           <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LandFU" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="abruffest" />
           <NavigationProperty Name="Mandant" Relationship="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" FromRole="Waege" ToRole="MandantEntity" />
           <NavigationProperty Name="MG" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="Waege" ToRole="MGEntity" />
         </EntityType>
-        <Association Name="AP_hat_Auftraege">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="APEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="APFK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Kopf_hat_Details">
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KK">
-              <PropertyRef Name="pk" />
-            </Principal>
-            <Dependent Role="KM">
-              <PropertyRef Name="kkpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="M__hat_Kontrakte">
-          <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MandantEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="MandantPK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Ein_Detail_hat_ein_Material">
-          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MGEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MGEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KM">
-              <PropertyRef Name="mgpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Mandant_hat_Wägung">
           <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
           <End Type="HWB.NETSCALE.BOEF.WaegeEntity" Role="Waege" Multiplicity="*" />
@@ -1372,24 +1392,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="EinstellungenEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="LSNRGlobal" />
-          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="MaxGewichtValidieren" />
-          <Property Type="Int32" Name="Schwellwertampel" />
-          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
-          <Property Type="Int32" Name="MischerCounterId" />
-          <Property Type="Int32" Name="TaabCounterId" />
-          <Property Type="Boolean" Name="LsAsPdf" />
-          <Property Type="Int32" Name="PdfCreator" />
-          <Property Type="Int32" Name="AP_Id_counter" />
-          <Property Type="Int32" Name="MG_Id_counter" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1799,9 +1801,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EinstellungenEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
+              <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
+                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
+                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
+                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
+                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
+                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
+                <ScalarProperty Name="Ust" ColumnName="Ust" />
+                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
+                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
+                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
+                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
+                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="abruffest" ColumnName="abruffest" />
                 <ScalarProperty Name="LandFU" ColumnName="LandFU" />
                 <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
                 <ScalarProperty Name="wename2" ColumnName="wename2" />
@@ -1899,25 +1921,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EinstellungenEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
-              <MappingFragment StoreEntitySet="Einstellungen">
-                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
-                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
-                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
-                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
-                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
-                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
-                <ScalarProperty Name="Ust" ColumnName="Ust" />
-                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
-                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
-                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1974,7 +1977,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="5.75" Height="11.018453776041667" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KKEntity" Width="1.5" PointX="13.25" PointY="6.125" Height="6.4032194010416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KMEntity" Width="1.5" PointX="16.625" PointY="13.375" Height="6.0186165364583388" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="19.625" PointY="3" Height="19.47971679687501" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege" >
           <edmx:ConnectorPoint PointX="12.125" PointY="9.3266097005208337" />
           <edmx:ConnectorPoint PointX="13.25" PointY="9.3266097005208337" />
@@ -1993,18 +1995,19 @@
           <edmx:ConnectorPoint PointX="15.5" PointY="19.134308268229169" />
           <edmx:ConnectorPoint PointX="16.625" PointY="19.134308268229169" />
         </edmx:AssociationConnector>
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="3.375" PointY="6.75" Height="3.5186979166666674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="19.25" PointY="2.875" Height="19.672018229166667" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="1.0812524999999997" />
-          <edmx:ConnectorPoint PointX="14.510416666666666" PointY="1.0812524999999991" />
-          <edmx:ConnectorPoint PointX="14.677083333333334" PointY="1.0812524999999997" />
-          <edmx:ConnectorPoint PointX="20.375" PointY="1.0812524999999997" />
-          <edmx:ConnectorPoint PointX="20.375" PointY="3" />
+          <edmx:ConnectorPoint PointX="12.125" PointY="1.0812524999999933" />
+          <edmx:ConnectorPoint PointX="14.510416666666666" PointY="1.0812524999999926" />
+          <edmx:ConnectorPoint PointX="14.677083333333334" PointY="1.0812524999999933" />
+          <edmx:ConnectorPoint PointX="20" PointY="1.0812524999999933" />
+          <edmx:ConnectorPoint PointX="20" PointY="2.875" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" >
-          <edmx:ConnectorPoint PointX="15.5" PointY="20.967916666666675" />
-          <edmx:ConnectorPoint PointX="19.625" PointY="20.967916666666675" />
+          <edmx:ConnectorPoint PointX="15.5" PointY="21.001567382812503" />
+          <edmx:ConnectorPoint PointX="19.25" PointY="21.001567382812503" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="3.375" PointY="6.75" Height="3.5186979166666674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

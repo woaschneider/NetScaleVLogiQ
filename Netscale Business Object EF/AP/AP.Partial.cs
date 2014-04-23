@@ -25,7 +25,7 @@ namespace HWB.NETSCALE.BOEF
             // Place code here to be executed when the business object instantiates
         }
 
-        public APEntity GetAPById(int PK)
+        public APEntity GetAPById(int? PK)
         {
             IQueryable<APEntity> query = from AP in this.ObjectContext.APEntities
                                          where AP.PK == PK

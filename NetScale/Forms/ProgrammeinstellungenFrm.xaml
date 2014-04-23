@@ -172,7 +172,7 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               AlternatingRowBackground="#FFFFE8A6"
-                              AutoGenerateColumns="False"
+                              AutoGenerateColumns="false"
                               IsReadOnly="False">
                         <DataGrid.Columns>
 

@@ -676,6 +676,41 @@ namespace HWB.NETSCALE.BOEF
                 return false;
             }
         }
+        public bool FillApFu(int? pk, WaegeEntity oWE)
+        {
+            AP boAP = new AP();
+            APEntity boAPE = boAP.GetAPById(pk);
+            if (oWE != null)
+            {
+                if (boAPE != null)
+                {
+                    oWE.NrFU = boAPE.Nr;
+                    oWE.FirmaFU = boAPE.Firma;
+                    oWE.Name1FU = boAPE.Name1;
+                    oWE.AnschriftFU = boAPE.Anschrift;
+                    oWE.PlzFU = boAPE.Plz;
+                    oWE.OrtFU = boAPE.Ort;
+                   
+                    return true;
+                }
+                else
+                {
+                    oWE.NrFU = "";
+                    oWE.FirmaFU = "";
+                    oWE.Name1FU = "";
+                    oWE.AnschriftFU = "";
+                    oWE.PlzFU = "";
+                    oWE.PlzFU = "";
+                    oWE.BonitaetKz = "";
+                 
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public bool FillIncoterm(string kz)
         {

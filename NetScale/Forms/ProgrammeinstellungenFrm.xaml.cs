@@ -310,7 +310,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ListLabel LL = new ListLabel();
             LL.LicensingInfo = "wOGzEQ";
             Waege boW = new Waege();
-            combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("13");
+            combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("7104");
 
             LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
             LL.Variables.Add("Original_Kopie", "Original");

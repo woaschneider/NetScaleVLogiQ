@@ -5,8 +5,8 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="BusinessWindow"
-                        Width="828"
-                        Height="450"
+                        Width="824"
+                        Height="521"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
                         Loaded="Window_Loaded"
@@ -54,7 +54,8 @@
 
     </Window.Resources>
     <Grid x:Name="LayoutRoot"
-          Height="420"
+          Width="809"
+          Height="498"
           Background="#FFB0CAEA">
 
         <ribbon:Ribbon x:Name="Ribbon"
@@ -211,8 +212,7 @@
                   VerticalAlignment="Top"
                   Content="Auftraggeber" />
         <Grid Name="grid1"
-              Height="420"
-              Margin="2,2,-2,-2"
+              Margin="2,2,12,22"
               Background="#FFB0CAEA">
             <ribbon:Ribbon Name="ribbon1"
                            Height="120"
@@ -412,8 +412,40 @@
                     </Grid>
                 </Grid>
             </GroupBox>
-            <TextBox FontSize="16" Height="33" HorizontalAlignment="Left" Margin="98,205,0,0" MaxHeight="30" Name="textBox14" TabIndex="20" Text="{Binding Name1 }" VerticalAlignment="Top" Width="385" />
-            <Label Content="Name 1" FontSize="14" Height="28" HorizontalAlignment="Left" Margin="10,206,0,0" Name="label12" VerticalAlignment="Top" />
+            <TextBox Name="textBox14"
+                     Width="385"
+                     Height="33"
+                     MaxHeight="30"
+                     Margin="98,205,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     FontSize="16"
+                     TabIndex="20"
+                     Text="{Binding Name1}" />
+            <Label Name="label12"
+                   Height="28"
+                   Margin="10,206,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Content="Name 1"
+                   FontSize="14" />
+            <TextBox Name="textBox15"
+                     Width="59"
+                     Height="33"
+                     MaxHeight="30"
+                     Margin="98,395,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top"
+                     FontSize="16"
+                     Text="{Binding bonitaet}" />
+            <Label Name="label13"
+                   Height="28"
+                   Margin="12,396,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   ClipToBounds="True"
+                   Content="Bonität"
+                   FontSize="14" />
         </Grid>
     </Grid>
 </mmwpf:mmBusinessWindow>

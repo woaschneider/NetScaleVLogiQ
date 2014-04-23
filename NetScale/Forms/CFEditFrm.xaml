@@ -51,7 +51,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-       
+
     </Window.Resources>
     <Grid x:Name="LayoutRoot" Background="#FFB0CAEA">
         <ribbon:Ribbon x:Name="Ribbon"
@@ -125,13 +125,13 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
         <TextBox Name="tb_kfz1"
-                 CharacterCasing="Upper"
                  Width="205"
                  Height="33"
                  MaxHeight="30"
                  Margin="196,155,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 CharacterCasing="Upper"
                  FontSize="16"
                  TabIndex="20"
                  Text="{Binding Kfz1}" />
@@ -143,13 +143,13 @@
                Content="Kennzeichen 1"
                FontSize="14" />
         <TextBox Name="textBox1"
-                 CharacterCasing="Upper"
                  Width="205"
                  Height="33"
                  MaxHeight="30"
                  Margin="196,191,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 CharacterCasing="Upper"
                  FontSize="16"
                  TabIndex="30"
                  Text="{Binding Kfz2}" />
@@ -244,8 +244,9 @@
                  FontSize="16"
                  IsManipulationEnabled="True"
                  IsReadOnly="true"
+                 TabIndex="120"
                  Text="{Binding Abrufnr}"
-                 ToolTip="Zum Öffnen der Abrufliste die Schaltfläche 'Abrufliste' betätigen! " TabIndex="120" />
+                 ToolTip="Zum Öffnen der Abrufliste die Schaltfläche 'Abrufliste' betätigen! " />
         <Label Name="label8"
                Height="28"
                Margin="31,441,0,0"
@@ -277,6 +278,7 @@
         <TextBox Name="tb_FirmaFU"
                  Width="298"
                  Height="33"
+                 MaxHeight="30"
                  Margin="293,262,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
@@ -287,10 +289,11 @@
                  Text="{Binding Path=FirmaFU,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}"
-                 ToolTip="Adressenliste mit F4 anzeigen" MaxHeight="30" />
+                 ToolTip="Adressenliste mit F4 anzeigen" />
         <TextBox Name="tb_FirmaSP"
                  Width="298"
                  Height="33"
+                 MaxHeight="30"
                  Margin="293,226,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
@@ -301,10 +304,11 @@
                  Text="{Binding Path=FirmaSP,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}"
-                 ToolTip="Adressenliste mit F4 anzeigen" MaxHeight="30" />
+                 ToolTip="Adressenliste mit F4 anzeigen" />
         <TextBox Name="tb_NrSP"
                  Width="94"
                  Height="33"
+                 MaxHeight="30"
                  Margin="196,226,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
@@ -314,10 +318,11 @@
                  Text="{Binding Path=NrSP,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}"
-                 ToolTip="Nummer und ENTER" MaxHeight="30" />
+                 ToolTip="Nummer und ENTER" />
         <TextBox Name="tb_NrFU"
                  Width="94"
                  Height="33"
+                 MaxHeight="30"
                  Margin="196,262,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
@@ -327,7 +332,7 @@
                  Text="{Binding Path=NrFU,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}"
-                 ToolTip="Nummer und ENTER" MaxHeight="30" />
+                 ToolTip="Nummer und ENTER" />
         <Label Name="label9"
                Height="28"
                Margin="31,229,0,0"

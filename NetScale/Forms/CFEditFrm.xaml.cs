@@ -196,6 +196,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             var boAp = new AP();
             APEntity boApe = boAp.GetAPById(uRet);
+            boCFE.ap_PKFU = boApe.PK;
             tb_FirmaFU.Text = boApe.Firma;
             tb_NrFU.Text = boApe.Nr;
         }
