@@ -182,6 +182,7 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(WaegeEntity boWE)
         {
+            boWE.PK_Mandant = goApp.Mandant_PK;
             boWE.UserPK = goApp.UserPk;
             if (goApp.AutoAbruf == true)
                 CheckAndCreateAbr(boWE);

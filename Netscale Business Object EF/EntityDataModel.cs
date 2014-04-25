@@ -350,22 +350,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AbrufEntity> AbrufEntities
-        {
-            get
-            {
-                if ((_AbrufEntities == null))
-                {
-                    _AbrufEntities = base.CreateObjectSet<AbrufEntity>("AbrufEntities");
-                }
-                return _AbrufEntities;
-            }
-        }
-        private ObjectSet<AbrufEntity> _AbrufEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<KKEntity> KKEntities
         {
             get
@@ -426,6 +410,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<AbrufEntity> AbrufEntities
+        {
+            get
+            {
+                if ((_AbrufEntities == null))
+                {
+                    _AbrufEntities = base.CreateObjectSet<AbrufEntity>("AbrufEntities");
+                }
+                return _AbrufEntities;
+            }
+        }
+        private ObjectSet<AbrufEntity> _AbrufEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -567,14 +567,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AbrufEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToAbrufEntities(AbrufEntity abrufEntity)
-        {
-            base.AddObject("AbrufEntities", abrufEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'KKEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToKKEntities(KKEntity kKEntity)
@@ -604,6 +596,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AbrufEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToAbrufEntities(AbrufEntity abrufEntity)
+        {
+            base.AddObject("AbrufEntities", abrufEntity);
         }
 
         #endregion
@@ -1888,6 +1888,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _LandFU;
         partial void OnLandFUChanging(global::System.String value);
         partial void OnLandFUChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PK_Mandant
+        {
+            get
+            {
+                return _PK_Mandant;
+            }
+            set
+            {
+                OnPK_MandantChanging(value);
+                ReportPropertyChanging("PK_Mandant");
+                _PK_Mandant = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PK_Mandant");
+                OnPK_MandantChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PK_Mandant;
+        partial void OnPK_MandantChanging(Nullable<global::System.Int32> value);
+        partial void OnPK_MandantChanged();
 
         #endregion
     

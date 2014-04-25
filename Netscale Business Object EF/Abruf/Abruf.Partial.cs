@@ -51,7 +51,7 @@ namespace HWB.NETSCALE.BOEF
             CopyEntityPropertyValues(oWE, boAE);
             if(oWE.Abrufnr==null)
             boAE.Abrufnr = GetNextFreeAbrufNr();
-            
+            boAE.PK_Mandant = oWE.PK_Mandant;
             boAE.Istmenge = ist;
             boAE.Restmenge = rest;
             boAE.Sollmenge = soll;
@@ -65,6 +65,7 @@ namespace HWB.NETSCALE.BOEF
         {
             AbrufEntity boAe = NewEntity();
             CopyEntityPropertyValues(oWe, boAe);
+            boAe.PK_Mandant = oWe.PK_Mandant;
             boAe.Abrufnr = GetNextFreeAbrufNr();
             boAe.abrufdatum = DateTime.Today;
             boAe.Istmenge = 0;
@@ -82,6 +83,7 @@ namespace HWB.NETSCALE.BOEF
                 CopyEntityPropertyValues(boAe, oWe);
                 oWe.Abrufid = boAe.PK;
                 oWe.Abrufnr = boAe.Abrufnr;
+                oWe.PK_Mandant = boAe.PK_Mandant;
             }
 
             return oWe;

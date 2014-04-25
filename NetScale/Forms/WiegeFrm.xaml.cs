@@ -1613,6 +1613,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
                 ChangeMandantComboboxItem(); //  Abrufliste
             }
+            ChangeMandantComboboxItem(); // Hofliste
+        
             oAbrufFrm.Close();
         }
 
@@ -1654,6 +1656,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 else // Schau mal ob das Kfz einen Abruf hat, den man bei der Erstwägung in die Maske schießen kann
                 {
                     Abruf2Wage(oCfe);
+                    ChangeMandantComboboxItem(); 
                 }
             }
         }
