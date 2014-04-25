@@ -159,7 +159,7 @@
                                          Label=" Waage umschalten "
                                          LargeImageSource="..\Images\1329314471_gnome-session-switch.png" />
 
-                    <ribbon:RibbonButton x:Name="cmdWiegen"
+                    <ribbon:RibbonButton x:Name="cmdWiegen" 
                                          Click="CmdWiegenClick"
                                          FontSize="14"
                                          Label=" Wiegen "

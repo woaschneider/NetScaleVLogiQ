@@ -328,6 +328,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdNeuClick(object sender, RoutedEventArgs e)
         {
+     
             NewWaege();
             tb_frachtmittelkz.Text = "0";
             if (goApp.ONNEW_SETFOCUS_TO_KFZ_KENNZEICHEN)
@@ -407,6 +408,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     Wiegestatus = 2;
 
                     ChangeMandantComboboxItem(); // Hofliste
+                    goApp.Mandant_PK = (int)_boWe.PK_Mandant;
+                    
                 }
             }
         }
@@ -1252,6 +1255,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         // Umschaltung der Combobox aktualisiert in der Waegeentitität
         private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cb_Mandant.SelectedValue!=null)
             goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue.ToString());
 
           
@@ -1260,7 +1264,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue);
                 goApp.MandantNr = boMandant.GetMandantByPK(goApp.Mandant_PK).MandantNr;
-                _boWe.PK_Mandant = Convert.ToInt32(cb_Mandant.SelectedValue);
+             //   _boWe.PK_Mandant = Convert.ToInt32(cb_Mandant.SelectedValue);
+              //  _boWe.PK_Mandant = goApp.Mandant_PK;
             }
         }
 

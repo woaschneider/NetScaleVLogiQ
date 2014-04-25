@@ -50,7 +50,7 @@ namespace HWB.NETSCALE.BOEF
                     }
 
                     
-                    IsKontraktNr_and_NrKu(currentEntity);
+                //    IsKontraktNr_and_NrKu(currentEntity);
               //      IsRecycling(currentEntity);  // Für OAM auskommentiert
               //     IsNotRecycling(currentEntity);// Für OAM auskommentiert
                 }
@@ -74,8 +74,8 @@ namespace HWB.NETSCALE.BOEF
                     IsAdresseKUOk(currentEntity);
                 }
             }
-           IsRecycling(currentEntity);
-            IsNotRecycling(currentEntity);
+       //    IsRecycling(currentEntity);
+         //   IsNotRecycling(currentEntity);
             IsUeberladen(currentEntity);
         }
 

@@ -6,7 +6,7 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="Wiegeliste"
-                        Width="1063"
+                        Width="1156"
                         Height="790"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
@@ -68,7 +68,7 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid Name="dataGrid1"
-                  Width="1016"
+                  Width="1110"
                   Height="439"
                   Margin="12,245,0,0"
                   HorizontalAlignment="Left"
