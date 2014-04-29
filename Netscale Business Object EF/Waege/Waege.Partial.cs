@@ -425,6 +425,7 @@ namespace HWB.NETSCALE.BOEF
 
             LSquery = from w in this.ObjectContext.WaegeEntities
                       where w.Waegung == 2
+                            && w.PK_Mandant== goApp.Mandant_PK
                             && w.LSDatum >= vonDatum && w.LSDatum <= bisDatum && w.AbrechnungsKZ == "RG"
                             && w.FirmaKU.Contains(kunde)
                             && w.Kfz1.Contains(kfz)

@@ -481,6 +481,40 @@
                              Text="{Binding Ust,
                                             StringFormat=F2}"
                              TextChanged="tb_ust_TextChanged" />
+                    <TextBox Name="textBox6"
+                             Width="71"
+                             Height="23"
+                             Margin="598,190,0,0"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             MaxLength="5"
+                             TabIndex="180"
+                             Text="{Binding MG_Id_counter}" />
+                    <TextBox Name="textBox7"
+                             Width="71"
+                             Height="23"
+                             Margin="598,212,0,0"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Top"
+                             MaxLength="5"
+                             TabIndex="180"
+                             Text="{Binding AP_Id_counter}" />
+                    <Label Name="label22"
+                           Width="127"
+                           Height="28"
+                           Margin="446,207,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Content="Adressen-Nr. Zähler                            "
+                           TabIndex="140" />
+                    <Label Name="label23"
+                           Width="127"
+                           Height="28"
+                           Margin="446,185,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Content="Sorten-Nr. Zähler                            "
+                           TabIndex="140" />
                 </Grid>
             </TabItem>
             <TabItem Name="tabitem3" Header="Optionale Comports und zugehörige Einstellungen">

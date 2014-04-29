@@ -169,21 +169,7 @@
                 </ribbon:RibbonGroup>
 
             </ribbon:RibbonTab>
-            <ribbon:RibbonTab x:Name="io" Header="Im- und Export">
-                <ribbon:RibbonGroup x:Name="Group2" Header="Betrieb">
-                    <ribbon:RibbonButton x:Name="cmdImport"
-                                         Click="CmdImportClick"
-                                         FontSize="14"
-                                         Label=" Import "
-                                         LargeImageSource="..\Images\1349852832_document-import.png" />
-                    <ribbon:RibbonButton x:Name="cmdExport"
-                                         Click="cmdExport_Click"
-                                         FontSize="14"
-                                         Label=" Export "
-                                         LargeImageSource="..\Images\1349852786_document-export.png" />
-                </ribbon:RibbonGroup>
-
-            </ribbon:RibbonTab>
+           
 
 
         </ribbon:Ribbon>
