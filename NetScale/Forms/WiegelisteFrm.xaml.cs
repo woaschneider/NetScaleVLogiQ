@@ -57,16 +57,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             cbFelder3.Items.Add("Sortenbezeichnung 1");
             cbFelder3.Items.Add("Baustellenbezeichnung 1");
 
-            cbEditls.Items.Add("LS-Liste Allgemein");
-            cbEditls.Items.Add("LS-Liste Kunde");
-            cbEditls.Items.Add("LS-Liste Kfz");
-            if(goApp.acessLevel=="1")
+
+            if (goApp.acessLevel == "1")
                 ControlGroup.Visibility = Visibility.Visible;
 
             else
             {
                 ControlGroup.Visibility = Visibility.Collapsed;
-
             }
             PartialSetGrid();
             FillGrid();
@@ -145,18 +142,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
 
             var oWaegeliste = boW.GetLSListe(vondatePicker.SelectedDate.Value, bisdatePicker.SelectedDate.Value, cFeld1,
-                                             tbMatch1.Text,cFeld2,tbMatch2.Text,cFeld3,tbMatch3.Text);
+                                             tbMatch1.Text, cFeld2, tbMatch2.Text, cFeld3, tbMatch3.Text);
             dataGrid1.ItemsSource = oWaegeliste;
 
-            decimal?  summe = 0;
+            decimal? summe = 0;
             var count = oWaegeliste.Count;
-            for (int i = 0; i < count;i++)
+            for (int i = 0; i < count; i++)
             {
                 summe = summe + oWaegeliste[i].Nettogewicht;
             }
             tbSumme.Text = summe.ToString();
             // L&L
-
         }
 
 
@@ -181,6 +177,75 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE = oLE.Load();
             PrinterLS oPLS = new PrinterLS();
             oPLS.DoPrintLS(oLE, boWE, true);
+        }
+
+        // MaterialKundenStatisk
+        private void cmdPrintKundenStatisik_Click(object sender, RoutedEventArgs e)
+        {
+            Lokaleeinstellungen oLE = new Lokaleeinstellungen();
+            oLE = oLE.Load();
+
+            ListLabel LL = new ListLabel();
+            LL.LicensingInfo = "wOGzEQ";
+
+            boW = new Waege();
+            dataGrid1.SelectedValuePath = "PK";
+            string cFeld1 = "";
+            if (cbFelder1.SelectedValue == null)
+                cFeld1 = "";
+            else
+            {
+                cFeld1 = cbFelder1.SelectedValue.ToString();
+            }
+
+            string cFeld2 = "";
+            if (cbFelder2.SelectedValue == null)
+                cFeld2 = "";
+            else
+            {
+                cFeld2 = cbFelder2.SelectedValue.ToString();
+            }
+
+            string cFeld3 = "";
+            if (cbFelder3.SelectedValue == null)
+                cFeld3 = "";
+            else
+            {
+                cFeld3 = cbFelder3.SelectedValue.ToString();
+            }
+
+            if (bisdatePicker.SelectedDate == null) // Das passiert beim Instanzierien der Maske. 
+            {
+                return;
+            }
+            var oWaegeliste = boW.GetKundenStatistikListe(vondatePicker.SelectedDate.Value,
+                                                          bisdatePicker.SelectedDate.Value, cFeld1,
+                                                          tbMatch1.Text, cFeld2, tbMatch2.Text, cFeld3, tbMatch3.Text);
+
+
+            LL.DataSource = oWaegeliste;
+            LL.AutoProjectType = LlProject.List;
+            LL.AutoProjectFile = oLE.MATERIAL_KUNDEN_STATISTIK;
+            LL.AutoShowSelectFile = false;
+            LL.AutoShowPrintOptions = false;
+
+            LL.Variables.Add("VonDatum", vondatePicker.SelectedDate.Value);
+            LL.Variables.Add("BisDatum", bisdatePicker.SelectedDate.Value);
+
+            Mandant oM = new Mandant();
+            MandantEntity oME = oM.GetMandantByPK(goApp.Mandant_PK);
+            string cMandant = oME.MandantNr + " " + oME.MandantName;
+            LL.Variables.Add("Mandant", cMandant);
+
+
+            try
+            {
+                LL.Print(oLE.LISTENDRUCKER);
+            }
+            catch (ListLabelException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         // Wiegeliste Allgemein
@@ -210,7 +275,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 cFeld2 = cbFelder2.SelectedValue.ToString();
             }
 
-               string cFeld3 = "";
+            string cFeld3 = "";
             if (cbFelder3.SelectedValue == null)
                 cFeld3 = "";
             else
@@ -223,16 +288,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 return;
             }
             var oWaegeliste = boW.GetLSListe(vondatePicker.SelectedDate.Value, bisdatePicker.SelectedDate.Value, cFeld1,
-                                             tbMatch1.Text,cFeld2,tbMatch2.Text,cFeld3,tbMatch3.Text);
+                                             tbMatch1.Text, cFeld2, tbMatch2.Text, cFeld3, tbMatch3.Text);
 
 
             LL.DataSource = oWaegeliste;
             LL.AutoProjectType = LlProject.List;
-            LL.AutoProjectFile = oLE.WIEGELISTFILE ;
+            LL.AutoProjectFile = oLE.WIEGELISTFILE;
             LL.AutoShowSelectFile = false;
             LL.AutoShowPrintOptions = false;
             try
-            { 
+            {
                 LL.Print(oLE.LISTENDRUCKER);
             }
             catch (ListLabelException ex)
@@ -240,35 +305,40 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-       
+
 
         private void cmdEditListe_Click(object sender, RoutedEventArgs e)
         {
-            openLsFile();
+            openLsAndDesigner();
         }
 
-        private void openLsFile()
+
+        private void openLsAndDesigner()
         {
-           
             mmBindingList<WaegeEntity> oWL;
-             ListLabel LL = new ListLabel();
-             LL.LicensingInfo = "wOGzEQ";
-   
-        
-         
-                    LL.AutoProjectFile = "*allgemein*.lst";
-                    oWL = boW.GetLSListe(vondatePicker.SelectedDate.Value, bisdatePicker.SelectedDate.Value, "","","","","","");
-                
-              
-              
-         
-            
-             
+            ListLabel LL = new ListLabel();
+            LL.LicensingInfo = "wOGzEQ";
+
+
+            LL.AutoProjectFile = "**.lst";
+            //       oWL = boW.GetLSListe(vondatePicker.SelectedDate.Value, bisdatePicker.SelectedDate.Value, "","","","","","");
+
+            oWL = boW.GetKundenStatistikListe(vondatePicker.SelectedDate.Value, bisdatePicker.SelectedDate.Value, "", "",
+                                              "", "", "", "");
+
+
+            LL.Variables.Add("VonDatum", vondatePicker.SelectedDate.Value);
+            LL.Variables.Add("BisDatum", bisdatePicker.SelectedDate.Value);
+
+            Mandant oM = new Mandant();
+            MandantEntity oME = oM.GetMandantByPK(goApp.Mandant_PK);
+            string cMandant = oME.MandantNr + " " + oME.MandantName;
+            LL.Variables.Add("Mandant", cMandant);
+
             LL.DataSource = oWL;
-            
+
             try
             {
-                
                 LL.Design();
             }
             catch (ListLabelException ex)
@@ -296,7 +366,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tbMatch1.Text = "";
             cbFelder2.SelectedValue = null;
             tbMatch2.Text = "";
-              cbFelder3.SelectedValue = null;
+            cbFelder3.SelectedValue = null;
             tbMatch3.Text = "";
             FillGrid();
         }
@@ -323,10 +393,5 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.dataGrid1.Columns.Add(GC6);
             GC6.Width = 100;
         }
-
-       
-
-        
-       
     }
 }

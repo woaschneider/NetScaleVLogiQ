@@ -17,6 +17,7 @@ namespace HWB.NETSCALE.BOEF
         public string WIEGELISTFILE;
         public string WIEGELIST_KU_FILE;
         public string WIEGELIST_KFZ_FILE;
+        public string MATERIAL_KUNDEN_STATISTIK;
 
         public string LISTENDRUCKER;
 

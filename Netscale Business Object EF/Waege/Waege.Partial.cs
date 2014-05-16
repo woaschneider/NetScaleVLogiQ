@@ -373,6 +373,7 @@ namespace HWB.NETSCALE.BOEF
                                             select Waege;
             return this.GetEntityList(query);
         }
+     
 
         // *****************************************************************************************************
 
@@ -438,7 +439,68 @@ namespace HWB.NETSCALE.BOEF
         }
 
 
-        //*******************************************************************************************************
+        public mmBindingList<WaegeEntity> GetKundenStatistikListe(DateTime vonDatum, DateTime bisDatum, string FeldName1,
+                                                     string MatchCode1, string FeldName2, string MatchCode2,
+                                                     string FeldName3, string MatchCode3)
+        {
+            // Filter-Var
+            string kunde = "";
+            string kfz = "";
+            string baustelle1 = "";
+            string sortennr = "";
+            string sortenbezeichnung = "";
+
+            if (FeldName1 == "Kunde / Lieferant")
+                kunde = MatchCode1;
+            if (FeldName1 == "Kfz")
+                kfz = MatchCode1;
+            if (FeldName1 == "Baustellenbezeichnung 1")
+                baustelle1 = MatchCode1;
+            if (FeldName1 == "Sorten-Nr.")
+                sortennr = MatchCode1;
+            if (FeldName1 == "Sortenbezeichnung 1")
+                sortenbezeichnung = MatchCode1;
+
+
+            if (FeldName2 == "Kunde / Lieferant")
+                kunde = MatchCode2;
+            if (FeldName2 == "Kfz")
+                kfz = MatchCode2;
+            if (FeldName2 == "Baustellenbezeichnung 1")
+                baustelle1 = MatchCode2;
+            if (FeldName2 == "Sorten-Nr.")
+                sortennr = MatchCode2;
+            if (FeldName2 == "Sortenbezeichnung 1")
+                sortenbezeichnung = MatchCode1;
+
+            if (FeldName3 == "Kunde / Lieferant")
+                kunde = MatchCode3;
+            if (FeldName3 == "Kfz")
+                kfz = MatchCode3;
+            if (FeldName3 == "Baustellenbezeichnung 1")
+                baustelle1 = MatchCode3;
+            if (FeldName3 == "Sorten-Nr.")
+                sortennr = MatchCode3;
+            if (FeldName3 == "Sortenbezeichnung 1")
+                sortenbezeichnung = MatchCode3;
+
+
+            LSquery = from w in this.ObjectContext.WaegeEntities
+                      where w.Waegung == 2
+                            && w.PK_Mandant == goApp.Mandant_PK
+                            && w.LSDatum >= vonDatum && w.LSDatum <= bisDatum && w.AbrechnungsKZ == "RG"
+                            && w.FirmaKU.Contains(kunde)
+                            && w.Kfz1.Contains(kfz)
+                            && w.wefirma.Contains(baustelle1)
+                            && w.SortenNr.Contains(sortennr)
+                            && w.Sortenbezeichnung1.Contains(sortenbezeichnung)
+                      orderby    w.SortenNr,w.NrKU,w.LSNRGlobal
+                      select w;
+            return this.GetEntityList(LSquery);
+        }
+
+
+   
 
         // TAAB ***************************************************
         public mmBindingList<WaegeEntity> Get_taabListe(DateTime Datum)

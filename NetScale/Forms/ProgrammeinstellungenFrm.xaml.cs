@@ -43,6 +43,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private WiegeartEntity boWAE;
         private Incoterm boI;
         private IncotermEntity boIE;
+        private mmBindingList<MandantEntity> oMList;
 
 
         public ProgrammeinstellungenFrm()
@@ -139,8 +140,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_exportpath.Text = oLE.EXPORT_PATH;
             tb_mischerexportpfad.Text = oLE.MISCHEREXPORT_PATH;
             tb_listenfile.Text = oLE.WIEGELISTFILE;
-            tb_listenKundenfile.Text = oLE.WIEGELIST_KU_FILE;
-            tb_listenKfzfile.Text = oLE.WIEGELIST_KFZ_FILE;
+            tb_MaterialKundenStatistik.Text = oLE.MATERIAL_KUNDEN_STATISTIK;
+          
             tb_erstw.Text = oLE.ERSTWAEGUNGSWAAGE;
             tb_zweitw.Text = oLE.ZWEITWAEGUNGSWAAGE;
         }
@@ -149,8 +150,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             boM = new Mandant();
             dataGrid1.SelectedValuePath = "PK";
-
-            dataGrid1.ItemsSource = boM.GetAllMandant();
+            oMList= boM.GetAllMandant();
+            dataGrid1.ItemsSource = oMList;
         }
 
         private void PopulateInstalledPrintersCombo()
@@ -277,8 +278,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE.EXPORT_PATH = tb_exportpath.Text;
             oLE.MISCHEREXPORT_PATH = tb_mischerexportpfad.Text;
             oLE.WIEGELISTFILE = tb_listenfile.Text;
-            oLE.WIEGELIST_KU_FILE = tb_listenKundenfile.Text;
-            oLE.WIEGELIST_KFZ_FILE = tb_listenKfzfile.Text;
+          
+            oLE.MATERIAL_KUNDEN_STATISTIK = tb_MaterialKundenStatistik.Text;
             oLE.ERSTWAEGUNGSWAAGE = tb_erstw.Text;
             oLE.ZWEITWAEGUNGSWAAGE = tb_zweitw.Text;
 
@@ -290,7 +291,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE.Save(oLE);
 
             boE.SaveEntity(boEE);
-            boM.SaveEntityList();
+            boM.SaveEntityList(oMList);
 
             // ****
             boWA.SetDefaultWiegeart(tb_wiegeart.Text);
@@ -503,67 +504,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void cmdWiegelistKunden_Click(object sender, RoutedEventArgs e)
-        {
-            // Create OpenFileDialog
 
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-
-            // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".lst";
-
-            dlg.Filter = "Text documents (.lst)|*.lst";
-
-
-            // Display OpenFileDialog by calling ShowDialog method
-
-            Nullable<bool> result = dlg.ShowDialog();
-
-
-            // Get the selected file name and display in a TextBox
-
-            if (result == true)
-            {
-                // Open document
-
-                string filename = dlg.FileName;
-
-
-                tb_listenKundenfile.Text = filename;
-            }
-        }
-
-        private void cmdWiegelistKfz_Click(object sender, RoutedEventArgs e)
-        {
-            // Create OpenFileDialog
-
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-
-            // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".lst";
-
-            dlg.Filter = "Text documents (.lst)|*.lst";
-
-
-            // Display OpenFileDialog by calling ShowDialog method
-
-            Nullable<bool> result = dlg.ShowDialog();
-
-
-            // Get the selected file name and display in a TextBox
-
-            if (result == true)
-            {
-                // Open document
-
-                string filename = dlg.FileName;
-
-
-                tb_listenKfzfile.Text = filename;
-            }
-        }
 
         protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -625,6 +566,37 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void checkBox1_Checked(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void cmdMaterialKundenStatistik_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+            // Set filter for file extension and default file extension
+            dlg.DefaultExt = ".lst";
+
+            dlg.Filter = "Text documents (.lst)|*.lst";
+
+
+            // Display OpenFileDialog by calling ShowDialog method
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox
+
+            if (result == true)
+            {
+                // Open document
+
+                string filename = dlg.FileName;
+
+
+                tb_MaterialKundenStatistik.Text = filename;
+            }
         }
     }
 }
