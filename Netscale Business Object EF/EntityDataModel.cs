@@ -238,22 +238,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<FrachtmittelEntity> FrachtmittelEntities
-        {
-            get
-            {
-                if ((_FrachtmittelEntities == null))
-                {
-                    _FrachtmittelEntities = base.CreateObjectSet<FrachtmittelEntity>("FrachtmittelEntities");
-                }
-                return _FrachtmittelEntities;
-            }
-        }
-        private ObjectSet<FrachtmittelEntity> _FrachtmittelEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<WiegeartEntity> WiegeartEntities
         {
             get
@@ -426,6 +410,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<AbrufEntity> _AbrufEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<FrachtmittelEntity> FrachtmittelEntities
+        {
+            get
+            {
+                if ((_FrachtmittelEntities == null))
+                {
+                    _FrachtmittelEntities = base.CreateObjectSet<FrachtmittelEntity>("FrachtmittelEntities");
+                }
+                return _FrachtmittelEntities;
+            }
+        }
+        private ObjectSet<FrachtmittelEntity> _FrachtmittelEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -508,14 +508,6 @@ namespace HWB.NETSCALE.BOEF
         public void AddToBonitaetEntities(BonitaetEntity bonitaetEntity)
         {
             base.AddObject("BonitaetEntities", bonitaetEntity);
-        }
-    
-        /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FrachtmittelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToFrachtmittelEntities(FrachtmittelEntity frachtmittelEntity)
-        {
-            base.AddObject("FrachtmittelEntities", frachtmittelEntity);
         }
     
         /// <summary>
@@ -604,6 +596,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToAbrufEntities(AbrufEntity abrufEntity)
         {
             base.AddObject("AbrufEntities", abrufEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FrachtmittelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToFrachtmittelEntities(FrachtmittelEntity frachtmittelEntity)
+        {
+            base.AddObject("FrachtmittelEntities", frachtmittelEntity);
         }
 
         #endregion
@@ -4344,6 +4344,30 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Decimal> _MaxBrutto;
         partial void OnMaxBruttoChanging(Nullable<global::System.Decimal> value);
         partial void OnMaxBruttoChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fld_869
+        {
+            get
+            {
+                return _Fld_869;
+            }
+            set
+            {
+                OnFld_869Changing(value);
+                ReportPropertyChanging("Fld_869");
+                _Fld_869 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fld_869");
+                OnFld_869Changed();
+            }
+        }
+        private global::System.String _Fld_869;
+        partial void OnFld_869Changing(global::System.String value);
+        partial void OnFld_869Changed();
 
         #endregion
     

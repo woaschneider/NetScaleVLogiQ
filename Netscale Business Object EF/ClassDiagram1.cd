@@ -3,15 +3,23 @@
   <Class Name="HWB.NETSCALE.BOEF.Mandant">
     <Position X="6.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EgAAAARAQAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAAAAA=</HashCode>
+      <HashCode>EgAAAARAQACAAAAAAAAAAAIAFABAAAIAAAAAgAAAAAg=</HashCode>
       <FileName>Mandant\Mandant.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HWB.NETSCALE.BOEF.MandantEntity">
     <Position X="9.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAxGACAAAWACAApEYIMQAAoJIBJIAACgQKDgEAFA=</HashCode>
+      <HashCode>AgEgI5mCCQWAehnDQpEYINSAAobIHNNghKhQKDidAHI=</HashCode>
       <FileName>EntityDataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.BOEF.FrachtmittelEntity">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAITBAgAAAAAAAAAAAAAAAiAoBACAIAAACEABBBA=</HashCode>
+      <FileName>EntityDataModel.cs</FileName>
+      <NewMemberFileName>Frachtmittel\FrachtmittelEntity.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

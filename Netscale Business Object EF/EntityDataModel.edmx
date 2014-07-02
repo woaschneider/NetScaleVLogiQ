@@ -260,6 +260,7 @@
           <Property Name="Kennung" Type="varchar" MaxLength="2" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="MaxBrutto" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Fld_869" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="Incoterm">
           <Key>
@@ -721,7 +722,6 @@
           <EntitySet Name="KbFnnEntities" EntityType="HWB.NETSCALE.BOEF.KbFnnEntity" />
           <EntitySet Name="SvMandantEntities" EntityType="HWB.NETSCALE.BOEF.SvMandantEntity" />
           <EntitySet Name="BonitaetEntities" EntityType="HWB.NETSCALE.BOEF.BonitaetEntity" />
-          <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
           <EntitySet Name="WiegeartEntities" EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" />
           <EntitySet Name="IncotermEntities" EntityType="HWB.NETSCALE.BOEF.IncotermEntity" />
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
@@ -765,6 +765,7 @@
             <End Role="Waege" EntitySet="WaegeEntities" />
           </AssociationSet>
           <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
+          <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -877,15 +878,6 @@
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="FrachtmittelEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="WiegeartEntity">
           <Key>
@@ -1394,6 +1386,16 @@
           <Property Type="String" Name="LandFU" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="PK_Mandant" />
         </EntityType>
+        <EntityType Name="FrachtmittelEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
+          <Property Type="String" Name="Fld_869" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1502,16 +1504,6 @@
           <EntitySetMapping Name="BonitaetEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.BonitaetEntity">
               <MappingFragment StoreEntitySet="Bonitaet">
-                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
-                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FrachtmittelEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FrachtmittelEntity">
-              <MappingFragment StoreEntitySet="Frachtmittel">
-                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
                 <ScalarProperty Name="Kennung" ColumnName="Kennung" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
@@ -1924,6 +1916,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FrachtmittelEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FrachtmittelEntity">
+              <MappingFragment StoreEntitySet="Frachtmittel">
+                <ScalarProperty Name="Fld_869" ColumnName="Fld_869" />
+                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1945,7 +1948,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="72" >
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="187" >
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />
@@ -1960,7 +1963,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KbFnnEntity" Width="1.5" PointX="2.875" PointY="3.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.SvMandantEntity" Width="1.5" PointX="5.375" PointY="0.625" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.BonitaetEntity" Width="1.5" PointX="5.75" PointY="3.125" Height="0.4" IsExpanded="false" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="2.625" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" Width="1.5" PointX="5.875" PointY="5.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.IncotermEntity" Width="1.5" PointX="4.375" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="10.625" PointY="0.75" Height="0.4" IsExpanded="false" />
@@ -2011,6 +2013,7 @@
           <edmx:ConnectorPoint PointX="19.25" PointY="21.001567382812503" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="5.75" Height="11.210755208333325" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="3.25" PointX="5.375" PointY="6.75" Height="1.9802864583333246" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
