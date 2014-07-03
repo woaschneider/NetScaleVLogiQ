@@ -67,6 +67,7 @@ namespace HardwareDevices.Schenck.Disomat.RS232
             Weight oPW = new Weight();
             if (oCom.IsOpen)
             {
+                string clear = oCom.ReadExisting();
                 // Pollstring zusammenbauen
                 string tg = Chr(2) + "01#TG#" + Chr(3) + Chr(17);
                 // String senden
@@ -126,6 +127,11 @@ namespace HardwareDevices.Schenck.Disomat.RS232
 
 
                 oRW.Status = ret.Substring(22, 2);
+                if(oRW.Status!="80")
+                {
+                    oRW.Status = "00";
+                    return oRW;
+                }
 
                 string sDatum = ret.Substring(25, 8);
                 oRW.Date = Convert.ToDateTime(sDatum);

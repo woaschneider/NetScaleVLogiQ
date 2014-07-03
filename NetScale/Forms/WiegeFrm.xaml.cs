@@ -484,6 +484,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                             MessageBox.Show("Wägung fehlgeschlagen");
                             if (netScaleView1.oWF != null)
                                 netScaleView1.oWF.SetRedLight();
+
+                            netScaleView1.poll();
                             return;
                         }
                     }
@@ -495,14 +497,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.Waegung = 1;
                     _boWe.wnr1 = netScaleView1.ActiveScale.ToString();
 
-                    //try
-                    //{
+               
                         _result = SaveEntity(_boW, _boWe);
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //    MessageBox.Show(ex.Message);
-                    //}
+           
 
                     if (_result != mmSaveDataResult.RulesPassed)
                     {
@@ -566,6 +563,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                                 netScaleView1.oWF.SetRedLight();
 
                             MessageBox.Show("Wägung fehlgeschlagen");
+                            netScaleView1.poll();
                             return;
                         }
                     }

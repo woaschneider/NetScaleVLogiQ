@@ -277,6 +277,11 @@ namespace HardwareDevices
 
         private void Poll_TICK(object sender, EventArgs e)
         {
+            poll();
+        }
+
+        public void poll()
+        {
             if (_poll == false)
                 return;
             switch (_activeScale)
