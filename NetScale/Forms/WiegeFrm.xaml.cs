@@ -853,7 +853,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             // 
             DataContext = _boWe;
             tb_wiegestatus.Text = "...";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
@@ -863,7 +863,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioLSNew.IsChecked = false;
             radioLSNew.IsEnabled = false;
 
-            radioErst.IsEnabled = false;
+            rb_wiegeart.IsEnabled = false;
             radioZweit.IsEnabled = false;
             radioEinmal.IsEnabled = false;
             radioErstEdit.IsEnabled = false;
@@ -893,7 +893,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             netScaleView1.ActiveScale = Int32.Parse(goApp.ErstW);
 
             tb_wiegestatus.Text = "Erstwägung";
-            radioErst.IsChecked = true;
+            rb_wiegeart.IsChecked = true;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
@@ -903,7 +903,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioLSNew.IsChecked = false;
 
 
-            radioErst.IsEnabled = true;
+            rb_wiegeart.IsEnabled = true;
             radioZweit.IsEnabled = true;
             radioEinmal.IsEnabled = true;
             radioErstEdit.IsEnabled = false;
@@ -929,13 +929,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             netScaleView1.ActiveScale = Int32.Parse(goApp.ZweitW);
             tb_wiegestatus.Text = "Zweitwägung";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = true;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
             radioLSEdit.IsChecked = false;
 
-            radioErst.IsEnabled = false;
+            rb_wiegeart.IsEnabled = false;
             radioZweit.IsEnabled = true;
             radioEinmal.IsEnabled = false;
             radioErstEdit.IsEnabled = true;
@@ -957,13 +957,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Wiegestatus3() // Einmal
         {
             tb_wiegestatus.Text = "Einmal-/Kontrollwägung";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = true;
             radioErstEdit.IsChecked = false;
             radioLSEdit.IsChecked = false;
 
-            radioErst.IsEnabled = true;
+            rb_wiegeart.IsEnabled = true;
             radioZweit.IsEnabled = false;
             radioEinmal.IsEnabled = true;
             radioErstEdit.IsEnabled = false;
@@ -985,13 +985,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Wiegestatus4()
         {
             tb_wiegestatus.Text = "Erstwägung bearbeiten";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = true;
             radioLSEdit.IsChecked = false;
 
-            radioErst.IsEnabled = false;
+            rb_wiegeart.IsEnabled = false;
             radioZweit.IsEnabled = true;
             radioEinmal.IsEnabled = false;
             radioErstEdit.IsEnabled = true;
@@ -1015,13 +1015,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Wiegestatus5() // LS bearbeiten
         {
             tb_wiegestatus.Text = "Lieferschein bearbeiten";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
             radioLSEdit.IsChecked = true;
 
-            radioErst.IsEnabled = false;
+            rb_wiegeart.IsEnabled = false;
             radioZweit.IsEnabled = false;
             radioEinmal.IsEnabled = false;
             radioErstEdit.IsEnabled = false;
@@ -1047,7 +1047,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Wiegestatus6() // Abruf anlegen
         {
             tb_wiegestatus.Text = "Abruf anlegen";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
@@ -1055,7 +1055,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufNeu.IsChecked = true;
             radioAbrufEdit.IsChecked = false;
 
-            radioErst.IsEnabled = true;
+            rb_wiegeart.IsEnabled = true;
             radioZweit.IsEnabled = false;
             radioEinmal.IsEnabled = true;
             radioErstEdit.IsEnabled = false;
@@ -1084,7 +1084,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Wiegestatus7() // Abruf bearbeiten
         {
             tb_wiegestatus.Text = "Abruf bearbeiten";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
@@ -1093,7 +1093,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufEdit.IsChecked = true;
             radioLSNew.IsChecked = false;
 
-            radioErst.IsEnabled = false;
+            rb_wiegeart.IsEnabled = false;
             radioZweit.IsEnabled = false;
             radioEinmal.IsEnabled = false;
             radioErstEdit.IsEnabled = false;
@@ -1122,14 +1122,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Wiegestatus8() // LS NEU
         {
             tb_wiegestatus.Text = "Lieferschein händisch anlegen";
-            radioErst.IsChecked = false;
+            rb_wiegeart.IsChecked = false;
             radioZweit.IsChecked = false;
             radioEinmal.IsChecked = false;
             radioErstEdit.IsChecked = false;
             radioLSEdit.IsChecked = false;
             radioLSNew.IsChecked = true;
 
-            radioErst.IsEnabled = false;
+            rb_wiegeart.IsEnabled = false;
             radioZweit.IsEnabled = false;
             radioEinmal.IsEnabled = false;
             radioErstEdit.IsEnabled = false;
@@ -1148,9 +1148,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        private void RadioClick(object sender, RoutedEventArgs e)
+        private void RbWiegeartClickRadioClick(object sender, RoutedEventArgs e)
         {
-            if (radioErst.IsChecked == true)
+            if (rb_wiegeart.IsChecked == true)
                 Wiegestatus = 1;
             else if (radioZweit.IsChecked == true)
                 Wiegestatus = 2;
@@ -1210,6 +1210,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             oA.CopyAbrufToWaege(oAe.PK, _boWe);
             DataContext = oA.CopyAbrufToWaege(oAe.PK, _boWe);
+            ChangeMandantComboboxItem();
         }
 
         // Ich denke, das man einen großen Teil der folgenden Methoden ins BO Waege verlegen sollte. BL raus aus der GUI
@@ -1236,13 +1237,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void ChangeMandantComboboxItem()
         {
             int? pkMandant = _boWe.PK_Mandant;
-            if (pkMandant != null)
+          
 
-                cb_Mandant.SelectedValue = (int) pkMandant;
+               
             var oM = new SvMandant();
+          
             if (pkMandant != null)
             {
-                SvMandantEntity oMe = oM.GetMandantByPK((int) pkMandant);
+                SvMandantEntity oMe = oM.GetMandantByPK((int)pkMandant);
+                cb_Mandant.SelectedValue = oMe.MandantNr;
+               
                 if (oMe == null) throw new NotImplementedException();
                 cb_Mandant.Text = oMe.MNrName; // <--- Hiermit wird die Anzeige in der Combobox geändert
                
@@ -1262,8 +1266,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue);
                 goApp.MandantNr = boMandant.GetMandantByPK(goApp.Mandant_PK).MandantNr;
-             //   _boWe.PK_Mandant = Convert.ToInt32(cb_Mandant.SelectedValue);
-              //  _boWe.PK_Mandant = goApp.Mandant_PK;
+          
             }
         }
 
@@ -1474,6 +1477,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     MessageBox.Show(
                         "Dieses Fahrzeug ist schon erstgewogen. Das Programm schaltet aus diesem Grund nun automatisch auf Zweitwägung um!",
                         "Achtung - Wichtiger Hinweis", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ChangeMandantComboboxItem();
                 }
             }
 
@@ -1630,6 +1634,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 else // Schau mal ob das Kfz einen Abruf hat, den man bei der Erstwägung in die Maske schießen kann
                 {
                     Abruf2Wage(oCfe);
+                    ChangeMandantComboboxItem();
                 }
             }
             else

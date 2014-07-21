@@ -56,5 +56,12 @@ namespace HWB.NETSCALE.BOEF
                                                 select SvMandant;
             return this.GetEntity(query);
         }
+        public SvMandantEntity GetMandantByNr(string nr)
+        {
+            IQueryable<SvMandantEntity> query = from SvMandant in this.ObjectContext.SvMandantEntities
+                                                where SvMandant.MandantNr == nr
+                                                select SvMandant;
+            return this.GetEntity(query);
+        }
     }
 }

@@ -260,7 +260,6 @@
           <Property Name="Kennung" Type="varchar" MaxLength="2" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="MaxBrutto" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Fld_869" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="Incoterm">
           <Key>
@@ -1394,7 +1393,6 @@
           <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
-          <Property Type="String" Name="Fld_869" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1919,7 +1917,6 @@
           <EntitySetMapping Name="FrachtmittelEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FrachtmittelEntity">
               <MappingFragment StoreEntitySet="Frachtmittel">
-                <ScalarProperty Name="Fld_869" ColumnName="Fld_869" />
                 <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
                 <ScalarProperty Name="Kennung" ColumnName="Kennung" />
@@ -1948,7 +1945,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="187" >
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="140" >
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />
@@ -2013,7 +2010,7 @@
           <edmx:ConnectorPoint PointX="19.25" PointY="21.001567382812503" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="5.75" Height="11.210755208333325" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="3.25" PointX="5.375" PointY="6.75" Height="1.9802864583333246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

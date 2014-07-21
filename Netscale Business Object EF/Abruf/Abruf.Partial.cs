@@ -26,7 +26,7 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(AbrufEntity boWE)
         {
-           
+        
         }
 
     
