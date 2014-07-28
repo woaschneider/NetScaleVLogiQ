@@ -86,6 +86,9 @@
     <Reference Include="DataGridThemes">
       <HintPath>C:\Program Files (x86)\Microsoft\DataGridThemesSetup\DataGridThemes.dll</HintPath>
     </Reference>
+    <Reference Include="HWB.Framework">
+      <HintPath>..\..\..\..\..\HWBFramework\HwbMmWpfLibrary\HwbMmWpfLibrary\bin\Debug\HWB.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
