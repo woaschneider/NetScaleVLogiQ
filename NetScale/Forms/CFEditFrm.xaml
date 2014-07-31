@@ -12,45 +12,13 @@
                         Loaded="Window_Loaded"
                         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
-        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="LightGray" />
+
 
         <!--  Border Brushes  -->
 
         <!--  Miscellaneous Brushes  -->
 
-        <Style TargetType="TextBox">
 
-            <Setter Property="BorderBrush" Value="Black" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border Name="Bd"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                SnapsToDevicePixels="true">
-                            <ScrollViewer Name="PART_ContentHost"
-                                          Background="{TemplateBinding Background}"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
-                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
-                                <Setter TargetName="PART_ContentHost" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter Property="Background" Value="BlanchedAlmond" />
-                                <Setter Property="Foreground" Value="Black" />
-
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
     </Window.Resources>
     <Grid x:Name="LayoutRoot" Background="#FFB0CAEA">

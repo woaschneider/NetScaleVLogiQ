@@ -17,14 +17,14 @@
                 </Trigger>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="Background" Value="BlanchedAlmond" />
-                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="Foreground" Value="Black" />
 
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        
-        
+
+
+
 
 
         <Style TargetType="{x:Type DataGrid}">
@@ -35,10 +35,10 @@
         <Style TargetType="{x:Type DataGridRow}">
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter Property="Background" Value="BlanchedAlmond"> </Setter>
+                    <Setter Property="Background" Value="BlanchedAlmond" />
                 </Trigger>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="Background" Value="#FFFAF4B3"></Setter>
+                    <Setter Property="Background" Value="#FFFAF4B3" />
                 </Trigger>
             </Style.Triggers>
         </Style>
