@@ -1,21 +1,84 @@
-﻿<Application x:Class="HWB.NETSCALE.FRONTEND.WPF.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:System="clr-namespace:System;assembly=mscorlib">
-	<Application.Resources>
+﻿<Application x:Class="HWB.NETSCALE.FRONTEND.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:System="clr-namespace:System;assembly=mscorlib">
+    <Application.Resources>
 
-		<Color x:Key="WindowBackcolor">#FF000000</Color>
-		<Color x:Key="WindowBackground">#FF595959</Color>
-		<Color x:Key="BorderBackground">#FF1A3578</Color>
+        <Color x:Key="WindowBackcolor">#FF000000</Color>
+        <Color x:Key="WindowBackground">#FF595959</Color>
+        <Color x:Key="BorderBackground">#FF1A3578</Color>
 
-		<Style TargetType="{x:Type TextBox}">
-			<Style.Triggers>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
 
-				<Trigger Property="Validation.HasError" Value="True">
-					<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
 
-				</Trigger>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="BlanchedAlmond" />
+                    <Setter Property="Foreground" Value="Red" />
 
-			</Style.Triggers>
-		</Style>
-		<SolidColorBrush x:Key="HWB_DataGridAlternatingRowBackGround" Color="#FFFAF4B3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        
+        
 
-	</Application.Resources>
+
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="AliceBlue" />
+            <Setter Property="AlternationCount" Value="2" />
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="BlanchedAlmond"> </Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#FFFAF4B3"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="SeparatorBrush" Value="DarkRed" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <!--  Your Template goes here  -->
+                    <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                        <Grid>
+                            <Border x:Name="columnHeaderBorder"
+                                    BorderThickness="1"
+                                    Padding="3,0,3,0">
+                                <Border.BorderBrush>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Offset="0" Color="#A5A5A5" />
+                                        <GradientStop Offset="1" Color="#4B4B4B" />
+                                    </LinearGradientBrush>
+                                </Border.BorderBrush>
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Offset="0" Color="#DEB40A" />
+                                        <GradientStop Offset="1" Color="#FF7F00" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Application.Resources>
 </Application>
