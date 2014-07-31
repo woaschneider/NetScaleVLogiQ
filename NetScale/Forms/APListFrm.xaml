@@ -10,7 +10,7 @@
                         Width="870"
                         Height="564"
                         AllowsTransparency="False"
-                        Background="#FFFFFFFF"
+                        Background="{DynamicResource HWB_Frm_BackGround}"
                         Loaded="Window_Loaded"
                         ShowInTaskbar="False"
                         WindowStartupLocation="CenterScreen">

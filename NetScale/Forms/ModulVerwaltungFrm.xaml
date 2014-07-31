@@ -8,11 +8,11 @@
                         Width="615"
                         Height="426"
                         AllowsTransparency="False"
-                        Background="#FFFFFFFF"
+                        Background="{DynamicResource HWB_Frm_BackGround}"
                         Loaded="Window_Loaded"
                         WindowStartupLocation="CenterScreen">
 
-    <Grid x:Name="LayoutRoot" Background="#FF3399FF">
+    <Grid x:Name="LayoutRoot">
         <CheckBox Name="cb_Funkmodul"
                   Height="16"
                   Margin="36,279,0,0"

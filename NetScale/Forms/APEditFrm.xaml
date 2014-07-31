@@ -182,7 +182,7 @@
                   Content="Auftraggeber" />
         <Grid Name="grid1"
               Margin="2,2,12,22"
-              Background="#FFB0CAEA">
+              Background="{DynamicResource HWB_Frm_BackGround}">
             <ribbon:Ribbon Name="ribbon1"
                            Height="120"
                            Margin="-2,-21,2,0"
