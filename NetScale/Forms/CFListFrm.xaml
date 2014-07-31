@@ -58,7 +58,7 @@
                   Margin="12,105,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  AlternatingRowBackground="#FFDCE2E8"
+                  AlternatingRowBackground="{DynamicResource HWB_DataGridAlternatingRowBackGround}"
                   AutoGenerateColumns="False"
                   FontSize="14"
                   IsReadOnly="True"

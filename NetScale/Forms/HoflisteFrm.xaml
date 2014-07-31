@@ -16,7 +16,7 @@
 				</ribbon:RibbonGroup>
 			</ribbon:RibbonTab>
 		</ribbon:Ribbon>
-		<DataGrid Name="dataGrid1" Width="816" Height="311" Margin="3,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" FontSize="14" SelectionMode="Single" SelectionUnit="FullRow">
+		<DataGrid Name="dataGrid1" Width="816" Height="311" Margin="3,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" FontSize="14" SelectionMode="Single" SelectionUnit="FullRow" AlternatingRowBackground="{DynamicResource HWB_DataGridAlternatingRowBackGround}">
 			<DataGrid.Columns>
 				<DataGridTextColumn MinWidth="50" Binding="{Binding ErstZeit}" Header="Zeit" />
 				

@@ -17,7 +17,7 @@
 				</ribbon:RibbonGroup>
 			</ribbon:RibbonTab>
 		</ribbon:Ribbon>
-		<DataGrid Name="dataGrid1" Width="453" Height="278" Margin="0,105,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
+		<DataGrid Name="dataGrid1" Width="453" Height="278" Margin="0,105,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" AlternatingRowBackground="{DynamicResource HWB_DataGridAlternatingRowBackGround}">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding MandantNr}" Header="Mandant-Nr." />
 				<DataGridTextColumn Binding="{Binding MandantName}" Header="Name" />

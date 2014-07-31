@@ -15,6 +15,7 @@
 
 			</Style.Triggers>
 		</Style>
+		<SolidColorBrush x:Key="HWB_DataGridAlternatingRowBackGround" Color="#FFFAF4B3"/>
 
 	</Application.Resources>
 </Application>
