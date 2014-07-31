@@ -314,7 +314,7 @@
                   Margin="23,346,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  AutoGenerateColumns="False"
+                  AutoGenerateColumns="True"
                   FontSize="15"
                   TabIndex="100">
             <DataGrid.Columns>

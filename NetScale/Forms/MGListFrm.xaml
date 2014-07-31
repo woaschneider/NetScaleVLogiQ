@@ -71,9 +71,7 @@
                   Width="638"
                   Height="259"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  AlternatingRowBackground="#FFDCE2E8"
-                  AutoGenerateColumns="False"
+                  VerticalAlignment="Top" AutoGenerateColumns="False"
                   Background="#FFF0F0F0"
                   FontSize="14"
                   SelectionMode="Single">

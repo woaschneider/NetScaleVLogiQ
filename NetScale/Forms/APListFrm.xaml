@@ -15,7 +15,7 @@
                         ShowInTaskbar="False"
                         WindowStartupLocation="CenterScreen">
     <mmwpf:mmBusinessWindow.Resources>
-        <Style x:Key="HWB_Test" TargetType="{x:Type DataGrid}" />
+       
     </mmwpf:mmBusinessWindow.Resources>
 
 
@@ -41,7 +41,6 @@
                   Grid.Row="2"
                   Height="391"
                   Margin="0,1,4,3"
-                  AlternatingRowBackground="{DynamicResource HWB_DataGridAlternatingRowBackGround}"
                   AutoGenerateColumns="False"
                   FontSize="14"
                   MouseDoubleClick="dataGrid1_MouseDoubleClick">

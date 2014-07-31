@@ -35,7 +35,7 @@
         <Style TargetType="{x:Type DataGridRow}">
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                    <Setter Property="Background" Value="BlanchedAlmond" />
+                    <Setter Property="Background" Value="White" />
                 </Trigger>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
                     <Setter Property="Background" Value="#FFFAF4B3" />
@@ -64,19 +64,20 @@
                                 </Border.BorderBrush>
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                        <GradientStop Offset="0" Color="#DEB40A" />
-                                        <GradientStop Offset="1" Color="#FF7F00" />
+                                        <GradientStop Offset="0" Color="#FFA4C8E7" />
+                                        <GradientStop Offset="1" Color="#FFFAFBFB" />
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" OpacityMask="Black" />
                             </Border>
                         </Grid>
                     </ControlTemplate>
 
                 </Setter.Value>
             </Setter>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
         </Style>
 
 

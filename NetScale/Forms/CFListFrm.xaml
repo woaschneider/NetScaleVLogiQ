@@ -57,9 +57,7 @@
                   Height="347"
                   Margin="12,105,0,0"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  AlternatingRowBackground="{DynamicResource HWB_DataGridAlternatingRowBackGround}"
-                  AutoGenerateColumns="False"
+                  VerticalAlignment="Top" AutoGenerateColumns="False"
                   FontSize="14"
                   IsReadOnly="True"
                   SelectionMode="Single">

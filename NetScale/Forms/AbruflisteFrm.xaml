@@ -17,7 +17,7 @@
 				</ribbon:RibbonGroup>
 			</ribbon:RibbonTab>
 		</ribbon:Ribbon>
-		<DataGrid Name="dataGrid1" Width="782" Height="311" Margin="0,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AlternatingRowBackground="#FFDCE2E8" AutoGenerateColumns="False" FontSize="14">
+		<DataGrid Name="dataGrid1" Width="782" Height="311" Margin="0,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" FontSize="14">
 			<DataGrid.Columns>
 				<DataGridTextColumn Width="70" Binding="{Binding Abrufnr}" Header="Abruf-Nr." />
 				<DataGridTextColumn Width="200" Binding="{Binding FirmaKU}" Header="Firma" />

@@ -57,9 +57,7 @@
                   Height="278"
                   Margin="0,105,0,0"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  AlternatingRowBackground="{DynamicResource HWB_DataGridAlternatingRowBackGround}"
-                  AutoGenerateColumns="False"
+                  VerticalAlignment="Top" AutoGenerateColumns="False"
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding MandantNr}" Header="Mandant-Nr." />
