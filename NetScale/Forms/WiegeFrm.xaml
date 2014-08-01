@@ -203,7 +203,7 @@
                  Margin="237,240,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 KeyDown="TbFirmaFuKeyDown"
+                 KeyDown="tb_FirmaFuKeyDown"
                  MaxLength="50"
                  TabIndex="130"
                  Text="{Binding Path=FirmaFU,
@@ -246,7 +246,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  FontSize="14"
-                 KeyDown="TbFirmaKuKeyDown"
+                 KeyDown="tb_FirmaKuKeyDown"
                  MaxLength="50"
                  TabIndex="240"
                  Text="{Binding Path=FirmaKU,
@@ -345,7 +345,7 @@
                  Margin="141,614,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 KeyDown="TbSortenNrKeyDown"
+                 KeyDown="tb_SortenNrKeyDown"
                  MaxLength="20"
                  TabIndex="410"
                  Text="{Binding Path=SortenNr,
@@ -359,7 +359,7 @@
                  Margin="0,638,563,0"
                  HorizontalAlignment="Right"
                  VerticalAlignment="Top"
-                 KeyDown="TbSortenbezeichnung1KeyDown"
+                 KeyDown="tb_Sortenbezeichnung1KeyDown"
                  MaxLength="50"
                  TabIndex="430"
                  Text="{Binding Path=Sortenbezeichnung1,
@@ -419,7 +419,7 @@
                  Margin="846,410,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 GotFocus="TbErstGewichtGotFocus" />
+                 GotFocus="tb_ErstGewichtGotFocus" />
         <TextBox Name="tb_ZweitGewicht"
                  Width="57"
                  Height="23"
@@ -479,7 +479,7 @@
                  Margin="141,360,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 KeyDown="TbNrKuKeyDown"
+                 KeyDown="tb_NrKuKeyDown"
                  MaxLength="10"
                  TabIndex="220"
                  Text="{Binding Path=NrKU,
@@ -708,20 +708,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="..." />
-        <TextBox Name="tb_FirmaSP"
-                 Width="230"
-                 Height="23"
-                 Margin="237,240,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 KeyDown="TbFirmaSpKeyDown"
-                 MaxLength="50"
-                 TabIndex="100"
-                 Text="{Binding Path=FirmaSP,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged}"
-                 ToolTip="Speditionsliste mit F4 anzeigen"
-                 Visibility="Hidden" />
+        
         <Label Name="label21"
                Width="102"
                Height="28"
@@ -746,7 +733,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  CharacterCasing="Upper"
-                 LostFocus="TbWiegeartLostFocus"
+                 LostFocus="tb_WiegeartLostFocus"
                  MaxLength="1"
                  TabIndex="150"
                  Text="{Binding Path=WiegeartKz,
@@ -891,27 +878,14 @@
                  Text="{Binding Path=FrachtmittelBezeichnung,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}" />
-        <TextBox Name="tb_NrSP"
-                 Width="94"
-                 Height="23"
-                 Margin="142,240,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 KeyDown="tb_NrSpKeyDown"
-                 MaxLength="10"
-                 TabIndex="90"
-                 Text="{Binding Path=NrSP,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged}"
-                 ToolTip="Nummer und ENTER"
-                 Visibility="Hidden" />
+        
         <TextBox Name="tb_NrFU"
                  Width="94"
                  Height="23"
                  Margin="142,240,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 KeyDown="TbNrFuKeyDown"
+                 KeyDown="tb_NrFuKeyDown"
                  MaxLength="10"
                  TabIndex="120"
                  Text="{Binding Path=NrFU,

@@ -9,7 +9,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
-
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -309,7 +308,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
         #region Ribbonbutton-Click 
-     
+
         private void MenuItem1Click(object sender, RoutedEventArgs e)
         {
             if (_oRfReceiver != null)
@@ -327,7 +326,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdNeuClick(object sender, RoutedEventArgs e)
         {
-     
             NewWaege();
             tb_frachtmittelkz.Text = "0";
             if (goApp.ONNEW_SETFOCUS_TO_KFZ_KENNZEICHEN)
@@ -407,8 +405,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     Wiegestatus = 2;
 
                     ChangeMandantComboboxItem(); // Hofliste
-                    goApp.Mandant_PK = (int)_boWe.PK_Mandant;
-                    
+                    goApp.Mandant_PK = (int) _boWe.PK_Mandant;
                 }
             }
         }
@@ -443,6 +440,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             progressBar1.Width = 0;
             ProgressLabel.Width = 0;
         }
+
         #endregion
 
         private void NewWaege()
@@ -497,9 +495,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.Waegung = 1;
                     _boWe.wnr1 = netScaleView1.ActiveScale.ToString();
 
-               
-                        _result = SaveEntity(_boW, _boWe);
-           
+
+                    _result = SaveEntity(_boW, _boWe);
+
 
                     if (_result != mmSaveDataResult.RulesPassed)
                     {
@@ -524,8 +522,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         CFEntity oCfe = oCf.GetCFByKennzeichen(_boWe.Kfz1);
                         if (oCfe != null)
                         {
-                            if(_boWe.ErstGewicht==null)
-                            _boWe.ErstGewicht = oCfe.Tara;
+                            if (_boWe.ErstGewicht == null)
+                                _boWe.ErstGewicht = oCfe.Tara;
                             if (_boWe.ErstGewicht == 0)
                                 _boWe.ErstGewicht = oCfe.Tara;
                         }
@@ -662,21 +660,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.LSNRGlobal = boE.NewLsNrGlobal();
                     _boWe.lsnr = boMandant.GetLsNr(_boWe);
 
-                    
+
                     _boWe.ZweitZeit = DateTime.Now;
 
-                    if(_boWe.LSDatum==null)
+                    if (_boWe.LSDatum == null)
                         _boWe.LSDatum = DateTime.Today;
 
 
-                                        _boWe.Waegung = 2;
+                    _boWe.Waegung = 2;
                 }
 
                 try
                 {
                     _result = SaveEntity(_boW, _boWe);
-                    if(_wiegestatus != 4) // Erstwägung bearbeiten
-                        if (MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                    if (_wiegestatus != 4) // Erstwägung bearbeiten
+                        if (
+                            MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo,
+                                            MessageBoxImage.Warning) == MessageBoxResult.No)
                         {
                             //do no stuff
                         }
@@ -684,7 +684,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         {
                             PrintLs();
                         }
-                
                 }
                 catch (Exception ex)
                 {
@@ -765,7 +764,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
-         
+
         private void DisableFrmTb()
         {
             foreach (object ctrl in LayoutRoot.Children)
@@ -812,7 +811,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
         // ************************************************************************************************************
+
         #region Wiegestatus-Methoden
+
         private void WiegeStatusChange(int ws)
         {
             switch (ws)
@@ -1147,7 +1148,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             cmdSave.IsEnabled = true;
             cmdWiegen.IsEnabled = false;
         }
-        #endregion 
+
+        #endregion
 
         private void RbWiegeartClickRadioClick(object sender, RoutedEventArgs e)
         {
@@ -1195,7 +1197,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             if (oAe == null)
             {
-                if (!VFP.InList(_wiegestatus,6,7))
+                if (!VFP.InList(_wiegestatus, 6, 7))
                 {
                     MessageBox.Show("Diese Abruf-Nummer gibt es nicht!", "ACHTUNG", MessageBoxButton.OK,
                                     MessageBoxImage.Stop);
@@ -1219,7 +1221,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         // Mandanten-Methoden
         private void FillMandantCombobox()
-        {
+        {   // TODO: Die Combobox nachmal anschauen - Das muss auch anders gehen
             // Zum Verbinden mehrer Spalten in der Combobox habe ich einen entsprechenden View auf
             // den SQL-Server erstellt. Nicht gerade elegant, aber es tut es...
             var oM = new SvMandant();
@@ -1235,39 +1237,34 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
         // PK wurde aus der Waegetabelle gelesen  und damit die Combobox umschalten. Also Hofliste,LS bearbeiten etc
-        private void ChangeMandantComboboxItem()
+         private void ChangeMandantComboboxItem()
         {
             int? pkMandant = _boWe.PK_Mandant;
-          
 
-               
+
             var oM = new SvMandant();
-          
+
             if (pkMandant != null)
             {
-                SvMandantEntity oMe = oM.GetMandantByPK((int)pkMandant);
+                SvMandantEntity oMe = oM.GetMandantByPK((int) pkMandant);
                 cb_Mandant.SelectedValue = oMe.MandantNr;
-               
+
                 if (oMe == null) throw new NotImplementedException();
                 cb_Mandant.Text = oMe.MNrName; // <--- Hiermit wird die Anzeige in der Combobox geändert
-               
             }
-          
         }
 
         // Umschaltung der Combobox aktualisiert in der Waegeentitität
         private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cb_Mandant.SelectedValue!=null)
-            goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue.ToString());
+            if (cb_Mandant.SelectedValue != null)
+                goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue.ToString());
 
-          
 
             if (_boWe != null)
             {
                 goApp.Mandant_PK = Convert.ToInt32(cb_Mandant.SelectedValue);
                 goApp.MandantNr = boMandant.GetMandantByPK(goApp.Mandant_PK).MandantNr;
-          
             }
         }
 
@@ -1276,10 +1273,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void LooUpAndFillAuftrag(string matchcode)
         {
             var oAlFrm = new AuftragsListeFrm(matchcode);
-       
+
 
             oAlFrm.ShowDialog();
-           
+
 
             int uRetKMPK = oAlFrm.uRet;
             _boW.AuftragDetail2Waege(uRetKMPK, _boWe);
@@ -1302,19 +1299,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        private void TbNrKuKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                var oAp = new AP();
-                APEntity oApe = oAp.GetAPByNr(tb_NrKU.Text, "AU");
-                if (oApe != null)
-                    _boW.FillApKu(oApe.PK, _boWe);
-            }
-        }
-
-      
-
         private void LookUpAndFillFu()
         {
             var oApFrm = new APFrm(tb_FirmaFU.Text, "FU");
@@ -1325,10 +1309,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
             _boW.FillApFu(uRet, _boWe);
-         
         }
-
-       
 
         private void ClearApFu()
         {
@@ -1336,53 +1317,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_FirmaFU.Text = "";
         }
 
-        private void TbNrFuKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return | e.Key == Key.Tab)
-            {
-                var oAp = new AP();
-                APEntity oApe = oAp.GetAPByNr(tb_NrFU.Text, "FU");
-                if (oApe != null)
-                    _boW.FillApFu(oApe.PK,_boWe);
-                else
-                {
-                    ClearApFu();
-                }
-            }
-        }
-
-
-        // SP Methoden
-        private void LookUpAndFillSp()
-        {
-            var oApFrm = new APFrm(tb_FirmaSP.Text, "SP");
-            oApFrm.ShowDialog();
-            int uRet = oApFrm.uRet;
-            oApFrm.Close();
-
-            if (uRet == 0)
-                return;
-
-            var boAp = new AP();
-            APEntity boApe = boAp.GetAPById(uRet);
-            tb_FirmaSP.Text = boApe.Firma;
-            tb_NrSP.Text = boApe.Nr;
-        }
-
-        private void FillApSp(APEntity boApe)
-        {
-            tb_NrSP.Text = boApe.Nr;
-            tb_FirmaSP.Text = boApe.Firma;
-        }
-
-        private void ClearApSp()
-        {
-            tb_NrSP.Text = "";
-            tb_FirmaSP.Text = "";
-        }
         #endregion
 
-#region MG Methoden
+        #region MG Methoden
+
         public void LookUpAndFillMg(string mc)
         {
             var oMgFrm = new MGListFrm(mc);
@@ -1404,7 +1342,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_Sortenbezeichnung1.Text = boMge.Sortenbezeichnung1;
             tb_Sortenbezeichnung2.Text = boMge.Sortenbezeichnung2;
             tb_Sortenbezeichnung3.Text = boMge.Sortenbezeichnung3;
-          //  if(_boWe.preisvk == 0) // Neu 15102013
+            //  if(_boWe.preisvk == 0) // Neu 15102013
             _boWe.preisvk = boMge.preisvk; // Bis hier ok
             _boWe.me = boMge.me;
             if (_boWe.me == "Stk")
@@ -1428,9 +1366,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_Sortenbezeichnung1.Text = "";
             tb_Sortenbezeichnung2.Text = "";
         }
-#endregion 
+
+        #endregion
+
         // Wiegeart
-        private void TbWiegeartLostFocus(object sender, RoutedEventArgs e)
+        private void tb_WiegeartLostFocus(object sender, RoutedEventArgs e)
         {
             if (_boWe.WiegeartKz != null)
             {
@@ -1514,11 +1454,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                            };
 
             tb_kfzid.SetBinding(OriginalTextProperty, bTb1);
-            tb_kfzid.TargetUpdated += TbTelegrammTargetUpdated;
+            tb_kfzid.TargetUpdated += tb_TelegrammTargetUpdated;
         }
 
 
-        private void TbTelegrammTargetUpdated(object sender, DataTransferEventArgs e)
+        private void tb_TelegrammTargetUpdated(object sender, DataTransferEventArgs e)
         {
             if (_oRfReceiver.Kfzid != null && _oRfReceiver.Kfzid != "")
             {
@@ -1527,7 +1467,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 Application.Current.Dispatcher.Invoke(
                     DispatcherPriority.Background,
                     new ThreadStart(delegate { }));
-
                 System.Threading.Thread.Sleep(500);
             }
 
@@ -1544,7 +1483,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (oCfe == null)
                 return;
 
-            // 2. Prüfen, ob das Fahrzeug schonerstverwogen ist
+            // 2. Prüfen, ob das Fahrzeug schon erstverwogen ist
             int wPk = _boW.IsKfzErstVerwogen(oCfe.Kfz1);
             if (wPk == 0) // Neu DS anlegen und erstwiegen
             {
@@ -1614,11 +1553,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 ChangeMandantComboboxItem(); //  Abrufliste
             }
             ChangeMandantComboboxItem(); // Hofliste
-        
+
             oAbrufFrm.Close();
         }
 
         #region Kfz Methoden
+
         private void LookupKfzId()
         {
             var oCf = new CF();
@@ -1658,7 +1598,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 else // Schau mal ob das Kfz einen Abruf hat, den man bei der Erstwägung in die Maske schießen kann
                 {
                     Abruf2Wage(oCfe);
-                    ChangeMandantComboboxItem(); 
+                    ChangeMandantComboboxItem();
                 }
             }
         }
@@ -1670,9 +1610,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_kfzid.Text = oCfe.KfzID;
             tb_Kfz1.Text = oCfe.Kfz1;
             tb_Kfz2.Text = oCfe.Kfz2;
-            tb_NrSP.Text = oCfe.NrSP;
 
-            tb_FirmaSP.Text = oCfe.FirmaSP;
 
             _boW.FillApFu(oCfe.ap_PKFU, _boWe);
 
@@ -1685,7 +1623,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     tb_mischersollwert.Text = oCfe.MaxLademenge.ToString();
             }
         }
-        #endregion 
+
+        #endregion
 
         protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -1759,8 +1698,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-
         #region Tastatur-Handling
+
         // TODO: Sortieren wie sie in der Wägesmaske erscheinen
 
         private void tb_KfzidKeyDown(object sender, KeyEventArgs e)
@@ -1771,7 +1710,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key.ToString() == "F4")
             {
-                var oCfFrm = new CFListFrm(true,tb_Kfz1.Text);
+                var oCfFrm = new CFListFrm(true, tb_Kfz1.Text);
 
                 oCfFrm.ShowDialog();
                 int pk = oCfFrm.uRet;
@@ -1786,6 +1725,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 LookupKfzKennzeichen();
             }
         }
+
         private void tb_Kfz1KeyDown(object sender, KeyEventArgs e) //
         {
             if (e.Key == Key.Return | e.Key == Key.Tab)
@@ -1813,53 +1753,39 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void tb_NrSpKeyDown(object sender, KeyEventArgs e)
+        private void tb_NrFuKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return | e.Key == Key.Tab)
             {
                 var oAp = new AP();
-                APEntity oApe = oAp.GetAPByNr(tb_NrSP.Text, "SP");
+                APEntity oApe = oAp.GetAPByNr(tb_NrFU.Text, "FU");
                 if (oApe != null)
-                    FillApSp(oApe);
+                    _boW.FillApFu(oApe.PK, _boWe);
                 else
                 {
-                    ClearApSp();
+                    ClearApFu();
                 }
             }
         }
-        private void TbFirmaFuKeyDown(object sender, KeyEventArgs e)
+
+        private void tb_FirmaFuKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.ToString() == "F4")
                 LookUpAndFillFu();
         }
 
-        private void TbFirmaSpKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.F4)
-                LookUpAndFillSp();
-        }
-        
-
-        private void TbSortenNrKeyDown(object sender, KeyEventArgs e)
+        private void tb_NrKuKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                var oMg = new MG();
-                MGEntity oMge = oMg.GetMGByNr(tb_SortenNr.Text);
-                if (oMge != null)
-                {
-                    FillMg(oMge);
-                }
-                else
-                {
-                    ClearMg();
-                }
+                var oAp = new AP();
+                APEntity oApe = oAp.GetAPByNr(tb_NrKU.Text, "AU");
+                if (oApe != null)
+                    _boW.FillApKu(oApe.PK, _boWe);
             }
         }
 
-     
-
-        private void TbFirmaKuKeyDown(object sender, KeyEventArgs e)
+        private void tb_FirmaKuKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
@@ -1877,13 +1803,31 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void TbSortenbezeichnung1KeyDown(object sender, KeyEventArgs e)
+
+        private void tb_SortenNrKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                var oMg = new MG();
+                MGEntity oMge = oMg.GetMGByNr(tb_SortenNr.Text);
+                if (oMge != null)
+                {
+                    FillMg(oMge);
+                }
+                else
+                {
+                    ClearMg();
+                }
+            }
+        }
+
+        private void tb_Sortenbezeichnung1KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.ToString() == "F4")
                 LookUpAndFillMg(tb_Sortenbezeichnung1.Text);
         }
 
-        private void TbErstGewichtGotFocus(object sender, RoutedEventArgs e)
+        private void tb_ErstGewichtGotFocus(object sender, RoutedEventArgs e)
         {
             if (_boWe.LN1 != null)
                 tb_ErstGewicht.IsEnabled = false;
@@ -1908,12 +1852,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
                 else
                     _boWe.BonitaetBezeichnung = "";
-                SwitchExRechnung(); 
-               
+                SwitchExRechnung();
             }
             else
             {
-                SwitchExRechnung(); 
+                SwitchExRechnung();
             }
         }
 
@@ -1941,7 +1884,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 MGEntity oMge = oMg.GetMGByNr(tb_SortenNr.Text);
                 if (oMge != null)
                 {
-                  //  FillMg(oMge); // Änderungen  Am 6.2.2014 auskommentiert
+                    //  FillMg(oMge); // Änderungen  Am 6.2.2014 auskommentiert
                 }
                 else
                 {
@@ -1953,17 +1896,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void tb_PreisMG_TextChanged(object sender, TextChangedEventArgs e)
         {
             // tb_PreisMG.Text = WindowExtensions.TextBoxOnlyDecimal(e, tb_PreisMG.Text);
-            if(_boWe!=null)
-            _boW.CalcRechnung();
+            if (_boWe != null)
+                _boW.CalcRechnung();
         }
 
         private void tb_FrachtPreis_TextChanged(object sender, TextChangedEventArgs e)
         {
-          //  tb_FrachtPreis.Text = WindowExtensions.TextBoxOnlyDecimal(e, tb_FrachtPreis.Text);
-            if(_boW!=null)
-            _boW.CalcRechnung();
+            //  tb_FrachtPreis.Text = WindowExtensions.TextBoxOnlyDecimal(e, tb_FrachtPreis.Text);
+            if (_boW != null)
+                _boW.CalcRechnung();
         }
-      
+
 
         private void tb_Skonto_proz_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -2084,9 +2027,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oTFrm.Close();
         }
 
-        public void ShowPrice()
-        {
-        }
+    
 
         private void tb_wiegeart_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -2102,7 +2043,5 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
-
-
     }
 }
