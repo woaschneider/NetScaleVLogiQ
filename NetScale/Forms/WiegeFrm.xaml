@@ -708,7 +708,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="..." />
-        
+
         <Label Name="label21"
                Width="102"
                Height="28"
@@ -878,7 +878,7 @@
                  Text="{Binding Path=FrachtmittelBezeichnung,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}" />
-        
+
         <TextBox Name="tb_NrFU"
                  Width="94"
                  Height="23"

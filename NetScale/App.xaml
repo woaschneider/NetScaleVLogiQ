@@ -24,17 +24,6 @@
             </Style.Triggers>
         </Style>
 
-
-
-
-
-
-
-        <Style TargetType="{x:Type DataGrid}">
-            <Setter Property="Background" Value="AliceBlue" />
-            <Setter Property="AlternationCount" Value="2" />
-        </Style>
-
         <Style TargetType="{x:Type DataGridRow}">
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="0">
