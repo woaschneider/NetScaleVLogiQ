@@ -308,9 +308,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_abruf_rest.SetBinding(TextBox.TextProperty, babrufrest);
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
+        #region Ribbonbutton-Click 
+     
         private void MenuItem1Click(object sender, RoutedEventArgs e)
         {
             if (_oRfReceiver != null)
@@ -444,6 +443,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             progressBar1.Width = 0;
             ProgressLabel.Width = 0;
         }
+        #endregion
 
         private void NewWaege()
         {
@@ -765,7 +765,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
-
+         
         private void DisableFrmTb()
         {
             foreach (object ctrl in LayoutRoot.Children)
@@ -812,6 +812,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
         // ************************************************************************************************************
+        #region Wiegestatus-Methoden
         private void WiegeStatusChange(int ws)
         {
             switch (ws)
@@ -1146,7 +1147,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             cmdSave.IsEnabled = true;
             cmdWiegen.IsEnabled = false;
         }
-
+        #endregion 
 
         private void RbWiegeartClickRadioClick(object sender, RoutedEventArgs e)
         {
@@ -1233,7 +1234,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             cb_Mandant.Text = oMe.MNrName;
         }
 
-        // PK wurde aus der Waegetabelle lesen und damit die Combobox umschalten. Also Hofliste,LS bearbeiten etc
+        // PK wurde aus der Waegetabelle gelesen  und damit die Combobox umschalten. Also Hofliste,LS bearbeiten etc
         private void ChangeMandantComboboxItem()
         {
             int? pkMandant = _boWe.PK_Mandant;
@@ -1271,7 +1272,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        // Auftrag Methoden
+        // Auftrags Methoden
         private void LooUpAndFillAuftrag(string matchcode)
         {
             var oAlFrm = new AuftragsListeFrm(matchcode);
@@ -1285,7 +1286,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oAlFrm.Close();
         }
 
-        // AP Methoden
+        #region AP Methoden
 
         private void LookUpAndFillKu()
         {
@@ -1312,7 +1313,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        // FU Methoden
+      
 
         private void LookUpAndFillFu()
         {
@@ -1324,10 +1325,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
             _boW.FillApFu(uRet, _boWe);
-            //var boAp = new AP();
-            //APEntity boApe = boAp.GetAPById(uRet);
-            //tb_FirmaFU.Text = boApe.Firma;
-            //tb_NrFU.Text = boApe.Nr;
+         
         }
 
        
@@ -1382,9 +1380,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_NrSP.Text = "";
             tb_FirmaSP.Text = "";
         }
+        #endregion
 
-
-        // MG Methoden
+#region MG Methoden
         public void LookUpAndFillMg(string mc)
         {
             var oMgFrm = new MGListFrm(mc);
@@ -1430,7 +1428,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_Sortenbezeichnung1.Text = "";
             tb_Sortenbezeichnung2.Text = "";
         }
-
+#endregion 
         // Wiegeart
         private void TbWiegeartLostFocus(object sender, RoutedEventArgs e)
         {
@@ -1620,6 +1618,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oAbrufFrm.Close();
         }
 
+        #region Kfz Methoden
         private void LookupKfzId()
         {
             var oCf = new CF();
@@ -1663,6 +1662,30 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
+
+        private void FillKfz(int pk)
+        {
+            var oCf = new CF();
+            CFEntity oCfe = oCf.GetCFByPK(pk);
+            tb_kfzid.Text = oCfe.KfzID;
+            tb_Kfz1.Text = oCfe.Kfz1;
+            tb_Kfz2.Text = oCfe.Kfz2;
+            tb_NrSP.Text = oCfe.NrSP;
+
+            tb_FirmaSP.Text = oCfe.FirmaSP;
+
+            _boW.FillApFu(oCfe.ap_PKFU, _boWe);
+
+            //tb_NrFU.Text = oCfe.NrFU;
+            //tb_FirmaFU.Text = oCfe.FirmaFU;
+
+            if (oCfe.MaxLademenge != null)
+            {
+                if (oCfe.MaxLademenge > 0)
+                    tb_mischersollwert.Text = oCfe.MaxLademenge.ToString();
+            }
+        }
+        #endregion 
 
         protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -1737,9 +1760,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        // Tastatur-Handling 
+        #region Tastatur-Handling
         // TODO: Sortieren wie sie in der Wägesmaske erscheinen
-        private void TbKfzidKeyDown(object sender, KeyEventArgs e)
+
+        private void tb_KfzidKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return | e.Key == Key.Tab)
             {
@@ -1762,46 +1786,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 LookupKfzKennzeichen();
             }
         }
-
-        private void FillKfz(int pk)
-        {
-            var oCf = new CF();
-            CFEntity oCfe = oCf.GetCFByPK(pk);
-            tb_kfzid.Text = oCfe.KfzID;
-            tb_Kfz1.Text = oCfe.Kfz1;
-            tb_Kfz2.Text = oCfe.Kfz2;
-            tb_NrSP.Text = oCfe.NrSP;
-
-            tb_FirmaSP.Text = oCfe.FirmaSP;
-
-            _boW.FillApFu(oCfe.ap_PKFU, _boWe);
-
-            //tb_NrFU.Text = oCfe.NrFU;
-            //tb_FirmaFU.Text = oCfe.FirmaFU;
-
-            if (oCfe.MaxLademenge != null)
-            {
-                if (oCfe.MaxLademenge > 0)
-                    tb_mischersollwert.Text = oCfe.MaxLademenge.ToString();
-            }
-        }
-
-        private void TbNrSpKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return | e.Key == Key.Tab)
-            {
-                var oAp = new AP();
-                APEntity oApe = oAp.GetAPByNr(tb_NrSP.Text, "SP");
-                if (oApe != null)
-                    FillApSp(oApe);
-                else
-                {
-                    ClearApSp();
-                }
-            }
-        }
-
-        private void TbKfz1KeyDown(object sender, KeyEventArgs e) //
+        private void tb_Kfz1KeyDown(object sender, KeyEventArgs e) //
         {
             if (e.Key == Key.Return | e.Key == Key.Tab)
             {
@@ -1828,6 +1813,33 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
+        private void tb_NrSpKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return | e.Key == Key.Tab)
+            {
+                var oAp = new AP();
+                APEntity oApe = oAp.GetAPByNr(tb_NrSP.Text, "SP");
+                if (oApe != null)
+                    FillApSp(oApe);
+                else
+                {
+                    ClearApSp();
+                }
+            }
+        }
+        private void TbFirmaFuKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "F4")
+                LookUpAndFillFu();
+        }
+
+        private void TbFirmaSpKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F4)
+                LookUpAndFillSp();
+        }
+        
+
         private void TbSortenNrKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -1845,17 +1857,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void TbFirmaFuKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key.ToString() == "F4")
-                LookUpAndFillFu();
-        }
-
-        private void TbFirmaSpKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.F4)
-                LookUpAndFillSp();
-        }
+     
 
         private void TbFirmaKuKeyDown(object sender, KeyEventArgs e)
         {
@@ -1973,6 +1975,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
         }
 
+        #endregion
 
         // TODO Eventuell die UP and Down Tasten auswerten
         private void MyPreviewKeyDownHandler(object sender, KeyEventArgs e)

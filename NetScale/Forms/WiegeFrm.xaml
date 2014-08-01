@@ -191,7 +191,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  CharacterCasing="Upper"
-                 KeyDown="TbKfz1KeyDown"
+                 KeyDown="tb_Kfz1KeyDown"
                  MaxLength="10"
                  TabIndex="60"
                  Text="{Binding Path=Kfz1,
@@ -524,7 +524,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  CharacterCasing="Upper"
-                 KeyDown="TbKfzidKeyDown"
+                 KeyDown="tb_KfzidKeyDown"
                  MaxLength="10"
                  TabIndex="40"
                  Text="{Binding Path=KfzID,
@@ -897,7 +897,7 @@
                  Margin="142,240,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 KeyDown="TbNrSpKeyDown"
+                 KeyDown="tb_NrSpKeyDown"
                  MaxLength="10"
                  TabIndex="90"
                  Text="{Binding Path=NrSP,
