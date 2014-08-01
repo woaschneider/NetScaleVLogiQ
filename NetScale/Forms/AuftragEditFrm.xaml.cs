@@ -114,7 +114,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.Hide();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+       new private  void  Window_Loaded(object sender, RoutedEventArgs e)
         {
             dataGrid1.SelectedItem = dataGrid1.Items[0];
             dataGrid1.Focus();
