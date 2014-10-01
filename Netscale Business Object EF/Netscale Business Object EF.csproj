@@ -186,8 +186,10 @@
     <Compile Include="Waagentypen\WaagentypenRules.cs" />
     <Compile Include="Waagentypen\WaagentypenRules.Partial.cs" />
     <Compile Include="Waege\Waege.cs" />
+    <Compile Include="Waege\Waege.Partial.cs" />
     <Compile Include="Waege\WaegeEntity.cs" />
     <Compile Include="Waege\WaegeRules.cs" />
+    <Compile Include="Waege\WaegeRules.Partial.cs" />
     <Compile Include="Wiegeart\Wiegeart.cs" />
     <Compile Include="Wiegeart\Wiegeart.Partial.cs" />
     <Compile Include="Wiegeart\WiegeartEntity.cs" />
