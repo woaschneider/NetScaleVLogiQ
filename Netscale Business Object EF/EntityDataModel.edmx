@@ -6,10 +6,8 @@
     <edmx:StorageModels>
     <Schema Namespace="$namespace$.Target" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="$namespace$TargetContainer">
-          <EntitySet Name="Abruf" EntityType="$namespace$.Target.Abruf" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="AP" EntityType="$namespace$.Target.AP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Address" EntityType="$namespace$.Target.Address" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Bonitaet" EntityType="$namespace$.Target.Bonitaet" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CF" EntityType="$namespace$.Target.CF" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Classes" EntityType="$namespace$.Target.Classes" store:Type="Tables" store:Schema="dbo" store:Name="Classes">
             <DefiningQuery>SELECT 
       [Classes].[ClassToken] AS [ClassToken], 
@@ -21,171 +19,40 @@
           <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="KK" EntityType="$namespace$.Target.KK" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="KM" EntityType="$namespace$.Target.KM" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Language" EntityType="$namespace$.Target.Language" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MG" EntityType="$namespace$.Target.MG" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Module" EntityType="$namespace$.Target.Module" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="$namespace$.Target.Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Waagentypen" EntityType="$namespace$.Target.Waagentypen" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Waege" EntityType="$namespace$.Target.Waege" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Wiegeart" EntityType="$namespace$.Target.Wiegeart" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="svMandant" EntityType="$namespace$.Target.svMandant" store:Type="Views" store:Schema="dbo" store:Name="svMandant">
-            <DefiningQuery>SELECT 
-      [svMandant].[PK] AS [PK], 
-      [svMandant].[MandantNr] AS [MandantNr], 
-      [svMandant].[MandantName] AS [MandantName], 
-      [svMandant].[DefaultMandant] AS [DefaultMandant], 
-      [svMandant].[Werksnr] AS [Werksnr], 
-      [svMandant].[Werksbezeichnung] AS [Werksbezeichnung], 
-      [svMandant].[MNrName] AS [MNrName]
-      FROM [dbo].[svMandant] AS [svMandant]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="AP hat Auftraege" Association="$namespace$.Target.AP hat Auftraege">
-            <End Role="AP" EntitySet="AP" />
-            <End Role="KK" EntitySet="KK" />
-          </AssociationSet>
-          <AssociationSet Name="Ein Detail hat ein Material" Association="$namespace$.Target.Ein Detail hat ein Material">
-            <End Role="MG" EntitySet="MG" />
-            <End Role="KM" EntitySet="KM" />
-          </AssociationSet>
           <AssociationSet Name="FK_Message_Language" Association="$namespace$.Target.FK_Message_Language">
             <End Role="Language" EntitySet="Language" />
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
-          <AssociationSet Name="FU  kann Kfz haben" Association="$namespace$.Target.FU  kann Kfz haben">
-            <End Role="AP" EntitySet="AP" />
-            <End Role="CF" EntitySet="CF" />
-          </AssociationSet>
-          <AssociationSet Name="Kopf hat Details" Association="$namespace$.Target.Kopf hat Details">
-            <End Role="KK" EntitySet="KK" />
-            <End Role="KM" EntitySet="KM" />
-          </AssociationSet>
-          <AssociationSet Name="M_ hat Kontrakte" Association="$namespace$.Target.M_ hat Kontrakte">
-            <End Role="Mandant" EntitySet="Mandant" />
-            <End Role="KK" EntitySet="KK" />
-          </AssociationSet>
-          <AssociationSet Name="Mandant hat Wägung" Association="$namespace$.Target.Mandant hat Wägung">
-            <End Role="Mandant" EntitySet="Mandant" />
-            <End Role="Waege" EntitySet="Waege" />
-          </AssociationSet>
-          <AssociationSet Name="Material ist in Wägungen enthalten" Association="$namespace$.Target.Material ist in Wägungen enthalten">
-            <End Role="MG" EntitySet="MG" />
-            <End Role="Waege" EntitySet="Waege" />
-          </AssociationSet>
-          <AssociationSet Name="SP kann Kfz haben" Association="$namespace$.Target.SP kann Kfz haben">
-            <End Role="AP" EntitySet="AP" />
-            <End Role="CF" EntitySet="CF" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Abruf">
+        <EntityType Name="Address">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Abrufnr" Type="varchar" MaxLength="20" />
-          <Property Name="NrKU" Type="varchar" MaxLength="10" />
-          <Property Name="Name1KU" Type="varchar" MaxLength="50" />
-          <Property Name="Name2KU" Type="varchar" MaxLength="50" />
-          <Property Name="AnschriftKU" Type="varchar" MaxLength="50" />
-          <Property Name="PlzKU" Type="varchar" MaxLength="10" />
-          <Property Name="OrtKU" Type="varchar" MaxLength="50" />
-          <Property Name="remarks1" Type="varchar" MaxLength="100" />
-          <Property Name="remarks2" Type="varchar" MaxLength="100" />
-          <Property Name="FirmaKU" Type="varchar" MaxLength="50" />
-          <Property Name="SortenNr" Type="varchar" MaxLength="20" />
-          <Property Name="Sortenbezeichnung1" Type="varchar" MaxLength="50" />
-          <Property Name="Sortenbezeichnung2" Type="varchar" MaxLength="50" />
-          <Property Name="Remarks3" Type="varchar" MaxLength="100" />
-          <Property Name="Mengeneinheit" Type="varchar" MaxLength="5" />
-          <Property Name="Festerabruf" Type="bit" />
-          <Property Name="Schlag" Type="varchar" MaxLength="50" />
-          <Property Name="GueltigBis" Type="datetime" />
-          <Property Name="Sollmenge" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Istmenge" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Restmenge" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Werksnr" Type="varchar" MaxLength="4" />
-          <Property Name="Mandantnr" Type="varchar" MaxLength="4" />
-          <Property Name="NrSP" Type="varchar" MaxLength="10" />
-          <Property Name="FirmaSP" Type="varchar" MaxLength="50" />
-          <Property Name="Schlagnr" Type="varchar" MaxLength="10" />
-          <Property Name="Schlagbezeichnung1" Type="varchar" MaxLength="50" />
-          <Property Name="Schlagbezeichnung2" Type="varchar" MaxLength="50" />
-          <Property Name="kontraktnr" Type="varchar" MaxLength="10" />
-          <Property Name="wefirma" Type="varchar" MaxLength="50" />
-          <Property Name="wename1" Type="varchar" MaxLength="50" />
-          <Property Name="abrufdatum" Type="datetime" />
-          <Property Name="abruffest" Type="bit" />
-          <Property Name="FrachtmittelKz" Type="varchar" MaxLength="2" />
-          <Property Name="FrachtmittelBezeichnung" Type="varchar" MaxLength="20" />
-          <Property Name="BonitaetKz" Type="varchar" MaxLength="2" />
-          <Property Name="me" Type="varchar" MaxLength="3" />
-          <Property Name="WiegeartKz" Type="varchar" MaxLength="1" />
-          <Property Name="preisvk" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="Siegel1" Type="bit" />
-          <Property Name="Siegel2" Type="bit" />
-          <Property Name="Siegel3" Type="bit" />
-          <Property Name="Siegel4" Type="bit" />
-          <Property Name="LandKU" Type="varchar" MaxLength="3" />
-          <Property Name="NrKU0" Type="varchar" MaxLength="10" />
-          <Property Name="BonitaetBezeichnung" Type="varchar" MaxLength="20" />
-          <Property Name="posnr" Type="varchar" MaxLength="2" />
-          <Property Name="wename2" Type="varchar" MaxLength="50" />
-          <Property Name="Siegel20" Type="bit" />
-          <Property Name="Sortenbezeichnung3" Type="varchar" MaxLength="50" />
-          <Property Name="LandFU" Type="varchar" MaxLength="3" />
-          <Property Name="PK_Mandant" Type="int" />
-        </EntityType>
-        <EntityType Name="AP">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Mandant" Type="varchar" MaxLength="4" />
-          <Property Name="Nr" Type="varchar" MaxLength="10" />
-          <Property Name="Name1" Type="varchar" MaxLength="50" />
-          <Property Name="Name2" Type="varchar" MaxLength="50" />
-          <Property Name="Anschrift" Type="varchar" MaxLength="50" />
-          <Property Name="Plz" Type="varchar" MaxLength="10" />
-          <Property Name="Ort" Type="varchar" MaxLength="50" />
-          <Property Name="Telefon" Type="varchar" MaxLength="20" />
-          <Property Name="Fax" Type="varchar" MaxLength="20" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="Firma" Type="varchar" MaxLength="50" />
-          <Property Name="Land" Type="varchar" MaxLength="3" />
-          <Property Name="Umsatzsteuerid" Type="varchar" MaxLength="20" />
-          <Property Name="bonitaet" Type="varchar" MaxLength="2" />
-          <Property Name="Rolle_AU" Type="bit" />
-          <Property Name="Rolle_WE" Type="bit" />
-          <Property Name="Rolle_RE" Type="bit" />
-          <Property Name="Rolle_REG" Type="bit" />
-          <Property Name="Rolle_WERK" Type="bit" />
-          <Property Name="Rolle_BF" Type="bit" />
-          <Property Name="Rolle_BLT" Type="bit" />
-          <Property Name="RolleERZ" Type="bit" />
-          <Property Name="Role_ABFS" Type="bit" />
-          <Property Name="Rolle_ENT" Type="bit" />
-          <Property Name="Rolle_AESA" Type="bit" />
-          <Property Name="Rolle_BEHOER" Type="bit" />
-          <Property Name="Rolle_BEFOER" Type="bit" />
-          <Property Name="Rolle_LI" Type="bit" />
-          <Property Name="Rolle_SP" Type="bit" />
-          <Property Name="Rolle_FU" Type="bit" />
-          <Property Name="Rolle_BUK" Type="bit" />
-          <Property Name="Rolle_VKORG" Type="bit" />
-          <Property Name="Rolle_VKB" Type="bit" />
-          <Property Name="Rolle_EKORG" Type="bit" />
-          <Property Name="Rolle_ZL" Type="bit" />
-          <Property Name="Rolle_ZW" Type="bit" />
-          <Property Name="Rolle_RQ" Type="bit" />
-          <Property Name="AEDatum" Type="datetime" />
-          <Property Name="Seitenzahl" Type="int" />
-          <Property Name="AEKZ" Type="varchar" MaxLength="1" />
-          <Property Name="Ortsteil" Type="varchar" MaxLength="35" />
-          <Property Name="touch" Type="bit" />
+          <Property Name="PK" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="64" />
+          <Property Name="subName2" Type="varchar" MaxLength="64" />
+          <Property Name="owningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="street" Type="varchar" MaxLength="64" />
+          <Property Name="zipCode" Type="varchar" MaxLength="16" />
+          <Property Name="city" Type="varchar" MaxLength="128" />
+          <Property Name="country" Type="varchar" MaxLength="4" />
+          <Property Name="roleClient" Type="bit" />
+          <Property Name="roleInvoiceReceiver" Type="bit" />
+          <Property Name="roleStorageClient" Type="bit" />
+          <Property Name="rolleSupplier" Type="bit" />
+          <Property Name="roleReceiver" Type="bit" />
+          <Property Name="roleCarrier" Type="bit" />
+          <Property Name="roleShipOwner" Type="bit" />
+          <Property Name="roleTrainOperator" Type="bit" />
         </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
@@ -194,32 +61,6 @@
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Kennung" Type="varchar" MaxLength="2" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="CF">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="KfzID" Type="varchar" MaxLength="10" />
-          <Property Name="Kfz1" Type="varchar" MaxLength="15" />
-          <Property Name="Kfz2" Type="varchar" MaxLength="15" />
-          <Property Name="FrachtmittelPK" Type="int" />
-          <Property Name="ap_PKFU" Type="int" />
-          <Property Name="Fahrzeughalter" Type="varchar" MaxLength="50" />
-          <Property Name="MaxBruttoKfz" Type="numeric" Scale="2" />
-          <Property Name="MaxLademenge" Type="numeric" Scale="2" />
-          <Property Name="Tara" Type="numeric" Scale="2" />
-          <Property Name="Taradatum" Type="datetime" />
-          <Property Name="abruf_PK" Type="int" />
-          <Property Name="Kfz1Raw" Type="varchar" MaxLength="15" />
-          <Property Name="Abrufnr" Type="varchar" MaxLength="20" />
-          <Property Name="NrSP" Type="varchar" MaxLength="10" />
-          <Property Name="NrFU" Type="varchar" MaxLength="10" />
-          <Property Name="FirmaFU" Type="varchar" MaxLength="50" />
-          <Property Name="FirmaSP" Type="varchar" MaxLength="50" />
-          <Property Name="PKSP" Type="int" />
-          <Property Name="PKFU" Type="int" />
-          <Property Name="abrufdate" Type="datetime" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
       Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RM.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
@@ -280,65 +121,6 @@
           <Property Name="Command" Type="varchar" MaxLength="10" />
           <Property Name="ToolTip" Type="varchar" MaxLength="30" />
         </EntityType>
-        <EntityType Name="KK">
-          <Key>
-            <PropertyRef Name="pk" />
-          </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="mandant" Type="varchar" MaxLength="4" />
-          <Property Name="kontraktnr" Type="varchar" MaxLength="10" />
-          <Property Name="werksnr" Type="char" MaxLength="4" />
-          <Property Name="auftragsart" Type="varchar" MaxLength="4" />
-          <Property Name="wefirma" Type="varchar" MaxLength="50" />
-          <Property Name="wename1" Type="varchar" MaxLength="50" />
-          <Property Name="partnernrAU" Type="varchar" MaxLength="10" />
-          <Property Name="preisgueltigbis" Type="datetime" />
-          <Property Name="kontraktgueltigbis" Type="datetime" />
-          <Property Name="auftraggeberbestellnr" Type="varchar" MaxLength="35" />
-          <Property Name="kontraktergaenzung" Type="varchar" MaxLength="1" />
-          <Property Name="tb7" Type="varchar" MaxLength="4" />
-          <Property Name="tb8" Type="char" MaxLength="4" />
-          <Property Name="Bonitaetskennung" Type="varchar" MaxLength="2" />
-          <Property Name="kontraktart" Type="varchar" MaxLength="2" />
-          <Property Name="aekz" Type="varchar" MaxLength="1" />
-          <Property Name="bauzeitvon" Type="datetime" />
-          <Property Name="bauzeitbis" Type="datetime" />
-          <Property Name="lieferzeitvon" Type="datetime" />
-          <Property Name="lieferzeitbis" Type="datetime" />
-          <Property Name="APFK" Type="int" />
-          <Property Name="MandantPK" Type="int" />
-          <Property Name="touch" Type="bit" />
-          <Property Name="wename2" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="KM">
-          <Key>
-            <PropertyRef Name="pk" />
-          </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Mandant" Type="varchar" MaxLength="4" />
-          <Property Name="Kontraktnr" Type="varchar" MaxLength="10" />
-          <Property Name="Werksnr" Type="char" MaxLength="4" />
-          <Property Name="Lagerort" Type="varchar" MaxLength="4" />
-          <Property Name="SortenNr" Type="varchar" MaxLength="20" />
-          <Property Name="posnr" Type="char" MaxLength="10" />
-          <Property Name="Werksrangfolge" Type="varchar" MaxLength="1" />
-          <Property Name="referenzkennung" Type="varchar" MaxLength="1" />
-          <Property Name="Hauptmaterialnr" Type="varchar" MaxLength="18" />
-          <Property Name="postyp" Type="varchar" MaxLength="4" />
-          <Property Name="Transportzone" Type="varchar" MaxLength="6" />
-          <Property Name="Incoterm" Type="varchar" MaxLength="3" />
-          <Property Name="me" Type="varchar" MaxLength="3" />
-          <Property Name="Sollmenge" Type="numeric" Precision="14" Scale="3" />
-          <Property Name="Istmenge" Type="numeric" Precision="14" Scale="3" />
-          <Property Name="Einzelpreis" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="tb9" Type="varchar" MaxLength="4" />
-          <Property Name="tb10" Type="varchar" MaxLength="4" />
-          <Property Name="umsatzsteuerpflichtig" Type="varchar" MaxLength="1" />
-          <Property Name="aekz" Type="varchar" MaxLength="1" />
-          <Property Name="kkpk" Type="int" />
-          <Property Name="mgpk" Type="int" />
-          <Property Name="touch" Type="bit" />
-        </EntityType>
         <EntityType Name="Language">
           <Key>
             <PropertyRef Name="LanguagePK" />
@@ -384,46 +166,8 @@
           <Property Name="MessagePK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MessageKey" Type="nvarchar" Nullable="false" MaxLength="400" />
           <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="3000" />
-          <Property Name="LanguageFK" Type="int" Nullable="false" />
           <Property Name="DialogText" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="MG">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Mandant" Type="varchar" MaxLength="4" />
-          <Property Name="Werksnr" Type="varchar" MaxLength="4" />
-          <Property Name="Lagerort" Type="varchar" MaxLength="4" />
-          <Property Name="SortenNr" Type="varchar" MaxLength="20" />
-          <Property Name="Sortenbezeichnung1" Type="varchar" MaxLength="50" />
-          <Property Name="Sortenbezeichnung2" Type="varchar" MaxLength="50" />
-          <Property Name="preisvk" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="wkz" Type="char" MaxLength="5" />
-          <Property Name="me" Type="varchar" MaxLength="3" />
-          <Property Name="touch" Type="bit" />
-          <Property Name="ph" Type="varchar" MaxLength="18" />
-          <Property Name="Materialstatus" Type="varchar" MaxLength="2" />
-          <Property Name="no_auto_abrech" Type="varchar" MaxLength="1" />
-          <Property Name="epznummer" Type="varchar" MaxLength="22" />
-          <Property Name="epzdatumvon" Type="datetime" />
-          <Property Name="epzdatumbis" Type="datetime" />
-          <Property Name="tb1" Type="varchar" MaxLength="4" />
-          <Property Name="tb2" Type="varchar" MaxLength="4" />
-          <Property Name="tb3" Type="varchar" MaxLength="4" />
-          <Property Name="tb4" Type="varchar" MaxLength="4" />
-          <Property Name="tb5" Type="varchar" MaxLength="4" />
-          <Property Name="tb6" Type="varchar" MaxLength="4" />
-          <Property Name="aekz" Type="varchar" MaxLength="1" />
-          <Property Name="Materialvertriebstext2" Type="varchar" MaxLength="40" />
-          <Property Name="gbkz" Type="varchar" MaxLength="2" />
-          <Property Name="Siegel1" Type="bit" />
-          <Property Name="Siegel2" Type="bit" />
-          <Property Name="Siegel3" Type="bit" />
-          <Property Name="Siegel4" Type="bit" />
-          <Property Name="Sortenbezeichnung3" Type="varchar" MaxLength="50" />
-          <Property Name="Siegel20" Type="bit" />
-          <Property Name="Sortenbezeichnung30" Type="varchar" MaxLength="50" />
+          <Property Name="LanguageFK" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Module">
           <Key>
@@ -470,100 +214,46 @@
             <PropertyRef Name="PK" />
           </Key>
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LSDatum" Type="datetime" />
-          <Property Name="LN1" Type="varchar" MaxLength="10" />
-          <Property Name="ErstZeit" Type="datetime" />
-          <Property Name="ErstGewicht" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="LN2" Type="varchar" MaxLength="10" />
-          <Property Name="ZweitZeit" Type="datetime" />
-          <Property Name="ZweitGewicht" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Nettogewicht" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="NrKU" Type="varchar" MaxLength="10" />
-          <Property Name="Name1KU" Type="varchar" MaxLength="50" />
-          <Property Name="Name2KU" Type="varchar" MaxLength="50" />
-          <Property Name="AnschriftKU" Type="varchar" MaxLength="50" />
-          <Property Name="PlzKU" Type="varchar" MaxLength="10" />
-          <Property Name="OrtKU" Type="varchar" MaxLength="50" />
-          <Property Name="NrFU" Type="varchar" MaxLength="10" />
-          <Property Name="Name1FU" Type="varchar" MaxLength="50" />
-          <Property Name="Name2FU" Type="varchar" MaxLength="50" />
-          <Property Name="AnschriftFU" Type="varchar" MaxLength="50" />
-          <Property Name="PlzFU" Type="varchar" MaxLength="10" />
-          <Property Name="OrtFU" Type="varchar" MaxLength="50" />
-          <Property Name="Containernr" Type="varchar" MaxLength="14" />
-          <Property Name="remarks1" Type="varchar" MaxLength="100" />
-          <Property Name="remarks2" Type="varchar" MaxLength="100" />
-          <Property Name="FirmaKU" Type="varchar" MaxLength="50" />
-          <Property Name="FirmaFU" Type="varchar" MaxLength="50" />
-          <Property Name="Kfz1" Type="varchar" MaxLength="15" />
-          <Property Name="Kfz2" Type="varchar" MaxLength="15" />
-          <Property Name="SortenNr" Type="varchar" MaxLength="20" />
-          <Property Name="Sortenbezeichnung1" Type="varchar" MaxLength="50" />
-          <Property Name="Sortenbezeichnung2" Type="varchar" MaxLength="50" />
-          <Property Name="Waegung" Type="int" />
-          <Property Name="taab" Type="bit" />
-          <Property Name="LSNRGlobal" Type="varchar" MaxLength="50" />
-          <Property Name="FremdLsNr" Type="varchar" MaxLength="50" />
-          <Property Name="Mandantnr" Type="varchar" MaxLength="4" />
-          <Property Name="Remarks3" Type="varchar" MaxLength="100" />
-          <Property Name="Wiegeart" Type="int" />
-          <Property Name="Mengeneinheit" Type="varchar" MaxLength="5" />
-          <Property Name="Kfz1Raw" Type="varchar" MaxLength="15" />
-          <Property Name="Abrufid" Type="int" />
-          <Property Name="Abrufnr" Type="varchar" MaxLength="20" />
-          <Property Name="KfzID" Type="varchar" MaxLength="10" />
-          <Property Name="MaxGewicht" Type="int" />
-          <Property Name="MaxGewichtValidieren" Type="bit" />
-          <Property Name="Schlag" Type="varchar" MaxLength="50" />
-          <Property Name="Username" Type="varchar" MaxLength="30" />
-          <Property Name="AbrechnungsKZ" Type="varchar" MaxLength="2" />
-          <Property Name="PK_MG" Type="int" />
-          <Property Name="PK_Mandant" Type="int" />
-          <Property Name="Werksnr" Type="varchar" MaxLength="4" />
-          <Property Name="IncotermKz" Type="varchar" MaxLength="3" />
-          <Property Name="IncotermBezeichnung" Type="varchar" MaxLength="20" />
-          <Property Name="WiegeartKz" Type="varchar" MaxLength="1" />
-          <Property Name="WiegeartBezeichnung" Type="varchar" MaxLength="20" />
-          <Property Name="BonitaetKz" Type="varchar" MaxLength="2" />
-          <Property Name="BonitaetBezeichnung" Type="varchar" MaxLength="20" />
-          <Property Name="FrachtmittelKz" Type="varchar" MaxLength="2" />
-          <Property Name="FrachtmittelBezeichnung" Type="varchar" MaxLength="20" />
-          <Property Name="NrSP" Type="varchar" MaxLength="10" />
-          <Property Name="FirmaSP" Type="varchar" MaxLength="50" />
-          <Property Name="Schlagnr" Type="varchar" MaxLength="10" />
-          <Property Name="Schlagbezeichnung1" Type="varchar" MaxLength="50" />
-          <Property Name="Schlagbezeichnung2" Type="varchar" MaxLength="50" />
-          <Property Name="kontraktnr" Type="varchar" MaxLength="10" />
-          <Property Name="wefirma" Type="varchar" MaxLength="50" />
-          <Property Name="wename1" Type="varchar" MaxLength="50" />
-          <Property Name="auftraggeberbestellnr" Type="varchar" MaxLength="35" />
-          <Property Name="Sollmenge" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Istmenge" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Restmenge" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="lsnr" Type="varchar" MaxLength="20" />
-          <Property Name="Frachtpreis" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="Nettobetrag" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="USt" Type="numeric" Precision="4" Scale="2" />
-          <Property Name="Endbetrag" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="preisvk" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="Skontoproz" Type="numeric" Precision="4" Scale="2" />
-          <Property Name="Skontobetrag" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="me" Type="varchar" MaxLength="3" />
-          <Property Name="Sollwertmischer" Type="numeric" Precision="10" Scale="2" />
-          <Property Name="Ustbetrag" Type="numeric" Precision="12" Scale="2" />
-          <Property Name="wnr1" Type="varchar" MaxLength="1" />
-          <Property Name="wnr2" Type="varchar" MaxLength="1" />
-          <Property Name="Siegel1" Type="bit" />
-          <Property Name="Siegel2" Type="bit" />
-          <Property Name="Siegel3" Type="bit" />
-          <Property Name="Siegel4" Type="bit" />
-          <Property Name="UserPK" Type="int" />
-          <Property Name="LandKU" Type="varchar" MaxLength="3" />
-          <Property Name="posnr" Type="varchar" MaxLength="2" />
-          <Property Name="wename2" Type="varchar" MaxLength="50" />
-          <Property Name="Sortenbezeichnung3" Type="varchar" MaxLength="50" />
-          <Property Name="LandFU" Type="varchar" MaxLength="3" />
-          <Property Name="abruffest" Type="bit" />
+          <Property Name="LN1" Type="varchar" MaxLength="22" />
+          <Property Name="WaagenummerErst" Type="varchar" MaxLength="1" />
+          <Property Name="LN2" Type="varchar" MaxLength="22" />
+          <Property Name="WaagennummerZweit" Type="varchar" MaxLength="22" />
+          <Property Name="LieferscheinNr" Type="varchar" MaxLength="64" />
+          <Property Name="WiegescheinNr" Type="varchar" MaxLength="64" />
+          <Property Name="FahrzeugEingehend" Type="varchar" MaxLength="64" />
+          <Property Name="FrachtführerName3Eingehend" Type="varchar" MaxLength="64" />
+          <Property Name="FahrzeugAusgehend" Type="varchar" MaxLength="64" />
+          <Property Name="FrachtführerName3Ausgehend" Type="varchar" MaxLength="64" />
+          <Property Name="IstQuellLagerPlatz" Type="varchar" MaxLength="22" />
+          <Property Name="IstZielLagerPlatz" Type="varchar" MaxLength="22" />
+          <Property Name="Erstgewicht" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="ErstDatetime" Type="datetime" />
+          <Property Name="Zweitgewicht" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="Nettogewicht" Type="numeric" Precision="10" Scale="3" />
+          <Property Name="IstMengeZMEI" Type="char" MaxLength="10" />
+          <Property Name="Arbeitsbeginn" Type="datetime" />
+          <Property Name="Arbeitsende" Type="datetime" />
+          <Property Name="StornoKennzeichen" Type="bit" />
+          <Property Name="Finalisieren" Type="bit" />
+          <Property Name="locationId" Type="varchar" MaxLength="22" />
+          <Property Name="id" Type="varchar" MaxLength="32" />
+          <Property Name="reference" Type="varchar" MaxLength="32" />
+          <Property Name="orderstate" Type="varchar" MaxLength="32" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="customerName" Type="varchar" MaxLength="64" />
+          <Property Name="customerSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="customerOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="customerStreet" Type="varchar" MaxLength="64" />
+          <Property Name="customerZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="customerCity" Type="varchar" MaxLength="128" />
+          <Property Name="customerCountry" Type="varchar" MaxLength="4" />
+          <Property Name="invoiceReceiverName" Type="varchar" MaxLength="64" />
+          <Property Name="InvoiceReceiverSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="invoiceReceiverOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="invoiceReceiverStreet" Type="varchar" MaxLength="64" />
+          <Property Name="InvoiceReceiverZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="InvoiceReceiverCity" Type="varchar" MaxLength="128" />
+          <Property Name="InvoiceReceiverCountry" Type="varchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="Wiegeart">
           <Key>
@@ -574,45 +264,6 @@
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="DefaultW" Type="bit" />
         </EntityType>
-        <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RM.dbo.svMandant' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
-      -->
-        <EntityType Name="svMandant">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="MandantNr" Type="varchar" MaxLength="4" />
-          <Property Name="MandantName" Type="varchar" MaxLength="50" />
-          <Property Name="DefaultMandant" Type="bit" />
-          <Property Name="Werksnr" Type="varchar" MaxLength="4" />
-          <Property Name="Werksbezeichnung" Type="varchar" MaxLength="50" />
-          <Property Name="MNrName" Type="varchar" MaxLength="112" />
-        </EntityType>
-        <Association Name="AP hat Auftraege">
-          <End Role="AP" Type="$namespace$.Target.AP" Multiplicity="0..1" />
-          <End Role="KK" Type="$namespace$.Target.KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AP">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="APFK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Ein Detail hat ein Material">
-          <End Role="MG" Type="$namespace$.Target.MG" Multiplicity="0..1" />
-          <End Role="KM" Type="$namespace$.Target.KM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MG">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KM">
-              <PropertyRef Name="mgpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Message_Language">
           <End Role="Language" Type="$namespace$.Target.Language" Multiplicity="1" />
           <End Role="Message" Type="$namespace$.Target.Message" Multiplicity="*" />
@@ -625,83 +276,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FU  kann Kfz haben">
-          <End Role="AP" Type="$namespace$.Target.AP" Multiplicity="0..1" />
-          <End Role="CF" Type="$namespace$.Target.CF" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AP">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="CF">
-              <PropertyRef Name="PKFU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Kopf hat Details">
-          <End Role="KK" Type="$namespace$.Target.KK" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="KM" Type="$namespace$.Target.KM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KK">
-              <PropertyRef Name="pk" />
-            </Principal>
-            <Dependent Role="KM">
-              <PropertyRef Name="kkpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="M_ hat Kontrakte">
-          <End Role="Mandant" Type="$namespace$.Target.Mandant" Multiplicity="0..1" />
-          <End Role="KK" Type="$namespace$.Target.KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mandant">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="MandantPK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Mandant hat Wägung">
-          <End Role="Mandant" Type="$namespace$.Target.Mandant" Multiplicity="0..1" />
-          <End Role="Waege" Type="$namespace$.Target.Waege" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mandant">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="Waege">
-              <PropertyRef Name="PK_Mandant" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Material ist in Wägungen enthalten">
-          <End Role="MG" Type="$namespace$.Target.MG" Multiplicity="0..1" />
-          <End Role="Waege" Type="$namespace$.Target.Waege" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MG">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="Waege">
-              <PropertyRef Name="PK_MG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SP kann Kfz haben">
-          <End Role="AP" Type="$namespace$.Target.AP" Multiplicity="0..1" />
-          <End Role="CF" Type="$namespace$.Target.CF" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AP">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="CF">
-              <PropertyRef Name="PKSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Function Name="pGetAuftragsliste" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Firma" Type="varchar" Mode="In" />
-        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -719,52 +293,14 @@
           <EntitySet Name="UserRollenEntities" EntityType="HWB.NETSCALE.BOEF.UserRollenEntity" />
           <EntitySet Name="WaagentypenEntities" EntityType="HWB.NETSCALE.BOEF.WaagentypenEntity" />
           <EntitySet Name="KbFnnEntities" EntityType="HWB.NETSCALE.BOEF.KbFnnEntity" />
-          <EntitySet Name="SvMandantEntities" EntityType="HWB.NETSCALE.BOEF.SvMandantEntity" />
           <EntitySet Name="BonitaetEntities" EntityType="HWB.NETSCALE.BOEF.BonitaetEntity" />
           <EntitySet Name="WiegeartEntities" EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" />
           <EntitySet Name="IncotermEntities" EntityType="HWB.NETSCALE.BOEF.IncotermEntity" />
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
-          <EntitySet Name="CFEntities" EntityType="HWB.NETSCALE.BOEF.CFEntity" />
-          <EntitySet Name="APEntities" EntityType="HWB.NETSCALE.BOEF.APEntity" />
-          <AssociationSet Name="FU__kann_Kfz_haben" Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben">
-            <End Role="AP" EntitySet="APEntities" />
-            <End Role="CFEntity" EntitySet="CFEntities" />
-          </AssociationSet>
-          <AssociationSet Name="SP_kann_Kfz_haben" Association="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben">
-            <End Role="AP" EntitySet="APEntities" />
-            <End Role="CFEntity" EntitySet="CFEntities" />
-          </AssociationSet>
-          <EntitySet Name="MGEntities" EntityType="HWB.NETSCALE.BOEF.MGEntity" />
-          <EntitySet Name="KKEntities" EntityType="HWB.NETSCALE.BOEF.KKEntity" />
-          <EntitySet Name="KMEntities" EntityType="HWB.NETSCALE.BOEF.KMEntity" />
-          <AssociationSet Name="AP_hat_Auftraege" Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege">
-            <End Role="APEntity" EntitySet="APEntities" />
-            <End Role="KK" EntitySet="KKEntities" />
-          </AssociationSet>
-          <AssociationSet Name="Kopf_hat_Details" Association="HWB.NETSCALE.BOEF.Kopf_hat_Details">
-            <End Role="KK" EntitySet="KKEntities" />
-            <End Role="KM" EntitySet="KMEntities" />
-          </AssociationSet>
-          <AssociationSet Name="M__hat_Kontrakte" Association="HWB.NETSCALE.BOEF.M__hat_Kontrakte">
-            <End Role="MandantEntity" EntitySet="MandantEntities" />
-            <End Role="KK" EntitySet="KKEntities" />
-          </AssociationSet>
-          <AssociationSet Name="Ein_Detail_hat_ein_Material" Association="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material">
-            <End Role="MGEntity" EntitySet="MGEntities" />
-            <End Role="KM" EntitySet="KMEntities" />
-          </AssociationSet>
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
-          <AssociationSet Name="Mandant_hat_Wägung" Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung">
-            <End Role="MandantEntity" EntitySet="MandantEntities" />
-            <End Role="Waege" EntitySet="WaegeEntities" />
-          </AssociationSet>
-          <AssociationSet Name="Material_ist_in_Wägungen_enthalten" Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten">
-            <End Role="MGEntity" EntitySet="MGEntities" />
-            <End Role="Waege" EntitySet="WaegeEntities" />
-          </AssociationSet>
-          <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
           <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
+          <EntitySet Name="AddressEntities" EntityType="HWB.NETSCALE.BOEF.AddressEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -858,18 +394,6 @@
           <Property Type="String" Name="ActionNr" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ToolTip" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="SvMandantEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="MandantNr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MandantName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="DefaultMandant" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Werksbezeichnung" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MNrName" MaxLength="56" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="BonitaetEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -925,264 +449,7 @@
           <Property Type="Int32" Name="abrufnrausgang" />
           <Property Type="Int32" Name="abrufeingang" />
           <Property Type="String" Name="entsorgernr" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KKs" Relationship="HWB.NETSCALE.BOEF.M__hat_Kontrakte" FromRole="MandantEntity" ToRole="KK" />
-          <NavigationProperty Name="Waeges" Relationship="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" FromRole="MandantEntity" ToRole="Waege" />
         </EntityType>
-        <EntityType Name="CFEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="KfzID" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kfz1" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kfz2" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="FrachtmittelPK" />
-          <Property Type="Int32" Name="ap_PKFU" />
-          <Property Type="String" Name="Fahrzeughalter" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxBruttoKfz" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="MaxLademenge" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Tara" Precision="18" Scale="2" />
-          <Property Type="DateTime" Name="Taradatum" />
-          <Property Type="Int32" Name="abruf_PK" />
-          <Property Type="String" Name="Kfz1Raw" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Abrufnr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrSP" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrFU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaFU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaSP" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="PKSP" />
-          <Property Type="Int32" Name="PKFU" />
-          <Property Type="DateTime" Name="abrufdate" />
-          <NavigationProperty Name="AP" Relationship="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" FromRole="CFEntity" ToRole="AP" />
-          <NavigationProperty Name="AP1" Relationship="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" FromRole="CFEntity" ToRole="AP" />
-          </EntityType>
-        <EntityType Name="APEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Nr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Anschrift" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Plz" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Ort" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Telefon" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Fax" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Firma" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Land" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Umsatzsteuerid" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="bonitaet" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Rolle_AU" />
-          <Property Type="Boolean" Name="Rolle_WE" />
-          <Property Type="Boolean" Name="Rolle_RE" />
-          <Property Type="Boolean" Name="Rolle_REG" />
-          <Property Type="Boolean" Name="Rolle_WERK" />
-          <Property Type="Boolean" Name="Rolle_BF" />
-          <Property Type="Boolean" Name="Rolle_BLT" />
-          <Property Type="Boolean" Name="RolleERZ" />
-          <Property Type="Boolean" Name="Role_ABFS" />
-          <Property Type="Boolean" Name="Rolle_ENT" />
-          <Property Type="Boolean" Name="Rolle_AESA" />
-          <Property Type="Boolean" Name="Rolle_BEHOER" />
-          <Property Type="Boolean" Name="Rolle_BEFOER" />
-          <Property Type="Boolean" Name="Rolle_LI" />
-          <Property Type="Boolean" Name="Rolle_SP" />
-          <Property Type="Boolean" Name="Rolle_FU" />
-          <Property Type="Boolean" Name="Rolle_BUK" />
-          <Property Type="Boolean" Name="Rolle_VKORG" />
-          <Property Type="Boolean" Name="Rolle_VKB" />
-          <Property Type="Boolean" Name="Rolle_EKORG" />
-          <Property Type="Boolean" Name="Rolle_ZL" />
-          <Property Type="Boolean" Name="Rolle_ZW" />
-          <Property Type="Boolean" Name="Rolle_RQ" />
-          <Property Type="DateTime" Name="AEDatum" />
-          <Property Type="Int32" Name="Seitenzahl" />
-          <Property Type="String" Name="AEKZ" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Ortsteil" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="touch" />
-          <NavigationProperty Name="CFs" Relationship="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" FromRole="AP" ToRole="CFEntity" />
-          <NavigationProperty Name="CFs1" Relationship="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" FromRole="AP" ToRole="CFEntity" />
-          <NavigationProperty Name="KKs" Relationship="HWB.NETSCALE.BOEF.AP_hat_Auftraege" FromRole="APEntity" ToRole="KK" />
-        </EntityType>
-        <Association Name="FU__kann_Kfz_haben">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="AP" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.CFEntity" Role="CFEntity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AP">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="CFEntity">
-              <PropertyRef Name="PKFU" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SP_kann_Kfz_haben">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="AP" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.CFEntity" Role="CFEntity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AP">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="CFEntity">
-              <PropertyRef Name="PKSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="MGEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Lagerort" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SortenNr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="preisvk" Precision="12" Scale="2" />
-          <Property Type="String" Name="wkz" MaxLength="5" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="me" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="touch" />
-          <Property Type="String" Name="ph" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Materialstatus" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="no_auto_abrech" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="epznummer" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="epzdatumvon" />
-          <Property Type="DateTime" Name="epzdatumbis" />
-          <Property Type="String" Name="tb1" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb2" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb3" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb4" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb5" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb6" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="aekz" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Materialvertriebstext2" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="gbkz" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Siegel1" />
-          <Property Type="Boolean" Name="Siegel2" />
-          <Property Type="Boolean" Name="Siegel3" />
-          <Property Type="Boolean" Name="Siegel4" />
-          <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Siegel20" />
-          <Property Type="String" Name="Sortenbezeichnung30" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KMs" Relationship="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" FromRole="MGEntity" ToRole="KM" />
-          <NavigationProperty Name="Waeges" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="MGEntity" ToRole="Waege" />
-        </EntityType>
-        <EntityType Name="KKEntity">
-          <Key>
-            <PropertyRef Name="pk" />
-          </Key>
-          <Property Type="Int32" Name="pk" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="mandant" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="kontraktnr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="werksnr" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="auftragsart" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wefirma" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wename1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="partnernrAU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="preisgueltigbis" />
-          <Property Type="DateTime" Name="kontraktgueltigbis" />
-          <Property Type="String" Name="auftraggeberbestellnr" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="kontraktergaenzung" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb7" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb8" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Bonitaetskennung" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="kontraktart" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="aekz" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="bauzeitvon" />
-          <Property Type="DateTime" Name="bauzeitbis" />
-          <Property Type="DateTime" Name="lieferzeitvon" />
-          <Property Type="DateTime" Name="lieferzeitbis" />
-          <Property Type="Int32" Name="APFK" />
-          <Property Type="Int32" Name="MandantPK" />
-          <Property Type="Boolean" Name="touch" />
-          <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AP" Relationship="HWB.NETSCALE.BOEF.AP_hat_Auftraege" FromRole="KK" ToRole="APEntity" />
-          <NavigationProperty Name="KMs" Relationship="HWB.NETSCALE.BOEF.Kopf_hat_Details" FromRole="KK" ToRole="KM" />
-          <NavigationProperty Name="Mandant1" Relationship="HWB.NETSCALE.BOEF.M__hat_Kontrakte" FromRole="KK" ToRole="MandantEntity" />
-        </EntityType>
-        <EntityType Name="KMEntity">
-          <Key>
-            <PropertyRef Name="pk" />
-          </Key>
-          <Property Type="Int32" Name="pk" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Mandant" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kontraktnr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Lagerort" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SortenNr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="posnr" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="Werksrangfolge" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="referenzkennung" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Hauptmaterialnr" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="postyp" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Transportzone" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Incoterm" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="me" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Sollmenge" Precision="14" Scale="3" />
-          <Property Type="Decimal" Name="Istmenge" Precision="14" Scale="3" />
-          <Property Type="Decimal" Name="Einzelpreis" Precision="12" Scale="2" />
-          <Property Type="String" Name="tb9" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="tb10" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="umsatzsteuerpflichtig" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="aekz" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="kkpk" />
-          <Property Type="Int32" Name="mgpk" />
-          <Property Type="Boolean" Name="touch" />
-          <NavigationProperty Name="KK" Relationship="HWB.NETSCALE.BOEF.Kopf_hat_Details" FromRole="KM" ToRole="KK" />
-          <NavigationProperty Name="MG" Relationship="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" FromRole="KM" ToRole="MGEntity" />
-        </EntityType>
-        <Association Name="AP_hat_Auftraege">
-          <End Type="HWB.NETSCALE.BOEF.APEntity" Role="APEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="APFK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Kopf_hat_Details">
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KK">
-              <PropertyRef Name="pk" />
-            </Principal>
-            <Dependent Role="KM">
-              <PropertyRef Name="kkpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="M__hat_Kontrakte">
-          <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KKEntity" Role="KK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MandantEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KK">
-              <PropertyRef Name="MandantPK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Ein_Detail_hat_ein_Material">
-          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MGEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.KMEntity" Role="KM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MGEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="KM">
-              <PropertyRef Name="mgpk" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="EinstellungenEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1201,190 +468,6 @@
           <Property Type="Int32" Name="AP_Id_counter" />
           <Property Type="Int32" Name="MG_Id_counter" />
         </EntityType>
-        <EntityType Name="WaegeEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="DateTime" Name="LSDatum" />
-          <Property Type="String" Name="LN1" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ErstZeit" />
-          <Property Type="Decimal" Name="ErstGewicht" Precision="10" Scale="2" />
-          <Property Type="String" Name="LN2" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ZweitZeit" />
-          <Property Type="Decimal" Name="ZweitGewicht" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Nettogewicht" Precision="10" Scale="2" />
-          <Property Type="String" Name="NrKU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name1KU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name2KU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AnschriftKU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PlzKU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OrtKU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrFU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name1FU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name2FU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AnschriftFU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PlzFU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OrtFU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Containernr" MaxLength="14" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="remarks1" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="remarks2" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaKU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaFU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kfz1" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kfz2" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SortenNr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Waegung" />
-          <Property Type="Boolean" Name="taab" />
-          <Property Type="String" Name="LSNRGlobal" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FremdLsNr" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mandantnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Remarks3" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Wiegeart" />
-          <Property Type="String" Name="Mengeneinheit" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kfz1Raw" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Abrufid" />
-          <Property Type="String" Name="Abrufnr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KfzID" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="MaxGewicht" />
-          <Property Type="Boolean" Name="MaxGewichtValidieren" />
-          <Property Type="String" Name="Schlag" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Username" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AbrechnungsKZ" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="PK_MG" />
-          <Property Type="Int32" Name="PK_Mandant" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IncotermKz" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IncotermBezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WiegeartKz" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WiegeartBezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BonitaetKz" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BonitaetBezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtmittelKz" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtmittelBezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrSP" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaSP" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Schlagnr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Schlagbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Schlagbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="kontraktnr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wefirma" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wename1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="auftraggeberbestellnr" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Sollmenge" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Istmenge" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Restmenge" Precision="10" Scale="2" />
-          <Property Type="String" Name="lsnr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Frachtpreis" Precision="12" Scale="2" />
-          <Property Type="Decimal" Name="Nettobetrag" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="USt" Precision="4" Scale="2" />
-          <Property Type="Decimal" Name="Endbetrag" Precision="12" Scale="2" />
-          <Property Type="Decimal" Name="preisvk" Precision="12" Scale="2" />
-          <Property Type="Decimal" Name="Skontoproz" Precision="4" Scale="2" />
-          <Property Type="Decimal" Name="Skontobetrag" Precision="12" Scale="2" />
-          <Property Type="String" Name="me" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Sollwertmischer" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Ustbetrag" Precision="12" Scale="2" />
-          <Property Type="String" Name="wnr1" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wnr2" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Siegel1" />
-          <Property Type="Boolean" Name="Siegel2" />
-          <Property Type="Boolean" Name="Siegel3" />
-          <Property Type="Boolean" Name="Siegel4" />
-          <Property Type="Int32" Name="UserPK" />
-          <Property Type="String" Name="LandKU" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="posnr" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LandFU" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="abruffest" />
-          <NavigationProperty Name="Mandant" Relationship="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" FromRole="Waege" ToRole="MandantEntity" />
-          <NavigationProperty Name="MG" Relationship="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" FromRole="Waege" ToRole="MGEntity" />
-        </EntityType>
-        <Association Name="Mandant_hat_Wägung">
-          <End Type="HWB.NETSCALE.BOEF.MandantEntity" Role="MandantEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.WaegeEntity" Role="Waege" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MandantEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="Waege">
-              <PropertyRef Name="PK_Mandant" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Material_ist_in_Wägungen_enthalten">
-          <End Type="HWB.NETSCALE.BOEF.MGEntity" Role="MGEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.WaegeEntity" Role="Waege" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MGEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="Waege">
-              <PropertyRef Name="PK_MG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AbrufEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Abrufnr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrKU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name1KU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Name2KU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AnschriftKU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PlzKU" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OrtKU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="remarks1" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="remarks2" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaKU" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SortenNr" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sortenbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Remarks3" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mengeneinheit" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Festerabruf" />
-          <Property Type="String" Name="Schlag" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="GueltigBis" />
-          <Property Type="Decimal" Name="Sollmenge" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Istmenge" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Restmenge" Precision="10" Scale="2" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mandantnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrSP" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FirmaSP" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Schlagnr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Schlagbezeichnung1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Schlagbezeichnung2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="kontraktnr" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wefirma" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wename1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="abrufdatum" />
-          <Property Type="Boolean" Name="abruffest" />
-          <Property Type="String" Name="FrachtmittelKz" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtmittelBezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BonitaetKz" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="me" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WiegeartKz" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="preisvk" Precision="12" Scale="2" />
-          <Property Type="Boolean" Name="Siegel1" />
-          <Property Type="Boolean" Name="Siegel2" />
-          <Property Type="Boolean" Name="Siegel3" />
-          <Property Type="Boolean" Name="Siegel4" />
-          <Property Type="String" Name="LandKU" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NrKU0" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BonitaetBezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="posnr" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="wename2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Siegel20" />
-          <Property Type="String" Name="Sortenbezeichnung3" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LandFU" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="PK_Mandant" />
-        </EntityType>
         <EntityType Name="FrachtmittelEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1393,6 +476,73 @@
           <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="AddressEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" />
+          <Property Type="String" Name="name" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="subName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="owningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="street" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="country" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="roleClient" />
+          <Property Type="Boolean" Name="roleInvoiceReceiver" />
+          <Property Type="Boolean" Name="roleStorageClient" />
+          <Property Type="Boolean" Name="rolleSupplier" />
+          <Property Type="Boolean" Name="roleReceiver" />
+          <Property Type="Boolean" Name="roleCarrier" />
+          <Property Type="Boolean" Name="roleShipOwner" />
+          <Property Type="Boolean" Name="roleTrainOperator" />
+        </EntityType>
+        <EntityType Name="WaegeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="LN1" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WaagenummerErst" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LN2" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WaagennummerZweit" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LieferscheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WiegescheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FahrzeugEingehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FrachtführerName3Eingehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FahrzeugAusgehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FrachtführerName3Ausgehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IstQuellLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IstZielLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Erstgewicht" Precision="10" Scale="3" />
+          <Property Type="DateTime" Name="ErstDatetime" />
+          <Property Type="Decimal" Name="Zweitgewicht" Precision="10" Scale="3" />
+          <Property Type="Decimal" Name="Nettogewicht" Precision="10" Scale="3" />
+          <Property Type="String" Name="IstMengeZMEI" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="DateTime" Name="Arbeitsbeginn" />
+          <Property Type="DateTime" Name="Arbeitsende" />
+          <Property Type="Boolean" Name="StornoKennzeichen" />
+          <Property Type="Boolean" Name="Finalisieren" />
+          <Property Type="String" Name="locationId" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reference" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orderstate" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date" />
+          <Property Type="String" Name="customerName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerCountry" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverCountry" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1486,19 +636,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SvMandantEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.SvMandantEntity">
-              <MappingFragment StoreEntitySet="svMandant">
-                <ScalarProperty Name="MNrName" ColumnName="MNrName" />
-                <ScalarProperty Name="Werksbezeichnung" ColumnName="Werksbezeichnung" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="DefaultMandant" ColumnName="DefaultMandant" />
-                <ScalarProperty Name="MandantName" ColumnName="MandantName" />
-                <ScalarProperty Name="MandantNr" ColumnName="MandantNr" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BonitaetEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.BonitaetEntity">
               <MappingFragment StoreEntitySet="Bonitaet">
@@ -1559,182 +696,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CFEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.CFEntity">
-              <MappingFragment StoreEntitySet="CF">
-                <ScalarProperty Name="abrufdate" ColumnName="abrufdate" />
-                <ScalarProperty Name="PKFU" ColumnName="PKFU" />
-                <ScalarProperty Name="PKSP" ColumnName="PKSP" />
-                <ScalarProperty Name="FirmaSP" ColumnName="FirmaSP" />
-                <ScalarProperty Name="FirmaFU" ColumnName="FirmaFU" />
-                <ScalarProperty Name="NrFU" ColumnName="NrFU" />
-                <ScalarProperty Name="NrSP" ColumnName="NrSP" />
-                <ScalarProperty Name="Abrufnr" ColumnName="Abrufnr" />
-                <ScalarProperty Name="Kfz1Raw" ColumnName="Kfz1Raw" />
-                <ScalarProperty Name="abruf_PK" ColumnName="abruf_PK" />
-                <ScalarProperty Name="Taradatum" ColumnName="Taradatum" />
-                <ScalarProperty Name="Tara" ColumnName="Tara" />
-                <ScalarProperty Name="MaxLademenge" ColumnName="MaxLademenge" />
-                <ScalarProperty Name="MaxBruttoKfz" ColumnName="MaxBruttoKfz" />
-                <ScalarProperty Name="Fahrzeughalter" ColumnName="Fahrzeughalter" />
-                <ScalarProperty Name="ap_PKFU" ColumnName="ap_PKFU" />
-                <ScalarProperty Name="FrachtmittelPK" ColumnName="FrachtmittelPK" />
-                <ScalarProperty Name="Kfz2" ColumnName="Kfz2" />
-                <ScalarProperty Name="Kfz1" ColumnName="Kfz1" />
-                <ScalarProperty Name="KfzID" ColumnName="KfzID" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="APEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.APEntity">
-              <MappingFragment StoreEntitySet="AP">
-                <ScalarProperty Name="touch" ColumnName="touch" />
-                <ScalarProperty Name="Ortsteil" ColumnName="Ortsteil" />
-                <ScalarProperty Name="AEKZ" ColumnName="AEKZ" />
-                <ScalarProperty Name="Seitenzahl" ColumnName="Seitenzahl" />
-                <ScalarProperty Name="AEDatum" ColumnName="AEDatum" />
-                <ScalarProperty Name="Rolle_RQ" ColumnName="Rolle_RQ" />
-                <ScalarProperty Name="Rolle_ZW" ColumnName="Rolle_ZW" />
-                <ScalarProperty Name="Rolle_ZL" ColumnName="Rolle_ZL" />
-                <ScalarProperty Name="Rolle_EKORG" ColumnName="Rolle_EKORG" />
-                <ScalarProperty Name="Rolle_VKB" ColumnName="Rolle_VKB" />
-                <ScalarProperty Name="Rolle_VKORG" ColumnName="Rolle_VKORG" />
-                <ScalarProperty Name="Rolle_BUK" ColumnName="Rolle_BUK" />
-                <ScalarProperty Name="Rolle_FU" ColumnName="Rolle_FU" />
-                <ScalarProperty Name="Rolle_SP" ColumnName="Rolle_SP" />
-                <ScalarProperty Name="Rolle_LI" ColumnName="Rolle_LI" />
-                <ScalarProperty Name="Rolle_BEFOER" ColumnName="Rolle_BEFOER" />
-                <ScalarProperty Name="Rolle_BEHOER" ColumnName="Rolle_BEHOER" />
-                <ScalarProperty Name="Rolle_AESA" ColumnName="Rolle_AESA" />
-                <ScalarProperty Name="Rolle_ENT" ColumnName="Rolle_ENT" />
-                <ScalarProperty Name="Role_ABFS" ColumnName="Role_ABFS" />
-                <ScalarProperty Name="RolleERZ" ColumnName="RolleERZ" />
-                <ScalarProperty Name="Rolle_BLT" ColumnName="Rolle_BLT" />
-                <ScalarProperty Name="Rolle_BF" ColumnName="Rolle_BF" />
-                <ScalarProperty Name="Rolle_WERK" ColumnName="Rolle_WERK" />
-                <ScalarProperty Name="Rolle_REG" ColumnName="Rolle_REG" />
-                <ScalarProperty Name="Rolle_RE" ColumnName="Rolle_RE" />
-                <ScalarProperty Name="Rolle_WE" ColumnName="Rolle_WE" />
-                <ScalarProperty Name="Rolle_AU" ColumnName="Rolle_AU" />
-                <ScalarProperty Name="bonitaet" ColumnName="bonitaet" />
-                <ScalarProperty Name="Umsatzsteuerid" ColumnName="Umsatzsteuerid" />
-                <ScalarProperty Name="Land" ColumnName="Land" />
-                <ScalarProperty Name="Firma" ColumnName="Firma" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Ort" ColumnName="Ort" />
-                <ScalarProperty Name="Plz" ColumnName="Plz" />
-                <ScalarProperty Name="Anschrift" ColumnName="Anschrift" />
-                <ScalarProperty Name="Name2" ColumnName="Name2" />
-                <ScalarProperty Name="Name1" ColumnName="Name1" />
-                <ScalarProperty Name="Nr" ColumnName="Nr" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MGEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.MGEntity">
-              <MappingFragment StoreEntitySet="MG">
-                <ScalarProperty Name="Sortenbezeichnung30" ColumnName="Sortenbezeichnung30" />
-                <ScalarProperty Name="Siegel20" ColumnName="Siegel20" />
-                <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
-                <ScalarProperty Name="Siegel4" ColumnName="Siegel4" />
-                <ScalarProperty Name="Siegel3" ColumnName="Siegel3" />
-                <ScalarProperty Name="Siegel2" ColumnName="Siegel2" />
-                <ScalarProperty Name="Siegel1" ColumnName="Siegel1" />
-                <ScalarProperty Name="gbkz" ColumnName="gbkz" />
-                <ScalarProperty Name="Materialvertriebstext2" ColumnName="Materialvertriebstext2" />
-                <ScalarProperty Name="aekz" ColumnName="aekz" />
-                <ScalarProperty Name="tb6" ColumnName="tb6" />
-                <ScalarProperty Name="tb5" ColumnName="tb5" />
-                <ScalarProperty Name="tb4" ColumnName="tb4" />
-                <ScalarProperty Name="tb3" ColumnName="tb3" />
-                <ScalarProperty Name="tb2" ColumnName="tb2" />
-                <ScalarProperty Name="tb1" ColumnName="tb1" />
-                <ScalarProperty Name="epzdatumbis" ColumnName="epzdatumbis" />
-                <ScalarProperty Name="epzdatumvon" ColumnName="epzdatumvon" />
-                <ScalarProperty Name="epznummer" ColumnName="epznummer" />
-                <ScalarProperty Name="no_auto_abrech" ColumnName="no_auto_abrech" />
-                <ScalarProperty Name="Materialstatus" ColumnName="Materialstatus" />
-                <ScalarProperty Name="ph" ColumnName="ph" />
-                <ScalarProperty Name="touch" ColumnName="touch" />
-                <ScalarProperty Name="me" ColumnName="me" />
-                <ScalarProperty Name="wkz" ColumnName="wkz" />
-                <ScalarProperty Name="preisvk" ColumnName="preisvk" />
-                <ScalarProperty Name="Sortenbezeichnung2" ColumnName="Sortenbezeichnung2" />
-                <ScalarProperty Name="Sortenbezeichnung1" ColumnName="Sortenbezeichnung1" />
-                <ScalarProperty Name="SortenNr" ColumnName="SortenNr" />
-                <ScalarProperty Name="Lagerort" ColumnName="Lagerort" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KKEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.KKEntity">
-              <MappingFragment StoreEntitySet="KK">
-                <ScalarProperty Name="wename2" ColumnName="wename2" />
-                <ScalarProperty Name="touch" ColumnName="touch" />
-                <ScalarProperty Name="MandantPK" ColumnName="MandantPK" />
-                <ScalarProperty Name="APFK" ColumnName="APFK" />
-                <ScalarProperty Name="lieferzeitbis" ColumnName="lieferzeitbis" />
-                <ScalarProperty Name="lieferzeitvon" ColumnName="lieferzeitvon" />
-                <ScalarProperty Name="bauzeitbis" ColumnName="bauzeitbis" />
-                <ScalarProperty Name="bauzeitvon" ColumnName="bauzeitvon" />
-                <ScalarProperty Name="aekz" ColumnName="aekz" />
-                <ScalarProperty Name="kontraktart" ColumnName="kontraktart" />
-                <ScalarProperty Name="Bonitaetskennung" ColumnName="Bonitaetskennung" />
-                <ScalarProperty Name="tb8" ColumnName="tb8" />
-                <ScalarProperty Name="tb7" ColumnName="tb7" />
-                <ScalarProperty Name="kontraktergaenzung" ColumnName="kontraktergaenzung" />
-                <ScalarProperty Name="auftraggeberbestellnr" ColumnName="auftraggeberbestellnr" />
-                <ScalarProperty Name="kontraktgueltigbis" ColumnName="kontraktgueltigbis" />
-                <ScalarProperty Name="preisgueltigbis" ColumnName="preisgueltigbis" />
-                <ScalarProperty Name="partnernrAU" ColumnName="partnernrAU" />
-                <ScalarProperty Name="wename1" ColumnName="wename1" />
-                <ScalarProperty Name="wefirma" ColumnName="wefirma" />
-                <ScalarProperty Name="auftragsart" ColumnName="auftragsart" />
-                <ScalarProperty Name="werksnr" ColumnName="werksnr" />
-                <ScalarProperty Name="kontraktnr" ColumnName="kontraktnr" />
-                <ScalarProperty Name="mandant" ColumnName="mandant" />
-                <ScalarProperty Name="pk" ColumnName="pk" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KMEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.KMEntity">
-              <MappingFragment StoreEntitySet="KM">
-                <ScalarProperty Name="touch" ColumnName="touch" />
-                <ScalarProperty Name="mgpk" ColumnName="mgpk" />
-                <ScalarProperty Name="kkpk" ColumnName="kkpk" />
-                <ScalarProperty Name="aekz" ColumnName="aekz" />
-                <ScalarProperty Name="umsatzsteuerpflichtig" ColumnName="umsatzsteuerpflichtig" />
-                <ScalarProperty Name="tb10" ColumnName="tb10" />
-                <ScalarProperty Name="tb9" ColumnName="tb9" />
-                <ScalarProperty Name="Einzelpreis" ColumnName="Einzelpreis" />
-                <ScalarProperty Name="Istmenge" ColumnName="Istmenge" />
-                <ScalarProperty Name="Sollmenge" ColumnName="Sollmenge" />
-                <ScalarProperty Name="me" ColumnName="me" />
-                <ScalarProperty Name="Incoterm" ColumnName="Incoterm" />
-                <ScalarProperty Name="Transportzone" ColumnName="Transportzone" />
-                <ScalarProperty Name="postyp" ColumnName="postyp" />
-                <ScalarProperty Name="Hauptmaterialnr" ColumnName="Hauptmaterialnr" />
-                <ScalarProperty Name="referenzkennung" ColumnName="referenzkennung" />
-                <ScalarProperty Name="Werksrangfolge" ColumnName="Werksrangfolge" />
-                <ScalarProperty Name="posnr" ColumnName="posnr" />
-                <ScalarProperty Name="SortenNr" ColumnName="SortenNr" />
-                <ScalarProperty Name="Lagerort" ColumnName="Lagerort" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="Kontraktnr" ColumnName="Kontraktnr" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="pk" ColumnName="pk" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EinstellungenEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
               <MappingFragment StoreEntitySet="Einstellungen">
@@ -1754,172 +715,81 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WaegeEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
-              <MappingFragment StoreEntitySet="Waege">
-                <ScalarProperty Name="abruffest" ColumnName="abruffest" />
-                <ScalarProperty Name="LandFU" ColumnName="LandFU" />
-                <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
-                <ScalarProperty Name="wename2" ColumnName="wename2" />
-                <ScalarProperty Name="posnr" ColumnName="posnr" />
-                <ScalarProperty Name="LandKU" ColumnName="LandKU" />
-                <ScalarProperty Name="UserPK" ColumnName="UserPK" />
-                <ScalarProperty Name="Siegel4" ColumnName="Siegel4" />
-                <ScalarProperty Name="Siegel3" ColumnName="Siegel3" />
-                <ScalarProperty Name="Siegel2" ColumnName="Siegel2" />
-                <ScalarProperty Name="Siegel1" ColumnName="Siegel1" />
-                <ScalarProperty Name="wnr2" ColumnName="wnr2" />
-                <ScalarProperty Name="wnr1" ColumnName="wnr1" />
-                <ScalarProperty Name="Ustbetrag" ColumnName="Ustbetrag" />
-                <ScalarProperty Name="Sollwertmischer" ColumnName="Sollwertmischer" />
-                <ScalarProperty Name="me" ColumnName="me" />
-                <ScalarProperty Name="Skontobetrag" ColumnName="Skontobetrag" />
-                <ScalarProperty Name="Skontoproz" ColumnName="Skontoproz" />
-                <ScalarProperty Name="preisvk" ColumnName="preisvk" />
-                <ScalarProperty Name="Endbetrag" ColumnName="Endbetrag" />
-                <ScalarProperty Name="USt" ColumnName="USt" />
-                <ScalarProperty Name="Nettobetrag" ColumnName="Nettobetrag" />
-                <ScalarProperty Name="Frachtpreis" ColumnName="Frachtpreis" />
-                <ScalarProperty Name="lsnr" ColumnName="lsnr" />
-                <ScalarProperty Name="Restmenge" ColumnName="Restmenge" />
-                <ScalarProperty Name="Istmenge" ColumnName="Istmenge" />
-                <ScalarProperty Name="Sollmenge" ColumnName="Sollmenge" />
-                <ScalarProperty Name="auftraggeberbestellnr" ColumnName="auftraggeberbestellnr" />
-                <ScalarProperty Name="wename1" ColumnName="wename1" />
-                <ScalarProperty Name="wefirma" ColumnName="wefirma" />
-                <ScalarProperty Name="kontraktnr" ColumnName="kontraktnr" />
-                <ScalarProperty Name="Schlagbezeichnung2" ColumnName="Schlagbezeichnung2" />
-                <ScalarProperty Name="Schlagbezeichnung1" ColumnName="Schlagbezeichnung1" />
-                <ScalarProperty Name="Schlagnr" ColumnName="Schlagnr" />
-                <ScalarProperty Name="FirmaSP" ColumnName="FirmaSP" />
-                <ScalarProperty Name="NrSP" ColumnName="NrSP" />
-                <ScalarProperty Name="FrachtmittelBezeichnung" ColumnName="FrachtmittelBezeichnung" />
-                <ScalarProperty Name="FrachtmittelKz" ColumnName="FrachtmittelKz" />
-                <ScalarProperty Name="BonitaetBezeichnung" ColumnName="BonitaetBezeichnung" />
-                <ScalarProperty Name="BonitaetKz" ColumnName="BonitaetKz" />
-                <ScalarProperty Name="WiegeartBezeichnung" ColumnName="WiegeartBezeichnung" />
-                <ScalarProperty Name="WiegeartKz" ColumnName="WiegeartKz" />
-                <ScalarProperty Name="IncotermBezeichnung" ColumnName="IncotermBezeichnung" />
-                <ScalarProperty Name="IncotermKz" ColumnName="IncotermKz" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="PK_Mandant" ColumnName="PK_Mandant" />
-                <ScalarProperty Name="PK_MG" ColumnName="PK_MG" />
-                <ScalarProperty Name="AbrechnungsKZ" ColumnName="AbrechnungsKZ" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Schlag" ColumnName="Schlag" />
-                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
-                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
-                <ScalarProperty Name="KfzID" ColumnName="KfzID" />
-                <ScalarProperty Name="Abrufnr" ColumnName="Abrufnr" />
-                <ScalarProperty Name="Abrufid" ColumnName="Abrufid" />
-                <ScalarProperty Name="Kfz1Raw" ColumnName="Kfz1Raw" />
-                <ScalarProperty Name="Mengeneinheit" ColumnName="Mengeneinheit" />
-                <ScalarProperty Name="Wiegeart" ColumnName="Wiegeart" />
-                <ScalarProperty Name="Remarks3" ColumnName="Remarks3" />
-                <ScalarProperty Name="Mandantnr" ColumnName="Mandantnr" />
-                <ScalarProperty Name="FremdLsNr" ColumnName="FremdLsNr" />
-                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
-                <ScalarProperty Name="taab" ColumnName="taab" />
-                <ScalarProperty Name="Waegung" ColumnName="Waegung" />
-                <ScalarProperty Name="Sortenbezeichnung2" ColumnName="Sortenbezeichnung2" />
-                <ScalarProperty Name="Sortenbezeichnung1" ColumnName="Sortenbezeichnung1" />
-                <ScalarProperty Name="SortenNr" ColumnName="SortenNr" />
-                <ScalarProperty Name="Kfz2" ColumnName="Kfz2" />
-                <ScalarProperty Name="Kfz1" ColumnName="Kfz1" />
-                <ScalarProperty Name="FirmaFU" ColumnName="FirmaFU" />
-                <ScalarProperty Name="FirmaKU" ColumnName="FirmaKU" />
-                <ScalarProperty Name="remarks2" ColumnName="remarks2" />
-                <ScalarProperty Name="remarks1" ColumnName="remarks1" />
-                <ScalarProperty Name="Containernr" ColumnName="Containernr" />
-                <ScalarProperty Name="OrtFU" ColumnName="OrtFU" />
-                <ScalarProperty Name="PlzFU" ColumnName="PlzFU" />
-                <ScalarProperty Name="AnschriftFU" ColumnName="AnschriftFU" />
-                <ScalarProperty Name="Name2FU" ColumnName="Name2FU" />
-                <ScalarProperty Name="Name1FU" ColumnName="Name1FU" />
-                <ScalarProperty Name="NrFU" ColumnName="NrFU" />
-                <ScalarProperty Name="OrtKU" ColumnName="OrtKU" />
-                <ScalarProperty Name="PlzKU" ColumnName="PlzKU" />
-                <ScalarProperty Name="AnschriftKU" ColumnName="AnschriftKU" />
-                <ScalarProperty Name="Name2KU" ColumnName="Name2KU" />
-                <ScalarProperty Name="Name1KU" ColumnName="Name1KU" />
-                <ScalarProperty Name="NrKU" ColumnName="NrKU" />
-                <ScalarProperty Name="Nettogewicht" ColumnName="Nettogewicht" />
-                <ScalarProperty Name="ZweitGewicht" ColumnName="ZweitGewicht" />
-                <ScalarProperty Name="ZweitZeit" ColumnName="ZweitZeit" />
-                <ScalarProperty Name="LN2" ColumnName="LN2" />
-                <ScalarProperty Name="ErstGewicht" ColumnName="ErstGewicht" />
-                <ScalarProperty Name="ErstZeit" ColumnName="ErstZeit" />
-                <ScalarProperty Name="LN1" ColumnName="LN1" />
-                <ScalarProperty Name="LSDatum" ColumnName="LSDatum" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AbrufEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AbrufEntity">
-              <MappingFragment StoreEntitySet="Abruf">
-                <ScalarProperty Name="PK_Mandant" ColumnName="PK_Mandant" />
-                <ScalarProperty Name="LandFU" ColumnName="LandFU" />
-                <ScalarProperty Name="Sortenbezeichnung3" ColumnName="Sortenbezeichnung3" />
-                <ScalarProperty Name="Siegel20" ColumnName="Siegel20" />
-                <ScalarProperty Name="wename2" ColumnName="wename2" />
-                <ScalarProperty Name="posnr" ColumnName="posnr" />
-                <ScalarProperty Name="BonitaetBezeichnung" ColumnName="BonitaetBezeichnung" />
-                <ScalarProperty Name="NrKU0" ColumnName="NrKU0" />
-                <ScalarProperty Name="LandKU" ColumnName="LandKU" />
-                <ScalarProperty Name="Siegel4" ColumnName="Siegel4" />
-                <ScalarProperty Name="Siegel3" ColumnName="Siegel3" />
-                <ScalarProperty Name="Siegel2" ColumnName="Siegel2" />
-                <ScalarProperty Name="Siegel1" ColumnName="Siegel1" />
-                <ScalarProperty Name="preisvk" ColumnName="preisvk" />
-                <ScalarProperty Name="WiegeartKz" ColumnName="WiegeartKz" />
-                <ScalarProperty Name="me" ColumnName="me" />
-                <ScalarProperty Name="BonitaetKz" ColumnName="BonitaetKz" />
-                <ScalarProperty Name="FrachtmittelBezeichnung" ColumnName="FrachtmittelBezeichnung" />
-                <ScalarProperty Name="FrachtmittelKz" ColumnName="FrachtmittelKz" />
-                <ScalarProperty Name="abruffest" ColumnName="abruffest" />
-                <ScalarProperty Name="abrufdatum" ColumnName="abrufdatum" />
-                <ScalarProperty Name="wename1" ColumnName="wename1" />
-                <ScalarProperty Name="wefirma" ColumnName="wefirma" />
-                <ScalarProperty Name="kontraktnr" ColumnName="kontraktnr" />
-                <ScalarProperty Name="Schlagbezeichnung2" ColumnName="Schlagbezeichnung2" />
-                <ScalarProperty Name="Schlagbezeichnung1" ColumnName="Schlagbezeichnung1" />
-                <ScalarProperty Name="Schlagnr" ColumnName="Schlagnr" />
-                <ScalarProperty Name="FirmaSP" ColumnName="FirmaSP" />
-                <ScalarProperty Name="NrSP" ColumnName="NrSP" />
-                <ScalarProperty Name="Mandantnr" ColumnName="Mandantnr" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="Restmenge" ColumnName="Restmenge" />
-                <ScalarProperty Name="Istmenge" ColumnName="Istmenge" />
-                <ScalarProperty Name="Sollmenge" ColumnName="Sollmenge" />
-                <ScalarProperty Name="GueltigBis" ColumnName="GueltigBis" />
-                <ScalarProperty Name="Schlag" ColumnName="Schlag" />
-                <ScalarProperty Name="Festerabruf" ColumnName="Festerabruf" />
-                <ScalarProperty Name="Mengeneinheit" ColumnName="Mengeneinheit" />
-                <ScalarProperty Name="Remarks3" ColumnName="Remarks3" />
-                <ScalarProperty Name="Sortenbezeichnung2" ColumnName="Sortenbezeichnung2" />
-                <ScalarProperty Name="Sortenbezeichnung1" ColumnName="Sortenbezeichnung1" />
-                <ScalarProperty Name="SortenNr" ColumnName="SortenNr" />
-                <ScalarProperty Name="FirmaKU" ColumnName="FirmaKU" />
-                <ScalarProperty Name="remarks2" ColumnName="remarks2" />
-                <ScalarProperty Name="remarks1" ColumnName="remarks1" />
-                <ScalarProperty Name="OrtKU" ColumnName="OrtKU" />
-                <ScalarProperty Name="PlzKU" ColumnName="PlzKU" />
-                <ScalarProperty Name="AnschriftKU" ColumnName="AnschriftKU" />
-                <ScalarProperty Name="Name2KU" ColumnName="Name2KU" />
-                <ScalarProperty Name="Name1KU" ColumnName="Name1KU" />
-                <ScalarProperty Name="NrKU" ColumnName="NrKU" />
-                <ScalarProperty Name="Abrufnr" ColumnName="Abrufnr" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FrachtmittelEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FrachtmittelEntity">
               <MappingFragment StoreEntitySet="Frachtmittel">
                 <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
                 <ScalarProperty Name="Kennung" ColumnName="Kennung" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AddressEntity">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="roleTrainOperator" ColumnName="roleTrainOperator" />
+                <ScalarProperty Name="roleShipOwner" ColumnName="roleShipOwner" />
+                <ScalarProperty Name="roleCarrier" ColumnName="roleCarrier" />
+                <ScalarProperty Name="roleReceiver" ColumnName="roleReceiver" />
+                <ScalarProperty Name="rolleSupplier" ColumnName="rolleSupplier" />
+                <ScalarProperty Name="roleStorageClient" ColumnName="roleStorageClient" />
+                <ScalarProperty Name="roleInvoiceReceiver" ColumnName="roleInvoiceReceiver" />
+                <ScalarProperty Name="roleClient" ColumnName="roleClient" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="owningLocationId" ColumnName="owningLocationId" />
+                <ScalarProperty Name="subName2" ColumnName="subName2" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WaegeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
+              <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="InvoiceReceiverCountry" ColumnName="InvoiceReceiverCountry" />
+                <ScalarProperty Name="InvoiceReceiverCity" ColumnName="InvoiceReceiverCity" />
+                <ScalarProperty Name="InvoiceReceiverZipCode" ColumnName="InvoiceReceiverZipCode" />
+                <ScalarProperty Name="invoiceReceiverStreet" ColumnName="invoiceReceiverStreet" />
+                <ScalarProperty Name="invoiceReceiverOwningLocationId" ColumnName="invoiceReceiverOwningLocationId" />
+                <ScalarProperty Name="InvoiceReceiverSubName2" ColumnName="InvoiceReceiverSubName2" />
+                <ScalarProperty Name="invoiceReceiverName" ColumnName="invoiceReceiverName" />
+                <ScalarProperty Name="customerCountry" ColumnName="customerCountry" />
+                <ScalarProperty Name="customerCity" ColumnName="customerCity" />
+                <ScalarProperty Name="customerZipCode" ColumnName="customerZipCode" />
+                <ScalarProperty Name="customerStreet" ColumnName="customerStreet" />
+                <ScalarProperty Name="customerOwningLocationId" ColumnName="customerOwningLocationId" />
+                <ScalarProperty Name="customerSubName2" ColumnName="customerSubName2" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="orderstate" ColumnName="orderstate" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="Finalisieren" ColumnName="Finalisieren" />
+                <ScalarProperty Name="StornoKennzeichen" ColumnName="StornoKennzeichen" />
+                <ScalarProperty Name="Arbeitsende" ColumnName="Arbeitsende" />
+                <ScalarProperty Name="Arbeitsbeginn" ColumnName="Arbeitsbeginn" />
+                <ScalarProperty Name="IstMengeZMEI" ColumnName="IstMengeZMEI" />
+                <ScalarProperty Name="Nettogewicht" ColumnName="Nettogewicht" />
+                <ScalarProperty Name="Zweitgewicht" ColumnName="Zweitgewicht" />
+                <ScalarProperty Name="ErstDatetime" ColumnName="ErstDatetime" />
+                <ScalarProperty Name="Erstgewicht" ColumnName="Erstgewicht" />
+                <ScalarProperty Name="IstZielLagerPlatz" ColumnName="IstZielLagerPlatz" />
+                <ScalarProperty Name="IstQuellLagerPlatz" ColumnName="IstQuellLagerPlatz" />
+                <ScalarProperty Name="FrachtführerName3Ausgehend" ColumnName="FrachtführerName3Ausgehend" />
+                <ScalarProperty Name="FahrzeugAusgehend" ColumnName="FahrzeugAusgehend" />
+                <ScalarProperty Name="FrachtführerName3Eingehend" ColumnName="FrachtführerName3Eingehend" />
+                <ScalarProperty Name="FahrzeugEingehend" ColumnName="FahrzeugEingehend" />
+                <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
+                <ScalarProperty Name="LieferscheinNr" ColumnName="LieferscheinNr" />
+                <ScalarProperty Name="WaagennummerZweit" ColumnName="WaagennummerZweit" />
+                <ScalarProperty Name="LN2" ColumnName="LN2" />
+                <ScalarProperty Name="WaagenummerErst" ColumnName="WaagenummerErst" />
+                <ScalarProperty Name="LN1" ColumnName="LN1" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1945,7 +815,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="140" >
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="62" >
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />
@@ -1958,59 +828,14 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.UserRollenEntity" Width="1.5" PointX="0.875" PointY="2.5" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaagentypenEntity" Width="1.5" PointX="2.75" PointY="2.5" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KbFnnEntity" Width="1.5" PointX="2.875" PointY="3.125" Height="0.4" IsExpanded="false" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.SvMandantEntity" Width="1.5" PointX="5.375" PointY="0.625" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.BonitaetEntity" Width="1.5" PointX="5.75" PointY="3.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" Width="1.5" PointX="5.875" PointY="5.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.IncotermEntity" Width="1.5" PointX="4.375" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="10.625" PointY="0.75" Height="0.4" IsExpanded="false" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.CFEntity" Width="1.5" PointX="12.875" PointY="4.125" Height="0.4" IsExpanded="false" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.APEntity" Width="1.5" PointX="10.625" PointY="6" Height="9.8646451822916674" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.FU__kann_Kfz_haben" >
-          <edmx:ConnectorPoint PointX="11.128905312499999" PointY="6" />
-          <edmx:ConnectorPoint PointX="11.128905312499999" PointY="4.242967187500005" />
-          <edmx:ConnectorPoint PointX="12.875" PointY="4.242967187500005" />
-        </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.SP_kann_Kfz_haben" >
-          <edmx:ConnectorPoint PointX="11.658205156249998" PointY="6" />
-          <edmx:ConnectorPoint PointX="11.658205156249998" PointY="4.4152360937499964" />
-          <edmx:ConnectorPoint PointX="12.875" PointY="4.4152360937499964" />
-        </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MGEntity" Width="1.5" PointX="14" PointY="18.875" Height="7.7493294270833388" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KKEntity" Width="1.5" PointX="13.25" PointY="6.125" Height="6.4032194010416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.KMEntity" Width="1.5" PointX="16.625" PointY="13.375" Height="6.0186165364583388" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.AP_hat_Auftraege" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="9.3266097005208337" />
-          <edmx:ConnectorPoint PointX="13.25" PointY="9.3266097005208337" />
-        </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Kopf_hat_Details" >
-          <edmx:ConnectorPoint PointX="13.59375" PointY="12.528219401041667" />
-          <edmx:ConnectorPoint PointX="13.59375" PointY="16.09375" />
-          <edmx:ConnectorPoint PointX="16.625" PointY="16.09375" />
-        </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.M__hat_Kontrakte" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="0.95" />
-          <edmx:ConnectorPoint PointX="14.59375" PointY="0.95" />
-          <edmx:ConnectorPoint PointX="14.59375" PointY="6.125" />
-        </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Ein_Detail_hat_ein_Material" >
-          <edmx:ConnectorPoint PointX="15.5" PointY="19.134308268229169" />
-          <edmx:ConnectorPoint PointX="16.625" PointY="19.134308268229169" />
-        </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="3.375" PointY="6.75" Height="3.5186979166666674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="19.25" PointY="2.875" Height="19.672018229166667" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Mandant_hat_Wägung" >
-          <edmx:ConnectorPoint PointX="12.125" PointY="1.0812524999999933" />
-          <edmx:ConnectorPoint PointX="14.510416666666666" PointY="1.0812524999999926" />
-          <edmx:ConnectorPoint PointX="14.677083333333334" PointY="1.0812524999999933" />
-          <edmx:ConnectorPoint PointX="20" PointY="1.0812524999999933" />
-          <edmx:ConnectorPoint PointX="20" PointY="2.875" />
-        </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Material_ist_in_Wägungen_enthalten" >
-          <edmx:ConnectorPoint PointX="15.5" PointY="21.001567382812503" />
-          <edmx:ConnectorPoint PointX="19.25" PointY="21.001567382812503" />
-        </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="0.75" PointY="5.75" Height="11.210755208333325" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AddressEntity" Width="1.5" PointX="7.375" PointY="6.75" Height="4.0956022135416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="8.9031380208333246" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

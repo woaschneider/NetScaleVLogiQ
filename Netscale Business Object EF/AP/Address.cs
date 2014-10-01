@@ -13,9 +13,9 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Waege.
+	/// Summary description for Address.
 	/// </summary>
-	public partial class Waege : ABusinessObject<WaegeEntity>
+	public partial class Address : ABusinessObject<AddressEntity>
 	{
 		
 		#region Association Properties
@@ -23,9 +23,9 @@ namespace HWB.NETSCALE.BOEF
 		
 		/// Business Rule object
 		/// </summary>
-		public virtual WaegeRules Rules
+		public virtual APRules Rules
 		{
-			get { return (WaegeRules)this.BusinessRuleObj; }
+			get { return (APRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +48,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Waege()
+		public Address()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Waege";
-			this.PhysicalDbcObjectName = "dbo.Waege";
+			this.TableName = "Address";
+			this.PhysicalDbcObjectName = "dbo.Address";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +64,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new WaegeRules(this);
+			return new APRules(this);
 		}
 
 		/// <summary>
@@ -92,22 +92,13 @@ namespace HWB.NETSCALE.BOEF
 		/// Set default values on the new entity
 		/// </summary>
 		/// <param name="entity">New Entity</param>
-		protected override void HookSetDefaultValues(WaegeEntity entity)
+		protected override void HookSetDefaultValues(AddressEntity entity)
 		{
 
 			// Store the hard-coded default values via the entity object
 			if (entity != null)
 			{
-				entity.Endbetrag = (0);
-				entity.Frachtpreis = (0);
-				entity.Istmenge = (0);
-				entity.Nettobetrag = (0);
-				entity.preisvk = (0);
-				entity.Restmenge = (0);
-				entity.Skontoproz = (0);
-				entity.Sollmenge = (0);
-				entity.Sollwertmischer = (0);
-				entity.USt = (0);
+			
 			}
 		}
 

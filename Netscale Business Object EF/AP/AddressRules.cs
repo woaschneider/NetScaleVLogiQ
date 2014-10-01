@@ -39,9 +39,9 @@ namespace HWB.NETSCALE.BOEF
 				{
 					this.CurrentEntity = CurrentEntity as mmBusinessEntity;
 				
-					if (((AP)this.HostObject).IsEntityChanged(this.CurrentEntity))
+					if (((Address)this.HostObject).IsEntityChanged(this.CurrentEntity))
 					{
-						APEntity Entity = CurrentEntity as APEntity;
+						AddressEntity Entity = CurrentEntity as AddressEntity;
 			
 						// Call validation methods
 						this.CheckExtendedRulesHook<EntityType>(CurrentEntity);

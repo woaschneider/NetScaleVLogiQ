@@ -9,9 +9,9 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
     /// <summary>
-    /// Summary description for APEntity.
+    /// Summary description for AddressEntity.
     /// </summary>
-    public partial class APEntity : ABusinessEntity
+    public partial class AddressEntity : ABusinessEntity
     {
     }
 }

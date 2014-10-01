@@ -19,7 +19,7 @@ namespace HWB.NETSCALE.BOEF
         /// <param name="entity">Entity</param>
         public override void CheckExtendedRulesHook<EntityType>(EntityType entity)
         {
-            APEntity currentEntity = entity as APEntity;
+            AddressEntity currentEntity = entity as AddressEntity;
 
             // Call Validation methods
         }
