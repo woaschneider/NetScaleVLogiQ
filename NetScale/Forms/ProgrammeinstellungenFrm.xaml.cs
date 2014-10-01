@@ -308,48 +308,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdEditLS_Click(object sender, RoutedEventArgs e)
         {
-            ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "wOGzEQ";
-            Waege boW = new Waege();
-            combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNRGlobal("7104");
-
-            LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
-            LL.Variables.Add("Original_Kopie", "Original");
-
-            // Unterschriftendatei
-            User boU = new User();
-            int Wpk = boW.GetLastWaegung();
-            UserEntity boUE;
-            WaegeEntity boWE = null;
-
-            if (Wpk != null)
-                boWE = boW.GetWaegungByID(Wpk);
-
-            if (boWE.UserPK != null)
-            {
-                boUE = boU.GetUserById(boWE.UserPK);
-
-                if (boUE != null)
-                {
-                    LL.Variables.AddFromObject(boUE);
-                }
-            }
-            // Unterschrift Ende
-
-
-            LL.DataSource = oDP;
-
-
-            LL.AutoProjectType = LlProject.Label;
-            try
-            {
-                LL.Design();
-            }
-            catch (ListLabelException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+           
 
             //     ExportConfiguration exportConfig = new ExportConfiguration(LlExportTarget.Pdf, , "<Projektdateiname mit Pfad>");
         }
@@ -357,19 +316,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdEditAPListe_Click(object sender, RoutedEventArgs e)
         {
-            ListLabel LL = new ListLabel();
-            LL.LicensingInfo = "wOGzEQ";
-            AP boAP = new AP();
-            mmBindingList<APEntity> boAPE = boAP.GetAllAP();
-            LL.DataSource = boAPE;
-            try
-            {
-                LL.Design();
-            }
-            catch (ListLabelException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+          
         }
 
         private void CmdGetComPortsKartenleserClick(object sender, RoutedEventArgs e)

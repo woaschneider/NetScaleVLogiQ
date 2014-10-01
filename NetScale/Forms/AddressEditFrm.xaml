@@ -1,4 +1,4 @@
-﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.APEditFrm"
+﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.AddressEditFrm"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"

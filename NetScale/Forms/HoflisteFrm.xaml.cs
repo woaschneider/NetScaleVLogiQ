@@ -56,7 +56,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             boW = new Waege();
             dataGrid1.SelectedValuePath = "PK";
-            dataGrid1.ItemsSource = boW.GetHofListe();
+           
         }
 
         protected override void Window_Loaded(object sender, RoutedEventArgs e)

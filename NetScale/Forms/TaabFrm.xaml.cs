@@ -46,8 +46,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             VFP.StrToFile("taab",DateTime.Today.ToString().Substring(0,10));
             Waege _boW = new Waege();
-            var uRet =  _boW.TaabOAM(TaabDatePicker.SelectedDate.Value);
-          MessageBox.Show("Export fertig. Es wurden "+ uRet.ToString()+ " Datensätze exportiert","Meldung",MessageBoxButton.OK,MessageBoxImage.Exclamation);
+        
             Hide();
         }
 

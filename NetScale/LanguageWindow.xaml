@@ -11,11 +11,11 @@
 							<ColumnDefinition Width="320" />
 							<ColumnDefinition Width="114*" />
 						</Grid.ColumnDefinitions>
-						<Custom:DataGrid Margin="5" x:Name="grdUsers" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="Column" SelectionMode="Single" Grid.ColumnSpan="3">
-							<Custom:DataGrid.Columns>
-								<Custom:DataGridTextColumn Width="*" Header="Language" Binding="{Binding Description, Mode=Default}" />
-							</Custom:DataGrid.Columns>
-						</Custom:DataGrid>
+						<DataGrid Margin="5" x:Name="grdUsers" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="Column" SelectionMode="Single" Grid.ColumnSpan="3">
+							<DataGrid.Columns>
+								<DataGridTextColumn Width="*" Header="Language" Binding="{Binding Description, Mode=Default}" />
+							</DataGrid.Columns>
+						</DataGrid>
 						<StackPanel Grid.Column="3" Margin="10,10,10,10" x:Name="stpButtons" VerticalAlignment="Center">
 							<mmwpf:mmButtonNew VerticalAlignment="Center" Margin="0,0,0,30" x:Name="btnNew" BindingSource="Language" />
 							<mmwpf:mmButtonDelete VerticalAlignment="Center" Margin="0,0,0,10" x:Name="btnDelete" BindingSource="Language" />

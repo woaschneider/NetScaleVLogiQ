@@ -9,14 +9,14 @@
 							<ColumnDefinition />
 							<ColumnDefinition Width="0.3*" />
 						</Grid.ColumnDefinitions>
-						<Custom:DataGrid x:Name="grdUsers" Margin="5" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="Column" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Mode=OneWay}" SelectionMode="Single">
-							<Custom:DataGrid.Columns>
-								<Custom:DataGridTextColumn Width="0.5*" Binding="{Binding FirstName,
+						<DataGrid x:Name="grdUsers" Margin="5" AutoGenerateColumns="False" GridLinesVisibility="None" HeadersVisibility="Column" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Mode=OneWay}" SelectionMode="Single">
+							<DataGrid.Columns>
+								<DataGridTextColumn Width="0.5*" Binding="{Binding FirstName,
                                                                              Mode=Default}" Header="Vorname" />
-								<Custom:DataGridTextColumn Width="0.5*" Binding="{Binding LastName,
+								<DataGridTextColumn Width="0.5*" Binding="{Binding LastName,
                                                                              Mode=Default}" Header="Nachname" />
-							</Custom:DataGrid.Columns>
-						</Custom:DataGrid>
+							</DataGrid.Columns>
+						</DataGrid>
 						<StackPanel x:Name="stpButtons" Grid.Column="1" Margin="10,10,10,10" VerticalAlignment="Center">
 							<mmwpf:mmButtonNew x:Name="btnNew" Margin="0,0,0,30" VerticalAlignment="Center" BindingSource="User" Content="Neu" />
 							<mmwpf:mmButtonDelete x:Name="btnDelete" Margin="0,0,0,10" VerticalAlignment="Center" BindingSource="User" Click="btnDelete_Click" Content="Löschen" />

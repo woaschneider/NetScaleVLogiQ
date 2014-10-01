@@ -248,16 +248,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void cmdAP_Click(object sender, RoutedEventArgs e)
         {
-            Forms.APFrm oApFrm = new Forms.APFrm();
-            oApFrm.ShowDialog();
-            oApFrm.Close();
+            Forms.AddressFrm oAddressFrm = new Forms.AddressFrm();
+            oAddressFrm.ShowDialog();
+            oAddressFrm.Close();
         }
 
         private void cmdMG_Click(object sender, RoutedEventArgs e)
         {
-            Forms.MGListFrm oMgFrm = new Forms.MGListFrm();
-            oMgFrm.ShowDialog();
-            oMgFrm.Close();
+           
         }
 
         private void cmdStartWaegebetrieb_Click(object sender, RoutedEventArgs e)

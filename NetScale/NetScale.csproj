@@ -163,9 +163,13 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.IdentityModel" />
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="WPFToolkit.Extended">
-      <HintPath>..\..\..\..\CS\Extended WPF Toolkit\WPFToolkit.Extended.dll</HintPath>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\WPF Toolkit\v3.5.50211.1\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WPFToolkit.Extended.dll</HintPath>
     </Reference>
     <Reference Include="Xceed.Wpf.Toolkit">
       <HintPath>..\..\..\..\CS\Extended WPF Toolkit Community Editon 2.0\Xceed.Wpf.Toolkit.dll</HintPath>
@@ -178,14 +182,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Forms\AbruflisteFrm.xaml.cs">
-      <DependentUpon>AbruflisteFrm.xaml</DependentUpon>
+    <Compile Include="Forms\AddressEditFrm.xaml.cs">
+      <DependentUpon>AddressEditFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\APEditFrm.xaml.cs">
-      <DependentUpon>APEditFrm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\APListFrm.xaml.cs">
-      <DependentUpon>APListFrm.xaml</DependentUpon>
+    <Compile Include="Forms\AddressListFrm.xaml.cs">
+      <DependentUpon>AddressListFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\AuftragEditFrm.xaml.cs">
@@ -211,12 +212,6 @@
     </Compile>
     <Compile Include="Forms\MandantListFrm.xaml.cs">
       <DependentUpon>MandantListFrm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MGEditFrm.xaml.cs">
-      <DependentUpon>MGEditFrm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MGListFrm.xaml.cs">
-      <DependentUpon>MGListFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ModulVerwaltungFrm.xaml.cs">
       <DependentUpon>ModulVerwaltungFrm.xaml</DependentUpon>
@@ -248,10 +243,6 @@
     </Compile>
     <Compile Include="Forms\WiegeFrm.xaml.cs">
       <DependentUpon>WiegeFrm.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Forms\WiegelisteFrm.xaml.cs">
-      <DependentUpon>WiegelisteFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\MyLoginWindow.xaml.cs">
       <DependentUpon>MyLoginWindow.xaml</DependentUpon>
@@ -261,8 +252,6 @@
       <DependentUpon>InfoFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Import\IImportInterface.cs" />
-    <Compile Include="Import\ImportISVNew.cs" />
-    <Compile Include="Import\ImportOAM.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="MMWPFBusinessEditFrm1.xaml.cs">
       <DependentUpon>MMWPFBusinessEditFrm1.xaml</DependentUpon>
@@ -280,15 +269,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\AbruflisteFrm.xaml">
+    <Page Include="Forms\AddressEditFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\APEditFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\APListFrm.xaml">
+    <Page Include="Forms\AddressListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,14 +306,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\MandantListFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\MGEditFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\MGListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -369,10 +346,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\WiegeFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\WiegelisteFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

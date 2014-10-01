@@ -32,16 +32,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         // KfzID direkt in die Wägemaske zurückgeben, wenn Fahrzeug aus der Wägemaske neu angelegt wird.
 
-        private CF boCF;
-
-        private CFEntity boCFE;
         private bool DoNotFireChangeText;
 
         public CFEditFrm(int pk, bool New, string Kfz1)
         {
             DoNotFireChangeText = true;
             // boCF = new CF();
-            boCF = (CF) this.RegisterPrimaryBizObj(new CF());
+          
 
             this.InitializeComponent();
             tb_einheit1.Text = goApp.MengenEinheit;
@@ -51,18 +48,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (New == true)
             {
                 this.Title = "Neues Kfz anlegen";
-                boCFE = boCF.NewEntity();
-                boCFE.Kfz1 = Kfz1;
-                boCFE.KfzID = GetNextFreeKfzId();
-                uRet = boCFE.KfzID;
+            
             }
             else
             {
                 this.Title = "Kfz bearbeiten";
-                boCFE = boCF.GetCFByPK(pk);
+            
                 uRet = null;
             }
-            DataContext = boCFE;
+         
             this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             DoNotFireChangeText = false;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
@@ -74,7 +68,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 uRet = null;
 
-                this.CancelEntity(boCF, boCFE);
 
                 Hide();
             }
@@ -84,11 +77,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             tb_CatchFocus.Focus();
             // Focus auf eine nicht sichtbare Textbox setzen. Sonst werden die Änderungen an der letzen TB nicht übernommen. Trick!
-         //   boCF.SaveEntity(boCFE);
-
-            var result = this.SaveEntity(boCF, boCFE);
-            if (result != mmSaveDataResult.RulesPassed)
-                return;
+        
         }
 
         private void cmdDelete_Click(object sender, RoutedEventArgs e)
@@ -97,46 +86,27 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                                                     MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (uRet == MessageBoxResult.Yes)
             {
-                boCF.DeleteEntity();
+             
                 this.Close();
             }
         }
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
-            boCF.CancelEntity();
-            boCF.Cancel();
+       
             Hide();
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
 
         {
-            boCF.CancelEntity();
-            boCF.Cancel();
+        
             Close();
         }
 
         private void cmdAbruf_Click(object sender, RoutedEventArgs e)
         {
-            AbruflisteFrm oABFrm = new AbruflisteFrm();
-            oABFrm.ShowDialog();
-            int uRet = oABFrm.URet;
-            if (uRet == 0)
-            {
-                oABFrm.Close();
-                return;
-            }
 
-
-            Abruf boAB = new Abruf();
-            AbrufEntity oABE = boAB.GetAbrufById(uRet);
-            if (oABE != null)
-            {
-                tb_abrufnr.Text = oABE.Abrufnr;
-                boCFE.abruf_PK = oABE.PK;
-            }
-            oABFrm.Close();
         }
 
         private void tb_NumDec_TextChanged(object sender, TextChangedEventArgs e)
@@ -155,14 +125,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Return | e.Key == Key.Tab)
             {
-                var oAp = new AP();
-                APEntity oApe = oAp.GetAPByNr(tb_NrFU.Text, "FU");
-                if (oApe != null)
-                    FillApFu(oApe);
-                else
-                {
-                    ClearApFu();
-                }
+            
             }
         }
 
@@ -170,7 +133,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         // SP Methoden
         private void LookUpAndFillSp()
         {
-            var oApFrm = new APFrm(tb_FirmaSP.Text, "SP");
+            var oApFrm = new AddressFrm(tb_FirmaSP.Text, "SP");
             oApFrm.ShowDialog();
             int uRet = oApFrm.uRet;
             oApFrm.Close();
@@ -178,15 +141,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
 
-            var boAp = new AP();
-            APEntity boApe = boAp.GetAPById(uRet);
-            tb_FirmaSP.Text = boApe.Firma;
-            tb_NrSP.Text = boApe.Nr;
+            var boAp = new Address();
+            AddressEntity boApe = boAp.GetAPById(uRet);
+           
         }
 
         private void LookUpAndFillFu()
         {
-            var oApFrm = new APFrm(tb_FirmaFU.Text, "FU");
+            var oApFrm = new AddressFrm(tb_FirmaFU.Text, "FU");
             oApFrm.ShowDialog();
             int uRet = oApFrm.uRet;
             oApFrm.Close();
@@ -194,21 +156,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
 
-            var boAp = new AP();
-            APEntity boApe = boAp.GetAPById(uRet);
-            boCFE.ap_PKFU = boApe.PK;
-            tb_FirmaFU.Text = boApe.Firma;
-            tb_NrFU.Text = boApe.Nr;
+            var boAp = new Address();
+            AddressEntity boApe = boAp.GetAPById(uRet);
+          
         }
-        private void FillApFu(APEntity boApe)
+        private void FillApFu(AddressEntity boApe)
         {
-            tb_NrFU.Text = boApe.Nr;
-            tb_FirmaFU.Text = boApe.Firma;
+         
         }
-        private void FillApSp(APEntity boApe)
+        private void FillApSp(AddressEntity boApe)
         {
-            tb_NrSP.Text = boApe.Nr;
-            tb_FirmaSP.Text = boApe.Firma;
         }
 
         private void ClearApSp()
@@ -235,18 +192,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         public string GetNextFreeKfzId()
         {
-            bool loopReady = false;
-            int ii = 0;
-            do
-            {
-                ii = ii + 1;
-                CFEntity boCFE = boCF.GetCFByKfzId(ii.ToString());
-                if (boCFE == null)
-                {
-                    loopReady = true;
-                }
-            } while (loopReady == false);
-            return ii.ToString();
+            return "0";
+
         }
     }
 }

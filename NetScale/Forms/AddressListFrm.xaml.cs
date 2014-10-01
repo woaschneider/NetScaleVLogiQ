@@ -22,24 +22,20 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     /// <summary>
     /// WPFBusinessWindow1 Class
     /// </summary>
-    public partial class APFrm : mmBusinessWindow
+    public partial class AddressFrm : mmBusinessWindow
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        private AP boAP;
+        private Address boAddress;
 
         private string _rolle;
 
         public int uRet;
 
-        public APFrm()
+        public AddressFrm()
         {
-            boAP = new AP();
-            //   RegisterBizObj(boAP);
-            this.InitializeComponent();
-            dataGrid1.SelectedValuePath = "PK";
-            dataGrid1.ItemsSource = boAP.GetAllAP();
+         
             this.MouseWheel += new MouseWheelEventHandler(this_mouseWheel);
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
@@ -47,27 +43,27 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         // Methode überladen
         // 1. alle Adressen
         // 2. mit Partnerrolle
-        public APFrm(string matchcode)
+        public AddressFrm(string matchcode)
         {
-            boAP = new AP();
-            //  RegisterBizObj(boAP);
+            boAddress = new Address();
+            //  RegisterBizObj(boAddress);
             this.InitializeComponent();
             dataGrid1.SelectedValuePath = "PK";
             txtSearch.Text = matchcode;
-            dataGrid1.ItemsSource = boAP.GetAllAPByMatchCode(txtSearch.Text.Trim());
+         
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
-        public APFrm(string matchcode, string Rolle)
+        public AddressFrm(string matchcode, string Rolle)
         {
             _rolle = Rolle;
-            boAP = new AP();
-            //  RegisterBizObj(boAP);
+            boAddress = new Address();
+            //  RegisterBizObj(boAddress);
             this.InitializeComponent();
             Title = Partnerrollen.GetRollenBezeichnung(Rolle);
             dataGrid1.SelectedValuePath = "PK";
             txtSearch.Text = matchcode;
-            dataGrid1.ItemsSource = boAP.GetAllAPByMatchCode(txtSearch.Text.Trim(), _rolle);
+
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
@@ -128,7 +124,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             dataGrid1.SelectedValuePath = "PK";
-            dataGrid1.ItemsSource = boAP.GetAllAPByMatchCode(txtSearch.Text.Trim(),_rolle);
+       
         }
 
         private void txtSearch_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -139,9 +135,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         { // if(Partnerrollen.IsRolleEdit(_rolle)==false)
         //    return;
 
-            APEditFrm oAPEditFrm = new APEditFrm(0, true,_rolle);
-            oAPEditFrm.ShowDialog();
-            oAPEditFrm.Close();
+            AddressEditFrm oAddressEditFrm = new AddressEditFrm(0, true,_rolle);
+            oAddressEditFrm.ShowDialog();
+            oAddressEditFrm.Close();
             Fillgrid();
         }
 
@@ -153,16 +149,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
 
-            APEditFrm oAPEditFrm = new APEditFrm(uRet, false,_rolle);
-            oAPEditFrm.ShowDialog();
-            oAPEditFrm.Close();
+            AddressEditFrm oAddressEditFrm = new AddressEditFrm(uRet, false,_rolle);
+            oAddressEditFrm.ShowDialog();
+            oAddressEditFrm.Close();
             Fillgrid();
         }
 
         private void Fillgrid()
         {
             dataGrid1.SelectedValuePath = "PK";
-            dataGrid1.ItemsSource = boAP.GetAllAPByMatchCode(txtSearch.Text.Trim(),_rolle);
+    
         }
 
         private void cmdSelect_Click(object sender, RoutedEventArgs e)

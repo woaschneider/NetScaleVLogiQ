@@ -17,47 +17,33 @@ using OakLeaf.MM.Main.WPF;
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 {
     /// <summary>
-    /// APEditFrm Class
+    /// AddressEditFrm Class
     /// </summary>
-    public partial class APEditFrm : mmBusinessWindow
+    public partial class AddressEditFrm : mmBusinessWindow
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        private AP boAP;
+        private Address boAddress;
 
-        private APEntity boAPE;
+        private AddressEntity boAPE;
 
-        public APEditFrm(int PK, bool New, string _rolle)
+        public AddressEditFrm(int PK, bool New, string _rolle)
         {
-            boAP = new AP();
+            boAddress = new Address();
             this.InitializeComponent();
             if (New == true)
             {
                 this.Title = Partnerrollen.GetRollenBezeichnung(_rolle) + " - Neue Adresse anlegen";
-                boAPE = boAP.NewEntity();
+                boAPE = boAddress.NewEntity();
 
-                if(boAPE!=null)
-                {
-                    Einstellungen oE = new Einstellungen();
-                    boAPE.Nr=  oE.NewAp_Nr();
-                    boAPE.bonitaet = "8";
-                }
-                if (_rolle == "AU")
-                    boAPE.Rolle_AU = true;
-                if (_rolle == "LI")
-                    boAPE.Rolle_LI = true;
-                if (_rolle == "SP")
-                    boAPE.Rolle_SP = true;
-                if (_rolle == "FU")
-                    boAPE.Rolle_FU = true;
 
             }
             else
             {
                 this.Title = Partnerrollen.GetRollenBezeichnung(_rolle) + " - Adresse bearbeiten";
                 //   this.Title = "Empfänger bearbeiten!";
-                boAPE = boAP.GetAPById(PK);
+                boAPE = boAddress.GetAPById(PK);
             }
             this.DataContext = boAPE;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
@@ -78,7 +64,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             tb_CatchFocus.Focus();
             // Focus auf eine nicht sichtbare Textbox setzen. Sonst werden die Änderungen an der letzen TB nicht übernommen. Trick!
-            boAP.SaveEntity();
+            boAddress.SaveEntity();
             this.Hide();
 
         }
@@ -89,14 +75,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                                                     MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (uRet == MessageBoxResult.Yes)
             {
-                boAP.DeleteEntity();
+                boAddress.DeleteEntity();
                 this.Hide();
             }
         }
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
-            boAP.Cancel();
+            boAddress.Cancel();
             this.Hide();
         }
 

@@ -84,7 +84,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             MandantEditFrm oMEFrm = new MandantEditFrm(0, true);
             oMEFrm.ShowDialog();
             oMEFrm.Close();
-            //  APEditFrm oAPEditFrm = new APEditFrm(0, true);
+            //  AddressEditFrm oAPEditFrm = new AddressEditFrm(0, true);
             // oAPEditFrm.ShowDialog();
             //  oAPEditFrm.Close();
             Fillgrid();

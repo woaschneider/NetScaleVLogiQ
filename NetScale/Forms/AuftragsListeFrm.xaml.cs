@@ -21,7 +21,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     /// </summary>
     public partial class AuftragsListeFrm : mmBusinessWindow
     {
-        private KK boKK;
+ 
         public int uRet = 0;
 
         /// <summary>
@@ -92,12 +92,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void FillDataGrid(string matchcode, string baustelle)
         {
-            boKK = new KK();
-       
-
-            dataGrid1.SelectedValuePath = "kkpk";
-
-            dataGrid1.ItemsSource = boKK.GetAuftragsListe(goApp.Mandant_PK,matchcode, baustelle);
+        
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
