@@ -231,17 +231,7 @@ namespace HWB.NETSCALE.BOEF
                 }
             }
         }
-        public void DeleteOldAbrufe()
-        {
-            IQueryable<AbrufEntity> query = from a in ObjectContext.AbrufEntities
-                                            where (a.abrufdatum < DateTime.Today | a.abrufdatum == null ) &
-                                            a.abruffest!=true
 
-                                         select a;
-            var ii = GetEntityList(query);
-
-            DeleteEntityList();
-        }
 
       
 

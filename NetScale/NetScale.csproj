@@ -264,6 +264,9 @@
     <Compile Include="Import\ImportISVNew.cs" />
     <Compile Include="Import\ImportOAM.cs" />
     <Compile Include="MD5.cs" />
+    <Compile Include="MMWPFBusinessEditFrm1.xaml.cs">
+      <DependentUpon>MMWPFBusinessEditFrm1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
@@ -388,6 +391,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\MyLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MMWPFBusinessEditFrm1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -43,7 +43,7 @@
                   Margin="0,1,4,3"
                   AutoGenerateColumns="False"
                   FontSize="14"
-                  MouseDoubleClick="dataGrid1_MouseDoubleClick">
+                  MouseDoubleClick="dataGrid1_MouseDoubleClick" Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn MaxWidth="100"
                                     Binding="{Binding Nr}"

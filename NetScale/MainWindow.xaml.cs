@@ -120,7 +120,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 goApp.ZweitW = oLE.ZWEITWAEGUNGSWAAGE;
 
 
-                Title = Title + "  " + " Straßenfahrzeugwaage";
+                Title = Title + "  " + " Straßenfahrzeugwaage für POLOS";
                 if (goApp.acessLevel == "1")
                     Title = Title + "   ----> Service " + goApp.username;
 
@@ -160,13 +160,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                     goApp.KartenleserModulAktiv = true;
 
 
-                // Temporäre Abruf löschen
-                Abruf boAbruf = new Abruf();
-                boAbruf.DeleteOldAbrufe();
+             
 
-                // Abrufe-Nr vom Vortag oder älter aus Kfz löschen
-                CF ocf = new CF();
-                ocf.DeleteOldAbrufe();
+              
 
                 // KeyHandler
                 // KeyDown += OnButtonKeyDown;
