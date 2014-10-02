@@ -94,6 +94,10 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\NUnit 2.6\bin\framework\nunit.framework.dll</HintPath>
@@ -252,6 +256,8 @@
       <DependentUpon>InfoFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Import\IImportInterface.cs" />
+    <Compile Include="Import\ImportPolos.cs" />
+    <Compile Include="Import\PolosAddress.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />
@@ -409,6 +415,7 @@
     <None Include="ClassDiagram2.cd" />
     <None Include="Forms\WiegeFrm.cd" />
     <None Include="NetScale_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

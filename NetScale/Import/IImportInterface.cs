@@ -8,6 +8,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 {
     interface IImportInterface
     {
-         void import(WiegeFrm oWf);
+         void Import(WiegeFrm oWf);
     }
 }
