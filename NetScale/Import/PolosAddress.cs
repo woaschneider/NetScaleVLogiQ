@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using HWB.NETSCALE.BOEF;
 using Microsoft.Windows.Controls;
 using Newtonsoft.Json;
 
@@ -23,8 +24,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
                
                 while(reader.Read())
                 {
-                    Console.WriteLine(reader.TokenType+reader.LineNumber);
+                  //  Console.WriteLine(reader.TokenType+reader.LineNumber);
                     Console.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
+                    Address boA = new Address();
+                    AddressEntity boAE = boA.NewEntity();
+
+                  //  if(reader.TokenType=="PropertyName" &&reader.value )
+
+                    
                 }
 
 
@@ -50,35 +57,5 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
     }
 
 
-    public class Country
-    {
-        public int id { get; set; }
-        public string isoCode { get; set; }
-    }
 
-    public class Address2
-    {
-        public string name { get; set; }
-        public string street { get; set; }
-        public string zipCode { get; set; }
-        public string city { get; set; }
-        public Country country { get; set; }
-    }
-
-    public class AddressableEntity
-    {
-        public int id { get; set; }
-        public string businessIdentifier { get; set; }
-        public string name { get; set; }
-        public string owningLocationId { get; set; }
-        public string subName { get; set; }
-        public Address2 address { get; set; }
-
-        
-    }
-
-    public class Address
-    {
-        public IList<AddressableEntity> addressableEntities { get; set; }
-    }
 }
