@@ -294,22 +294,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AddressEntity> AddressEntities
-        {
-            get
-            {
-                if ((_AddressEntities == null))
-                {
-                    _AddressEntities = base.CreateObjectSet<AddressEntity>("AddressEntities");
-                }
-                return _AddressEntities;
-            }
-        }
-        private ObjectSet<AddressEntity> _AddressEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<WaegeEntity> WaegeEntities
         {
             get
@@ -322,6 +306,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<AddressEntity> AddressEntities
+        {
+            get
+            {
+                if ((_AddressEntities == null))
+                {
+                    _AddressEntities = base.CreateObjectSet<AddressEntity>("AddressEntities");
+                }
+                return _AddressEntities;
+            }
+        }
+        private ObjectSet<AddressEntity> _AddressEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -439,19 +439,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AddressEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToAddressEntities(AddressEntity addressEntity)
-        {
-            base.AddObject("AddressEntities", addressEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AddressEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToAddressEntities(AddressEntity addressEntity)
+        {
+            base.AddObject("AddressEntities", addressEntity);
         }
 
         #endregion
@@ -512,6 +512,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.Int32 _PK;
         partial void OnPKChanging(global::System.Int32 value);
         partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                OnidChanging(value);
+                ReportPropertyChanging("id");
+                _id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id");
+                OnidChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _id;
+        partial void OnidChanging(Nullable<global::System.Int32> value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String businessIdentifier
+        {
+            get
+            {
+                return _businessIdentifier;
+            }
+            set
+            {
+                OnbusinessIdentifierChanging(value);
+                ReportPropertyChanging("businessIdentifier");
+                _businessIdentifier = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("businessIdentifier");
+                OnbusinessIdentifierChanged();
+            }
+        }
+        private global::System.String _businessIdentifier;
+        partial void OnbusinessIdentifierChanging(global::System.String value);
+        partial void OnbusinessIdentifierChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.

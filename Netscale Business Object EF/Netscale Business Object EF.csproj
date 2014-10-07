@@ -64,6 +64,7 @@
     <Reference Include="combit.ListLabel17">
       <HintPath>C:\Program Files (x86)\combit\LL17\Redistributierbare Dateien\x64\combit.ListLabel17.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\NUnit 2.5.9\bin\net-2.0\framework\nunit.framework.dll</HintPath>
@@ -113,11 +114,11 @@
     <Compile Include="ABusinessObject.cs" />
     <Compile Include="ABusinessRule.cs" />
     <Compile Include="AAppTest.cs" />
-    <Compile Include="AP\Address.cs" />
-    <Compile Include="AP\Address.Partial.cs" />
-    <Compile Include="AP\AddressEntity.cs" />
-    <Compile Include="AP\AddressRules.cs" />
-    <Compile Include="AP\AddressRules.Partial.cs" />
+    <Compile Include="Address\Address.cs" />
+    <Compile Include="Address\Address.Partial.cs" />
+    <Compile Include="Address\AddressEntity.cs" />
+    <Compile Include="Address\AddressRules.cs" />
+    <Compile Include="Address\AddressRules.Partial.cs" />
     <Compile Include="Bonitaet\Bonitaet.cs" />
     <Compile Include="Bonitaet\Bonitaet.Partial.cs" />
     <Compile Include="Bonitaet\BonitaetEntity.cs" />

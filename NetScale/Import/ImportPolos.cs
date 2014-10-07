@@ -20,6 +20,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
 
       }
 
+      public void Import()
+      {
+          Path = GetImportPath();
+          if (Path == "")
+          {
+              MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
+                              "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
+              return;
+          }
+
+          new ImportAddress().Import(Path + "\\Polos_Adressen.json");
+      }
     public  void Import(WiegeFrm owf)
     {
         Path = GetImportPath();
@@ -32,6 +44,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
 
           new ImportAddress().Import(Path + "\\Polos_Adressen.json");
     }
+
+
     private string GetImportPath()
     {
         Lokaleeinstellungen oBE = new Lokaleeinstellungen();

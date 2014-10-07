@@ -391,7 +391,11 @@
                                          FontSize="14"
                                          Label="  Mandant  "
                                          LargeImageSource="Images\1360083317_Home.png" />
-
+                    <ribbon:RibbonButton x:Name="cmdImport"
+                                         Click="cmdImport_Click"
+                                         FontSize="14"
+                                         Label=" Import "
+                                         LargeImageSource="..\Images\1349852832_document-import.png" />
 
                 </ribbon:RibbonGroup>
 

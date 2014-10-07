@@ -89,6 +89,7 @@
     <Reference Include="HWB.Framework">
       <HintPath>..\..\..\..\..\HWBFramework\HwbMmWpfLibrary\HwbMmWpfLibrary\bin\Debug\HWB.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -257,6 +258,8 @@
     </Compile>
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="Import\ImportPolos.cs" />
+    <Compile Include="Import\JsonHelpers.cs" />
+    <Compile Include="Import\ImportAddress.cs" />
     <Compile Include="Import\PolosAddress.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="MyFunctions.cs" />
