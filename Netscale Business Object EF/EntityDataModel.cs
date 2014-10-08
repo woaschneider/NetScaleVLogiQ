@@ -710,30 +710,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String country
-        {
-            get
-            {
-                return _country;
-            }
-            set
-            {
-                OncountryChanging(value);
-                ReportPropertyChanging("country");
-                _country = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("country");
-                OncountryChanged();
-            }
-        }
-        private global::System.String _country;
-        partial void OncountryChanging(global::System.String value);
-        partial void OncountryChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Boolean> roleClient
         {
             get
@@ -920,6 +896,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _roleTrainOperator;
         partial void OnroleTrainOperatorChanging(Nullable<global::System.Boolean> value);
         partial void OnroleTrainOperatorChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> idCountry
+        {
+            get
+            {
+                return _idCountry;
+            }
+            set
+            {
+                OnidCountryChanging(value);
+                ReportPropertyChanging("idCountry");
+                _idCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("idCountry");
+                OnidCountryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _idCountry;
+        partial void OnidCountryChanging(Nullable<global::System.Int32> value);
+        partial void OnidCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String isocodeCountry
+        {
+            get
+            {
+                return _isocodeCountry;
+            }
+            set
+            {
+                OnisocodeCountryChanging(value);
+                ReportPropertyChanging("isocodeCountry");
+                _isocodeCountry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("isocodeCountry");
+                OnisocodeCountryChanged();
+            }
+        }
+        private global::System.String _isocodeCountry;
+        partial void OnisocodeCountryChanging(global::System.String value);
+        partial void OnisocodeCountryChanged();
 
         #endregion
     

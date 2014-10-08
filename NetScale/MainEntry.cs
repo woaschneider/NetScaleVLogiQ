@@ -69,9 +69,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             }
 
 
-            MyLoginWindow LoginWindow = new MyLoginWindow();
-            Result = LoginWindow.ShowDialog();
-
+           // MyLoginWindow LoginWindow = new MyLoginWindow();
+            // Result = LoginWindow.ShowDialog();
+            Result = true;
 
             if (Result == true)
             {

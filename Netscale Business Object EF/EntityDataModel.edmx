@@ -46,7 +46,6 @@
           <Property Name="street" Type="varchar" MaxLength="64" />
           <Property Name="zipCode" Type="varchar" MaxLength="16" />
           <Property Name="city" Type="varchar" MaxLength="128" />
-          <Property Name="country" Type="varchar" MaxLength="4" />
           <Property Name="roleClient" Type="bit" />
           <Property Name="roleInvoiceReceiver" Type="bit" />
           <Property Name="roleStorageClient" Type="bit" />
@@ -55,6 +54,8 @@
           <Property Name="roleCarrier" Type="bit" />
           <Property Name="roleShipOwner" Type="bit" />
           <Property Name="roleTrainOperator" Type="bit" />
+          <Property Name="idCountry" Type="int" />
+          <Property Name="isocodeCountry" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
@@ -538,7 +539,6 @@
           <Property Type="String" Name="street" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="zipCode" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="country" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="roleClient" />
           <Property Type="Boolean" Name="roleInvoiceReceiver" />
           <Property Type="Boolean" Name="roleStorageClient" />
@@ -547,6 +547,8 @@
           <Property Type="Boolean" Name="roleCarrier" />
           <Property Type="Boolean" Name="roleShipOwner" />
           <Property Type="Boolean" Name="roleTrainOperator" />
+          <Property Type="Int32" Name="idCountry" />
+          <Property Type="String" Name="isocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -779,6 +781,8 @@
           <EntitySetMapping Name="AddressEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AddressEntity">
               <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="isocodeCountry" ColumnName="isocodeCountry" />
+                <ScalarProperty Name="idCountry" ColumnName="idCountry" />
                 <ScalarProperty Name="roleTrainOperator" ColumnName="roleTrainOperator" />
                 <ScalarProperty Name="roleShipOwner" ColumnName="roleShipOwner" />
                 <ScalarProperty Name="roleCarrier" ColumnName="roleCarrier" />
@@ -787,7 +791,6 @@
                 <ScalarProperty Name="roleStorageClient" ColumnName="roleStorageClient" />
                 <ScalarProperty Name="roleInvoiceReceiver" ColumnName="roleInvoiceReceiver" />
                 <ScalarProperty Name="roleClient" ColumnName="roleClient" />
-                <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="city" ColumnName="city" />
                 <ScalarProperty Name="zipCode" ColumnName="zipCode" />
                 <ScalarProperty Name="street" ColumnName="street" />
@@ -841,7 +844,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="3.375" PointY="6.75" Height="3.5186979166666674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="8.9031380208333246" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AddressEntity" Width="1.5" PointX="7.375" PointY="6.75" Height="4.4802050781250031" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AddressEntity" Width="1.5" PointX="7.375" PointY="6.75" Height="4.6725065104166674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

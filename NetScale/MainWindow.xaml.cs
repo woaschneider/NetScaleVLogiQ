@@ -362,6 +362,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private void cmdImport_Click(object sender, RoutedEventArgs e)
         {
             new ImportPolos().Import();
+            MessageBox.Show("Import fertig!");
         }
     }
 }
