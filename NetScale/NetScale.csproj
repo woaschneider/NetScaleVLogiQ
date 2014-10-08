@@ -259,8 +259,10 @@
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="Import\ImportPolos.cs" />
     <Compile Include="Import\JsonHelpers.cs" />
-    <Compile Include="Import\ImportAddress.cs" />
-    <Compile Include="Import\PolosAddress.cs" />
+    <Compile Include="Import\AddressImport\ImportAddress.cs" />
+    <Compile Include="Import\AddressImport\PolosAddress.cs" />
+    <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
+    <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />

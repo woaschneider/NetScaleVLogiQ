@@ -310,18 +310,34 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AddressEntity> AddressEntities
+        public ObjectSet<AdressenEntity> AdressenEntities
         {
             get
             {
-                if ((_AddressEntities == null))
+                if ((_AdressenEntities == null))
                 {
-                    _AddressEntities = base.CreateObjectSet<AddressEntity>("AddressEntities");
+                    _AdressenEntities = base.CreateObjectSet<AdressenEntity>("AdressenEntities");
                 }
-                return _AddressEntities;
+                return _AdressenEntities;
             }
         }
-        private ObjectSet<AddressEntity> _AddressEntities;
+        private ObjectSet<AdressenEntity> _AdressenEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WarenartenEntity> WarenartenEntities
+        {
+            get
+            {
+                if ((_WarenartenEntities == null))
+                {
+                    _WarenartenEntities = base.CreateObjectSet<WarenartenEntity>("WarenartenEntities");
+                }
+                return _WarenartenEntities;
+            }
+        }
+        private ObjectSet<WarenartenEntity> _WarenartenEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -447,11 +463,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AddressEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AdressenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
-        public void AddToAddressEntities(AddressEntity addressEntity)
+        public void AddToAdressenEntities(AdressenEntity adressenEntity)
         {
-            base.AddObject("AddressEntities", addressEntity);
+            base.AddObject("AdressenEntities", adressenEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WarenartenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWarenartenEntities(WarenartenEntity warenartenEntity)
+        {
+            base.AddObject("WarenartenEntities", warenartenEntity);
         }
 
         #endregion
@@ -465,22 +489,22 @@ namespace HWB.NETSCALE.BOEF
     /// <summary>
     /// Keine Dokumentation für Metadaten verfügbar.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="AddressEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="AdressenEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class AddressEntity : ABusinessEntity
+    public partial class AdressenEntity : ABusinessEntity
     {
         #region Factory-Methode
     
         /// <summary>
-        /// Erstellt ein neues AddressEntity-Objekt.
+        /// Erstellt ein neues AdressenEntity-Objekt.
         /// </summary>
         /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
-        public static AddressEntity CreateAddressEntity(global::System.Int32 pK)
+        public static AdressenEntity CreateAdressenEntity(global::System.Int32 pK)
         {
-            AddressEntity addressEntity = new AddressEntity();
-            addressEntity.PK = pK;
-            return addressEntity;
+            AdressenEntity adressenEntity = new AdressenEntity();
+            adressenEntity.PK = pK;
+            return adressenEntity;
         }
 
         #endregion
@@ -710,6 +734,54 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> idCountry
+        {
+            get
+            {
+                return _idCountry;
+            }
+            set
+            {
+                OnidCountryChanging(value);
+                ReportPropertyChanging("idCountry");
+                _idCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("idCountry");
+                OnidCountryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _idCountry;
+        partial void OnidCountryChanging(Nullable<global::System.Int32> value);
+        partial void OnidCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String isocodeCountry
+        {
+            get
+            {
+                return _isocodeCountry;
+            }
+            set
+            {
+                OnisocodeCountryChanging(value);
+                ReportPropertyChanging("isocodeCountry");
+                _isocodeCountry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("isocodeCountry");
+                OnisocodeCountryChanged();
+            }
+        }
+        private global::System.String _isocodeCountry;
+        partial void OnisocodeCountryChanging(global::System.String value);
+        partial void OnisocodeCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Boolean> roleClient
         {
             get
@@ -896,54 +968,6 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _roleTrainOperator;
         partial void OnroleTrainOperatorChanging(Nullable<global::System.Boolean> value);
         partial void OnroleTrainOperatorChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> idCountry
-        {
-            get
-            {
-                return _idCountry;
-            }
-            set
-            {
-                OnidCountryChanging(value);
-                ReportPropertyChanging("idCountry");
-                _idCountry = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("idCountry");
-                OnidCountryChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _idCountry;
-        partial void OnidCountryChanging(Nullable<global::System.Int32> value);
-        partial void OnidCountryChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String isocodeCountry
-        {
-            get
-            {
-                return _isocodeCountry;
-            }
-            set
-            {
-                OnisocodeCountryChanging(value);
-                ReportPropertyChanging("isocodeCountry");
-                _isocodeCountry = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("isocodeCountry");
-                OnisocodeCountryChanged();
-            }
-        }
-        private global::System.String _isocodeCountry;
-        partial void OnisocodeCountryChanging(global::System.String value);
-        partial void OnisocodeCountryChanged();
 
         #endregion
     
@@ -4488,6 +4512,133 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _InvoiceReceiverCountry;
         partial void OnInvoiceReceiverCountryChanging(global::System.String value);
         partial void OnInvoiceReceiverCountryChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="WarenartenEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class WarenartenEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues WarenartenEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static WarenartenEntity CreateWarenartenEntity(global::System.Int32 pK)
+        {
+            WarenartenEntity warenartenEntity = new WarenartenEntity();
+            warenartenEntity.PK = pK;
+            return warenartenEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                OnidChanging(value);
+                ReportPropertyChanging("id");
+                _id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("id");
+                OnidChanged();
+            }
+        }
+        private global::System.String _id;
+        partial void OnidChanging(global::System.String value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String baseunit_shortdescription
+        {
+            get
+            {
+                return _baseunit_shortdescription;
+            }
+            set
+            {
+                Onbaseunit_shortdescriptionChanging(value);
+                ReportPropertyChanging("baseunit_shortdescription");
+                _baseunit_shortdescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("baseunit_shortdescription");
+                Onbaseunit_shortdescriptionChanged();
+            }
+        }
+        private global::System.String _baseunit_shortdescription;
+        partial void Onbaseunit_shortdescriptionChanging(global::System.String value);
+        partial void Onbaseunit_shortdescriptionChanged();
 
         #endregion
     
