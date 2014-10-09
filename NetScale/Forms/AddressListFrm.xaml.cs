@@ -35,7 +35,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         public AddressFrm()
         {
-         
             this.MouseWheel += new MouseWheelEventHandler(this_mouseWheel);
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
@@ -50,7 +49,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.InitializeComponent();
             dataGrid1.SelectedValuePath = "PK";
             txtSearch.Text = matchcode;
-         
+
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
@@ -82,14 +81,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (e.Key == Key.Escape)
             {
                 Hide();
-                 e.Handled = true;
+                e.Handled = true;
             }
             if (e.Key == Key.Return)
             {
-              
                 cmdSelect_Click(cmdSelect, e);
                 Hide();
-                 e.Handled = true;
+                e.Handled = true;
             }
         }
 
@@ -124,18 +122,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             dataGrid1.SelectedValuePath = "PK";
-       
         }
 
         private void txtSearch_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             dataGrid1.FontSize = 12;
         }
-        private void cmdNeu_Click(object sender, RoutedEventArgs e)
-        { // if(Partnerrollen.IsRolleEdit(_rolle)==false)
-        //    return;
 
-            AddressEditFrm oAddressEditFrm = new AddressEditFrm(0, true,_rolle);
+        private void cmdNeu_Click(object sender, RoutedEventArgs e)
+        {
+            // if(Partnerrollen.IsRolleEdit(_rolle)==false)
+            //    return;
+
+            AddressEditFrm oAddressEditFrm = new AddressEditFrm(0, true, _rolle);
             oAddressEditFrm.ShowDialog();
             oAddressEditFrm.Close();
             Fillgrid();
@@ -143,13 +142,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-           
-
             int uRet = Convert.ToInt32(dataGrid1.SelectedValue);
             if (uRet == 0)
                 return;
 
-            AddressEditFrm oAddressEditFrm = new AddressEditFrm(uRet, false,_rolle);
+            AddressEditFrm oAddressEditFrm = new AddressEditFrm(uRet, false, _rolle);
             oAddressEditFrm.ShowDialog();
             oAddressEditFrm.Close();
             Fillgrid();
@@ -158,7 +155,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void Fillgrid()
         {
             dataGrid1.SelectedValuePath = "PK";
-    
         }
 
         private void cmdSelect_Click(object sender, RoutedEventArgs e)

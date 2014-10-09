@@ -196,6 +196,9 @@
       <DependentUpon>AddressListFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Forms\ArticleEditFrm.xaml.cs">
+      <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ArticleListFrm.xaml.cs">
       <DependentUpon>ArticleListFrm.xaml</DependentUpon>
     </Compile>
@@ -271,9 +274,6 @@
     <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
     <Compile Include="MD5.cs" />
-    <Compile Include="MMWPFBusinessEditFrm1.xaml.cs">
-      <DependentUpon>MMWPFBusinessEditFrm1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
@@ -292,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\AddressListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ArticleEditFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -386,10 +390,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\MyLoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MMWPFBusinessEditFrm1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

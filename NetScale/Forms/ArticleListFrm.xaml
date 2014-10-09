@@ -59,7 +59,7 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid x:Name="dataGrid"
-                  Margin="29,126,19,38"
+                  Margin="25,130,23,34"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Mode=OneWay}"
                   SelectedValuePath="&quot;PK&quot;">

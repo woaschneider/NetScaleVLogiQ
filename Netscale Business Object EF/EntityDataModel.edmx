@@ -70,7 +70,6 @@
           <Property Name="description" Type="varchar" MaxLength="128" />
           <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="32" />
           <Property Name="ownerId" Type="varchar" MaxLength="64" />
-          <Property Name="conversionUnit" Type="varchar" MaxLength="22" />
           <Property Name="origin" Type="bit" />
           <Property Name="grade" Type="bit" />
           <Property Name="batch" Type="bit" />
@@ -89,6 +88,9 @@
           <Property Name="attributes_Original_Marking" Type="varchar" MaxLength="64" />
           <Property Name="attributes_Storage_Area_Referenz_Number" Type="varchar" MaxLength="64" />
           <Property Name="attributes_Dimension" Type="varchar" MaxLength="64" />
+          <Property Name="conversionUnitId" Type="int" />
+          <Property Name="conversionUnitShortDescription" Type="varchar" MaxLength="10" />
+          <Property Name="conversionUnitDescription" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
@@ -614,7 +616,6 @@
           <Property Type="String" Name="description" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="kindOfGoodDescription" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerId" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="conversionUnit" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="origin" />
           <Property Type="Boolean" Name="grade" />
           <Property Type="Boolean" Name="batch" />
@@ -633,6 +634,9 @@
           <Property Type="String" Name="attributes_Original_Marking" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="attributes_Storage_Area_Referenz_Number" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="attributes_Dimension" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="conversionUnitId" />
+          <Property Type="String" Name="conversionUnitShortDescription" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnitDescription" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -900,6 +904,9 @@
           <EntitySetMapping Name="ArtikelEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ArtikelEntity">
               <MappingFragment StoreEntitySet="Artikel">
+                <ScalarProperty Name="conversionUnitDescription" ColumnName="conversionUnitDescription" />
+                <ScalarProperty Name="conversionUnitShortDescription" ColumnName="conversionUnitShortDescription" />
+                <ScalarProperty Name="conversionUnitId" ColumnName="conversionUnitId" />
                 <ScalarProperty Name="attributes_Dimension" ColumnName="attributes_Dimension" />
                 <ScalarProperty Name="attributes_Storage_Area_Referenz_Number" ColumnName="attributes_Storage_Area_Referenz_Number" />
                 <ScalarProperty Name="attributes_Original_Marking" ColumnName="attributes_Original_Marking" />
@@ -918,7 +925,6 @@
                 <ScalarProperty Name="batch" ColumnName="batch" />
                 <ScalarProperty Name="grade" ColumnName="grade" />
                 <ScalarProperty Name="origin" ColumnName="origin" />
-                <ScalarProperty Name="conversionUnit" ColumnName="conversionUnit" />
                 <ScalarProperty Name="ownerId" ColumnName="ownerId" />
                 <ScalarProperty Name="kindOfGoodDescription" ColumnName="kindOfGoodDescription" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -972,7 +978,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="8.9031380208333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="9.375" PointY="6.75" Height="4.6725065104166674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="8.375" PointY="2.75" Height="1.7879850260416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="5.375" PointY="9.75" Height="6.0186165364583317" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="5.375" PointY="9.75" Height="6.4032194010416674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

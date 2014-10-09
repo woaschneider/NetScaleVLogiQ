@@ -41,8 +41,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
                         boAE.baseUnitId = obj.article.baseUnit.id;
                         boAE.baseUnitShortDescription = obj.article.baseUnit.shortDescription;
                         boAE.baseUnitDescription = obj.article.baseUnit.description;
-                        boA.SaveEntity(boAE);
 
+                        if (obj.article.conversionUnit != null)
+                        {
+                            boAE.conversionUnitId = obj.article.conversionUnit.id;
+                            boAE.conversionUnitDescription = obj.article.conversionUnit.description;
+                            boAE.conversionUnitShortDescription = obj.article.conversionUnit.shortDescription;
+                            boA.SaveEntity(boAE);
+                        }
                     }
                     }
                 }
