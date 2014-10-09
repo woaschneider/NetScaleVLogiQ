@@ -7,6 +7,7 @@
     <Schema Namespace="$namespace$.Target" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="$namespace$TargetContainer">
           <EntitySet Name="Adressen" EntityType="$namespace$.Target.Adressen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Artikel" EntityType="$namespace$.Target.Artikel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Bonitaet" EntityType="$namespace$.Target.Bonitaet" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Classes" EntityType="$namespace$.Target.Classes" store:Type="Tables" store:Schema="dbo" store:Name="Classes">
             <DefiningQuery>SELECT 
@@ -57,6 +58,37 @@
           <Property Name="roleCarrier" Type="bit" />
           <Property Name="roleShipOwner" Type="bit" />
           <Property Name="roleTrainOperator" Type="bit" />
+        </EntityType>
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" />
+          <Property Name="locationId" Type="varchar" MaxLength="64" />
+          <Property Name="number" Type="varchar" MaxLength="256" />
+          <Property Name="description" Type="varchar" MaxLength="128" />
+          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="32" />
+          <Property Name="ownerId" Type="varchar" MaxLength="64" />
+          <Property Name="conversionUnit" Type="varchar" MaxLength="22" />
+          <Property Name="origin" Type="bit" />
+          <Property Name="grade" Type="bit" />
+          <Property Name="batch" Type="bit" />
+          <Property Name="baseUnitId" Type="int" />
+          <Property Name="baseUnitShortDescription" Type="varchar" MaxLength="10" />
+          <Property Name="baseUnitDescription" Type="varchar" MaxLength="10" />
+          <Property Name="attributes_SerialNumber" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Batch" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Orign" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Grade" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Length" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Witdth" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Height" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Storage_Area_Reference_Number" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Diameter" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Original_Marking" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Storage_Area_Referenz_Number" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_Dimension" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
@@ -265,7 +297,7 @@
           </Key>
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="id" Type="varchar" MaxLength="32" />
-          <Property Name="description" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="32" />
           <Property Name="baseunit_shortdescription" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Wiegeart">
@@ -315,6 +347,7 @@
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="AdressenEntities" EntityType="HWB.NETSCALE.BOEF.AdressenEntity" />
           <EntitySet Name="WarenartenEntities" EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" />
+          <EntitySet Name="ArtikelEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -567,8 +600,39 @@
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="id" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="description" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="baseunit_shortdescription" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ArtikelEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="id" />
+          <Property Type="String" Name="locationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="number" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kindOfGoodDescription" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnit" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="origin" />
+          <Property Type="Boolean" Name="grade" />
+          <Property Type="Boolean" Name="batch" />
+          <Property Type="Int32" Name="baseUnitId" />
+          <Property Type="String" Name="baseUnitShortDescription" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="baseUnitDescription" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_SerialNumber" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Batch" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Orign" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Grade" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Length" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Witdth" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Height" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Storage_Area_Reference_Number" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Diameter" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Original_Marking" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Storage_Area_Referenz_Number" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_Dimension" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -833,6 +897,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ArtikelEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ArtikelEntity">
+              <MappingFragment StoreEntitySet="Artikel">
+                <ScalarProperty Name="attributes_Dimension" ColumnName="attributes_Dimension" />
+                <ScalarProperty Name="attributes_Storage_Area_Referenz_Number" ColumnName="attributes_Storage_Area_Referenz_Number" />
+                <ScalarProperty Name="attributes_Original_Marking" ColumnName="attributes_Original_Marking" />
+                <ScalarProperty Name="attributes_Diameter" ColumnName="attributes_Diameter" />
+                <ScalarProperty Name="attributes_Storage_Area_Reference_Number" ColumnName="attributes_Storage_Area_Reference_Number" />
+                <ScalarProperty Name="attributes_Height" ColumnName="attributes_Height" />
+                <ScalarProperty Name="attributes_Witdth" ColumnName="attributes_Witdth" />
+                <ScalarProperty Name="attributes_Length" ColumnName="attributes_Length" />
+                <ScalarProperty Name="attributes_Grade" ColumnName="attributes_Grade" />
+                <ScalarProperty Name="attributes_Orign" ColumnName="attributes_Orign" />
+                <ScalarProperty Name="attributes_Batch" ColumnName="attributes_Batch" />
+                <ScalarProperty Name="attributes_SerialNumber" ColumnName="attributes_SerialNumber" />
+                <ScalarProperty Name="baseUnitDescription" ColumnName="baseUnitDescription" />
+                <ScalarProperty Name="baseUnitShortDescription" ColumnName="baseUnitShortDescription" />
+                <ScalarProperty Name="baseUnitId" ColumnName="baseUnitId" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="origin" ColumnName="origin" />
+                <ScalarProperty Name="conversionUnit" ColumnName="conversionUnit" />
+                <ScalarProperty Name="ownerId" ColumnName="ownerId" />
+                <ScalarProperty Name="kindOfGoodDescription" ColumnName="kindOfGoodDescription" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -875,7 +971,8 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="8.9031380208333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="9.375" PointY="6.75" Height="4.6725065104166674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="10.375" PointY="2.75" Height="1.7879850260416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="8.375" PointY="2.75" Height="1.7879850260416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="5.375" PointY="9.75" Height="6.0186165364583317" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

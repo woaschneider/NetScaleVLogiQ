@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport
 {
-    public class RootObject
+    public class KindOfGoodsImportRootObject
     {
         public List<KindOfGood> kindOfGoods { get; set; }
     }

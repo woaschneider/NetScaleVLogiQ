@@ -13,9 +13,9 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Warenarten.
+	/// Summary description for Artikel.
 	/// </summary>
-	public partial class Warenarten : ABusinessObject<WarenartenEntity>
+	public partial class Artikel : ABusinessObject<ArtikelEntity>
 	{
 		
 		#region Association Properties
@@ -23,9 +23,9 @@ namespace HWB.NETSCALE.BOEF
 	
 		/// Business Rule object
 		/// </summary>
-		public virtual WarenartenRules Rules
+		public virtual ArtikelRules Rules
 		{
-			get { return (WarenartenRules)this.BusinessRuleObj; }
+			get { return (ArtikelRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +48,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Warenarten()
+		public Artikel()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Warenarten";
-			this.PhysicalDbcObjectName = "dbo.Warenarten";
+			this.TableName = "Artikel";
+			this.PhysicalDbcObjectName = "dbo.Artikel";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +64,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new WarenartenRules(this);
+			return new ArtikelRules(this);
 		}
 
 		/// <summary>

@@ -256,7 +256,9 @@
     <Compile Include="Forms\InfoFrm.xaml.cs">
       <DependentUpon>InfoFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Import\ArticleImport\PolosArticle.cs" />
     <Compile Include="Import\IImportInterface.cs" />
+    <Compile Include="Import\ArticleImport\ImportArticle.cs" />
     <Compile Include="Import\ImportPolos.cs" />
     <Compile Include="Import\JsonHelpers.cs" />
     <Compile Include="Import\AddressImport\ImportAddress.cs" />

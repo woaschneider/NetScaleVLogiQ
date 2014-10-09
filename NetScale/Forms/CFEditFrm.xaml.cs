@@ -141,7 +141,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
 
-            var boAp = new Address();
+            var boAp = new Adressen();
           //  AddressEntity boApe = boAp.GetAPById(uRet);
            
         }
@@ -156,15 +156,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (uRet == 0)
                 return;
 
-            var boAp = new Address();
+            var boAp = new Adressen();
          //   AddressEntity boApe = boAp.GetAPById(uRet);
           
         }
-        private void FillApFu(AddressEntity boApe)
+        private void FillApFu(AdressenEntity boApe)
         {
          
         }
-        private void FillApSp(AddressEntity boApe)
+        private void FillApSp(AdressenEntity boApe)
         {
         }
 

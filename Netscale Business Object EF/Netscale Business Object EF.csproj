@@ -119,6 +119,11 @@
     <Compile Include="Adressen\AdressenEntity.cs" />
     <Compile Include="Adressen\AdressenRules.cs" />
     <Compile Include="Adressen\AdressenRules.Partial.cs" />
+    <Compile Include="Artikel\Artikel.cs" />
+    <Compile Include="Artikel\Artikel.Partial.cs" />
+    <Compile Include="Artikel\ArtikelEntity.cs" />
+    <Compile Include="Artikel\ArtikelRules.cs" />
+    <Compile Include="Artikel\ArtikelRules.Partial.cs" />
     <Compile Include="Bonitaet\Bonitaet.cs" />
     <Compile Include="Bonitaet\Bonitaet.Partial.cs" />
     <Compile Include="Bonitaet\BonitaetEntity.cs" />

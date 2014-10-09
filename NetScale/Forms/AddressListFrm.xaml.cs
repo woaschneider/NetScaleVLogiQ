@@ -27,7 +27,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// <summary>
         /// Constructor
         /// </summary>
-        private Address boAddress;
+        private Adressen boAddress;
 
         private string _rolle;
 
@@ -45,7 +45,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         // 2. mit Partnerrolle
         public AddressFrm(string matchcode)
         {
-            boAddress = new Address();
+            boAddress = new Adressen();
             //  RegisterBizObj(boAddress);
             this.InitializeComponent();
             dataGrid1.SelectedValuePath = "PK";
@@ -57,7 +57,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         public AddressFrm(string matchcode, string Rolle)
         {
             _rolle = Rolle;
-            boAddress = new Address();
+            boAddress = new Adressen();
             //  RegisterBizObj(boAddress);
             this.InitializeComponent();
             Title = Partnerrollen.GetRollenBezeichnung(Rolle);

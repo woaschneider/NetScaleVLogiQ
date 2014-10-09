@@ -24,13 +24,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// <summary>
         /// Constructor
         /// </summary>
-        private Address boAddress;
+        private Adressen boAddress;
 
-        private AddressEntity boAPE;
+        private AdressenEntity boAPE;
 
         public AddressEditFrm(int PK, bool New, string _rolle)
         {
-            boAddress = new Address();
+            boAddress = new Adressen();
             this.InitializeComponent();
             if (New == true)
             {
