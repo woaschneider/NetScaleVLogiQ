@@ -1,16 +1,22 @@
-﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.MandantListFrm"
+﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.ArticleListFrm"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:HWB_NETSCALE_BOEF="clr-namespace:HWB.NETSCALE.BOEF;assembly=HWB.NETSCALE.BOEF"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
-                        Title="Mandant / Werk"
-                        Width="476"
-                        Height="422"
+                        Title="BusinessWindow"
+                        Width="550"
+                        Height="450"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
-                        Loaded="Window_Loaded"
-                        WindowStartupLocation="CenterScreen">
+                        WindowStartupLocation="CenterScreen"
+                        mc:Ignorable="d">
+    <mmwpf:mmBusinessWindow.DataContext>
+        <HWB_NETSCALE_BOEF:ArtikelEntity />
+    </mmwpf:mmBusinessWindow.DataContext>
 
     <Grid x:Name="LayoutRoot">
         <ribbon:Ribbon x:Name="Ribbon"
@@ -52,20 +58,14 @@
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
-        <DataGrid Name="dataGrid1"
-                  Width="453"
-                  Height="278"
-                  Margin="0,105,0,0"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
+        <DataGrid x:Name="dataGrid"
+                  Margin="29,126,19,38"
                   AutoGenerateColumns="False"
-                  IsReadOnly="True">
+                  ItemsSource="{Binding Mode=OneWay}"
+                  SelectedValuePath="&quot;PK&quot;">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding MandantNr}" Header="Mandant-Nr." />
-                <DataGridTextColumn Binding="{Binding MandantName}" Header="Name" />
-                <DataGridTextColumn Binding="{Binding Werksnr}" Header="Werk.Nr." />
-                <DataGridTextColumn Binding="{Binding Werksbezeichnung}" Header="Werk-Bezeichnung" />
-                <DataGridCheckBoxColumn Binding="{Binding DefaultMandant}" Header="Default" />
+                <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr." />
+                <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Artikelbezeichnung" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

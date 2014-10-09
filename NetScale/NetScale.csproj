@@ -39,6 +39,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -194,6 +196,9 @@
       <DependentUpon>AddressListFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Forms\ArticleListFrm.xaml.cs">
+      <DependentUpon>ArticleListFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AuftragEditFrm.xaml.cs">
       <DependentUpon>AuftragEditFrm.xaml</DependentUpon>
     </Compile>
@@ -266,6 +271,9 @@
     <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
     <Compile Include="MD5.cs" />
+    <Compile Include="MMWPFBusinessEditFrm1.xaml.cs">
+      <DependentUpon>MMWPFBusinessEditFrm1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
@@ -284,6 +292,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\AddressListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ArticleListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -374,6 +386,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\MyLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MMWPFBusinessEditFrm1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -633,6 +649,7 @@
     <Resource Include="Images\1328708757_cancel.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SampleData\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
