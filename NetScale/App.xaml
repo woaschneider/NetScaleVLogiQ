@@ -181,7 +181,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="AlternatingRowBackground" Value="#FFFAD988" />
+            <Setter Property="AlternatingRowBackground" Value="#FFFCF4AC" />
             <Style.Triggers>
                 <Trigger Property="IsGrouping" Value="true">
                     <Setter Property="ScrollViewer.CanContentScroll" Value="false" />

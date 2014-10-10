@@ -62,7 +62,8 @@
                   Margin="25,130,23,34"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Mode=OneWay}"
-                  SelectedValuePath="&quot;PK&quot;">
+                  SelectedValuePath="&quot;PK&quot;"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr." />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Artikelbezeichnung" />
