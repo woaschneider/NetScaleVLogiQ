@@ -249,9 +249,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void cmdAP_Click(object sender, RoutedEventArgs e)
         {
-            Forms.AddressFrm oAddressFrm = new Forms.AddressFrm();
-            oAddressFrm.ShowDialog();
-            oAddressFrm.Close();
+            //Forms.AddressFrm oAddressFrm = new Forms.AddressFrm();
+            //oAddressFrm.ShowDialog();
+            //oAddressFrm.Close();
         }
 
         private void cmdMG_Click(object sender, RoutedEventArgs e)

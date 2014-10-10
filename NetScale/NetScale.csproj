@@ -114,6 +114,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Mere Mortals .NET Framework 2010\Mere Mortals Framework WPF\OakLeaf.MM2010.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
     <Reference Include="PresentationFramework.Aero">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -191,9 +193,6 @@
     </ApplicationDefinition>
     <Compile Include="Forms\AddressEditFrm.xaml.cs">
       <DependentUpon>AddressEditFrm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddressListFrm.xaml.cs">
-      <DependentUpon>AddressListFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ArticleEditFrm.xaml.cs">
       <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
@@ -273,6 +272,9 @@
     <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
     <Compile Include="MD5.cs" />
+    <Compile Include="Forms\MMWPFBusinessListFrm1.xaml.cs">
+      <DependentUpon>MMWPFBusinessListFrm1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
@@ -287,10 +289,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\AddressEditFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\AddressListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -389,6 +387,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\MyLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\MMWPFBusinessListFrm1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

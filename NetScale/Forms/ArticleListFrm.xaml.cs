@@ -37,7 +37,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         public ArticleListFrm()
         {
             this.InitializeComponent();
-            DataContext = boA.GetAllArticle();
+            DataContext = boA.GetAll();
             dataGrid.SelectedValuePath = "PK";
         }
 
