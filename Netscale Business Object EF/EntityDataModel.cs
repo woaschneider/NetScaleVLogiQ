@@ -370,6 +370,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ProdukteEntity> _ProdukteEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ArtikelattributeEntity> ArtikelattributeEntities
+        {
+            get
+            {
+                if ((_ArtikelattributeEntities == null))
+                {
+                    _ArtikelattributeEntities = base.CreateObjectSet<ArtikelattributeEntity>("ArtikelattributeEntities");
+                }
+                return _ArtikelattributeEntities;
+            }
+        }
+        private ObjectSet<ArtikelattributeEntity> _ArtikelattributeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<LagerplaetzeEntity> LagerplaetzeEntities
+        {
+            get
+            {
+                if ((_LagerplaetzeEntities == null))
+                {
+                    _LagerplaetzeEntities = base.CreateObjectSet<LagerplaetzeEntity>("LagerplaetzeEntities");
+                }
+                return _LagerplaetzeEntities;
+            }
+        }
+        private ObjectSet<LagerplaetzeEntity> _LagerplaetzeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -524,6 +556,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToProdukteEntities(ProdukteEntity produkteEntity)
         {
             base.AddObject("ProdukteEntities", produkteEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArtikelattributeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToArtikelattributeEntities(ArtikelattributeEntity artikelattributeEntity)
+        {
+            base.AddObject("ArtikelattributeEntities", artikelattributeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'LagerplaetzeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToLagerplaetzeEntities(LagerplaetzeEntity lagerplaetzeEntity)
+        {
+            base.AddObject("LagerplaetzeEntities", lagerplaetzeEntity);
         }
 
         #endregion
@@ -1016,6 +1064,133 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _roleTrainOperator;
         partial void OnroleTrainOperatorChanging(Nullable<global::System.Boolean> value);
         partial void OnroleTrainOperatorChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ArtikelattributeEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ArtikelattributeEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues ArtikelattributeEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static ArtikelattributeEntity CreateArtikelattributeEntity(global::System.Int32 pK)
+        {
+            ArtikelattributeEntity artikelattributeEntity = new ArtikelattributeEntity();
+            artikelattributeEntity.PK = pK;
+            return artikelattributeEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Lagermandant
+        {
+            get
+            {
+                return _Lagermandant;
+            }
+            set
+            {
+                OnLagermandantChanging(value);
+                ReportPropertyChanging("Lagermandant");
+                _Lagermandant = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Lagermandant");
+                OnLagermandantChanged();
+            }
+        }
+        private global::System.String _Lagermandant;
+        partial void OnLagermandantChanging(global::System.String value);
+        partial void OnLagermandantChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AttributName
+        {
+            get
+            {
+                return _AttributName;
+            }
+            set
+            {
+                OnAttributNameChanging(value);
+                ReportPropertyChanging("AttributName");
+                _AttributName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AttributName");
+                OnAttributNameChanged();
+            }
+        }
+        private global::System.String _AttributName;
+        partial void OnAttributNameChanging(global::System.String value);
+        partial void OnAttributNameChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AttributWert
+        {
+            get
+            {
+                return _AttributWert;
+            }
+            set
+            {
+                OnAttributWertChanging(value);
+                ReportPropertyChanging("AttributWert");
+                _AttributWert = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AttributWert");
+                OnAttributWertChanged();
+            }
+        }
+        private global::System.String _AttributWert;
+        partial void OnAttributWertChanging(global::System.String value);
+        partial void OnAttributWertChanged();
 
         #endregion
     
@@ -2683,6 +2858,157 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ToolTip;
         partial void OnToolTipChanging(global::System.String value);
         partial void OnToolTipChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="LagerplaetzeEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class LagerplaetzeEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues LagerplaetzeEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static LagerplaetzeEntity CreateLagerplaetzeEntity(global::System.Int32 pK)
+        {
+            LagerplaetzeEntity lagerplaetzeEntity = new LagerplaetzeEntity();
+            lagerplaetzeEntity.PK = pK;
+            return lagerplaetzeEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String locationid
+        {
+            get
+            {
+                return _locationid;
+            }
+            set
+            {
+                OnlocationidChanging(value);
+                ReportPropertyChanging("locationid");
+                _locationid = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("locationid");
+                OnlocationidChanged();
+            }
+        }
+        private global::System.String _locationid;
+        partial void OnlocationidChanging(global::System.String value);
+        partial void OnlocationidChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String fullname
+        {
+            get
+            {
+                return _fullname;
+            }
+            set
+            {
+                OnfullnameChanging(value);
+                ReportPropertyChanging("fullname");
+                _fullname = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("fullname");
+                OnfullnameChanged();
+            }
+        }
+        private global::System.String _fullname;
+        partial void OnfullnameChanging(global::System.String value);
+        partial void OnfullnameChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                OnidChanging(value);
+                ReportPropertyChanging("id");
+                _id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("id");
+                OnidChanged();
+            }
+        }
+        private global::System.String _id;
+        partial void OnidChanging(global::System.String value);
+        partial void OnidChanged();
 
         #endregion
     

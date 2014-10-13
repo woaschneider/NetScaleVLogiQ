@@ -119,6 +119,11 @@
     <Compile Include="Adressen\AdressenEntity.cs" />
     <Compile Include="Adressen\AdressenRules.cs" />
     <Compile Include="Adressen\AdressenRules.Partial.cs" />
+    <Compile Include="Artikelattribute\Artikelattribute.cs" />
+    <Compile Include="Artikelattribute\Artikelattribute.Partial.cs" />
+    <Compile Include="Artikelattribute\ArtikelattributeEntity.cs" />
+    <Compile Include="Artikelattribute\ArtikelattributeRules.cs" />
+    <Compile Include="Artikelattribute\ArtikelattributeRules.Partial.cs" />
     <Compile Include="Artikel\Artikel.cs" />
     <Compile Include="Artikel\Artikel.Partial.cs" />
     <Compile Include="Artikel\ArtikelEntity.cs" />
@@ -156,6 +161,11 @@
     <Compile Include="KbFnn\KbFnnEntity.cs" />
     <Compile Include="KbFnn\KbFnnRules.cs" />
     <Compile Include="KbFnn\KbFnnRules.Partial.cs" />
+    <Compile Include="Lagerplaetze\Lagerplaetze.cs" />
+    <Compile Include="Lagerplaetze\Lagerplaetze.Partial.cs" />
+    <Compile Include="Lagerplaetze\LagerplaetzeEntity.cs" />
+    <Compile Include="Lagerplaetze\LagerplaetzeRules.cs" />
+    <Compile Include="Lagerplaetze\LagerplaetzeRules.Partial.cs" />
     <Compile Include="Lokaleeinstellungen.cs" />
     <Compile Include="Mandant\Mandant.cs" />
     <Compile Include="Mandant\Mandant.Partial.cs" />

@@ -8,6 +8,7 @@
         <EntityContainer Name="$namespace$TargetContainer">
           <EntitySet Name="Adressen" EntityType="$namespace$.Target.Adressen" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Artikel" EntityType="$namespace$.Target.Artikel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Artikelattribute" EntityType="$namespace$.Target.Artikelattribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Bonitaet" EntityType="$namespace$.Target.Bonitaet" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Classes" EntityType="$namespace$.Target.Classes" store:Type="Tables" store:Schema="dbo" store:Name="Classes">
             <DefiningQuery>SELECT 
@@ -20,6 +21,15 @@
           <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Lagerplaetze" EntityType="$namespace$.Target.Lagerplaetze" store:Type="Tables" store:Schema="dbo" store:Name="Lagerplaetze">
+            <DefiningQuery>SELECT 
+      [Lagerplaetze].[PK] AS [PK], 
+      [Lagerplaetze].[locationid] AS [locationid], 
+      [Lagerplaetze].[name] AS [name], 
+      [Lagerplaetze].[fullname] AS [fullname], 
+      [Lagerplaetze].[id] AS [id]
+      FROM [dbo].[Lagerplaetze] AS [Lagerplaetze]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Language" EntityType="$namespace$.Target.Language" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" />
@@ -93,6 +103,15 @@
           <Property Name="conversionUnitShortDescription" Type="varchar" MaxLength="10" />
           <Property Name="conversionUnitDescription" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Artikelattribute">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Lagermandant" Type="varchar" MaxLength="64" />
+          <Property Name="AttributName" Type="varchar" MaxLength="32" />
+          <Property Name="AttributWert" Type="varchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
             <PropertyRef Name="PK" />
@@ -159,6 +178,19 @@
           <Property Name="Actiondescription" Type="varchar" MaxLength="30" />
           <Property Name="Command" Type="varchar" MaxLength="10" />
           <Property Name="ToolTip" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RM.dbo.Lagerplaetze' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      -->
+        <EntityType Name="Lagerplaetze">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="locationid" Type="varchar" MaxLength="64" />
+          <Property Name="name" Type="varchar" MaxLength="32" />
+          <Property Name="fullname" Type="varchar" MaxLength="254" />
+          <Property Name="id" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -361,6 +393,8 @@
           <EntitySet Name="WarenartenEntities" EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" />
           <EntitySet Name="ArtikelEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" />
           <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
+          <EntitySet Name="ArtikelattributeEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelattributeEntity" />
+          <EntitySet Name="LagerplaetzeEntities" EntityType="HWB.NETSCALE.BOEF.LagerplaetzeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -657,6 +691,25 @@
           <Property Type="Int32" Name="id" />
           <Property Type="String" Name="description" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="shortdescirption" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ArtikelattributeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Lagermandant" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AttributName" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AttributWert" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LagerplaetzeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="locationid" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fullname" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -965,6 +1018,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ArtikelattributeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ArtikelattributeEntity">
+              <MappingFragment StoreEntitySet="Artikelattribute">
+                <ScalarProperty Name="AttributWert" ColumnName="AttributWert" />
+                <ScalarProperty Name="AttributName" ColumnName="AttributName" />
+                <ScalarProperty Name="Lagermandant" ColumnName="Lagermandant" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LagerplaetzeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.LagerplaetzeEntity">
+              <MappingFragment StoreEntitySet="Lagerplaetze">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="locationid" ColumnName="locationid" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1010,6 +1084,8 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="8.375" PointY="2.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="5.375" PointY="9.75" Height="6.4032194010416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="10.375" PointY="2.75" Height="1.7879850260416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelattributeEntity" Width="1.5" PointX="11.375" PointY="5.75" Height="1.7879850260416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.LagerplaetzeEntity" Width="1.5" PointX="11.375" PointY="8.75" Height="1.9802864583333246" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
