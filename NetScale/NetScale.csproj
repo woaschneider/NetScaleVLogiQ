@@ -240,6 +240,9 @@
     <Compile Include="Forms\PortListFrm.xaml.cs">
       <DependentUpon>PortListFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProdukteListFrm.xaml.cs">
+      <DependentUpon>ProdukteListFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProgrammeinstellungenFrm.xaml.cs">
       <DependentUpon>ProgrammeinstellungenFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -259,11 +262,12 @@
     <Compile Include="Forms\WarenartListFrm.xaml.cs">
       <DependentUpon>WarenartListFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\WiegeFrm.xaml.cs">
-      <DependentUpon>WiegeFrm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\MyLoginWindow.xaml.cs">
       <DependentUpon>MyLoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WiegeFrm.xaml.cs">
+      <DependentUpon>WiegeFrm.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="HardwareInfo.cs" />
     <Compile Include="Forms\InfoFrm.xaml.cs">
@@ -366,6 +370,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ProdukteListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ProgrammeinstellungenFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -390,11 +398,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\WiegeFrm.xaml">
+    <Page Include="Forms\InfoFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\InfoFrm.xaml">
+    <Page Include="Forms\WiegeFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
