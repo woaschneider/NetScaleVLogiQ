@@ -354,6 +354,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ArtikelEntity> _ArtikelEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ProdukteEntity> ProdukteEntities
+        {
+            get
+            {
+                if ((_ProdukteEntities == null))
+                {
+                    _ProdukteEntities = base.CreateObjectSet<ProdukteEntity>("ProdukteEntities");
+                }
+                return _ProdukteEntities;
+            }
+        }
+        private ObjectSet<ProdukteEntity> _ProdukteEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -500,6 +516,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToArtikelEntities(ArtikelEntity artikelEntity)
         {
             base.AddObject("ArtikelEntities", artikelEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ProdukteEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToProdukteEntities(ProdukteEntity produkteEntity)
+        {
+            base.AddObject("ProdukteEntities", produkteEntity);
         }
 
         #endregion
@@ -1197,30 +1221,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String conversionUnit
-        {
-            get
-            {
-                return _conversionUnit;
-            }
-            set
-            {
-                OnconversionUnitChanging(value);
-                ReportPropertyChanging("conversionUnit");
-                _conversionUnit = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("conversionUnit");
-                OnconversionUnitChanged();
-            }
-        }
-        private global::System.String _conversionUnit;
-        partial void OnconversionUnitChanging(global::System.String value);
-        partial void OnconversionUnitChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Boolean> origin
         {
             get
@@ -1647,6 +1647,78 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _attributes_Dimension;
         partial void Onattributes_DimensionChanging(global::System.String value);
         partial void Onattributes_DimensionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> conversionUnitId
+        {
+            get
+            {
+                return _conversionUnitId;
+            }
+            set
+            {
+                OnconversionUnitIdChanging(value);
+                ReportPropertyChanging("conversionUnitId");
+                _conversionUnitId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("conversionUnitId");
+                OnconversionUnitIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _conversionUnitId;
+        partial void OnconversionUnitIdChanging(Nullable<global::System.Int32> value);
+        partial void OnconversionUnitIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String conversionUnitShortDescription
+        {
+            get
+            {
+                return _conversionUnitShortDescription;
+            }
+            set
+            {
+                OnconversionUnitShortDescriptionChanging(value);
+                ReportPropertyChanging("conversionUnitShortDescription");
+                _conversionUnitShortDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("conversionUnitShortDescription");
+                OnconversionUnitShortDescriptionChanged();
+            }
+        }
+        private global::System.String _conversionUnitShortDescription;
+        partial void OnconversionUnitShortDescriptionChanging(global::System.String value);
+        partial void OnconversionUnitShortDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String conversionUnitDescription
+        {
+            get
+            {
+                return _conversionUnitDescription;
+            }
+            set
+            {
+                OnconversionUnitDescriptionChanging(value);
+                ReportPropertyChanging("conversionUnitDescription");
+                _conversionUnitDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("conversionUnitDescription");
+                OnconversionUnitDescriptionChanged();
+            }
+        }
+        private global::System.String _conversionUnitDescription;
+        partial void OnconversionUnitDescriptionChanging(global::System.String value);
+        partial void OnconversionUnitDescriptionChanged();
 
         #endregion
     
@@ -3699,6 +3771,133 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _Modul_Is_Active;
         partial void OnModul_Is_ActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnModul_Is_ActiveChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ProdukteEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ProdukteEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues ProdukteEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static ProdukteEntity CreateProdukteEntity(global::System.Int32 pK)
+        {
+            ProdukteEntity produkteEntity = new ProdukteEntity();
+            produkteEntity.PK = pK;
+            return produkteEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                OnidChanging(value);
+                ReportPropertyChanging("id");
+                _id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id");
+                OnidChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _id;
+        partial void OnidChanging(Nullable<global::System.Int32> value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String shortdescirption
+        {
+            get
+            {
+                return _shortdescirption;
+            }
+            set
+            {
+                OnshortdescirptionChanging(value);
+                ReportPropertyChanging("shortdescirption");
+                _shortdescirption = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("shortdescirption");
+                OnshortdescirptionChanged();
+            }
+        }
+        private global::System.String _shortdescirption;
+        partial void OnshortdescirptionChanging(global::System.String value);
+        partial void OnshortdescirptionChanged();
 
         #endregion
     

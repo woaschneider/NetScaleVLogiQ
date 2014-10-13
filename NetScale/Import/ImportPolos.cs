@@ -7,6 +7,7 @@ using System.Windows;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.FRONTEND.WPF.Forms;
 using HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport;
+using HWB.NETSCALE.FRONTEND.WPF.Import.ProductsImport;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Import
 {
@@ -33,7 +34,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
 
        //   new ImportAddress().Import(Path + "\\Polos_Adressen.json");
        //   new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
-          new ImportArticle().Import(Path + "\\Polos_Artikel.json");
+        //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
+          new ImportProducts().Import(Path + "\\Polos_Produkte.json");
       }
     public  void Import(WiegeFrm owf)
     {
@@ -45,8 +47,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
         return;
         }
 
-          new ImportAddress().Import(Path + "\\Polos_Adressen.json");
-        new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
+      //    new ImportAddress().Import(Path + "\\Polos_Adressen.json");
+    //    new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
+        //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
+        new ImportProducts().Import(Path + "\\Polos_Produkte.json");
     }
 
 

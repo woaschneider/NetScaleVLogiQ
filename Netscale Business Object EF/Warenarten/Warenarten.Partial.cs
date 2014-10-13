@@ -31,5 +31,16 @@ namespace HWB.NETSCALE.BOEF
                                                  select a;
             return GetEntity(query);
         }
+
+       
+        public mmBindingList<WarenartenEntity> GetWarenArtenByMatchCode(string mc)
+        {
+            IQueryable<WarenartenEntity> query = from a in ObjectContext.WarenartenEntities
+                                                 orderby a.description
+                                                 where a.description.Contains(mc)
+                                                 select a;
+            return GetEntityList(query);
+
+        }
 	}
 }

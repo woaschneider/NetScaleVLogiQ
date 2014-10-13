@@ -31,7 +31,7 @@ namespace HWB.NETSCALE.BOEF
                                               select a;
             return GetEntity(query);
         }
-        public mmBindingList<ArtikelEntity> GetAllArticle()
+        public mmBindingList<ArtikelEntity> GetAll()
         {
 
         IQueryable<ArtikelEntity>    query = from a in ObjectContext.ArtikelEntities
@@ -39,5 +39,20 @@ namespace HWB.NETSCALE.BOEF
                     select a;
         return GetEntityList(query);
         }
+
+        public mmBindingList<ArtikelEntity> GetArtikelByMatchCode(string mc)
+        {
+
+            IQueryable<ArtikelEntity> query = from a in ObjectContext.ArtikelEntities
+                                              orderby a.kindOfGoodDescription
+                                              where a.number.Contains(mc)||
+                                              a.kindOfGoodDescription.Contains(mc)||
+                                              a.description.Contains(mc)
+
+                                              select a;
+            return GetEntityList(query);
+        }
+
+      
     }
 }

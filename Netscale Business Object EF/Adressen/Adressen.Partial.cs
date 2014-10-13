@@ -38,6 +38,20 @@ namespace HWB.NETSCALE.BOEF
                                                select a;
             return GetEntityList(query);
         }
+        public mmBindingList<AdressenEntity> GetByMatchCode( string mc)
+        {
+            IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities
+                                               orderby a.businessIdentifier
+                                               where 
+                                                     a.businessIdentifier.Contains(mc)||
+                                                     a.name.Contains(mc)||
+                                                     a.subName2.Contains(mc)||
+                                                     a.zipCode.Contains(mc)||
+                                                     a.city.Contains(mc)||
+                                                     a.street.Contains(mc)
+                                               select a;
+            return GetEntityList(query);
+        }
 
 	}
 }

@@ -194,11 +194,14 @@
     <Compile Include="Forms\AddressEditFrm.xaml.cs">
       <DependentUpon>AddressEditFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AdressenListeFrm.xaml.cs">
+      <DependentUpon>AdressenListeFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ArticleEditFrm.xaml.cs">
       <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ArticleListFrm.xaml.cs">
-      <DependentUpon>ArticleListFrm.xaml</DependentUpon>
+    <Compile Include="Forms\ArtikelListFrm.xaml.cs">
+      <DependentUpon>ArtikelListFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\AuftragEditFrm.xaml.cs">
       <DependentUpon>AuftragEditFrm.xaml</DependentUpon>
@@ -218,6 +221,9 @@
     <Compile Include="Forms\HoflisteFrm.xaml.cs">
       <DependentUpon>HoflisteFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LagerplatzeListFrm.xaml.cs">
+      <DependentUpon>LagerplatzeListFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MandantEditFrm.xaml.cs">
       <DependentUpon>MandantEditFrm.xaml</DependentUpon>
     </Compile>
@@ -236,6 +242,9 @@
     <Compile Include="Forms\PortListFrm.xaml.cs">
       <DependentUpon>PortListFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProdukteSearchFrm.xaml.cs">
+      <DependentUpon>ProdukteSearchFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProgrammeinstellungenFrm.xaml.cs">
       <DependentUpon>ProgrammeinstellungenFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -251,6 +260,9 @@
     </Compile>
     <Compile Include="Forms\WaagenTypenListeFrm.xaml.cs">
       <DependentUpon>WaagenTypenListeFrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WarenartListFrm.xaml.cs">
+      <DependentUpon>WarenartListFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\WiegeFrm.xaml.cs">
       <DependentUpon>WiegeFrm.xaml</DependentUpon>
@@ -271,6 +283,8 @@
     <Compile Include="Import\AddressImport\PolosAddress.cs" />
     <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
+    <Compile Include="Import\ProductsImport\ImportProducts.cs" />
+    <Compile Include="Import\ProductsImport\PolosProducts.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="Forms\MMWPFBusinessListFrm1.xaml.cs">
       <DependentUpon>MMWPFBusinessListFrm1.xaml</DependentUpon>
@@ -292,11 +306,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\AdressenListeFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ArticleEditFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\ArticleListFrm.xaml">
+    <Page Include="Forms\ArtikelListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,6 +342,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\LagerplatzeListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\MandantEditFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -348,6 +370,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ProdukteSearchFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ProgrammeinstellungenFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,6 +391,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\WaagenTypenListeFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\WarenartListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

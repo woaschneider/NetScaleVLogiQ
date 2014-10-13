@@ -18,7 +18,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport
         {
             try
             {
-
                 KindOfGoodsImport.KindOfGoodsImportRootObject oK =
                     FullQualifiedFileName.CreateFromJsonFile<KindOfGoodsImport.KindOfGoodsImportRootObject>();
                 boW = new BOEF.Warenarten();
@@ -29,17 +28,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport
                     {
                         boWE = boW.GetById(obj.id);
                     }
-                    if(boWE==null)
+                    if (boWE == null)
                     {
                         boWE = boW.NewEntity();
                     }
                     boWE.id = obj.id;
-                  boWE.description = obj.description;
-                  boWE.baseunit_shortdescription = obj.baseUnit.shortDescription;
+                    boWE.description = obj.description;
+                    boWE.baseunit_shortdescription = obj.baseUnit.shortDescription;
                     boW.SaveEntity(boWE);
                 }
-
-
             }
 
             catch (Exception e)
