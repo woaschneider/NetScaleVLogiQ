@@ -61,12 +61,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdProdukte_Click(object sender, RoutedEventArgs e)
         {
-
+            ProdukteListFrm oPFrm = new ProdukteListFrm("");
+            oPFrm.ShowDialog();
+            oPFrm.Close();
         }
 
         private void cmdArtikelAttribute_Click(object sender, RoutedEventArgs e)
         {
-
+            ArtikelAttributeListFrm oA = new ArtikelAttributeListFrm("");
+            oA.ShowDialog();
+            oA.Close();
         }
 
         private void cmdLagerPlaetze_Click(object sender, RoutedEventArgs e)

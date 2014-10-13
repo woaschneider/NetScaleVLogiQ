@@ -5,11 +5,11 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
-                        xmlns:HWB_NETSCALE_BOEF="clr-namespace:HWB.NETSCALE.BOEF;assembly=HWB.NETSCALE.BOEF" x:Class="HWB.NETSCALE.FRONTEND.WPF.ProdukteListFrm"
+                        xmlns:HWB_NETSCALE_BOEF="clr-namespace:HWB.NETSCALE.BOEF;assembly=HWB.NETSCALE.BOEF" x:Class="HWB.NETSCALE.FRONTEND.WPF.ArtikelAttributeListFrm"
                         x:Name="Window"
-                        Title="Produkte"
-                        Width="443"
-                        Height="535"
+                        Title="Artikelattribute"
+                        Width="658"
+                        Height="522"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
                         Loaded="Window_Loaded"
@@ -18,11 +18,11 @@
 
 
 	<mmwpf:mmBusinessWindow.Resources>
-		<HWB_NETSCALE_BOEF:ProdukteEntity x:Key="ProdukteEntityDataSource" d:IsDataSource="True"/>
+		<HWB_NETSCALE_BOEF:ArtikelattributeEntity x:Key="ArtikelattributeEntityDataSource" d:IsDataSource="True"/>
 	</mmwpf:mmBusinessWindow.Resources>
 
 
-    <Grid x:Name="LayoutRoot" Background="#FFA5C8E8" DataContext="{Binding Source={StaticResource ProdukteEntityDataSource}}">
+    <Grid x:Name="LayoutRoot" Background="#FFA5C8E8" DataContext="{Binding Source={StaticResource ArtikelattributeEntityDataSource}}">
         <ribbon:Ribbon x:Name="Ribbon"
                        Height="120"
                        Margin="-2,-21,2,0"
@@ -67,11 +67,9 @@
                   AutoGenerateColumns="False"
                   MouseDoubleClick="dataGrid_MouseDoubleClick"
                   SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGrid_SelectionChanged" ItemsSource="{Binding Mode=OneWay}" Style="{DynamicResource DataGridStyle}">
+                  SelectionChanged="dataGrid_SelectionChanged" ItemsSource="{Binding Mode=OneWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding id}" />
-            	<DataGridTextColumn Header="Kurzbezeichnung" Binding="{Binding shortdescirption}"/>
-                <DataGridTextColumn Header="Bezeichnung" Binding="{Binding description}" />
+                <DataGridTextColumn Header="Beschreibung" Binding="{Binding AttributName}" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="txtSearch"

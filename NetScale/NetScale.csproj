@@ -198,6 +198,9 @@
     <Compile Include="Forms\ArticleEditFrm.xaml.cs">
       <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ArtikelAttributeListFrm.xaml.cs">
+      <DependentUpon>ArtikelAttributeListFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ArtikelListFrm.xaml.cs">
       <DependentUpon>ArtikelListFrm.xaml</DependentUpon>
     </Compile>
@@ -273,6 +276,8 @@
     <Compile Include="Forms\InfoFrm.xaml.cs">
       <DependentUpon>InfoFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Import\ArticleAttributes\ImportArticleAttributes.cs" />
+    <Compile Include="Import\ArticleAttributes\PolosArticleAttributes.cs" />
     <Compile Include="Import\ArticleImport\PolosArticle.cs" />
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="Import\ArticleImport\ImportArticle.cs" />
@@ -290,7 +295,6 @@
     </Compile>
     <Compile Include="MyFunctions.cs" />
     <Compile Include="PrinterLS.cs" />
-    <Compile Include="ProdukteListFrm.xaml.cs" />
     <Compile Include="TextDatei.cs" />
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
@@ -311,6 +315,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ArticleEditFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ArtikelAttributeListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
