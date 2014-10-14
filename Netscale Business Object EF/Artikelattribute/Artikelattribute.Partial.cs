@@ -38,5 +38,13 @@ namespace HWB.NETSCALE.BOEF
                                                        select a;
             return GetEntity(query);
         }
+
+        public ArtikelattributeEntity GetByMatchCode(string mc)
+        {
+            IQueryable<ArtikelattributeEntity> query = from a in ObjectContext.ArtikelattributeEntities
+                                                       where a.AttributName.Contains(mc)
+                                                       select a;
+            return GetEntity(query);
+        }
 	}
 }

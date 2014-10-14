@@ -21,15 +21,7 @@
           <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Lagerplaetze" EntityType="$namespace$.Target.Lagerplaetze" store:Type="Tables" store:Schema="dbo" store:Name="Lagerplaetze">
-            <DefiningQuery>SELECT 
-      [Lagerplaetze].[PK] AS [PK], 
-      [Lagerplaetze].[locationid] AS [locationid], 
-      [Lagerplaetze].[name] AS [name], 
-      [Lagerplaetze].[fullname] AS [fullname], 
-      [Lagerplaetze].[id] AS [id]
-      FROM [dbo].[Lagerplaetze] AS [Lagerplaetze]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Lagerplaetze" EntityType="$namespace$.Target.Lagerplaetze" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Language" EntityType="$namespace$.Target.Language" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" />
@@ -179,9 +171,6 @@
           <Property Name="Command" Type="varchar" MaxLength="10" />
           <Property Name="ToolTip" Type="varchar" MaxLength="30" />
         </EntityType>
-        <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RM.dbo.Lagerplaetze' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
-      -->
         <EntityType Name="Lagerplaetze">
           <Key>
             <PropertyRef Name="PK" />

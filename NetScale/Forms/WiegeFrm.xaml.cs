@@ -75,7 +75,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdLagerPlaetze_Click(object sender, RoutedEventArgs e)
         {
-
+            LagerplaetzeListeFrm oLFrm = new LagerplaetzeListeFrm("");
+            oLFrm.ShowDialog();
+            oLFrm.Close();
         }
 
         private void cmdAdresseb_Click(object sender, RoutedEventArgs e)

@@ -40,7 +40,7 @@ namespace HWB.NETSCALE.BOEF
         return GetEntityList(query);
         }
 
-        public mmBindingList<ArtikelEntity> GetArtikelByMatchCode(string mc)
+        public mmBindingList<ArtikelEntity> GetByMatchCode(string mc)
         {
 
             IQueryable<ArtikelEntity> query = from a in ObjectContext.ArtikelEntities

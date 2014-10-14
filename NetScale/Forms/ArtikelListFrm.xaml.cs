@@ -44,7 +44,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
            
 
             dataGrid.SelectedValuePath = "PK";
-            dataGrid.ItemsSource = boAr.GetArtikelByMatchCode(matchcode);
+            dataGrid.ItemsSource = boAr.GetByMatchCode(matchcode);
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             txtSearch.Text = matchcode;
         }
@@ -88,7 +88,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid.ItemsSource = boAr.GetArtikelByMatchCode(txtSearch.Text.Trim());
+            dataGrid.ItemsSource = boAr.GetByMatchCode(txtSearch.Text.Trim());
         }
 
         private void FillGrid()

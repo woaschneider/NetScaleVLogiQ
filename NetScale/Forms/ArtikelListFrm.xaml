@@ -8,7 +8,7 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         xmlns:HWB_NETSCALE_BOEF="clr-namespace:HWB.NETSCALE.BOEF;assembly=HWB.NETSCALE.BOEF" x:Class="HWB.NETSCALE.FRONTEND.WPF.ArtikelListFrm"
                         x:Name="Window"
-                        Title="BusinessWindow"
+                        Title="Artikel"
                         Width="658"
                         Height="522"
                         AllowsTransparency="False"

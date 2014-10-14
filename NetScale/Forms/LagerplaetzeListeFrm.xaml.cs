@@ -17,16 +17,16 @@ using OakLeaf.MM.Main.WPF;
 namespace HWB.NETSCALE.FRONTEND.WPF
 {
     /// <summary>
-    /// ProdukteListFrm Class
+    /// LagerplaetzeListeFrm Class
     /// </summary>
-    public partial class ProdukteListFrm : mmBusinessWindow
+    public partial class LagerplaetzeListeFrm : mmBusinessWindow
     {
         /// <summary>
         /// Constructor
         /// </summary>
         private int _uRet;
         // Deklariere das primäre BO 
-        private Produkte boP = new Produkte();
+        private Lagerplaetze boL = new Lagerplaetze();
         //  private CFEditFrm EditFrm = CFEditFrm();
 
         public int uRet
@@ -38,13 +38,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
 
 
-        public ProdukteListFrm(string matchcode)
+        public LagerplaetzeListeFrm(string matchcode)
         {
             this.InitializeComponent();
             // PrimaryBizObj = 
-
+            dataGrid.ItemsSource = boL.GetByMatchCode(matchcode);
             dataGrid.SelectedValuePath = "PK";
-            dataGrid.ItemsSource = boP.GetByMatchCode(matchcode);
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             txtSearch.Text = matchcode;
         }
@@ -88,7 +87,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid.ItemsSource = boP.GetByMatchCode(txtSearch.Text);
+            dataGrid.ItemsSource = boL.GetByMatchCode(txtSearch.Text);
         }
 
         private void FillGrid()

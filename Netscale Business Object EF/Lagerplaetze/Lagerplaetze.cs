@@ -16,14 +16,14 @@ namespace HWB.NETSCALE.BOEF
 	/// Summary description for Lagerplaetze.
 	/// </summary>
 	public partial class Lagerplaetze : ABusinessObject<LagerplaetzeEntity>
-    {
+	{
+		
 		#region Association Properties
 
-		
+	
 		/// Business Rule object
 		/// </summary>
 		public virtual LagerplaetzeRules Rules
-
 		{
 			get { return (LagerplaetzeRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
@@ -53,7 +53,7 @@ namespace HWB.NETSCALE.BOEF
 			this.EntityFramework = true;
 			this.TableName = "Lagerplaetze";
 			this.PhysicalDbcObjectName = "dbo.Lagerplaetze";
-			this.PrimaryKey = "";
+			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
 		}
@@ -87,20 +87,6 @@ namespace HWB.NETSCALE.BOEF
 			return new EntityDataModelContainer(conn);
 		}
 		
-
-		/// <summary>
-		/// Set default values on the new entity
-		/// </summary>
-		/// <param name="entity">New Entity</param>
-		protected override void HookSetDefaultValues(LagerplaetzeEntity entity)
-		{
-
-			// Store the hard-coded default values via the entity object
-			if (entity != null)
-			{
-				entity.PK = 0;
-			}
-		}
 
 	}
 }

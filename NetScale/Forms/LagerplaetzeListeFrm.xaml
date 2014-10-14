@@ -1,4 +1,4 @@
-﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.AdressenListeFrm"
+﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.LagerplaetzeListeFrm"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +6,10 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
-                        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
-                        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                         x:Name="Window"
-                        Title="Adressen"
-                        Width="678"
-                        Height="734"
+                        Title="Lagerplätze"
+                        Width="658"
+                        Height="522"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
                         Loaded="Window_Loaded"
@@ -20,19 +18,13 @@
 
 
     <mmwpf:mmBusinessWindow.Resources>
-    	<HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource1" d:IsDataSource="True"/>
-        <HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource" d:IsDataSource="True" />
+        <HWB_NETSCALE_BOEF:LagerplaetzeEntity x:Key="LagerplaetzeEntityDataSource" d:IsDataSource="True" />
     </mmwpf:mmBusinessWindow.Resources>
 
 
     <Grid x:Name="LayoutRoot"
           Background="#FFA5C8E8"
-          DataContext="{Binding Source={StaticResource AdressenEntityDataSource}}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="102*" />
-            <RowDefinition Height="40*" />
-            <RowDefinition Height="341*" />
-        </Grid.RowDefinitions>
+          DataContext="{Binding Source={StaticResource LagerplaetzeEntityDataSource}}">
         <ribbon:Ribbon x:Name="Ribbon"
                        Height="120"
                        Margin="-2,-21,2,0"
@@ -55,80 +47,53 @@
                                          Click="cmdNeu_Click"
                                          FontSize="14"
                                          Label=" Neu  "
-                                         LargeImageSource="..\Images\1328191262_add-notes.png"
-                                         TabIndex="30" />
+                                         LargeImageSource="..\Images\1328191262_add-notes.png" />
                     <ribbon:RibbonButton x:Name="cmdEdit"
                                          Width="80"
                                          Click="cmdEdit_Click"
                                          FontSize="14"
                                          Label=" Bearbeiten  "
-                                         LargeImageSource="..\Images\1328191024_edit-notes.png"
-                                         TabIndex="40" />
+                                         LargeImageSource="..\Images\1328191024_edit-notes.png" />
                     <ribbon:RibbonButton x:Name="cmdSelect"
                                          Width="80"
                                          Click="cmdSelect_Click"
                                          FontSize="14"
                                          Label=" Auswählen "
-                                         LargeImageSource="..\Images\1328252503_ok.png"
-                                         TabIndex="50" />
+                                         LargeImageSource="..\Images\1328252503_ok.png" />
 
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid x:Name="dataGrid"
-                  Grid.Row="2"
-                  Height="245"
-                  Margin="0,10,2,0"
-                  VerticalAlignment="Top"
+                  Margin="0,152,2,12"
                   AutoGenerateColumns="False"
-                  IsTabStop="True"
                   ItemsSource="{Binding Mode=OneWay}"
                   MouseDoubleClick="dataGrid_MouseDoubleClick"
                   SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGrid_SelectionChanged"
-                  Style="{DynamicResource DataGridStyle}"
-                  TabIndex="20">
+                  SelectionChanged="dataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
-                <DataGridTextColumn Binding="{Binding businessIdentifier}" Header="Name-Id" />
-                <DataGridTextColumn Binding="{Binding name}" Header="Name 1" />
-                <DataGridTextColumn Binding="{Binding subName2}" Header="Name2" />
-                <DataGridTextColumn Binding="{Binding zipCode}" Header="Plz / ZIP" />
-                <DataGridTextColumn Binding="{Binding city}" Header="Ort" />
-                <DataGridTextColumn Binding="{Binding street}" Header="Strasse" />
-                <DataGridTextColumn Binding="{Binding isocodeCountry}" Header="Land" />
+                <DataGridTextColumn Binding="{Binding name}" Header="Name" />
+                <DataGridTextColumn Binding="{Binding fullname}" Header="Voller Name" />
+                <DataGridTextColumn Binding="{Binding locationid}" Header="Betriebstätte" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="txtSearch"
-                 Grid.Row="1"
                  Width="318"
                  Height="30"
-                 Margin="97,5,0,0"
+                 Margin="97,107,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  Background="#FFFFF7B2"
                  FontSize="16"
                  Opacity="50"
-                 TabIndex="10"
                  TextChanged="txtSearch_TextChanged" />
         <Label x:Name="label1"
-               Grid.Row="1"
                Height="28"
-               Margin="12,7,0,0"
+               Margin="12,109,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
                FontWeight="Bold" />
-
-
-        <xcdg:DataGridControl x:Name="_dataGrid"
-                              Grid.Row="2"
-                              Margin="0,262,0,29">
-            <xcdg:DataGridControl.View>
-                <xcdg:TableflowView FixedColumnCount="2" />
-            </xcdg:DataGridControl.View>
-
-        </xcdg:DataGridControl>
-
     </Grid>
 </mmwpf:mmBusinessWindow>

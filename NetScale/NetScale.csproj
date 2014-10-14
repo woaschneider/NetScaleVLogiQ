@@ -178,8 +178,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\WPFToolkit.Extended.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\..\..\CS\Extended WPF Toolkit Community Editon 2.0\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>C:\Program Files (x86)\Mere Mortals .NET Framework 2010\ExtendedWPFToolkit2.3\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Mere Mortals .NET Framework 2010\ExtendedWPFToolkit2.3\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -222,8 +226,8 @@
     <Compile Include="Forms\HoflisteFrm.xaml.cs">
       <DependentUpon>HoflisteFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LagerplatzeListFrm.xaml.cs">
-      <DependentUpon>LagerplatzeListFrm.xaml</DependentUpon>
+    <Compile Include="Forms\LagerplaetzeListeFrm.xaml.cs">
+      <DependentUpon>LagerplaetzeListeFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\MandantEditFrm.xaml.cs">
       <DependentUpon>MandantEditFrm.xaml</DependentUpon>
@@ -276,9 +280,11 @@
     <Compile Include="Forms\InfoFrm.xaml.cs">
       <DependentUpon>InfoFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Import\ArticleAttributes\ImportArticleAttributes.cs" />
-    <Compile Include="Import\ArticleAttributes\PolosArticleAttributes.cs" />
+    <Compile Include="Import\ArticleAttributesImport\ImportArticleAttributes.cs" />
+    <Compile Include="Import\ArticleAttributesImport\PolosArticleAttributes.cs" />
     <Compile Include="Import\ArticleImport\PolosArticle.cs" />
+    <Compile Include="Import\AuftragsImport\ImportAuftraege.cs" />
+    <Compile Include="Import\AuftragsImport\PolosAuftrag.cs" />
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="Import\ArticleImport\ImportArticle.cs" />
     <Compile Include="Import\ImportPolos.cs" />
@@ -287,6 +293,8 @@
     <Compile Include="Import\AddressImport\PolosAddress.cs" />
     <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
+    <Compile Include="Import\LagerPlaetzeImport\ImportStorageArea.cs" />
+    <Compile Include="Import\LagerPlaetzeImport\PolosStorageArea.cs" />
     <Compile Include="Import\ProductsImport\ImportProducts.cs" />
     <Compile Include="Import\ProductsImport\PolosProducts.cs" />
     <Compile Include="MD5.cs" />
@@ -350,7 +358,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\LagerplatzeListFrm.xaml">
+    <Page Include="Forms\LagerplaetzeListeFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -476,6 +484,7 @@
     </None>
     <None Include="ClassDiagram2.cd" />
     <None Include="Forms\WiegeFrm.cd" />
+    <None Include="Import\AuftragsImport\AuftragsImport.cd" />
     <None Include="NetScale_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

@@ -33,7 +33,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
        
-        public mmBindingList<WarenartenEntity> GetWarenArtenByMatchCode(string mc)
+        public mmBindingList<WarenartenEntity> GetByMatchCode(string mc)
         {
             IQueryable<WarenartenEntity> query = from a in ObjectContext.WarenartenEntities
                                                  orderby a.description

@@ -42,7 +42,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             this.InitializeComponent();
             // PrimaryBizObj = 
-            dataGrid.ItemsSource = boWA.GetWarenArtenByMatchCode(matchcode);
+            dataGrid.ItemsSource = boWA.GetByMatchCode(matchcode);
             dataGrid.SelectedValuePath = "PK";
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             txtSearch.Text = matchcode;
@@ -87,7 +87,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid.ItemsSource = boWA.GetWarenArtenByMatchCode(txtSearch.Text.Trim());
+            dataGrid.ItemsSource = boWA.GetByMatchCode(txtSearch.Text.Trim());
         }
 
         private void FillGrid()

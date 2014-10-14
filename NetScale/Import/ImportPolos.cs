@@ -8,84 +8,79 @@ using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.FRONTEND.WPF.Forms;
 using HWB.NETSCALE.FRONTEND.WPF.Import.ArticleAttributes;
 using HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport;
+using HWB.NETSCALE.FRONTEND.WPF.Import.LagerPlaetzeImport;
 using HWB.NETSCALE.FRONTEND.WPF.Import.ProductsImport;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Import
 {
-  public  class ImportPolos : IImportInterface 
+    public class ImportPolos : IImportInterface
     {
-      private string Path = "";
-      private string AktFileName;
+        private string Path = "";
+        private string AktFileName;
 
-      // Constructor
-      public ImportPolos()
-      {
-
-      }
-
-      public void Import()
-      {
-          Path = GetImportPath();
-          if (Path == "")
-          {
-              MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
-                              "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
-              return;
-          }
-
-       //   new ImportAddress().Import(Path + "\\Polos_Adressen.json");
-       //   new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
-        //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
-      //    new ImportProducts().Import(Path + "\\Polos_Produkte.json");
-          new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
-      }
-    public  void Import(WiegeFrm owf)
-    {
-        Path = GetImportPath();
-        if (Path == "")
+        // Constructor
+        public ImportPolos()
         {
-            MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
-                            "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
-        return;
         }
 
-      //    new ImportAddress().Import(Path + "\\Polos_Adressen.json");
-    //    new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
-        //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
-        // new ImportProducts().Import(Path + "\\Polos_Produkte.json");
-        new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
+        public void Import()
+        {
+            Path = GetImportPath();
+            if (Path == "")
+            {
+                MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
+                                "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //   new ImportAddress().Import(Path + "\\Polos_Adressen.json");
+            //   new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
+            //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
+            //    new ImportProducts().Import(Path + "\\Polos_Produkte.json");
+            //   new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
+            new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+        }
+
+        public void Import(WiegeFrm owf)
+        {
+            Path = GetImportPath();
+            if (Path == "")
+            {
+                MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
+                                "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            //    new ImportAddress().Import(Path + "\\Polos_Adressen.json");
+            //    new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
+            //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
+            // new ImportProducts().Import(Path + "\\Polos_Produkte.json");
+            // new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
+            new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+        }
+
+
+        private string GetImportPath()
+        {
+            Lokaleeinstellungen oBE = new Lokaleeinstellungen();
+            oBE = oBE.Load();
+            if (oBE.IMPORT_PATH == null)
+            {
+                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Importpfades!",
+                                "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return "";
+            }
+            oBE.Load();
+            if (oBE.IMPORT_PATH == "")
+            {
+                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Importpfades!",
+                                "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return "";
+            }
+
+            return oBE.IMPORT_PATH;
+        }
     }
-
-
-    private string GetImportPath()
-    {
-        Lokaleeinstellungen oBE = new Lokaleeinstellungen();
-        oBE = oBE.Load();
-        if (oBE.IMPORT_PATH == null)
-        {
-            MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Importpfades!",
-                            "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            return "";
-        }
-        oBE.Load();
-        if (oBE.IMPORT_PATH == "")
-        {
-            MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Importpfades!",
-                            "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            return "";
-        }
-
-        return oBE.IMPORT_PATH;
-    }
-
-  }
- 
-      
-
-   
-
-    
-
 }
