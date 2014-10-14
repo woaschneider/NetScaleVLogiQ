@@ -2,7 +2,7 @@
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Import.AuftragsImport
 {
-    public class RootObject
+    public class OrderitemsEntities
     {
         public List<OrderItem> orderItems { get; set; }
         public string id { get; set; }
