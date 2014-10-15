@@ -26,6 +26,8 @@
           <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Module" EntityType="$namespace$.Target.Module" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="orderItems" EntityType="$namespace$.Target.orderItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="orderItemServices" EntityType="$namespace$.Target.orderItemServices" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="$namespace$.Target.Users" store:Type="Tables" Schema="dbo" />
@@ -33,6 +35,10 @@
           <EntitySet Name="Waege" EntityType="$namespace$.Target.Waege" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Warenarten" EntityType="$namespace$.Target.Warenarten" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Wiegeart" EntityType="$namespace$.Target.Wiegeart" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="Auftrag hat Positionen" Association="$namespace$.Target.Auftrag hat Positionen">
+            <End Role="orderItems" EntitySet="orderItems" />
+            <End Role="orderItemServices" EntitySet="orderItemServices" />
+          </AssociationSet>
           <AssociationSet Name="FK_Message_Language" Association="$namespace$.Target.FK_Message_Language">
             <End Role="Language" EntitySet="Language" />
             <End Role="Message" EntitySet="Message" />
@@ -238,6 +244,51 @@
           <Property Name="Modulbezeichnung" Type="varchar" MaxLength="50" />
           <Property Name="Modul_Is_Active" Type="bit" />
         </EntityType>
+        <EntityType Name="orderItems">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="locationId" Type="varchar" MaxLength="22" />
+          <Property Name="id" Type="varchar" MaxLength="32" />
+          <Property Name="number" Type="varchar" MaxLength="32" />
+          <Property Name="reference" Type="varchar" MaxLength="32" />
+          <Property Name="orderstate" Type="varchar" MaxLength="32" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="customerName" Type="varchar" MaxLength="64" />
+          <Property Name="customerSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="customerOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="customerStreet" Type="varchar" MaxLength="64" />
+          <Property Name="customerZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="customerCity" Type="varchar" MaxLength="128" />
+          <Property Name="customerCountry" Type="varchar" MaxLength="4" />
+          <Property Name="invoiceReceiverName" Type="varchar" MaxLength="64" />
+          <Property Name="InvoiceReceiverSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="invoiceReceiverOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="invoiceReceiverStreet" Type="varchar" MaxLength="64" />
+          <Property Name="InvoiceReceiverZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="InvoiceReceiverCity" Type="varchar" MaxLength="128" />
+          <Property Name="InvoiceReceiverCountry" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="orderItemServices">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PositionsNr" Type="varchar" MaxLength="22" />
+          <Property Name="Produkt" Type="varchar" MaxLength="22" />
+          <Property Name="LagermandantName3" Type="varchar" MaxLength="64" />
+          <Property Name="Kundenreferenz_Pos" Type="varchar" MaxLength="64" />
+          <Property Name="LieferantEmpfaengerName3" Type="varchar" MaxLength="64" />
+          <Property Name="Frankatur" Type="varchar" MaxLength="64" />
+          <Property Name="Warenart" Type="varchar" MaxLength="32" />
+          <Property Name="ArtikelNr" Type="varchar" MaxLength="256" />
+          <Property Name="GeplantesLeistungsdatum" Type="date" />
+          <Property Name="SollMenge_BME" Type="varchar" MaxLength="22" />
+          <Property Name="SollMenge_ZME" Type="varchar" MaxLength="22" />
+          <Property Name="SollLagerPlatz" Type="char" MaxLength="22" />
+          <Property Name="PKAK" Type="int" />
+        </EntityType>
         <EntityType Name="Produkte">
           <Key>
             <PropertyRef Name="PK" />
@@ -342,6 +393,18 @@
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="DefaultW" Type="bit" />
         </EntityType>
+        <Association Name="Auftrag hat Positionen">
+          <End Role="orderItems" Type="$namespace$.Target.orderItems" Multiplicity="0..1" />
+          <End Role="orderItemServices" Type="$namespace$.Target.orderItemServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orderItems">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="orderItemServices">
+              <PropertyRef Name="PKAK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Message_Language">
           <End Role="Language" Type="$namespace$.Target.Language" Multiplicity="1" />
           <End Role="Message" Type="$namespace$.Target.Message" Multiplicity="*" />
@@ -384,6 +447,12 @@
           <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
           <EntitySet Name="ArtikelattributeEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelattributeEntity" />
           <EntitySet Name="LagerplaetzeEntities" EntityType="HWB.NETSCALE.BOEF.LagerplaetzeEntity" />
+          <EntitySet Name="orderItemEntities" EntityType="HWB.NETSCALE.BOEF.orderItemEntity" />
+          <EntitySet Name="orderItemServiceEntitities" EntityType="HWB.NETSCALE.BOEF.orderItemServiceEntitity" />
+          <AssociationSet Name="Auftrag_hat_Positionen" Association="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen">
+            <End Role="orderItemEntity" EntitySet="orderItemEntities" />
+            <End Role="orderItemService" EntitySet="orderItemServiceEntitities" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -700,6 +769,65 @@
           <Property Type="String" Name="fullname" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="id" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="orderItemEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="locationId" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="number" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reference" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orderstate" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date" />
+          <Property Type="String" Name="customerName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerCountry" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverCountry" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="orderItemServices" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="orderItemEntity" ToRole="orderItemService" />
+        </EntityType>
+        <EntityType Name="orderItemServiceEntitity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="PositionsNr" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Produkt" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LagermandantName3" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Kundenreferenz_Pos" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LieferantEmpfaengerName3" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Frankatur" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Warenart" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ArtikelNr" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="GeplantesLeistungsdatum" />
+          <Property Type="String" Name="SollMenge_BME" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SollMenge_ZME" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SollLagerPlatz" MaxLength="22" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="PKAK" />
+          <NavigationProperty Name="orderItem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="orderItemService" ToRole="orderItemEntity" />
+        </EntityType>
+        <Association Name="Auftrag_hat_Positionen">
+          <End Type="HWB.NETSCALE.BOEF.orderItemEntity" Role="orderItemEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.orderItemServiceEntitity" Role="orderItemService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orderItemEntity">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="orderItemService">
+              <PropertyRef Name="PKAK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1028,6 +1156,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="orderItemEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.orderItemEntity">
+              <MappingFragment StoreEntitySet="orderItems">
+                <ScalarProperty Name="InvoiceReceiverCountry" ColumnName="InvoiceReceiverCountry" />
+                <ScalarProperty Name="InvoiceReceiverCity" ColumnName="InvoiceReceiverCity" />
+                <ScalarProperty Name="InvoiceReceiverZipCode" ColumnName="InvoiceReceiverZipCode" />
+                <ScalarProperty Name="invoiceReceiverStreet" ColumnName="invoiceReceiverStreet" />
+                <ScalarProperty Name="invoiceReceiverOwningLocationId" ColumnName="invoiceReceiverOwningLocationId" />
+                <ScalarProperty Name="InvoiceReceiverSubName2" ColumnName="InvoiceReceiverSubName2" />
+                <ScalarProperty Name="invoiceReceiverName" ColumnName="invoiceReceiverName" />
+                <ScalarProperty Name="customerCountry" ColumnName="customerCountry" />
+                <ScalarProperty Name="customerCity" ColumnName="customerCity" />
+                <ScalarProperty Name="customerZipCode" ColumnName="customerZipCode" />
+                <ScalarProperty Name="customerStreet" ColumnName="customerStreet" />
+                <ScalarProperty Name="customerOwningLocationId" ColumnName="customerOwningLocationId" />
+                <ScalarProperty Name="customerSubName2" ColumnName="customerSubName2" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="orderstate" ColumnName="orderstate" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderItemServiceEntitities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.orderItemServiceEntitity">
+              <MappingFragment StoreEntitySet="orderItemServices">
+                <ScalarProperty Name="PKAK" ColumnName="PKAK" />
+                <ScalarProperty Name="SollLagerPlatz" ColumnName="SollLagerPlatz" />
+                <ScalarProperty Name="SollMenge_ZME" ColumnName="SollMenge_ZME" />
+                <ScalarProperty Name="SollMenge_BME" ColumnName="SollMenge_BME" />
+                <ScalarProperty Name="GeplantesLeistungsdatum" ColumnName="GeplantesLeistungsdatum" />
+                <ScalarProperty Name="ArtikelNr" ColumnName="ArtikelNr" />
+                <ScalarProperty Name="Warenart" ColumnName="Warenart" />
+                <ScalarProperty Name="Frankatur" ColumnName="Frankatur" />
+                <ScalarProperty Name="LieferantEmpfaengerName3" ColumnName="LieferantEmpfaengerName3" />
+                <ScalarProperty Name="Kundenreferenz_Pos" ColumnName="Kundenreferenz_Pos" />
+                <ScalarProperty Name="LagermandantName3" ColumnName="LagermandantName3" />
+                <ScalarProperty Name="Produkt" ColumnName="Produkt" />
+                <ScalarProperty Name="PositionsNr" ColumnName="PositionsNr" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1075,6 +1250,12 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="10.375" PointY="2.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelattributeEntity" Width="1.5" PointX="11.375" PointY="5.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.LagerplaetzeEntity" Width="1.5" PointX="11.375" PointY="8.75" Height="1.9802864583333246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.orderItemEntity" Width="1.5" PointX="9.375" PointY="11.75" Height="5.0571093750000067" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.orderItemServiceEntitity" Width="1.5" PointX="11.625" PointY="12.375" Height="3.9033007812499942" />
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" >
+          <edmx:ConnectorPoint PointX="10.875" PointY="14.326650390624998" />
+          <edmx:ConnectorPoint PointX="11.625" PointY="14.326650390624998" />
+        </edmx:AssociationConnector>
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

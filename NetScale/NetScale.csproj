@@ -286,7 +286,9 @@
     <Compile Include="Import\AuftragsImport\ImportAuftraege.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Import\AuftragsImport\PolosAuftrag.cs" />
+    <Compile Include="Import\AuftragsImport\PolosAuftrag.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="Import\ArticleImport\ImportArticle.cs" />
     <Compile Include="Import\ImportPolos.cs" />
