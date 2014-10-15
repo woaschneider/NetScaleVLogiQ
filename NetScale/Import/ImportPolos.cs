@@ -7,6 +7,7 @@ using System.Windows;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.FRONTEND.WPF.Forms;
 using HWB.NETSCALE.FRONTEND.WPF.Import.ArticleAttributes;
+using HWB.NETSCALE.FRONTEND.WPF.Import.AuftragsImport;
 using HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport;
 using HWB.NETSCALE.FRONTEND.WPF.Import.LagerPlaetzeImport;
 using HWB.NETSCALE.FRONTEND.WPF.Import.ProductsImport;
@@ -38,7 +39,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
             //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
             //    new ImportProducts().Import(Path + "\\Polos_Produkte.json");
             //   new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
-            new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+           //  new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+
+            new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW.json");
         }
 
         public void Import(WiegeFrm owf)
@@ -56,7 +59,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
             //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
             // new ImportProducts().Import(Path + "\\Polos_Produkte.json");
             // new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
-            new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+           // new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+            new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW.json");
         }
 
 
