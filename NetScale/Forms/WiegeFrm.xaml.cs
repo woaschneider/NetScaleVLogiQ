@@ -8,7 +8,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using HWB.NETSCALE.FRONTEND.WPF.Import;
+using HWB.NETSCALE.POLOSIO;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.WPF;
 
@@ -42,7 +42,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdImport_Click(object sender, RoutedEventArgs e)
         {
-            new ImportPolos().Import(this);
+            new ImportPolos().Import();
         }
 
         private void cmdArtikel_Click(object sender, RoutedEventArgs e)

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import.ProductsImport
+namespace HWB.NETSCALE.POLOSIO.ProductsImport
 {
     public class Product
     {

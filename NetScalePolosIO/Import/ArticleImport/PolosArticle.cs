@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import.ArticleImport
+namespace HWB.NETSCALE.POLOSIO.ArticleImport
 {
     public class ArticleRootObject
     {
@@ -20,8 +17,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.ArticleImport
     {
         public Article()
         {
-            BaseUnit baseUnit = new BaseUnit();
-            ConversionUnit conversionUnit = new ConversionUnit();
+            var baseUnit = new BaseUnit();
+            var conversionUnit = new ConversionUnit();
         }
 
         public int id { get; set; }
@@ -37,10 +34,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.ArticleImport
 
     public class BaseUnit
     {
-        public BaseUnit()
-        {
-        }
-
         public int id { get; set; }
         public string shortDescription { get; set; }
         public string description { get; set; }
@@ -52,10 +45,4 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.ArticleImport
         public string shortDescription { get; set; }
         public string description { get; set; }
     }
-
-   
-
-    
-
- 
 }

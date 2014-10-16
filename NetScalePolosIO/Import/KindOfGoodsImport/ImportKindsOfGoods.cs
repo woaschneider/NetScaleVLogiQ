@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HWB.NETSCALE.BOEF;
-using Microsoft.Windows.Controls;
+using Xceed.Wpf.Toolkit;
 
 // Imports Kind of Goods nach Warenarten
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport
+namespace HWB.NETSCALE.POLOSIO.KindOfGoodsImport
 {
     public class ImportKindsOfGoods
     {
@@ -18,9 +15,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport
         {
             try
             {
-                KindOfGoodsImport.KindOfGoodsImportRootObject oK =
-                    FullQualifiedFileName.CreateFromJsonFile<KindOfGoodsImport.KindOfGoodsImportRootObject>();
-                boW = new BOEF.Warenarten();
+                var oK =
+                    FullQualifiedFileName.CreateFromJsonFile<KindOfGoodsImportRootObject>();
+                boW = new Warenarten();
 
                 foreach (KindOfGood obj in oK.kindOfGoods)
                 {
@@ -41,7 +38,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.KindOfGoodsImport
 
             catch (Exception e)
             {
-                MessageBox.Show(e.Message.ToString());
+                MessageBox.Show(e.Message);
             }
 
 

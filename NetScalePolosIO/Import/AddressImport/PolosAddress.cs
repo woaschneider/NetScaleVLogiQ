@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using HWB.NETSCALE.BOEF;
-using Microsoft.Windows.Controls;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using System.Collections.Generic;
 
-
-namespace HWB.NETSCALE.FRONTEND.WPF.Import
+namespace HWB.NETSCALE.POLOSIO
 {
     public class AddressRootObject
     {
@@ -18,12 +9,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
 
     public class AddressableEntity
     {
-        public Address address { get; set; }
-
         public AddressableEntity()
         {
             address = new Address();
         }
+
+        public Address address { get; set; }
 
         public int id { get; set; }
         public string businessIdentifier { get; set; }
@@ -37,11 +28,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
 
     public class Address
     {
-      public Country country;
-      public   Address()
-      {
-          country = new Country();
-      }
+        public Country country;
+
+        public Address()
+        {
+            country = new Country();
+        }
 
         public string name { get; set; }
         public string street { get; set; }
@@ -49,7 +41,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
         public string city { get; set; }
     }
 
-    public  class Country
+    public class Country
     {
         public int id { get; set; }
         public string isoCode { get; set; }

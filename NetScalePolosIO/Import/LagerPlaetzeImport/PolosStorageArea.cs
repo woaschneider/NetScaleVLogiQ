@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import.LagerPlaetzeImport
+namespace HWB.NETSCALE.POLOSIO.LagerPlaetzeImport
 {
-   public class PolosStorageArea
+    public class PolosStorageArea
     {
         public string id { get; set; }
         public string name { get; set; }
@@ -13,8 +10,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.LagerPlaetzeImport
         public string fullName { get; set; }
     }
 
-   public class LagerPlaetzeRootObject
-   {
-       public List<PolosStorageArea> storageAreas { get; set; }
-   }
+    public class LagerPlaetzeRootObject
+    {
+        public List<PolosStorageArea> storageAreas { get; set; }
+    }
 }

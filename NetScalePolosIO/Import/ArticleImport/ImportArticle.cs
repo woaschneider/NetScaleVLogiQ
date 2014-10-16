@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HWB.NETSCALE.BOEF;
-using HWB.NETSCALE.FRONTEND.WPF.Import.ArticleImport;
-using Microsoft.Windows.Controls;
+using HWB.NETSCALE.POLOSIO.ArticleImport;
+using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import
+namespace HWB.NETSCALE.POLOSIO
 {
-    class ImportArticle
+    internal class ImportArticle
     {
         private Artikel boA;
         private ArtikelEntity boAE;
+
         public bool Import(string FullQualifiedFileName)
         {
             try
             {
+                var oA = FullQualifiedFileName.CreateFromJsonFile<ArticleRootObject>();
 
-
-                ArticleRootObject oA = FullQualifiedFileName.CreateFromJsonFile<ArticleRootObject>();
-
-              boA = new Artikel();
+                boA = new Artikel();
 
                 foreach (ArticleInformation obj in oA.articleInformation)
                 {
@@ -50,12 +46,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
                             boA.SaveEntity(boAE);
                         }
                     }
-                    }
                 }
+            }
 
             catch (Exception e)
             {
-                MessageBox.Show(e.Message.ToString());
+                MessageBox.Show(e.Message);
             }
 
 

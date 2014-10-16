@@ -1,36 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using HWB.NETSCALE.BOEF;
+using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import.ArticleAttributes
+namespace HWB.NETSCALE.POLOSIO.ArticleAttributes
 {
-    class ImportArticleAttributes
+    internal class ImportArticleAttributes
     {
-        private Artikelattribute  boA;
+        private Artikelattribute boA;
         private ArtikelattributeEntity boAE;
+
         public bool Import(string FullQualifiedFileName)
         {
             try
             {
-
-
-                ArticleAttributesRootObject oA = FullQualifiedFileName.CreateFromJsonFile<ArticleAttributesRootObject>();
+                var oA = FullQualifiedFileName.CreateFromJsonFile<ArticleAttributesRootObject>();
 
                 boA = new Artikelattribute();
                 for (int i = 0; i < oA.articleAttributes.Count; i++)
                 {
-                    boAE = boA.GetArtikelAttributByBezeichnung(oA.articleAttributes[i].ToString());
-                    if(boAE==null)
+                    boAE = boA.GetArtikelAttributByBezeichnung(oA.articleAttributes[i]);
+                    if (boAE == null)
                     {
-                      boAE=   boA.NewEntity();
-
+                        boAE = boA.NewEntity();
                     }
-                    if(boAE!=null)
+                    if (boAE != null)
                     {
-                        boAE.AttributName = oA.articleAttributes[i].ToString();
+                        boAE.AttributName = oA.articleAttributes[i];
                         boA.SaveEntity(boAE);
                     }
                 }
@@ -38,7 +33,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import.ArticleAttributes
 
             catch (Exception e)
             {
-                MessageBox.Show(e.Message.ToString());
+                MessageBox.Show(e.Message);
             }
 
 

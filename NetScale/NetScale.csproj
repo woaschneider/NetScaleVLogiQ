@@ -280,27 +280,6 @@
     <Compile Include="Forms\InfoFrm.xaml.cs">
       <DependentUpon>InfoFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Import\ArticleAttributesImport\ImportArticleAttributes.cs" />
-    <Compile Include="Import\ArticleAttributesImport\PolosArticleAttributes.cs" />
-    <Compile Include="Import\ArticleImport\PolosArticle.cs" />
-    <Compile Include="Import\AuftragsImport\ImportAuftraege.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Import\AuftragsImport\PolosAuftrag.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Import\IImportInterface.cs" />
-    <Compile Include="Import\ArticleImport\ImportArticle.cs" />
-    <Compile Include="Import\ImportPolos.cs" />
-    <Compile Include="Import\JsonHelpers.cs" />
-    <Compile Include="Import\AddressImport\ImportAddress.cs" />
-    <Compile Include="Import\AddressImport\PolosAddress.cs" />
-    <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
-    <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
-    <Compile Include="Import\LagerPlaetzeImport\ImportStorageArea.cs" />
-    <Compile Include="Import\LagerPlaetzeImport\PolosStorageArea.cs" />
-    <Compile Include="Import\ProductsImport\ImportProducts.cs" />
-    <Compile Include="Import\ProductsImport\PolosProducts.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="Forms\MMWPFBusinessListFrm1.xaml.cs">
       <DependentUpon>MMWPFBusinessListFrm1.xaml</DependentUpon>
@@ -775,6 +754,10 @@
     <ProjectReference Include="..\NetScaleGlobal\NetScaleGlobal.csproj">
       <Project>{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}</Project>
       <Name>NetScaleGlobal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetScalePolosIO\NetScalePolosIO.csproj">
+      <Project>{BEFF5E7F-BE23-492B-8E7C-411A77747D9B}</Project>
+      <Name>NetScalePolosIO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

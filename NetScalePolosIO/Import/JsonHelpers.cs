@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Newtonsoft.Json;
+
 #if PORTABLE
 using ZTn.Bnet.Portable;
 #else
-using System.Text;
 
 #endif
 
-namespace  HWB.NETSCALE.FRONTEND.WPF.Import
+namespace HWB.NETSCALE.POLOSIO
 {
     public static class JsonHelpers
     {

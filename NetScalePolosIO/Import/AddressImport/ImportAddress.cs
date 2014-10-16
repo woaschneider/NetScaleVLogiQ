@@ -1,34 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web.Script.Serialization;
 using HWB.NETSCALE.BOEF;
-using Microsoft.Windows.Controls;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using HWB.NETSCALE.BOEF;
+using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import
+namespace HWB.NETSCALE.POLOSIO
 {
     public class ImportAddress
     {
-       
-        private HWB.NETSCALE.BOEF.Adressen boA;
-        private AdressenEntity boAE;
         private bool StartReading;
+        private Adressen boA;
+        private AdressenEntity boAE;
 
         public bool Import(string FullQualifiedFileName)
         {
             try
             {
+                var oR = FullQualifiedFileName.CreateFromJsonFile<AddressRootObject>();
 
 
-                AddressRootObject oR = FullQualifiedFileName.CreateFromJsonFile<AddressRootObject>();
-
-
-                boA = new BOEF.Adressen();
+                boA = new Adressen();
 
                 foreach (AddressableEntity obj in oR.addressableEntities)
                 {
@@ -38,14 +28,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
 
                         if (boAE == null)
                         {
-                          boAE=  boA.NewEntity();
+                            boAE = boA.NewEntity();
                         }
                         boAE.id = obj.id;
                         boAE.businessIdentifier = obj.businessIdentifier;
                         boAE.name = obj.name;
                         boAE.owningLocationId = obj.owningLocationId;
                         boAE.subName2 = obj.subName;
-                        
+
                         boAE.street = obj.address.street;
                         boAE.zipCode = obj.address.zipCode;
                         boAE.city = obj.address.city;
@@ -55,21 +45,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Import
                         boA.SaveEntity(boAE);
                     }
                 }
-
-
-
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message.ToString());
+                MessageBox.Show(e.Message);
             }
 
 
             return true;
         }
 
-
-      
 
         private void ReadJsonObject(JsonToken jt)
         {

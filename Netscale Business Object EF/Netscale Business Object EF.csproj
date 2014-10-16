@@ -177,11 +177,11 @@
     <Compile Include="Module\ModuleEntity.cs" />
     <Compile Include="Module\ModuleRules.cs" />
     <Compile Include="Module\ModuleRules.Partial.cs" />
-    <Compile Include="OrderItems\OrderItems.cs" />
-    <Compile Include="OrderItems\OrderItems.Partial.cs" />
-    <Compile Include="OrderItems\OrderItemsEntity.cs" />
-    <Compile Include="OrderItems\OrderItemsRules.cs" />
-    <Compile Include="OrderItems\OrderItemsRules.Partial.cs" />
+    <Compile Include="Orderitem\Orderitem.cs" />
+    <Compile Include="Orderitem\Orderitem.Partial.cs" />
+    <Compile Include="Orderitem\OrderitemEntity.cs" />
+    <Compile Include="Orderitem\OrderitemRules.cs" />
+    <Compile Include="Orderitem\OrderitemRules.Partial.cs" />
     <Compile Include="Produkte\Produkte.cs" />
     <Compile Include="Produkte\Produkte.Partial.cs" />
     <Compile Include="Produkte\ProdukteEntity.cs" />

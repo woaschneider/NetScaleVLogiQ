@@ -24,6 +24,20 @@ namespace HWB.NETSCALE.BOEF
 			// Place code here to be executed when the business object instantiates
 		}
 
+        public AdressenEntity GetByPK(int pk)
+        {
+            IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities
+                                               where a.PK == pk
+                                               select a;
+            return GetEntity(query);
+        }
+        public AdressenEntity GetByBusinenessIdentifier(string mc)
+        {
+            IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities
+                                               where a.businessIdentifier == mc.Trim()
+                                               select a;
+            return GetEntity(query);
+        }
         public AdressenEntity GetById(int id)
         {
             IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities
@@ -31,7 +45,7 @@ namespace HWB.NETSCALE.BOEF
                                                select a;
             return GetEntity(query);
         }
-        public  mmBindingList<AdressenEntity> GetAll()
+        public mmBindingList<AdressenEntity> GetAll()
         {
             IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities
                                                orderby a.businessIdentifier

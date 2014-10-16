@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace HWB.NETSCALE.FRONTEND.WPF.Import.AuftragsImport
+namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 {
-
-
-    
 
 
 
@@ -183,7 +177,7 @@ public class InvoiceReceiver
     public Address3 address { get; set; }
 }
 
-public class OrderEntities
+public class OrderEntity
 {
     public List<OrderItem> orderItems { get; set; }
     public string id { get; set; }
@@ -196,20 +190,12 @@ public class OrderEntities
     public string date { get; set; }
 }
 
-public class OrdersRootObject
+public class RootObject
 {
-    public OrderEntities orderEntities { get; set; }
+    public List<OrderEntity> orderEntities { get; set; }
 }
-
-
-
-
-
-
-
-
 
 
 
     
-}
+  } 
