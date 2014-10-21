@@ -13,19 +13,19 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Orderitem.
+	/// Summary description for OrderItemservice.
 	/// </summary>
-	public partial class Orderitem : ABusinessObject<OrderitemEntity>
+	public partial class OrderItemservice : ABusinessObject<OrderItemserviceEntity>
 	{
 		
 		#region Association Properties
 
-	
+
 		/// Business Rule object
 		/// </summary>
-		public virtual OrderitemRules Rules
+		public virtual OrderItemserviceRules Rules
 		{
-			get { return (OrderitemRules)this.BusinessRuleObj; }
+			get { return (OrderItemserviceRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +48,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Orderitem()
+		public OrderItemservice()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Orderitem";
-			this.PhysicalDbcObjectName = "dbo.Orderitem";
+			this.TableName = "OrderItemservice";
+			this.PhysicalDbcObjectName = "dbo.OrderItemservice";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +64,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new OrderitemRules(this);
+			return new OrderItemserviceRules(this);
 		}
 
 		/// <summary>

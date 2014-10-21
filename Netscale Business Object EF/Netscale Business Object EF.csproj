@@ -177,6 +177,16 @@
     <Compile Include="Module\ModuleEntity.cs" />
     <Compile Include="Module\ModuleRules.cs" />
     <Compile Include="Module\ModuleRules.Partial.cs" />
+    <Compile Include="OrderArticleAttribute\OrderArticleAttribute.cs" />
+    <Compile Include="OrderArticleAttribute\OrderArticleAttribute.Partial.cs" />
+    <Compile Include="OrderArticleAttribute\OrderArticleAttributeEntity.cs" />
+    <Compile Include="OrderArticleAttribute\OrderArticleAttributeRules.cs" />
+    <Compile Include="OrderArticleAttribute\OrderArticleAttributeRules.Partial.cs" />
+    <Compile Include="OrderItemservice\OrderItemservice.cs" />
+    <Compile Include="OrderItemservice\OrderItemservice.Partial.cs" />
+    <Compile Include="OrderItemservice\OrderItemserviceEntity.cs" />
+    <Compile Include="OrderItemservice\OrderItemserviceRules.cs" />
+    <Compile Include="OrderItemservice\OrderItemserviceRules.Partial.cs" />
     <Compile Include="Orderitem\Orderitem.cs" />
     <Compile Include="Orderitem\Orderitem.Partial.cs" />
     <Compile Include="Orderitem\OrderitemEntity.cs" />

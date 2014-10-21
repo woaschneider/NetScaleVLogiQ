@@ -1,5 +1,6 @@
 ﻿using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
+using HWB.NETSCALE.POLOSIO.ProductsImport;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO
@@ -16,8 +17,8 @@ namespace HWB.NETSCALE.POLOSIO
             Path = GetImportPath();
             if (Path == "")
             {
-
-                Xceed.Wpf.Toolkit.MessageBox.Show("test");
+                Xceed.Wpf.Toolkit.MessageBox.Show("Keine Importpfadangabe");
+               
                 
                 //MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
                 //                "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);)
@@ -26,12 +27,13 @@ namespace HWB.NETSCALE.POLOSIO
 
             //   new ImportAddress().Import(Path + "\\Polos_Adressen.json");
             //   new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
-            //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
-            //    new ImportProducts().Import(Path + "\\Polos_Produkte.json");
+          //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
+              new ImportProducts().Import(Path + "\\Polos_Produkte.json");
             //   new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
             //  new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
 
             new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW2.json");
+            Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 
       

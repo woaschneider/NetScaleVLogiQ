@@ -13,19 +13,39 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Orderitem.
+	/// Summary description for OrderArticleAttribute.
 	/// </summary>
-	public partial class Orderitem : ABusinessObject<OrderitemEntity>
+	public partial class OrderArticleAttribute : ABusinessObject<OrderArticleAttributeEntity>
 	{
 		
 		#region Association Properties
 
-	
+		/// <summary>
+		/// Business Entity object
+		/// </summary>
+		public override OrderArticleAttributeEntity Entity
+		{
+			get
+			{
+				if (this._entity == null)
+				{
+					this._entity = this.CreateEntityObject();
+				}
+				return this._entity;
+			}
+			set
+			{
+				this._entity = value;
+			}
+		}
+		private OrderArticleAttributeEntity _entity;
+
+		/// <summary>
 		/// Business Rule object
 		/// </summary>
-		public virtual OrderitemRules Rules
+		public virtual OrderArticleAttributeRules Rules
 		{
-			get { return (OrderitemRules)this.BusinessRuleObj; }
+			get { return (OrderArticleAttributeRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +68,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Orderitem()
+		public OrderArticleAttribute()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Orderitem";
-			this.PhysicalDbcObjectName = "dbo.Orderitem";
+			this.TableName = "OrderArticleAttribute";
+			this.PhysicalDbcObjectName = "dbo.OrderArticleAttribute";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +84,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new OrderitemRules(this);
+			return new OrderArticleAttributeRules(this);
 		}
 
 		/// <summary>

@@ -20,7 +20,7 @@
 
 
     <mmwpf:mmBusinessWindow.Resources>
-    	<HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource1" d:IsDataSource="True"/>
+        <HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource1" d:IsDataSource="True" />
         <HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource" d:IsDataSource="True" />
     </mmwpf:mmBusinessWindow.Resources>
 

@@ -30,6 +30,7 @@ namespace HWB.NETSCALE.POLOSIO
                         boAE.id = obj.article.id;
                         boAE.number = obj.article.number;
                         boAE.ownerId = obj.article.ownerId.ToString();
+                        boAE.kindOfGoodId = obj.article.kindOfGoodId;
                         boAE.kindOfGoodDescription = obj.article.kindOfGoodDescription;
                         boAE.locationId = obj.article.ownerId.ToString();
 
