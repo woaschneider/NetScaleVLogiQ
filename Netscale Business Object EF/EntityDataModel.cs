@@ -20,7 +20,7 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FK_Message_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HWB.NETSCALE.BOEF.Language), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.Message), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Artikel_hat_Attribute", "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), "OrderArticleAttributeEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderArticleAttributeEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "Orderitem", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderitemEntity), "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "OrderitemEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderitemEntity), "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), true)]
 
 #endregion
 
@@ -4736,30 +4736,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String customerCountry
-        {
-            get
-            {
-                return _customerCountry;
-            }
-            set
-            {
-                OncustomerCountryChanging(value);
-                ReportPropertyChanging("customerCountry");
-                _customerCountry = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("customerCountry");
-                OncustomerCountryChanged();
-            }
-        }
-        private global::System.String _customerCountry;
-        partial void OncustomerCountryChanging(global::System.String value);
-        partial void OncustomerCountryChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String invoiceReceiverName
         {
             get
@@ -4904,30 +4880,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String InvoiceReceiverCountry
-        {
-            get
-            {
-                return _InvoiceReceiverCountry;
-            }
-            set
-            {
-                OnInvoiceReceiverCountryChanging(value);
-                ReportPropertyChanging("InvoiceReceiverCountry");
-                _InvoiceReceiverCountry = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("InvoiceReceiverCountry");
-                OnInvoiceReceiverCountryChanged();
-            }
-        }
-        private global::System.String _InvoiceReceiverCountry;
-        partial void OnInvoiceReceiverCountryChanging(global::System.String value);
-        partial void OnInvoiceReceiverCountryChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String customerBusinessIdentifier
         {
             get
@@ -5018,6 +4970,102 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _invoiceReceiverId;
         partial void OninvoiceReceiverIdChanging(Nullable<global::System.Int32> value);
         partial void OninvoiceReceiverIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> invoiceReceiverIdCountry
+        {
+            get
+            {
+                return _invoiceReceiverIdCountry;
+            }
+            set
+            {
+                OninvoiceReceiverIdCountryChanging(value);
+                ReportPropertyChanging("invoiceReceiverIdCountry");
+                _invoiceReceiverIdCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("invoiceReceiverIdCountry");
+                OninvoiceReceiverIdCountryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _invoiceReceiverIdCountry;
+        partial void OninvoiceReceiverIdCountryChanging(Nullable<global::System.Int32> value);
+        partial void OninvoiceReceiverIdCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String invoiceReceiverIsocodeCountry
+        {
+            get
+            {
+                return _invoiceReceiverIsocodeCountry;
+            }
+            set
+            {
+                OninvoiceReceiverIsocodeCountryChanging(value);
+                ReportPropertyChanging("invoiceReceiverIsocodeCountry");
+                _invoiceReceiverIsocodeCountry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("invoiceReceiverIsocodeCountry");
+                OninvoiceReceiverIsocodeCountryChanged();
+            }
+        }
+        private global::System.String _invoiceReceiverIsocodeCountry;
+        partial void OninvoiceReceiverIsocodeCountryChanging(global::System.String value);
+        partial void OninvoiceReceiverIsocodeCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> customerIdCountry
+        {
+            get
+            {
+                return _customerIdCountry;
+            }
+            set
+            {
+                OncustomerIdCountryChanging(value);
+                ReportPropertyChanging("customerIdCountry");
+                _customerIdCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("customerIdCountry");
+                OncustomerIdCountryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _customerIdCountry;
+        partial void OncustomerIdCountryChanging(Nullable<global::System.Int32> value);
+        partial void OncustomerIdCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String customerIsocodeCountry
+        {
+            get
+            {
+                return _customerIsocodeCountry;
+            }
+            set
+            {
+                OncustomerIsocodeCountryChanging(value);
+                ReportPropertyChanging("customerIsocodeCountry");
+                _customerIsocodeCountry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("customerIsocodeCountry");
+                OncustomerIsocodeCountryChanged();
+            }
+        }
+        private global::System.String _customerIsocodeCountry;
+        partial void OncustomerIsocodeCountryChanging(global::System.String value);
+        partial void OncustomerIsocodeCountryChanged();
 
         #endregion
     
@@ -5218,30 +5266,6 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ownerId;
         partial void OnownerIdChanging(global::System.String value);
         partial void OnownerIdChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String supplier_or_consignee
-        {
-            get
-            {
-                return _supplier_or_consignee;
-            }
-            set
-            {
-                Onsupplier_or_consigneeChanging(value);
-                ReportPropertyChanging("supplier_or_consignee");
-                _supplier_or_consignee = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("supplier_or_consignee");
-                Onsupplier_or_consigneeChanged();
-            }
-        }
-        private global::System.String _supplier_or_consignee;
-        partial void Onsupplier_or_consigneeChanging(global::System.String value);
-        partial void Onsupplier_or_consigneeChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -5824,24 +5848,264 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String supplierOrConsigneeCountry
+        public Nullable<global::System.Int32> supplierOrConsigneedIdCountry
         {
             get
             {
-                return _supplierOrConsigneeCountry;
+                return _supplierOrConsigneedIdCountry;
             }
             set
             {
-                OnsupplierOrConsigneeCountryChanging(value);
-                ReportPropertyChanging("supplierOrConsigneeCountry");
-                _supplierOrConsigneeCountry = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("supplierOrConsigneeCountry");
-                OnsupplierOrConsigneeCountryChanged();
+                OnsupplierOrConsigneedIdCountryChanging(value);
+                ReportPropertyChanging("supplierOrConsigneedIdCountry");
+                _supplierOrConsigneedIdCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supplierOrConsigneedIdCountry");
+                OnsupplierOrConsigneedIdCountryChanged();
             }
         }
-        private global::System.String _supplierOrConsigneeCountry;
-        partial void OnsupplierOrConsigneeCountryChanging(global::System.String value);
-        partial void OnsupplierOrConsigneeCountryChanged();
+        private Nullable<global::System.Int32> _supplierOrConsigneedIdCountry;
+        partial void OnsupplierOrConsigneedIdCountryChanging(Nullable<global::System.Int32> value);
+        partial void OnsupplierOrConsigneedIdCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String supplierOrConsigneeIsocodeCountry
+        {
+            get
+            {
+                return _supplierOrConsigneeIsocodeCountry;
+            }
+            set
+            {
+                OnsupplierOrConsigneeIsocodeCountryChanging(value);
+                ReportPropertyChanging("supplierOrConsigneeIsocodeCountry");
+                _supplierOrConsigneeIsocodeCountry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("supplierOrConsigneeIsocodeCountry");
+                OnsupplierOrConsigneeIsocodeCountryChanged();
+            }
+        }
+        private global::System.String _supplierOrConsigneeIsocodeCountry;
+        partial void OnsupplierOrConsigneeIsocodeCountryChanging(global::System.String value);
+        partial void OnsupplierOrConsigneeIsocodeCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> clearanceValidFrom
+        {
+            get
+            {
+                return _clearanceValidFrom;
+            }
+            set
+            {
+                OnclearanceValidFromChanging(value);
+                ReportPropertyChanging("clearanceValidFrom");
+                _clearanceValidFrom = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("clearanceValidFrom");
+                OnclearanceValidFromChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _clearanceValidFrom;
+        partial void OnclearanceValidFromChanging(Nullable<global::System.DateTime> value);
+        partial void OnclearanceValidFromChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> clearanceValidTo
+        {
+            get
+            {
+                return _clearanceValidTo;
+            }
+            set
+            {
+                OnclearanceValidToChanging(value);
+                ReportPropertyChanging("clearanceValidTo");
+                _clearanceValidTo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("clearanceValidTo");
+                OnclearanceValidToChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _clearanceValidTo;
+        partial void OnclearanceValidToChanging(Nullable<global::System.DateTime> value);
+        partial void OnclearanceValidToChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> clearanceAuthorizerId
+        {
+            get
+            {
+                return _clearanceAuthorizerId;
+            }
+            set
+            {
+                OnclearanceAuthorizerIdChanging(value);
+                ReportPropertyChanging("clearanceAuthorizerId");
+                _clearanceAuthorizerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("clearanceAuthorizerId");
+                OnclearanceAuthorizerIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _clearanceAuthorizerId;
+        partial void OnclearanceAuthorizerIdChanging(Nullable<global::System.Int32> value);
+        partial void OnclearanceAuthorizerIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> clearanceGranteeId
+        {
+            get
+            {
+                return _clearanceGranteeId;
+            }
+            set
+            {
+                OnclearanceGranteeIdChanging(value);
+                ReportPropertyChanging("clearanceGranteeId");
+                _clearanceGranteeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("clearanceGranteeId");
+                OnclearanceGranteeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _clearanceGranteeId;
+        partial void OnclearanceGranteeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnclearanceGranteeIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String clearanceReferenz
+        {
+            get
+            {
+                return _clearanceReferenz;
+            }
+            set
+            {
+                OnclearanceReferenzChanging(value);
+                ReportPropertyChanging("clearanceReferenz");
+                _clearanceReferenz = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("clearanceReferenz");
+                OnclearanceReferenzChanged();
+            }
+        }
+        private global::System.String _clearanceReferenz;
+        partial void OnclearanceReferenzChanging(global::System.String value);
+        partial void OnclearanceReferenzChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> clearanceQuantity
+        {
+            get
+            {
+                return _clearanceQuantity;
+            }
+            set
+            {
+                OnclearanceQuantityChanging(value);
+                ReportPropertyChanging("clearanceQuantity");
+                _clearanceQuantity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("clearanceQuantity");
+                OnclearanceQuantityChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _clearanceQuantity;
+        partial void OnclearanceQuantityChanging(Nullable<global::System.Decimal> value);
+        partial void OnclearanceQuantityChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> clearanceUnitId
+        {
+            get
+            {
+                return _clearanceUnitId;
+            }
+            set
+            {
+                OnclearanceUnitIdChanging(value);
+                ReportPropertyChanging("clearanceUnitId");
+                _clearanceUnitId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("clearanceUnitId");
+                OnclearanceUnitIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _clearanceUnitId;
+        partial void OnclearanceUnitIdChanging(Nullable<global::System.Int32> value);
+        partial void OnclearanceUnitIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String clearanceUnitShortDescription
+        {
+            get
+            {
+                return _clearanceUnitShortDescription;
+            }
+            set
+            {
+                OnclearanceUnitShortDescriptionChanging(value);
+                ReportPropertyChanging("clearanceUnitShortDescription");
+                _clearanceUnitShortDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("clearanceUnitShortDescription");
+                OnclearanceUnitShortDescriptionChanged();
+            }
+        }
+        private global::System.String _clearanceUnitShortDescription;
+        partial void OnclearanceUnitShortDescriptionChanging(global::System.String value);
+        partial void OnclearanceUnitShortDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String clearanceDescription
+        {
+            get
+            {
+                return _clearanceDescription;
+            }
+            set
+            {
+                OnclearanceDescriptionChanging(value);
+                ReportPropertyChanging("clearanceDescription");
+                _clearanceDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("clearanceDescription");
+                OnclearanceDescriptionChanged();
+            }
+        }
+        private global::System.String _clearanceDescription;
+        partial void OnclearanceDescriptionChanging(global::System.String value);
+        partial void OnclearanceDescriptionChanged();
 
         #endregion
     
@@ -5875,16 +6139,16 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "Orderitem")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "OrderitemEntity")]
         public OrderitemEntity Orderitem
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "Orderitem").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "OrderitemEntity").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "Orderitem").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "OrderitemEntity").Value = value;
             }
         }
         /// <summary>
@@ -5896,13 +6160,13 @@ namespace HWB.NETSCALE.BOEF
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "Orderitem");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "OrderitemEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "Orderitem", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<OrderitemEntity>("HWB.NETSCALE.BOEF.Auftrag_hat_Positionen", "OrderitemEntity", value);
                 }
             }
         }

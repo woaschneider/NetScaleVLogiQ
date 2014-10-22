@@ -208,9 +208,6 @@
     <Compile Include="Forms\ArtikelListFrm.xaml.cs">
       <DependentUpon>ArtikelListFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AuftragEditFrm.xaml.cs">
-      <DependentUpon>AuftragEditFrm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AuftragsListeFrm.xaml.cs">
       <DependentUpon>AuftragsListeFrm.xaml</DependentUpon>
     </Compile>
@@ -317,13 +314,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\AuftragEditFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forms\AuftragsListeFrm.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\CFEditFrm.xaml">
       <SubType>Designer</SubType>

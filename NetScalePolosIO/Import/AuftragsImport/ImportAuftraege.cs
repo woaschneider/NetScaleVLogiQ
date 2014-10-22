@@ -7,6 +7,9 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 {
     public class ImportAuftraege
     {
+        private Adressen boA;
+        private AdressenEntity boAE;
+
         private Orderitem boO = new Orderitem();
         private OrderitemEntity boOE;
 
@@ -50,9 +53,43 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 
                     //customer
                     boOE.customerBusinessIdentifier = obj.customer.businessIdentifier;
+                    boOE.customerId = obj.customer.id;
+                    boA = new Adressen();
+                    if (boOE.customerId != null)
+                    {
+                        boAE = boA.GetById(obj.customer.id);
+                        if (boAE != null)
+                        {
+                            boOE.customerName = boAE.name;
+                            boOE.customerSubName2 = boAE.subName2;
+                            boOE.customerOwningLocationId = boAE.owningLocationId;
+                            boOE.customerZipCode = boAE.zipCode;
+                            boOE.customerCity = boAE.city;
+                            boOE.customerStreet = boAE.street;
+                            boOE.customerIdCountry = boAE.idCountry;
+                            boOE.customerIsocodeCountry = boAE.isocodeCountry;
+
+                        }
+                    }
                     //invoice
                     boOE.invoiceReceicerBusinessIdentifier = obj.invoiceReceiver.businessIdentifier;
+                    boOE.invoiceReceiverId = obj.invoiceReceiver.id;
+                    if (boOE.invoiceReceiverId != null)
+                    {
+                        boAE = boA.GetById(obj.customer.id);
+                        if (boAE != null)
+                        {
+                            boOE.invoiceReceiverName = boAE.name;
+                            boOE.InvoiceReceiverSubName2 = boAE.subName2;
+                            boOE.invoiceReceiverOwningLocationId = boAE.owningLocationId;
+                            boOE.InvoiceReceiverZipCode= boAE.zipCode;
+                            boOE.InvoiceReceiverCity = boAE.city;
+                            boOE.invoiceReceiverStreet = boAE.street;
+                            boOE.invoiceReceiverIdCountry = boAE.idCountry;
+                            boOE.invoiceReceiverIsocodeCountry = boAE.isocodeCountry;
 
+                        }
+                    }
                     #endregion
 
                     boO.SaveEntity(boOE);
@@ -69,7 +106,7 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                     for (int i = 0; i < obj.orderItems[0].orderItemServices.Count; i++)
                     {
                         boOIS = new OrderItemservice();
-                        boOISE = boOIS.GetById(boOE.PK, obj.orderItems[0].orderItemServices[i].identifier);
+                        boOISE = boOIS.GetByIdAndPKOrderItem(boOE.PK, obj.orderItems[0].orderItemServices[i].identifier);
                         if (boOISE == null)
                         {
                             boOISE = boOIS.NewEntity();
@@ -88,6 +125,8 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                         boOISE.articleId = obj.orderItems[0].orderItemServices[i].articleInstance.article.id;
                         boOISE.ownerId = obj.orderItems[0].orderItemServices[i].articleInstance.article.locationId;
 
+
+                        #region Supplier Consignee
                         boOISE.supplierOrConsigneeId = obj.orderItems[0].orderItemServices[i].supplierOrConsignee.id;
                         boOISE.supplierOrConsigneeBusinessIdentifier =
                             obj.orderItems[0].orderItemServices[i].supplierOrConsignee.businessIdentifier;
@@ -100,8 +139,25 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                             obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.street;
                         boOISE.supplierOrConsigneeZipCode =
                             obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.zipCode;
-                    //    boOISE.supplierOrConsigneeCountry =
-                      //      obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.country;
+                        boOISE.supplierOrConsigneedIdCountry =
+                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.country.id;
+
+                        boOISE.supplierOrConsigneeIsocodeCountry =
+                           obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.country.isoCode;
+                        #endregion
+
+
+                        #region Clearance
+                        // boOISE.clearanceQuantity   = Nicht vorhanden
+                        boOISE.clearanceReferenz = obj.orderItems[0].orderItemServices[i].clearance.reference;
+                        boOISE.clearanceValidFrom = PolosUtitlities.ConvertPolosDateTime2DateTime( obj.orderItems[0].orderItemServices[i].clearance.validFrom);
+                        boOISE.clearanceValidTo = PolosUtitlities.ConvertPolosDateTime2DateTime(obj.orderItems[0].orderItemServices[i].clearance.validTo);
+                        boOISE.clearanceUnitId = obj.orderItems[0].orderItemServices[i].clearance.unit.id;
+                        boOISE.clearanceUnitShortDescription =
+                            obj.orderItems[0].orderItemServices[i].clearance.unit.shortDescription;
+                        boOISE.clearanceDescription = obj.orderItems[0].orderItemServices[i].clearance.unit.description;
+                        #endregion
+
 
                         boOISE.PKOrderItem = boOE.PK;
                         boOIS.SaveEntity(boOISE);

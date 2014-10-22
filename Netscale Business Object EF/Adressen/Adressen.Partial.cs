@@ -38,7 +38,7 @@ namespace HWB.NETSCALE.BOEF
                                                select a;
             return GetEntity(query);
         }
-        public AdressenEntity GetById(int id)
+        public AdressenEntity GetById(int? id)
         {
             IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities
                                                where a.id == id

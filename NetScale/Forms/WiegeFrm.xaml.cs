@@ -80,10 +80,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLFrm.Close();
         }
 
-        private void cmdAdresseb_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+ 
 
         private void cmdAdressen_Click(object sender, RoutedEventArgs e)
         {
@@ -95,7 +92,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-
+        private void ribbonAuftrag_Click(object sender, RoutedEventArgs e)
+        {
+            AuftragsListeFrm oAFrm = new AuftragsListeFrm("");
+            oAFrm.ShowDialog();
+            oAFrm.Close();
+        }
 
     }
 }

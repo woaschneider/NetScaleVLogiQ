@@ -68,6 +68,11 @@
                                          FontSize="14"
                                          Label=" Neu "
                                          LargeImageSource="..\Images\1328191262_add-notes.png" />
+                    <ribbon:RibbonButton x:Name="ribbonAuftrag"
+                                         Click="ribbonAuftrag_Click"
+                                         FontSize="14"
+                                         Label=" Aufträge "
+                                         LargeImageSource="..\Images\1334814591_search.png" />
 
 
                     <ribbon:RibbonButton x:Name="ribbonHofliste"
