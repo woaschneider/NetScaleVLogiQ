@@ -67,5 +67,7 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
+    
+
 	}
 }

@@ -41,11 +41,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         public AdressenListeFrm(string matchcode)
         {
             this.InitializeComponent();
+   
+            mmAutoCompleteTextBox1.FocusOnSelectElement = this.dataGrid;
 
-            dataGrid.ItemsSource = boA.GetByMatchCode(matchcode);
+        //    dataGrid.ItemsSource = boA.GetByMatchCode(matchcode);
             dataGrid.SelectedValuePath = "PK";
           
-            txtSearch.Text = matchcode;
+            mmAutoCompleteTextBox1.TextBoxContent= matchcode;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
@@ -59,9 +61,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             if (e.Key == Key.Return)
             {
 
-                cmdSelect_Click(cmdSelect, e);
-                Hide();
-                e.Handled = true;
+                //cmdSelect_Click(cmdSelect, e);
+                //Hide();
+                //e.Handled = true;
             }
         }
 
@@ -86,14 +88,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         }
 
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            dataGrid.ItemsSource = boA.GetByMatchCode(txtSearch.Text.ToString());
-        }
+       
 
-        private void FillGrid()
-        {
-        }
+       
 
         private void dataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -103,11 +100,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dataGrid.SelectedItem = dataGrid.Items[0];
-            dataGrid.Focus();
+          
+            //dataGrid.Focus();
 
-            KBDown();
-            KBDown();
+            //KBDown();
+            //KBDown();
             WindowExtensions.HideCloseButton(this);
         }
         private void KBDown()
@@ -123,6 +120,28 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void mmAutoCompleteTextBox1_SearchStringChanged(object sender, SearchStringChangedEventArgs e)
+
+        {
+            mmAutoCompleteTextBox mmAutoCompleteTextBox1 = (mmAutoCompleteTextBox)sender;
+            mmAutoCompleteTextBox1.BindingList = boA.GetByMatchCode(e.SearchString);
+            dataGrid.ItemsSource = boA.GetByMatchCode(e.SearchString);
+
+
+        }
+
+        private void mmAutoCompleteTextBox1_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
+        {
+       
+      dataGrid.ItemsSource = boA.GetByMatchCode(mmAutoCompleteTextBox1.TextBoxContent);
+
+        }
+
+        private void mmAutoCompleteTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+           
         }
 
 

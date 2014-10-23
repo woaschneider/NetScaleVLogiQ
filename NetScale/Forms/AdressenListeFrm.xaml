@@ -20,14 +20,13 @@
 
 
     <mmwpf:mmBusinessWindow.Resources>
-        <HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource1" d:IsDataSource="True" />
-        <HWB_NETSCALE_BOEF:AdressenEntity x:Key="AdressenEntityDataSource" d:IsDataSource="True" />
+        
     </mmwpf:mmBusinessWindow.Resources>
 
 
     <Grid x:Name="LayoutRoot"
           Background="#FFA5C8E8"
-          DataContext="{Binding Source={StaticResource AdressenEntityDataSource}}">
+      >
         <Grid.RowDefinitions>
             <RowDefinition Height="102*" />
             <RowDefinition Height="40*" />
@@ -99,22 +98,10 @@
                 <DataGridTextColumn Binding="{Binding isocodeCountry}" Header="Land" />
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="txtSearch"
-                 Grid.Row="1"
-                 Width="318"
-                 Height="30"
-                 Margin="97,5,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 Background="#FFFFF7B2"
-                 FontSize="16"
-                 Opacity="50"
-                 TabIndex="10"
-                 TextChanged="txtSearch_TextChanged" />
         <Label x:Name="label1"
                Grid.Row="1"
                Height="28"
-               Margin="12,7,0,0"
+               Margin="12,16,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
@@ -129,6 +116,13 @@
             </xcdg:DataGridControl.View>
 
         </xcdg:DataGridControl>
-
+        <mmwpf:mmAutoCompleteTextBox Name="mmAutoCompleteTextBox1"
+                                     ListDisplayMember="businessIdentifier,name" Width="369"
+                                 
+                                     Margin="113,16,0,0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Top"
+                                     SearchStringSelected="mmAutoCompleteTextBox1_SearchStringSelected"
+                                     SearchStringChanged="mmAutoCompleteTextBox1_SearchStringChanged" NavigateListOnTab="True" Grid.Row="1" Grid.RowSpan="5" />
     </Grid>
 </mmwpf:mmBusinessWindow>

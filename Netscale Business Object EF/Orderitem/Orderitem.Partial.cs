@@ -48,5 +48,13 @@ namespace HWB.NETSCALE.BOEF
             var uRet  = GetEntityList(query);
             return uRet;
         }
+
+        public mmBindingList<OrderitemEntity> GetByCustomerIdentifier(string mc)
+        {
+            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
+                                                       where o.customerBusinessIdentifier.Contains(mc)
+                                                       select o;
+            return GetEntityList(query);
+        }
 	}
 }
