@@ -123,7 +123,10 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                         boOISE.deliveryType = obj.orderItems[0].orderItemServices[i].deliveryType;
 
                         boOISE.articleId = obj.orderItems[0].orderItemServices[i].articleInstance.article.id;
-                        boOISE.ownerId = obj.orderItems[0].orderItemServices[i].articleInstance.article.locationId;
+                        boOISE.ownerId = obj.orderItems[0].orderItemServices[i].articleInstance.article.ownerId;
+                        boOISE.ownerBusinessIdentifier =
+                            boA.GetById(obj.orderItems[0].orderItemServices[i].articleInstance.article.ownerId).
+                                businessIdentifier;
 
 
                         #region Supplier Consignee

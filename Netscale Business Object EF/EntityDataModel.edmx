@@ -301,7 +301,7 @@
           <Property Name="identifier" Type="varchar" MaxLength="22" />
           <Property Name="sequence" Type="int" />
           <Property Name="remark" Type="varchar" MaxLength="100" />
-          <Property Name="ownerId" Type="varchar" MaxLength="64" />
+          <Property Name="ownerId" Type="int" />
           <Property Name="deliveryType" Type="varchar" MaxLength="100" />
           <Property Name="wa_Id" Type="varchar" MaxLength="32" />
           <Property Name="wa_Description" Type="varchar" MaxLength="32" />
@@ -337,6 +337,7 @@
           <Property Name="clearanceUnitId" Type="int" />
           <Property Name="clearanceUnitShortDescription" Type="varchar" MaxLength="64" />
           <Property Name="clearanceDescription" Type="char" MaxLength="64" />
+          <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Produkte">
           <Key>
@@ -893,7 +894,7 @@
           <Property Type="String" Name="identifier" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="sequence" />
           <Property Type="String" Name="remark" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ownerId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ownerId" />
           <Property Type="String" Name="deliveryType" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="wa_Id" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="wa_Description" MaxLength="32" FixedLength="false" Unicode="false" />
@@ -929,6 +930,7 @@
           <Property Type="Int32" Name="clearanceUnitId" />
           <Property Type="String" Name="clearanceUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderArticleAttributes" Relationship="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" FromRole="OrderItemservice" ToRole="OrderArticleAttributeEntity" />
           <NavigationProperty Name="Orderitem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderItemservice" ToRole="OrderitemEntity" />
         </EntityType>
@@ -1332,6 +1334,7 @@
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="ownerBusinessIdentifier" ColumnName="ownerBusinessIdentifier" />
                 <ScalarProperty Name="clearanceDescription" ColumnName="clearanceDescription" />
                 <ScalarProperty Name="clearanceUnitShortDescription" ColumnName="clearanceUnitShortDescription" />
                 <ScalarProperty Name="clearanceUnitId" ColumnName="clearanceUnitId" />
@@ -1425,7 +1428,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderArticleAttributeEntity" Width="1.5" PointX="14.625" PointY="12.75" Height="2.1725878906249996" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="3.375" PointY="11.75" Height="6.5955208333333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderitemEntity" Width="1.5" PointX="10.125" PointY="13.625" Height="6.4032194010416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="12.375" PointY="12.125" Height="9.2877408854166674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="12.375" PointY="12.125" Height="9.4800423177083388" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
           <edmx:ConnectorPoint PointX="13.875" PointY="13.8362939453125" />
           <edmx:ConnectorPoint PointX="14.625" PointY="13.8362939453125" />

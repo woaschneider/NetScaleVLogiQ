@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="Forms\AdressenListeFrm.xaml.cs">
       <DependentUpon>AdressenListeFrm.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\ArticleEditFrm.xaml.cs">
       <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
@@ -210,9 +211,11 @@
     </Compile>
     <Compile Include="Forms\AuftragsListeFrm.xaml.cs">
       <DependentUpon>AuftragsListeFrm.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\CFEditFrm.xaml.cs">
       <DependentUpon>CFEditFrm.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\CFListFrm.xaml.cs">
       <DependentUpon>CFListFrm.xaml</DependentUpon>

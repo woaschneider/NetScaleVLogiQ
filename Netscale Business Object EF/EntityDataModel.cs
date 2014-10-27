@@ -5248,7 +5248,7 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ownerId
+        public Nullable<global::System.Int32> ownerId
         {
             get
             {
@@ -5258,13 +5258,13 @@ namespace HWB.NETSCALE.BOEF
             {
                 OnownerIdChanging(value);
                 ReportPropertyChanging("ownerId");
-                _ownerId = StructuralObject.SetValidValue(value, true);
+                _ownerId = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("ownerId");
                 OnownerIdChanged();
             }
         }
-        private global::System.String _ownerId;
-        partial void OnownerIdChanging(global::System.String value);
+        private Nullable<global::System.Int32> _ownerId;
+        partial void OnownerIdChanging(Nullable<global::System.Int32> value);
         partial void OnownerIdChanged();
     
         /// <summary>
@@ -6106,6 +6106,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _clearanceDescription;
         partial void OnclearanceDescriptionChanging(global::System.String value);
         partial void OnclearanceDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ownerBusinessIdentifier
+        {
+            get
+            {
+                return _ownerBusinessIdentifier;
+            }
+            set
+            {
+                OnownerBusinessIdentifierChanging(value);
+                ReportPropertyChanging("ownerBusinessIdentifier");
+                _ownerBusinessIdentifier = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ownerBusinessIdentifier");
+                OnownerBusinessIdentifierChanged();
+            }
+        }
+        private global::System.String _ownerBusinessIdentifier;
+        partial void OnownerBusinessIdentifierChanging(global::System.String value);
+        partial void OnownerBusinessIdentifierChanged();
 
         #endregion
     
