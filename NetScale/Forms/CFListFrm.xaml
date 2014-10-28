@@ -63,9 +63,9 @@
                   IsReadOnly="True"
                   SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding KfzID}" Header="Kfz-Ident" />
-                <DataGridTextColumn MinWidth="227"
-                                    Binding="{Binding Kfz1}"
+
+                <DataGridTextColumn MinWidth="300"
+                                    Binding="{Binding Kennzeichen1}"
                                     CanUserResize="False"
                                     Header="Kfzkennzeichen" />
             </DataGrid.Columns>

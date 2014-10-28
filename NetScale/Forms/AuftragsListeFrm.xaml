@@ -71,33 +71,6 @@
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
-        <DataGrid x:Name="dataGridOrderItem"
-                  Width="1094"
-                  Height="171"
-                  Margin="10,250,0,0"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  AutoGenerateColumns="False"
-                  ItemsSource="{Binding Mode=OneWay}"
-                  SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGrid_SelectionChanged">
-            <DataGrid.Columns>
-
-
-
-                <DataGridTextColumn Binding="{Binding id}" Header="Id" />
-
-
-                <DataGridTextColumn Binding="{Binding number}" Header="Nummer" />
-                <DataGridTextColumn Binding="{Binding customerBusinessIdentifier}" Header="Auftraggeber" />
-                <DataGridTextColumn Binding="{Binding invoiceReceicerBusinessIdentifier}"
-                                    Header="Rechnungsempfänger"
-                                    IsReadOnly="True" />
-                <DataGridTextColumn Binding="{Binding reference}" Header="Kunden-Ref." />
-            </DataGrid.Columns>
-
-
-        </DataGrid>
         <Rectangle Width="1094"
                    Height="138"
                    Margin="10,106,0,0"
@@ -143,31 +116,31 @@
                Margin="27,203,0,479"
                HorizontalAlignment="Left"
                Content="Lagermandant" />
-        <DataGrid x:Name="dataGridOrderItemService"
-                  Margin="12,427,12,12"
-                  AutoGenerateColumns="False"
-                  SelectedValuePath="&quot;PK&quot;">
-            <DataGrid.DataContext>
-                <HWB_NETSCALE_BOEF:OrderItemserviceEntity />
-            </DataGrid.DataContext>
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding sequence}" Header="Pos." />
-                <DataGridTextColumn Header="Produkt" />
-                <DataGridTextColumn Header="{Binding ownerBusinessIdentifier}" />
-                <DataGridTextColumn Binding="{Binding remark}" Header="Kundenreferenz Pos." />
-                <DataGridTextColumn Header="{Binding supplierOrConsigneeBusinessIdentifier}" />
-                <DataGridTextColumn Header="Warenart" />
-                <DataGridTextColumn Header="{Binding deliveryType}" />
-                <DataGridTextColumn Header="{Binding articleId}" />
-                <DataGridTextColumn Header="{Binding clearanceDescription}" />
-            </DataGrid.Columns>
-        </DataGrid>
         <Label Name="label2"
                Height="28"
                Margin="27,117,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Freistellung" />
+        <DataGrid Name="dataGrid"
+                  Width="1091"
+                  Height="438"
+                  Margin="13,264,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding productdescription}" Header="Produkt" />
+                <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermandant" />
+                <DataGridTextColumn Binding="{Binding remark}" Header="Kunden-Ref." />
+                <DataGridTextColumn Binding="{Binding supplierOrConsigneeBusinessIdentifiert}" Header="Lieferant / Empfänger" />
+                <DataGridTextColumn Binding="{Binding deliveryType}" Header="Frankatur" />
+                <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
+                <DataGridTextColumn Binding="{Binding articleId}" Header="Artikel" />
+                <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikel" />
+                <DataGridTextColumn Binding="{Binding plannedDate}" Header="L.-Datum" />
+            </DataGrid.Columns>
+        </DataGrid>
         <mmwpf:mmAutoCompleteTextBox Name="tb_OwnerSearch"
                                      Width="281"
                                      Margin="167,204,0,0"

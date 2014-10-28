@@ -93,7 +93,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Fillgrid()
         {
-         
+            Fahrzeuge _boF = new Fahrzeuge();
+          dataGrid1.ItemsSource =  _boF.GetByKennzeichen(MatchCode);
         }
 
         protected override void Window_Loaded(object sender, RoutedEventArgs e)

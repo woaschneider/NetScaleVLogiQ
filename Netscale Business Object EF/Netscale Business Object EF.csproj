@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Fahrzeuge\Fahrzeuge.cs" />
+    <Compile Include="Fahrzeuge\Fahrzeuge.Partial.cs" />
+    <Compile Include="Fahrzeuge\FahrzeugeEntity.cs" />
+    <Compile Include="Fahrzeuge\FahrzeugeRules.cs" />
+    <Compile Include="Fahrzeuge\FahrzeugeRules.Partial.cs" />
     <Compile Include="Frachtmittel\Frachtmittel.cs" />
     <Compile Include="Frachtmittel\Frachtmittel.Partial.cs" />
     <Compile Include="Frachtmittel\FrachtmittelEntity.cs" />

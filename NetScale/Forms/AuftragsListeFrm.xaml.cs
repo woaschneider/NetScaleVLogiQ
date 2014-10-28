@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.JoinClasses;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.WPF;
 
@@ -30,6 +31,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private OrderItemservice boOIS;
         private Adressen boA;
         private AdressenEntity boAE;
+        private OrderParentAndChild boOPC;
+      
+         
         //  private CFEditFrm EditFrm = CFEditFrm();
 
         public int uRet
@@ -43,12 +47,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             // Instantiate and register business objects
             this.boO = (Orderitem) this.RegisterPrimaryBizObj(new Orderitem());
             this.boOIS = (OrderItemservice) this.RegisterBizObj(new OrderItemservice());
+        
             boA = new Adressen();
 
             this.InitializeComponent();
 
-            dataGridOrderItem.SelectedValuePath = "PK";
-            dataGridOrderItemService.SelectedValuePath = "PK";
+         
+
+           // dataGridOrderItem.SelectedValuePath = "PK";
+           // dataGridOrderItemService.SelectedValuePath = "PK";
 
             //  dataGridOrderItem.ItemsSource = boO.GetAll();
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
@@ -87,13 +94,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
         }
 
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-        private void FillGrid()
-        {
-        }
+       
 
         private void dataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -115,10 +116,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             InputManager.Current.ProcessInput(args);
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            dataGridOrderItemService.ItemsSource = boOIS.GetByParentPK(Convert.ToInt32(dataGridOrderItem.SelectedValue));
-        }
+     
 
         #region Aufträge Suchen
 
@@ -133,7 +131,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void tb_CustomerSearch_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
         {
-            this.dataGridOrderItem.ItemsSource = boO.GetByCustomerBusinessIdentifier(e.SearchString);
+                                                                        
+
+            this.dataGrid.ItemsSource = boO.GetOrderWithAllDetailsByMatchCode(tb_InvoiceReceiverSearch.TextBoxContent,
+                                                                           tb_InvoiceReceiverSearch.TextBoxContent,
+                                                                           tb_OwnerSearch.TextBoxContent, "");
         }
 
         #endregion
@@ -150,7 +152,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void tb_InvoiceReceiverSearch_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
         {
-            this.dataGridOrderItem.ItemsSource = boO.GetByInvoiceReceiverBusinessIdentifier(e.SearchString);
+            this.dataGrid.ItemsSource = boO.GetOrderWithAllDetailsByMatchCode(tb_InvoiceReceiverSearch.TextBoxContent,
+                                                                              tb_InvoiceReceiverSearch.TextBoxContent,
+                                                                              tb_OwnerSearch.TextBoxContent, "");
+
         }
 
         #endregion

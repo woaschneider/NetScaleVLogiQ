@@ -123,11 +123,20 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                         boOISE.deliveryType = obj.orderItems[0].orderItemServices[i].deliveryType;
 
                         boOISE.articleId = obj.orderItems[0].orderItemServices[i].articleInstance.article.id;
+                        boOISE.articleDescription =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.article.number;// Ganz schräg Inhalt zB Testbleche
                         boOISE.ownerId = obj.orderItems[0].orderItemServices[i].articleInstance.article.ownerId;
+                        boOISE.kindOfGoodId =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.article.kindOfGoodId;
+                        boOISE.kindOfGoodDescription =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.article.kindOfGoodDescription;
+                        boOISE.plannedDate = PolosUtitlities.ConvertPolosDateTime2DateTime( obj.orderItems[0].plannedDate);
+                        
+                        
                         boOISE.ownerBusinessIdentifier =
                             boA.GetById(obj.orderItems[0].orderItemServices[i].articleInstance.article.ownerId).
                                 businessIdentifier;
-
+                        
 
                         #region Supplier Consignee
                         boOISE.supplierOrConsigneeId = obj.orderItems[0].orderItemServices[i].supplierOrConsignee.id;

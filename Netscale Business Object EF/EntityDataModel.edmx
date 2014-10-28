@@ -18,6 +18,7 @@
       FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Einstellungen" EntityType="$namespace$.Target.Einstellungen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Fahrzeuge" EntityType="$namespace$.Target.Fahrzeuge" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" />
@@ -154,6 +155,20 @@
           <Property Name="PdfCreator" Type="int" />
           <Property Name="AP_Id_counter" Type="int" />
           <Property Name="MG_Id_counter" Type="int" />
+        </EntityType>
+        <EntityType Name="Fahrzeuge">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Kennzeichen1" Type="varchar" MaxLength="22" />
+          <Property Name="Kennzeichen2" Type="varchar" MaxLength="22" />
+          <Property Name="Taradatum" Type="datetime" />
+          <Property Name="Tara" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Kennung" Type="varchar" MaxLength="2" />
+          <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
+          <Property Name="MaxBrutto" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Frachtfuehrer" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Frachtmittel">
           <Key>
@@ -336,8 +351,9 @@
           <Property Name="clearanceQuantity" Type="numeric" Precision="22" Scale="2" />
           <Property Name="clearanceUnitId" Type="int" />
           <Property Name="clearanceUnitShortDescription" Type="varchar" MaxLength="64" />
-          <Property Name="clearanceDescription" Type="char" MaxLength="64" />
+          <Property Name="clearanceDescription" Type="varchar" MaxLength="64" />
           <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="articleDescription" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Produkte">
           <Key>
@@ -416,14 +432,60 @@
           <Property Name="customerStreet" Type="varchar" MaxLength="64" />
           <Property Name="customerZipCode" Type="varchar" MaxLength="16" />
           <Property Name="customerCity" Type="varchar" MaxLength="128" />
-          <Property Name="customerCountry" Type="varchar" MaxLength="4" />
           <Property Name="invoiceReceiverName" Type="varchar" MaxLength="64" />
           <Property Name="InvoiceReceiverSubName2" Type="varchar" MaxLength="64" />
           <Property Name="invoiceReceiverOwningLocationId" Type="varchar" MaxLength="64" />
           <Property Name="invoiceReceiverStreet" Type="varchar" MaxLength="64" />
           <Property Name="InvoiceReceiverZipCode" Type="varchar" MaxLength="16" />
           <Property Name="InvoiceReceiverCity" Type="varchar" MaxLength="128" />
-          <Property Name="InvoiceReceiverCountry" Type="varchar" MaxLength="4" />
+          <Property Name="number" Type="varchar" MaxLength="32" />
+          <Property Name="customerId" Type="int" />
+          <Property Name="customerBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="invoiceReceiverId" Type="int" />
+          <Property Name="invoiceReceicerBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="customerIdCountry" Type="int" />
+          <Property Name="customerIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="invoiceReceiverIdCountry" Type="int" />
+          <Property Name="invoiceReceiverIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="product" Type="int" />
+          <Property Name="productdescription" Type="char" MaxLength="64" />
+          <Property Name="identifier" Type="varchar" MaxLength="22" />
+          <Property Name="sequence" Type="int" />
+          <Property Name="articleId" Type="int" />
+          <Property Name="ownerId" Type="int" />
+          <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="locationId0" Type="varchar" MaxLength="64" />
+          <Property Name="deliveryType" Type="varchar" MaxLength="100" />
+          <Property Name="targedAmount" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="remark" Type="varchar" MaxLength="100" />
+          <Property Name="additionalTargetAmount" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="locationName" Type="varchar" MaxLength="32" />
+          <Property Name="locationFullname" Type="varchar" MaxLength="254" />
+          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="32" />
+          <Property Name="kindOfGoodId" Type="int" />
+          <Property Name="supplierOrConsigneeId" Type="int" />
+          <Property Name="supplierOrConsigneeBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="supplierOrConsigneeName" Type="varchar" MaxLength="64" />
+          <Property Name="supplierOrConsigneeSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="supplierOrConsigneeOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="supplierOrConsigneeStreet" Type="varchar" MaxLength="64" />
+          <Property Name="supplierOrConsigneeZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="supplierOrConsigneeCity" Type="varchar" MaxLength="128" />
+          <Property Name="supplierOrConsigneedIdCountry" Type="int" />
+          <Property Name="supplierOrConsigneeIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="plannedDate" Type="datetime" />
+          <Property Name="clearanceValidFrom" Type="datetime" />
+          <Property Name="clearanceValidTo" Type="datetime" />
+          <Property Name="clearanceAuthorizerId" Type="int" />
+          <Property Name="clearanceGranteeId" Type="int" />
+          <Property Name="clearanceReferenz" Type="char" MaxLength="64" />
+          <Property Name="clearanceQuantity" Type="numeric" Precision="22" Scale="2" />
+          <Property Name="clearanceUnitId" Type="int" />
+          <Property Name="clearanceUnitShortDescription" Type="varchar" MaxLength="64" />
+          <Property Name="clearanceDescription" Type="varchar" MaxLength="64" />
+          <Property Name="articleDescription" Type="varchar" MaxLength="64" />
+          <Property Name="KfzKennzeichen" Type="varchar" MaxLength="64" />
+          <Property Name="KfzId" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -506,7 +568,6 @@
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="AdressenEntities" EntityType="HWB.NETSCALE.BOEF.AdressenEntity" />
           <EntitySet Name="WarenartenEntities" EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" />
           <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
@@ -524,6 +585,8 @@
             <End Role="OrderitemEntity" EntitySet="OrderitemEntities" />
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
+          <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -699,52 +762,6 @@
           <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="WaegeEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="LN1" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WaagenummerErst" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LN2" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WaagennummerZweit" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LieferscheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WiegescheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FahrzeugEingehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtführerName3Eingehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FahrzeugAusgehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtführerName3Ausgehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IstQuellLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IstZielLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Erstgewicht" Precision="10" Scale="3" />
-          <Property Type="DateTime" Name="ErstDatetime" />
-          <Property Type="Decimal" Name="Zweitgewicht" Precision="10" Scale="3" />
-          <Property Type="Decimal" Name="Nettogewicht" Precision="10" Scale="3" />
-          <Property Type="String" Name="IstMengeZMEI" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Type="DateTime" Name="Arbeitsbeginn" />
-          <Property Type="DateTime" Name="Arbeitsende" />
-          <Property Type="Boolean" Name="StornoKennzeichen" />
-          <Property Type="Boolean" Name="Finalisieren" />
-          <Property Type="String" Name="locationId" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="id" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="reference" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="orderstate" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="date" />
-          <Property Type="String" Name="customerName" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerStreet" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerCity" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerCountry" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="invoiceReceiverName" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="InvoiceReceiverSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="invoiceReceiverOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="invoiceReceiverStreet" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="InvoiceReceiverZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="InvoiceReceiverCity" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="InvoiceReceiverCountry" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="AdressenEntity">
           <Key>
@@ -929,8 +946,9 @@
           <Property Type="Decimal" Name="clearanceQuantity" Precision="22" Scale="2" />
           <Property Type="Int32" Name="clearanceUnitId" />
           <Property Type="String" Name="clearanceUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderArticleAttributes" Relationship="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" FromRole="OrderItemservice" ToRole="OrderArticleAttributeEntity" />
           <NavigationProperty Name="Orderitem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderItemservice" ToRole="OrderitemEntity" />
         </EntityType>
@@ -958,6 +976,112 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WaegeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="LN1" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WaagenummerErst" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LN2" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WaagennummerZweit" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LieferscheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WiegescheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FahrzeugEingehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FrachtführerName3Eingehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FahrzeugAusgehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FrachtführerName3Ausgehend" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IstQuellLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IstZielLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Erstgewicht" Precision="10" Scale="3" />
+          <Property Type="DateTime" Name="ErstDatetime" />
+          <Property Type="Decimal" Name="Zweitgewicht" Precision="10" Scale="3" />
+          <Property Type="Decimal" Name="Nettogewicht" Precision="10" Scale="3" />
+          <Property Type="String" Name="IstMengeZMEI" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="DateTime" Name="Arbeitsbeginn" />
+          <Property Type="DateTime" Name="Arbeitsende" />
+          <Property Type="Boolean" Name="StornoKennzeichen" />
+          <Property Type="Boolean" Name="Finalisieren" />
+          <Property Type="String" Name="locationId" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reference" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orderstate" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date" />
+          <Property Type="String" Name="customerName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="customerCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoiceReceiverStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="InvoiceReceiverCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="number" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="customerId" />
+          <Property Type="String" Name="customerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="invoiceReceiverId" />
+          <Property Type="String" Name="invoiceReceicerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="customerIdCountry" />
+          <Property Type="String" Name="customerIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="invoiceReceiverIdCountry" />
+          <Property Type="String" Name="invoiceReceiverIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="product" />
+          <Property Type="String" Name="productdescription" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="identifier" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="sequence" />
+          <Property Type="Int32" Name="articleId" />
+          <Property Type="Int32" Name="ownerId" />
+          <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="locationId0" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="deliveryType" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="targedAmount" Precision="22" Scale="2" />
+          <Property Type="String" Name="remark" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="additionalTargetAmount" Precision="22" Scale="2" />
+          <Property Type="String" Name="locationName" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="locationFullname" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kindOfGoodDescription" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="kindOfGoodId" />
+          <Property Type="Int32" Name="supplierOrConsigneeId" />
+          <Property Type="String" Name="supplierOrConsigneeBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierOrConsigneeName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierOrConsigneeSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierOrConsigneeOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierOrConsigneeStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierOrConsigneeZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="supplierOrConsigneeCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="supplierOrConsigneedIdCountry" />
+          <Property Type="String" Name="supplierOrConsigneeIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="plannedDate" />
+          <Property Type="DateTime" Name="clearanceValidFrom" />
+          <Property Type="DateTime" Name="clearanceValidTo" />
+          <Property Type="Int32" Name="clearanceAuthorizerId" />
+          <Property Type="Int32" Name="clearanceGranteeId" />
+          <Property Type="String" Name="clearanceReferenz" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Type="Decimal" Name="clearanceQuantity" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="clearanceUnitId" />
+          <Property Type="String" Name="clearanceUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="KfzKennzeichen" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="KfzId" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FahrzeugeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Kennzeichen1" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Kennzeichen2" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Taradatum" />
+          <Property Type="Decimal" Name="Tara" Precision="10" Scale="2" />
+          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
+          <Property Type="String" Name="Frachtfuehrer" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1139,53 +1263,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WaegeEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
-              <MappingFragment StoreEntitySet="Waege">
-                <ScalarProperty Name="InvoiceReceiverCountry" ColumnName="InvoiceReceiverCountry" />
-                <ScalarProperty Name="InvoiceReceiverCity" ColumnName="InvoiceReceiverCity" />
-                <ScalarProperty Name="InvoiceReceiverZipCode" ColumnName="InvoiceReceiverZipCode" />
-                <ScalarProperty Name="invoiceReceiverStreet" ColumnName="invoiceReceiverStreet" />
-                <ScalarProperty Name="invoiceReceiverOwningLocationId" ColumnName="invoiceReceiverOwningLocationId" />
-                <ScalarProperty Name="InvoiceReceiverSubName2" ColumnName="InvoiceReceiverSubName2" />
-                <ScalarProperty Name="invoiceReceiverName" ColumnName="invoiceReceiverName" />
-                <ScalarProperty Name="customerCountry" ColumnName="customerCountry" />
-                <ScalarProperty Name="customerCity" ColumnName="customerCity" />
-                <ScalarProperty Name="customerZipCode" ColumnName="customerZipCode" />
-                <ScalarProperty Name="customerStreet" ColumnName="customerStreet" />
-                <ScalarProperty Name="customerOwningLocationId" ColumnName="customerOwningLocationId" />
-                <ScalarProperty Name="customerSubName2" ColumnName="customerSubName2" />
-                <ScalarProperty Name="customerName" ColumnName="customerName" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="orderstate" ColumnName="orderstate" />
-                <ScalarProperty Name="reference" ColumnName="reference" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="locationId" ColumnName="locationId" />
-                <ScalarProperty Name="Finalisieren" ColumnName="Finalisieren" />
-                <ScalarProperty Name="StornoKennzeichen" ColumnName="StornoKennzeichen" />
-                <ScalarProperty Name="Arbeitsende" ColumnName="Arbeitsende" />
-                <ScalarProperty Name="Arbeitsbeginn" ColumnName="Arbeitsbeginn" />
-                <ScalarProperty Name="IstMengeZMEI" ColumnName="IstMengeZMEI" />
-                <ScalarProperty Name="Nettogewicht" ColumnName="Nettogewicht" />
-                <ScalarProperty Name="Zweitgewicht" ColumnName="Zweitgewicht" />
-                <ScalarProperty Name="ErstDatetime" ColumnName="ErstDatetime" />
-                <ScalarProperty Name="Erstgewicht" ColumnName="Erstgewicht" />
-                <ScalarProperty Name="IstZielLagerPlatz" ColumnName="IstZielLagerPlatz" />
-                <ScalarProperty Name="IstQuellLagerPlatz" ColumnName="IstQuellLagerPlatz" />
-                <ScalarProperty Name="FrachtführerName3Ausgehend" ColumnName="FrachtführerName3Ausgehend" />
-                <ScalarProperty Name="FahrzeugAusgehend" ColumnName="FahrzeugAusgehend" />
-                <ScalarProperty Name="FrachtführerName3Eingehend" ColumnName="FrachtführerName3Eingehend" />
-                <ScalarProperty Name="FahrzeugEingehend" ColumnName="FahrzeugEingehend" />
-                <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
-                <ScalarProperty Name="LieferscheinNr" ColumnName="LieferscheinNr" />
-                <ScalarProperty Name="WaagennummerZweit" ColumnName="WaagennummerZweit" />
-                <ScalarProperty Name="LN2" ColumnName="LN2" />
-                <ScalarProperty Name="WaagenummerErst" ColumnName="WaagenummerErst" />
-                <ScalarProperty Name="LN1" ColumnName="LN1" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AdressenEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AdressenEntity">
               <MappingFragment StoreEntitySet="Adressen">
@@ -1334,6 +1411,7 @@
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="articleDescription" ColumnName="articleDescription" />
                 <ScalarProperty Name="ownerBusinessIdentifier" ColumnName="ownerBusinessIdentifier" />
                 <ScalarProperty Name="clearanceDescription" ColumnName="clearanceDescription" />
                 <ScalarProperty Name="clearanceUnitShortDescription" ColumnName="clearanceUnitShortDescription" />
@@ -1379,6 +1457,114 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="WaegeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
+              <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="KfzId" ColumnName="KfzId" />
+                <ScalarProperty Name="KfzKennzeichen" ColumnName="KfzKennzeichen" />
+                <ScalarProperty Name="articleDescription" ColumnName="articleDescription" />
+                <ScalarProperty Name="clearanceDescription" ColumnName="clearanceDescription" />
+                <ScalarProperty Name="clearanceUnitShortDescription" ColumnName="clearanceUnitShortDescription" />
+                <ScalarProperty Name="clearanceUnitId" ColumnName="clearanceUnitId" />
+                <ScalarProperty Name="clearanceQuantity" ColumnName="clearanceQuantity" />
+                <ScalarProperty Name="clearanceReferenz" ColumnName="clearanceReferenz" />
+                <ScalarProperty Name="clearanceGranteeId" ColumnName="clearanceGranteeId" />
+                <ScalarProperty Name="clearanceAuthorizerId" ColumnName="clearanceAuthorizerId" />
+                <ScalarProperty Name="clearanceValidTo" ColumnName="clearanceValidTo" />
+                <ScalarProperty Name="clearanceValidFrom" ColumnName="clearanceValidFrom" />
+                <ScalarProperty Name="plannedDate" ColumnName="plannedDate" />
+                <ScalarProperty Name="supplierOrConsigneeIsocodeCountry" ColumnName="supplierOrConsigneeIsocodeCountry" />
+                <ScalarProperty Name="supplierOrConsigneedIdCountry" ColumnName="supplierOrConsigneedIdCountry" />
+                <ScalarProperty Name="supplierOrConsigneeCity" ColumnName="supplierOrConsigneeCity" />
+                <ScalarProperty Name="supplierOrConsigneeZipCode" ColumnName="supplierOrConsigneeZipCode" />
+                <ScalarProperty Name="supplierOrConsigneeStreet" ColumnName="supplierOrConsigneeStreet" />
+                <ScalarProperty Name="supplierOrConsigneeOwningLocationId" ColumnName="supplierOrConsigneeOwningLocationId" />
+                <ScalarProperty Name="supplierOrConsigneeSubName2" ColumnName="supplierOrConsigneeSubName2" />
+                <ScalarProperty Name="supplierOrConsigneeName" ColumnName="supplierOrConsigneeName" />
+                <ScalarProperty Name="supplierOrConsigneeBusinessIdentifier" ColumnName="supplierOrConsigneeBusinessIdentifier" />
+                <ScalarProperty Name="supplierOrConsigneeId" ColumnName="supplierOrConsigneeId" />
+                <ScalarProperty Name="kindOfGoodId" ColumnName="kindOfGoodId" />
+                <ScalarProperty Name="kindOfGoodDescription" ColumnName="kindOfGoodDescription" />
+                <ScalarProperty Name="locationFullname" ColumnName="locationFullname" />
+                <ScalarProperty Name="locationName" ColumnName="locationName" />
+                <ScalarProperty Name="additionalTargetAmount" ColumnName="additionalTargetAmount" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="targedAmount" ColumnName="targedAmount" />
+                <ScalarProperty Name="deliveryType" ColumnName="deliveryType" />
+                <ScalarProperty Name="locationId0" ColumnName="locationId0" />
+                <ScalarProperty Name="ownerBusinessIdentifier" ColumnName="ownerBusinessIdentifier" />
+                <ScalarProperty Name="ownerId" ColumnName="ownerId" />
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="identifier" ColumnName="identifier" />
+                <ScalarProperty Name="productdescription" ColumnName="productdescription" />
+                <ScalarProperty Name="product" ColumnName="product" />
+                <ScalarProperty Name="invoiceReceiverIsocodeCountry" ColumnName="invoiceReceiverIsocodeCountry" />
+                <ScalarProperty Name="invoiceReceiverIdCountry" ColumnName="invoiceReceiverIdCountry" />
+                <ScalarProperty Name="customerIsocodeCountry" ColumnName="customerIsocodeCountry" />
+                <ScalarProperty Name="customerIdCountry" ColumnName="customerIdCountry" />
+                <ScalarProperty Name="invoiceReceicerBusinessIdentifier" ColumnName="invoiceReceicerBusinessIdentifier" />
+                <ScalarProperty Name="invoiceReceiverId" ColumnName="invoiceReceiverId" />
+                <ScalarProperty Name="customerBusinessIdentifier" ColumnName="customerBusinessIdentifier" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="InvoiceReceiverCity" ColumnName="InvoiceReceiverCity" />
+                <ScalarProperty Name="InvoiceReceiverZipCode" ColumnName="InvoiceReceiverZipCode" />
+                <ScalarProperty Name="invoiceReceiverStreet" ColumnName="invoiceReceiverStreet" />
+                <ScalarProperty Name="invoiceReceiverOwningLocationId" ColumnName="invoiceReceiverOwningLocationId" />
+                <ScalarProperty Name="InvoiceReceiverSubName2" ColumnName="InvoiceReceiverSubName2" />
+                <ScalarProperty Name="invoiceReceiverName" ColumnName="invoiceReceiverName" />
+                <ScalarProperty Name="customerCity" ColumnName="customerCity" />
+                <ScalarProperty Name="customerZipCode" ColumnName="customerZipCode" />
+                <ScalarProperty Name="customerStreet" ColumnName="customerStreet" />
+                <ScalarProperty Name="customerOwningLocationId" ColumnName="customerOwningLocationId" />
+                <ScalarProperty Name="customerSubName2" ColumnName="customerSubName2" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="orderstate" ColumnName="orderstate" />
+                <ScalarProperty Name="reference" ColumnName="reference" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="Finalisieren" ColumnName="Finalisieren" />
+                <ScalarProperty Name="StornoKennzeichen" ColumnName="StornoKennzeichen" />
+                <ScalarProperty Name="Arbeitsende" ColumnName="Arbeitsende" />
+                <ScalarProperty Name="Arbeitsbeginn" ColumnName="Arbeitsbeginn" />
+                <ScalarProperty Name="IstMengeZMEI" ColumnName="IstMengeZMEI" />
+                <ScalarProperty Name="Nettogewicht" ColumnName="Nettogewicht" />
+                <ScalarProperty Name="Zweitgewicht" ColumnName="Zweitgewicht" />
+                <ScalarProperty Name="ErstDatetime" ColumnName="ErstDatetime" />
+                <ScalarProperty Name="Erstgewicht" ColumnName="Erstgewicht" />
+                <ScalarProperty Name="IstZielLagerPlatz" ColumnName="IstZielLagerPlatz" />
+                <ScalarProperty Name="IstQuellLagerPlatz" ColumnName="IstQuellLagerPlatz" />
+                <ScalarProperty Name="FrachtführerName3Ausgehend" ColumnName="FrachtführerName3Ausgehend" />
+                <ScalarProperty Name="FahrzeugAusgehend" ColumnName="FahrzeugAusgehend" />
+                <ScalarProperty Name="FrachtführerName3Eingehend" ColumnName="FrachtführerName3Eingehend" />
+                <ScalarProperty Name="FahrzeugEingehend" ColumnName="FahrzeugEingehend" />
+                <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
+                <ScalarProperty Name="LieferscheinNr" ColumnName="LieferscheinNr" />
+                <ScalarProperty Name="WaagennummerZweit" ColumnName="WaagennummerZweit" />
+                <ScalarProperty Name="LN2" ColumnName="LN2" />
+                <ScalarProperty Name="WaagenummerErst" ColumnName="WaagenummerErst" />
+                <ScalarProperty Name="LN1" ColumnName="LN1" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FahrzeugeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FahrzeugeEntity">
+              <MappingFragment StoreEntitySet="Fahrzeuge">
+                <ScalarProperty Name="Frachtfuehrer" ColumnName="Frachtfuehrer" />
+                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
+                <ScalarProperty Name="Tara" ColumnName="Tara" />
+                <ScalarProperty Name="Taradatum" ColumnName="Taradatum" />
+                <ScalarProperty Name="Kennzeichen2" ColumnName="Kennzeichen2" />
+                <ScalarProperty Name="Kennzeichen1" ColumnName="Kennzeichen1" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1419,7 +1605,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="10.625" PointY="0.75" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="3.375" PointY="6.75" Height="3.5186979166666674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="8.9031380208333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="9.375" PointY="6.75" Height="4.6725065104166674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="8.375" PointY="2.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="10.375" PointY="2.75" Height="1.7879850260416674" />
@@ -1427,16 +1612,18 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.LagerplaetzeEntity" Width="1.5" PointX="11.375" PointY="8.75" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderArticleAttributeEntity" Width="1.5" PointX="14.625" PointY="12.75" Height="2.1725878906249996" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="3.375" PointY="11.75" Height="6.5955208333333246" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderitemEntity" Width="1.5" PointX="10.125" PointY="13.625" Height="6.4032194010416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="12.375" PointY="12.125" Height="9.4800423177083388" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderitemEntity" Width="1.5" PointX="7.5" PointY="12.5" Height="6.4032194010416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="9.75" PointY="12.875" Height="9.67234375000001" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
-          <edmx:ConnectorPoint PointX="13.875" PointY="13.8362939453125" />
-          <edmx:ConnectorPoint PointX="14.625" PointY="13.8362939453125" />
+          <edmx:ConnectorPoint PointX="11.25" PointY="13.8987939453125" />
+          <edmx:ConnectorPoint PointX="14.625" PointY="13.8987939453125" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" >
-          <edmx:ConnectorPoint PointX="11.625" PointY="16.826609700520834" />
-          <edmx:ConnectorPoint PointX="12.375" PointY="16.826609700520834" />
+          <edmx:ConnectorPoint PointX="9" PointY="15.889109700520836" />
+          <edmx:ConnectorPoint PointX="9.75" PointY="15.889109700520836" />
         </edmx:AssociationConnector>
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="17.74900390625001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="11.875" PointY="2" Height="2.7494921875000102" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -31,12 +31,11 @@ namespace HWB.NETSCALE.BOEF.JoinClasses
         public int kmpk { get; set; }
         public string posnr { get; set; }
         // MG
-        public string Sortennr { get; set;}
+        public string Sortennr { get; set; }
         public string Sortenbezeichnung1 { get; set; }
-        public string Sortenbezeichnung2 { get; set; } 
-
-
+        public string Sortenbezeichnung2 { get; set; }
     }
+
     public class Auftragsdetail : ABusinessEntity
     {
         public int kkpk { get; set; }
@@ -66,7 +65,26 @@ namespace HWB.NETSCALE.BOEF.JoinClasses
         public string Sortennr { get; set; }
         public string Sortenbezeichnung1 { get; set; }
         public string Sortenbezeichnung2 { get; set; }
+    }
 
+    public class OrderParentAndChild : ABusinessEntity
+    {
+        // OrderItem
+        public string customerBusinessIdentifier { get; set; }
+        public string invoiceReceiverBusinessIdentifier { get; set; }
 
+        // OrderItemService
+       
+        public string productdescription { get; set; }
+        public string ownerBusinessIdentifier { get; set; }
+        public string remark { get; set; }
+        public string supplierOrConsigneeBusinessIdentifiert { get; set; }
+        public string deliveryType { get; set; }
+        public string kindOfGoodDescription { get; set; }
+        public int? product { get; set; }
+        public int? articleId  { get; set; }
+        public string articleDescription { get; set; }
+ 
+        public DateTime? plannedDate { get; set; }
     }
 }

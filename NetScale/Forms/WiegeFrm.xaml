@@ -15,7 +15,21 @@
                         WindowStartupLocation="CenterScreen"
                         mc:Ignorable="d">
 
+
+
+
+
+
+
     <Grid x:Name="LayoutRoot">
+        <Rectangle Width="637"
+                   Height="156"
+                   Margin="8,157,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   d:IsLocked="True"
+                   Fill="#FFF4F4F5"
+                   Stroke="Black" />
         <Rectangle Width="637"
                    Height="249"
                    Margin="8,604,0,0"
@@ -33,13 +47,6 @@
         <Rectangle Width="637"
                    Height="67"
                    Margin="8,314,0,0"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   Fill="#FFF4F4F5"
-                   Stroke="Black" />
-        <Rectangle Width="637"
-                   Height="156"
-                   Margin="8,156,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Fill="#FFF4F4F5"
@@ -149,8 +156,14 @@
                                          Label="  Lagerplätze "
                                          LargeImageSource="..\Images\1298575723_advancedsettings.png" />
                     <ribbon:RibbonButton x:Name="cmdKFZ"
+                                         Click="cmdKFZ_Click"
                                          FontSize="14"
                                          Label="  Kfz  "
+                                         LargeImageSource="..\Images\1298027249_delivery.png" />
+                    <ribbon:RibbonButton x:Name="cmdFrachtmittel"
+                                         Click="cmdFrachtmittel_Click"
+                                         FontSize="14"
+                                         Label="  Frachtmittel  "
                                          LargeImageSource="..\Images\1298027249_delivery.png" />
                     <ribbon:RibbonButton x:Name="cmdMandant"
                                          FontSize="14"
@@ -504,39 +517,41 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Freistellungsreferenz" />
-        <TextBox x:Name="txtAuftraggeber_Copy"
-                 Width="467"
+        <TextBox x:Name="txtKfzKennzeichen"
+                 Width="436"
                  Height="23"
                  Margin="162,168,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" />
+                 VerticalAlignment="Top"
+                 Text="{Binding KfzKennzeichen}" />
         <Label x:Name="lblFahrzeug"
                Height="26"
-               Margin="23,165,0,0"
+               Margin="60,165,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Fahrzeug" />
+               Content="_Fahrzeug"
+               Target="{Binding ElementName=txtKfzKennzeichen}" />
         <TextBox x:Name="txtAuftraggeber_Copy1"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,194,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
         <Label x:Name="lblFrachtFuehrer"
                Height="27"
-               Margin="23,190,0,0"
+               Margin="60,190,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Frachtführer" />
         <TextBox x:Name="txtAuftraggeber_Copy2"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,220,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
         <Label x:Name="lblFahrzeugtyp"
                Height="27.667"
-               Margin="23,217,0,0"
+               Margin="60,217,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Fahrzeugtyp" />
@@ -621,7 +636,7 @@
                VerticalAlignment="Top"
                Content="gepl. Leistungsdatum" />
         <TextBox x:Name="txtAuftraggeber_Copy3"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,248,0,0"
                  HorizontalAlignment="Left"
@@ -633,7 +648,7 @@
                VerticalAlignment="Top"
                Content="Ist-Quell-Lagerplatz" />
         <TextBox x:Name="txtAuftraggeber_Copy4"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,275,0,0"
                  HorizontalAlignment="Left"
@@ -644,5 +659,20 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Soll-Lagerplatz" />
+        <Button Width="21"
+                Height="20"
+                Margin="599,169,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                d:IsLocked="True">
+            <StackPanel d:IsLocked="True">
+                <Image Width="15"
+                       Height="15"
+                       HorizontalAlignment="Left"
+                       d:IsLocked="True"
+                       Source="..\Images\1329900378_search_button.ico"
+                       d:LayoutOverrides="VerticalAlignment, Height" />
+            </StackPanel>
+        </Button>
     </Grid>
 </mmwpf:mmBusinessWindow>

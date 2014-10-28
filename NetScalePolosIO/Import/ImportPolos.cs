@@ -32,7 +32,7 @@ namespace HWB.NETSCALE.POLOSIO
             //   new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
             //  new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
 
-            new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW3.json");
+            new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW2.json");
             Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 
