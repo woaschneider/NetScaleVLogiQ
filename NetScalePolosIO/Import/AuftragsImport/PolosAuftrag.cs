@@ -34,12 +34,19 @@ public class Article
 
 public class Attributes
 {
-    public string STORAGE_AREA_REFERENCE { get; set; }
+    public string SERIAL_NUMBER { get; set; }
     public string BATCH { get; set; }
     public string ORIGIN { get; set; }
+    public string GRADE { get; set; }
+    public string ORIGINAL_NUMBER { get; set; }
+    public string LENGTH { get; set; }
+    public string WIDTH { get; set; }
+    public string HEIGHT { get; set; }
+    public string STORAGE_AREA_REFERENCE { get; set; }
+    public string DIAMETER { get; set; }
     public string ORIGINAL_MARKING { get; set; }
     public string STORAGE_AREA_REFERENCE_NUMBER { get; set; }
-    public string ORIGINAL_NUMBER { get; set; }
+    public string DIMENSION { get; set; }
 }
 
 public class ArticleInstance

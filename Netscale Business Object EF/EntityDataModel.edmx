@@ -354,6 +354,19 @@
           <Property Name="clearanceDescription" Type="varchar" MaxLength="64" />
           <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
           <Property Name="articleDescription" Type="varchar" MaxLength="64" />
+          <Property Name="orign" Type="varchar" MaxLength="128" />
+          <Property Name="grade" Type="varchar" MaxLength="128" />
+          <Property Name="batch" Type="varchar" MaxLength="128" />
+          <Property Name="storageAreaReference" Type="varchar" MaxLength="128" />
+          <Property Name="storageAreaReferenceNumber" Type="varchar" MaxLength="128" />
+          <Property Name="originalNumber" Type="varchar" MaxLength="128" />
+          <Property Name="orignalMarking" Type="varchar" MaxLength="128" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="128" />
+          <Property Name="length" Type="varchar" MaxLength="10" />
+          <Property Name="width" Type="varchar" MaxLength="10" />
+          <Property Name="height" Type="varchar" MaxLength="10" />
+          <Property Name="diameter" Type="varchar" MaxLength="10" />
+          <Property Name="dimension" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Produkte">
           <Key>
@@ -492,6 +505,19 @@
           <Property Name="Fahrzeug" Type="varchar" MaxLength="22" />
           <Property Name="Frachtführer" Type="varchar" MaxLength="64" />
           <Property Name="Frachtmittel" Type="varchar" MaxLength="64" />
+          <Property Name="orign" Type="varchar" MaxLength="128" />
+          <Property Name="grade" Type="varchar" MaxLength="128" />
+          <Property Name="batch" Type="varchar" MaxLength="128" />
+          <Property Name="storageAreaReference" Type="varchar" MaxLength="128" />
+          <Property Name="storageAreaReferenceNumber" Type="varchar" MaxLength="128" />
+          <Property Name="originalNumber" Type="varchar" MaxLength="128" />
+          <Property Name="orignalMarking" Type="varchar" MaxLength="128" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="128" />
+          <Property Name="length" Type="varchar" MaxLength="10" />
+          <Property Name="width" Type="varchar" MaxLength="10" />
+          <Property Name="height" Type="varchar" MaxLength="10" />
+          <Property Name="diameter" Type="varchar" MaxLength="10" />
+          <Property Name="dimension" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -582,7 +608,9 @@
           <EntitySet Name="OrderArticleAttributeEntities" EntityType="HWB.NETSCALE.BOEF.OrderArticleAttributeEntity" />
           <EntitySet Name="ArtikelEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" />
           <EntitySet Name="OrderitemEntities" EntityType="HWB.NETSCALE.BOEF.OrderitemEntity" />
+          <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
           <EntitySet Name="OrderItemserviceEntities" EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Artikel_hat_Attribute" Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute">
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
             <End Role="OrderArticleAttributeEntity" EntitySet="OrderArticleAttributeEntities" />
@@ -591,8 +619,6 @@
             <End Role="OrderitemEntity" EntitySet="OrderitemEntities" />
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
-          <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -908,6 +934,20 @@
           <Property Type="String" Name="customerIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderItemservices" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderitemEntity" ToRole="OrderItemservice" />
         </EntityType>
+        <EntityType Name="FahrzeugeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Kennzeichen1" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Kennzeichen2" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Taradatum" />
+          <Property Type="Decimal" Name="Tara" Precision="10" Scale="2" />
+          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
+          <Property Type="String" Name="Frachtfuehrer" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="OrderItemserviceEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -955,46 +995,21 @@
           <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orign" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="grade" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="batch" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="storageAreaReference" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="storageAreaReferenceNumber" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="originalNumber" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orignalMarking" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SerialNumber" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="length" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="width" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="height" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="diameter" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="dimension" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderArticleAttributes" Relationship="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" FromRole="OrderItemservice" ToRole="OrderArticleAttributeEntity" />
           <NavigationProperty Name="Orderitem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderItemservice" ToRole="OrderitemEntity" />
-        </EntityType>
-        <Association Name="Artikel_hat_Attribute">
-          <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.OrderArticleAttributeEntity" Role="OrderArticleAttributeEntity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderItemservice">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="OrderArticleAttributeEntity">
-              <PropertyRef Name="PKOrderItemService" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Auftrag_hat_Positionen">
-          <End Type="HWB.NETSCALE.BOEF.OrderitemEntity" Role="OrderitemEntity" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderitemEntity">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="OrderItemservice">
-              <PropertyRef Name="PKOrderItem" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="FahrzeugeEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Kennzeichen1" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kennzeichen2" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Taradatum" />
-          <Property Type="Decimal" Name="Tara" Precision="10" Scale="2" />
-          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
-          <Property Type="String" Name="Frachtfuehrer" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
@@ -1093,7 +1108,44 @@
           <Property Type="String" Name="Fahrzeug" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Frachtführer" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Frachtmittel" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orign" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="grade" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="batch" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="storageAreaReference" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="storageAreaReferenceNumber" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="originalNumber" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orignalMarking" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SerialNumber" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="length" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="width" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="height" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="diameter" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="dimension" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="Artikel_hat_Attribute">
+          <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.OrderArticleAttributeEntity" Role="OrderArticleAttributeEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderItemservice">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="OrderArticleAttributeEntity">
+              <PropertyRef Name="PKOrderItemService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Auftrag_hat_Positionen">
+          <End Type="HWB.NETSCALE.BOEF.OrderitemEntity" Role="OrderitemEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderitemEntity">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="OrderItemservice">
+              <PropertyRef Name="PKOrderItem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1420,9 +1472,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FahrzeugeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FahrzeugeEntity">
+              <MappingFragment StoreEntitySet="Fahrzeuge">
+                <ScalarProperty Name="Frachtfuehrer" ColumnName="Frachtfuehrer" />
+                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
+                <ScalarProperty Name="Tara" ColumnName="Tara" />
+                <ScalarProperty Name="Taradatum" ColumnName="Taradatum" />
+                <ScalarProperty Name="Kennzeichen2" ColumnName="Kennzeichen2" />
+                <ScalarProperty Name="Kennzeichen1" ColumnName="Kennzeichen1" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="dimension" ColumnName="dimension" />
+                <ScalarProperty Name="diameter" ColumnName="diameter" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="orignalMarking" ColumnName="orignalMarking" />
+                <ScalarProperty Name="originalNumber" ColumnName="originalNumber" />
+                <ScalarProperty Name="storageAreaReferenceNumber" ColumnName="storageAreaReferenceNumber" />
+                <ScalarProperty Name="storageAreaReference" ColumnName="storageAreaReference" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="orign" ColumnName="orign" />
                 <ScalarProperty Name="articleDescription" ColumnName="articleDescription" />
                 <ScalarProperty Name="ownerBusinessIdentifier" ColumnName="ownerBusinessIdentifier" />
                 <ScalarProperty Name="clearanceDescription" ColumnName="clearanceDescription" />
@@ -1469,24 +1549,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FahrzeugeEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FahrzeugeEntity">
-              <MappingFragment StoreEntitySet="Fahrzeuge">
-                <ScalarProperty Name="Frachtfuehrer" ColumnName="Frachtfuehrer" />
-                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
-                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
-                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
-                <ScalarProperty Name="Tara" ColumnName="Tara" />
-                <ScalarProperty Name="Taradatum" ColumnName="Taradatum" />
-                <ScalarProperty Name="Kennzeichen2" ColumnName="Kennzeichen2" />
-                <ScalarProperty Name="Kennzeichen1" ColumnName="Kennzeichen1" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="dimension" ColumnName="dimension" />
+                <ScalarProperty Name="diameter" ColumnName="diameter" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="orignalMarking" ColumnName="orignalMarking" />
+                <ScalarProperty Name="originalNumber" ColumnName="originalNumber" />
+                <ScalarProperty Name="storageAreaReferenceNumber" ColumnName="storageAreaReferenceNumber" />
+                <ScalarProperty Name="storageAreaReference" ColumnName="storageAreaReference" />
+                <ScalarProperty Name="batch" ColumnName="batch" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="orign" ColumnName="orign" />
                 <ScalarProperty Name="Frachtmittel" ColumnName="Frachtmittel" />
                 <ScalarProperty Name="Frachtführer" ColumnName="Frachtführer" />
                 <ScalarProperty Name="Fahrzeug" ColumnName="Fahrzeug" />
@@ -1631,17 +1709,17 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderArticleAttributeEntity" Width="1.5" PointX="14.625" PointY="12.75" Height="2.1725878906249996" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="3.375" PointY="11.75" Height="6.5955208333333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderitemEntity" Width="1.5" PointX="7.5" PointY="12.5" Height="6.4032194010416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="9.75" PointY="12.875" Height="9.67234375000001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="12.25" PointY="2" Height="2.7494921875000102" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="10.125" PointY="12.625" Height="12.172262369791667" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="21.402731119791667" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
-          <edmx:ConnectorPoint PointX="11.25" PointY="13.8987939453125" />
-          <edmx:ConnectorPoint PointX="14.625" PointY="13.8987939453125" />
+          <edmx:ConnectorPoint PointX="11.625" PointY="13.8362939453125" />
+          <edmx:ConnectorPoint PointX="14.625" PointY="13.8362939453125" />
         </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" >
-          <edmx:ConnectorPoint PointX="9" PointY="15.889109700520836" />
-          <edmx:ConnectorPoint PointX="9.75" PointY="15.889109700520836" />
+          <edmx:ConnectorPoint PointX="9" PointY="15.764109700520836" />
+          <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="12.25" PointY="2" Height="2.7494921875000102" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="18.90281250000001" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

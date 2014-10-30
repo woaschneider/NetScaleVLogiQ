@@ -171,6 +171,34 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                         #endregion
 
 
+                        #region Attribute
+
+                        boOISE.SerialNumber = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.SERIAL_NUMBER;
+                        boOISE.batch =  obj.orderItems[0].orderItemServices[i].articleInstance.attributes.BATCH;
+                        boOISE.orign = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.ORIGIN;
+                        boOISE.grade = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.GRADE;
+                        boOISE.originalNumber =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.ORIGINAL_NUMBER;
+                        boOISE.length = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.LENGTH;
+                        boOISE.width = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.WIDTH;
+                        boOISE.height = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.HEIGHT;
+
+                        boOISE.storageAreaReference =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.STORAGE_AREA_REFERENCE;
+                        boOISE.diameter = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.DIAMETER;
+                        boOISE.orignalMarking =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.ORIGINAL_MARKING;
+                        boOISE.storageAreaReferenceNumber =
+                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.
+                                STORAGE_AREA_REFERENCE_NUMBER;
+                        boOISE.dimension = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.DIMENSION;
+
+
+
+                       
+
+                        #endregion
+
                         boOISE.PKOrderItem = boOE.PK;
                         boOIS.SaveEntity(boOISE);
                     }
