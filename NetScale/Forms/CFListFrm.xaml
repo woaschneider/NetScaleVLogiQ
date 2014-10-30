@@ -53,9 +53,9 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid Name="dataGrid1"
-                  Width="299"
+                  Width="311"
                   Height="347"
-                  Margin="12,105,0,0"
+                  Margin="0,105,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
@@ -64,10 +64,10 @@
                   SelectionMode="Single">
             <DataGrid.Columns>
 
-                <DataGridTextColumn MinWidth="300"
+                <DataGridTextColumn MinWidth="296"
                                     Binding="{Binding Kennzeichen1}"
                                     CanUserResize="False"
-                                    Header="Kfzkennzeichen" />
+                                    Header=" Kfzkennzeichen" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

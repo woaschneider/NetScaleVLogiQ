@@ -55,6 +55,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void FillGrid()
         {
             boW = new Waege();
+            dataGrid1.ItemsSource = boW.GetHofListe();
             dataGrid1.SelectedValuePath = "PK";
            
         }

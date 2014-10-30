@@ -23,7 +23,13 @@ namespace HWB.NETSCALE.BOEF
         {
             // Place code here to be executed when the business object instantiates
         }
-
+        public OrderitemEntity GetByPk(int? pk)
+        {
+            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
+                                                where o.PK == pk
+                                                select o;
+            return GetEntity(query);
+        }
         public OrderitemEntity GetById(string id)
         {
             IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
@@ -79,9 +85,12 @@ namespace HWB.NETSCALE.BOEF
                               ois.supplierOrConsigneeBusinessIdentifier.Contains(lagermandantBi)
                         select new OrderParentAndChild
                                    {
+
                                        customerBusinessIdentifier = o.customerBusinessIdentifier,
                                        invoiceReceiverBusinessIdentifier = o.invoiceReceicerBusinessIdentifier,
                                        ownerBusinessIdentifier = ois.ownerBusinessIdentifier,
+
+                                       PK = ois.PK,
                                        remark = ois.remark,
                                        product = ois.product,
                                        productdescription =  ois.productdescription,
@@ -91,12 +100,7 @@ namespace HWB.NETSCALE.BOEF
                                        deliveryType =  ois.deliveryType,
                                        articleDescription= ois.articleDescription,
                                        plannedDate = ois.plannedDate
-                                       
-
-
-
-                                       
-                                  
+                                                                       
 
 
                                    };

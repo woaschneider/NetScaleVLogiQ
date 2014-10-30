@@ -70,7 +70,7 @@
                   ItemsSource="{Binding Mode=OneWay}"
                   MouseDoubleClick="dataGrid_MouseDoubleClick"
                   SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGrid_SelectionChanged">
+                  SelectionChanged="dataGrid_SelectionChanged" Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding name}" Header="Name" />

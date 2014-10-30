@@ -440,22 +440,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<FahrzeugeEntity> FahrzeugeEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<FahrzeugeEntity> _FahrzeugeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -657,19 +657,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FahrzeugeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToFahrzeugeEntities(FahrzeugeEntity fahrzeugeEntity)
         {
             base.AddObject("FahrzeugeEntities", fahrzeugeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -9211,6 +9211,150 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _KfzId;
         partial void OnKfzIdChanging(global::System.String value);
         partial void OnKfzIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Waegung
+        {
+            get
+            {
+                return _Waegung;
+            }
+            set
+            {
+                OnWaegungChanging(value);
+                ReportPropertyChanging("Waegung");
+                _Waegung = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Waegung");
+                OnWaegungChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Waegung;
+        partial void OnWaegungChanging(Nullable<global::System.Int32> value);
+        partial void OnWaegungChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> zweitDateTime
+        {
+            get
+            {
+                return _zweitDateTime;
+            }
+            set
+            {
+                OnzweitDateTimeChanging(value);
+                ReportPropertyChanging("zweitDateTime");
+                _zweitDateTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("zweitDateTime");
+                OnzweitDateTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _zweitDateTime;
+        partial void OnzweitDateTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnzweitDateTimeChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AbrechnungsKZ
+        {
+            get
+            {
+                return _AbrechnungsKZ;
+            }
+            set
+            {
+                OnAbrechnungsKZChanging(value);
+                ReportPropertyChanging("AbrechnungsKZ");
+                _AbrechnungsKZ = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AbrechnungsKZ");
+                OnAbrechnungsKZChanged();
+            }
+        }
+        private global::System.String _AbrechnungsKZ;
+        partial void OnAbrechnungsKZChanging(global::System.String value);
+        partial void OnAbrechnungsKZChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fahrzeug
+        {
+            get
+            {
+                return _Fahrzeug;
+            }
+            set
+            {
+                OnFahrzeugChanging(value);
+                ReportPropertyChanging("Fahrzeug");
+                _Fahrzeug = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fahrzeug");
+                OnFahrzeugChanged();
+            }
+        }
+        private global::System.String _Fahrzeug;
+        partial void OnFahrzeugChanging(global::System.String value);
+        partial void OnFahrzeugChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Frachtführer
+        {
+            get
+            {
+                return _Frachtführer;
+            }
+            set
+            {
+                OnFrachtführerChanging(value);
+                ReportPropertyChanging("Frachtführer");
+                _Frachtführer = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Frachtführer");
+                OnFrachtführerChanged();
+            }
+        }
+        private global::System.String _Frachtführer;
+        partial void OnFrachtführerChanging(global::System.String value);
+        partial void OnFrachtführerChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Frachtmittel
+        {
+            get
+            {
+                return _Frachtmittel;
+            }
+            set
+            {
+                OnFrachtmittelChanging(value);
+                ReportPropertyChanging("Frachtmittel");
+                _Frachtmittel = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Frachtmittel");
+                OnFrachtmittelChanged();
+            }
+        }
+        private global::System.String _Frachtmittel;
+        partial void OnFrachtmittelChanging(global::System.String value);
+        partial void OnFrachtmittelChanged();
 
         #endregion
     

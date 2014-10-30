@@ -12,7 +12,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-
+using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
@@ -30,6 +30,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// </summary>
         public string uRet;
 
+        private Fahrzeuge _boCF = new Fahrzeuge();
+        private FahrzeugeEntity _boCFE = new FahrzeugeEntity();
+
         // KfzID direkt in die Wägemaske zurückgeben, wenn Fahrzeug aus der Wägemaske neu angelegt wird.
 
         private bool DoNotFireChangeText;
@@ -43,14 +46,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (New == true)
             {
                 this.Title = "Neues " + caption + " anlegen";
+                _boCFE = _boCF.NewEntity();
 
             }
             else
             {
                 this.Title = caption + " bearbeiten";
-
+                _boCFE = _boCF.GetByPk(pk);
                 uRet = null;
             }
+            DataContext = _boCFE;
 
             this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             DoNotFireChangeText = false;
@@ -71,6 +76,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void cmdSave_Click(object sender, RoutedEventArgs e)
         {
             tb_CatchFocus.Focus();
+         mmSaveDataResult sdr =   _boCF.SaveEntity(_boCFE);
             // Focus auf eine nicht sichtbare Textbox setzen. Sonst werden die Änderungen an der letzen TB nicht übernommen. Trick!
 
         }
@@ -81,14 +87,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                                                     MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (uRet == MessageBoxResult.Yes)
             {
-
+                _boCF.DeleteEntity(_boCFE);
                 this.Close();
             }
         }
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            _boCF.CancelEntity(_boCFE);
             Hide();
         }
 
@@ -120,6 +126,40 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WindowExtensions.HideCloseButton(this);
+        }
+
+        private void buttonLookUpFrachtmittel_Click(object sender, RoutedEventArgs e)
+        {
+            FrachtmittelListFrm oFFrm = new FrachtmittelListFrm();
+            oFFrm.ShowDialog();
+            int uRet = oFFrm.uRet;
+            if(uRet!=null)
+            {
+                Frachtmittel _boF = new Frachtmittel();
+                FrachtmittelEntity _boFE = _boF.GetFrachtmittelByPK(uRet);
+                if(_boFE!=null)
+                {
+                   _boCFE.Kennung = _boFE.Kennung;
+                   _boCFE.Bezeichnung = _boFE.Bezeichnung;
+                }
+            }
+            oFFrm.Close();
+        }
+
+        private void buttonLookUpFrachtführer_Click(object sender, RoutedEventArgs e)
+        {
+            AdressenListeFrm oAFrm = new AdressenListeFrm("");
+            oAFrm.ShowDialog();
+            int uRet = oAFrm.uRet;
+            if(uRet != null)
+            {
+                Adressen _boA = new Adressen();
+                AdressenEntity _boAE = _boA.GetByPK(uRet);
+                if(_boAE!=null)
+                {
+                    _boCFE.Frachtfuehrer = _boAE.businessIdentifier;
+                }
+            }
         }
 
 

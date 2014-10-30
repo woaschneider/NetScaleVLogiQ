@@ -24,9 +24,6 @@
         <HWB_NETSCALE_BOEF:OrderitemEntity x:Key="OrderitemEntityDataSource" d:IsDataSource="True" />
         <HWB_NETSCALE_BOEF:Orderitem x:Key="OrderitemDataSource" d:IsDataSource="True" />
     </mmwpf:mmBusinessWindow.Resources>
-    <mmwpf:mmBusinessWindow.DataContext>
-        <HWB_NETSCALE_BOEF:OrderitemEntity />
-    </mmwpf:mmBusinessWindow.DataContext>
 
 
     <Grid x:Name="LayoutRoot"

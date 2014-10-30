@@ -1,17 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
-  <Class Name="HWB.NETSCALE.BOEF.JoinClasses.AuftragsListe">
-    <Position X="6" Y="0.5" Width="1.5" />
+  <Class Name="HWB.NETSCALE.BOEF.JoinClasses.Auftragsdetailliste">
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAgAAAEAAIAAAAAAAAAEAMAAAABiAAAgCACAEgA=</HashCode>
-      <FileName>JoinClasses\AuftragsListeCollection.cs</FileName>
+      <HashCode>BAwAAAgACAEACAIAAAAgMAAkAIAAAAAAAAAgCBAAEgA=</HashCode>
+      <FileName>JoinClasses\Auftragsdetailliste.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HWB.NETSCALE.BOEF.Mandant">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="HWB.NETSCALE.BOEF.JoinClasses.Auftragsdetail" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EgAAAARAQACAAAAAAAAAAAIAFABAAAIAAAAAgAAAAAA=</HashCode>
-      <FileName>Mandant\Mandant.cs</FileName>
+      <HashCode>BAwAAAgACAEACAIAAAAgMAAkAIAAAAAAAAAgCBAAEgA=</HashCode>
+      <FileName>JoinClasses\Auftragsdetailliste.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HWB.NETSCALE.BOEF.JoinClasses.OrderParentAndChild">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEBAAAAAgAAAAAABAIAAAAAAAAAAIAAgIAASIAAAAI=</HashCode>
+      <FileName>JoinClasses\Auftragsdetailliste.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

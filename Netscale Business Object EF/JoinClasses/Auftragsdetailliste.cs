@@ -70,6 +70,8 @@ namespace HWB.NETSCALE.BOEF.JoinClasses
     public class OrderParentAndChild : ABusinessEntity
     {
         // OrderItem
+        public int PK { get; set; }
+
         public string customerBusinessIdentifier { get; set; }
         public string invoiceReceiverBusinessIdentifier { get; set; }
 

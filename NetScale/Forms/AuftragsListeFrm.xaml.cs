@@ -39,25 +39,24 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         public int uRet
         {
             get { return _uRet; }
+           
+
         }
 
 
         public AuftragsListeFrm(string matchcode)
         {
             // Instantiate and register business objects
-            this.boO = (Orderitem) this.RegisterPrimaryBizObj(new Orderitem());
-            this.boOIS = (OrderItemservice) this.RegisterBizObj(new OrderItemservice());
+            this.boO = new Orderitem();
+            this.boOIS = new OrderItemservice();
         
             boA = new Adressen();
 
             this.InitializeComponent();
 
-         
-
-           // dataGridOrderItem.SelectedValuePath = "PK";
-           // dataGridOrderItemService.SelectedValuePath = "PK";
-
-            //  dataGridOrderItem.ItemsSource = boO.GetAll();
+            dataGrid.SelectedValuePath = "PK";
+        
+          
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
@@ -68,12 +67,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 Hide();
                 e.Handled = true;
             }
-            if (e.Key == Key.Return)
-            {
-                //cmdSelect_Click(cmdSelect, e);
-                //Hide();
-                //e.Handled = true;
-            }
+            //if (e.Key == Key.Return)
+            //{
+            //    cmdSelect_Click(cmdSelect, e);
+            //    Hide();
+            //    e.Handled = true;
+            //}
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
@@ -82,7 +81,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         }
 
         private void cmdSelect_Click(object sender, RoutedEventArgs e)
-        {
+        {    
+             _uRet = Convert.ToInt32(dataGrid.SelectedValue);
             this.Hide();
         }
 
@@ -124,6 +124,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void tb_CustomerSearch_SearchStringChanged(object sender, SearchStringChangedEventArgs e)
         {
+            dataGrid.SelectedValuePath = "PK";
  
             tb_CustomerSearch = (mmAutoCompleteTextBox) sender;
             tb_CustomerSearch.BindingList = boA.GetByMatchCode(e.SearchString);
@@ -131,8 +132,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void tb_CustomerSearch_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
         {
-                                                                        
 
+            dataGrid.SelectedValuePath = "PK";
             this.dataGrid.ItemsSource = boO.GetOrderWithAllDetailsByMatchCode(tb_InvoiceReceiverSearch.TextBoxContent,
                                                                            tb_InvoiceReceiverSearch.TextBoxContent,
                                                                            tb_OwnerSearch.TextBoxContent, "");
@@ -144,7 +145,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void tb_InvoiceReceiverSearch_SearchStringChanged(object sender, SearchStringChangedEventArgs e)
         {
-        
+            dataGrid.SelectedValuePath = "childPk";
             tb_InvoiceReceiverSearch = (mmAutoCompleteTextBox) sender;
             tb_InvoiceReceiverSearch.BindingList = boA.GetByMatchCode(e.SearchString);
         }
@@ -152,6 +153,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void tb_InvoiceReceiverSearch_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
         {
+            dataGrid.SelectedValuePath = "childPk";
             this.dataGrid.ItemsSource = boO.GetOrderWithAllDetailsByMatchCode(tb_InvoiceReceiverSearch.TextBoxContent,
                                                                               tb_InvoiceReceiverSearch.TextBoxContent,
                                                                               tb_OwnerSearch.TextBoxContent, "");

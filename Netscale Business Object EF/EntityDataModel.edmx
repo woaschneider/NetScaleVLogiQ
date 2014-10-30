@@ -486,6 +486,12 @@
           <Property Name="articleDescription" Type="varchar" MaxLength="64" />
           <Property Name="KfzKennzeichen" Type="varchar" MaxLength="64" />
           <Property Name="KfzId" Type="varchar" MaxLength="10" />
+          <Property Name="Waegung" Type="int" />
+          <Property Name="zweitDateTime" Type="datetime" />
+          <Property Name="AbrechnungsKZ" Type="varchar" MaxLength="2" />
+          <Property Name="Fahrzeug" Type="varchar" MaxLength="22" />
+          <Property Name="Frachtführer" Type="varchar" MaxLength="64" />
+          <Property Name="Frachtmittel" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -585,8 +591,8 @@
             <End Role="OrderitemEntity" EntitySet="OrderitemEntities" />
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -976,6 +982,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FahrzeugeEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Kennzeichen1" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Kennzeichen2" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Taradatum" />
+          <Property Type="Decimal" Name="Tara" Precision="10" Scale="2" />
+          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
+          <Property Type="String" Name="Frachtfuehrer" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1067,20 +1087,12 @@
           <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="KfzKennzeichen" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="KfzId" MaxLength="10" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="FahrzeugeEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="Kennzeichen1" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Kennzeichen2" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Taradatum" />
-          <Property Type="Decimal" Name="Tara" Precision="10" Scale="2" />
-          <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
-          <Property Type="String" Name="Frachtfuehrer" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Waegung" />
+          <Property Type="DateTime" Name="zweitDateTime" />
+          <Property Type="String" Name="AbrechnungsKZ" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fahrzeug" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Frachtführer" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Frachtmittel" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1457,9 +1469,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FahrzeugeEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FahrzeugeEntity">
+              <MappingFragment StoreEntitySet="Fahrzeuge">
+                <ScalarProperty Name="Frachtfuehrer" ColumnName="Frachtfuehrer" />
+                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
+                <ScalarProperty Name="Tara" ColumnName="Tara" />
+                <ScalarProperty Name="Taradatum" ColumnName="Taradatum" />
+                <ScalarProperty Name="Kennzeichen2" ColumnName="Kennzeichen2" />
+                <ScalarProperty Name="Kennzeichen1" ColumnName="Kennzeichen1" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="Frachtmittel" ColumnName="Frachtmittel" />
+                <ScalarProperty Name="Frachtführer" ColumnName="Frachtführer" />
+                <ScalarProperty Name="Fahrzeug" ColumnName="Fahrzeug" />
+                <ScalarProperty Name="AbrechnungsKZ" ColumnName="AbrechnungsKZ" />
+                <ScalarProperty Name="zweitDateTime" ColumnName="zweitDateTime" />
+                <ScalarProperty Name="Waegung" ColumnName="Waegung" />
                 <ScalarProperty Name="KfzId" ColumnName="KfzId" />
                 <ScalarProperty Name="KfzKennzeichen" ColumnName="KfzKennzeichen" />
                 <ScalarProperty Name="articleDescription" ColumnName="articleDescription" />
@@ -1550,21 +1583,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FahrzeugeEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.FahrzeugeEntity">
-              <MappingFragment StoreEntitySet="Fahrzeuge">
-                <ScalarProperty Name="Frachtfuehrer" ColumnName="Frachtfuehrer" />
-                <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
-                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
-                <ScalarProperty Name="Kennung" ColumnName="Kennung" />
-                <ScalarProperty Name="Tara" ColumnName="Tara" />
-                <ScalarProperty Name="Taradatum" ColumnName="Taradatum" />
-                <ScalarProperty Name="Kennzeichen2" ColumnName="Kennzeichen2" />
-                <ScalarProperty Name="Kennzeichen1" ColumnName="Kennzeichen1" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1622,8 +1640,8 @@
           <edmx:ConnectorPoint PointX="9" PointY="15.889109700520836" />
           <edmx:ConnectorPoint PointX="9.75" PointY="15.889109700520836" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="17.74900390625001" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="11.875" PointY="2" Height="2.7494921875000102" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="12.25" PointY="2" Height="2.7494921875000102" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="18.90281250000001" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
