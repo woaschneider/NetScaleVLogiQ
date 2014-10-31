@@ -19,18 +19,14 @@
                         mc:Ignorable="d">
 
 
-    <mmwpf:mmBusinessWindow.Resources>
-        
-    </mmwpf:mmBusinessWindow.Resources>
+    <mmwpf:mmBusinessWindow.Resources />
 
 
-    <Grid x:Name="LayoutRoot"
-          Background="#FFA5C8E8"
-      >
+    <Grid x:Name="LayoutRoot" Background="#FFA5C8E8">
         <Grid.RowDefinitions>
-            <RowDefinition Height="102*" />
-            <RowDefinition Height="40*" />
-            <RowDefinition Height="341*" />
+            <RowDefinition Height="149*" />
+            <RowDefinition Height="113*" />
+            <RowDefinition Height="433*" />
         </Grid.RowDefinitions>
         <ribbon:Ribbon x:Name="Ribbon"
                        Height="120"
@@ -74,19 +70,16 @@
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
-        <DataGrid x:Name="dataGrid"
-                  Grid.Row="2"
-                  Height="245"
-                  Margin="0,10,2,0"
+        <DataGrid x:Name="dataGrid1"
+                  
+                  MouseDoubleClick="dataGrid1_MouseDoubleClick" Height="387"
+                  Margin="0,34,2,0"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
-                  IsTabStop="True"
+                  
                   ItemsSource="{Binding Mode=OneWay}"
-                  MouseDoubleClick="dataGrid_MouseDoubleClick"
-                  SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGrid_SelectionChanged"
-                  Style="{DynamicResource DataGridStyle}"
-                  TabIndex="20">
+              
+                  SelectedValuePath="&quot;PK&quot;" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding businessIdentifier}" Header="Name-Id" />
@@ -98,31 +91,18 @@
                 <DataGridTextColumn Binding="{Binding isocodeCountry}" Header="Land" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label1"
-               Grid.Row="1"
-               Height="28"
-               Margin="12,16,0,0"
+        <Label x:Name="label1" Height="28"
+               Margin="12,14,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
-               FontWeight="Bold" />
-
-
-        <xcdg:DataGridControl x:Name="_dataGrid"
-                              Grid.Row="2"
-                              Margin="0,262,0,29">
-            <xcdg:DataGridControl.View>
-                <xcdg:TableflowView FixedColumnCount="2" />
-            </xcdg:DataGridControl.View>
-
-        </xcdg:DataGridControl>
-        <mmwpf:mmAutoCompleteTextBox Name="mmAutoCompleteTextBox1"
-                                     ListDisplayMember="businessIdentifier,name" Width="369"
-                                 
-                                     Margin="113,16,0,0"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Top"
-                                     SearchStringSelected="mmAutoCompleteTextBox1_SearchStringSelected"
-                                     SearchStringChanged="mmAutoCompleteTextBox1_SearchStringChanged" NavigateListOnTab="True" Grid.Row="1" Grid.RowSpan="5" />
+               FontWeight="Bold" TabIndex="1000" Grid.Row="1" />
+        <TextBox Name="txtSearch" Height="30"
+                 Margin="99,65,0,0"
+                 VerticalAlignment="Top"
+                 Background="#FFFFF7B2"
+                 FontSize="16"
+                 TextChanged="txtSearch_TextChanged"
+                 Opacity="50" TabIndex="1010" HorizontalAlignment="Left" Width="466" Grid.Row="1" />
     </Grid>
 </mmwpf:mmBusinessWindow>

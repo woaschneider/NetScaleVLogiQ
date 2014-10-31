@@ -254,8 +254,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oA.ShowDialog();
             if (oA != null)
             {
-                oA.Close();
+             
             }
+            oA.Close();
         }
 
         private void cmdKFZ_Click(object sender, RoutedEventArgs e)
@@ -1004,7 +1005,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            int? uRet = lookUpAdresse("");
+            if (uRet != null)
+            {
+                _boW.Customer2Waege((int) uRet);
+            }
+            else
+            {
+                _boW.ClearCustomerInWaege();
+            }
         }
 
         private int? lookUpAdresse(string mc)
