@@ -6,6 +6,8 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:my="clr-namespace:HardwareDevices;assembly=HardwareDevices"
+                        xmlns:my1="clr-namespace:HWB.NETSCALE.FRONTEND.WPF"
+                        xmlns:my2="clr-namespace:HWB.NETSCALE.FRONTEND.WPF.NetScaleControls"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                         x:Name="Window"
@@ -388,7 +390,7 @@
                VerticalAlignment="Top"
                Content="Lfd. Wäg.-Nr." />
         <TextBox x:Name="txtAuftraggeber"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,323,0,0"
                  HorizontalAlignment="Left"
@@ -401,7 +403,7 @@
                VerticalAlignment="Top"
                Content="Auftrageber" />
         <TextBox x:Name="txtRechnungsEmpfaenger"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,349,0,0"
                  HorizontalAlignment="Left"
@@ -414,11 +416,12 @@
                VerticalAlignment="Top"
                Content="Rechnungsempfänger" />
         <TextBox x:Name="txtHerkunft"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,615,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding orign}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding orign}" />
         <Label x:Name="lblHerkunft"
                Height="28"
                Margin="23,613,0,0"
@@ -426,11 +429,12 @@
                VerticalAlignment="Top"
                Content="Herkunft" />
         <TextBox x:Name="txtGuete"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,640,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding grade}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding grade}" />
         <Label x:Name="lblGuete"
                Height="28"
                Margin="23,639,0,0"
@@ -438,11 +442,12 @@
                VerticalAlignment="Top"
                Content="Güte" />
         <TextBox x:Name="txtCharge"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,666,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding batch}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding batch}" />
         <Label x:Name="lblCharge"
                Height="28"
                Margin="23,666,0,0"
@@ -450,23 +455,26 @@
                VerticalAlignment="Top"
                Content="Charge" />
         <TextBox x:Name="txtLagerMaerk"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,691,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding storageAreaReference}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding storageAreaReference}" />
         <Label x:Name="lblLagermaerk"
+               Width="111"
                Height="28"
                Margin="23,688,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Lagermaerk" />
         <TextBox x:Name="txtLagerMaerkNr"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,716,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding storageAreaReferenceNumber}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding storageAreaReferenceNumber}" />
         <Label x:Name="lblNrzumLagermaerk"
                Height="28"
                Margin="23,713,0,0"
@@ -474,11 +482,12 @@
                VerticalAlignment="Top"
                Content="Nr zum Lagermaerk" />
         <TextBox x:Name="txtUrnummer"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,741,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding originalNumber}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding originalNumber}" />
         <Label x:Name="lblUrNummer"
                Height="30"
                Margin="23,739,0,0"
@@ -486,11 +495,12 @@
                VerticalAlignment="Top"
                Content="Urnummer" />
         <TextBox x:Name="txtUrmarkierung"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,766,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Text="{Binding orignalMarking}" />
+                 VerticalAlignment="Top"
+                 Text="{Binding orignalMarking}" />
         <Label x:Name="lblUrmarkierung"
                Height="28"
                Margin="23,763,0,0"
@@ -498,7 +508,7 @@
                VerticalAlignment="Top"
                Content="Urmarkierung" />
         <TextBox x:Name="txtSerienNr"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,791,0,0"
                  HorizontalAlignment="Left"
@@ -510,7 +520,7 @@
                VerticalAlignment="Top"
                Content="Seriennummer" />
         <TextBox x:Name="txtFreistellungsReferenz"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,817,0,0"
                  HorizontalAlignment="Left"
@@ -564,7 +574,7 @@
                VerticalAlignment="Top"
                Content="Fahrzeugtyp" />
         <TextBox x:Name="txtLagerMandant"
-                 Width="467"
+                 Width="436"
                  Margin="162,406,0,449"
                  HorizontalAlignment="Left"
                  Text="{Binding ownerBusinessIdentifier}" />
@@ -573,7 +583,7 @@
                HorizontalAlignment="Left"
                Content="Lagermandant" />
         <TextBox x:Name="txtKundenReferenz"
-                 Width="467"
+                 Width="436"
                  Height="22.003"
                  Margin="162,431,0,0"
                  HorizontalAlignment="Left"
@@ -586,7 +596,7 @@
                VerticalAlignment="Bottom"
                Content="Kundenreferenz" />
         <TextBox x:Name="txtLieferantEmpfaenger"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,456,0,0"
                  HorizontalAlignment="Left"
@@ -599,7 +609,7 @@
                VerticalAlignment="Top"
                Content="Lieferant / Empfänger" />
         <TextBox x:Name="txtFrankatur"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,481,0,0"
                  HorizontalAlignment="Left"
@@ -625,7 +635,7 @@
                VerticalAlignment="Top"
                Content="Warenart" />
         <TextBox x:Name="txtArtikelNr"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,532,0,0"
                  HorizontalAlignment="Left"
@@ -638,7 +648,7 @@
                VerticalAlignment="Top"
                Content="Artikel-Nr." />
         <TextBox x:Name="txtGeplLeistungsDatum"
-                 Width="467"
+                 Width="436"
                  Height="23"
                  Margin="162,558,0,0"
                  HorizontalAlignment="Left"
@@ -682,11 +692,10 @@
                 Margin="599,168.333,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Click="cmdLookUpKfz_Click"
-                Style="{DynamicResource LookUpButtonStyle}">
+                Click="cmdLookUpKfz_Click">
             <StackPanel d:IsLocked="True">
-                <Image Width="15"
-                       Height="15"
+                <Image Width="18"
+                       Height="18"
                        HorizontalAlignment="Left"
                        d:IsLocked="True"
                        Source="..\Images\1329900378_search_button.ico"
@@ -702,5 +711,111 @@
                    FontSize="16"
                    Foreground="#FFEF1414"
                    Text="..." />
+        <Button Name="luFrachtfuehrer"
+                Width="38.333"
+                Height="22"
+                Margin="599,194,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luCustomer"
+                Width="38.333"
+                Height="22"
+                Margin="600,323,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="luCustomer_Click">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luInvoiceReceiver"
+                Width="38.333"
+                Height="22"
+                Margin="601,350,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luLagermandant"
+                Width="38.333"
+                Height="22"
+                Margin="600,406,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luConsigneeSupplier"
+                Width="38.333"
+                Height="22"
+                Margin="601,457,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luArticle"
+                Width="38.333"
+                Height="22"
+                Margin="601,532,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luAttribute"
+                Width="38.333"
+                Height="22"
+                Margin="601,617,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luFrachtmittel"
+                Width="38.333"
+                Height="22"
+                Margin="599,223,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="luFrachtmittel_Click">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
     </Grid>
 </mmwpf:mmBusinessWindow>

@@ -995,9 +995,31 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
         #endregion
 
-       
+        private void luFrachtmittel_Click(object sender, RoutedEventArgs e)
+        {
+            FrachtmittelListFrm oFFrm = new FrachtmittelListFrm();
+            oFFrm.Show();
+            oFFrm.Close();
+        }
 
-      
+        private void luCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private int? lookUpAdresse(string mc)
+        {
+            AdressenListeFrm oAFrm = new AdressenListeFrm(mc);
+            oAFrm.ShowDialog();
+            int uRet = oAFrm.uRet;
+            return uRet;
+        }
+
+
+
+
+
+
 
 
     }

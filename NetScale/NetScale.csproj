@@ -265,6 +265,9 @@
     <Compile Include="Forms\TaabFrm.xaml.cs">
       <DependentUpon>TaabFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserRollenFrm.xaml.cs">
       <DependentUpon>UserRollenFrm.xaml</DependentUpon>
     </Compile>
@@ -293,6 +296,9 @@
       <DependentUpon>MMWPFBusinessListFrm1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyFunctions.cs" />
+    <Compile Include="NetScaleControls\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
     <Compile Include="UserWindow.xaml.cs">
@@ -389,6 +395,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\UserControl1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Forms\UserRollenFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -428,6 +438,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\MMWPFBusinessListFrm1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NetScaleControls\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -502,6 +516,7 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="1329900378_search_button.ico" />
     <Resource Include="Images\Security.jpg" />
   </ItemGroup>
   <ItemGroup>
