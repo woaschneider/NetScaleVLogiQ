@@ -276,6 +276,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonAuftrag_Click(object sender, RoutedEventArgs e)
         {
+            if(_boWe==null)
+            {
+                return;
+            }
+
             AuftragsListeFrm oAFrm = new AuftragsListeFrm("");
             oAFrm.ShowDialog();
            int  uRet = oAFrm.uRet;
