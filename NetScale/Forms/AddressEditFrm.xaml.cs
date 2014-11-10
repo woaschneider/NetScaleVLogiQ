@@ -43,7 +43,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 this.Title = Partnerrollen.GetRollenBezeichnung(_rolle) + " - Adresse bearbeiten";
                 //   this.Title = "Empfänger bearbeiten!";
-             //   boAPE = boAddress.GetAPById(PK);
+               boAPE = boAddress.GetByPK(PK);
             }
             this.DataContext = boAPE;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);

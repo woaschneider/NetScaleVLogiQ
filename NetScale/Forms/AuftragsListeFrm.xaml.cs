@@ -127,7 +127,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             dataGrid.SelectedValuePath = "PK";
  
             tb_CustomerSearch = (mmAutoCompleteTextBox) sender;
-            tb_CustomerSearch.BindingList = boA.GetByMatchCode(e.SearchString);
+            tb_CustomerSearch.BindingList = boA.GetbusinessIdentifierByMatchCode(e.SearchString);
         }
 
         private void tb_CustomerSearch_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
@@ -147,7 +147,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             dataGrid.SelectedValuePath = "childPk";
             tb_InvoiceReceiverSearch = (mmAutoCompleteTextBox) sender;
-            tb_InvoiceReceiverSearch.BindingList = boA.GetByMatchCode(e.SearchString);
+            tb_InvoiceReceiverSearch.BindingList = boA.GetbusinessIdentifierByMatchCode(e.SearchString);
         }
 
 
@@ -166,7 +166,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private void tb_OwnerSearch_SearchStringChanged(object sender, SearchStringChangedEventArgs e)
         {
             tb_OwnerSearch = (mmAutoCompleteTextBox)sender;
-            tb_OwnerSearch.BindingList = boA.GetByMatchCode(e.SearchString);
+            tb_OwnerSearch.BindingList = boA.GetbusinessIdentifierByMatchCode(e.SearchString);
         }
 
 

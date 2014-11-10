@@ -32,6 +32,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private WaegeEntity _boWe;
         private int _wiegeStatus;
         private mmSaveDataResult _result;
+
         #endregion
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             DisplayErrorProvider = true;
             RegisterPrimaryBizObj(_boW);
 
-            
+
             tb_me1.Text = goApp.MengenEinheit;
             tb_me2.Text = goApp.MengenEinheit;
             tb_me3.Text = goApp.MengenEinheit;
@@ -104,7 +105,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             Wiegestatus = 99;
             Wiegestatus = 0;
-         
         }
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
@@ -128,14 +128,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             Save();
         }
+
         private void ribbonWiegen_Click(object sender, RoutedEventArgs e)
         {
             Wiegen();
         }
+
         private void ribbonHofliste_Click(object sender, RoutedEventArgs e)
         {
-           
-
             var oHlFrm = new HoflisteFrm();
             oHlFrm.ShowDialog();
             int uRet = oHlFrm.uRet;
@@ -152,13 +152,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     DataContext = _boWe;
                     oHlFrm.Close();
                     Wiegestatus = 2;
-
-                   
                 }
             }
-        
-           
         }
+
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
             //if (_wiegestatus == 7) // Abruf bearbeiten
@@ -195,14 +192,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonCancel_Click(object sender, RoutedEventArgs e)
         {
-
-            _boWe = null;
+            _boW.CancelEntity(_boWe);
             Wiegestatus = 0;
         }
 
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
-        {  
+        {
             netScaleView1.Close();
             Hide();
         }
@@ -254,14 +250,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oA.ShowDialog();
             if (oA != null)
             {
-             
             }
             oA.Close();
         }
 
         private void cmdKFZ_Click(object sender, RoutedEventArgs e)
         {
-            CFListFrm oCFFrm = new CFListFrm(true,"");
+            CFListFrm oCFFrm = new CFListFrm(true, "");
             oCFFrm.ShowDialog();
             int uRet = oCFFrm.uRet;
             oCFFrm.Close();
@@ -277,30 +272,24 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonAuftrag_Click(object sender, RoutedEventArgs e)
         {
-            if(_boWe==null)
+            if (_boWe == null)
             {
                 return;
             }
 
             AuftragsListeFrm oAFrm = new AuftragsListeFrm("");
             oAFrm.ShowDialog();
-           int  uRet = oAFrm.uRet;
+            int uRet = oAFrm.uRet;
             _boW.Auftrag2Waege(uRet);
 
-
-        
-            
-        
             oAFrm.Close();
         }
 
         #endregion
 
-   
-
         private void txtKfzKennzeichen_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(e.Key== Key.F4)
+            if (e.Key == Key.F4)
             {
                 lookupKfz();
             }
@@ -308,9 +297,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdLookUpKfz_Click(object sender, RoutedEventArgs e)
         {
-          lookupKfz();
-
+            lookupKfz();
         }
+
         private void lookupKfz()
         {
             CFListFrm oKfzListeFrm = new CFListFrm(true, txtKfzKennzeichen.Text);
@@ -323,7 +312,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             oKfzListeFrm.Close();
         }
-
 
         #region GUI Umschaltung
 
@@ -356,7 +344,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
                     if (child != null && child is T)
                     {
-                        yield return (T)child;
+                        yield return (T) child;
                     }
 
                     foreach (T childOfChild in FindVisualChildren<T>(child))
@@ -372,23 +360,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             foreach (object ctrl in LayoutRoot.Children)
             {
                 if (ctrl is TextBox)
-                    ((TextBox)ctrl).IsEnabled = false;
-            }
+                    ((TextBox) ctrl).IsEnabled = false;
 
-        
-
-
-            foreach (object ctrl in LayoutRoot.Children)
-            {
                 if (ctrl is Button)
-                    ((Button)ctrl).IsEnabled = false;
+                    ((Button) ctrl).IsEnabled = false;
+
+
+                if (ctrl is Expander)
+                    ((Expander) ctrl).IsEnabled = false;
             }
 
-            //// Hier wird gezielt gesucht, zB Exrechnung
-            //foreach (TextBox tb in FindVisualChildren<TextBox>(this.ExRechnung))
-            //{
-            //    tb.IsEnabled = false;
-            //}
+
+            // Hier wird gezielt gesucht, zB Exrechnung
+            foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
+            {
+                this.expanderCustomerEdit.IsExpanded = false;
+                tb.IsEnabled = false;
+            }
         }
 
         private void EnableFrmTb()
@@ -396,19 +384,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             foreach (object ctrl in LayoutRoot.Children)
             {
                 if (ctrl is TextBox)
-                    ((TextBox)ctrl).IsEnabled = true;
-            }
-            //tb_mischersollwert.IsEnabled = true;
-            //// Hier wird gezielt gesucht, zB Exrechnung
-            //foreach (TextBox tb in FindVisualChildren<TextBox>(this.ExRechnung))
-            //{
-            //    tb.IsEnabled = true;
-            //}
-            foreach (object ctrl in LayoutRoot.Children)
-            {
+                    ((TextBox) ctrl).IsEnabled = true;
+
                 if (ctrl is Button)
-                    ((Button)ctrl).IsEnabled = true;
+                    ((Button) ctrl).IsEnabled = true;
+
+                if (ctrl is Expander)
+                    ((Expander) ctrl).IsEnabled = true;
             }
+
+            foreach (object ctrl in LayoutRoot.Children)
+
+
+                foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
+                {
+                    this.expanderCustomerEdit.IsExpanded = false;
+                    tb.IsEnabled = true;
+                }
         }
 
 
@@ -424,6 +416,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
+
         private void WiegeStatusChange(int ws)
         {
             switch (ws)
@@ -488,13 +481,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = true;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = true;
-         //   ribbonAbrufListe.IsEnabled = true;
+            //   ribbonAbrufListe.IsEnabled = true;
             ribbonCancel.IsEnabled = false;
             ribbonDelete.IsEnabled = false;
 
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = false;
-          
         }
 
         private void Wiegestatus1()
@@ -526,7 +518,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = false;
-          //  cmdAbrufListe.IsEnabled = true;
+            //  cmdAbrufListe.IsEnabled = true;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = false;
 
@@ -645,8 +637,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonWiegen.IsEnabled = false;
 
             // Damit immer die aktuellen Werte angezeigt werden
-           // Abruf oAbruf = new Abruf();
-          //  ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
+            // Abruf oAbruf = new Abruf();
+            //  ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
         }
 
         private void Wiegestatus6() // Abruf anlegen
@@ -680,10 +672,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
-          //  tb_kfzid.IsEnabled = false;
-          
+            //  tb_kfzid.IsEnabled = false;
+
             //tb_Kfz1.IsEnabled = false;
-          //  tb_Kfz2.IsEnabled = false;
+            //  tb_Kfz2.IsEnabled = false;
         }
 
         private void Wiegestatus7() // Abruf bearbeiten
@@ -750,48 +742,47 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
         }
+
         #endregion
 
         #region
+
         private void NewWaege()
         {
             _boWe = null;
             _boWe = _boW.NewEntity();
             DataContext = _boWe;
-         //   Wiegestatus = cb_ZweitWaegungPreset.IsChecked == true ? 2 : 1;
+            //   Wiegestatus = cb_ZweitWaegungPreset.IsChecked == true ? 2 : 1;
             Wiegestatus = 1;
-
         }
 
         private void Wiegen()
         {
             tb_ZweitGewicht.Focus();
             var boE = new Einstellungen();
-         
+
             RegisterWeight oRw = netScaleView1.RegisterGewicht();
             switch (_wiegeStatus)
             {
                 case 1:
                     if (oRw.Status != "80")
                     {
-                       
-                            MessageBox.Show("Wägung fehlgeschlagen");
-                            if (netScaleView1.oWF != null)
-                                netScaleView1.oWF.SetRedLight();
-                            return;
-                    
+                        MessageBox.Show("Wägung fehlgeschlagen");
+                        if (netScaleView1.oWF != null)
+                            netScaleView1.oWF.SetRedLight();
+                        return;
                     }
 
 
                     _boWe.LN1 = oRw.Ln;
-                    _boWe.Erstgewicht  = oRw.weight;
+                    _boWe.Erstgewicht = oRw.weight;
                     _boWe.ErstDatetime = oRw.Time;
                     _boWe.Waegung = 1;
-                   // _boWe.wnr1 = netScaleView1.ActiveScale.ToString();
+                    // _boWe.wnr1 = netScaleView1.ActiveScale.ToString();
 
                     //   try
                     // {
-                  _result = SaveEntity(_boW, _boWe);
+                    _result = SaveEntity(_boW, _boWe);
                     //  }
                     //   catch (Exception ex)
                     //  {
@@ -805,8 +796,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         return;
                     }
 
-                   
-                   
+
                     Wiegestatus = 0;
                     break;
                 case 2:
@@ -816,7 +806,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     if (_boWe.Waegung == null)
                     {
                         var oCf = new Fahrzeuge();
-                        FahrzeugeEntity oCfe = oCf.GetByExactKennzeichen(_boWe.KfzKennzeichen); 
+                        FahrzeugeEntity oCfe = oCf.GetByExactKennzeichen(_boWe.KfzKennzeichen);
                         if (oCfe != null)
                         {
                             if (_boWe.Erstgewicht == null)
@@ -828,36 +818,31 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     if (_boWe.Erstgewicht == 0 | _boWe.Erstgewicht == null)
                     {
-                            MessageBox.Show("Zweitwägung mit Erstgewicht 0 ist nicht möglich!");
-                            return;
-                     
-                     
+                        MessageBox.Show("Zweitwägung mit Erstgewicht 0 ist nicht möglich!");
+                        return;
                     }
 
                     if (oRw.Status != "80")
                     {
-                      
-                            if (netScaleView1.oWF != null)
-                                netScaleView1.oWF.SetRedLight();
+                        if (netScaleView1.oWF != null)
+                            netScaleView1.oWF.SetRedLight();
 
-                            MessageBox.Show("Wägung fehlgeschlagen");
-                            return;
-                      
+                        MessageBox.Show("Wägung fehlgeschlagen");
+                        return;
                     }
 
 
                     _boWe.LN2 = oRw.Ln;
                     _boWe.Zweitgewicht = oRw.weight;
-               
 
 
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
-                
+
                     // TODO: Welches Feld
-                    _boWe.zweitDateTime= oRw.Time;
-                  //  _boWe.LSDatum = oRw.Date;
+                    _boWe.zweitDateTime = oRw.Time;
+                    //  _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
-                  //  _boWe.wnr2 = netScaleView1.ActiveScale.ToString();
+                    //  _boWe.wnr2 = netScaleView1.ActiveScale.ToString();
 
                     try
                     {
@@ -868,22 +853,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         MessageBox.Show(ex.Message);
                     }
 
-                    if ( _result != mmSaveDataResult.RulesPassed)
+                    if (_result != mmSaveDataResult.RulesPassed)
                     {
                         return;
-
                     }
-                    
 
-                  
 
-                  //  PrintLs();
+                    //  PrintLs();
 
                     if (netScaleView1.oWF != null)
                         netScaleView1.oWF.SetGreenLight();
                     Wiegestatus = 0;
-                   // ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
-                 //   tb_Kfz1.Focus(); // Test wegen dem F2 Problem bei der ersten Wägung
+                    // ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
+                    //   tb_Kfz1.Focus(); // Test wegen dem F2 Problem bei der ersten Wägung
                     break;
 
                 case 3:
@@ -895,10 +877,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     boE = new Einstellungen();
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
-                   // _boWe.lsnr = boMandant.GetLsNr(_boWe);
-            TODO: // Welche Felder 
+                    // _boWe.lsnr = boMandant.GetLsNr(_boWe);
+                    TODO: // Welche Felder 
                     _boWe.zweitDateTime = oRw.Time;
-                 //   _boWe.LSDatum = oRw.Date;
+                    //   _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
 
 
@@ -913,7 +895,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     if (_result != mmSaveDataResult.RulesPassed)
                         return;
 
-                   // PrintLs();
+                    // PrintLs();
                     Wiegestatus = 0;
                     break;
             }
@@ -921,41 +903,39 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Save()
         {
-       
             tb_ZweitGewicht.Focus();
             if (_wiegeStatus != 6 && _wiegeStatus != 7)
             {
                 if (_wiegeStatus == 8 | _wiegeStatus == 5) // LS Neu
                 {
                     _boWe.Waegung = 2;
-
-                    
                 }
 
                 if (_wiegeStatus == 8)
                 {
                     var boE = new Einstellungen();
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
-                   
+
 
                     _boWe.zweitDateTime = DateTime.Now;
-                  //  _boWe.LSDatum = DateTime.Today;
+                    //  _boWe.LSDatum = DateTime.Today;
                     _boWe.Waegung = 2;
                 }
 
                 try
                 {
-                _result = SaveEntity(_boW, _boWe);
+                    _result = SaveEntity(_boW, _boWe);
                     if (_wiegeStatus != 4) // Erstwägung bearbeiten
-                        if (MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                        if (
+                            MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo,
+                                            MessageBoxImage.Warning) == MessageBoxResult.No)
                         {
                             //do no stuff
                         }
                         else
                         {
-                          //  PrintLs();
+                            //  PrintLs();
                         }
-
                 }
                 catch (Exception ex)
                 {
@@ -994,6 +974,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             Wiegestatus = 0;
         }
+
         #endregion
 
         private void luFrachtmittel_Click(object sender, RoutedEventArgs e)
@@ -1021,15 +1002,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             AdressenListeFrm oAFrm = new AdressenListeFrm(mc);
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
+            oAFrm.Close();
             return uRet;
         }
 
-
-
-
-
-
-
-
+        private void expanderCustomerEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                expanderCustomerEdit.IsExpanded = false;
+        }
     }
 }

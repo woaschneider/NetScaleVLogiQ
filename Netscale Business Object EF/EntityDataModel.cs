@@ -8089,6 +8089,78 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                OnnumberChanging(value);
+                ReportPropertyChanging("number");
+                _number = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("number");
+                OnnumberChanged();
+            }
+        }
+        private global::System.String _number;
+        partial void OnnumberChanging(global::System.String value);
+        partial void OnnumberChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> customerId
+        {
+            get
+            {
+                return _customerId;
+            }
+            set
+            {
+                OncustomerIdChanging(value);
+                ReportPropertyChanging("customerId");
+                _customerId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("customerId");
+                OncustomerIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _customerId;
+        partial void OncustomerIdChanging(Nullable<global::System.Int32> value);
+        partial void OncustomerIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String customerBusinessIdentifier
+        {
+            get
+            {
+                return _customerBusinessIdentifier;
+            }
+            set
+            {
+                OncustomerBusinessIdentifierChanging(value);
+                ReportPropertyChanging("customerBusinessIdentifier");
+                _customerBusinessIdentifier = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("customerBusinessIdentifier");
+                OncustomerBusinessIdentifierChanged();
+            }
+        }
+        private global::System.String _customerBusinessIdentifier;
+        partial void OncustomerBusinessIdentifierChanging(global::System.String value);
+        partial void OncustomerBusinessIdentifierChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String customerName
         {
             get
@@ -8233,6 +8305,54 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> invoiceReceiverId
+        {
+            get
+            {
+                return _invoiceReceiverId;
+            }
+            set
+            {
+                OninvoiceReceiverIdChanging(value);
+                ReportPropertyChanging("invoiceReceiverId");
+                _invoiceReceiverId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("invoiceReceiverId");
+                OninvoiceReceiverIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _invoiceReceiverId;
+        partial void OninvoiceReceiverIdChanging(Nullable<global::System.Int32> value);
+        partial void OninvoiceReceiverIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String invoiceReceicerBusinessIdentifier
+        {
+            get
+            {
+                return _invoiceReceicerBusinessIdentifier;
+            }
+            set
+            {
+                OninvoiceReceicerBusinessIdentifierChanging(value);
+                ReportPropertyChanging("invoiceReceicerBusinessIdentifier");
+                _invoiceReceicerBusinessIdentifier = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("invoiceReceicerBusinessIdentifier");
+                OninvoiceReceicerBusinessIdentifierChanged();
+            }
+        }
+        private global::System.String _invoiceReceicerBusinessIdentifier;
+        partial void OninvoiceReceicerBusinessIdentifierChanging(global::System.String value);
+        partial void OninvoiceReceicerBusinessIdentifierChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String invoiceReceiverName
         {
             get
@@ -8257,24 +8377,24 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String InvoiceReceiverSubName2
+        public global::System.String invoiceReceiverSubName2
         {
             get
             {
-                return _InvoiceReceiverSubName2;
+                return _invoiceReceiverSubName2;
             }
             set
             {
-                OnInvoiceReceiverSubName2Changing(value);
-                ReportPropertyChanging("InvoiceReceiverSubName2");
-                _InvoiceReceiverSubName2 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("InvoiceReceiverSubName2");
-                OnInvoiceReceiverSubName2Changed();
+                OninvoiceReceiverSubName2Changing(value);
+                ReportPropertyChanging("invoiceReceiverSubName2");
+                _invoiceReceiverSubName2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("invoiceReceiverSubName2");
+                OninvoiceReceiverSubName2Changed();
             }
         }
-        private global::System.String _InvoiceReceiverSubName2;
-        partial void OnInvoiceReceiverSubName2Changing(global::System.String value);
-        partial void OnInvoiceReceiverSubName2Changed();
+        private global::System.String _invoiceReceiverSubName2;
+        partial void OninvoiceReceiverSubName2Changing(global::System.String value);
+        partial void OninvoiceReceiverSubName2Changed();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -8329,168 +8449,48 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String InvoiceReceiverZipCode
+        public global::System.String invoiceReceiverZipCode
         {
             get
             {
-                return _InvoiceReceiverZipCode;
+                return _invoiceReceiverZipCode;
             }
             set
             {
-                OnInvoiceReceiverZipCodeChanging(value);
-                ReportPropertyChanging("InvoiceReceiverZipCode");
-                _InvoiceReceiverZipCode = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("InvoiceReceiverZipCode");
-                OnInvoiceReceiverZipCodeChanged();
+                OninvoiceReceiverZipCodeChanging(value);
+                ReportPropertyChanging("invoiceReceiverZipCode");
+                _invoiceReceiverZipCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("invoiceReceiverZipCode");
+                OninvoiceReceiverZipCodeChanged();
             }
         }
-        private global::System.String _InvoiceReceiverZipCode;
-        partial void OnInvoiceReceiverZipCodeChanging(global::System.String value);
-        partial void OnInvoiceReceiverZipCodeChanged();
+        private global::System.String _invoiceReceiverZipCode;
+        partial void OninvoiceReceiverZipCodeChanging(global::System.String value);
+        partial void OninvoiceReceiverZipCodeChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String InvoiceReceiverCity
+        public global::System.String invoiceReceiverCity
         {
             get
             {
-                return _InvoiceReceiverCity;
+                return _invoiceReceiverCity;
             }
             set
             {
-                OnInvoiceReceiverCityChanging(value);
-                ReportPropertyChanging("InvoiceReceiverCity");
-                _InvoiceReceiverCity = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("InvoiceReceiverCity");
-                OnInvoiceReceiverCityChanged();
+                OninvoiceReceiverCityChanging(value);
+                ReportPropertyChanging("invoiceReceiverCity");
+                _invoiceReceiverCity = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("invoiceReceiverCity");
+                OninvoiceReceiverCityChanged();
             }
         }
-        private global::System.String _InvoiceReceiverCity;
-        partial void OnInvoiceReceiverCityChanging(global::System.String value);
-        partial void OnInvoiceReceiverCityChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String number
-        {
-            get
-            {
-                return _number;
-            }
-            set
-            {
-                OnnumberChanging(value);
-                ReportPropertyChanging("number");
-                _number = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("number");
-                OnnumberChanged();
-            }
-        }
-        private global::System.String _number;
-        partial void OnnumberChanging(global::System.String value);
-        partial void OnnumberChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> customerId
-        {
-            get
-            {
-                return _customerId;
-            }
-            set
-            {
-                OncustomerIdChanging(value);
-                ReportPropertyChanging("customerId");
-                _customerId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("customerId");
-                OncustomerIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _customerId;
-        partial void OncustomerIdChanging(Nullable<global::System.Int32> value);
-        partial void OncustomerIdChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String customerBusinessIdentifier
-        {
-            get
-            {
-                return _customerBusinessIdentifier;
-            }
-            set
-            {
-                OncustomerBusinessIdentifierChanging(value);
-                ReportPropertyChanging("customerBusinessIdentifier");
-                _customerBusinessIdentifier = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("customerBusinessIdentifier");
-                OncustomerBusinessIdentifierChanged();
-            }
-        }
-        private global::System.String _customerBusinessIdentifier;
-        partial void OncustomerBusinessIdentifierChanging(global::System.String value);
-        partial void OncustomerBusinessIdentifierChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> invoiceReceiverId
-        {
-            get
-            {
-                return _invoiceReceiverId;
-            }
-            set
-            {
-                OninvoiceReceiverIdChanging(value);
-                ReportPropertyChanging("invoiceReceiverId");
-                _invoiceReceiverId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("invoiceReceiverId");
-                OninvoiceReceiverIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _invoiceReceiverId;
-        partial void OninvoiceReceiverIdChanging(Nullable<global::System.Int32> value);
-        partial void OninvoiceReceiverIdChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String invoiceReceicerBusinessIdentifier
-        {
-            get
-            {
-                return _invoiceReceicerBusinessIdentifier;
-            }
-            set
-            {
-                OninvoiceReceicerBusinessIdentifierChanging(value);
-                ReportPropertyChanging("invoiceReceicerBusinessIdentifier");
-                _invoiceReceicerBusinessIdentifier = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("invoiceReceicerBusinessIdentifier");
-                OninvoiceReceicerBusinessIdentifierChanged();
-            }
-        }
-        private global::System.String _invoiceReceicerBusinessIdentifier;
-        partial void OninvoiceReceicerBusinessIdentifierChanging(global::System.String value);
-        partial void OninvoiceReceicerBusinessIdentifierChanged();
+        private global::System.String _invoiceReceiverCity;
+        partial void OninvoiceReceiverCityChanging(global::System.String value);
+        partial void OninvoiceReceiverCityChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -8755,30 +8755,6 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ownerBusinessIdentifier;
         partial void OnownerBusinessIdentifierChanging(global::System.String value);
         partial void OnownerBusinessIdentifierChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String locationId0
-        {
-            get
-            {
-                return _locationId0;
-            }
-            set
-            {
-                OnlocationId0Changing(value);
-                ReportPropertyChanging("locationId0");
-                _locationId0 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("locationId0");
-                OnlocationId0Changed();
-            }
-        }
-        private global::System.String _locationId0;
-        partial void OnlocationId0Changing(global::System.String value);
-        partial void OnlocationId0Changed();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -9163,30 +9139,6 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _supplierOrConsigneeCity;
         partial void OnsupplierOrConsigneeCityChanging(global::System.String value);
         partial void OnsupplierOrConsigneeCityChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> supplierOrConsigneedIdCountry
-        {
-            get
-            {
-                return _supplierOrConsigneedIdCountry;
-            }
-            set
-            {
-                OnsupplierOrConsigneedIdCountryChanging(value);
-                ReportPropertyChanging("supplierOrConsigneedIdCountry");
-                _supplierOrConsigneedIdCountry = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("supplierOrConsigneedIdCountry");
-                OnsupplierOrConsigneedIdCountryChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _supplierOrConsigneedIdCountry;
-        partial void OnsupplierOrConsigneedIdCountryChanging(Nullable<global::System.Int32> value);
-        partial void OnsupplierOrConsigneedIdCountryChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -9979,6 +9931,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _dimension;
         partial void OndimensionChanging(global::System.String value);
         partial void OndimensionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> supplierOrConsigneeIdCountry
+        {
+            get
+            {
+                return _supplierOrConsigneeIdCountry;
+            }
+            set
+            {
+                OnsupplierOrConsigneeIdCountryChanging(value);
+                ReportPropertyChanging("supplierOrConsigneeIdCountry");
+                _supplierOrConsigneeIdCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supplierOrConsigneeIdCountry");
+                OnsupplierOrConsigneeIdCountryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _supplierOrConsigneeIdCountry;
+        partial void OnsupplierOrConsigneeIdCountryChanging(Nullable<global::System.Int32> value);
+        partial void OnsupplierOrConsigneeIdCountryChanged();
 
         #endregion
     

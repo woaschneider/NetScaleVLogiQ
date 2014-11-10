@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.FRONTEND.WPF.Forms;
 using NetScaleGlobal;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.WPF;
@@ -145,10 +146,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             //if (Partnerrollen.IsRolleEdit(_rolle) == false)
             //    return;
 
-            //APEditFrm oAPEditFrm = new APEditFrm(0, true, _rolle);
-            //oAPEditFrm.ShowDialog();
-            //oAPEditFrm.Close();
-            //Fillgrid();
+            AddressEditFrm oAPEditFrm = new AddressEditFrm(0, true, _rolle);
+            oAPEditFrm.ShowDialog();
+            oAPEditFrm.Close();
+            Fillgrid();
         }
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
@@ -156,14 +157,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             //if (Partnerrollen.IsRolleEdit(_rolle) == false)
             //    return;
 
-            //int uRet = Convert.ToInt32(dataGrid1.SelectedValue);
-            //if (uRet == 0)
-            //    return;
+            int uRet = Convert.ToInt32(dataGrid1.SelectedValue);
+            if (uRet == 0)
+                return;
 
-            //APEditFrm oAPEditFrm = new APEditFrm(uRet, false, _rolle);
-            //oAPEditFrm.ShowDialog();
-            //oAPEditFrm.Close();
-            //Fillgrid();
+            AddressEditFrm oAPEditFrm = new AddressEditFrm(uRet, false, _rolle);
+            oAPEditFrm.ShowDialog();
+            oAPEditFrm.Close();
+            Fillgrid();
         }
 
         private void Fillgrid()
