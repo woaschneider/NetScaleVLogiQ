@@ -32,7 +32,14 @@ namespace HWB.NETSCALE.BOEF
 
            return GetEntity(query);
        }
+       public ProdukteEntity GetByPk(int pk)
+       {
+           IQueryable<ProdukteEntity> query = from p in ObjectContext.ProdukteEntities
+                                              where p.PK == pk
+                                              select p;
 
+           return GetEntity(query);
+       }
         public mmBindingList<ProdukteEntity> GetByMatchCode(string mc)
         {
             IQueryable<ProdukteEntity> query = from p in ObjectContext.ProdukteEntities

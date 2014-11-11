@@ -10147,6 +10147,246 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ownerIsocodeCountry;
         partial void OnownerIsocodeCountryChanging(global::System.String value);
         partial void OnownerIsocodeCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ffId
+        {
+            get
+            {
+                return _ffId;
+            }
+            set
+            {
+                OnffIdChanging(value);
+                ReportPropertyChanging("ffId");
+                _ffId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ffId");
+                OnffIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ffId;
+        partial void OnffIdChanging(Nullable<global::System.Int32> value);
+        partial void OnffIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffBusinessIdentifier
+        {
+            get
+            {
+                return _ffBusinessIdentifier;
+            }
+            set
+            {
+                OnffBusinessIdentifierChanging(value);
+                ReportPropertyChanging("ffBusinessIdentifier");
+                _ffBusinessIdentifier = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffBusinessIdentifier");
+                OnffBusinessIdentifierChanged();
+            }
+        }
+        private global::System.String _ffBusinessIdentifier;
+        partial void OnffBusinessIdentifierChanging(global::System.String value);
+        partial void OnffBusinessIdentifierChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffName
+        {
+            get
+            {
+                return _ffName;
+            }
+            set
+            {
+                OnffNameChanging(value);
+                ReportPropertyChanging("ffName");
+                _ffName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffName");
+                OnffNameChanged();
+            }
+        }
+        private global::System.String _ffName;
+        partial void OnffNameChanging(global::System.String value);
+        partial void OnffNameChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffSubName2
+        {
+            get
+            {
+                return _ffSubName2;
+            }
+            set
+            {
+                OnffSubName2Changing(value);
+                ReportPropertyChanging("ffSubName2");
+                _ffSubName2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffSubName2");
+                OnffSubName2Changed();
+            }
+        }
+        private global::System.String _ffSubName2;
+        partial void OnffSubName2Changing(global::System.String value);
+        partial void OnffSubName2Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffOwningLocationId
+        {
+            get
+            {
+                return _ffOwningLocationId;
+            }
+            set
+            {
+                OnffOwningLocationIdChanging(value);
+                ReportPropertyChanging("ffOwningLocationId");
+                _ffOwningLocationId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffOwningLocationId");
+                OnffOwningLocationIdChanged();
+            }
+        }
+        private global::System.String _ffOwningLocationId;
+        partial void OnffOwningLocationIdChanging(global::System.String value);
+        partial void OnffOwningLocationIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffStreet
+        {
+            get
+            {
+                return _ffStreet;
+            }
+            set
+            {
+                OnffStreetChanging(value);
+                ReportPropertyChanging("ffStreet");
+                _ffStreet = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffStreet");
+                OnffStreetChanged();
+            }
+        }
+        private global::System.String _ffStreet;
+        partial void OnffStreetChanging(global::System.String value);
+        partial void OnffStreetChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffZipCode
+        {
+            get
+            {
+                return _ffZipCode;
+            }
+            set
+            {
+                OnffZipCodeChanging(value);
+                ReportPropertyChanging("ffZipCode");
+                _ffZipCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffZipCode");
+                OnffZipCodeChanged();
+            }
+        }
+        private global::System.String _ffZipCode;
+        partial void OnffZipCodeChanging(global::System.String value);
+        partial void OnffZipCodeChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffCity
+        {
+            get
+            {
+                return _ffCity;
+            }
+            set
+            {
+                OnffCityChanging(value);
+                ReportPropertyChanging("ffCity");
+                _ffCity = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffCity");
+                OnffCityChanged();
+            }
+        }
+        private global::System.String _ffCity;
+        partial void OnffCityChanging(global::System.String value);
+        partial void OnffCityChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ffIdCountry
+        {
+            get
+            {
+                return _ffIdCountry;
+            }
+            set
+            {
+                OnffIdCountryChanging(value);
+                ReportPropertyChanging("ffIdCountry");
+                _ffIdCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ffIdCountry");
+                OnffIdCountryChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ffIdCountry;
+        partial void OnffIdCountryChanging(Nullable<global::System.Int32> value);
+        partial void OnffIdCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ffIsocodeCountry
+        {
+            get
+            {
+                return _ffIsocodeCountry;
+            }
+            set
+            {
+                OnffIsocodeCountryChanging(value);
+                ReportPropertyChanging("ffIsocodeCountry");
+                _ffIsocodeCountry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ffIsocodeCountry");
+                OnffIsocodeCountryChanged();
+            }
+        }
+        private global::System.String _ffIsocodeCountry;
+        partial void OnffIsocodeCountryChanging(global::System.String value);
+        partial void OnffIsocodeCountryChanged();
 
         #endregion
     

@@ -31,6 +31,14 @@ namespace HWB.NETSCALE.BOEF
                                               select a;
             return GetEntity(query);
         }
+        public ArtikelEntity GetByPk(int pk)
+        {
+            IQueryable<ArtikelEntity> query = from a in this.ObjectContext.ArtikelEntities
+                                              where a.PK == pk
+                                              select a;
+            return GetEntity(query);
+        }
+       
         public mmBindingList<ArtikelEntity> GetAll()
         {
 

@@ -18,6 +18,8 @@ using HWB.NETSCALE.POLOSIO;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.WPF;
+using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 {
@@ -193,14 +195,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void ribbonCancel_Click(object sender, RoutedEventArgs e)
         {
             _boW.CancelEntity(_boWe);
+            
             Wiegestatus = 0;
         }
+
+
 
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
             netScaleView1.Close();
-            Hide();
+                 Cancel();
+            Close();
         }
 
 
@@ -287,31 +293,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         #endregion
 
-        private void txtKfzKennzeichen_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.F4)
-            {
-                lookupKfz();
-            }
-        }
-
-        private void cmdLookUpKfz_Click(object sender, RoutedEventArgs e)
-        {
-            lookupKfz();
-        }
-
-        private void lookupKfz()
-        {
-            CFListFrm oKfzListeFrm = new CFListFrm(true, txtKfzKennzeichen.Text);
-            oKfzListeFrm.ShowDialog();
-            var uRet = oKfzListeFrm.uRet;
-            if (_boWe != null)
-            {
-                _boW.FillKfz(uRet, _boWe);
-            }
-
-            oKfzListeFrm.Close();
-        }
+      
 
         #region GUI Umschaltung
 
@@ -368,6 +350,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                 if (ctrl is Expander)
                     ((Expander) ctrl).IsEnabled = false;
+
+                if (ctrl is SplitButton)
+                    ((SplitButton) ctrl).IsEnabled = false;
+                
             }
 
 
@@ -391,7 +377,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                 if (ctrl is Expander)
                     ((Expander) ctrl).IsEnabled = true;
+
+                if (ctrl is SplitButton)
+                    ((SplitButton)ctrl).IsEnabled = true;
             }
+
+
+          
 
         //    foreach (object ctrl in LayoutRoot.Children)
 
@@ -746,7 +738,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         #endregion
 
-        #region
+        #region  Neu / Wiegen / Save / Cancel
 
         private void NewWaege()
         {
@@ -975,8 +967,45 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             Wiegestatus = 0;
         }
+        private void Cancel()
+        {
+            if (_boWe != null)
+            {
+                _boW.CancelEntity(_boWe);
+                Wiegestatus = 0;
+            }
+        }
 
         #endregion
+
+        #region LookUps
+
+
+        private void txtKfzKennzeichen_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.F4)
+            {
+                lookupKfz();
+            }
+        }
+
+        private void cmdLookUpKfz_Click(object sender, RoutedEventArgs e)
+        {
+            lookupKfz();
+        }
+
+        private void lookupKfz()
+        {
+            CFListFrm oKfzListeFrm = new CFListFrm(true, txtKfzKennzeichen.Text);
+            oKfzListeFrm.ShowDialog();
+            var uRet = oKfzListeFrm.uRet;
+            if (_boWe != null)
+            {
+                _boW.FillKfz(uRet, _boWe);
+            }
+
+            oKfzListeFrm.Close();
+        }
 
         private void luFrachtmittel_Click(object sender, RoutedEventArgs e)
         {
@@ -1055,15 +1084,52 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luFrachtfuehrer_Click(object sender, RoutedEventArgs e)
         {
+            int? uRet = lookUpAdresse("");
+            if (uRet != null)
+            {
+                _boW.FrachtFuehrer2Waege((int)uRet);
+            }
+            else
+            {
+                _boW.ClearsupplierOrConsigneeInWaege();
+            }
+        }
+
+        private void cmdLookUpProduct_Click(object sender, RoutedEventArgs e)
+        {
+            ProdukteListFrm oPFrm = new ProdukteListFrm("");
+            oPFrm.ShowDialog();
+            int uRet = oPFrm.uRet;
+            _boW.Product2Waege(uRet);
+            oPFrm.Close();
+        }
+
+        private void luWarenArt_Click(object sender, RoutedEventArgs e)
+        {
+            WarenartListFrm oWFrm = new WarenartListFrm("");
+            oWFrm.ShowDialog();
+            int uRet = oWFrm.uRet;
+            _boW.WarenArt2Waege(uRet);
+            oWFrm.Close();
 
         }
 
+        private void luArticle_Click(object sender, RoutedEventArgs e)
+        {
+            ArtikelListFrm oAFrm = new ArtikelListFrm("");
+            oAFrm.ShowDialog();
+            int uRet = oAFrm.uRet;
+            _boW.Article2Waege(uRet);
+            oAFrm.Close();
+        }
+        #endregion 
 
-     
 
-      
 
-        
-       
+
+
+
+
+
     }
 }

@@ -525,6 +525,16 @@
           <Property Name="ownerCity" Type="varchar" MaxLength="128" />
           <Property Name="ownerIdCountry" Type="int" />
           <Property Name="ownerIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="ffId" Type="int" />
+          <Property Name="ffBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="ffName" Type="varchar" MaxLength="64" />
+          <Property Name="ffSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="ffOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="ffStreet" Type="varchar" MaxLength="64" />
+          <Property Name="ffZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="ffCity" Type="varchar" MaxLength="128" />
+          <Property Name="ffIdCountry" Type="int" />
+          <Property Name="ffIsocodeCountry" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1159,6 +1169,16 @@
           <Property Type="String" Name="ownerCity" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="ownerIdCountry" />
           <Property Type="String" Name="ownerIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ffId" />
+          <Property Type="String" Name="ffBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ffName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ffSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ffOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ffStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ffZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ffCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ffIdCountry" />
+          <Property Type="String" Name="ffIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1566,6 +1586,16 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="ffIsocodeCountry" ColumnName="ffIsocodeCountry" />
+                <ScalarProperty Name="ffIdCountry" ColumnName="ffIdCountry" />
+                <ScalarProperty Name="ffCity" ColumnName="ffCity" />
+                <ScalarProperty Name="ffZipCode" ColumnName="ffZipCode" />
+                <ScalarProperty Name="ffStreet" ColumnName="ffStreet" />
+                <ScalarProperty Name="ffOwningLocationId" ColumnName="ffOwningLocationId" />
+                <ScalarProperty Name="ffSubName2" ColumnName="ffSubName2" />
+                <ScalarProperty Name="ffName" ColumnName="ffName" />
+                <ScalarProperty Name="ffBusinessIdentifier" ColumnName="ffBusinessIdentifier" />
+                <ScalarProperty Name="ffId" ColumnName="ffId" />
                 <ScalarProperty Name="ownerIsocodeCountry" ColumnName="ownerIsocodeCountry" />
                 <ScalarProperty Name="ownerIdCountry" ColumnName="ownerIdCountry" />
                 <ScalarProperty Name="ownerCity" ColumnName="ownerCity" />
@@ -1740,7 +1770,7 @@
           <edmx:ConnectorPoint PointX="9" PointY="15.764109700520836" />
           <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="22.748841145833325" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.67185546875001" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
