@@ -465,8 +465,6 @@
           <Property Name="identifier" Type="varchar" MaxLength="22" />
           <Property Name="sequence" Type="int" />
           <Property Name="articleId" Type="int" />
-          <Property Name="ownerId" Type="int" />
-          <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
           <Property Name="deliveryType" Type="varchar" MaxLength="100" />
           <Property Name="targedAmount" Type="numeric" Precision="22" Scale="2" />
           <Property Name="remark" Type="varchar" MaxLength="100" />
@@ -517,6 +515,16 @@
           <Property Name="diameter" Type="varchar" MaxLength="128" />
           <Property Name="dimension" Type="varchar" MaxLength="128" />
           <Property Name="supplierOrConsigneeIdCountry" Type="int" />
+          <Property Name="ownerId" Type="int" />
+          <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
+          <Property Name="ownerName" Type="varchar" MaxLength="64" />
+          <Property Name="ownerSubName2" Type="varchar" MaxLength="64" />
+          <Property Name="ownerOwningLocationId" Type="varchar" MaxLength="64" />
+          <Property Name="ownerStreet" Type="varchar" MaxLength="64" />
+          <Property Name="ownerZipCode" Type="varchar" MaxLength="16" />
+          <Property Name="ownerCity" Type="varchar" MaxLength="128" />
+          <Property Name="ownerIdCountry" Type="int" />
+          <Property Name="ownerIsocodeCountry" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1091,8 +1099,6 @@
           <Property Type="String" Name="identifier" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="sequence" />
           <Property Type="Int32" Name="articleId" />
-          <Property Type="Int32" Name="ownerId" />
-          <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="deliveryType" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="targedAmount" Precision="22" Scale="2" />
           <Property Type="String" Name="remark" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1143,6 +1149,16 @@
           <Property Type="String" Name="diameter" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="dimension" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="supplierOrConsigneeIdCountry" />
+          <Property Type="Int32" Name="ownerId" />
+          <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerName" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerStreet" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ownerCity" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ownerIdCountry" />
+          <Property Type="String" Name="ownerIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1550,6 +1566,16 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="ownerIsocodeCountry" ColumnName="ownerIsocodeCountry" />
+                <ScalarProperty Name="ownerIdCountry" ColumnName="ownerIdCountry" />
+                <ScalarProperty Name="ownerCity" ColumnName="ownerCity" />
+                <ScalarProperty Name="ownerZipCode" ColumnName="ownerZipCode" />
+                <ScalarProperty Name="ownerStreet" ColumnName="ownerStreet" />
+                <ScalarProperty Name="ownerOwningLocationId" ColumnName="ownerOwningLocationId" />
+                <ScalarProperty Name="ownerSubName2" ColumnName="ownerSubName2" />
+                <ScalarProperty Name="ownerName" ColumnName="ownerName" />
+                <ScalarProperty Name="ownerBusinessIdentifier" ColumnName="ownerBusinessIdentifier" />
+                <ScalarProperty Name="ownerId" ColumnName="ownerId" />
                 <ScalarProperty Name="supplierOrConsigneeIdCountry" ColumnName="supplierOrConsigneeIdCountry" />
                 <ScalarProperty Name="dimension" ColumnName="dimension" />
                 <ScalarProperty Name="diameter" ColumnName="diameter" />
@@ -1600,8 +1626,6 @@
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="targedAmount" ColumnName="targedAmount" />
                 <ScalarProperty Name="deliveryType" ColumnName="deliveryType" />
-                <ScalarProperty Name="ownerBusinessIdentifier" ColumnName="ownerBusinessIdentifier" />
-                <ScalarProperty Name="ownerId" ColumnName="ownerId" />
                 <ScalarProperty Name="articleId" ColumnName="articleId" />
                 <ScalarProperty Name="sequence" ColumnName="sequence" />
                 <ScalarProperty Name="identifier" ColumnName="identifier" />
@@ -1716,7 +1740,7 @@
           <edmx:ConnectorPoint PointX="9" PointY="15.764109700520836" />
           <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="21.21042968750001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="22.748841145833325" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

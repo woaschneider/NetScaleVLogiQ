@@ -372,11 +372,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
             // Hier wird gezielt gesucht, zB Exrechnung
-            foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
-            {
-                this.expanderCustomerEdit.IsExpanded = false;
-                tb.IsEnabled = false;
-            }
+            //foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
+            //{
+            //    this.expanderCustomerEdit.IsExpanded = false;
+            //    tb.IsEnabled = false;
+            //}
         }
 
         private void EnableFrmTb()
@@ -393,14 +393,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     ((Expander) ctrl).IsEnabled = true;
             }
 
-            foreach (object ctrl in LayoutRoot.Children)
+        //    foreach (object ctrl in LayoutRoot.Children)
 
 
-                foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
-                {
-                    this.expanderCustomerEdit.IsExpanded = false;
-                    tb.IsEnabled = true;
-                }
+        //        //foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
+        //        //{
+        //        //    this.expanderCustomerEdit.IsExpanded = false;
+        //        //    tb.IsEnabled = true;
+        //        //}
+        //
         }
 
 
@@ -980,7 +981,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void luFrachtmittel_Click(object sender, RoutedEventArgs e)
         {
             FrachtmittelListFrm oFFrm = new FrachtmittelListFrm();
-            oFFrm.Show();
+            oFFrm.ShowDialog();
+            int uRet = oFFrm.uRet;
+            if(_boWe!=null)
+            {
+              _boW.FillFrachtmittel(uRet);
+
+            }
             oFFrm.Close();
         }
 
@@ -997,6 +1004,46 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
+        private void luInvoiceReceiver_Click(object sender, RoutedEventArgs e)
+        {
+            int? uRet = lookUpAdresse("");
+            if (uRet != null)
+            {
+                _boW.invoiceReceiver2Waege((int)uRet);
+            }
+            else
+            {
+                _boW.ClearinvoiceReceiverInWaege();
+            }
+        }
+
+        private void luLagermandant_Click(object sender, RoutedEventArgs e)
+        {
+            int? uRet = lookUpAdresse("");
+            if (uRet != null)
+            {
+                _boW.Owner2Waege((int)uRet);
+            }
+            else
+            {
+                _boW.ClearOwnerInWaege();
+            }
+        }
+
+
+        private void luConsigneeSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            int? uRet = lookUpAdresse("");
+            if (uRet != null)
+            {
+                _boW.supplierOrConsignee2Waege((int)uRet);
+            }
+            else
+            {
+                _boW.ClearsupplierOrConsigneeInWaege();
+            }
+        }
+
         private int? lookUpAdresse(string mc)
         {
             AdressenListeFrm oAFrm = new AdressenListeFrm(mc);
@@ -1006,10 +1053,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             return uRet;
         }
 
-        private void expanderCustomerEdit_KeyDown(object sender, KeyEventArgs e)
+        private void luFrachtfuehrer_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Key == Key.Escape)
-                expanderCustomerEdit.IsExpanded = false;
+
         }
+
+
+     
+
+      
+
+        
+       
     }
 }
