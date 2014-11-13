@@ -264,22 +264,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<EinstellungenEntity> EinstellungenEntities
-        {
-            get
-            {
-                if ((_EinstellungenEntities == null))
-                {
-                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
-                }
-                return _EinstellungenEntities;
-            }
-        }
-        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<FrachtmittelEntity> FrachtmittelEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<EinstellungenEntity> EinstellungenEntities
+        {
+            get
+            {
+                if ((_EinstellungenEntities == null))
+                {
+                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
+                }
+                return _EinstellungenEntities;
+            }
+        }
+        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -569,14 +569,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
-        {
-            base.AddObject("EinstellungenEntities", einstellungenEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FrachtmittelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToFrachtmittelEntities(FrachtmittelEntity frachtmittelEntity)
@@ -670,6 +662,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
+        {
+            base.AddObject("EinstellungenEntities", einstellungenEntity);
         }
 
         #endregion
@@ -2575,6 +2575,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _MG_Id_counter;
         partial void OnMG_Id_counterChanging(Nullable<global::System.Int32> value);
         partial void OnMG_Id_counterChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RestServerAdresse
+        {
+            get
+            {
+                return _RestServerAdresse;
+            }
+            set
+            {
+                OnRestServerAdresseChanging(value);
+                ReportPropertyChanging("RestServerAdresse");
+                _RestServerAdresse = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RestServerAdresse");
+                OnRestServerAdresseChanged();
+            }
+        }
+        private global::System.String _RestServerAdresse;
+        partial void OnRestServerAdresseChanging(global::System.String value);
+        partial void OnRestServerAdresseChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RestServerPort
+        {
+            get
+            {
+                return _RestServerPort;
+            }
+            set
+            {
+                OnRestServerPortChanging(value);
+                ReportPropertyChanging("RestServerPort");
+                _RestServerPort = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RestServerPort");
+                OnRestServerPortChanged();
+            }
+        }
+        private global::System.String _RestServerPort;
+        partial void OnRestServerPortChanging(global::System.String value);
+        partial void OnRestServerPortChanged();
 
         #endregion
     

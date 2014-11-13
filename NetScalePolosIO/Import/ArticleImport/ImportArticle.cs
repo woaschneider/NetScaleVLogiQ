@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.ArticleImport;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO
@@ -10,11 +14,29 @@ namespace HWB.NETSCALE.POLOSIO
         private Artikel boA;
         private ArtikelEntity boAE;
 
-        public bool Import(string FullQualifiedFileName)
+        public bool Import(string baseUrl)
         {
             try
             {
-                var oA = FullQualifiedFileName.CreateFromJsonFile<ArticleRootObject>();
+
+                var client = new RestClient(baseUrl);
+                client.ClearHandlers();
+                client.AddHandler("application/json", new JsonDeserializer());
+
+                var request = new RestRequest("/rest/article/all");
+                request.Method = Method.GET;
+                request.AddHeader("X-location-Id", "16");
+
+
+                var response = client.Execute(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return false;
+                var x = response.Content; // Nur für Testzwecke
+
+                var oA = JsonConvert.DeserializeObject<ArticleRootObject>(response.Content);
+
+
+             
 
                 boA = new Artikel();
 

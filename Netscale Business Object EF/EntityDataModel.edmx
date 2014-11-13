@@ -155,6 +155,8 @@
           <Property Name="PdfCreator" Type="int" />
           <Property Name="AP_Id_counter" Type="int" />
           <Property Name="MG_Id_counter" Type="int" />
+          <Property Name="RestServerAdresse" Type="varchar" MaxLength="254" />
+          <Property Name="RestServerPort" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Fahrzeuge">
           <Key>
@@ -615,7 +617,6 @@
           <EntitySet Name="WiegeartEntities" EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" />
           <EntitySet Name="IncotermEntities" EntityType="HWB.NETSCALE.BOEF.IncotermEntity" />
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
-          <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
           <EntitySet Name="AdressenEntities" EntityType="HWB.NETSCALE.BOEF.AdressenEntity" />
           <EntitySet Name="WarenartenEntities" EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" />
@@ -636,6 +637,7 @@
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
+          <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -784,24 +786,6 @@
           <Property Type="Int32" Name="abrufnrausgang" />
           <Property Type="Int32" Name="abrufeingang" />
           <Property Type="String" Name="entsorgernr" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="EinstellungenEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="LSNRGlobal" />
-          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="MaxGewichtValidieren" />
-          <Property Type="Int32" Name="Schwellwertampel" />
-          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
-          <Property Type="Int32" Name="MischerCounterId" />
-          <Property Type="Int32" Name="TaabCounterId" />
-          <Property Type="Boolean" Name="LsAsPdf" />
-          <Property Type="Int32" Name="PdfCreator" />
-          <Property Type="Int32" Name="AP_Id_counter" />
-          <Property Type="Int32" Name="MG_Id_counter" />
         </EntityType>
         <EntityType Name="FrachtmittelEntity">
           <Key>
@@ -1180,6 +1164,26 @@
           <Property Type="Int32" Name="ffIdCountry" />
           <Property Type="String" Name="ffIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="EinstellungenEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="LSNRGlobal" />
+          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="MaxGewichtValidieren" />
+          <Property Type="Int32" Name="Schwellwertampel" />
+          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
+          <Property Type="Int32" Name="MischerCounterId" />
+          <Property Type="Int32" Name="TaabCounterId" />
+          <Property Type="Boolean" Name="LsAsPdf" />
+          <Property Type="Int32" Name="PdfCreator" />
+          <Property Type="Int32" Name="AP_Id_counter" />
+          <Property Type="Int32" Name="MG_Id_counter" />
+          <Property Type="String" Name="RestServerAdresse" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RestServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1328,25 +1332,6 @@
                 <ScalarProperty Name="DefaultMandant" ColumnName="DefaultMandant" />
                 <ScalarProperty Name="MandantName" ColumnName="MandantName" />
                 <ScalarProperty Name="MandantNr" ColumnName="MandantNr" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EinstellungenEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
-              <MappingFragment StoreEntitySet="Einstellungen">
-                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
-                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
-                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
-                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
-                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
-                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
-                <ScalarProperty Name="Ust" ColumnName="Ust" />
-                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
-                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
-                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1712,6 +1697,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EinstellungenEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
+              <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="RestServerPort" ColumnName="RestServerPort" />
+                <ScalarProperty Name="RestServerAdresse" ColumnName="RestServerAdresse" />
+                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
+                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
+                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
+                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
+                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
+                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
+                <ScalarProperty Name="Ust" ColumnName="Ust" />
+                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
+                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
+                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
+                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
+                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1750,7 +1756,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" Width="1.5" PointX="5.875" PointY="5.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.IncotermEntity" Width="1.5" PointX="4.375" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="10.625" PointY="0.75" Height="0.4" IsExpanded="false" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="3.375" PointY="6.75" Height="3.5186979166666674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="9.375" PointY="6.75" Height="4.6725065104166674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="8.375" PointY="2.75" Height="1.7879850260416674" />
@@ -1771,6 +1776,7 @@
           <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.67185546875001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="4" PointY="5.5" Height="3.9033007812500102" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

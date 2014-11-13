@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Net;
 using HWB.NETSCALE.BOEF;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO.LagerPlaetzeImport
@@ -10,12 +14,28 @@ namespace HWB.NETSCALE.POLOSIO.LagerPlaetzeImport
         private LagerplaetzeEntity boLE;
 
 
-        public bool Import(string FullQualifiedFileName)
+        public bool Import(string baseUrl)
         {
             try
             {
+                var client = new RestClient(baseUrl);
+                client.ClearHandlers();
+                client.AddHandler("application/json", new JsonDeserializer());
+
+                var request = new RestRequest("/rest/data/storageareas");
+                request.Method = Method.GET;
+                request.AddHeader("X-location-Id", "16");
+
+
+                var response = client.Execute(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return false;
+                var x = response.Content; // Nur für Testzwecke
+
+                var oL = JsonConvert.DeserializeObject<LagerPlaetzeRootObject>(response.Content);
+         
+               
                 boL = new Lagerplaetze();
-                var oL = FullQualifiedFileName.CreateFromJsonFile<LagerPlaetzeRootObject>();
                 foreach (PolosStorageArea obj in oL.storageAreas)
                 {
                     if (obj.id != null)

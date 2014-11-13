@@ -1,5 +1,8 @@
 ﻿using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.POLOSIO.ArticleAttributes;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
+using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
+using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
 using Xceed.Wpf.Toolkit;
 
@@ -14,30 +17,84 @@ namespace HWB.NETSCALE.POLOSIO
 
         public void Import()
         {
-            Path = GetImportPath();
-            if (Path == "")
+
+
+            string uri = GetImportServerIp() + ":" + GetImportPort();
+          
+            if (uri == "")
             {
-                Xceed.Wpf.Toolkit.MessageBox.Show("Keine Importpfadangabe");
+                Xceed.Wpf.Toolkit.MessageBox.Show("Keine Import-URI in den Einstellungen");
+                            
                
-                
-                //MessageBox.Show("Importpfad in den Programmeinstellungen prüfen!",
-                //                "Warnung: Import nicht möglich!", MessageBoxButton.OK, MessageBoxImage.Error);)
                 return;
             }
+            else
+            {
+                
+            }
 
-            //   new ImportAddress().Import(Path + "\\Polos_Adressen.json");
-            //   new ImportKindsOfGoods().Import(Path + "\\Polos_Warenarten.json");
-          //  new ImportArticle().Import(Path + "\\Polos_Artikel.json");
-              new ImportProducts().Import(Path + "\\Polos_Produkte.json");
-            //   new ImportArticleAttributes().Import(Path + "\\Polos_Artikelattribute.json");
-            //  new ImportStorageArea().Import(Path + "\\Polos_Lagerplätze.json");
+      
+           new ImportAddress().Import(uri); // OK
+           new ImportKindsOfGoods().Import(uri);// OK
+           new ImportArticle().Import(uri);// OK
+           new ImportProducts().Import(uri); // OK
+           new ImportArticleAttributes().Import(uri);
+           new ImportStorageArea().Import(uri);
 
-            new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW2.json");
+        //    new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW2.json");
             Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 
       
 
+        private string GetImportServerIp()
+        {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEE = boE.GetEinstellungen();
+            if(boEE!=null)
+            {
+                string RestIp = boEE.RestServerAdresse;
+              if (RestIp!=null)
+              {
+                  return RestIp;
+              }
+              else
+              {
+                  return "";
+              }
+            }
+            else
+            {
+                return "";
+            }
+
+           
+
+        }
+        private string GetImportPort()
+        {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEE = boE.GetEinstellungen();
+            if (boEE != null)
+            {
+                string port= boEE.RestServerPort;
+                if (port != null)
+                {
+                    return port;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return "";
+            }
+
+
+
+        }
 
         private string GetImportPath()
         {

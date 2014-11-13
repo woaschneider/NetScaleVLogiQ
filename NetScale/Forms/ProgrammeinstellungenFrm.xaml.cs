@@ -74,7 +74,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 boE.SaveEntity(boEE);
             }
 
-            DataContext = boEE;
+          this.DataContext = boEE;
             cbPdfaktiv.IsChecked = boEE.LsAsPdf;
             // Nur weil man das schnell vergißt:
             // Val. MaxGewicht u. Ein/Aus der selben ist nicht lokal sondern in der Servertabelle "Einstellungen" abgelegt.
@@ -136,7 +136,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_funkmodulcomport.Text = oLE.FUNKMODULCOMPORT;
             tb_fernanzeigecomport.Text = oLE.FERNANZEIGECOMPORT;
             tb_pdf_path.Text = oLE.PDF_PATH;
-            tb_importpath.Text = oLE.IMPORT_PATH;
+        
             tb_exportpath.Text = oLE.EXPORT_PATH;
             tb_mischerexportpfad.Text = oLE.MISCHEREXPORT_PATH;
             tb_listenfile.Text = oLE.WIEGELISTFILE;
@@ -274,7 +274,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE.FUNKMODULCOMPORT = tb_funkmodulcomport.Text;
             oLE.FERNANZEIGECOMPORT = tb_fernanzeigecomport.Text;
             oLE.PDF_PATH = tb_pdf_path.Text;
-            oLE.IMPORT_PATH = tb_importpath.Text;
+     
             oLE.EXPORT_PATH = tb_exportpath.Text;
             oLE.MISCHEREXPORT_PATH = tb_mischerexportpfad.Text;
             oLE.WIEGELISTFILE = tb_listenfile.Text;
@@ -358,14 +358,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 tb_pdf_path.Text = folderDialog.SelectedPath;
         }
 
-        private void cmdGetDirImport_Click(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-            folderDialog.SelectedPath = "C:\\";
-            DialogResult result = folderDialog.ShowDialog();
-            if (result.ToString() == "OK")
-                tb_importpath.Text = folderDialog.SelectedPath;
-        }
+    
 
         private void cmdGetDirExport_Click(object sender, RoutedEventArgs e)
         {

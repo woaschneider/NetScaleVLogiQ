@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Net;
 using HWB.NETSCALE.BOEF;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO.ProductsImport
@@ -9,12 +13,29 @@ namespace HWB.NETSCALE.POLOSIO.ProductsImport
         private Produkte boP;
         private ProdukteEntity boPE;
 
-        public bool Import(string FullQualifiedFileName)
+        public bool Import(string baseUrl)
         {
             try
             {
-                var oP =
-                    FullQualifiedFileName.CreateFromJsonFile<ProduktRootObject>();
+
+                var client = new RestClient(baseUrl);
+                client.ClearHandlers();
+                client.AddHandler("application/json", new JsonDeserializer());
+
+                var request = new RestRequest("/rest/data/products");
+                request.Method = Method.GET;
+                request.AddHeader("X-location-Id", "16");
+
+
+                var response = client.Execute(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return false;
+                var x = response.Content; // Nur für Testzwecke
+
+                var oP = JsonConvert.DeserializeObject<ProduktRootObject > (response.Content);
+
+
+                
                 boP = new Produkte();
 
                 foreach (Product obj in oP.products)
