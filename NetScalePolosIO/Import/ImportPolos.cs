@@ -23,9 +23,7 @@ namespace HWB.NETSCALE.POLOSIO
           
             if (uri == "")
             {
-                Xceed.Wpf.Toolkit.MessageBox.Show("Keine Import-URI in den Einstellungen");
-                            
-               
+                Xceed.Wpf.Toolkit.MessageBox.Show("Keine Import-URI in den Einstellungen");                                           
                 return;
             }
             else
@@ -34,14 +32,14 @@ namespace HWB.NETSCALE.POLOSIO
             }
 
       
-           new ImportAddress().Import(uri); // OK
-           new ImportKindsOfGoods().Import(uri);// OK
-           new ImportArticle().Import(uri);// OK
-           new ImportProducts().Import(uri); // OK
-           new ImportArticleAttributes().Import(uri);
-           new ImportStorageArea().Import(uri);
+       //    new ImportAddress().Import(uri); // OK
+      //     new ImportKindsOfGoods().Import(uri);// OK
+       //    new ImportArticle().Import(uri);// OK
+        //   new ImportProducts().Import(uri); // OK
+       //    new ImportArticleAttributes().Import(uri);
+       //    new ImportStorageArea().Import(uri);
 
-        //    new ImportAuftraege().Import(Path + "\\Auftrag_587_WA_LKW2.json");
+            new ImportAuftraege().Import(uri);
             Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 

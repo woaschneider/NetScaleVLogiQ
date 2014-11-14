@@ -199,7 +199,11 @@ public class OrderEntity
 
 public class RootObject
 {
-    public List<OrderEntity> orderEntities { get; set; }
+    public List<OrderEntity> orders { get; set; }
+    public int totalResults  { get; set; }
+  
+
+  
 }
 
 

@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.POLOSIO.ProductsImport;
 using NetScalePolosIO;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO.AuftragsImport
@@ -20,12 +25,25 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
         private HWB.NETSCALE.BOEF.OrderArticleAttributeEntity boOAAE;
 
 
-        public bool Import(string FullQualifiedFileName)
+        public bool Import(string baseUrl)
         {
-            var oOI = FullQualifiedFileName.CreateFromJsonFile<RootObject>();
+            var client = new RestClient(baseUrl);
+            client.ClearHandlers();
+            client.AddHandler("application/json", new JsonDeserializer());
+
+            var request = new RestRequest("/rest/order/query/200/1");
+            request.Method = Method.GET;
+            request.AddHeader("X-location-Id", "16");
 
 
-            foreach (OrderEntity obj in oOI.orderEntities)
+            var response = client.Execute(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+                return false;
+            var x = response.Content; // Nur für Testzwecke
+
+            var oOI = JsonConvert.DeserializeObject<RootObject>(response.Content);
+
+            foreach (OrderEntity obj in oOI.orders)
             {
                 if (obj.id != null)
                 {
@@ -68,7 +86,6 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                             boOE.customerStreet = boAE.street;
                             boOE.customerIdCountry = boAE.idCountry;
                             boOE.customerIsocodeCountry = boAE.isocodeCountry;
-
                         }
                     }
                     //invoice
@@ -82,132 +99,156 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                             boOE.invoiceReceiverName = boAE.name;
                             boOE.InvoiceReceiverSubName2 = boAE.subName2;
                             boOE.invoiceReceiverOwningLocationId = boAE.owningLocationId;
-                            boOE.InvoiceReceiverZipCode= boAE.zipCode;
+                            boOE.InvoiceReceiverZipCode = boAE.zipCode;
                             boOE.InvoiceReceiverCity = boAE.city;
                             boOE.invoiceReceiverStreet = boAE.street;
                             boOE.invoiceReceiverIdCountry = boAE.idCountry;
                             boOE.invoiceReceiverIsocodeCountry = boAE.isocodeCountry;
-
                         }
                     }
+
                     #endregion
 
                     boO.SaveEntity(boOE);
                     boOE = boO.GetById(boOE.id); // Damit ich jetzt den OK habe
 
-
+                    // *******************************************************************************************************
                     // OrderItemservice
+                    //********************************************************************************************************
 
                     #region orderItemService
 
-                    //foreach (OrderItemService obj2 in oOI.orderEntities.)
-                    //{)
+                    request = new RestRequest("/rest/order/" + boOE.id.ToString());
+                    request.Method = Method.GET;
+                    request.AddHeader("X-location-Id", "16");
 
-                    for (int i = 0; i < obj.orderItems[0].orderItemServices.Count; i++)
+
+                    response = client.Execute(request);
+                    if (response.StatusCode == HttpStatusCode.OK)
                     {
-                        boOIS = new OrderItemservice();
-                        boOISE = boOIS.GetByIdAndPKOrderItem(boOE.PK, obj.orderItems[0].orderItemServices[i].identifier);
-                        if (boOISE == null)
-                        {
-                            boOISE = boOIS.NewEntity();
-                        }
-                        boOISE.identifier = obj.orderItems[0].orderItemServices[i].identifier;
-                        boOISE.remark = obj.orderItems[0].orderItemServices[i].remark;
-                        boOISE.sequence = obj.orderItems[0].orderItemServices[i].sequence;
-                        boOISE.product = obj.orderItems[0].product.id;
+                        x = response.Content; // Nur für Testzwecke
 
-                        boOISE.productdescription = obj.orderItems[0].product.description; // Nicht in der Schnittstelle
-                   
-                        boOISE.remark = obj.orderItems[0].orderItemServices[i].remark;
+                        OrderEntity oOEntity = JsonConvert.DeserializeObject<OrderEntity>(response.Content);
 
-                        boOISE.deliveryType = obj.orderItems[0].orderItemServices[i].deliveryType;
+                        foreach (var obj2 in oOEntity.orderItems)
+                            for (int i = 0; i < obj2.orderItemServices.Count; i++)
+                            {
+                                boOIS = new OrderItemservice();
+                                boOISE = boOIS.GetByIdAndPKOrderItem(boOE.PK, obj2.orderItemServices[i].identifier);
+                                // orderItems[0].orderItemServices[i].identifier);
+                                if (boOISE == null)
+                                {
+                                    boOISE = boOIS.NewEntity();
+                                }
+                                boOISE.identifier = obj2.orderItemServices[i].identifier;
+                                boOISE.remark = obj2.orderItemServices[i].remark;
+                                boOISE.sequence = obj2.orderItemServices[i].sequence;
+                                boOISE.product = oOEntity.orderItems[0].product.id;
+                                // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
+                                boOISE.productdescription = oOEntity.orderItems[0].product.description;
+                                // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
 
-                        boOISE.articleId = obj.orderItems[0].orderItemServices[i].articleInstance.article.id;
-                        boOISE.articleDescription =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.article.number;// Ganz schräg Inhalt zB Testbleche
-                        boOISE.ownerId = obj.orderItems[0].orderItemServices[i].articleInstance.article.ownerId;
-                        boOISE.kindOfGoodId =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.article.kindOfGoodId;
-                        boOISE.kindOfGoodDescription =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.article.kindOfGoodDescription;
-                        boOISE.plannedDate = PolosUtitlities.ConvertPolosDateTime2DateTime( obj.orderItems[0].plannedDate);
-                        
-                        
-                        boOISE.ownerBusinessIdentifier =
-                            boA.GetById(obj.orderItems[0].orderItemServices[i].articleInstance.article.ownerId).
-                                businessIdentifier;
-                        
+                                boOISE.remark = obj2.orderItemServices[i].remark;
 
-                        #region Supplier Consignee
-                        boOISE.supplierOrConsigneeId = obj.orderItems[0].orderItemServices[i].supplierOrConsignee.id;
-                        boOISE.supplierOrConsigneeBusinessIdentifier =
-                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.businessIdentifier;
-                        boOISE.supplierOrConsigneeName = obj.orderItems[0].orderItemServices[i].supplierOrConsignee.name;
-                        boOISE.supplierOrConsigneeSubName2 =
-                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.subName;
-                        boOISE.supplierOrConsigneeCity =
-                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.city;
-                        boOISE.supplierOrConsigneeStreet =
-                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.street;
-                        boOISE.supplierOrConsigneeZipCode =
-                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.zipCode;
-                        boOISE.supplierOrConsigneedIdCountry =
-                            obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.country.id;
+                                boOISE.deliveryType = obj2.orderItemServices[i].deliveryType;
 
-                        boOISE.supplierOrConsigneeIsocodeCountry =
-                           obj.orderItems[0].orderItemServices[i].supplierOrConsignee.address.country.isoCode;
-                        #endregion
+                                if (obj2.orderItemServices[i].articleInstance != null)
+                                {
+                                    boOISE.articleId = obj2.orderItemServices[i].articleInstance.article.id;
+                                    boOISE.articleDescription =
+                                        obj2.orderItemServices[i].articleInstance.article.number;
+                                    // Ganz schräg Inhalt zB Testbleche
+                                    boOISE.ownerId = obj2.orderItemServices[i].articleInstance.article.ownerId;
+                                    boOISE.kindOfGoodId =
+                                        obj2.orderItemServices[i].articleInstance.article.kindOfGoodId;
+                                    boOISE.kindOfGoodDescription =
+                                        obj2.orderItemServices[i].articleInstance.article.kindOfGoodDescription;
+                                    boOISE.plannedDate =
+                                        PolosUtitlities.ConvertPolosDateTime2DateTime(oOEntity.orderItems[0].plannedDate);
+                           //         if(obj2.orderItemServices[i].articleInstance.article.ownerId).businessIdentifier!=null))
+                             //      boOISE.ownerBusinessIdentifier= boA.GetById(obj2.orderItemServices[i].articleInstance.article.ownerId).businessIdentifier;
+                                         
+                                                                        
+                                     
+                                }
 
+                                #region Supplier Consignee
 
-                        #region Clearance
-                        // boOISE.clearanceQuantity   = Nicht vorhanden
-                        boOISE.clearanceReferenz = obj.orderItems[0].orderItemServices[i].clearance.reference;
-                        boOISE.clearanceValidFrom = PolosUtitlities.ConvertPolosDateTime2DateTime( obj.orderItems[0].orderItemServices[i].clearance.validFrom);
-                        boOISE.clearanceValidTo = PolosUtitlities.ConvertPolosDateTime2DateTime(obj.orderItems[0].orderItemServices[i].clearance.validTo);
-                        boOISE.clearanceUnitId = obj.orderItems[0].orderItemServices[i].clearance.unit.id;
-                        boOISE.clearanceUnitShortDescription =
-                            obj.orderItems[0].orderItemServices[i].clearance.unit.shortDescription;
-                        boOISE.clearanceDescription = obj.orderItems[0].orderItemServices[i].clearance.unit.description;
-                        #endregion
+                                if (obj2.orderItemServices[i].supplierOrConsignee != null)
+                                {
+                                    boOISE.supplierOrConsigneeId = obj2.orderItemServices[i].supplierOrConsignee.id;
+                                    boOISE.supplierOrConsigneeBusinessIdentifier =
+                                        obj2.orderItemServices[i].supplierOrConsignee.businessIdentifier;
+                                    boOISE.supplierOrConsigneeName = obj2.orderItemServices[i].supplierOrConsignee.name;
+                                    boOISE.supplierOrConsigneeSubName2 =
+                                        obj2.orderItemServices[i].supplierOrConsignee.subName;
+                                    boOISE.supplierOrConsigneeCity =
+                                        obj2.orderItemServices[i].supplierOrConsignee.address.city;
+                                    boOISE.supplierOrConsigneeStreet =
+                                        obj2.orderItemServices[i].supplierOrConsignee.address.street;
+                                    boOISE.supplierOrConsigneeZipCode =
+                                        obj2.orderItemServices[i].supplierOrConsignee.address.zipCode;
+                                    boOISE.supplierOrConsigneedIdCountry =
+                                        obj2.orderItemServices[i].supplierOrConsignee.address.country.id;
 
+                                    boOISE.supplierOrConsigneeIsocodeCountry =
+                                        obj2.orderItemServices[i].supplierOrConsignee.address.country.isoCode;
+                                }
 
-                        #region Attribute
+                                #endregion
 
-                        boOISE.SerialNumber = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.SERIAL_NUMBER;
-                        boOISE.batch =  obj.orderItems[0].orderItemServices[i].articleInstance.attributes.BATCH;
-                        boOISE.orign = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.ORIGIN;
-                        boOISE.grade = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.GRADE;
-                        boOISE.originalNumber =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.ORIGINAL_NUMBER;
-                        boOISE.length = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.LENGTH;
-                        boOISE.width = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.WIDTH;
-                        boOISE.height = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.HEIGHT;
+                                #region Clearance
 
-                        boOISE.storageAreaReference =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.STORAGE_AREA_REFERENCE;
-                        boOISE.diameter = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.DIAMETER;
-                        boOISE.orignalMarking =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.ORIGINAL_MARKING;
-                        boOISE.storageAreaReferenceNumber =
-                            obj.orderItems[0].orderItemServices[i].articleInstance.attributes.
-                                STORAGE_AREA_REFERENCE_NUMBER;
-                        boOISE.dimension = obj.orderItems[0].orderItemServices[i].articleInstance.attributes.DIMENSION;
+                                // boOISE.clearanceQuantity   = Nicht vorhanden
+                                if (obj2.orderItemServices[i].clearance != null)
+                                {
+                                    boOISE.clearanceReferenz = obj2.orderItemServices[i].clearance.reference;
+                                    boOISE.clearanceValidFrom =
+                                        PolosUtitlities.ConvertPolosDateTime2DateTime(
+                                            obj2.orderItemServices[i].clearance.validFrom);
+                                    boOISE.clearanceValidTo =
+                                        PolosUtitlities.ConvertPolosDateTime2DateTime(
+                                            obj2.orderItemServices[i].clearance.validTo);
+                                    boOISE.clearanceUnitId = obj2.orderItemServices[i].clearance.unit.id;
+                                    boOISE.clearanceUnitShortDescription =
+                                        obj2.orderItemServices[i].clearance.unit.shortDescription;
+                                    boOISE.clearanceDescription = obj2.orderItemServices[i].clearance.unit.description;
 
+                                    #endregion
 
+                                    #region Attribute
 
-                       
+                                    boOISE.SerialNumber =
+                                        obj2.orderItemServices[i].articleInstance.attributes.SERIAL_NUMBER;
+                                    boOISE.batch = obj2.orderItemServices[i].articleInstance.attributes.BATCH;
+                                    boOISE.orign = obj2.orderItemServices[i].articleInstance.attributes.ORIGIN;
+                                    boOISE.grade = obj2.orderItemServices[i].articleInstance.attributes.GRADE;
+                                    boOISE.originalNumber =
+                                        obj2.orderItemServices[i].articleInstance.attributes.ORIGINAL_NUMBER;
+                                    boOISE.length = obj2.orderItemServices[i].articleInstance.attributes.LENGTH;
+                                    boOISE.width = obj2.orderItemServices[i].articleInstance.attributes.WIDTH;
+                                    boOISE.height = obj2.orderItemServices[i].articleInstance.attributes.HEIGHT;
 
-                        #endregion
+                                    boOISE.storageAreaReference =
+                                        obj2.orderItemServices[i].articleInstance.attributes.STORAGE_AREA_REFERENCE;
+                                    boOISE.diameter = obj2.orderItemServices[i].articleInstance.attributes.DIAMETER;
+                                    boOISE.orignalMarking =
+                                        obj2.orderItemServices[i].articleInstance.attributes.ORIGINAL_MARKING;
+                                    boOISE.storageAreaReferenceNumber =
+                                        obj2.orderItemServices[i].articleInstance.attributes.
+                                            STORAGE_AREA_REFERENCE_NUMBER;
+                                    boOISE.dimension = obj2.orderItemServices[i].articleInstance.attributes.DIMENSION;
+                                }
 
-                        boOISE.PKOrderItem = boOE.PK;
-                        boOIS.SaveEntity(boOISE);
+                                #endregion
+
+                                boOISE.PKOrderItem = boOE.PK;
+                                boOIS.SaveEntity(boOISE);
+                            }
                     }
-
                     //}
 
                     #endregion
-
-                    // Save the stuff
                 }
             }
 
