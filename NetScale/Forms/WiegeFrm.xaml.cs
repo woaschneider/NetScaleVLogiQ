@@ -283,7 +283,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 return;
             }
 
-            AuftragsListeFrm oAFrm = new AuftragsListeFrm("");
+            AuftragsListeV2 oAFrm = new AuftragsListeV2("");
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
             _boW.Auftrag2Waege(uRet);
@@ -1023,6 +1023,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void luCustomer_Click(object sender, RoutedEventArgs e)
         {
             int? uRet = lookUpAdresse("");
+            AdressenListeFrm oAFrm = new AdressenListeFrm(txtAuftraggeber.Text,"AU");
+            oAFrm.ShowDialog();
+            uRet = oAFrm.uRet;
+            oAFrm.Close();
+            
+
             if (uRet != null)
             {
                 _boW.Customer2Waege((int) uRet);

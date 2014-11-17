@@ -67,6 +67,102 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
+        // CLIENT, BILLING_RECEIVER, STORAGE_CLIENT, STORAGE_CLIENT,SUPPLIER, RECEIVER, CARRIER, SHIPOWNER, TRAIN_OPERATOR
+           public mmBindingList<AdressenEntity> GetByMatchCodeAndRole( string mc,string Role)
+           {
+               IQueryable<AdressenEntity> query;
+            switch(Role)
+            {
+                    // Client
+                case "AU":
+
+                    query = from a in this.ObjectContext.AdressenEntities
+                            orderby a.businessIdentifier
+                            where a.roleClient==true &
+                                  a.businessIdentifier.Contains(mc) ||
+                                  a.name.Contains(mc) ||
+                                  a.subName2.Contains(mc) ||
+                                  a.zipCode.Contains(mc) ||
+                                  a.city.Contains(mc) ||
+                                  a.street.Contains(mc)
+                            select a;
+
+                    break;
+
+
+
+                    // INVOICE Receiver
+                case "BILLING_RECEIVER":
+                    query = from a in this.ObjectContext.AdressenEntities
+                            orderby a.businessIdentifier
+                            where a.roleInvoiceReceiver == true &
+                                  a.businessIdentifier.Contains(mc) ||
+                                  a.name.Contains(mc) ||
+                                  a.subName2.Contains(mc) ||
+                                  a.zipCode.Contains(mc) ||
+                                  a.city.Contains(mc) ||
+                                  a.street.Contains(mc)
+                            select a;
+
+                    break;
+
+
+                    // Storage_Client
+                case   "STORAGE_CLIENT":
+                    query = from a in this.ObjectContext.AdressenEntities
+                            orderby a.businessIdentifier
+                            where a.roleStorageClient == true &
+                                  a.businessIdentifier.Contains(mc) ||
+                                  a.name.Contains(mc) ||
+                                  a.subName2.Contains(mc) ||
+                                  a.zipCode.Contains(mc) ||
+                                  a.city.Contains(mc) ||
+                                  a.street.Contains(mc)
+                            select a;
+                    break;
+
+
+                    // Supplier
+                case    "SUPPLIER":
+                    break;
+
+
+                    //  Receiver
+                case  "RECEIVER":
+                    break;
+
+
+                    // Carrier
+                case   "CARRIER":
+                    query = from a in this.ObjectContext.AdressenEntities
+                            orderby a.businessIdentifier
+                            where a.roleCarrier == true &
+                                  a.businessIdentifier.Contains(mc) ||
+                                  a.name.Contains(mc) ||
+                                  a.subName2.Contains(mc) ||
+                                  a.zipCode.Contains(mc) ||
+                                  a.city.Contains(mc) ||
+                                  a.street.Contains(mc)
+                            select a;
+                    break;
+
+
+                    // Shipowner
+                case  "SHIPOWNER":
+                    break;
+
+                    // TRAIN_OPERATOR
+                case    "TRAIN_OPERATOR":
+                    break;
+
+            }
+        
+            return GetEntityList(query);
+        }
+        
+
+
+
         public mmBindingList<AdressenEntity> GetbusinessIdentifierByMatchCode(string mc)
         {
             IQueryable<AdressenEntity> query = from a in this.ObjectContext.AdressenEntities

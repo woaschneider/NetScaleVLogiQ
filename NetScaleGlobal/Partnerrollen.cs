@@ -11,8 +11,8 @@
                 case "AU":
                     ret = "Auftraggeber";
                     break;
-                case "LI":
-                    ret = "Lieferant";
+                case "IR":
+                    ret = "Rechnungsempfänger";
                     break;
                 case "SP":
                     ret = "Spedition";

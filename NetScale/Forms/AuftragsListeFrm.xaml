@@ -125,7 +125,8 @@
                   Margin="13,264,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}">
+                  AutoGenerateColumns="False"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding productdescription}" Header="Produkt" />
                 <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermandant" />
@@ -162,7 +163,6 @@
                                      Margin="167,146,0,0"
                                      HorizontalAlignment="Left"
                                      VerticalAlignment="Top"
-                                     
                                      ListDisplayMember="businessIdentifier"
                                      ListSelectedValueMember="businessIdentifier"
                                      SearchStringChanged="tb_CustomerSearch_SearchStringChanged"

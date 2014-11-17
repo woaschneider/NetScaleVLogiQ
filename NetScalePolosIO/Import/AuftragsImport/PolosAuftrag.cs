@@ -53,6 +53,7 @@ public class ArticleInstance
 {
     public Article article { get; set; }
     public Attributes attributes { get; set; }
+    public Service service { get; set; }
 }
 
 public class Country
@@ -83,6 +84,8 @@ public class SupplierOrConsignee
 public class Service
 {
     public int id { get; set; }
+    public string state { get; set; }
+    public double targedAmount { get; set; }
 }
 
 public class Unit
@@ -114,7 +117,7 @@ public class OrderItemService
     public string plannedEndDate { get; set; }
     public Service service { get; set; }
     public Clearance clearance { get; set; }
-    public double targetAmount { get; set; }
+ //   public double targetAmount { get; set; }
     public string deliveryType { get; set; }
 }
 

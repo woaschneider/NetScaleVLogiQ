@@ -58,7 +58,10 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                     boOE.id = obj.id;
                     boOE.locationId = obj.locationId;
                     boOE.number = obj.number;
-                    boOE.date = PolosUtitlities.ConvertPolosDateTime2DateTime(obj.date);
+                    if (obj.date != null)
+                    {
+                        boOE.date = PolosUtitlities.ConvertPolosDateTime2DateTime(obj.date);
+                    }
                     boOE.orderstate = obj.orderState;
                     boOE.reference = obj.reference;
 
@@ -135,7 +138,7 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                             {
                                 boOIS = new OrderItemservice();
                                 boOISE = boOIS.GetByIdAndPKOrderItem(boOE.PK, obj2.orderItemServices[i].identifier);
-                                // orderItems[0].orderItemServices[i].identifier);
+                   
                                 if (boOISE == null)
                                 {
                                     boOISE = boOIS.NewEntity();
@@ -152,6 +155,8 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 
                                 boOISE.deliveryType = obj2.orderItemServices[i].deliveryType;
 
+
+                                #region ArticelInstance
                                 if (obj2.orderItemServices[i].articleInstance != null)
                                 {
                                     boOISE.articleId = obj2.orderItemServices[i].articleInstance.article.id;
@@ -163,15 +168,28 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                                         obj2.orderItemServices[i].articleInstance.article.kindOfGoodId;
                                     boOISE.kindOfGoodDescription =
                                         obj2.orderItemServices[i].articleInstance.article.kindOfGoodDescription;
-                                    boOISE.plannedDate =
-                                        PolosUtitlities.ConvertPolosDateTime2DateTime(oOEntity.orderItems[0].plannedDate);
-                           //         if(obj2.orderItemServices[i].articleInstance.article.ownerId).businessIdentifier!=null))
-                             //      boOISE.ownerBusinessIdentifier= boA.GetById(obj2.orderItemServices[i].articleInstance.article.ownerId).businessIdentifier;
-                                         
-                                                                        
-                                     
-                                }
+                                    if (oOEntity.orderItems[0].plannedDate != null)
+                                    {
+                                        boOISE.plannedDate =
+                                            PolosUtitlities.ConvertPolosDateTime2DateTime(
+                                                oOEntity.orderItems[0].plannedDate);
+                                    }
 
+                                    AdressenEntity boAE =
+                                        boA.GetById(obj2.orderItemServices[i].articleInstance.article.ownerId);
+                                    if(boAE!=null)
+                                 boOISE.ownerBusinessIdentifier= boAE.businessIdentifier;
+
+
+                                    #region // service
+
+                                    boOISE.targedAmount  = (decimal) obj2.orderItemServices[i].service.targedAmount;
+
+                                    #endregion
+
+
+                                }
+                                #endregion
                                 #region Supplier Consignee
 
                                 if (obj2.orderItemServices[i].supplierOrConsignee != null)
@@ -197,18 +215,25 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 
                                 #endregion
 
-                                #region Clearance
+                               #region Clearance
 
                                 // boOISE.clearanceQuantity   = Nicht vorhanden
                                 if (obj2.orderItemServices[i].clearance != null)
                                 {
                                     boOISE.clearanceReferenz = obj2.orderItemServices[i].clearance.reference;
-                                    boOISE.clearanceValidFrom =
-                                        PolosUtitlities.ConvertPolosDateTime2DateTime(
-                                            obj2.orderItemServices[i].clearance.validFrom);
-                                    boOISE.clearanceValidTo =
-                                        PolosUtitlities.ConvertPolosDateTime2DateTime(
-                                            obj2.orderItemServices[i].clearance.validTo);
+                                    if (obj2.orderItemServices[i].clearance.validFrom != null)
+                                    {
+                                        boOISE.clearanceValidFrom =
+                                            PolosUtitlities.ConvertPolosDateTime2DateTime(
+                                                obj2.orderItemServices[i].clearance.validFrom);
+                                    }
+
+                                    if (obj2.orderItemServices[i].clearance.validTo != null)
+                                    {
+                                        boOISE.clearanceValidTo =
+                                            PolosUtitlities.ConvertPolosDateTime2DateTime(
+                                                obj2.orderItemServices[i].clearance.validTo);
+                                    }
                                     boOISE.clearanceUnitId = obj2.orderItemServices[i].clearance.unit.id;
                                     boOISE.clearanceUnitShortDescription =
                                         obj2.orderItemServices[i].clearance.unit.shortDescription;
@@ -216,28 +241,36 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 
                                     #endregion
 
-                                    #region Attribute
+                               #region Attribute
+                                    if (obj2.orderItemServices[i].articleInstance != null)
+                                    {
+                                        if (obj2.orderItemServices[i].articleInstance.attributes != null)
+                                        {
+                                            boOISE.SerialNumber =
+                                                obj2.orderItemServices[i].articleInstance.attributes.SERIAL_NUMBER;
+                                            boOISE.batch = obj2.orderItemServices[i].articleInstance.attributes.BATCH;
+                                            boOISE.orign = obj2.orderItemServices[i].articleInstance.attributes.ORIGIN;
+                                            boOISE.grade = obj2.orderItemServices[i].articleInstance.attributes.GRADE;
+                                            boOISE.originalNumber =
+                                                obj2.orderItemServices[i].articleInstance.attributes.ORIGINAL_NUMBER;
+                                            boOISE.length = obj2.orderItemServices[i].articleInstance.attributes.LENGTH;
+                                            boOISE.width = obj2.orderItemServices[i].articleInstance.attributes.WIDTH;
+                                            boOISE.height = obj2.orderItemServices[i].articleInstance.attributes.HEIGHT;
 
-                                    boOISE.SerialNumber =
-                                        obj2.orderItemServices[i].articleInstance.attributes.SERIAL_NUMBER;
-                                    boOISE.batch = obj2.orderItemServices[i].articleInstance.attributes.BATCH;
-                                    boOISE.orign = obj2.orderItemServices[i].articleInstance.attributes.ORIGIN;
-                                    boOISE.grade = obj2.orderItemServices[i].articleInstance.attributes.GRADE;
-                                    boOISE.originalNumber =
-                                        obj2.orderItemServices[i].articleInstance.attributes.ORIGINAL_NUMBER;
-                                    boOISE.length = obj2.orderItemServices[i].articleInstance.attributes.LENGTH;
-                                    boOISE.width = obj2.orderItemServices[i].articleInstance.attributes.WIDTH;
-                                    boOISE.height = obj2.orderItemServices[i].articleInstance.attributes.HEIGHT;
-
-                                    boOISE.storageAreaReference =
-                                        obj2.orderItemServices[i].articleInstance.attributes.STORAGE_AREA_REFERENCE;
-                                    boOISE.diameter = obj2.orderItemServices[i].articleInstance.attributes.DIAMETER;
-                                    boOISE.orignalMarking =
-                                        obj2.orderItemServices[i].articleInstance.attributes.ORIGINAL_MARKING;
-                                    boOISE.storageAreaReferenceNumber =
-                                        obj2.orderItemServices[i].articleInstance.attributes.
-                                            STORAGE_AREA_REFERENCE_NUMBER;
-                                    boOISE.dimension = obj2.orderItemServices[i].articleInstance.attributes.DIMENSION;
+                                            boOISE.storageAreaReference =
+                                                obj2.orderItemServices[i].articleInstance.attributes.
+                                                    STORAGE_AREA_REFERENCE;
+                                            boOISE.diameter =
+                                                obj2.orderItemServices[i].articleInstance.attributes.DIAMETER;
+                                            boOISE.orignalMarking =
+                                                obj2.orderItemServices[i].articleInstance.attributes.ORIGINAL_MARKING;
+                                            boOISE.storageAreaReferenceNumber =
+                                                obj2.orderItemServices[i].articleInstance.attributes.
+                                                    STORAGE_AREA_REFERENCE_NUMBER;
+                                            boOISE.dimension =
+                                                obj2.orderItemServices[i].articleInstance.attributes.DIMENSION;
+                                        }
+                                    }
                                 }
 
                                 #endregion

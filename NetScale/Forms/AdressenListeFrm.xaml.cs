@@ -56,18 +56,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
-        //public APFrm(string matchcode, string Rolle)
-        //{
-        //    _rolle = Rolle;
-        //    boAP = new AP();
-        //    //  RegisterBizObj(boAP);
-        //    this.InitializeComponent();
-        //    Title = Partnerrollen.GetRollenBezeichnung(Rolle);
-        //    dataGrid1.SelectedValuePath = "PK";
-        //    txtSearch.Text = matchcode;
-        //    dataGrid1.ItemsSource = boAP.GetAllAPByMatchCode(txtSearch.Text.Trim(), _rolle);
-        //    this.PreviewKeyDown += new KeyEventHandler(HandleKey);
-        //}
+        public AdressenListeFrm(string matchcode, string Rolle)
+        {
+            _rolle = Rolle;
+            boAP = new Adressen();
+            //  RegisterBizObj(boAP);
+            this.InitializeComponent();
+            Title = Partnerrollen.GetRollenBezeichnung(Rolle);
+            dataGrid1.SelectedValuePath = "PK";
+            txtSearch.Text = matchcode;
+            dataGrid1.ItemsSource = boAP.GetByMatchCodeAndRole(matchcode,Rolle);
+            this.PreviewKeyDown += new KeyEventHandler(HandleKey);
+        }
 
         private void KBDown()
         {
