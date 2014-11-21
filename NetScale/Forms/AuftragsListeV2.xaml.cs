@@ -10,7 +10,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
 // using HWB.NETSCALE.FRONTEND.WPF.Import.ArticleImport;
+using HWB.NETSCALE.BOEF.JoinClasses;
 using OakLeaf.MM.Main;
+using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
@@ -68,7 +70,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         }
 
-        private void  FilldataGridOrderItemService(int pk)
+        private void FilldataGridOrderItemService(int pk)
         {
             dataGridOrderItemService.ItemsSource = boOIES.GetByParentPK(pk);
         }
@@ -76,8 +78,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
        
 
         private void dataGridOrderItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        { 
             FilldataGridOrderItemService(Convert.ToInt32(dataGridOrderItems.SelectedValue));
+        }
+
+       
+      
+
+        private void txtAU_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataGridOrderItems.SelectedValuePath = "PK";
+          dataGridOrderItems.ItemsSource= boOI.GetByAU_RE_MatchCode(txtAU.Text,
+                                                                              txtRE.Text);
+        
         }
     }
 }

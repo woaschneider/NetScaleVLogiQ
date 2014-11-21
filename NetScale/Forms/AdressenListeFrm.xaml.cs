@@ -38,23 +38,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             this.InitializeComponent();
             dataGrid1.SelectedValuePath = "PK";
             dataGrid1.ItemsSource = boAP.GetAll();
+            lblCount.Content = dataGrid1.Items.Count.ToString();
             this.MouseWheel += new MouseWheelEventHandler(this_mouseWheel);
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
-        // Methode überladen
-        // 1. alle Adressen
-        // 2. mit Partnerrolle
-        public AdressenListeFrm (string matchcode)
-        {
-            boAP = new Adressen();
-            //  RegisterBizObj(boAP);
-            this.InitializeComponent();
-            dataGrid1.SelectedValuePath = "PK";
-            txtSearch.Text = matchcode;
-            dataGrid1.ItemsSource = boAP.GetByMatchCode(txtSearch.Text.Trim());
-            this.PreviewKeyDown += new KeyEventHandler(HandleKey);
-        }
+    
 
         public AdressenListeFrm(string matchcode, string Rolle)
         {
@@ -65,7 +54,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             Title = Partnerrollen.GetRollenBezeichnung(Rolle);
             dataGrid1.SelectedValuePath = "PK";
             txtSearch.Text = matchcode;
-            dataGrid1.ItemsSource = boAP.GetByMatchCodeAndRole(matchcode,Rolle);
+            Fillgrid();
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
@@ -130,8 +119,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid1.SelectedValuePath = "PK";
-            dataGrid1.ItemsSource = boAP.GetByMatchCode(txtSearch.Text.Trim());
+            Fillgrid();
         }
 
       
@@ -170,7 +158,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private void Fillgrid()
         {
             dataGrid1.SelectedValuePath = "PK";
-            dataGrid1.ItemsSource = boAP.GetByMatchCode(txtSearch.Text.Trim());
+            dataGrid1.ItemsSource = boAP.GetByMatchCodeAndRole(txtSearch.Text.Trim(),_rolle);
+            lblCount.Content = dataGrid1.Items.Count.ToString();
         }
 
         private void cmdSelect_Click(object sender, RoutedEventArgs e)

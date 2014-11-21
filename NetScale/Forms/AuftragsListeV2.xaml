@@ -8,8 +8,8 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="BusinessWindow"
-                        Width="1009"
-                        Height="744"
+                        Width="1090"
+                        Height="714"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
                         WindowStartupLocation="CenterScreen"
@@ -21,7 +21,7 @@
         <HWB_NETSCALE_BOEF:OrderitemEntity />
     </mmwpf:mmBusinessWindow.DataContext>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="#FF68A3D8">
         <ribbon:Ribbon x:Name="Ribbon"
                        Height="120"
                        Margin="-2,-21,2,0"
@@ -62,15 +62,18 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid x:Name="dataGridOrderItems"
-                  Height="259"
-                  Margin="25,168,23,0"
+                  Width="1061"
+                  Height="174"
+                  Margin="5,187,0,0"
+                  HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Mode=OneWay}"
                   SelectedValuePath="&quot;PK&quot;"
                   SelectionChanged="dataGridOrderItems_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="Nummer" />
+                <DataGridTextColumn Binding="{Binding id}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding number}" Header="Nummer" />
                 <DataGridTextColumn Binding="{Binding date}" Header="Datum" />
                 <DataGridTextColumn Binding="{Binding reference}" Header="Referenz" />
                 <DataGridTextColumn Binding="{Binding orderstate}" Header="Orderstatus" />
@@ -79,9 +82,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Name="dataGridOrderItemService"
-                  Width="939"
-                  Height="200"
-                  Margin="25,443,0,0"
+                  Width="1061"
+                  Height="220"
+                  Margin="2,449,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
@@ -98,8 +101,79 @@
                 <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lieferant / Empfänger" />
                 <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermandant" />
                 <DataGridTextColumn Binding="{Binding plannedDate}" Header="gpl. Leistungsdatum" />
-                <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung"/>
+                <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung" />
             </DataGrid.Columns>
         </DataGrid>
+        <Label Name="lblAuftragGeber"
+               Height="28"
+               Margin="14,126,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Auftrageber" />
+        <Label Name="lblRechnungsEmpfaenger"
+               Height="28"
+               Margin="12,153,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Rechnungsempfänger" />
+        <Label Name="lblKundenReferenz"
+               Height="42"
+               Margin="508,0,0,590"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Bottom"
+               Content="Kundenreferenz" />
+        <Label Name="lblLieferantEmfaenger"
+               Height="28"
+               Margin="8,375,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Lagermandant" />
+        <Label Name="lblArtikelNr"
+               Height="28"
+               Margin="461,377,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Artikel-Nr." />
+        <Label Name="label2"
+               Margin="27,107,0,679"
+               HorizontalAlignment="Left"
+               Content="Lagermandant" />
+        <Label Name="label3"
+               Height="28"
+               Margin="461,406,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Freistellung" />
+        <TextBox Name="txtAU"
+                 Width="240"
+                 Height="23"
+                 Margin="152,128,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TextChanged="txtAU_TextChanged" />
+        <TextBox Name="txtRE"
+                 Width="240"
+                 Height="23"
+                 Margin="152,156,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top" TextChanged="txtAU_TextChanged" />
+        <TextBox Name="txtLM"
+                 Width="240"
+                 Height="23"
+                 Margin="146,377,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top" />
+        <Label Name="label1"
+               Height="28"
+               Margin="8,404,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Lieferant / Empfänger" />
+        <TextBox Name="textBox1"
+                 Width="240"
+                 Height="23"
+                 Margin="146,406,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top" />
     </Grid>
 </mmwpf:mmBusinessWindow>

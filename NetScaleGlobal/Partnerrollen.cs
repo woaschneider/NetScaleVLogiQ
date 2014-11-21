@@ -8,17 +8,29 @@
 
             switch (rollenKz)
             {
-                case "AU":
+                case "AG":
                     ret = "Auftraggeber";
                     break;
-                case "IR":
+                case "RE":
                     ret = "Rechnungsempfänger";
                     break;
-                case "SP":
-                    ret = "Spedition";
+                case "LM":
+                    ret = "Lagermandant";
                     break;
-                case "FU":
-                    ret = "Fuhrunternehmer";
+                case "LI":
+                    ret = "Lieferant";
+                    break;
+                case "EM":
+                    ret = "Empfänger";
+                    break;
+                case "FF":
+                    ret = "Frachtführer";
+                    break;
+                case "SO":
+                    ret = "Reeder";
+                    break;
+                case "EV":
+                    ret = "EVU / Traktionär";
                     break;
             }
 

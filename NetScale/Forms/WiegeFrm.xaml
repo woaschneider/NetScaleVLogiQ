@@ -476,7 +476,7 @@
                VerticalAlignment="Top"
                Content="_Fahrzeug"
                Target="{Binding ElementName=txtKfzKennzeichen}" />
-        <TextBox x:Name="txtAuftraggeber_Copy1"
+        <TextBox x:Name="txtFrachtführer"
                  Width="436"
                  Height="23"
                  Margin="160,194,0,0"
@@ -550,7 +550,7 @@
                  Text="{Binding deliveryType}" />
         <Label x:Name="lblFankatur"
                Height="25.335"
-               Margin="28,489,0,0"
+               Margin="28,488,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Frankatur" />
@@ -639,7 +639,7 @@
         <TextBlock x:Name="tb_wiegestatus"
                    Width="369"
                    Height="23"
-                   Margin="707,66,0,0"
+                   Margin="756,66,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    FontSize="16"

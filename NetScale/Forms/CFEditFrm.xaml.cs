@@ -148,7 +148,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void buttonLookUpFrachtführer_Click(object sender, RoutedEventArgs e)
         {
-            AdressenListeFrm oAFrm = new AdressenListeFrm("");
+            AdressenListeFrm oAFrm = new AdressenListeFrm();
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
             if(uRet != null)

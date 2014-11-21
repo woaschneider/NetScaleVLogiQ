@@ -103,5 +103,6 @@
                  FontSize="16"
                  TextChanged="txtSearch_TextChanged"
                  Opacity="50" TabIndex="1010" HorizontalAlignment="Left" Width="466" />
+        <Label Content="0" Height="28" HorizontalAlignment="Right" Margin="0,122,62,0" Name="lblCount" VerticalAlignment="Top" />
     </Grid>
 </mmwpf:mmBusinessWindow>

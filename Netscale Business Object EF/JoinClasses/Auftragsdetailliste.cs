@@ -71,12 +71,18 @@ namespace HWB.NETSCALE.BOEF.JoinClasses
     {
         // OrderItem
         public int PK { get; set; }
-
+        public string id { get; set; }
+        public string number { get; set; }
+        public DateTime? date { get; set; }
+        public string reference { get; set; }
+        public string orderState { get; set; }
+        
         public string customerBusinessIdentifier { get; set; }
         public string invoiceReceiverBusinessIdentifier { get; set; }
 
         // OrderItemService
-       
+        public int childPK { get; set; }
+
         public string productdescription { get; set; }
         public string ownerBusinessIdentifier { get; set; }
         public string remark { get; set; }
@@ -86,7 +92,8 @@ namespace HWB.NETSCALE.BOEF.JoinClasses
         public int? product { get; set; }
         public int? articleId  { get; set; }
         public string articleDescription { get; set; }
- 
+        public float targedAmount { get; set; }
+
         public DateTime? plannedDate { get; set; }
     }
 }

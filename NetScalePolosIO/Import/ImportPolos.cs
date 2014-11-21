@@ -39,7 +39,7 @@ namespace HWB.NETSCALE.POLOSIO
        //    new ImportArticleAttributes().Import(uri);
        //    new ImportStorageArea().Import(uri);
 
-            new ImportAuftraege().Import(uri);
+            new ImportAuftraege().Import(uri,GetLocationId());
             Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 
@@ -92,6 +92,27 @@ namespace HWB.NETSCALE.POLOSIO
 
 
 
+        }
+        private int GetLocationId()
+        {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEE = boE.GetEinstellungen();
+            if (boEE != null)
+            {
+                int locationId = (int) boEE.RestLocation;
+                if (locationId != null)
+                {
+                    return locationId;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         private string GetImportPath()

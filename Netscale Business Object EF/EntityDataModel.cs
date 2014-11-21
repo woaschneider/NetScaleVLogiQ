@@ -2623,6 +2623,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _RestServerPort;
         partial void OnRestServerPortChanging(global::System.String value);
         partial void OnRestServerPortChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RestLocation
+        {
+            get
+            {
+                return _RestLocation;
+            }
+            set
+            {
+                OnRestLocationChanging(value);
+                ReportPropertyChanging("RestLocation");
+                _RestLocation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RestLocation");
+                OnRestLocationChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RestLocation;
+        partial void OnRestLocationChanging(Nullable<global::System.Int32> value);
+        partial void OnRestLocationChanged();
 
         #endregion
     

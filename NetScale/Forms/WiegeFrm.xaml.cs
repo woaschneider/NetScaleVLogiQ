@@ -252,7 +252,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdAdressen_Click(object sender, RoutedEventArgs e)
         {
-            AdressenListeFrm oA = new AdressenListeFrm("");
+            AdressenListeFrm oA = new AdressenListeFrm();
             oA.ShowDialog();
             if (oA != null)
             {
@@ -1020,13 +1020,26 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oFFrm.Close();
         }
 
+        #region lookup Adressen
+
+        private void luFrachtfuehrer_Click(object sender, RoutedEventArgs e)
+        {
+            int? uRet = lookUpAdresse(txtFrachtführer.Text, "FF");
+            if (uRet != null)
+            {
+                _boW.FrachtFuehrer2Waege((int)uRet);
+            }
+            else
+            {
+                _boW.ClearFrachtFuehrerInWaege();
+            }
+        }
+
         private void luCustomer_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse("");
-            AdressenListeFrm oAFrm = new AdressenListeFrm(txtAuftraggeber.Text,"AU");
-            oAFrm.ShowDialog();
-            uRet = oAFrm.uRet;
-            oAFrm.Close();
+            int? uRet = lookUpAdresse(txtAuftraggeber.Text,"AG");
+            
+          
             
 
             if (uRet != null)
@@ -1041,7 +1054,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luInvoiceReceiver_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse("");
+            int? uRet = lookUpAdresse(txtRechnungsEmpfaenger.Text,"RE");
             if (uRet != null)
             {
                 _boW.invoiceReceiver2Waege((int)uRet);
@@ -1054,7 +1067,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luLagermandant_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse("");
+            int? uRet = lookUpAdresse(txtLagerMandant.Text,"LM");
             if (uRet != null)
             {
                 _boW.Owner2Waege((int)uRet);
@@ -1068,7 +1081,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luConsigneeSupplier_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse("");
+            int? uRet = lookUpAdresse("","");
             if (uRet != null)
             {
                 _boW.supplierOrConsignee2Waege((int)uRet);
@@ -1079,27 +1092,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private int? lookUpAdresse(string mc)
+        private int? lookUpAdresse(string mc, string rolle)
         {
-            AdressenListeFrm oAFrm = new AdressenListeFrm(mc);
+            AdressenListeFrm oAFrm = new AdressenListeFrm(mc,rolle);
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
             oAFrm.Close();
             return uRet;
         }
 
-        private void luFrachtfuehrer_Click(object sender, RoutedEventArgs e)
-        {
-            int? uRet = lookUpAdresse("");
-            if (uRet != null)
-            {
-                _boW.FrachtFuehrer2Waege((int)uRet);
-            }
-            else
-            {
-                _boW.ClearsupplierOrConsigneeInWaege();
-            }
-        }
+        #endregion
 
         private void cmdLookUpProduct_Click(object sender, RoutedEventArgs e)
         {
@@ -1130,6 +1132,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
         #endregion 
 
+       
 
 
 

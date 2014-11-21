@@ -157,6 +157,7 @@
           <Property Name="MG_Id_counter" Type="int" />
           <Property Name="RestServerAdresse" Type="varchar" MaxLength="254" />
           <Property Name="RestServerPort" Type="varchar" MaxLength="20" />
+          <Property Name="RestLocation" Type="int" />
         </EntityType>
         <EntityType Name="Fahrzeuge">
           <Key>
@@ -1183,6 +1184,7 @@
           <Property Type="Int32" Name="MG_Id_counter" />
           <Property Type="String" Name="RestServerAdresse" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="RestServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RestLocation" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1700,6 +1702,7 @@
           <EntitySetMapping Name="EinstellungenEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
               <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="RestLocation" ColumnName="RestLocation" />
                 <ScalarProperty Name="RestServerPort" ColumnName="RestServerPort" />
                 <ScalarProperty Name="RestServerAdresse" ColumnName="RestServerAdresse" />
                 <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
@@ -1776,7 +1779,7 @@
           <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.67185546875001" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="4" PointY="5.5" Height="3.9033007812500102" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="13.375" PointY="5.75" Height="4.0956022135416674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -600,7 +600,7 @@
                            Content="Import/Export-IP" />
                     <Label x:Name="label10"
                            Height="28"
-                           Margin="10,78,0,0"
+                           Margin="10,131,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Export-Pfad" />
@@ -619,7 +619,7 @@
                     <TextBox x:Name="tb_exportpath"
                              Width="236"
                              Height="23"
-                             Margin="128,80,0,0"
+                             Margin="128,133,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top" />
                     <Button x:Name="cmdGetDirPdf"
@@ -633,34 +633,34 @@
                     <Button x:Name="cmdGetDirExport"
                             Width="27.8"
                             Height="23"
-                            Margin="371,79,0,0"
+                            Margin="371,132,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="cmdGetDirExport_Click"
                             Content="..." />
                     <Label x:Name="label18"
                            Height="28"
-                           Margin="11,107,0,0"
+                           Margin="11,160,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Mischerexport-Pfad" />
                     <TextBox x:Name="tb_mischerexportpfad"
                              Width="236"
                              Height="23"
-                             Margin="129,109,0,0"
+                             Margin="129,162,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top" />
                     <Button x:Name="cmdGetMischerExportPfad"
                             Width="27.8"
                             Height="23"
-                            Margin="371,108,0,0"
+                            Margin="371,161,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="cmdGetMischerExportPfad_Click"
                             Content="..." />
                     <CheckBox x:Name="cb_MischerExport"
                               Height="16"
-                              Margin="405,112,0,0"
+                              Margin="405,165,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               Content="Export aktiv"
@@ -668,58 +668,60 @@
                     <TextBox x:Name="textBox3"
                              Width="81"
                              Height="23"
-                             Margin="606,110,0,0"
+                             Margin="551,66,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding MischerCounterId}" />
                     <Label x:Name="label19"
                            Height="28"
-                           Margin="495,105,0,0"
+                           Margin="440,61,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Mischer-Id-Zähler" />
                     <TextBox x:Name="textBox4"
                              Width="81"
                              Height="23"
-                             Margin="606,83,0,0"
+                             Margin="551,39,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding TaabCounterId}" />
                     <Label x:Name="label20"
                            Height="28"
-                           Margin="495,81,0,0"
+                           Margin="440,37,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="TAAB-Id-Zähler" />
                     <Label x:Name="label21"
                            Height="28"
-                           Margin="405,10,0,0"
+                           Margin="496,11,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="PDF-Typ" />
                     <TextBox x:Name="textBox5"
                            ToolTip=" 1 = List u. Label, 2 = StepOver mit Signpad" Height="23"
-                             Margin="460,13,353,0" VerticalAlignment="Top"
+                             Margin="551,14,262,0" VerticalAlignment="Top"
                              Text="{Binding PdfCreator}" />
                     <CheckBox x:Name="cbPdfaktiv"
                               Width="150"
                               Height="16"
-                              Margin="492,16,0,0"
+                              Margin="583,17,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               Checked="checkBox1_Checked"
                               Content="Pdf-Export Aktiv" />
                     <Label x:Name="label9_Copy"
                     	Height="28"
-                    	Margin="0,45,235,0"
+                    	Margin="9,74,0,0"
                     	VerticalAlignment="Top"
-                    	Content="Import/Export-Port" HorizontalAlignment="Right" />
+                    	Content="Import/Export-Port" HorizontalAlignment="Left" />
                     <TextBox x:Name="tb_importPort"
                     	Width="81"
                     	Height="23"
-                    	Margin="606,47,0,0"
+                    	Margin="128,76,0,0"
                     	HorizontalAlignment="Left"
                     	VerticalAlignment="Top" Text="{Binding RestServerPort}" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="127,105,0,0" Name="textBox8" VerticalAlignment="Top" Width="81" Text="{Binding RestLocation}" />
+                    <Label Content="Import-Location Id" Height="28" HorizontalAlignment="Left" Margin="10,100,0,0" Name="label17" VerticalAlignment="Top" />
                 </Grid>
             </TabItem>
         </TabControl>
