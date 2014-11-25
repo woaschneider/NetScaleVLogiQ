@@ -65,7 +65,13 @@ namespace NetScalePolosIO.Export
 
             #region Details
 
-            //oWEx.orderItems.orderItemServices.sequence = boWE.sequence;
+            oWEx.orderItems = new List<OrderItem>();
+            oWEx.orderItems.Add(new OrderItem());
+            
+            oWEx.orderItems[0].orderItemServices = new List<OrderItemService>();
+            oWEx.orderItems[0].orderItemServices.Add(new OrderItemService());
+
+            oWEx.orderItems[0].orderItemServices.s = boWE.sequence;
             //oWEx.orderItems.orderItemServices.
             #endregion
 
