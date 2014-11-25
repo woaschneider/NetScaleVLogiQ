@@ -212,7 +212,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdImport_Click(object sender, RoutedEventArgs e)
         {
-            new ImportPolos().Import();
+            new ImportExportPolos().Import();
         }
 
         private void cmdArtikel_Click(object sender, RoutedEventArgs e)
@@ -738,7 +738,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         #endregion
 
-        #region  Neu / Wiegen / Save / Cancel
+        #region  Neu / Wiegen / Save / Cancel / Export
 
         private void NewWaege()
         {
@@ -853,7 +853,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
                     //  PrintLs();
-
+                    Export2Json(_boWe);
                     if (netScaleView1.oWF != null)
                         netScaleView1.oWF.SetGreenLight();
                     Wiegestatus = 0;
@@ -928,6 +928,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         else
                         {
                             //  PrintLs();
+                            Export2Json(_boWe);
                         }
                 }
                 catch (Exception ex)
@@ -974,6 +975,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 _boW.CancelEntity(_boWe);
                 Wiegestatus = 0;
             }
+        }
+        private void Export2Json(WaegeEntity we)
+        {
+            new ImportExportPolos().Export(we);
         }
 
         #endregion

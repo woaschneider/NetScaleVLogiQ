@@ -4,11 +4,12 @@ using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
 using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
+using NetScalePolosIO.Export;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO
 {
-    public class ImportPolos : IImportInterface
+    public class ImportExportPolos : IImportInterface
     {
         private string AktFileName;
         private string Path = "";
@@ -93,7 +94,7 @@ namespace HWB.NETSCALE.POLOSIO
 
 
         }
-        private int GetLocationId()
+        private int  GetLocationId()
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEE = boE.GetEinstellungen();
@@ -137,5 +138,36 @@ namespace HWB.NETSCALE.POLOSIO
 
             return oBE.IMPORT_PATH;
         }
+        private string GetExportPath()
+        {
+            var oBE = new Lokaleeinstellungen();
+            oBE = oBE.Load();
+            if (oBE.EXPORT_PATH == null)
+            {
+                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Exportpfades!",
+                                "Warnung: Import nicht möglich!");
+
+                return "";
+            }
+            oBE.Load();
+            if (oBE.EXPORT_PATH == "")
+            {
+                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Exportpfades!",
+                                "Warnung: Import nicht möglich!");
+
+                return "";
+            }
+            return oBE.EXPORT_PATH;
+
+        }
+
+
+        public void Export(WaegeEntity boWE)
+        {
+            string exportPath = GetExportPath();
+            new ExportWaegung().ExportLS(exportPath,boWE);
+ 
+        }
+
     }
 }
