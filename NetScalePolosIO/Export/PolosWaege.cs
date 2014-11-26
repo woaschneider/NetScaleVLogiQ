@@ -275,7 +275,7 @@ namespace NetScalePolosIO.Export
 
     public class Country
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string isoCode { get; set; }
     }
 
@@ -290,7 +290,7 @@ namespace NetScalePolosIO.Export
 
     public class SupplierOrConsignee
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string businessIdentifier { get; set; }
         public string name { get; set; }
         public string owningLocationId { get; set; }
@@ -307,7 +307,7 @@ namespace NetScalePolosIO.Export
     {
         public string identifier { get; set; }
         public string remark { get; set; }
-        public int sequence { get; set; }
+        public int? sequence { get; set; }
         public ArticleInstance articleInstance { get; set; }
         public string state { get; set; }
         public SupplierOrConsignee supplierOrConsignee { get; set; }
@@ -316,14 +316,14 @@ namespace NetScalePolosIO.Export
         public string actualBeginDate { get; set; }
         public string actualEndDate { get; set; }
         public Service service { get; set; }
-        public int targetAmount { get; set; }
+        public int? targetAmount { get; set; }
         public int actualAmount { get; set; }
         public string deliveryType { get; set; }
     }
 
     public class Product
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string description { get; set; }
     }
 
@@ -389,6 +389,7 @@ namespace NetScalePolosIO.Export
 
     public class RootObject
     {
+        public Waegung waegung { get; set; }
         public List<OrderItem> orderItems { get; set; }
         public string id { get; set; }
         public string number { get; set; }
@@ -398,5 +399,38 @@ namespace NetScalePolosIO.Export
         public InvoiceReceiver invoiceReceiver { get; set; }
         public string locationId { get; set; }
         public string date { get; set; }
+    }
+
+
+
+    public class Waegung
+    {
+        public int weight_nr_1 { get; set; }
+        public string scale_1 { get; set; }
+        public int weight_nr_2 { get; set; }
+        public string scale_2 { get; set; }
+        public string delivery_note { get; set; }
+        public string weight_note { get; set; }
+        public string vehicle_in { get; set; }
+        public string freight_carrier_in { get; set; }
+        public string vehicle_out { get; set; }
+        public string freight_carrier_out { get; set; }
+        public string origin_store_area { get; set; }
+        public string destination_storage_area { get; set; }
+
+        //Erstgewicht
+        public decimal tara_weight { get; set; }
+        //Zweitgewicht
+        public decimal gros_weight { get; set; }
+        // Nettogewicht 
+        public decimal net_weight { get; set; }
+        // Istmenge ZMEI
+        public decimal amount_aqu1 { get; set; }
+        // Arbeitsbeginn
+        public DateTime working_start { get; set; }
+        // Arbeitsende
+        public DateTime working_end { get; set; }
+        // Stornokennzeichen
+        public bool delete_flag { get; set; }
     }
 }
