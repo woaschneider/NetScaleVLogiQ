@@ -88,9 +88,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void txtAU_TextChanged(object sender, TextChangedEventArgs e)
         {
             dataGridOrderItems.SelectedValuePath = "PK";
-          dataGridOrderItems.ItemsSource= boOI.GetByAU_RE_MatchCode(txtAU.Text,
-                                                                              txtRE.Text);
+          dataGridOrderItems.ItemsSource= boOI.GetByAU_RE_KR_MatchCode(txtAU.Text,
+                                                                              txtRE.Text,txtKundenReferenz.Text);
         
+        }
+
+        private void txtKundenReferenz_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataGridOrderItems.SelectedValuePath = "PK";
+            dataGridOrderItems.ItemsSource = boOI.GetByAU_RE_KR_MatchCode(txtAU.Text,
+                                                                                txtRE.Text, txtKundenReferenz.Text);
+        }
+
+        private void txtRE_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataGridOrderItems.SelectedValuePath = "PK";
+            dataGridOrderItems.ItemsSource = boOI.GetByAU_RE_KR_MatchCode(txtAU.Text,
+                                                                                txtRE.Text, txtKundenReferenz.Text);
         }
     }
 }

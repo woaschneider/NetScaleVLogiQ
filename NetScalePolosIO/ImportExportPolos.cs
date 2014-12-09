@@ -1,10 +1,12 @@
-﻿using HWB.NETSCALE.BOEF;
+﻿using System.ComponentModel;
+using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.ArticleAttributes;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
 using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
 using NetScalePolosIO.Export;
+using NetScalePolosIO.Import.AddressImport;
 using Xceed.Wpf.Toolkit;
 
 namespace HWB.NETSCALE.POLOSIO
@@ -33,18 +35,32 @@ namespace HWB.NETSCALE.POLOSIO
             }
 
       
-       //    new ImportAddress().Import(uri); // OK
-      //     new ImportKindsOfGoods().Import(uri);// OK
-       //    new ImportArticle().Import(uri);// OK
-        //   new ImportProducts().Import(uri); // OK
-       //    new ImportArticleAttributes().Import(uri);
-       //    new ImportStorageArea().Import(uri);
-
-            new ImportAuftraege().Import(uri,GetLocationId());
-            Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
+          ExceImportThread(uri);
+         //   Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 
-      
+        private void ExceImportThread(string uri)
+        {   BackgroundWorker bw = new BackgroundWorker();
+         bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+         
+   //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+   //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+     //   bw.WorkerReportsProgress = true;
+             bw.RunWorkerAsync(uri);
+         
+        }
+        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            new ImportAddress().Import(e.Argument.ToString()); // OK
+            new ImportKindsOfGoods().Import(e.Argument.ToString());// OK
+            new ImportArticle().Import(e.Argument.ToString());// OK
+            new ImportProducts().Import(e.Argument.ToString()); // OK
+            new ImportArticleAttributes().Import(e.Argument.ToString());
+            new ImportStorageArea().Import(e.Argument.ToString());
+
+            new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId());
+        }
+
 
         private string GetImportServerIp()
         {

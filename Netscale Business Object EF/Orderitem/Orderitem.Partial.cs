@@ -77,6 +77,20 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
+        public mmBindingList<OrderitemEntity> GetByAU_RE_KR_MatchCode(string customerBi,
+                                                                                 string invoiceReceiverBi, string kundenreferenz
+                                                                                 )
+        {
+            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
+                                                where
+                                                o.customerBusinessIdentifier.Contains(customerBi) &&
+                                                o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi)&&
+                                               o.reference.Contains(kundenreferenz)
+                                                orderby o.customerBusinessIdentifier
+                                                select o;
+            return GetEntityList(query);
+        }
+
         public mmBindingList<OrderitemEntity> GetAll()
         {
             IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities

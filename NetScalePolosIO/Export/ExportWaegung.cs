@@ -19,6 +19,8 @@ namespace NetScalePolosIO.Export
             oWEx.orderItems = new List<OrderItem>();
             oWEx.orderItems.Add(new OrderItem());
             oWEx.orderItems[0].product = new Product();
+            oWEx.waegung = new Waegung();
+
 
             oWEx.orderItems[0].orderItemServices = new List<OrderItemService>();
             oWEx.orderItems[0].orderItemServices.Add(new OrderItemService());
@@ -120,6 +122,35 @@ namespace NetScalePolosIO.Export
             // Produkt
             oWEx.orderItems[0].product.id = boWE.product;
             oWEx.orderItems[0].product.description = boWE.productdescription;
+
+            #endregion 
+
+            #region Waegung
+
+            oWEx.waegung.weight_nr_1 = Convert.ToInt32( boWE.LN1);
+            oWEx.waegung.scale_1 = "1";
+            oWEx.waegung.weight_nr_2 = Convert.ToInt32(boWE.LN2);
+            oWEx.waegung.delivery_note = boWE.LieferscheinNr;
+            oWEx.waegung.weight_note = boWE.LieferscheinNr;
+            // TODO A / E
+            oWEx.waegung.vehicle_in = boWE.KfzKennzeichen;
+            oWEx.waegung.vehicle_out = boWE.KfzKennzeichen;
+            oWEx.waegung.freight_carrier_in = boWE.ffBusinessIdentifier;
+            oWEx.waegung.freight_carrier_out = boWE.ffBusinessIdentifier;
+            oWEx.waegung.origin_store_area = boWE.IstQuellLagerPlatz;
+            oWEx.waegung.destination_storage_area = boWE.IstZielLagerPlatz;
+
+            oWEx.waegung.tara_weight = boWE.Erstgewicht;
+            oWEx.waegung.gros_weight = boWE.Zweitgewicht;
+            oWEx.waegung.net_weight = boWE.Nettogewicht;
+
+            // TODO: was muss da hin
+            oWEx.waegung.amount_aqu1 = boWE.targedAmount;
+            oWEx.waegung.working_start = boWE.ErstDatetime;
+            oWEx.waegung.working_end = boWE.zweitDateTime;
+            oWEx.waegung.delete_flag = false; // <-----------------
+
+            
 
             #endregion
 

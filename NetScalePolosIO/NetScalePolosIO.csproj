@@ -90,7 +90,7 @@
     <Compile Include="Import\AuftragsImport\ImportAuftraege.cs" />
     <Compile Include="Import\AuftragsImport\PolosAuftrag.cs" />
     <Compile Include="Import\IImportInterface.cs" />
-    <Compile Include="Import\ImportExportPolos.cs" />
+    <Compile Include="ImportExportPolos.cs" />
     <Compile Include="Import\JsonHelpers.cs" />
     <Compile Include="Import\KindOfGoodsImport\ImportKindsOfGoods.cs" />
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
@@ -129,9 +129,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Import\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetScale", "NetScale\NetSca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetScalePolosIO", "NetScalePolosIO\NetScalePolosIO.csproj", "{BEFF5E7F-BE23-492B-8E7C-411A77747D9B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D7D81DF7-2B2B-4CF2-9C34-1814C2CAE109}"
-EndProject
 Global
 	GlobalSection(MercurialSourceControlSolutionProperties) = preSolution
 		SolutionIsControlled = True

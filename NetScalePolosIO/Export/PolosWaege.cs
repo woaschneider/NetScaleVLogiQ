@@ -419,17 +419,17 @@ namespace NetScalePolosIO.Export
         public string destination_storage_area { get; set; }
 
         //Erstgewicht
-        public decimal tara_weight { get; set; }
+        public decimal? tara_weight { get; set; }
         //Zweitgewicht
-        public decimal gros_weight { get; set; }
+        public decimal? gros_weight { get; set; }
         // Nettogewicht 
-        public decimal net_weight { get; set; }
+        public decimal? net_weight { get; set; }
         // Istmenge ZMEI
-        public decimal amount_aqu1 { get; set; }
+        public decimal? amount_aqu1 { get; set; }
         // Arbeitsbeginn
-        public DateTime working_start { get; set; }
+        public DateTime? working_start { get; set; }
         // Arbeitsende
-        public DateTime working_end { get; set; }
+        public DateTime? working_end { get; set; }
         // Stornokennzeichen
         public bool delete_flag { get; set; }
     }

@@ -14,7 +14,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using combit.ListLabel17;
+using combit.ListLabel20;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;
@@ -22,7 +22,7 @@ using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 using MessageBox = System.Windows.MessageBox;
-using ObjectDataProvider = combit.ListLabel17.DataProviders.ObjectDataProvider;
+using ObjectDataProvider = combit.ListLabel20.DataProviders.ObjectDataProvider;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 {
@@ -309,8 +309,50 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void cmdEditLS_Click(object sender, RoutedEventArgs e)
         {
            
+              ListLabel LL = new ListLabel();
+              LL.LicensingInfo = "9yJKEQ";
+            Waege boW = new Waege();
+           int  uRet=
+            boW.GetLastWaegung();
+           combit.ListLabel20.DataProviders.ObjectDataProvider oDP = boW.GetWaegungOdpbyPk(uRet);
 
-            //     ExportConfiguration exportConfig = new ExportConfiguration(LlExportTarget.Pdf, , "<Projektdateiname mit Pfad>");
+            LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
+            LL.Variables.Add("Original_Kopie", "Original");
+
+            //// Unterschriftendatei
+            //User boU = new User();
+            //int Wpk = boW.GetLastWaegung();
+            //UserEntity boUE;
+            //WaegeEntity boWE = null;
+
+            //if (Wpk != null)
+            //    boWE = boW.GetWaegungByID(Wpk);
+
+            //if (boWE.UserPK != null)
+            //{
+            //    boUE = boU.GetUserById(boWE.UserPK);
+
+            //    if (boUE != null)
+            //    {
+            //        LL.Variables.AddFromObject(boUE);
+            //    }
+            //}
+            //// Unterschrift Ende
+
+
+            LL.DataSource = oDP;
+
+
+            LL.AutoProjectType = LlProject.Label;
+            try
+            {
+                LL.Design();
+            }
+            catch (ListLabelException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+    
         }
 
 
