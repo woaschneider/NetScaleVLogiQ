@@ -24,13 +24,14 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
         private HWB.NETSCALE.BOEF.OrderArticleAttribute boOAA;
         private HWB.NETSCALE.BOEF.OrderArticleAttributeEntity boOAAE;
 
-
+        private int totalresult;
         public bool Import(string baseUrl, int location)
         {
             var client = new RestClient(baseUrl);
             client.ClearHandlers();
             client.AddHandler("application/json", new JsonDeserializer());
-
+            TODO:
+          //  var request = new RestRequest("/rest/order/query/200/1?status=NEW");
             var request = new RestRequest("/rest/order/query/200/1");
             request.Method = Method.GET;
             request.AddHeader("X-location-Id", location.ToString());
@@ -43,7 +44,34 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 
             var oOI = JsonConvert.DeserializeObject<RootObject>(response.Content);
 
+            totalresult = oOI.totalResults;
+            int nPage = 0;
+        
+            if( totalresult % 200==0)
+            {
+                nPage = totalresult/ 200; 
+            }
+            else
+            {
+                nPage = (int) (totalresult/200)+1;
+            }
 
+            for (int ii = 1; ii <= nPage; ii++)
+            {
+
+                request = new RestRequest("/rest/order/query/200/" + ii.ToString());
+                request.Method = Method.GET;
+                request.AddHeader("X-location-Id", location.ToString());
+
+
+                 response = client.Execute(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return false;
+                x = response.Content; // Nur für Testzwecke
+
+                oOI = JsonConvert.DeserializeObject<RootObject>(response.Content);
+
+                //***********************************************************************
             foreach (OrderEntity obj in oOI.orders)
             {
                 #region Fertige Aufträge löschen
@@ -323,7 +351,8 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
                // }
             }
 
-           
+            }
+
 
             return true;
         }

@@ -7,7 +7,7 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
-                        Title="BusinessWindow"
+                        Title="Aufträge"
                         Width="1090"
                         Height="714"
                         AllowsTransparency="False"
@@ -70,11 +70,11 @@
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Mode=OneWay}"
                   SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGridOrderItems_SelectionChanged">
+                  SelectionChanged="dataGridOrderItems_SelectionChanged" Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Nummer" />
-                <DataGridTextColumn Binding="{Binding date}" Header="Datum" />
+                <DataGridTextColumn Binding="{Binding date}"  Header="Datum" />
                 <DataGridTextColumn Binding="{Binding reference}" Header="Referenz" />
                 <DataGridTextColumn Binding="{Binding orderstate}" Header="Orderstatus" />
                 <DataGridTextColumn Binding="{Binding customerBusinessIdentifier}" Header="Auftraggeber" />
@@ -88,7 +88,7 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Mode=OneWay}">
+                  ItemsSource="{Binding Mode=OneWay}" Style="{DynamicResource DataGridStyle}">
             <DataGrid.DataContext>
                 <HWB_NETSCALE_BOEF:OrderItemserviceEntity />
             </DataGrid.DataContext>

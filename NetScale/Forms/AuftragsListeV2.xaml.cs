@@ -1,10 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
@@ -47,6 +49,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             DataContext = boOI.GetAll();
             dataGridOrderItems.SelectedValuePath = "PK";
             dataGridOrderItemService.SelectedValuePath = "PK";
+            this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
