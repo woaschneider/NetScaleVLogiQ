@@ -288,9 +288,6 @@
       <DependentUpon>WiegeFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Forms\WiegelisteFrm.xaml.cs">
-      <DependentUpon>WiegelisteFrm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="HardwareInfo.cs" />
     <Compile Include="Forms\InfoFrm.xaml.cs">
       <DependentUpon>InfoFrm.xaml</DependentUpon>
@@ -429,10 +426,6 @@
     <Page Include="Forms\WiegeFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\WiegelisteFrm.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="LanguageWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
