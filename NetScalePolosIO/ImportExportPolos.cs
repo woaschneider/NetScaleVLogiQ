@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.POLOSIO;
 using HWB.NETSCALE.POLOSIO.ArticleAttributes;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
@@ -7,15 +8,18 @@ using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
 using NetScalePolosIO.Export;
 using NetScalePolosIO.Import.AddressImport;
+using NetScalePolosIO.Import.ArticleAttributesImport;
+using NetScalePolosIO.Import.ArticleImport;
+using NetScalePolosIO.Import.AuftragsImport;
+using NetScalePolosIO.Import.KindOfGoodsImport;
+using NetScalePolosIO.Import.LagerPlaetzeImport;
+using NetScalePolosIO.Import.ProductsImport;
 using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.POLOSIO
+namespace NetScalePolosIO
 {
     public class ImportExportPolos : IImportInterface
     {
-        private string AktFileName;
-        private string Path = "";
-
         // Constructor
 
         public void Import()
@@ -26,22 +30,18 @@ namespace HWB.NETSCALE.POLOSIO
           
             if (uri == "")
             {
-                Xceed.Wpf.Toolkit.MessageBox.Show("Keine Import-URI in den Einstellungen");                                           
+                MessageBox.Show("Keine Import-URI in den Einstellungen");                                           
                 return;
             }
-            else
-            {
-                
-            }
 
-      
-          ExceImportThread(uri);
+
+            ExceImportThread(uri);
          //   Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
         }
 
         private void ExceImportThread(string uri)
         {   BackgroundWorker bw = new BackgroundWorker();
-         bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+         bw.DoWork += BwDoWork;
          
    //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
    //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
@@ -49,7 +49,7 @@ namespace HWB.NETSCALE.POLOSIO
              bw.RunWorkerAsync(uri);
          
         }
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void BwDoWork(object sender, DoWorkEventArgs e)
         {
             new ImportAddress().Import(e.Argument.ToString()); // OK
             new ImportKindsOfGoods().Import(e.Argument.ToString());// OK
@@ -65,123 +65,76 @@ namespace HWB.NETSCALE.POLOSIO
         private string GetImportServerIp()
         {
             Einstellungen boE = new Einstellungen();
-            EinstellungenEntity boEE = boE.GetEinstellungen();
-            if(boEE!=null)
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if(boEe!=null)
             {
-                string RestIp = boEE.RestServerAdresse;
-              if (RestIp!=null)
+                string restIp = boEe.RestServerAdresse;
+              if (restIp!=null)
               {
-                  return RestIp;
+                  return restIp;
               }
-              else
-              {
-                  return "";
-              }
-            }
-            else
-            {
                 return "";
             }
-
-           
-
+            return "";
         }
         private string GetImportPort()
         {
             Einstellungen boE = new Einstellungen();
-            EinstellungenEntity boEE = boE.GetEinstellungen();
-            if (boEE != null)
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if (boEe != null)
             {
-                string port= boEE.RestServerPort;
+                string port= boEe.RestServerPort;
                 if (port != null)
                 {
                     return port;
                 }
-                else
-                {
-                    return "";
-                }
-            }
-            else
-            {
                 return "";
             }
-
-
-
+            return "";
         }
         private int  GetLocationId()
         {
             Einstellungen boE = new Einstellungen();
-            EinstellungenEntity boEE = boE.GetEinstellungen();
-            if (boEE != null)
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if (boEe != null)
             {
-                int locationId = (int) boEE.RestLocation;
-                if (locationId != null)
+                if (boEe.RestLocation != null)
                 {
+                    int locationId = (int) boEe.RestLocation;
                     return locationId;
                 }
-                else
-                {
-                    return 0;
-                }
             }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
 
-        private string GetImportPath()
-        {
-            var oBE = new Lokaleeinstellungen();
-            oBE = oBE.Load();
-            if (oBE.IMPORT_PATH == null)
-            {
-                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Importpfades!",
-                                "Warnung: Import nicht möglich!");
-
-                return "";
-            }
-            oBE.Load();
-            if (oBE.IMPORT_PATH == "")
-            {
-                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Importpfades!",
-                                "Warnung: Import nicht möglich!");
-
-                return "";
-            }
-
-            return oBE.IMPORT_PATH;
-        }
         private string GetExportPath()
         {
-            var oBE = new Lokaleeinstellungen();
-            oBE = oBE.Load();
-            if (oBE.EXPORT_PATH == null)
+            var oBe = new Lokaleeinstellungen();
+            oBe = oBe.Load();
+            if (oBe.EXPORT_PATH == null)
             {
                 MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Exportpfades!",
                                 "Warnung: Import nicht möglich!");
 
                 return "";
             }
-            oBE.Load();
-            if (oBE.EXPORT_PATH == "")
+            oBe.Load();
+            if (oBe.EXPORT_PATH == "")
             {
                 MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Exportpfades!",
                                 "Warnung: Import nicht möglich!");
 
                 return "";
             }
-            return oBE.EXPORT_PATH;
+            return oBe.EXPORT_PATH;
 
         }
 
 
-        public void Export(WaegeEntity boWE)
+        public void Export(WaegeEntity boWe)
         {
             string exportPath = GetExportPath();
-            new ExportWaegung().ExportLS(exportPath,boWE);
+            new ExportWaegung().ExportLs(exportPath,boWe);
  
         }
 

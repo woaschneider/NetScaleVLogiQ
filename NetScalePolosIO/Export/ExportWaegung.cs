@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
 
@@ -9,10 +9,10 @@ namespace NetScalePolosIO.Export
 {
     public class ExportWaegung
     {
-        public void ExportLS(string exportPath,WaegeEntity boWE)
+        public void ExportLs(string exportPath,WaegeEntity boWe)
         {
-             Einstellungen boE = new Einstellungen();
-             EinstellungenEntity boEE = boE.GetEinstellungen();
+          //   Einstellungen boE = new Einstellungen();
+         //    boE.GetEinstellungen();
 
             #region JSON-Polos Struktur aufbauen
             NetScalePolosIO.Export.RootObject oWEx = new RootObject();
@@ -33,67 +33,67 @@ namespace NetScalePolosIO.Export
             oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.country = new Country();
             #endregion 
 
-            oWEx.id = boWE.id;
-            oWEx.locationId = boWE.locationId;
-            oWEx.number = boWE.number;
+            oWEx.id = boWe.id;
+            oWEx.locationId = boWe.locationId;
+            oWEx.number = boWe.number;
 
             #region  Adressen Customer / Invoicereceiver
             #region Customer
 
             oWEx.customer = new Customer();
-            oWEx.customer.businessIdentifier = boWE.customerBusinessIdentifier;
-            oWEx.customer.id = boWE.customerId;
-            oWEx.customer.name = boWE.customerName;
-            oWEx.customer.subName = boWE.customerSubName2;
-            oWEx.customer.owningLocationId = boWE.customerOwningLocationId;
+            oWEx.customer.businessIdentifier = boWe.customerBusinessIdentifier;
+            oWEx.customer.id = boWe.customerId;
+            oWEx.customer.name = boWe.customerName;
+            oWEx.customer.subName = boWe.customerSubName2;
+            oWEx.customer.owningLocationId = boWe.customerOwningLocationId;
            
 
             oWEx.customer.address = new Address2();
-            oWEx.customer.address.zipCode = boWE.customerZipCode;
-            oWEx.customer.address.city = boWE.customerCity;
-            oWEx.customer.address.street = boWE.customerStreet;
+            oWEx.customer.address.zipCode = boWe.customerZipCode;
+            oWEx.customer.address.city = boWe.customerCity;
+            oWEx.customer.address.street = boWe.customerStreet;
             
             oWEx.customer.address.country = new Country2();
-            oWEx.customer.address.country.id = boWE.customerIdCountry;
-            oWEx.customer.address.country.isoCode = boWE.customerIsocodeCountry;
+            oWEx.customer.address.country.id = boWe.customerIdCountry;
+            oWEx.customer.address.country.isoCode = boWe.customerIsocodeCountry;
             #endregion
             #region InvoiceReceiver
 
             oWEx.invoiceReceiver = new InvoiceReceiver();
-            oWEx.invoiceReceiver.businessIdentifier = boWE.invoiceReceicerBusinessIdentifier;
-            oWEx.invoiceReceiver.id = boWE.invoiceReceiverId;
-            oWEx.invoiceReceiver.name = boWE.invoiceReceiverName;
-            oWEx.invoiceReceiver.subName = boWE.invoiceReceiverSubName2;
-            oWEx.invoiceReceiver.owningLocationId = boWE.invoiceReceiverOwningLocationId;
+            oWEx.invoiceReceiver.businessIdentifier = boWe.invoiceReceicerBusinessIdentifier;
+            oWEx.invoiceReceiver.id = boWe.invoiceReceiverId;
+            oWEx.invoiceReceiver.name = boWe.invoiceReceiverName;
+            oWEx.invoiceReceiver.subName = boWe.invoiceReceiverSubName2;
+            oWEx.invoiceReceiver.owningLocationId = boWe.invoiceReceiverOwningLocationId;
 
             oWEx.invoiceReceiver.address = new Address3();
-            oWEx.invoiceReceiver.address.zipCode = boWE.invoiceReceiverZipCode;
-            oWEx.invoiceReceiver.address.city = boWE.invoiceReceiverCity;
-            oWEx.invoiceReceiver.address.street = boWE.invoiceReceiverStreet;
+            oWEx.invoiceReceiver.address.zipCode = boWe.invoiceReceiverZipCode;
+            oWEx.invoiceReceiver.address.city = boWe.invoiceReceiverCity;
+            oWEx.invoiceReceiver.address.street = boWe.invoiceReceiverStreet;
 
             oWEx.invoiceReceiver.address.country = new Country3();
-            oWEx.invoiceReceiver.address.country.id = boWE.invoiceReceiverIdCountry;
-            oWEx.invoiceReceiver.address.country.isoCode = boWE.invoiceReceiverIsocodeCountry;
+            oWEx.invoiceReceiver.address.country.id = boWe.invoiceReceiverIdCountry;
+            oWEx.invoiceReceiver.address.country.isoCode = boWe.invoiceReceiverIsocodeCountry;
 
             #endregion
             #region SupplierOrConsignee
 
-            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.businessIdentifier = boWE.supplierOrConsigneeBusinessIdentifier;
-            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.id = boWE.supplierOrConsigneeId;
-            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.name = boWE.supplierOrConsigneeName;
-            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.subName = boWE.invoiceReceiverSubName2;
+            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.businessIdentifier = boWe.supplierOrConsigneeBusinessIdentifier;
+            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.id = boWe.supplierOrConsigneeId;
+            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.name = boWe.supplierOrConsigneeName;
+            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.subName = boWe.invoiceReceiverSubName2;
             oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.owningLocationId =
-                boWE.supplierOrConsigneeOwningLocationId;
+                boWe.supplierOrConsigneeOwningLocationId;
 
             oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.zipCode =
-                boWE.supplierOrConsigneeZipCode;
-            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.city = boWE.supplierOrConsigneeCity;
-            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.street = boWE.supplierOrConsigneeStreet;
+                boWe.supplierOrConsigneeZipCode;
+            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.city = boWe.supplierOrConsigneeCity;
+            oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.street = boWe.supplierOrConsigneeStreet;
 
             oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.country.id =
-                boWE.supplierOrConsigneeIdCountry;
+                boWe.supplierOrConsigneeIdCountry;
             oWEx.orderItems[0].orderItemServices[0].supplierOrConsignee.address.country.isoCode =
-                boWE.supplierOrConsigneeIsocodeCountry;
+                boWe.supplierOrConsigneeIsocodeCountry;
 
             #endregion
 
@@ -105,7 +105,7 @@ namespace NetScalePolosIO.Export
 
             // Orderitems
             oWEx.orderItems[0].orderItemServices[0].identifier = "N/A";
-            oWEx.orderItems[0].orderItemServices[0].remark = boWE.remark;
+            oWEx.orderItems[0].orderItemServices[0].remark = boWe.remark;
             oWEx.orderItems[0].orderItemServices[0].state = null;
             oWEx.orderItems[0].orderItemServices[0].plannedBeginDate = null;
             oWEx.orderItems[0].orderItemServices[0].plannedEndDate = null;
@@ -113,41 +113,41 @@ namespace NetScalePolosIO.Export
             oWEx.orderItems[0].orderItemServices[0].actualEndDate = null;
             oWEx.orderItems[0].orderItemServices[0].targetAmount = 0;
             oWEx.orderItems[0].orderItemServices[0].actualAmount = 0;
-            oWEx.orderItems[0].orderItemServices[0].deliveryType = boWE.deliveryType;
+            oWEx.orderItems[0].orderItemServices[0].deliveryType = boWe.deliveryType;
 
 
-            oWEx.orderItems[0].orderItemServices[0].sequence = boWE.sequence;
+            oWEx.orderItems[0].orderItemServices[0].sequence = boWe.sequence;
             
             
             // Produkt
-            oWEx.orderItems[0].product.id = boWE.product;
-            oWEx.orderItems[0].product.description = boWE.productdescription;
+            oWEx.orderItems[0].product.id = boWe.product;
+            oWEx.orderItems[0].product.description = boWe.productdescription;
 
             #endregion 
 
             #region Waegung
 
-            oWEx.waegung.weight_nr_1 = Convert.ToInt32( boWE.LN1);
+            oWEx.waegung.weight_nr_1 = Convert.ToInt32( boWe.LN1);
             oWEx.waegung.scale_1 = "1";
-            oWEx.waegung.weight_nr_2 = Convert.ToInt32(boWE.LN2);
-            oWEx.waegung.delivery_note = boWE.LieferscheinNr;
-            oWEx.waegung.weight_note = boWE.LieferscheinNr;
-            // TODO A / E
-            oWEx.waegung.vehicle_in = boWE.KfzKennzeichen;
-            oWEx.waegung.vehicle_out = boWE.KfzKennzeichen;
-            oWEx.waegung.freight_carrier_in = boWE.ffBusinessIdentifier;
-            oWEx.waegung.freight_carrier_out = boWE.ffBusinessIdentifier;
-            oWEx.waegung.origin_store_area = boWE.IstQuellLagerPlatz;
-            oWEx.waegung.destination_storage_area = boWE.IstZielLagerPlatz;
+            oWEx.waegung.weight_nr_2 = Convert.ToInt32(boWe.LN2);
+            oWEx.waegung.delivery_note = boWe.LieferscheinNr;
+            oWEx.waegung.weight_note = boWe.LieferscheinNr;
+            // TODO A / E Maybe
+            oWEx.waegung.vehicle_in = boWe.Fahrzeug;
+            oWEx.waegung.vehicle_out = boWe.Fahrzeug;
+            oWEx.waegung.freight_carrier_in = boWe.ffBusinessIdentifier;
+            oWEx.waegung.freight_carrier_out = boWe.ffBusinessIdentifier;
+            oWEx.waegung.origin_store_area = boWe.IstQuellLagerPlatz;
+            oWEx.waegung.destination_storage_area = boWe.IstZielLagerPlatz;
 
-            oWEx.waegung.tara_weight = boWE.Erstgewicht;
-            oWEx.waegung.gros_weight = boWE.Zweitgewicht;
-            oWEx.waegung.net_weight = boWE.Nettogewicht;
+            oWEx.waegung.tara_weight = boWe.Erstgewicht;
+            oWEx.waegung.gros_weight = boWe.Zweitgewicht;
+            oWEx.waegung.net_weight = boWe.Nettogewicht;
 
             // TODO: was muss da hin
-            oWEx.waegung.amount_aqu1 = boWE.targedAmount;
-            oWEx.waegung.working_start = boWE.ErstDatetime;
-            oWEx.waegung.working_end = boWE.zweitDateTime;
+            oWEx.waegung.amount_aqu1 = boWe.targedAmount;
+            oWEx.waegung.working_start = boWe.ErstDatetime;
+            oWEx.waegung.working_end = boWe.zweitDateTime;
             oWEx.waegung.delete_flag = false; // <-----------------
 
             
@@ -156,7 +156,7 @@ namespace NetScalePolosIO.Export
 
             #region Write To Json File
 
-            string FileName = exportPath+"\\W"+boWE.LieferscheinNr.Trim()+".json";
+            string FileName = exportPath+"\\W"+boWe.LieferscheinNr.Trim()+".json";
             JsonHelpers.WriteToJsonFile(oWEx,FileName);
 
             #endregion

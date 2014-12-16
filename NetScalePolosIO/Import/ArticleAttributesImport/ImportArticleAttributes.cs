@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.POLOSIO.ArticleAttributes;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.POLOSIO.ArticleAttributes
+namespace NetScalePolosIO.Import.ArticleAttributesImport
 {
     internal class ImportArticleAttributes
     {
-        private Artikelattribute boA;
-        private ArtikelattributeEntity boAE;
+        private Artikelattribute _boA;
+        private ArtikelattributeEntity _boAe;
 
         public bool Import(string baseUrl)
         {
@@ -29,23 +30,23 @@ namespace HWB.NETSCALE.POLOSIO.ArticleAttributes
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
-                var x = response.Content; // Nur für Testzwecke
+            
 
                 var oA = JsonConvert.DeserializeObject<ArticleAttributesRootObject>(response.Content);
               
 
-                boA = new Artikelattribute();
+                _boA = new Artikelattribute();
                 for (int i = 0; i < oA.articleAttributes.Count; i++)
                 {
-                    boAE = boA.GetArtikelAttributByBezeichnung(oA.articleAttributes[i]);
-                    if (boAE == null)
+                    _boAe = _boA.GetArtikelAttributByBezeichnung(oA.articleAttributes[i]);
+                    if (_boAe == null)
                     {
-                        boAE = boA.NewEntity();
+                        _boAe = _boA.NewEntity();
                     }
-                    if (boAE != null)
+                    if (_boAe != null)
                     {
-                        boAE.AttributName = oA.articleAttributes[i];
-                        boA.SaveEntity(boAE);
+                        _boAe.AttributName = oA.articleAttributes[i];
+                        _boA.SaveEntity(_boAe);
                     }
                 }
             }

@@ -7,12 +7,12 @@ using RestSharp;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.POLOSIO
+namespace NetScalePolosIO.Import.ArticleImport
 {
     internal class ImportArticle
     {
-        private Artikel boA;
-        private ArtikelEntity boAE;
+        private Artikel _boA;
+        private ArtikelEntity _boAe;
 
         public bool Import(string baseUrl)
         {
@@ -31,42 +31,41 @@ namespace HWB.NETSCALE.POLOSIO
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
-                var x = response.Content; // Nur für Testzwecke
+         
 
                 var oA = JsonConvert.DeserializeObject<ArticleRootObject>(response.Content);
 
 
              
 
-                boA = new Artikel();
+                _boA = new Artikel();
 
                 foreach (ArticleInformation obj in oA.articleInformation)
                 {
-                    if (obj.article.id != null)
                     {
-                        boAE = boA.GetById(obj.article.id);
-                        if (boAE == null)
+                        _boAe = _boA.GetById(obj.article.id);
+                        if (_boAe == null)
                         {
-                            boAE = boA.NewEntity();
+                            _boAe = _boA.NewEntity();
                         }
-                        boAE.id = obj.article.id;
-                        boAE.number = obj.article.number;
-                        boAE.ownerId = obj.article.ownerId.ToString();
-                        boAE.kindOfGoodId = obj.article.kindOfGoodId;
-                        boAE.kindOfGoodDescription = obj.article.kindOfGoodDescription;
-                        boAE.locationId = obj.article.ownerId.ToString();
+                        _boAe.id = obj.article.id;
+                        _boAe.number = obj.article.number;
+                        _boAe.ownerId = obj.article.ownerId.ToString();
+                        _boAe.kindOfGoodId = obj.article.kindOfGoodId;
+                        _boAe.kindOfGoodDescription = obj.article.kindOfGoodDescription;
+                        _boAe.locationId = obj.article.ownerId.ToString();
 
 
-                        boAE.baseUnitId = obj.article.baseUnit.id;
-                        boAE.baseUnitShortDescription = obj.article.baseUnit.shortDescription;
-                        boAE.baseUnitDescription = obj.article.baseUnit.description;
+                        _boAe.baseUnitId = obj.article.baseUnit.id;
+                        _boAe.baseUnitShortDescription = obj.article.baseUnit.shortDescription;
+                        _boAe.baseUnitDescription = obj.article.baseUnit.description;
 
                         if (obj.article.conversionUnit != null)
                         {
-                            boAE.conversionUnitId = obj.article.conversionUnit.id;
-                            boAE.conversionUnitDescription = obj.article.conversionUnit.description;
-                            boAE.conversionUnitShortDescription = obj.article.conversionUnit.shortDescription;
-                            boA.SaveEntity(boAE);
+                            _boAe.conversionUnitId = obj.article.conversionUnit.id;
+                            _boAe.conversionUnitDescription = obj.article.conversionUnit.description;
+                            _boAe.conversionUnitShortDescription = obj.article.conversionUnit.shortDescription;
+                            _boA.SaveEntity(_boAe);
                         }
                     }
                 }
