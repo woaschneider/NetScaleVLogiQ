@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.POLOSIO.ProductsImport;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.POLOSIO.ProductsImport
+namespace NetScalePolosIO.Import.ProductsImport
 {
     public class ImportProducts
     {
-        private Produkte boP;
-        private ProdukteEntity boPE;
+        private Produkte _boP;
+        private ProdukteEntity _boPe;
 
         public bool Import(string baseUrl)
         {
@@ -22,36 +23,34 @@ namespace HWB.NETSCALE.POLOSIO.ProductsImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
 
-                var request = new RestRequest("/rest/data/products");
-                request.Method = Method.GET;
+                var request = new RestRequest("/rest/data/products") {Method = Method.GET};
                 request.AddHeader("X-location-Id", "16");
 
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
-                var x = response.Content; // Nur für Testzwecke
+            
 
                 var oP = JsonConvert.DeserializeObject<ProduktRootObject > (response.Content);
 
 
                 
-                boP = new Produkte();
+                _boP = new Produkte();
 
                 foreach (Product obj in oP.products)
                 {
-                    if (obj.id != null)
                     {
-                        boPE = boP.GetById(obj.id);
+                        _boPe = _boP.GetById(obj.id);
                     }
-                    if (boPE == null)
+                    if (_boPe == null)
                     {
-                        boPE = boP.NewEntity();
+                        _boPe = _boP.NewEntity();
                     }
-                    boPE.id = obj.id;
-                    boPE.description = obj.description;
-                    boPE.shortdescirption = obj.description;
-                    boP.SaveEntity(boPE);
+                    _boPe.id = obj.id;
+                    _boPe.description = obj.description;
+                    _boPe.shortdescirption = obj.description;
+                    _boP.SaveEntity(_boPe);
                 }
             }
 

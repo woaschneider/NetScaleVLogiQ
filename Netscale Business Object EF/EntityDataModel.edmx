@@ -422,10 +422,6 @@
           <Property Name="WaagennummerZweit" Type="varchar" MaxLength="22" />
           <Property Name="LieferscheinNr" Type="varchar" MaxLength="64" />
           <Property Name="WiegescheinNr" Type="varchar" MaxLength="64" />
-          <Property Name="FahrzeugEingehend" Type="varchar" MaxLength="64" />
-          <Property Name="FrachtführerName3Eingehend" Type="varchar" MaxLength="64" />
-          <Property Name="FahrzeugAusgehend" Type="varchar" MaxLength="64" />
-          <Property Name="FrachtführerName3Ausgehend" Type="varchar" MaxLength="64" />
           <Property Name="IstQuellLagerPlatz" Type="varchar" MaxLength="22" />
           <Property Name="IstZielLagerPlatz" Type="varchar" MaxLength="22" />
           <Property Name="Erstgewicht" Type="numeric" Precision="10" Scale="3" />
@@ -496,13 +492,10 @@
           <Property Name="clearanceUnitShortDescription" Type="varchar" MaxLength="64" />
           <Property Name="clearanceDescription" Type="varchar" MaxLength="64" />
           <Property Name="articleDescription" Type="varchar" MaxLength="64" />
-          <Property Name="KfzKennzeichen" Type="varchar" MaxLength="64" />
-          <Property Name="KfzId" Type="varchar" MaxLength="10" />
           <Property Name="Waegung" Type="int" />
           <Property Name="zweitDateTime" Type="datetime" />
           <Property Name="AbrechnungsKZ" Type="varchar" MaxLength="2" />
           <Property Name="Fahrzeug" Type="varchar" MaxLength="22" />
-          <Property Name="Frachtführer" Type="varchar" MaxLength="64" />
           <Property Name="Frachtmittel" Type="varchar" MaxLength="64" />
           <Property Name="orign" Type="varchar" MaxLength="128" />
           <Property Name="grade" Type="varchar" MaxLength="128" />
@@ -538,6 +531,7 @@
           <Property Name="ffCity" Type="varchar" MaxLength="128" />
           <Property Name="ffIdCountry" Type="int" />
           <Property Name="ffIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="taab" Type="bit" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -637,8 +631,8 @@
             <End Role="OrderitemEntity" EntitySet="OrderitemEntities" />
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1037,6 +1031,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EinstellungenEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="LSNRGlobal" />
+          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="MaxGewichtValidieren" />
+          <Property Type="Int32" Name="Schwellwertampel" />
+          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
+          <Property Type="Int32" Name="MischerCounterId" />
+          <Property Type="Int32" Name="TaabCounterId" />
+          <Property Type="Boolean" Name="LsAsPdf" />
+          <Property Type="Int32" Name="PdfCreator" />
+          <Property Type="Int32" Name="AP_Id_counter" />
+          <Property Type="Int32" Name="MG_Id_counter" />
+          <Property Type="String" Name="RestServerAdresse" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RestServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RestLocation" />
+        </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1048,10 +1063,6 @@
           <Property Type="String" Name="WaagennummerZweit" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LieferscheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="WiegescheinNr" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FahrzeugEingehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtführerName3Eingehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FahrzeugAusgehend" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="FrachtführerName3Ausgehend" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="IstQuellLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="IstZielLagerPlatz" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="Erstgewicht" Precision="10" Scale="3" />
@@ -1122,13 +1133,10 @@
           <Property Type="String" Name="clearanceUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KfzKennzeichen" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="KfzId" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Waegung" />
           <Property Type="DateTime" Name="zweitDateTime" />
           <Property Type="String" Name="AbrechnungsKZ" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Fahrzeug" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Frachtführer" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Frachtmittel" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="orign" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="grade" MaxLength="128" FixedLength="false" Unicode="false" />
@@ -1164,27 +1172,7 @@
           <Property Type="String" Name="ffCity" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="ffIdCountry" />
           <Property Type="String" Name="ffIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="EinstellungenEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="LSNRGlobal" />
-          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="MaxGewichtValidieren" />
-          <Property Type="Int32" Name="Schwellwertampel" />
-          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
-          <Property Type="Int32" Name="MischerCounterId" />
-          <Property Type="Int32" Name="TaabCounterId" />
-          <Property Type="Boolean" Name="LsAsPdf" />
-          <Property Type="Int32" Name="PdfCreator" />
-          <Property Type="Int32" Name="AP_Id_counter" />
-          <Property Type="Int32" Name="MG_Id_counter" />
-          <Property Type="String" Name="RestServerAdresse" MaxLength="254" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RestServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="RestLocation" />
+          <Property Type="Boolean" Name="taab" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1570,9 +1558,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EinstellungenEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
+              <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="RestLocation" ColumnName="RestLocation" />
+                <ScalarProperty Name="RestServerPort" ColumnName="RestServerPort" />
+                <ScalarProperty Name="RestServerAdresse" ColumnName="RestServerAdresse" />
+                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
+                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
+                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
+                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
+                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
+                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
+                <ScalarProperty Name="Ust" ColumnName="Ust" />
+                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
+                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
+                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
+                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
+                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="taab" ColumnName="taab" />
                 <ScalarProperty Name="ffIsocodeCountry" ColumnName="ffIsocodeCountry" />
                 <ScalarProperty Name="ffIdCountry" ColumnName="ffIdCountry" />
                 <ScalarProperty Name="ffCity" ColumnName="ffCity" />
@@ -1608,13 +1619,10 @@
                 <ScalarProperty Name="grade" ColumnName="grade" />
                 <ScalarProperty Name="orign" ColumnName="orign" />
                 <ScalarProperty Name="Frachtmittel" ColumnName="Frachtmittel" />
-                <ScalarProperty Name="Frachtführer" ColumnName="Frachtführer" />
                 <ScalarProperty Name="Fahrzeug" ColumnName="Fahrzeug" />
                 <ScalarProperty Name="AbrechnungsKZ" ColumnName="AbrechnungsKZ" />
                 <ScalarProperty Name="zweitDateTime" ColumnName="zweitDateTime" />
                 <ScalarProperty Name="Waegung" ColumnName="Waegung" />
-                <ScalarProperty Name="KfzId" ColumnName="KfzId" />
-                <ScalarProperty Name="KfzKennzeichen" ColumnName="KfzKennzeichen" />
                 <ScalarProperty Name="articleDescription" ColumnName="articleDescription" />
                 <ScalarProperty Name="clearanceDescription" ColumnName="clearanceDescription" />
                 <ScalarProperty Name="clearanceUnitShortDescription" ColumnName="clearanceUnitShortDescription" />
@@ -1685,38 +1693,12 @@
                 <ScalarProperty Name="Erstgewicht" ColumnName="Erstgewicht" />
                 <ScalarProperty Name="IstZielLagerPlatz" ColumnName="IstZielLagerPlatz" />
                 <ScalarProperty Name="IstQuellLagerPlatz" ColumnName="IstQuellLagerPlatz" />
-                <ScalarProperty Name="FrachtführerName3Ausgehend" ColumnName="FrachtführerName3Ausgehend" />
-                <ScalarProperty Name="FahrzeugAusgehend" ColumnName="FahrzeugAusgehend" />
-                <ScalarProperty Name="FrachtführerName3Eingehend" ColumnName="FrachtführerName3Eingehend" />
-                <ScalarProperty Name="FahrzeugEingehend" ColumnName="FahrzeugEingehend" />
                 <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
                 <ScalarProperty Name="LieferscheinNr" ColumnName="LieferscheinNr" />
                 <ScalarProperty Name="WaagennummerZweit" ColumnName="WaagennummerZweit" />
                 <ScalarProperty Name="LN2" ColumnName="LN2" />
                 <ScalarProperty Name="WaagenummerErst" ColumnName="WaagenummerErst" />
                 <ScalarProperty Name="LN1" ColumnName="LN1" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EinstellungenEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
-              <MappingFragment StoreEntitySet="Einstellungen">
-                <ScalarProperty Name="RestLocation" ColumnName="RestLocation" />
-                <ScalarProperty Name="RestServerPort" ColumnName="RestServerPort" />
-                <ScalarProperty Name="RestServerAdresse" ColumnName="RestServerAdresse" />
-                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
-                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
-                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
-                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
-                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
-                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
-                <ScalarProperty Name="Ust" ColumnName="Ust" />
-                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
-                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
-                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1778,8 +1760,8 @@
           <edmx:ConnectorPoint PointX="9" PointY="15.764109700520836" />
           <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.67185546875001" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="13.375" PointY="5.75" Height="4.0956022135416674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="23.51804687500001" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
-namespace HWB.NETSCALE.POLOSIO.LagerPlaetzeImport
+namespace NetScalePolosIO.Import.LagerPlaetzeImport
 {
     public class ImportStorageArea
     {
-        private Lagerplaetze boL;
-        private LagerplaetzeEntity boLE;
+        private Lagerplaetze _boL;
+        private LagerplaetzeEntity _boLe;
 
 
         public bool Import(string baseUrl)
@@ -22,37 +23,32 @@ namespace HWB.NETSCALE.POLOSIO.LagerPlaetzeImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
 
-                var request = new RestRequest("/rest/data/storageareas");
-                request.Method = Method.GET;
+                var request = new RestRequest("/rest/data/storageareas") {Method = Method.GET};
                 request.AddHeader("X-location-Id", "16");
 
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
-                var x = response.Content; // Nur für Testzwecke
+            
 
                 var oL = JsonConvert.DeserializeObject<LagerPlaetzeRootObject>(response.Content);
          
                
-                boL = new Lagerplaetze();
+                _boL = new Lagerplaetze();
                 foreach (PolosStorageArea obj in oL.storageAreas)
                 {
                     if (obj.id != null)
                     {
-                        boLE = boL.GetById(obj.id);
-                        if (boLE == null)
+                        _boLe = _boL.GetById(obj.id) ?? _boL.NewEntity();
+                        if (_boLe != null)
                         {
-                            boLE = boL.NewEntity();
-                        }
-                        if (boLE != null)
-                        {
-                            boLE.id = obj.id;
-                            boLE.locationid = obj.locationId;
-                            boLE.name = obj.name;
-                            boLE.fullname = obj.fullName;
+                            _boLe.id = obj.id;
+                            _boLe.locationid = obj.locationId;
+                            _boLe.name = obj.name;
+                            _boLe.fullname = obj.fullName;
 
-                            boL.SaveEntity(boLE);
+                            _boL.SaveEntity(_boLe);
                         }
                     }
                 }

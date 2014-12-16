@@ -1,6 +1,7 @@
 
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
+using NetScalePolosIO;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Patterns;using NUnit.Framework;
 

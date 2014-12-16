@@ -440,22 +440,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<EinstellungenEntity> EinstellungenEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -657,19 +657,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
         {
             base.AddObject("EinstellungenEntities", einstellungenEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -7681,102 +7681,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String FahrzeugEingehend
-        {
-            get
-            {
-                return _FahrzeugEingehend;
-            }
-            set
-            {
-                OnFahrzeugEingehendChanging(value);
-                ReportPropertyChanging("FahrzeugEingehend");
-                _FahrzeugEingehend = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FahrzeugEingehend");
-                OnFahrzeugEingehendChanged();
-            }
-        }
-        private global::System.String _FahrzeugEingehend;
-        partial void OnFahrzeugEingehendChanging(global::System.String value);
-        partial void OnFahrzeugEingehendChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String FrachtführerName3Eingehend
-        {
-            get
-            {
-                return _FrachtführerName3Eingehend;
-            }
-            set
-            {
-                OnFrachtführerName3EingehendChanging(value);
-                ReportPropertyChanging("FrachtführerName3Eingehend");
-                _FrachtführerName3Eingehend = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FrachtführerName3Eingehend");
-                OnFrachtführerName3EingehendChanged();
-            }
-        }
-        private global::System.String _FrachtführerName3Eingehend;
-        partial void OnFrachtführerName3EingehendChanging(global::System.String value);
-        partial void OnFrachtführerName3EingehendChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String FahrzeugAusgehend
-        {
-            get
-            {
-                return _FahrzeugAusgehend;
-            }
-            set
-            {
-                OnFahrzeugAusgehendChanging(value);
-                ReportPropertyChanging("FahrzeugAusgehend");
-                _FahrzeugAusgehend = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FahrzeugAusgehend");
-                OnFahrzeugAusgehendChanged();
-            }
-        }
-        private global::System.String _FahrzeugAusgehend;
-        partial void OnFahrzeugAusgehendChanging(global::System.String value);
-        partial void OnFahrzeugAusgehendChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String FrachtführerName3Ausgehend
-        {
-            get
-            {
-                return _FrachtführerName3Ausgehend;
-            }
-            set
-            {
-                OnFrachtführerName3AusgehendChanging(value);
-                ReportPropertyChanging("FrachtführerName3Ausgehend");
-                _FrachtführerName3Ausgehend = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FrachtführerName3Ausgehend");
-                OnFrachtführerName3AusgehendChanged();
-            }
-        }
-        private global::System.String _FrachtführerName3Ausgehend;
-        partial void OnFrachtführerName3AusgehendChanging(global::System.String value);
-        partial void OnFrachtführerName3AusgehendChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String IstQuellLagerPlatz
         {
             get
@@ -9457,54 +9361,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String KfzKennzeichen
-        {
-            get
-            {
-                return _KfzKennzeichen;
-            }
-            set
-            {
-                OnKfzKennzeichenChanging(value);
-                ReportPropertyChanging("KfzKennzeichen");
-                _KfzKennzeichen = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("KfzKennzeichen");
-                OnKfzKennzeichenChanged();
-            }
-        }
-        private global::System.String _KfzKennzeichen;
-        partial void OnKfzKennzeichenChanging(global::System.String value);
-        partial void OnKfzKennzeichenChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String KfzId
-        {
-            get
-            {
-                return _KfzId;
-            }
-            set
-            {
-                OnKfzIdChanging(value);
-                ReportPropertyChanging("KfzId");
-                _KfzId = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("KfzId");
-                OnKfzIdChanged();
-            }
-        }
-        private global::System.String _KfzId;
-        partial void OnKfzIdChanging(global::System.String value);
-        partial void OnKfzIdChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> Waegung
         {
             get
@@ -9595,30 +9451,6 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Fahrzeug;
         partial void OnFahrzeugChanging(global::System.String value);
         partial void OnFahrzeugChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Frachtführer
-        {
-            get
-            {
-                return _Frachtführer;
-            }
-            set
-            {
-                OnFrachtführerChanging(value);
-                ReportPropertyChanging("Frachtführer");
-                _Frachtführer = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Frachtführer");
-                OnFrachtführerChanged();
-            }
-        }
-        private global::System.String _Frachtführer;
-        partial void OnFrachtführerChanging(global::System.String value);
-        partial void OnFrachtführerChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -10459,6 +10291,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ffIsocodeCountry;
         partial void OnffIsocodeCountryChanging(global::System.String value);
         partial void OnffIsocodeCountryChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> taab
+        {
+            get
+            {
+                return _taab;
+            }
+            set
+            {
+                OntaabChanging(value);
+                ReportPropertyChanging("taab");
+                _taab = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("taab");
+                OntaabChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _taab;
+        partial void OntaabChanging(Nullable<global::System.Boolean> value);
+        partial void OntaabChanged();
 
         #endregion
     

@@ -29,8 +29,7 @@ namespace NetScalePolosIO.Import.AddressImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer ());
               
-                var request = new RestRequest("/rest/address/all");
-                request.Method = Method.GET;
+                var request = new RestRequest("/rest/address/all") {Method = Method.GET};
                 request.AddHeader("X-location-Id", "16");
             
                
@@ -47,12 +46,8 @@ namespace NetScalePolosIO.Import.AddressImport
                 {
                     if (true)
                     {
-                        _boAe = _boA.GetById(obj.id);
+                        _boAe = _boA.GetById(obj.id) ?? _boA.NewEntity();
 
-                        if (_boAe == null)
-                        {
-                            _boAe = _boA.NewEntity();
-                        }
                         _boAe.id = obj.id;
                         _boAe.businessIdentifier = obj.businessIdentifier;
                         _boAe.name = obj.name;
@@ -89,59 +84,55 @@ namespace NetScalePolosIO.Import.AddressImport
                             _boAe.roleTrainOperator = false;
 
                             var oRoles = JsonConvert.DeserializeObject<AddressRolesRootObject>(response.Content);
-                            for (int i = 0; i < oRoles.roles.Count; i++)
+                            foreach (string t in oRoles.roles)
                             {
-
-                            
-
-                                // Client
-                                if (oRoles.roles[i] == "CLIENT")
+// Client
+                                if (t == "CLIENT")
                                 {
                                     _boAe.roleClient = true;
                                 }
                                
                                 // INVOICE Receiver
-                                if (oRoles.roles[i] == "BILLING_RECEIVER")
+                                if (t == "BILLING_RECEIVER")
                                 {
                                     _boAe.roleInvoiceReceiver = true;
                                 }
 
                                 // Storage_Client
-                                if (oRoles.roles[i] == "STORAGE_CLIENT")
+                                if (t == "STORAGE_CLIENT")
                                 {
                                     _boAe.roleStorageClient = true;
                                 }
 
                                 // Supplier
-                                if (oRoles.roles[i] == "SUPPLIER")
+                                if (t == "SUPPLIER")
                                 {
                                     _boAe.rolleSupplier = true;
                                 }
 
                                 //  Receiver
-                                if (oRoles.roles[i] == "RECEIVER")
+                                if (t == "RECEIVER")
                                 {
                                     _boAe.roleReceiver = true;
                                 }
 
                                 // Carrier
-                                if (oRoles.roles[i] == "CARRIER")
+                                if (t == "CARRIER")
                                 {
                                     _boAe.roleCarrier = true;
                                 }
 
                                 // Shipowner
-                                if (oRoles.roles[i] == "SHIPOWNER")
+                                if (t == "SHIPOWNER")
                                 {
                                     _boAe.roleShipOwner = true;
                                 }
 
                                 // TRAIN_OPERATOR
-                                if (oRoles.roles[i] == "TRAIN_OPERATOR")
+                                if (t == "TRAIN_OPERATOR")
                                 {
                                     _boAe.roleTrainOperator = true;
                                 }
-
                             }
                         }
                         _boA.SaveEntity(_boAe);

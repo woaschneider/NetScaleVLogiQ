@@ -15,6 +15,7 @@ using HWB.NETSCALE.FRONTEND.WPF.Forms;
 
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
+using NetScalePolosIO;
 using OakLeaf.MM.Main.Security;
 using OakLeaf.MM.Main.WPF;
 

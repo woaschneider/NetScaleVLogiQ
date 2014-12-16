@@ -6,8 +6,6 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:my="clr-namespace:HardwareDevices;assembly=HardwareDevices"
-                        xmlns:my1="clr-namespace:HWB.NETSCALE.FRONTEND.WPF"
-                        xmlns:my2="clr-namespace:HWB.NETSCALE.FRONTEND.WPF.NetScaleControls"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                         x:Name="Window"
@@ -94,6 +92,7 @@
                                          LargeImageSource="..\Images\1297346846_LorryGreen.png" />
 
                     <ribbon:RibbonButton x:Name="ribbonLsListe"
+                                         Click="ribbonLsListe_Click"
                                          FontSize="14"
                                          Label=" Lieferscheine"
                                          LargeImageSource="..\Images\1328191024_edit-notes.png" />

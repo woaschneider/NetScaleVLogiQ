@@ -15,6 +15,7 @@ using HardwareDevices;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
+using NetScalePolosIO;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.WPF;
@@ -125,6 +126,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             NewWaege();
         }
+      
 
         private void ribbonSave_Click(object sender, RoutedEventArgs e)
         {
@@ -157,6 +159,28 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
+
+        private void ribbonLsListe_Click(object sender, RoutedEventArgs e)
+        {
+            var oLSListe = new WiegelisteFrm();
+            oLSListe.ShowDialog();
+            int uRet = oLSListe.uRet;
+            if(uRet ==0)
+            {
+                oLSListe.Close();
+            }
+            else
+            {
+                _boWe = _boW.GetWaegungByPk(uRet);
+                if(_boWe!=null)
+                {
+                    DataContext = _boWe;
+                    oLSListe.Close();
+                    Wiegestatus = 5;
+                }
+            }
+        }
+
 
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -799,7 +823,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     if (_boWe.Waegung == null)
                     {
                         var oCf = new Fahrzeuge();
-                        FahrzeugeEntity oCfe = oCf.GetByExactKennzeichen(_boWe.KfzKennzeichen);
+                        FahrzeugeEntity oCfe = oCf.GetByExactKennzeichen(_boWe.Fahrzeug);
                         if (oCfe != null)
                         {
                             if (_boWe.Erstgewicht == null)
@@ -1137,6 +1161,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
         #endregion 
 
+     
        
 
 
