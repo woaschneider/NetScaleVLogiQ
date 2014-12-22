@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Adressen;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using Newtonsoft.Json;
 using RestSharp;

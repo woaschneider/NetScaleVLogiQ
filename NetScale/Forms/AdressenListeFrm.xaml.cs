@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Adressen;
 using HWB.NETSCALE.FRONTEND.WPF.Forms;
 using NetScaleGlobal;
 using OakLeaf.MM.Main;

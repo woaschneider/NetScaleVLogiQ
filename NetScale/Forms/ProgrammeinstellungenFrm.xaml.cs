@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using combit.ListLabel20;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.BOEF.User;
+using HWB.NETSCALE.BOEF.Waege;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Collections;

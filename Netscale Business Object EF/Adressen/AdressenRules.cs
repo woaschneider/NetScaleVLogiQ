@@ -39,7 +39,7 @@ namespace HWB.NETSCALE.BOEF
 				{
 					this.CurrentEntity = CurrentEntity as mmBusinessEntity;
 				
-					if (((Adressen)this.HostObject).IsEntityChanged(this.CurrentEntity))
+					if (((Adressen.Adressen)this.HostObject).IsEntityChanged(this.CurrentEntity))
 					{
 						AdressenEntity Entity = CurrentEntity as AdressenEntity;
 			

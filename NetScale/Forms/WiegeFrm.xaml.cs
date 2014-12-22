@@ -8,11 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HardwareDevices;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Waege;
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO;
@@ -44,8 +46,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         public WiegeFrm()
         {
             this.InitializeComponent();
+            this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             _boW = new Waege();
             DataContext = _boWe;
+
+            // Mandant
+            goApp.Mandant_PK = new Mandant().GetDefaultMandant().PK;
+
+
             // Achtung - Hier wird der Observer abonniert
             netScaleView1.OnWeightChanged += new WeightChangedHandler(ShowEventGewichtHasChanged);
             DisplayErrorDialog = true;
@@ -108,6 +116,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             Wiegestatus = 99;
             Wiegestatus = 0;
+
+            SetWeightBindingFormat();
         }
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
@@ -418,6 +428,51 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         //        //    tb.IsEnabled = true;
         //        //}
         //
+        }
+
+        private void SetWeightBindingFormat()
+        {
+            string cFormat = "";
+            if (goApp.MengenEinheit == "t")
+                cFormat = "F2";
+
+            if (goApp.MengenEinheit == "kg")
+                cFormat = "F0";
+
+            //**************************************************************
+            var bNettogewicht = new Binding("Nettogewicht")
+            {
+                StringFormat = cFormat,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+
+
+            tb_Nettogewicht.SetBinding(TextBox.TextProperty, bNettogewicht);
+
+            //*******************************************************************
+            var bErstgewicht = new Binding("Erstgewicht")
+            {
+                StringFormat = cFormat,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+
+
+            tb_ErstGewicht.SetBinding(TextBox.TextProperty, bErstgewicht);
+
+            //***********************************************************************
+            var bZweitgewicht = new Binding("Zweitgewicht")
+            {
+                StringFormat = cFormat,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            tb_ZweitGewicht.SetBinding(TextBox.TextProperty, bZweitgewicht);
+
+
+
+
         }
 
 
@@ -857,7 +912,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     // TODO: Welches Feld
                     _boWe.zweitDateTime = oRw.Time;
-                    //  _boWe.LSDatum = oRw.Date;
+                     _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
                     //  _boWe.wnr2 = netScaleView1.ActiveScale.ToString();
 
@@ -1086,7 +1141,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtRechnungsEmpfaenger.Text,"RE");
             if (uRet != null)
             {
-                _boW.invoiceReceiver2Waege((int)uRet);
+                _boW.InvoiceReceiver2Waege((int)uRet);
             }
             else
             {
@@ -1113,7 +1168,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse("","");
             if (uRet != null)
             {
-                _boW.supplierOrConsignee2Waege((int)uRet);
+                _boW.SupplierOrConsignee2Waege((int)uRet);
             }
             else
             {

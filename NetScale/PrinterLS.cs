@@ -1,102 +1,110 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using combit.ListLabel20;
+using combit.ListLabel20.DataProviders;
 using HWB.NETSCALE.BOEF;
-using HWB.NETSCALE.BOEF.User;
+using HWB.NETSCALE.BOEF.Waege;
 using HWB.NETSCALE.GLOBAL;
 
 namespace HWB.NETSCALE.FRONTEND.WPF
 {
-    public class PrinterLS
+    public class PrinterLs
     {
-        public void DoPrintLS(Lokaleeinstellungen oLE, WaegeEntity boWE, bool Kopie)
+        public void DoPrintLs(Lokaleeinstellungen oLe, WaegeEntity boWe, bool kopie)
         {
-            bool? isLSDruck;
-
-
-            if (boWE == null)
+            if (boWe == null)
             {
                 return;
             }
-            string DruckerName;
-            string LSReport; // Vorlage
-            int? Anzahlausdrucke;
 
 
-            ListLabel LL = new ListLabel();
-            LL.Variables.Add("Original_Kopie", "...");
-            LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
-
-            // Unterschriftendatei
-            // Unterschriftendatei
-            User boU = new User();
-       
-            UserEntity boUE;
-           
-
-         
-
-      
+            var boM = new Mandant();
+            MandantEntity boMe = boM.GetMandantByPK(Convert.ToInt32(boWe.Mandant_PK));
+            if (boMe == null)
+                return;
+            string druckerName = boMe.LSDrucker;
+            string lsReport = boMe.LSReport;
+            int? anzahlausdrucke = boMe.AnzahlLS;
+            bool? isLsDruck = boMe.LSDruck;
 
 
-            Waege boW = new Waege();
+            var ll = new ListLabel();
+            ll.Variables.Add("Original_Kopie", "...");
+            ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
+            if (kopie) // Wenn Kopie, dann wird die Einstellung aus den Mandanten überschrieben.
+            {
+                isLsDruck = true;
+                ll.Variables.Add("Original_Kopie", "Kopie");
+            }
 
-            LL.LicensingInfo = "9yJKEQ";
-            // combit.ListLabel17.DataProviders.ObjectDataProvider oDP = boW.GetLSByLSNR(boWE.LSNR); // Wieso LSNR ???
-       
 
-        
-   
+            var boW = new Waege();
 
-         
+            ll.LicensingInfo = "9yJKEQ";
 
-         
+
+            ObjectDataProvider oDp = boW.GetWaegungOdpbyPk(boWe.PK);
+
+            ll.DataSource = oDp;
+            ll.AutoProjectType = LlProject.Label;
+
+            ll.AutoProjectFile = lsReport;
+            ll.AutoShowSelectFile = false;
+            ll.AutoShowPrintOptions = false;
+
+
+            // Kopienanzahl  
+            int copies = Convert.ToInt32(anzahlausdrucke);
+
+            if (kopie)
+                copies = 1;
+
+            // Drucken
+            PrintPaperLs(ll, kopie, copies, isLsDruck, druckerName);
+
 
             // TODO: Diesen Abschnitt vornehmen: Export Pfad prüfen
             //***************************************************************************
             //  Filename und Pfad (hier: PDF)
-            Einstellungen boE = new Einstellungen();
-            EinstellungenEntity boEE = boE.GetEinstellungen();
-            if (boEE.LsAsPdf == true)
+            var boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if (boEe.LsAsPdf == true)
             {
-                int? pdf = boEE.PdfCreator;
+                int? pdf = boEe.PdfCreator;
 
                 switch (pdf)
                 {
                     case 1: // List&Label
-                        CreateLsAsPdf(boWE, LL, oLE);
-                        LL.Dispose();
+                        CreateLsAsPdf(ll);
+                        ll.Dispose();
                         break;
                     case 2:
-                        if (Kopie == false)
+                        if (kopie == false)
                         {
-                            CreateLsAsPdfwithStepOver(LL, false, 1, "StepOver PDF Converter");
+                            CreateLsAsPdfwithStepOver(ll, false, 1, "StepOver PDF Converter");
                         }
                         break;
                 }
             }
         }
 
-        private void PrintPaperLs(ListLabel LL, bool Kopie, int copies, bool? isLSDruck, string DruckerName)
+        private static void PrintPaperLs(ListLabel ll, bool kopie, int copies, bool? isLsDruck, string druckerName)
         {
             try
             {
                 for (int nCopy = 0; nCopy < copies; ++nCopy)
                 {
-                    if (nCopy == 0 & Kopie == false)
+                    if (nCopy == 0 & kopie == false)
                     {
-                        LL.Variables.Add("Original_Kopie", "Original");
+                        ll.Variables.Add("Original_Kopie", "Original");
                     }
                     else
                     {
-                        LL.Variables.Add("Original_Kopie", "Kopie");
+                        ll.Variables.Add("Original_Kopie", "Kopie");
                     }
 
-                    if (isLSDruck == true)
-                        LL.Print(DruckerName);
+                    if (isLsDruck == true)
+                        ll.Print(druckerName);
                 }
             }
             catch (ListLabelException ex)
@@ -106,13 +114,20 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         }
 
 
-        private void CreateLsAsPdf(WaegeEntity boWE, ListLabel LL, Lokaleeinstellungen oLE)
+/*
+        private static void CreateLsAsPdf(Lokaleeinstellungen oLe)
         {
-            if (goApp.PDFEXPORT == true)
+            CreateLsAsPdf((IDisposable) null);
+        }
+*/
+
+        private static void CreateLsAsPdf(IDisposable ll)
+        {
+            if (ll == null) throw new ArgumentNullException("ll");
+            if (goApp.PDFEXPORT)
             {
                 try
                 {
-              
                 }
                 catch (ListLabelException ex)
                 {
@@ -122,23 +137,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             }
         }
 
-        private void CreateLsAsPdfwithStepOver(ListLabel LL, bool Kopie, int copies,string DruckerName)
+        private static void CreateLsAsPdfwithStepOver(ListLabel ll, bool kopie, int copies, string druckerName)
         {
             try
             {
                 for (int nCopy = 0; nCopy < copies; ++nCopy)
                 {
-                    if (nCopy == 0 & Kopie == false)
+                    if (nCopy == 0 & kopie == false)
                     {
-                        LL.Variables.Add("Original_Kopie", "Original");
+                        ll.Variables.Add("Original_Kopie", "Original");
                     }
                     else
                     {
-                        LL.Variables.Add("Original_Kopie", "Kopie");
+                        ll.Variables.Add("Original_Kopie", "Kopie");
                     }
 
-                   
-                        LL.Print(DruckerName);
+
+                    ll.Print(druckerName);
                 }
             }
             catch (ListLabelException ex)

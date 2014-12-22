@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Waege;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.WPF;
 

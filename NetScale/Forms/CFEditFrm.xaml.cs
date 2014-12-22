@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Adressen;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
@@ -154,7 +155,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if(uRet != null)
             {
                 Adressen _boA = new Adressen();
-                AdressenEntity _boAE = _boA.GetByPK(uRet);
+                AdressenEntity _boAE = _boA.GetByPk(uRet);
                 if(_boAE!=null)
                 {
                     _boCFE.Frachtfuehrer = _boAE.businessIdentifier;

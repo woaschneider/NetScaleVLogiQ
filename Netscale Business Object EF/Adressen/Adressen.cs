@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.EntityClient;
 using System.Data.Objects;
-using System.Linq;
-
 using OakLeaf.MM.Main.Business;
-using OakLeaf.MM.Main.Collections;
-using OakLeaf.MM.Main.Data;
 
-namespace HWB.NETSCALE.BOEF
+namespace HWB.NETSCALE.BOEF.Adressen
 {
 	/// <summary>
 	/// Summary description for Adressen.

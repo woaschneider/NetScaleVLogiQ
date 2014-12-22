@@ -1,5 +1,6 @@
 
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Waege;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO;
 using OakLeaf.MM.Main;

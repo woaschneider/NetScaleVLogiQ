@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.BOEF.Adressen;
 using NetScaleGlobal;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.WPF;
@@ -43,7 +44,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 this.Title = Partnerrollen.GetRollenBezeichnung(_rolle) + " - Adresse bearbeiten";
                 //   this.Title = "Empfänger bearbeiten!";
-               boAPE = boAddress.GetByPK(PK);
+               boAPE = boAddress.GetByPk(PK);
             }
             this.DataContext = boAPE;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);

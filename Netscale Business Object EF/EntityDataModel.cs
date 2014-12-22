@@ -248,22 +248,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<MandantEntity> MandantEntities
-        {
-            get
-            {
-                if ((_MandantEntities == null))
-                {
-                    _MandantEntities = base.CreateObjectSet<MandantEntity>("MandantEntities");
-                }
-                return _MandantEntities;
-            }
-        }
-        private ObjectSet<MandantEntity> _MandantEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<FrachtmittelEntity> FrachtmittelEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<MandantEntity> MandantEntities
+        {
+            get
+            {
+                if ((_MandantEntities == null))
+                {
+                    _MandantEntities = base.CreateObjectSet<MandantEntity>("MandantEntities");
+                }
+                return _MandantEntities;
+            }
+        }
+        private ObjectSet<MandantEntity> _MandantEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -558,14 +558,6 @@ namespace HWB.NETSCALE.BOEF
         public void AddToIncotermEntities(IncotermEntity incotermEntity)
         {
             base.AddObject("IncotermEntities", incotermEntity);
-        }
-    
-        /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MandantEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToMandantEntities(MandantEntity mandantEntity)
-        {
-            base.AddObject("MandantEntities", mandantEntity);
         }
     
         /// <summary>
@@ -670,6 +662,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MandantEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToMandantEntities(MandantEntity mandantEntity)
+        {
+            base.AddObject("MandantEntities", mandantEntity);
         }
 
         #endregion
@@ -3641,6 +3641,30 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> DefaultMandant
+        {
+            get
+            {
+                return _DefaultMandant;
+            }
+            set
+            {
+                OnDefaultMandantChanging(value);
+                ReportPropertyChanging("DefaultMandant");
+                _DefaultMandant = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DefaultMandant");
+                OnDefaultMandantChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _DefaultMandant;
+        partial void OnDefaultMandantChanging(Nullable<global::System.Boolean> value);
+        partial void OnDefaultMandantChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String MandantNr
         {
             get
@@ -3683,30 +3707,6 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _MandantName;
         partial void OnMandantNameChanging(global::System.String value);
         partial void OnMandantNameChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> DefaultMandant
-        {
-            get
-            {
-                return _DefaultMandant;
-            }
-            set
-            {
-                OnDefaultMandantChanging(value);
-                ReportPropertyChanging("DefaultMandant");
-                _DefaultMandant = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DefaultMandant");
-                OnDefaultMandantChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _DefaultMandant;
-        partial void OnDefaultMandantChanging(Nullable<global::System.Boolean> value);
-        partial void OnDefaultMandantChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -10315,6 +10315,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _taab;
         partial void OntaabChanging(Nullable<global::System.Boolean> value);
         partial void OntaabChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LSDatum
+        {
+            get
+            {
+                return _LSDatum;
+            }
+            set
+            {
+                OnLSDatumChanging(value);
+                ReportPropertyChanging("LSDatum");
+                _LSDatum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LSDatum");
+                OnLSDatumChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LSDatum;
+        partial void OnLSDatumChanging(Nullable<global::System.DateTime> value);
+        partial void OnLSDatumChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Mandant_PK
+        {
+            get
+            {
+                return _Mandant_PK;
+            }
+            set
+            {
+                OnMandant_PKChanging(value);
+                ReportPropertyChanging("Mandant_PK");
+                _Mandant_PK = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Mandant_PK");
+                OnMandant_PKChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Mandant_PK;
+        partial void OnMandant_PKChanging(Nullable<global::System.Int32> value);
+        partial void OnMandant_PKChanged();
 
         #endregion
     

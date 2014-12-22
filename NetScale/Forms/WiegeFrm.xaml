@@ -236,15 +236,13 @@
                  Height="23"
                  Margin="984,428,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 Text="{Binding Erstgewicht}" />
+                 VerticalAlignment="Top" />
         <TextBox x:Name="tb_ZweitGewicht"
                  Width="57"
                  Height="23"
                  Margin="984,454,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 Text="{Binding Zweitgewicht}" />
+                 VerticalAlignment="Top" />
         <TextBox x:Name="tb_Nettogewicht"
                  Width="57"
                  Height="23"
@@ -252,8 +250,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  FontWeight="Bold"
-                 IsReadOnly="true"
-                 Text="{Binding Nettogewicht}" />
+                 IsReadOnly="true" />
         <Label x:Name="label15"
                Width="91"
                Height="28"
