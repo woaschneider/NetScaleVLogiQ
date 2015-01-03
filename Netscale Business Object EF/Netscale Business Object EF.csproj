@@ -114,11 +114,6 @@
     <Compile Include="ABusinessObject.cs" />
     <Compile Include="ABusinessRule.cs" />
     <Compile Include="AAppTest.cs" />
-    <Compile Include="Adressen\Adressen.cs" />
-    <Compile Include="Adressen\Adressen.Partial.cs" />
-    <Compile Include="Adressen\AdressenEntity.cs" />
-    <Compile Include="Adressen\AdressenRules.cs" />
-    <Compile Include="Adressen\AdressenRules.Partial.cs" />
     <Compile Include="Artikelattribute\Artikelattribute.cs" />
     <Compile Include="Artikelattribute\Artikelattribute.Partial.cs" />
     <Compile Include="Artikelattribute\ArtikelattributeEntity.cs" />
@@ -226,11 +221,6 @@
     <Compile Include="Waagentypen\WaagentypenEntity.cs" />
     <Compile Include="Waagentypen\WaagentypenRules.cs" />
     <Compile Include="Waagentypen\WaagentypenRules.Partial.cs" />
-    <Compile Include="Waege\Waege.cs" />
-    <Compile Include="Waege\Waege.Partial.cs" />
-    <Compile Include="Waege\WaegeEntity.cs" />
-    <Compile Include="Waege\WaegeRules.cs" />
-    <Compile Include="Waege\WaegeRules.Partial.cs" />
     <Compile Include="Warenarten\Warenarten.cs" />
     <Compile Include="Warenarten\Warenarten.Partial.cs" />
     <Compile Include="Warenarten\WarenartenEntity.cs" />
