@@ -48,7 +48,7 @@ namespace NetScalePolosIO.Import.AddressImport
                     if (true)
                     {
                         _boAe = _boA.GetById(obj.id) ?? _boA.NewEntity();
-
+                     
                         _boAe.id = obj.id;
                         _boAe.businessIdentifier = obj.businessIdentifier;
                         _boAe.name = obj.name;
