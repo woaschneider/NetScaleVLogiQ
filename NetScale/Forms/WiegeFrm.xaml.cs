@@ -14,7 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HardwareDevices;
 using HWB.NETSCALE.BOEF;
-using HWB.NETSCALE.BOEF.Waege;
+
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO;

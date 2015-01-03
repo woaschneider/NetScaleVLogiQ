@@ -440,22 +440,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<MandantEntity> MandantEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<MandantEntity> _MandantEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -657,19 +657,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MandantEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToMandantEntities(MandantEntity mandantEntity)
         {
             base.AddObject("MandantEntities", mandantEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -10363,6 +10363,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _Mandant_PK;
         partial void OnMandant_PKChanging(Nullable<global::System.Int32> value);
         partial void OnMandant_PKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> taabExcel
+        {
+            get
+            {
+                return _taabExcel;
+            }
+            set
+            {
+                OntaabExcelChanging(value);
+                ReportPropertyChanging("taabExcel");
+                _taabExcel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("taabExcel");
+                OntaabExcelChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _taabExcel;
+        partial void OntaabExcelChanging(Nullable<global::System.Boolean> value);
+        partial void OntaabExcelChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String incoterm
+        {
+            get
+            {
+                return _incoterm;
+            }
+            set
+            {
+                OnincotermChanging(value);
+                ReportPropertyChanging("incoterm");
+                _incoterm = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("incoterm");
+                OnincotermChanged();
+            }
+        }
+        private global::System.String _incoterm;
+        partial void OnincotermChanging(global::System.String value);
+        partial void OnincotermChanged();
 
         #endregion
     

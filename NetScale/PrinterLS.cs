@@ -3,7 +3,7 @@ using System.Windows;
 using combit.ListLabel20;
 using combit.ListLabel20.DataProviders;
 using HWB.NETSCALE.BOEF;
-using HWB.NETSCALE.BOEF.Waege;
+
 using HWB.NETSCALE.GLOBAL;
 
 namespace HWB.NETSCALE.FRONTEND.WPF

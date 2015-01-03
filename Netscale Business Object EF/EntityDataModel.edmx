@@ -534,6 +534,8 @@
           <Property Name="taab" Type="bit" />
           <Property Name="LSDatum" Type="date" />
           <Property Name="Mandant_PK" Type="int" />
+          <Property Name="taabExcel" Type="bit" />
+          <Property Name="incoterm" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -633,8 +635,8 @@
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
-          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
+          <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1024,6 +1026,36 @@
           <Property Type="String" Name="RestServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="RestLocation" />
         </EntityType>
+        <EntityType Name="MandantEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Boolean" Name="DefaultMandant" />
+          <Property Type="String" Name="MandantNr" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MandantName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Werksbezeichnung" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LSDrucker" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LSReport" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="AnzahlLS" />
+          <Property Type="Boolean" Name="LSDruck" />
+          <Property Type="Int32" Name="lsnrbar" />
+          <Property Type="Int32" Name="lsnrscheck" />
+          <Property Type="Int32" Name="lsnrersatz" />
+          <Property Type="Int32" Name="lsnrgebuehr" />
+          <Property Type="Int32" Name="lsnrausgang" />
+          <Property Type="Int32" Name="lsnreingang" />
+          <Property Type="Int32" Name="lsnrrecycling" />
+          <Property Type="Int32" Name="lsnrprobrecycling" />
+          <Property Type="Int32" Name="lsnreinmal" />
+          <Property Type="Int32" Name="lsnrfremd" />
+          <Property Type="Int32" Name="lsnrkontrol" />
+          <Property Type="Int32" Name="lsnrhandeingabe" />
+          <Property Type="Int32" Name="abrufnrausgang" />
+          <Property Type="Int32" Name="abrufeingang" />
+          <Property Type="String" Name="entsorgernr" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="WaegeEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1147,36 +1179,8 @@
           <Property Type="Boolean" Name="taab" />
           <Property Type="DateTime" Name="LSDatum" />
           <Property Type="Int32" Name="Mandant_PK" />
-        </EntityType>
-        <EntityType Name="MandantEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Boolean" Name="DefaultMandant" />
-          <Property Type="String" Name="MandantNr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MandantName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Werksnr" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Werksbezeichnung" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LSDrucker" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LSReport" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="AnzahlLS" />
-          <Property Type="Boolean" Name="LSDruck" />
-          <Property Type="Int32" Name="lsnrbar" />
-          <Property Type="Int32" Name="lsnrscheck" />
-          <Property Type="Int32" Name="lsnrersatz" />
-          <Property Type="Int32" Name="lsnrgebuehr" />
-          <Property Type="Int32" Name="lsnrausgang" />
-          <Property Type="Int32" Name="lsnreingang" />
-          <Property Type="Int32" Name="lsnrrecycling" />
-          <Property Type="Int32" Name="lsnrprobrecycling" />
-          <Property Type="Int32" Name="lsnreinmal" />
-          <Property Type="Int32" Name="lsnrfremd" />
-          <Property Type="Int32" Name="lsnrkontrol" />
-          <Property Type="Int32" Name="lsnrhandeingabe" />
-          <Property Type="Int32" Name="abrufnrausgang" />
-          <Property Type="Int32" Name="abrufeingang" />
-          <Property Type="String" Name="entsorgernr" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="taabExcel" />
+          <Property Type="String" Name="incoterm" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1553,9 +1557,42 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MandantEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.MandantEntity">
+              <MappingFragment StoreEntitySet="Mandant">
+                <ScalarProperty Name="entsorgernr" ColumnName="entsorgernr" />
+                <ScalarProperty Name="abrufeingang" ColumnName="abrufeingang" />
+                <ScalarProperty Name="abrufnrausgang" ColumnName="abrufnrausgang" />
+                <ScalarProperty Name="lsnrhandeingabe" ColumnName="lsnrhandeingabe" />
+                <ScalarProperty Name="lsnrkontrol" ColumnName="lsnrkontrol" />
+                <ScalarProperty Name="lsnrfremd" ColumnName="lsnrfremd" />
+                <ScalarProperty Name="lsnreinmal" ColumnName="lsnreinmal" />
+                <ScalarProperty Name="lsnrprobrecycling" ColumnName="lsnrprobrecycling" />
+                <ScalarProperty Name="lsnrrecycling" ColumnName="lsnrrecycling" />
+                <ScalarProperty Name="lsnreingang" ColumnName="lsnreingang" />
+                <ScalarProperty Name="lsnrausgang" ColumnName="lsnrausgang" />
+                <ScalarProperty Name="lsnrgebuehr" ColumnName="lsnrgebuehr" />
+                <ScalarProperty Name="lsnrersatz" ColumnName="lsnrersatz" />
+                <ScalarProperty Name="lsnrscheck" ColumnName="lsnrscheck" />
+                <ScalarProperty Name="lsnrbar" ColumnName="lsnrbar" />
+                <ScalarProperty Name="LSDruck" ColumnName="LSDruck" />
+                <ScalarProperty Name="AnzahlLS" ColumnName="AnzahlLS" />
+                <ScalarProperty Name="LSReport" ColumnName="LSReport" />
+                <ScalarProperty Name="LSDrucker" ColumnName="LSDrucker" />
+                <ScalarProperty Name="Werksbezeichnung" ColumnName="Werksbezeichnung" />
+                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
+                <ScalarProperty Name="MandantName" ColumnName="MandantName" />
+                <ScalarProperty Name="MandantNr" ColumnName="MandantNr" />
+                <ScalarProperty Name="DefaultMandant" ColumnName="DefaultMandant" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="incoterm" ColumnName="incoterm" />
+                <ScalarProperty Name="taabExcel" ColumnName="taabExcel" />
                 <ScalarProperty Name="Mandant_PK" ColumnName="Mandant_PK" />
                 <ScalarProperty Name="LSDatum" ColumnName="LSDatum" />
                 <ScalarProperty Name="taab" ColumnName="taab" />
@@ -1678,37 +1715,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MandantEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.MandantEntity">
-              <MappingFragment StoreEntitySet="Mandant">
-                <ScalarProperty Name="entsorgernr" ColumnName="entsorgernr" />
-                <ScalarProperty Name="abrufeingang" ColumnName="abrufeingang" />
-                <ScalarProperty Name="abrufnrausgang" ColumnName="abrufnrausgang" />
-                <ScalarProperty Name="lsnrhandeingabe" ColumnName="lsnrhandeingabe" />
-                <ScalarProperty Name="lsnrkontrol" ColumnName="lsnrkontrol" />
-                <ScalarProperty Name="lsnrfremd" ColumnName="lsnrfremd" />
-                <ScalarProperty Name="lsnreinmal" ColumnName="lsnreinmal" />
-                <ScalarProperty Name="lsnrprobrecycling" ColumnName="lsnrprobrecycling" />
-                <ScalarProperty Name="lsnrrecycling" ColumnName="lsnrrecycling" />
-                <ScalarProperty Name="lsnreingang" ColumnName="lsnreingang" />
-                <ScalarProperty Name="lsnrausgang" ColumnName="lsnrausgang" />
-                <ScalarProperty Name="lsnrgebuehr" ColumnName="lsnrgebuehr" />
-                <ScalarProperty Name="lsnrersatz" ColumnName="lsnrersatz" />
-                <ScalarProperty Name="lsnrscheck" ColumnName="lsnrscheck" />
-                <ScalarProperty Name="lsnrbar" ColumnName="lsnrbar" />
-                <ScalarProperty Name="LSDruck" ColumnName="LSDruck" />
-                <ScalarProperty Name="AnzahlLS" ColumnName="AnzahlLS" />
-                <ScalarProperty Name="LSReport" ColumnName="LSReport" />
-                <ScalarProperty Name="LSDrucker" ColumnName="LSDrucker" />
-                <ScalarProperty Name="Werksbezeichnung" ColumnName="Werksbezeichnung" />
-                <ScalarProperty Name="Werksnr" ColumnName="Werksnr" />
-                <ScalarProperty Name="MandantName" ColumnName="MandantName" />
-                <ScalarProperty Name="MandantNr" ColumnName="MandantNr" />
-                <ScalarProperty Name="DefaultMandant" ColumnName="DefaultMandant" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1766,8 +1772,8 @@
           <edmx:ConnectorPoint PointX="10.125" PointY="15.764109700520836" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="13.375" PointY="5.75" Height="4.0956022135416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="23.710348307291667" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="15.375" PointY="0.75" Height="5.8263151041666674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.287252604166667" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
