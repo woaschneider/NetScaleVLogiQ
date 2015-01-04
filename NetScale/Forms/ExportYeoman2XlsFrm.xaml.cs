@@ -48,6 +48,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oTaabYeo = new Waege().GetYeomanTaabListe(datePicker.SelectedDate.Value, txtAuftraggeber.Text);
             WriteTaabToExcel oWTE = new WriteTaabToExcel();
             int uRet =  oWTE.Export2Xls(oTaabYeo);
+            txtInfo.AppendText("Fertig: Es wurden "+ uRet.ToString()+ " Datensätze in die Exceltabelle geschrieben!" + " \r\n" );
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
@@ -60,7 +61,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oTaabYeo = new Waege().GetYeomanTaabListe(datePicker.SelectedDate.Value, txtAuftraggeber.Text);
             if(oTaabYeo!=null)
             {
-                txtInfo.AppendText("Anzahl der Datensätze: "+ oTaabYeo.Count.ToString());
+                txtInfo.AppendText("Anzahl der Datensätze die zum Export bereit stehen: " + oTaabYeo.Count.ToString()+ "\r\n");
             }
         }
     }

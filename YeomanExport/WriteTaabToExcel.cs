@@ -68,11 +68,14 @@ namespace YeomanExport
                 writer.WriteCell(lc, 11, w.ffName ?? "");
                 writer.WriteCell(lc, 12, w.Nettogewicht.ToString() ?? "");
                 writer.WriteCell(lc, 13, "t" ?? ""); // TODO: Aus den Daten entnehmen
+                uRet = lc;
                 lc = lc + 1;
+                
             }
 
             writer.EndWrite();
             stream.Close();
+            
             return uRet;
         }
     }
