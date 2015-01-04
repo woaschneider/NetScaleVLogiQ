@@ -103,6 +103,38 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
+        public mmBindingList<WaegeEntity> GetYeomanTaabListe( DateTime ExportDatum, string auftraggeber)
+        {
+            IQueryable<WaegeEntity> query = from w in ObjectContext.WaegeEntities
+                                            where w.Waegung == 2
+                                               && w.LSDatum == ExportDatum
+                                                 
+                                                 
+                                                  && w.customerBusinessIdentifier.Contains(auftraggeber)
+                                                  && (w.taabExcel==false | w.taabExcel==null)
+                                                 
+                                            select w;
+
+            return GetEntityList(query);
+
+        }
+
+        public mmBindingList<WaegeEntity> GetYeomanTaabListeRecover(DateTime ExportDatum, string auftraggeber)
+        {
+            IQueryable<WaegeEntity> query = from w in ObjectContext.WaegeEntities
+                                            where w.Waegung == 2
+                                                  && w.LSDatum == ExportDatum
+                                                
+
+                                                  && w.customerBusinessIdentifier.Contains(auftraggeber)
+                                                  && w.Waegung == 2
+                                                
+                                            select w;
+
+            return GetEntityList(query);
+
+        }
+
         public void InvoiceReceiver2Waege(int pk)
         {
             AdressenEntity boAe = GetApByPk(pk);

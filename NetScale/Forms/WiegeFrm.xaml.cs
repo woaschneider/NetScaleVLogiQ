@@ -910,6 +910,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
 
+                    if(_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                    {
+                        _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
+                    }
+                    else
+                    {
+                        _boWe.Nettogewicht = _boWe.Erstgewicht - _boWe.Zweitgewicht;
+                    }
+
                     // TODO: Welches Feld
                     _boWe.zweitDateTime = oRw.Time;
                      _boWe.LSDatum = oRw.Date;
@@ -992,6 +1001,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.zweitDateTime = DateTime.Now;
                     //  _boWe.LSDatum = DateTime.Today;
                     _boWe.Waegung = 2;
+                    if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                    {
+                        _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
+                    }
+                    else
+                    {
+                        _boWe.Nettogewicht = _boWe.Erstgewicht - _boWe.Zweitgewicht;
+                    }
                 }
 
                 try
@@ -1215,6 +1232,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oAFrm.Close();
         }
         #endregion 
+
+        private void cmdExportToYeoman_Click(object sender, RoutedEventArgs e)
+        {
+            ExportYeoman2XlsFrm oyXlsFrmFrm = new ExportYeoman2XlsFrm();
+            oyXlsFrmFrm.ShowDialog();
+            oyXlsFrmFrm.Close();
+        }
 
      
        

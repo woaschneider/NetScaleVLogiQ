@@ -202,6 +202,11 @@
                                          FontSize="14"
                                          Label=" Export "
                                          LargeImageSource="..\Images\1349852786_document-export.png" />
+                    <ribbon:RibbonButton x:Name="cmdExportToYeoman"
+                                         Click="cmdExportToYeoman_Click"
+                                         FontSize="14"
+                                         Label=" Yeoman Export "
+                                         LargeImageSource="..\Images\1420389255_xls.png" />
                 </ribbon:RibbonGroup>
 
             </ribbon:RibbonTab>
@@ -236,13 +241,16 @@
                  Height="23"
                  Margin="984,428,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" />
+                 VerticalAlignment="Top" 
+         
+                 />
         <TextBox x:Name="tb_ZweitGewicht"
                  Width="57"
                  Height="23"
                  Margin="984,454,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" />
+                 VerticalAlignment="Top" 
+                />
         <TextBox x:Name="tb_Nettogewicht"
                  Width="57"
                  Height="23"

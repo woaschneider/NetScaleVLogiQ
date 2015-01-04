@@ -226,6 +226,9 @@
     <Compile Include="Forms\CFListFrm.xaml.cs">
       <DependentUpon>CFListFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ExportYeoman2XlsFrm.xaml.cs">
+      <DependentUpon>ExportYeoman2XlsFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FnnFrm.xaml.cs">
       <DependentUpon>FnnFrm.xaml</DependentUpon>
     </Compile>
@@ -347,6 +350,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\CFListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ExportYeoman2XlsFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -716,7 +723,9 @@
   <ItemGroup>
     <Resource Include="Images\1328708757_cancel.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\1420389255_xls.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\1329314471_gnome-session-switch.png" />
   </ItemGroup>
@@ -792,6 +801,10 @@
     <ProjectReference Include="..\NetScalePolosIO\NetScalePolosIO.csproj">
       <Project>{BEFF5E7F-BE23-492B-8E7C-411A77747D9B}</Project>
       <Name>NetScalePolosIO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeomanExport\YeomanExport.csproj">
+      <Project>{40A8E553-24BC-47A6-AD44-CE57FCB8FFE7}</Project>
+      <Name>YeomanExport</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
