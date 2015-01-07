@@ -59,7 +59,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="combit.ListLabel20">
       <HintPath>C:\Program Files (x86)\combit\LL20\Redistributierbare Dateien\combit.ListLabel20.dll</HintPath>

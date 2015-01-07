@@ -141,7 +141,7 @@
                      Margin="8,42,0,0"
                      HorizontalAlignment="Left"
                      VerticalAlignment="Top"
-                     IsReadOnly="True" />
+                     IsReadOnly="True" Text="" />
             <Label x:Name="label4"
                    Height="28"
                    Margin="8,72,0,0"
@@ -308,7 +308,7 @@
                      VerticalAlignment="Top"
                      IsReadOnly="False"
                      RenderTransformOrigin="-0.049,0.374" />
-            <Label Name="Name"
+            <Label Name="lblName"
                    Height="28"
                    Margin="12,345,0,0"
                    HorizontalAlignment="Left"

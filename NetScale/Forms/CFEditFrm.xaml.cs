@@ -1,21 +1,15 @@
-﻿using System;
-using System.ComponentModel;
+﻿
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+
 using System.Windows.Input;
 using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Navigation;
+
 using HWB.NETSCALE.BOEF;
 
-using HWB.NETSCALE.GLOBAL;
-using OakLeaf.MM.Main;
+
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.WPF;
 
@@ -107,13 +101,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
 
-        private void tb_NumDec_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-            // Beispiel : Erst nach dem Load feueren
-            //if (DoNotFireChangeText)
-            //    tb_tara.Text = WindowExtensions.TextBoxOnlyDecimal(e, tb_tara.Text);
-        }
+  
 
 
 
@@ -134,7 +122,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             FrachtmittelListFrm oFFrm = new FrachtmittelListFrm();
             oFFrm.ShowDialog();
             int uRet = oFFrm.uRet;
-            if(uRet!=null)
+            if(uRet!=0)
             {
                 Frachtmittel _boF = new Frachtmittel();
                 FrachtmittelEntity _boFE = _boF.GetFrachtmittelByPK(uRet);
@@ -152,7 +140,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             AdressenListeFrm oAFrm = new AdressenListeFrm();
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
-            if(uRet != null)
+            if(uRet != 0)
             {
                 Adressen _boA = new Adressen();
                 AdressenEntity _boAE = _boA.GetByPk(uRet);
