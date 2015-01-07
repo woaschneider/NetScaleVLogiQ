@@ -36,12 +36,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         // KfzID direkt in die Wägemaske zurückgeben, wenn Fahrzeug aus der Wägemaske neu angelegt wird.
 
-        private bool DoNotFireChangeText;
+     
 
         public CFEditFrm(int pk, bool New, string caption)
         {
             this.InitializeComponent();
-            DoNotFireChangeText = true;
+        
 
 
             if (New == true)
@@ -59,7 +59,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             DataContext = _boCFE;
 
             this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
-            DoNotFireChangeText = false;
+      
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 

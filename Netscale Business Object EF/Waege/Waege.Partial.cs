@@ -17,7 +17,7 @@ namespace HWB.NETSCALE.BOEF
     /// </summary>
     public partial class Waege
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+     
 
         /// <summary>
         /// Hook method automatically executed from the mmBusinessObject constructor
@@ -335,23 +335,7 @@ namespace HWB.NETSCALE.BOEF
             Entity.customerIsocodeCountry = null;
         }
 
-        public void invoiceReceiver2Waege(int pk)
-        {
-            AdressenEntity boAE = GetAPByPk(pk);
-            if (boAE != null)
-            {
-                Entity.invoiceReceiverId = boAE.id;
-                Entity.invoiceReceicerBusinessIdentifier = boAE.businessIdentifier;
-                Entity.invoiceReceiverName = boAE.name;
-                Entity.invoiceReceiverSubName2 = boAE.subName2;
-                Entity.invoiceReceiverOwningLocationId = boAE.owningLocationId;
-                Entity.invoiceReceiverStreet = boAE.street;
-                Entity.invoiceReceiverZipCode = boAE.zipCode;
-                Entity.invoiceReceiverCity = boAE.city;
-                Entity.invoiceReceiverIdCountry = boAE.idCountry;
-                Entity.invoiceReceiverIsocodeCountry = boAE.isocodeCountry;
-            }
-        }
+  
 
         public void ClearinvoiceReceiverInWaege()
         {
@@ -399,24 +383,7 @@ namespace HWB.NETSCALE.BOEF
             Entity.ownerIsocodeCountry = null;
         }
 
-        public void supplierOrConsignee2Waege(int pk)
-        {
-            AdressenEntity boAE = GetAPByPk(pk);
-            if (boAE != null)
-            {
-                Entity.supplierOrConsigneeId = boAE.id;
-                Entity.supplierOrConsigneeBusinessIdentifier = boAE.businessIdentifier;
-                Entity.supplierOrConsigneeName = boAE.name;
-                Entity.supplierOrConsigneeSubName2 = boAE.subName2;
-                Entity.supplierOrConsigneeOwningLocationId = boAE.owningLocationId;
-                Entity.supplierOrConsigneeStreet = boAE.street;
-                Entity.supplierOrConsigneeZipCode = boAE.zipCode;
-                Entity.supplierOrConsigneeCity = boAE.city;
-              
-                Entity.supplierOrConsigneeIdCountry = boAE.idCountry;
-                Entity.supplierOrConsigneeIsocodeCountry = boAE.isocodeCountry;
-            }
-        }
+  
 
         public void ClearsupplierOrConsigneeInWaege()
         {

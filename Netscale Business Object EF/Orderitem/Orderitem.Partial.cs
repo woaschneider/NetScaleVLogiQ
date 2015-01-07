@@ -40,52 +40,24 @@ namespace HWB.NETSCALE.BOEF
             return GetEntity(query);
         }
 
-        public mmBindingList<OrderitemEntity> GetByCustomerBusinessIdentifier(string ident)
-        {
-            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
-                                                where o.customerBusinessIdentifier.Contains(ident)
-                                                select o;
-            return GetEntityList(query);
-        }
+      
 
-        public mmBindingList<OrderitemEntity> GetByInvoiceReceiverBusinessIdentifier(string ident)
-        {
-            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
-                                                where o.invoiceReceicerBusinessIdentifier.Contains(ident)
-                                                select o;
-            return GetEntityList(query);
-        }
+      
 
-        public mmBindingList<OrderitemEntity> GetByOwnerBusinessIdentifier(string ident)
-        {
-            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
-                                                where o.invoiceReceicerBusinessIdentifier.Contains(ident)
-                                                select o;
-            return GetEntityList(query);
-        }
-
-        public mmBindingList<OrderitemEntity> GetByAU_RE_MatchCode(string customerBi,
-                                                                                    string invoiceReceiverBi
-                                                                                    )
-        {
-            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
-                                                where  
-                                                o.customerBusinessIdentifier.Contains(customerBi) &
-                                                o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi)
-                                                orderby o.customerBusinessIdentifier
-                                                select o;
-            return GetEntityList(query);
-        }
 
         public mmBindingList<OrderitemEntity> GetByAU_RE_KR_MatchCode(string customerBi,
-                                                                                 string invoiceReceiverBi, string kundenreferenz
-                                                                                 )
+                                                                                 string invoiceReceiverBi, string kundenreferenz,
+                                                                               string artikelbeschreibung, string freistellung  )
         {
             IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
-                                                where
+                                                from ois in ObjectContext.OrderItemserviceEntities
+                                                where o.PK== ois.PKOrderItem &&
                                                 o.customerBusinessIdentifier.Contains(customerBi) &&
                                                 o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi)&&
-                                               o.reference.Contains(kundenreferenz)
+                                                o.reference.Contains(kundenreferenz) &&
+                                                ois.articleDescription.Contains(artikelbeschreibung)&&
+                                                ois.clearanceReferenz.Contains(freistellung)
+
                                                 orderby o.customerBusinessIdentifier
                                                 select o;
             return GetEntityList(query);
@@ -100,40 +72,6 @@ namespace HWB.NETSCALE.BOEF
             return uRet;
         }
 
-        //public mmBindingList<OrderParentAndChild> GetOrderWithAllDetailsByMatchCode(string customerBi,
-        //                                                                            string invoiceReceiverBi,
-        //                                                                            string lagermandantBi,
-        //                                                                            string article)
 
-        //{
-        //    var query = from o in ObjectContext.OrderitemEntities
-        //                from ois in ObjectContext.OrderItemserviceEntities
-        //                where o.PK == ois.PKOrderItem &
-        //                      o.customerBusinessIdentifier.Contains(customerBi) &
-        //                      o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi) &
-        //                      ois.supplierOrConsigneeBusinessIdentifier.Contains(lagermandantBi)
-        //                select new OrderParentAndChild
-        //                           {
-        //                               PK = o.PK,
-        //                               customerBusinessIdentifier = o.customerBusinessIdentifier,
-        //                               invoiceReceiverBusinessIdentifier = o.invoiceReceicerBusinessIdentifier,
-        //                               id = o.id,
-        //                               number = o.number,
-        //                               date = ois.plannedDate,
-        //                               ownerBusinessIdentifier = ois.ownerBusinessIdentifier,
-        //                               remark = ois.remark,
-        //                               product = ois.product,
-        //                               productdescription = ois.productdescription,
-        //                               supplierOrConsigneeBusinessIdentifiert =
-        //                                   ois.supplierOrConsigneeBusinessIdentifier,
-        //                               articleId = ois.articleId,
-        //                               kindOfGoodDescription = ois.kindOfGoodDescription,
-        //                               deliveryType = ois.deliveryType,
-        //                               articleDescription = ois.articleDescription,
-        //                               plannedDate = ois.plannedDate,
-        //                           };
-        //    var x = query.ToString();
-        //    return GetEntityList(query.Distinct());
-        //}
     }
 }

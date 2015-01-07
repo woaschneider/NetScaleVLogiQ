@@ -186,7 +186,18 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TextChanged="TxtFreistellung_OnTextChanged" />
-        <Label Content="Artikel-Beschr." Height="28" HorizontalAlignment="Left" Margin="649,129,0,0" Name="label5" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="749,131,0,0" Name="txtArticleBeschreibung" VerticalAlignment="Top" Width="178" TextChanged="TxtArticleBeschreibung_OnTextChanged" />
+        <Label Name="label5"
+               Height="28"
+               Margin="649,129,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Artikel-Beschr." />
+        <TextBox Name="txtArticleBeschreibung"
+                 Width="178"
+                 Height="23"
+                 Margin="749,131,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TextChanged="TxtArticleBeschreibung_OnTextChanged" />
     </Grid>
 </mmwpf:mmBusinessWindow>

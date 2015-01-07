@@ -101,7 +101,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             this.Hide();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dataGrid.SelectedItem = dataGrid.Items[0];
             dataGrid.Focus();

@@ -73,7 +73,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

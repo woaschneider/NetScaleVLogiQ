@@ -959,7 +959,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     boE = new Einstellungen();
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
                     // _boWe.lsnr = boMandant.GetLsNr(_boWe);
-                    TODO: // Welche Felder 
+                  
                     _boWe.zweitDateTime = oRw.Time;
                     //   _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
