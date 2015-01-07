@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Input;
 using System.Windows.Markup;
 
 using HWB.NETSCALE.BOEF;
@@ -20,26 +20,30 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     // Not Implemented:   
     public partial class AuftragsListeV2
     {
-        public string Mc { get; private set; }
+        private string _mc;
 
-        public int URet { get; private set; }
 
-        public OrderItemservice BoOies
+        public int URet
         {
-            get { return _boOies; }
+            get { return _uRet; }
+            private set { _uRet = value; }
         }
+
+     
 
         private readonly Orderitem _boOi = new Orderitem();
         private readonly OrderItemservice _boOies = new OrderItemservice();
+        private int _uRet;
+
 
 
         public AuftragsListeV2(string mc)
         {
-            Mc = mc;
+            _mc = mc;
             InitializeComponent();
-          //  DataContext = _boOi.GetAll();
-            dataGridOrderItems.SelectedValuePath = "PK";
-            dataGridOrderItemService.SelectedValuePath = "PK";
+           
+            DataGridOrderItems.SelectedValuePath = "PK";
+            DataGridOrderItemService.SelectedValuePath = "PK";
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
         }
 
@@ -50,27 +54,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdSelect_Click(object sender, RoutedEventArgs e)
         {
-            URet = Convert.ToInt32(dataGridOrderItemService.SelectedValue);
+            URet = Convert.ToInt32(DataGridOrderItemService.SelectedValue);
             Hide();
         }
 
-        private void cmdEdit_Click(object sender, RoutedEventArgs e)
-        {
-        }
 
-        private void cmdNeu_Click(object sender, RoutedEventArgs e)
-        {
-        }
+
+
 
         private void FilldataGridOrderItemService(int pk)
         {
-            dataGridOrderItemService.ItemsSource = _boOies.GetByParentPK(pk);
+            DataGridOrderItemService.ItemsSource = _boOies.GetByParentPK(pk);
         }
 
 
         private void dataGridOrderItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FilldataGridOrderItemService(Convert.ToInt32(dataGridOrderItems.SelectedValue));
+            FilldataGridOrderItemService(Convert.ToInt32(DataGridOrderItems.SelectedValue));
         }
 
 
@@ -89,8 +89,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             GetOrderByMc();
         }
 
-     
-       
+
+
 
         private void TxtFreistellung_OnTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -99,30 +99,40 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void GetOrderByMc()
         {
-            dataGridOrderItems.SelectedValuePath = "PK";
-            dataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(txtAU.Text,
-                txtRE.Text, txtKundenReferenz.Text, txtFreistellung.Text,txtArticleBeschreibung.Text).Distinct();
+            DataGridOrderItems.SelectedValuePath = "PK";
+            DataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(TxtAu.Text,
+                TxtRe.Text, TxtKundenReferenz.Text, TxtFreistellung.Text, TxtArticleBeschreibung.Text).Distinct();
 
-            if (dataGridOrderItems.Items.Count > 0)
+            if (DataGridOrderItems.Items.Count > 0)
             {
-                object item = dataGridOrderItems.Items[0]; // = Erste Zeile
-                dataGridOrderItems.SelectedItem = item;
-                FilldataGridOrderItemService(Convert.ToInt32(dataGridOrderItems.SelectedValue));
+                object item = DataGridOrderItems.Items[0]; // = Erste Zeile
+                DataGridOrderItems.SelectedItem = item;
+                FilldataGridOrderItemService(Convert.ToInt32(DataGridOrderItems.SelectedValue));
 
-                DataGridRow row = dataGridOrderItems.ItemContainerGenerator.ContainerFromIndex(0) as DataGridRow;
+                DataGridRow row = DataGridOrderItems.ItemContainerGenerator.ContainerFromIndex(0) as DataGridRow;
                 if (row == null)
                 {
-                    /* bring the data item (Product object) into view
-             * in case it has been virtualized away */
-                    dataGridOrderItems.ScrollIntoView(item);
+
+
+                    DataGridOrderItems.ScrollIntoView(item);
+
 
                 }
+               }
+            }
+
+            private
+            void TxtArticleBeschreibung_OnTextChanged 
+            (object sender, TextChangedEventArgs e)
+            {
+                GetOrderByMc();
+            }
+
+        private
+            void DataGridOrderItemService_OnMouseDoubleClick 
+            (object sender, MouseButtonEventArgs e)
+            {
+                throw new NotImplementedException();
             }
         }
-
-        private void TxtArticleBeschreibung_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            GetOrderByMc();
-        }
     }
-}
