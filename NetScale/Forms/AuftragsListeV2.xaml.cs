@@ -1,7 +1,7 @@
 ﻿using System;
 
 using System.Globalization;
-
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -37,7 +37,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             Mc = mc;
             InitializeComponent();
-            DataContext = _boOi.GetAll();
+          //  DataContext = _boOi.GetAll();
             dataGridOrderItems.SelectedValuePath = "PK";
             dataGridOrderItemService.SelectedValuePath = "PK";
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
@@ -76,29 +76,48 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void txtAU_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGridOrderItems.SelectedValuePath = "PK";
-            dataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(txtAU.Text,
-                txtRE.Text, txtKundenReferenz.Text);
+            GetOrderByMc();
         }
 
         private void txtKundenReferenz_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGridOrderItems.SelectedValuePath = "PK";
-            dataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(txtAU.Text,
-                txtRE.Text, txtKundenReferenz.Text);
+            GetOrderByMc();
         }
 
         private void txtRE_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGridOrderItems.SelectedValuePath = "PK";
-            dataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(txtAU.Text,
-                txtRE.Text, txtKundenReferenz.Text);
+            GetOrderByMc();
         }
 
-        private void SearchFreistellung(string mc)
+     
+       
+
+        private void TxtFreistellung_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            // Not developed yet.
-            throw new NotImplementedException();
+            GetOrderByMc();
+        }
+
+        private void GetOrderByMc()
+        {
+            dataGridOrderItems.SelectedValuePath = "PK";
+            dataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(txtAU.Text,
+                txtRE.Text, txtKundenReferenz.Text, txtFreistellung.Text).Distinct();
+
+            if (dataGridOrderItems.Items.Count > 0)
+            {
+                object item = dataGridOrderItems.Items[0]; // = Erste Zeile
+                dataGridOrderItems.SelectedItem = item;
+                FilldataGridOrderItemService(Convert.ToInt32(dataGridOrderItems.SelectedValue));
+
+                DataGridRow row = dataGridOrderItems.ItemContainerGenerator.ContainerFromIndex(0) as DataGridRow;
+                if (row == null)
+                {
+                    /* bring the data item (Product object) into view
+             * in case it has been virtualized away */
+                    dataGridOrderItems.ScrollIntoView(item);
+
+                }
+            }
         }
     }
 }

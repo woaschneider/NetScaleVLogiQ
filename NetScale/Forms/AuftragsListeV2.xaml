@@ -22,6 +22,14 @@
     </mmwpf:mmBusinessWindow.DataContext>
 
     <Grid x:Name="LayoutRoot" Background="#FF68A3D8">
+        <Rectangle Name="rectangle1"
+                   Width="1059"
+                   Height="91"
+                   Margin="4,104,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Fill="#FFEBEBEC"
+                   Stroke="Black" />
         <ribbon:Ribbon x:Name="Ribbon"
                        Height="120"
                        Margin="-2,-21,2,0"
@@ -64,17 +72,18 @@
         <DataGrid x:Name="dataGridOrderItems"
                   Width="1061"
                   Height="174"
-                  Margin="5,187,0,0"
+                  Margin="5,232,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Mode=OneWay}"
                   SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGridOrderItems_SelectionChanged" Style="{DynamicResource DataGridStyle}">
+                  SelectionChanged="dataGridOrderItems_SelectionChanged"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Nummer" />
-                <DataGridTextColumn Binding="{Binding date}"  Header="Datum" />
+                <DataGridTextColumn Binding="{Binding date}" Header="Datum" />
                 <DataGridTextColumn Binding="{Binding reference}" Header="Referenz" />
                 <DataGridTextColumn Binding="{Binding orderstate}" Header="Orderstatus" />
                 <DataGridTextColumn Binding="{Binding customerBusinessIdentifier}" Header="Auftraggeber" />
@@ -88,7 +97,8 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Mode=OneWay}" Style="{DynamicResource DataGridStyle}">
+                  ItemsSource="{Binding Mode=OneWay}"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.DataContext>
                 <HWB_NETSCALE_BOEF:OrderItemserviceEntity />
             </DataGrid.DataContext>
@@ -117,33 +127,15 @@
                VerticalAlignment="Top"
                Content="Rechnungsempfänger" />
         <Label Name="lblKundenReferenz"
-               Height="42"
-               Margin="413,0,0,507"
+               Height="28"
+               Margin="413,126,0,0"
                HorizontalAlignment="Left"
-               VerticalAlignment="Bottom"
+               VerticalAlignment="Top"
                Content="Kundenreferenz" />
-        <Label Name="lblLieferantEmfaenger"
-               Height="28"
-               Margin="8,375,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Content="Lagermandant" />
-        <Label Name="lblArtikelNr"
-               Height="28"
-               Margin="461,377,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Content="Artikel-Nr." />
         <Label Name="label2"
                Margin="27,107,0,679"
                HorizontalAlignment="Left"
                Content="Lagermandant" />
-        <Label Name="label3"
-               Height="28"
-               Margin="461,406,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Content="Freistellung" />
         <TextBox Name="txtAU"
                  Width="240"
                  Height="23"
@@ -156,25 +148,43 @@
                  Height="23"
                  Margin="152,156,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" TextChanged="txtRE_TextChanged" />
-        <TextBox Name="txtLM"
+                 VerticalAlignment="Top"
+                 TextChanged="txtRE_TextChanged" />
+        <TextBox Name="txtKundenReferenz"
                  Width="240"
                  Height="23"
-                 Margin="146,377,0,0"
+                 Margin="513,128,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" />
+                 VerticalAlignment="Top"
+                 TextChanged="txtKundenReferenz_TextChanged" />
         <Label Name="label1"
                Height="28"
-               Margin="8,404,0,0"
+               Margin="5,204,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Lieferant / Empfänger" />
-        <TextBox Name="textBox1"
+               Content="Auftragskopf"
+               FontSize="14"
+               FontWeight="Black" />
+        <Label Name="label3"
+               Height="28"
+               Margin="2,424,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Auftragspositionen"
+               FontSize="14"
+               FontWeight="Black" />
+        <Label Name="label4"
+               Height="28"
+               Margin="413,154,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Freistellung" />
+        <TextBox Name="txtFreistellung"
                  Width="240"
                  Height="23"
-                 Margin="146,406,0,0"
+                 Margin="513,156,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="513,128,0,0" Name="txtKundenReferenz" VerticalAlignment="Top" Width="240" TextChanged="txtKundenReferenz_TextChanged" />
+                 VerticalAlignment="Top"
+                 TextChanged="TxtFreistellung_OnTextChanged" />
     </Grid>
 </mmwpf:mmBusinessWindow>
