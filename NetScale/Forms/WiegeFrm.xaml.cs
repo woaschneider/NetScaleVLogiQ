@@ -319,7 +319,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             AuftragsListeV2 oAFrm = new AuftragsListeV2("");
             oAFrm.ShowDialog();
-            int uRet = oAFrm.uRet;
+            int uRet = oAFrm.URet;
             _boW.Auftrag2Waege(uRet);
 
             oAFrm.Close();
