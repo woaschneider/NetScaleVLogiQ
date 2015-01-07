@@ -101,7 +101,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             dataGridOrderItems.SelectedValuePath = "PK";
             dataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(txtAU.Text,
-                txtRE.Text, txtKundenReferenz.Text, txtFreistellung.Text).Distinct();
+                txtRE.Text, txtKundenReferenz.Text, txtFreistellung.Text,txtArticleBeschreibung.Text).Distinct();
 
             if (dataGridOrderItems.Items.Count > 0)
             {
@@ -118,6 +118,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                 }
             }
+        }
+
+        private void TxtArticleBeschreibung_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            GetOrderByMc();
         }
     }
 }
