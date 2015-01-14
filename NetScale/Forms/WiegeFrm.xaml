@@ -350,6 +350,7 @@
                  Margin="160,623,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="250"
                  Text="{Binding orign}" />
         <Label x:Name="lblHerkunft"
                Height="28"
@@ -377,6 +378,7 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  KeyDown="txtKfzKennzeichen_KeyDown"
+                 TabIndex="110"
                  Text="{Binding Fahrzeug}" />
         <Label x:Name="lblFahrzeug"
                Height="26"
@@ -391,6 +393,8 @@
                  Margin="160,194,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 LostFocus="TxtFrachtführer_OnLostFocus"
+                 TabIndex="120"
                  Text="{Binding ffBusinessIdentifier}" />
         <Label x:Name="lblFrachtFuehrer"
                Height="27"
@@ -404,6 +408,7 @@
                  Margin="160,220,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="130"
                  Text="{Binding Frachtmittel}" />
         <Label x:Name="lblFahrzeugtyp"
                Height="27.667"
@@ -417,6 +422,8 @@
                  Margin="160,414,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 LostFocus="TxtLagerMandant_OnLostFocus"
+                 TabIndex="180"
                  Text="{Binding ownerBusinessIdentifier}" />
         <Label x:Name="lblLagerMandant"
                Height="27"
@@ -430,6 +437,7 @@
                  Margin="160,439,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="190"
                  Text="{Binding reference}" />
         <Label x:Name="lblKundenReferenz"
                Height="26"
@@ -443,6 +451,8 @@
                  Margin="160,464,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 LostFocus="TxtLieferantEmpfaenger_OnLostFocus"
+                 TabIndex="200"
                  Text="{Binding supplierOrConsigneeBusinessIdentifier}" />
         <Label x:Name="lblLieferantEmfaenger"
                Height="28"
@@ -456,6 +466,7 @@
                  Margin="160,489,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="210"
                  Text="{Binding deliveryType}" />
         <Label x:Name="lblFankatur"
                Height="25.335"
@@ -469,6 +480,7 @@
                  Margin="160,514,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="220"
                  Text="{Binding kindOfGoodDescription}"
                  d:LayoutOverrides="HorizontalAlignment" />
         <Label x:Name="lblWarenart"
@@ -483,7 +495,8 @@
                  Margin="160,540,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 Text="{Binding articleDescription}" />
+                 TabIndex="230"
+                 Text="{Binding articleNumber}" />
         <Label x:Name="lblArtikelNr"
                Height="28"
                Margin="28,538,0,0"
@@ -496,6 +509,7 @@
                  Margin="160,566,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="240"
                  Text="{Binding plannedDate}" />
         <Label x:Name="lblGepelListungsdatum"
                Height="28"
@@ -509,6 +523,7 @@
                  Margin="160,248,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="140"
                  Text="{Binding IstQuellLagerPlatz}" />
         <Label x:Name="lblIstQuellLagerplatz"
                Height="27.667"
@@ -522,6 +537,7 @@
                  Margin="160,275,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="150"
                  Text="{Binding IstZielLagerPlatz}" />
         <Label x:Name="lblFahrzeugtyp_Copy1"
                Height="27.667"
@@ -690,6 +706,8 @@
                  Margin="160,331,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 LostFocus="TxtAuftraggeber_OnLostFocus"
+                 TabIndex="160"
                  Text="{Binding customerBusinessIdentifier}" />
         <TextBox x:Name="txtRechnungsEmpfaenger"
                  Width="436"
@@ -697,6 +715,8 @@
                  Margin="160,357,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 LostFocus="TxtRechnungsEmpfaenger_OnLostFocus"
+                 TabIndex="170"
                  Text="{Binding invoiceReceicerBusinessIdentifier}" />
         <Button x:Name="luCustomer"
                 Width="40"
@@ -1305,6 +1325,7 @@
                  Margin="160,143,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 TabIndex="100"
                  Text="{Binding productdescription}" />
         <Label Name="label35"
                Height="26"

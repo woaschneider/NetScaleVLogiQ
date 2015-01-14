@@ -109,7 +109,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                             _boOe.date = PolosUtitlities.ConvertPolosDateTime2DateTime(obj.date);
                         }
                         _boOe.orderstate = obj.orderState;
-                        _boOe.reference = obj.reference;
+                        _boOe.reference = obj.reference ?? ""; 
 
                         // Adressen
 
@@ -119,7 +119,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         // Später vielleicht zusätzlich (redundant) nehmen wir noch PK und ID
 
                         //customer
-                        _boOe.customerBusinessIdentifier = obj.customer.businessIdentifier;
+                        _boOe.customerBusinessIdentifier = obj.customer.businessIdentifier ?? "";
                         _boOe.customerId = obj.customer.id;
                         _boA = new Adressen();
                         if (_boOe.customerId != null)
@@ -138,7 +138,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                             }
                         }
                         //invoice
-                        _boOe.invoiceReceicerBusinessIdentifier = obj.invoiceReceiver.businessIdentifier;
+                        
+                        _boOe.invoiceReceicerBusinessIdentifier = obj.invoiceReceiver.businessIdentifier ?? "";
                         _boOe.invoiceReceiverId = obj.invoiceReceiver.id;
                         if (_boOe.invoiceReceiverId != null)
                         {
@@ -202,7 +203,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     {
                                         _boOise.articleId = t.articleInstance.article.id;
                                         _boOise.articleDescription =
-                                            t.articleInstance.article.number;
+                                            t.articleInstance.article.description ?? "";
+                                        _boOise.number = t.articleInstance.article.number ?? "";
                                         // Ganz schräg Inhalt zB Testbleche
                                         _boOise.ownerId = t.articleInstance.article.ownerId;
                                         _boOise.kindOfGoodId =
@@ -259,6 +261,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     #region Clearance
 
                                     // boOISE.clearanceQuantity   = Nicht vorhanden
+                                    _boOise.clearanceReferenz = ""; // Damit die abfrage in den Aufträgen funktiniert darf kein NULL in der Freistellungen sein
                                     if (t.clearance != null)
                                     {
                                         _boOise.clearanceReferenz = t.clearance.reference;

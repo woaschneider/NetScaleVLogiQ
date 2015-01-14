@@ -74,9 +74,10 @@
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID" />
-                <DataGridTextColumn Binding="{Binding number}" Header="Nummer" />
-                <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Bezeichnung 1" />
-                <DataGridTextColumn Binding="{Binding description}" Header="Bezeichnung 2" />
+                <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr." />
+                <DataGridTextColumn Binding="{Binding description}" Header="artikel-Bez." />
+                <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart-Bez." />
+               
                 <DataGridTextColumn Binding="{Binding ownerId}" Header="Lagermandant" />
                 <DataGridTextColumn Binding="{Binding baseUnitDescription}" Header="BME-Einheit" />
             </DataGrid.Columns>

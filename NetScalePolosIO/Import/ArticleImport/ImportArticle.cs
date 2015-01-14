@@ -50,6 +50,7 @@ namespace NetScalePolosIO.Import.ArticleImport
                         }
                         _boAe.id = obj.article.id;
                         _boAe.number = obj.article.number;
+                        _boAe.description = obj.article.description;
                         _boAe.ownerId = obj.article.ownerId.ToString();
                         _boAe.kindOfGoodId = obj.article.kindOfGoodId;
                         _boAe.kindOfGoodDescription = obj.article.kindOfGoodDescription;

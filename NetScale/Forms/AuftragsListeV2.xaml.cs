@@ -103,7 +103,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             DataGridOrderItems.SelectedValuePath = "PK";
             DataGridOrderItems.ItemsSource = _boOi.GetByAU_RE_KR_MatchCode(TxtAu.Text,
-                TxtRe.Text, TxtKundenReferenz.Text, TxtFreistellung.Text, TxtArticleBeschreibung.Text).Distinct();
+           TxtRe.Text, TxtKundenReferenz.Text, TxtArticleBeschreibung.Text, TxtFreistellung.Text).Distinct();
+          
 
             if (DataGridOrderItems.Items.Count > 0)
             {

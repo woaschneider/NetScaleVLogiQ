@@ -52,7 +52,7 @@
                   SelectionUnit="FullRow" Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="50"
-                                    Binding="{Binding Erstzeit}"
+                                    Binding="{Binding ErstDatetime}"
                                     Header="Zeit" />
 
                 <DataGridTextColumn MinWidth="80"
@@ -62,12 +62,12 @@
                                     Binding="{Binding Erstgewicht}"
                                     Header="Gewicht" />
                 <DataGridTextColumn MinWidth="80"
-                                    Binding="{Binding SortenNr}"
-                                    Header="Sorten-Nr." />
+                                    Binding="{Binding number}"
+                                    Header="Artikel-Nr." />
                 <DataGridTextColumn MinWidth="80"
-                                    Binding="{Binding Sortenbezeichnung1}"
-                                    Header="Sortenbezeichnung" />
-                <DataGridTextColumn Binding="{Binding FirmaKU}" Header="Kunde / Lieferant" />
+                                    Binding="{Binding description}"
+                                    Header="Artikelbezeichnung" />
+                <DataGridTextColumn Binding="{Binding }" Header="Auftraggeber" />
             </DataGrid.Columns>
         </DataGrid>
         <Image Name="image1"

@@ -96,7 +96,8 @@
                 <DataGridTemplateColumn />
                 <DataGridTextColumn Binding="{Binding sequence}" Header="Seq." />
                 <DataGridTextColumn Binding="{Binding deliveryType}" Header="Frankatur" />
-                <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikelbeschreibung" />
+                <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
+                <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikel-Bezeichnung" />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
                 <DataGridTextColumn Binding="{Binding targedAmount}" Header="Sollmenge" />
                 <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lieferant / Empfänger" />

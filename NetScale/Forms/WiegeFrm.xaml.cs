@@ -1252,14 +1252,72 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oyXlsFrmFrm.Close();
         }
 
-     
-       
 
+        private void TxtAuftraggeber_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtAuftraggeber.Text))
+            {
+                Adressen boA = new Adressen();
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text,"AU");
+                if (boAe != null)
+                {
+                    _boW.Customer2Waege(boAe.PK);
+                }
+            }
+        }
 
+        private void TxtRechnungsEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtRechnungsEmpfaenger.Text))
+            {
+                Adressen boA = new Adressen();
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtRechnungsEmpfaenger.Text,"RE");
+                if (boAe != null)
+                {
+                    _boW.InvoiceReceiver2Waege(boAe.PK);
+                }
+            }
+          
+        }
 
+        private void TxtFrachtführer_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtFrachtführer.Text))
+            {
+                Adressen boA = new Adressen();
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text,"LI");
+                if (boAe != null)
+                {
+                    _boW.FrachtFuehrer2Waege(boAe.PK);
+                }
+            }
+          
+        }
 
+        private void TxtLagerMandant_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtLagerMandant.Text))
+            {
+                Adressen boA = new Adressen();
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLagerMandant.Text,"LM");
+                if (boAe != null)
+                {
+                    _boW.Owner2Waege(boAe.PK);
+                }
+            }
+        }
 
-
-
+        private void TxtLieferantEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtLieferantEmpfaenger.Text))
+            {
+                Adressen boA = new Adressen();
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLieferantEmpfaenger.Text,"EM");
+                if (boAe != null)
+                {
+                    _boW.SupplierOrConsignee2Waege(boAe.PK);
+                }
+            }
+        }
     }
 }

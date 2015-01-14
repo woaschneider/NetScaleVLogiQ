@@ -223,7 +223,8 @@ namespace HWB.NETSCALE.BOEF
             if(boAE!=null)
             {
                 Entity.articleId = boAE.id;
-                Entity.articleDescription = boAE.kindOfGoodDescription;
+                Entity.articleNumber = boAE.number;
+                Entity.articleDescription = boAE.number;
             }
         }
 
@@ -441,6 +442,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.deliveryType = _boOISE.deliveryType;
                 Entity.kindOfGoodDescription = _boOISE.kindOfGoodDescription;
                 Entity.articleId = _boOISE.articleId;
+                Entity.articleNumber = _boOISE.number;
                 Entity.articleDescription = _boOISE.articleDescription;
                 Entity.plannedDate = _boOISE.plannedDate;
                 Entity.clearanceReferenz = _boOISE.clearanceReferenz;

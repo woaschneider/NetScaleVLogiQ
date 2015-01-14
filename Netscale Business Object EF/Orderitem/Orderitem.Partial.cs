@@ -53,7 +53,7 @@ namespace HWB.NETSCALE.BOEF
                                                 from ois in ObjectContext.OrderItemserviceEntities
                                                 where o.PK== ois.PKOrderItem &&
                                                 o.customerBusinessIdentifier.Contains(customerBi) &&
-                                                o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi)&&
+                                                o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi) &&
                                                 o.reference.Contains(kundenreferenz) &&
                                                 ois.articleDescription.Contains(artikelbeschreibung)&&
                                                 ois.clearanceReferenz.Contains(freistellung)

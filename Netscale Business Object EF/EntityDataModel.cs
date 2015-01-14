@@ -440,22 +440,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<AdressenEntity> AdressenEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<AdressenEntity> _AdressenEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -657,19 +657,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AdressenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToAdressenEntities(AdressenEntity adressenEntity)
         {
             base.AddObject("AdressenEntities", adressenEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -10459,6 +10459,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _incoterm;
         partial void OnincotermChanging(global::System.String value);
         partial void OnincotermChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String articleNumber
+        {
+            get
+            {
+                return _articleNumber;
+            }
+            set
+            {
+                OnarticleNumberChanging(value);
+                ReportPropertyChanging("articleNumber");
+                _articleNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("articleNumber");
+                OnarticleNumberChanged();
+            }
+        }
+        private global::System.String _articleNumber;
+        partial void OnarticleNumberChanging(global::System.String value);
+        partial void OnarticleNumberChanged();
 
         #endregion
     
