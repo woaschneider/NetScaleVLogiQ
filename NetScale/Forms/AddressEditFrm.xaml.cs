@@ -91,5 +91,37 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             WindowExtensions.HideCloseButton(this);
         }
+
+        private void ButtonLsVorlage_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+            // Set filter for file extension and default file extension
+            dlg.DefaultExt = ".lbl";
+
+            dlg.Filter = "Text documents (.lbl)|*.lbl";
+
+
+            // Display OpenFileDialog by calling ShowDialog method
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox
+
+            if (result == true)
+            {
+                // Open document
+
+                string filename = dlg.FileName;
+
+                boAPE.Lieferscheinvorlage = filename;
+            
+               
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿<mmwpf:mmBusinessWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.AuftragsListeV2"
                         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:controls="http://schemas.microsoft.com/wpf/2008/toolkit"
                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:hwbNetscaleBoef="clr-namespace:HWB.NETSCALE.BOEF;assembly=HWB.NETSCALE.BOEF"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,6 +19,8 @@
     <mmwpf:mmBusinessWindow.DataContext>
         <hwbNetscaleBoef:OrderitemEntity />
     </mmwpf:mmBusinessWindow.DataContext>
+
+
 
     <Grid x:Name="LayoutRoot" Background="#FF68A3D8">
         <Rectangle Name="Rectangle1"
@@ -90,6 +93,7 @@
                 <hwbNetscaleBoef:OrderItemserviceEntity />
             </DataGrid.DataContext>
             <DataGrid.Columns>
+                <DataGridTemplateColumn />
                 <DataGridTextColumn Binding="{Binding sequence}" Header="Seq." />
                 <DataGridTextColumn Binding="{Binding deliveryType}" Header="Frankatur" />
                 <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikelbeschreibung" />

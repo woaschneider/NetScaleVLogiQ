@@ -14,9 +14,9 @@
                         Background="#FFFFFFFF"
                         WindowStartupLocation="CenterScreen"
                         mc:Ignorable="d">
-	<mmwpf:mmBusinessWindow.Resources>
-		<HWB_NETSCALE_BOEF:FrachtmittelEntity x:Key="FrachtmittelEntityDataSource" d:IsDataSource="True"/>
-	</mmwpf:mmBusinessWindow.Resources>
+    <mmwpf:mmBusinessWindow.Resources>
+        <HWB_NETSCALE_BOEF:FrachtmittelEntity x:Key="FrachtmittelEntityDataSource" d:IsDataSource="True" />
+    </mmwpf:mmBusinessWindow.Resources>
 
     <Grid x:Name="LayoutRoot" DataContext="{Binding Source={StaticResource FrachtmittelEntityDataSource}}">
         <ribbon:Ribbon x:Name="Ribbon"
@@ -59,12 +59,16 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid x:Name="dataGrid"
+                  Width="276"
                   Margin="29,126,0,38"
+                  HorizontalAlignment="Left"
                   AutoGenerateColumns="False"
-                  SelectedValuePath="&quot;PK&quot;" ItemsSource="{Binding Mode=OneWay}" HorizontalAlignment="Left" Width="276" Style="{DynamicResource DataGridStyle}">
+                  ItemsSource="{Binding Mode=OneWay}"
+                  SelectedValuePath="&quot;PK&quot;"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Kennung" Binding="{Binding Kennung}" />
-                <DataGridTextColumn Header="Bezeichnung" Binding="{Binding Bezeichnung}" />
+                <DataGridTextColumn Binding="{Binding Kennung}" Header="Kennung" />
+                <DataGridTextColumn Binding="{Binding Bezeichnung}" Header="Bezeichnung" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

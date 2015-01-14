@@ -73,6 +73,7 @@
           <Property Name="roleCarrier" Type="bit" />
           <Property Name="roleShipOwner" Type="bit" />
           <Property Name="roleTrainOperator" Type="bit" />
+          <Property Name="Lieferscheinvorlage" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Artikel">
           <Key>
@@ -616,7 +617,6 @@
           <EntitySet Name="WiegeartEntities" EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" />
           <EntitySet Name="IncotermEntities" EntityType="HWB.NETSCALE.BOEF.IncotermEntity" />
           <EntitySet Name="FrachtmittelEntities" EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" />
-          <EntitySet Name="AdressenEntities" EntityType="HWB.NETSCALE.BOEF.AdressenEntity" />
           <EntitySet Name="WarenartenEntities" EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" />
           <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
           <EntitySet Name="ArtikelattributeEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelattributeEntity" />
@@ -637,6 +637,7 @@
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           <EntitySet Name="MandantEntities" EntityType="HWB.NETSCALE.BOEF.MandantEntity" />
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
+          <EntitySet Name="AdressenEntities" EntityType="HWB.NETSCALE.BOEF.AdressenEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -764,30 +765,6 @@
           <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="MaxBrutto" Precision="10" Scale="2" />
-        </EntityType>
-        <EntityType Name="AdressenEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="id" />
-          <Property Type="String" Name="businessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="name" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="subName2" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="owningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="street" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="zipCode" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="idCountry" />
-          <Property Type="String" Name="isocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="roleClient" />
-          <Property Type="Boolean" Name="roleInvoiceReceiver" />
-          <Property Type="Boolean" Name="roleStorageClient" />
-          <Property Type="Boolean" Name="rolleSupplier" />
-          <Property Type="Boolean" Name="roleReceiver" />
-          <Property Type="Boolean" Name="roleCarrier" />
-          <Property Type="Boolean" Name="roleShipOwner" />
-          <Property Type="Boolean" Name="roleTrainOperator" />
         </EntityType>
         <EntityType Name="WarenartenEntity">
           <Key>
@@ -1182,6 +1159,31 @@
           <Property Type="Boolean" Name="taabExcel" />
           <Property Type="String" Name="incoterm" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="AdressenEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="id" />
+          <Property Type="String" Name="businessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="subName2" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="owningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="street" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zipCode" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idCountry" />
+          <Property Type="String" Name="isocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="roleClient" />
+          <Property Type="Boolean" Name="roleInvoiceReceiver" />
+          <Property Type="Boolean" Name="roleStorageClient" />
+          <Property Type="Boolean" Name="rolleSupplier" />
+          <Property Type="Boolean" Name="roleReceiver" />
+          <Property Type="Boolean" Name="roleCarrier" />
+          <Property Type="Boolean" Name="roleShipOwner" />
+          <Property Type="Boolean" Name="roleTrainOperator" />
+          <Property Type="String" Name="Lieferscheinvorlage" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1309,31 +1311,6 @@
                 <ScalarProperty Name="MaxBrutto" ColumnName="MaxBrutto" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
                 <ScalarProperty Name="Kennung" ColumnName="Kennung" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AdressenEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AdressenEntity">
-              <MappingFragment StoreEntitySet="Adressen">
-                <ScalarProperty Name="roleTrainOperator" ColumnName="roleTrainOperator" />
-                <ScalarProperty Name="roleShipOwner" ColumnName="roleShipOwner" />
-                <ScalarProperty Name="roleCarrier" ColumnName="roleCarrier" />
-                <ScalarProperty Name="roleReceiver" ColumnName="roleReceiver" />
-                <ScalarProperty Name="rolleSupplier" ColumnName="rolleSupplier" />
-                <ScalarProperty Name="roleStorageClient" ColumnName="roleStorageClient" />
-                <ScalarProperty Name="roleInvoiceReceiver" ColumnName="roleInvoiceReceiver" />
-                <ScalarProperty Name="roleClient" ColumnName="roleClient" />
-                <ScalarProperty Name="isocodeCountry" ColumnName="isocodeCountry" />
-                <ScalarProperty Name="idCountry" ColumnName="idCountry" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
-                <ScalarProperty Name="street" ColumnName="street" />
-                <ScalarProperty Name="owningLocationId" ColumnName="owningLocationId" />
-                <ScalarProperty Name="subName2" ColumnName="subName2" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="businessIdentifier" ColumnName="businessIdentifier" />
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1715,6 +1692,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AdressenEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AdressenEntity">
+              <MappingFragment StoreEntitySet="Adressen">
+                <ScalarProperty Name="Lieferscheinvorlage" ColumnName="Lieferscheinvorlage" />
+                <ScalarProperty Name="roleTrainOperator" ColumnName="roleTrainOperator" />
+                <ScalarProperty Name="roleShipOwner" ColumnName="roleShipOwner" />
+                <ScalarProperty Name="roleCarrier" ColumnName="roleCarrier" />
+                <ScalarProperty Name="roleReceiver" ColumnName="roleReceiver" />
+                <ScalarProperty Name="rolleSupplier" ColumnName="rolleSupplier" />
+                <ScalarProperty Name="roleStorageClient" ColumnName="roleStorageClient" />
+                <ScalarProperty Name="roleInvoiceReceiver" ColumnName="roleInvoiceReceiver" />
+                <ScalarProperty Name="roleClient" ColumnName="roleClient" />
+                <ScalarProperty Name="isocodeCountry" ColumnName="isocodeCountry" />
+                <ScalarProperty Name="idCountry" ColumnName="idCountry" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="owningLocationId" ColumnName="owningLocationId" />
+                <ScalarProperty Name="subName2" ColumnName="subName2" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="businessIdentifier" ColumnName="businessIdentifier" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1753,7 +1756,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WiegeartEntity" Width="1.5" PointX="5.875" PointY="5.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.IncotermEntity" Width="1.5" PointX="4.375" PointY="4.125" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FrachtmittelEntity" Width="1.5" PointX="5.375" PointY="6.75" Height="1.7879850260416674" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="9.375" PointY="6.75" Height="4.6725065104166674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WarenartenEntity" Width="1.5" PointX="8.375" PointY="2.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="10.375" PointY="2.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelattributeEntity" Width="1.5" PointX="11.375" PointY="5.75" Height="1.7879850260416674" />
@@ -1774,6 +1776,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="13.375" PointY="5.75" Height="4.0956022135416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="15.375" PointY="0.75" Height="5.8263151041666674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.287252604166667" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="7.375" PointY="6.75" Height="4.8648079427083246" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

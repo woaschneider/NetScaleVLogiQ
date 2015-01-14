@@ -264,22 +264,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AdressenEntity> AdressenEntities
-        {
-            get
-            {
-                if ((_AdressenEntities == null))
-                {
-                    _AdressenEntities = base.CreateObjectSet<AdressenEntity>("AdressenEntities");
-                }
-                return _AdressenEntities;
-            }
-        }
-        private ObjectSet<AdressenEntity> _AdressenEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<WarenartenEntity> WarenartenEntities
         {
             get
@@ -468,6 +452,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<AdressenEntity> AdressenEntities
+        {
+            get
+            {
+                if ((_AdressenEntities == null))
+                {
+                    _AdressenEntities = base.CreateObjectSet<AdressenEntity>("AdressenEntities");
+                }
+                return _AdressenEntities;
+            }
+        }
+        private ObjectSet<AdressenEntity> _AdressenEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -569,14 +569,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AdressenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToAdressenEntities(AdressenEntity adressenEntity)
-        {
-            base.AddObject("AdressenEntities", adressenEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WarenartenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToWarenartenEntities(WarenartenEntity warenartenEntity)
@@ -670,6 +662,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AdressenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToAdressenEntities(AdressenEntity adressenEntity)
+        {
+            base.AddObject("AdressenEntities", adressenEntity);
         }
 
         #endregion
@@ -1162,6 +1162,30 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _roleTrainOperator;
         partial void OnroleTrainOperatorChanging(Nullable<global::System.Boolean> value);
         partial void OnroleTrainOperatorChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Lieferscheinvorlage
+        {
+            get
+            {
+                return _Lieferscheinvorlage;
+            }
+            set
+            {
+                OnLieferscheinvorlageChanging(value);
+                ReportPropertyChanging("Lieferscheinvorlage");
+                _Lieferscheinvorlage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Lieferscheinvorlage");
+                OnLieferscheinvorlageChanged();
+            }
+        }
+        private global::System.String _Lieferscheinvorlage;
+        partial void OnLieferscheinvorlageChanging(global::System.String value);
+        partial void OnLieferscheinvorlageChanged();
 
         #endregion
     

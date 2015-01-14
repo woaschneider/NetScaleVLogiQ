@@ -20,27 +20,7 @@ namespace HWB.NETSCALE.BOEF
 		
 		#region Association Properties
 
-		/// <summary>
-		/// Business Entity object
-		/// </summary>
-		public override AdressenEntity Entity
-		{
-			get
-			{
-				if (this._entity == null)
-				{
-					this._entity = this.CreateEntityObject();
-				}
-				return this._entity;
-			}
-			set
-			{
-				this._entity = value;
-			}
-		}
-		private AdressenEntity _entity;
-
-		/// <summary>
+	
 		/// Business Rule object
 		/// </summary>
 		public virtual AdressenRules Rules

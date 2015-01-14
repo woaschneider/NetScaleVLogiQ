@@ -54,12 +54,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdSelect_Click(object sender, RoutedEventArgs e)
         {
+            GetValueOrderPos();
+        }
+
+        private void GetValueOrderPos()
+        {
             URet = Convert.ToInt32(DataGridOrderItemService.SelectedValue);
             Hide();
         }
-
-
-
 
 
         private void FilldataGridOrderItemService(int pk)
@@ -132,7 +134,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             void DataGridOrderItemService_OnMouseDoubleClick 
             (object sender, MouseButtonEventArgs e)
             {
-                throw new NotImplementedException();
+                GetValueOrderPos();
             }
         }
     }
