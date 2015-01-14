@@ -114,7 +114,7 @@ namespace HWB.NETSCALE.BOEF
                                                  
                                                   && w.customerBusinessIdentifier.Contains(auftraggeber)
                                                   && (w.taabExcel==false | w.taabExcel==null)
-                                                 
+                                                 orderby(w.LieferscheinNr) descending 
                                             select w;
 
             return GetEntityList(query);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ServiceModel.Dispatcher;
 using System.Windows;
+using System.Windows.Media.Animation;
 using combit.ListLabel20;
 using combit.ListLabel20.DataProviders;
 using HWB.NETSCALE.BOEF;
@@ -19,11 +21,28 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
 
             var boM = new Mandant();
-            MandantEntity boMe = boM.GetMandantByPK(Convert.ToInt32(boWe.Mandant_PK));
+            MandantEntity boMe = boM.GetMandantByPK(Convert.ToInt32(goApp.Mandant_PK));
             if (boMe == null)
                 return;
             string druckerName = boMe.LSDrucker;
             string lsReport = boMe.LSReport;
+           // Neu 14.01.2014 Auftraggeber abhängiger Druck
+
+            Adressen boA = new Adressen();
+            AdressenEntity boAE = boA.GetByBusinenessIdentifier(boWe.customerBusinessIdentifier);
+            if (boAE != null)
+            {
+                if (!string.IsNullOrEmpty( boAE.Lieferscheinvorlage))
+                {
+                    lsReport = boAE.Lieferscheinvorlage;
+                }
+
+                if (!string.IsNullOrEmpty(boAE.Drucker))
+                {
+                    druckerName = boAE.Drucker;
+                }
+            }
+
             int? anzahlausdrucke = boMe.AnzahlLS;
             bool? isLsDruck = boMe.LSDruck;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing.Printing;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -48,6 +49,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             this.DataContext = boAPE;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
+
+       //     DataContext = boAPE;
+          PopulateInstalledPrintersCombo();
+
+            //combo_LISTE_InstalledPrinters.SelectedValuePath = "Drucker";
+            //combo_LISTE_InstalledPrinters.DisplayMemberPath = "Drucker";
         }
 
         private void HandleKey(object sender, KeyEventArgs e)
@@ -65,7 +72,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             tb_CatchFocus.Focus();
             // Focus auf eine nicht sichtbare Textbox setzen. Sonst werden die Änderungen an der letzen TB nicht übernommen. Trick!
-            boAddress.SaveEntity();
+            boAddress.SaveEntity(boAPE);
             this.Hide();
 
         }
@@ -122,6 +129,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             
                
             }
+        }
+        private void PopulateInstalledPrintersCombo()
+        {
+            // Add list of installed printers found to the combo box.
+            // The pkInstalledPrinters string will be used to provide the display string.
+            String pkInstalledPrinters;
+            for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                pkInstalledPrinters = PrinterSettings.InstalledPrinters[i];
+
+                combo_LISTE_InstalledPrinters.Items.Add(pkInstalledPrinters);
+            }
+          
         }
     }
 }

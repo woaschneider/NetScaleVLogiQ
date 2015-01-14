@@ -73,7 +73,8 @@
           <Property Name="roleCarrier" Type="bit" />
           <Property Name="roleShipOwner" Type="bit" />
           <Property Name="roleTrainOperator" Type="bit" />
-          <Property Name="Lieferscheinvorlage" Type="varchar" MaxLength="100" />
+          <Property Name="Lieferscheinvorlage" Type="varchar" MaxLength="500" />
+          <Property Name="Drucker" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Artikel">
           <Key>
@@ -1182,7 +1183,8 @@
           <Property Type="Boolean" Name="roleCarrier" />
           <Property Type="Boolean" Name="roleShipOwner" />
           <Property Type="Boolean" Name="roleTrainOperator" />
-          <Property Type="String" Name="Lieferscheinvorlage" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lieferscheinvorlage" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Drucker" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1695,6 +1697,7 @@
           <EntitySetMapping Name="AdressenEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AdressenEntity">
               <MappingFragment StoreEntitySet="Adressen">
+                <ScalarProperty Name="Drucker" ColumnName="Drucker" />
                 <ScalarProperty Name="Lieferscheinvorlage" ColumnName="Lieferscheinvorlage" />
                 <ScalarProperty Name="roleTrainOperator" ColumnName="roleTrainOperator" />
                 <ScalarProperty Name="roleShipOwner" ColumnName="roleShipOwner" />
@@ -1776,7 +1779,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="13.375" PointY="5.75" Height="4.0956022135416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.MandantEntity" Width="1.5" PointX="15.375" PointY="0.75" Height="5.8263151041666674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.287252604166667" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="7.375" PointY="6.75" Height="4.8648079427083246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AdressenEntity" Width="1.5" PointX="8.375" PointY="5.75" Height="5.05710937500001" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

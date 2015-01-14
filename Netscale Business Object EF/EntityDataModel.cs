@@ -1186,6 +1186,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Lieferscheinvorlage;
         partial void OnLieferscheinvorlageChanging(global::System.String value);
         partial void OnLieferscheinvorlageChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Drucker
+        {
+            get
+            {
+                return _Drucker;
+            }
+            set
+            {
+                OnDruckerChanging(value);
+                ReportPropertyChanging("Drucker");
+                _Drucker = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Drucker");
+                OnDruckerChanged();
+            }
+        }
+        private global::System.String _Drucker;
+        partial void OnDruckerChanging(global::System.String value);
+        partial void OnDruckerChanged();
 
         #endregion
     
