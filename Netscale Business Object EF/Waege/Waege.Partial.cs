@@ -48,6 +48,8 @@ namespace HWB.NETSCALE.BOEF
 
         private void OnNew(WaegeEntity boWE)
         {
+            Incoterm boI = new Incoterm();
+            Entity.incoterm = boI.GetDefaultIncoterm().Kennung;
         }
 
         public void PreSaveHook(WaegeEntity boWE)

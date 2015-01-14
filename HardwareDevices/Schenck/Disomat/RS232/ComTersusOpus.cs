@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Windows;
 
 
 namespace HardwareDevices.Schenck.Disomat.RS232
@@ -55,9 +56,9 @@ namespace HardwareDevices.Schenck.Disomat.RS232
                 oCom.Open();
                 Connected = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                oCom.Open();
+                MessageBox.Show(e.ToString());
                 Connected = false;
             }
         }

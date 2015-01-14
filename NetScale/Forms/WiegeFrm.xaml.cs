@@ -118,6 +118,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             Wiegestatus = 0;
 
             SetWeightBindingFormat();
+            FillIncoterms();
         }
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
@@ -1231,7 +1232,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             _boW.Article2Waege(uRet);
             oAFrm.Close();
         }
-        #endregion 
+        #endregion
+
+        private void FillIncoterms()
+        {
+            // Füllt die Incotermcombobox -Später aus Tabelle
+
+
+            Incoterm boI = new Incoterm();
+    
+            cbIncoterms.DisplayMemberPath= ("Kennung");
+            cbIncoterms.ItemsSource = boI.GetAllIncoterm();
+        }
 
         private void cmdExportToYeoman_Click(object sender, RoutedEventArgs e)
         {
