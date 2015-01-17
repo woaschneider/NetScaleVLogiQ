@@ -6,7 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="$namespace$.Target" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="$namespace$TargetContainer">
-          <EntitySet Name="Abrufe" EntityType="$namespace$.Target.Abrufe" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Abruf" EntityType="$namespace$.Target.Abruf" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Adressen" EntityType="$namespace$.Target.Adressen" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Artikel" EntityType="$namespace$.Target.Artikel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Artikelattribute" EntityType="$namespace$.Target.Artikelattribute" store:Type="Tables" Schema="dbo" />
@@ -52,7 +52,7 @@
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Abrufe">
+        <EntityType Name="Abruf">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
@@ -756,7 +756,7 @@
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
           <EntitySet Name="FreistellungenEntities" EntityType="HWB.NETSCALE.BOEF.FreistellungenEntity" />
-          <EntitySet Name="AbrufeEntities" EntityType="HWB.NETSCALE.BOEF.AbrufeEntity" />
+          <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1320,7 +1320,7 @@
           <Property Type="DateTime" Name="gueltigVon" />
           <Property Type="DateTime" Name="gueltigBis" />
         </EntityType>
-        <EntityType Name="AbrufeEntity">
+        <EntityType Name="AbrufEntity">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
@@ -1970,9 +1970,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AbrufeEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AbrufeEntity">
-              <MappingFragment StoreEntitySet="Abrufe">
+          <EntitySetMapping Name="AbrufEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AbrufEntity">
+              <MappingFragment StoreEntitySet="Abruf">
                 <ScalarProperty Name="articleNumber" ColumnName="articleNumber" />
                 <ScalarProperty Name="incoterm" ColumnName="incoterm" />
                 <ScalarProperty Name="ffIsocodeCountry" ColumnName="ffIsocodeCountry" />
@@ -2129,7 +2129,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.479554036458325" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="12.375" PointY="0.75" Height="3.3263964843750102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FreistellungenEntity" Width="1.5" PointX="15.375" PointY="7.75" Height="2.1725878906250102" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufeEntity" Width="1.5" PointX="12.375" PointY="15.75" Height="18.90281250000001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="12.375" PointY="15.75" Height="18.90281250000001" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

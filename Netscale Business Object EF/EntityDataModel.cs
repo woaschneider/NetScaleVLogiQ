@@ -488,18 +488,18 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AbrufeEntity> AbrufeEntities
+        public ObjectSet<AbrufEntity> AbrufEntities
         {
             get
             {
-                if ((_AbrufeEntities == null))
+                if ((_AbrufEntities == null))
                 {
-                    _AbrufeEntities = base.CreateObjectSet<AbrufeEntity>("AbrufeEntities");
+                    _AbrufEntities = base.CreateObjectSet<AbrufEntity>("AbrufEntities");
                 }
-                return _AbrufeEntities;
+                return _AbrufEntities;
             }
         }
-        private ObjectSet<AbrufeEntity> _AbrufeEntities;
+        private ObjectSet<AbrufEntity> _AbrufEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -713,11 +713,11 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AbrufeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AbrufEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
-        public void AddToAbrufeEntities(AbrufeEntity abrufeEntity)
+        public void AddToAbrufEntities(AbrufEntity abrufEntity)
         {
-            base.AddObject("AbrufeEntities", abrufeEntity);
+            base.AddObject("AbrufEntities", abrufEntity);
         }
 
         #endregion
@@ -731,22 +731,22 @@ namespace HWB.NETSCALE.BOEF
     /// <summary>
     /// Keine Dokumentation für Metadaten verfügbar.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="AbrufeEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="AbrufEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class AbrufeEntity : ABusinessEntity
+    public partial class AbrufEntity : ABusinessEntity
     {
         #region Factory-Methode
     
         /// <summary>
-        /// Erstellt ein neues AbrufeEntity-Objekt.
+        /// Erstellt ein neues AbrufEntity-Objekt.
         /// </summary>
         /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
-        public static AbrufeEntity CreateAbrufeEntity(global::System.Int32 pK)
+        public static AbrufEntity CreateAbrufEntity(global::System.Int32 pK)
         {
-            AbrufeEntity abrufeEntity = new AbrufeEntity();
-            abrufeEntity.PK = pK;
-            return abrufeEntity;
+            AbrufEntity abrufEntity = new AbrufEntity();
+            abrufEntity.PK = pK;
+            return abrufEntity;
         }
 
         #endregion
