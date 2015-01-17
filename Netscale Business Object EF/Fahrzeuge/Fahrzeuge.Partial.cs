@@ -23,6 +23,34 @@ namespace HWB.NETSCALE.BOEF
             // Place code here to be executed when the business object instantiates
         }
 
+        public override void StateChangeHandler(mmBaseBusinessObject bizObj, mmBusinessStateChangeEventArgs e)
+        {
+            if (this.State == mmBusinessState.PreSaving)
+            {
+                PreSaveHook();
+            }
+
+            if (this.State == mmBusinessState.Added)
+            {
+                OnNew();
+            }
+        }
+
+
+        private void PreSaveHook()
+        {
+            this.Entity.Kennzeichen1Raw = ConvertKfzToKfzRaw(this.Entity.Kennzeichen1);
+        }
+
+        private void OnNew()
+        {
+          
+
+        }
+
+
+
+
         public FahrzeugeEntity GetByPk(int pk)
         {
             IQueryable<FahrzeugeEntity> query = from f in ObjectContext.FahrzeugeEntities
@@ -46,5 +74,12 @@ namespace HWB.NETSCALE.BOEF
                                                 select f;
             return GetEntityList(query);
         }
+
+        private string ConvertKfzToKfzRaw(string kfz)
+        {
+            string a = kfz.Replace("-", "");
+            return a.Replace(" ", "");
+        }
     }
+
 }

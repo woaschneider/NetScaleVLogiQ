@@ -20,27 +20,7 @@ namespace HWB.NETSCALE.BOEF
 		
 		#region Association Properties
 
-		/// <summary>
-		/// Business Entity object
-		/// </summary>
-		public override FahrzeugeEntity Entity
-		{
-			get
-			{
-				if (this._entity == null)
-				{
-					this._entity = this.CreateEntityObject();
-				}
-				return this._entity;
-			}
-			set
-			{
-				this._entity = value;
-			}
-		}
-		private FahrzeugeEntity _entity;
-
-		/// <summary>
+	
 		/// Business Rule object
 		/// </summary>
 		public virtual FahrzeugeRules Rules

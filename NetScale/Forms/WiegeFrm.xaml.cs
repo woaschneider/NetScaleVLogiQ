@@ -1340,5 +1340,27 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 }
             }
         }
+
+        private void TxtKfzKennzeichen_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            Fahrzeuge boF = new Fahrzeuge();
+            FahrzeugeEntity boFe = boF.GetByExactKennzeichen(txtKfzKennzeichen.Text);
+            if (boFe != null)
+            {
+                _boW.FillKfz(boFe.PK, _boWe);
+                int uRet = _boW.IsKfzErstVerwogen(_boWe.Fahrzeug);
+                if(uRet!=0)
+                {
+                _boWe =   _boW.GetWaegungByPk(uRet);
+                  
+                if (_boWe != null)
+                {
+                    DataContext = _boWe;
+                  
+                    Wiegestatus = 2;
+                }
+                }
+            }
+        }
     }
 }

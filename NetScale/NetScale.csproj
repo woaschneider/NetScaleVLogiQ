@@ -265,9 +265,6 @@
     <Compile Include="Forms\TaabFrm.xaml.cs">
       <DependentUpon>TaabFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\UserRollenFrm.xaml.cs">
       <DependentUpon>UserRollenFrm.xaml</DependentUpon>
     </Compile>
@@ -401,10 +398,6 @@
     <Page Include="Forms\TaabFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\UserControl1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\UserRollenFrm.xaml">
       <SubType>Designer</SubType>

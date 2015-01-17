@@ -61,45 +61,47 @@ namespace HWB.NETSCALE.BOEF
             {
                 if (goApp.AutoAbruf)
                     CheckAndCreateAbr(boWE);
-            //    Entity.Kfz1Raw = ConvertKfzToKfzRaw(Entity.Kfz1);
+                //   
 
 
                 //TODO: Kunden fragen, ob es Sinn macht den FF zu speichern
                 boFe = boF.NewEntity();
                 boFe.Kennzeichen1 = boWE.Fahrzeug;
+                boFe.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
+                Entity.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
+
                 if (goApp.SAVE_ABR2CF)
 
-          {
+                {
                     boFe.AbrufNr = boWE.AbrufNr;
-                    boF.SaveEntity(boFe);
+                    
                 }
-                //  boFe.Frachtfuehrer = boWE.ffBusinessIdentifier;
+                else
+                {
+                    boFe.AbrufNr = null;
+                }
+                boF.SaveEntity(boFe);
             }
-       
         }
+
         private void CheckAndCreateAbr(WaegeEntity boWE)
         {
             var boA = new Abruf();
             if (boWE.AbrufNr == null)
             {
-                   // Gibt es einen Abruf mit diesen Daten
+                // Gibt es einen Abruf mit diesen Daten
                 var oAe = boA.CompareAbrufData(boWE);
-                if(oAe == null)
+                if (oAe == null)
 
                 {
                     AbrufEntity oAE = boA.CreateAbrufautomatically(boWE);
                     Entity.AbrufNr = oAE.AbrufNr;
                 }
-            else
+                else
                 {
                     Entity.AbrufNr = oAe.AbrufNr;
                 }
-            
-                
-                
-                
             }
-          
         }
 
         public mmBindingList<WaegeEntity> GetLsListe(DateTime vonDatum, DateTime bisDatum, string f1, string mc1,
@@ -473,7 +475,9 @@ namespace HWB.NETSCALE.BOEF
 
                 // Detail
                 Entity.sequence = _boOISE.sequence;
+
                 Entity.productdescription = _boOISE.productdescription;
+                Entity.identifier = _boOISE.identifier;
                 Entity.ownerBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
                 Entity.remark = _boOISE.remark;
                 Entity.supplierOrConsigneeBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
@@ -544,6 +548,25 @@ namespace HWB.NETSCALE.BOEF
                 select waege;
             var oDp = new ObjectDataProvider(query, 2);
             return oDp;
+        }
+
+        public int IsKfzErstVerwogen(string kf)
+        {
+            var k = ConvertKfzToKfzRaw(kf);
+
+            var query = from w in ObjectContext.WaegeEntities
+                where w.Kennzeichen1Raw == k && w.Waegung == 1
+                select w;
+            var cWe = GetEntity(query);
+            if (cWe == null)
+                return 0;
+            return cWe.PK;
+        }
+
+        private string ConvertKfzToKfzRaw(string kfz)
+        {
+            string a = kfz.Replace("-", "");
+            return a.Replace(" ", "");
         }
     }
 }

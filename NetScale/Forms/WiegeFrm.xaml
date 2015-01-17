@@ -377,7 +377,9 @@
                  Margin="160,168,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 CharacterCasing="Upper"
                  KeyDown="txtKfzKennzeichen_KeyDown"
+                 LostFocus="TxtKfzKennzeichen_OnLostFocus"
                  TabIndex="110"
                  Text="{Binding Fahrzeug}" />
         <Label x:Name="lblFahrzeug"
