@@ -1263,6 +1263,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     _boW.Customer2Waege(boAe.PK);
                 }
+                else
+                {
+                    _boW.ClearCustomerInWaege();
+                }
             }
         }
 
@@ -1275,6 +1279,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 if (boAe != null)
                 {
                     _boW.InvoiceReceiver2Waege(boAe.PK);
+                }
+                else
+                {
+                    _boW.ClearinvoiceReceiverInWaege();
                 }
             }
           
@@ -1290,6 +1298,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     _boW.FrachtFuehrer2Waege(boAe.PK);
                 }
+                else
+                {
+                    _boW.ClearFrachtFuehrerInWaege();
+                }
             }
           
         }
@@ -1304,6 +1316,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     _boW.Owner2Waege(boAe.PK);
                 }
+                else
+                {
+                    _boW.ClearOwnerInWaege();
+                }
+
             }
         }
 
@@ -1316,6 +1333,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 if (boAe != null)
                 {
                     _boW.SupplierOrConsignee2Waege(boAe.PK);
+                }
+                else
+                {
+                    _boW.ClearsupplierOrConsigneeInWaege();
                 }
             }
         }

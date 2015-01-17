@@ -93,7 +93,7 @@
                 <hwbNetscaleBoef:OrderItemserviceEntity />
             </DataGrid.DataContext>
             <DataGrid.Columns>
-                <DataGridTemplateColumn />
+                <DataGridTextColumn Binding="{Binding identifier}" Header="Identifier." />
                 <DataGridTextColumn Binding="{Binding sequence}" Header="Seq." />
                 <DataGridTextColumn Binding="{Binding deliveryType}" Header="Frankatur" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />

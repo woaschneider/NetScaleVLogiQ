@@ -216,8 +216,8 @@ using (var streamWriter = new StreamWriter(PortableFile.Open(fileName, PortableF
         {
             var formatting = (indented ? Formatting.Indented : Formatting.None);
             return JsonConvert.SerializeObject(instance,
-                                               new JsonSerializerSettings
-                                                   {TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting});
+                new JsonSerializerSettings
+                {TypeNameHandling = TypeNameHandling.Auto, Formatting = formatting});
         }
     }
 }

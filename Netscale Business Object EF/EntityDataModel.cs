@@ -24,6 +24,7 @@ using System.Runtime.Serialization;
 
 #endregion
 
+
 namespace HWB.NETSCALE.BOEF
 {
     #region Kontexte
@@ -440,22 +441,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<AdressenEntity> AdressenEntities
-        {
-            get
-            {
-                if ((_AdressenEntities == null))
-                {
-                    _AdressenEntities = base.CreateObjectSet<AdressenEntity>("AdressenEntities");
-                }
-                return _AdressenEntities;
-            }
-        }
-        private ObjectSet<AdressenEntity> _AdressenEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<WaegeEntity> WaegeEntities
         {
             get
@@ -468,8 +453,25 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<AdressenEntity> AdressenEntities
+        {
+            get
+            {
+                if ((_AdressenEntities == null))
+                {
+                    _AdressenEntities = base.CreateObjectSet<AdressenEntity>("AdressenEntities");
+                }
+                return _AdressenEntities;
+            }
+        }
+        private ObjectSet<AdressenEntity> _AdressenEntities;
 
         #endregion
+
         #region AddTo-Methoden
     
         /// <summary>
@@ -657,26 +659,28 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AdressenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToAdressenEntities(AdressenEntity adressenEntity)
-        {
-            base.AddObject("AdressenEntities", adressenEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
         }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'AdressenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToAdressenEntities(AdressenEntity adressenEntity)
+        {
+            base.AddObject("AdressenEntities", adressenEntity);
+        }
 
         #endregion
+
     }
     
 
     #endregion
+
     
     #region Entitäten
     
@@ -702,6 +706,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -1212,6 +1217,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnDruckerChanged();
 
         #endregion
+
     
     }
     
@@ -1237,6 +1243,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -1339,6 +1346,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnAttributWertChanged();
 
         #endregion
+
     
     }
     
@@ -1364,6 +1372,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -2066,6 +2075,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnkindOfGoodIdChanged();
 
         #endregion
+
     
     }
     
@@ -2091,6 +2101,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -2169,6 +2180,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnBezeichnungChanged();
 
         #endregion
+
     
     }
     
@@ -2198,6 +2210,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -2282,6 +2295,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnAssemblyChanged();
 
         #endregion
+
     
     }
     
@@ -2307,6 +2321,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -2697,6 +2712,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnRestLocationChanged();
 
         #endregion
+
     
     }
     
@@ -2722,6 +2738,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -2944,6 +2961,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnFrachtfuehrerChanged();
 
         #endregion
+
     
     }
     
@@ -2969,6 +2987,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -3071,6 +3090,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnMaxBruttoChanged();
 
         #endregion
+
     
     }
     
@@ -3096,6 +3116,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -3198,6 +3219,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnDefaultIncotermChanged();
 
         #endregion
+
     
     }
     
@@ -3223,6 +3245,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -3349,6 +3372,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnToolTipChanged();
 
         #endregion
+
     
     }
     
@@ -3374,6 +3398,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -3500,6 +3525,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnidChanged();
 
         #endregion
+
     
     }
     
@@ -3527,6 +3553,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -3605,6 +3632,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnCultureChanged();
 
         #endregion
+
     
         #region Navigationseigenschaften
     
@@ -3631,6 +3659,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3655,6 +3684,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -4261,6 +4291,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnentsorgernrChanged();
 
         #endregion
+
     
     }
     
@@ -4294,6 +4325,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -4420,6 +4452,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnDialogTextChanged();
 
         #endregion
+
     
         #region Navigationseigenschaften
     
@@ -4462,6 +4495,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4486,6 +4520,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -4588,6 +4623,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnModul_Is_ActiveChanged();
 
         #endregion
+
     
     }
     
@@ -4613,6 +4649,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -4739,6 +4776,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnPKOrderItemServiceChanged();
 
         #endregion
+
     
         #region Navigationseigenschaften
     
@@ -4781,6 +4819,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4805,6 +4844,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -5459,6 +5499,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OncustomerIsocodeCountryChanged();
 
         #endregion
+
     
         #region Navigationseigenschaften
     
@@ -5485,6 +5526,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5509,6 +5551,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -6859,6 +6902,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OndimensionChanged();
 
         #endregion
+
     
         #region Navigationseigenschaften
     
@@ -6923,6 +6967,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6947,6 +6992,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -7049,6 +7095,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnshortdescirptionChanged();
 
         #endregion
+
     
     }
     
@@ -7074,6 +7121,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -7272,6 +7320,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnUnterschriftChanged();
 
         #endregion
+
     
     }
     
@@ -7297,6 +7346,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -7375,6 +7425,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnProfilbeschreibungChanged();
 
         #endregion
+
     
     }
     
@@ -7400,6 +7451,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -7526,6 +7578,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnAnmerkungChanged();
 
         #endregion
+
     
     }
     
@@ -7551,6 +7604,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -10485,6 +10539,7 @@ namespace HWB.NETSCALE.BOEF
         partial void OnarticleNumberChanged();
 
         #endregion
+
     
     }
     
@@ -10510,6 +10565,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -10612,6 +10668,7 @@ namespace HWB.NETSCALE.BOEF
         partial void Onbaseunit_shortdescriptionChanged();
 
         #endregion
+
     
     }
     
@@ -10637,6 +10694,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+
         #region Primitive Eigenschaften
     
         /// <summary>
@@ -10739,9 +10797,11 @@ namespace HWB.NETSCALE.BOEF
         partial void OnDefaultWChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

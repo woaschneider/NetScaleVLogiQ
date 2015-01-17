@@ -119,10 +119,10 @@
       <FileName>Export\PolosWaege.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="NetScalePolosIO.Export.RootObject">
+  <Class Name="NetScalePolosIO.Export.RootObject2">
     <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQABCAAAwAAAAAAAAAAABAAAAAAAAAAAAQAAAiA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAAAACAAAAAAQAAAAAAAAgAAEAAABA=</HashCode>
       <FileName>Export\PolosWaege.cs</FileName>
     </TypeIdentifier>
   </Class>

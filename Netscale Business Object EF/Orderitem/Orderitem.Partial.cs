@@ -58,7 +58,7 @@ namespace HWB.NETSCALE.BOEF
                                                 ois.articleDescription.Contains(artikelbeschreibung)&&
                                                 ois.clearanceReferenz.Contains(freistellung)
 
-                                                orderby o.customerBusinessIdentifier
+                                                orderby o.id 
                                                 select o;
             return GetEntityList(query);
         }

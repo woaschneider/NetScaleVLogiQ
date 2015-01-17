@@ -15,6 +15,7 @@ using NetScalePolosIO.Import.KindOfGoodsImport;
 using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
 using Xceed.Wpf.Toolkit;
+using Xceed.Wpf.Toolkit.Core.Converters;
 
 namespace NetScalePolosIO
 {
@@ -50,13 +51,14 @@ namespace NetScalePolosIO
          
         }
         private void BwDoWork(object sender, DoWorkEventArgs e)
-        {
-            new ImportAddress().Import(e.Argument.ToString()); // OK
-            new ImportKindsOfGoods().Import(e.Argument.ToString());// OK
-            new ImportArticle().Import(e.Argument.ToString());// OK
-            new ImportProducts().Import(e.Argument.ToString()); // OK
-            new ImportArticleAttributes().Import(e.Argument.ToString());
-            new ImportStorageArea().Import(e.Argument.ToString());
+        {  
+            
+            //new ImportAddress().Import(e.Argument.ToString()); // OK
+            //new ImportKindsOfGoods().Import(e.Argument.ToString());// OK
+            //new ImportArticle().Import(e.Argument.ToString());// OK
+            //new ImportProducts().Import(e.Argument.ToString()); // OK
+            //new ImportArticleAttributes().Import(e.Argument.ToString());
+            //new ImportStorageArea().Import(e.Argument.ToString());
 
             new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId());
         }
@@ -136,6 +138,18 @@ namespace NetScalePolosIO
             string exportPath = GetExportPath();
             new ExportWaegung().ExportLs(exportPath,boWe);
  
+        }
+
+        public void ExportTestToRest(WaegeEntity boWe )
+        {string uri = GetImportServerIp() + ":" + GetImportPort();
+          
+            if (uri == "")
+            {
+                MessageBox.Show("Keine Import-URI in den Einstellungen");                                           
+                return;
+            }
+            var oEx = new ExportWaegungVersion2Rest();
+            oEx.ExportLs2Rest(uri, boWe);
         }
 
     }

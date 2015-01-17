@@ -46,10 +46,12 @@
                   Height="311"
                   Margin="3,100,0,0"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top" AutoGenerateColumns="False"
+                  VerticalAlignment="Top"
+                  AutoGenerateColumns="False"
                   FontSize="14"
                   SelectionMode="Single"
-                  SelectionUnit="FullRow" Style="{DynamicResource DataGridStyle}">
+                  SelectionUnit="FullRow"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="50"
                                     Binding="{Binding ErstDatetime}"
@@ -62,12 +64,12 @@
                                     Binding="{Binding Erstgewicht}"
                                     Header="Gewicht" />
                 <DataGridTextColumn MinWidth="80"
-                                    Binding="{Binding number}"
+                                    Binding="{Binding articleNumber}"
                                     Header="Artikel-Nr." />
                 <DataGridTextColumn MinWidth="80"
-                                    Binding="{Binding description}"
+                                    Binding="{Binding articleDescription}"
                                     Header="Artikelbezeichnung" />
-                <DataGridTextColumn Binding="{Binding }" Header="Auftraggeber" />
+                <DataGridTextColumn Binding="{Binding customerBusinessIdentifier}" Header="Auftraggeber" />
             </DataGrid.Columns>
         </DataGrid>
         <Image Name="image1"

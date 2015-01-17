@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.EntityClient;
 using System.Linq;
+using System.Windows.Xps;
 using combit.ListLabel20.DataProviders;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.Data;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 
 namespace HWB.NETSCALE.BOEF
 {
@@ -54,6 +56,25 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(WaegeEntity boWE)
         {
+
+            // Fahrzeug prüfen und ggf. im Stamm neu anlegen
+            Fahrzeuge boF = new Fahrzeuge();
+            FahrzeugeEntity boFe = boF.GetByExactKennzeichen(boWE.Fahrzeug);
+            if (boFe == null)
+            { 
+                
+
+                //TODO: Kunden fragen, ob es Sinn macht den FF zu speichern
+                 boFe=     boF.NewEntity();
+                 boFe.Kennzeichen1 = boWE.Fahrzeug;
+                if(goApp.SAVE_ABR2CF)
+                    
+                boF.SaveEntity(boFe);
+                {
+                    boFe.AbrufNr = boWE.AbrufNr;
+                }
+                //  boFe.Frachtfuehrer = boWE.ffBusinessIdentifier;
+            }
         }
         public mmBindingList<WaegeEntity> GetLsListe(DateTime vonDatum, DateTime bisDatum, string f1, string mc1,
                                               string f2, string mc2, string f3, string mc3)
@@ -137,42 +158,8 @@ namespace HWB.NETSCALE.BOEF
 
         }
 
-        public void InvoiceReceiver2Waege(int pk)
-        {
-            AdressenEntity boAe = GetApByPk(pk);
-            if (boAe != null)
-            {
-                Entity.invoiceReceiverId = boAe.id;
-                Entity.invoiceReceicerBusinessIdentifier = boAe.businessIdentifier;
-                Entity.invoiceReceiverName = boAe.name;
-                Entity.invoiceReceiverSubName2 = boAe.subName2;
-                Entity.invoiceReceiverOwningLocationId = boAe.owningLocationId;
-                Entity.invoiceReceiverStreet = boAe.street;
-                Entity.invoiceReceiverZipCode = boAe.zipCode;
-                Entity.invoiceReceiverCity = boAe.city;
-                Entity.invoiceReceiverIdCountry = boAe.idCountry;
-                Entity.invoiceReceiverIsocodeCountry = boAe.isocodeCountry;
-            }
-        }
-
-        public void SupplierOrConsignee2Waege(int pk)
-        {
-            AdressenEntity boAe = GetApByPk(pk);
-            if (boAe != null)
-            {
-                Entity.supplierOrConsigneeId = boAe.id;
-                Entity.supplierOrConsigneeBusinessIdentifier = boAe.businessIdentifier;
-                Entity.supplierOrConsigneeName = boAe.name;
-                Entity.supplierOrConsigneeSubName2 = boAe.subName2;
-                Entity.supplierOrConsigneeOwningLocationId = boAe.owningLocationId;
-                Entity.supplierOrConsigneeStreet = boAe.street;
-                Entity.supplierOrConsigneeZipCode = boAe.zipCode;
-                Entity.supplierOrConsigneeCity = boAe.city;
-
-                Entity.supplierOrConsigneeIdCountry = boAe.idCountry;
-                Entity.supplierOrConsigneeIsocodeCountry = boAe.isocodeCountry;
-            }
-        }
+    
+        
 
         private static AdressenEntity GetApByPk(int pk)
         {
@@ -224,7 +211,8 @@ namespace HWB.NETSCALE.BOEF
             {
                 Entity.articleId = boAE.id;
                 Entity.articleNumber = boAE.number;
-                Entity.articleDescription = boAE.number;
+                Entity.articleDescription = boAE.description;
+                
             }
         }
 
@@ -271,6 +259,99 @@ namespace HWB.NETSCALE.BOEF
 
         #region Adressen 2 Waege
 
+        public void Customer2Waege(int pk)
+        {
+            AdressenEntity boAE = GetAPByPk(pk);
+            if (boAE != null)
+            {
+                Entity.customerId = boAE.id;
+                Entity.customerBusinessIdentifier = boAE.businessIdentifier;
+                Entity.customerName = boAE.name;
+                Entity.customerSubName2 = boAE.subName2;
+                Entity.customerOwningLocationId = boAE.owningLocationId;
+                Entity.customerStreet = boAE.street;
+                Entity.customerZipCode = boAE.zipCode;
+                Entity.customerCity = boAE.city;
+                Entity.customerIdCountry = boAE.idCountry;
+                Entity.customerIsocodeCountry = boAE.isocodeCountry;
+            }
+        }
+        public void ClearCustomerInWaege()
+        {
+            Entity.customerBusinessIdentifier = null;
+            Entity.customerName = null;
+            Entity.customerSubName2 = null;
+            Entity.customerOwningLocationId = null;
+            Entity.customerStreet = null;
+            Entity.customerZipCode = null;
+            Entity.customerCity = null;
+            Entity.customerIdCountry = null;
+            Entity.customerIsocodeCountry = null;
+        }
+        
+        public void InvoiceReceiver2Waege(int pk)
+        {
+            AdressenEntity boAe = GetApByPk(pk);
+            if (boAe != null)
+            {
+                Entity.invoiceReceiverId = boAe.id;
+                Entity.invoiceReceicerBusinessIdentifier = boAe.businessIdentifier;
+                Entity.invoiceReceiverName = boAe.name;
+                Entity.invoiceReceiverSubName2 = boAe.subName2;
+                Entity.invoiceReceiverOwningLocationId = boAe.owningLocationId;
+                Entity.invoiceReceiverStreet = boAe.street;
+                Entity.invoiceReceiverZipCode = boAe.zipCode;
+                Entity.invoiceReceiverCity = boAe.city;
+                Entity.invoiceReceiverIdCountry = boAe.idCountry;
+                Entity.invoiceReceiverIsocodeCountry = boAe.isocodeCountry;
+            }
+        }
+        public void ClearinvoiceReceiverInWaege()
+        {
+            Entity.invoiceReceiverId = null;
+            Entity.invoiceReceicerBusinessIdentifier = null;
+            Entity.invoiceReceiverName = null;
+            Entity.invoiceReceiverSubName2 = null;
+            Entity.invoiceReceiverOwningLocationId = null;
+            Entity.invoiceReceiverStreet = null;
+            Entity.invoiceReceiverZipCode = null;
+            Entity.invoiceReceiverCity = null;
+            Entity.invoiceReceiverIdCountry = null;
+            Entity.invoiceReceiverIsocodeCountry = null;
+        }
+
+        public void SupplierOrConsignee2Waege(int pk)
+        {
+            AdressenEntity boAe = GetApByPk(pk);
+            if (boAe != null)
+            {
+                Entity.supplierOrConsigneeId = boAe.id;
+                Entity.supplierOrConsigneeBusinessIdentifier = boAe.businessIdentifier;
+                Entity.supplierOrConsigneeName = boAe.name;
+                Entity.supplierOrConsigneeSubName2 = boAe.subName2;
+                Entity.supplierOrConsigneeOwningLocationId = boAe.owningLocationId;
+                Entity.supplierOrConsigneeStreet = boAe.street;
+                Entity.supplierOrConsigneeZipCode = boAe.zipCode;
+                Entity.supplierOrConsigneeCity = boAe.city;
+
+                Entity.supplierOrConsigneeIdCountry = boAe.idCountry;
+                Entity.supplierOrConsigneeIsocodeCountry = boAe.isocodeCountry;
+            }
+        }
+        public void ClearsupplierOrConsigneeInWaege()
+        {
+            Entity.supplierOrConsigneeId = null;
+            Entity.supplierOrConsigneeBusinessIdentifier = null;
+            Entity.supplierOrConsigneeName = null;
+            Entity.supplierOrConsigneeSubName2 = null;
+            Entity.supplierOrConsigneeOwningLocationId = null;
+            Entity.supplierOrConsigneeStreet = null;
+            Entity.supplierOrConsigneeZipCode = null;
+            Entity.supplierOrConsigneeCity = null;
+            Entity.supplierOrConsigneeIdCountry = null;
+            Entity.supplierOrConsigneeIsocodeCountry = null;
+        }
+
         public void FrachtFuehrer2Waege(int pk)
         {      AdressenEntity boAE = GetAPByPk(pk);
         if (boAE != null)
@@ -306,54 +387,7 @@ namespace HWB.NETSCALE.BOEF
             Entity.ffIdCountry = null;
             Entity.ffIsocodeCountry = null;
         }
-
-        public void Customer2Waege(int pk)
-        {
-            AdressenEntity boAE = GetAPByPk(pk);
-            if (boAE != null)
-            {
-                Entity.customerId = boAE.id;
-                Entity.customerBusinessIdentifier = boAE.businessIdentifier;
-                Entity.customerName = boAE.name;
-                Entity.customerSubName2 = boAE.subName2;
-                Entity.customerOwningLocationId = boAE.owningLocationId;
-                Entity.customerStreet = boAE.street;
-                Entity.customerZipCode = boAE.zipCode;
-                Entity.customerCity = boAE.city;
-                Entity.customerIdCountry = boAE.idCountry;
-                Entity.customerIsocodeCountry = boAE.isocodeCountry;
-            }
-        }
-
-        public void ClearCustomerInWaege()
-        {
-            Entity.customerBusinessIdentifier = null;
-            Entity.customerName = null;
-            Entity.customerSubName2 = null;
-            Entity.customerOwningLocationId = null;
-            Entity.customerStreet = null;
-            Entity.customerZipCode = null;
-            Entity.customerCity = null;
-            Entity.customerIdCountry = null;
-            Entity.customerIsocodeCountry = null;
-        }
-
-  
-
-        public void ClearinvoiceReceiverInWaege()
-        {
-            Entity.invoiceReceiverId = null;
-            Entity.invoiceReceicerBusinessIdentifier = null;
-            Entity.invoiceReceiverName = null;
-            Entity.invoiceReceiverSubName2 = null;
-            Entity.invoiceReceiverOwningLocationId = null;
-            Entity.invoiceReceiverStreet = null;
-            Entity.invoiceReceiverZipCode = null;
-            Entity.invoiceReceiverCity = null;
-            Entity.invoiceReceiverIdCountry = null;
-            Entity.invoiceReceiverIsocodeCountry = null;
-        }
-
+     
         public void Owner2Waege(int pk)
         {
             AdressenEntity boAE = GetAPByPk(pk);
@@ -371,7 +405,6 @@ namespace HWB.NETSCALE.BOEF
                 Entity.ownerIsocodeCountry = boAE.isocodeCountry;
             }
         }
-
         public void ClearOwnerInWaege()
         {
             Entity.ownerId = null;
@@ -386,21 +419,7 @@ namespace HWB.NETSCALE.BOEF
             Entity.ownerIsocodeCountry = null;
         }
 
-  
-
-        public void ClearsupplierOrConsigneeInWaege()
-        {
-            Entity.supplierOrConsigneeId = null;
-            Entity.supplierOrConsigneeBusinessIdentifier = null;
-            Entity.supplierOrConsigneeName = null;
-            Entity.supplierOrConsigneeSubName2 = null;
-            Entity.supplierOrConsigneeOwningLocationId = null;
-            Entity.supplierOrConsigneeStreet = null;
-            Entity.supplierOrConsigneeZipCode = null;
-            Entity.supplierOrConsigneeCity = null;
-            Entity.supplierOrConsigneeIdCountry = null;
-            Entity.supplierOrConsigneeIsocodeCountry = null;
-        }
+     
 
         private AdressenEntity GetAPByPk(int pk)
         {

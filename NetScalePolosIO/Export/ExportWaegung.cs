@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
+using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
+using RestSharp;
+using RestSharp.Deserializers;
+using Xceed.Wpf.Toolkit;
 
 namespace NetScalePolosIO.Export
 {
@@ -163,4 +165,77 @@ namespace NetScalePolosIO.Export
         }
 
     }
+
+
+    // Abgespeckte Polosstruktur
+    public class ExportWaegungVersion2Rest
+    {
+        public bool ExportLs2Rest(string baseUrl, WaegeEntity boWe)
+        {
+
+
+            #region JSON-Polos Struktur aufbauen
+
+            var oWEx2 = new RootObject2();
+            oWEx2.scalePhaseData= new ScalePhaseData();
+            oWEx2.scalePhaseData.FIRST = new FIRST();
+            oWEx2.scalePhaseData.SECOND = new SECOND();
+
+            oWEx2.orderItemServiceId = boWe.identifier;
+            oWEx2.carrierName = boWe.ffBusinessIdentifier;
+            oWEx2.carrierVehicle = boWe.Fahrzeug;
+            oWEx2.storageAreaId = boWe.storageAreaReferenceNumber;
+            oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
+            
+            oWEx2.scalePhaseData.FIRST.scaleId = "1";
+            oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1;
+            oWEx2.scalePhaseData.FIRST.amount =  (int) (boWe.Erstgewicht*1000);
+          //  oWEx2.scalePhaseData.FIRST.date =
+            oWEx2.scalePhaseData.SECOND.scaleId = "1";
+            oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2;
+            oWEx2.scalePhaseData.SECOND.amount = (int)(boWe.Zweitgewicht * 1000);
+            #endregion
+
+
+            #region
+
+            try
+            {
+                var client = new RestClient(baseUrl);
+                client.ClearHandlers();
+               
+
+
+                var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
+                client.AddHandler("application/json",new JsonDeserializer());
+                request.AddHeader("X-location-Id", "16");
+                 request.RequestFormat= DataFormat.Json;
+               
+                var obj = request.JsonSerializer.Serialize(oWEx2);
+                request.AddBody(obj);
+
+                var response = client.Execute(request);
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message.ToString());
+                return false;
+            }
+
+
+            return false;
+        }
+    }
+
+    #endregion
+
+      
+
+       
+   
 }
