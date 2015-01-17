@@ -2986,6 +2986,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _articleNumber;
         partial void OnarticleNumberChanging(global::System.String value);
         partial void OnarticleNumberChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> abrufDatum
+        {
+            get
+            {
+                return _abrufDatum;
+            }
+            set
+            {
+                OnabrufDatumChanging(value);
+                ReportPropertyChanging("abrufDatum");
+                _abrufDatum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("abrufDatum");
+                OnabrufDatumChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _abrufDatum;
+        partial void OnabrufDatumChanging(Nullable<global::System.DateTime> value);
+        partial void OnabrufDatumChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> abrufFest
+        {
+            get
+            {
+                return _abrufFest;
+            }
+            set
+            {
+                OnabrufFestChanging(value);
+                ReportPropertyChanging("abrufFest");
+                _abrufFest = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("abrufFest");
+                OnabrufFestChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _abrufFest;
+        partial void OnabrufFestChanging(Nullable<global::System.Boolean> value);
+        partial void OnabrufFestChanged();
 
         #endregion
     

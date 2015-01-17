@@ -19,8 +19,6 @@ namespace HWB.NETSCALE.BOEF
     /// </summary>
     public partial class Waege
     {
-     
-
         /// <summary>
         /// Hook method automatically executed from the mmBusinessObject constructor
         /// </summary>
@@ -56,28 +54,56 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(WaegeEntity boWE)
         {
-
             // Fahrzeug prüfen und ggf. im Stamm neu anlegen
             Fahrzeuge boF = new Fahrzeuge();
             FahrzeugeEntity boFe = boF.GetByExactKennzeichen(boWE.Fahrzeug);
             if (boFe == null)
-            { 
-                
+            {
+                if (goApp.AutoAbruf)
+                    CheckAndCreateAbr(boWE);
+            //    Entity.Kfz1Raw = ConvertKfzToKfzRaw(Entity.Kfz1);
+
 
                 //TODO: Kunden fragen, ob es Sinn macht den FF zu speichern
-                 boFe=     boF.NewEntity();
-                 boFe.Kennzeichen1 = boWE.Fahrzeug;
-                if(goApp.SAVE_ABR2CF)
-                    
-                boF.SaveEntity(boFe);
-                {
+                boFe = boF.NewEntity();
+                boFe.Kennzeichen1 = boWE.Fahrzeug;
+                if (goApp.SAVE_ABR2CF)
+
+          {
                     boFe.AbrufNr = boWE.AbrufNr;
+                    boF.SaveEntity(boFe);
                 }
                 //  boFe.Frachtfuehrer = boWE.ffBusinessIdentifier;
             }
+       
         }
+        private void CheckAndCreateAbr(WaegeEntity boWE)
+        {
+            var boA = new Abruf();
+            if (boWE.AbrufNr == null)
+            {
+                   // Gibt es einen Abruf mit diesen Daten
+                var oAe = boA.CompareAbrufData(boWE);
+                if(oAe == null)
+
+                {
+                    AbrufEntity oAE = boA.CreateAbrufautomatically(boWE);
+                    Entity.AbrufNr = oAE.AbrufNr;
+                }
+            else
+                {
+                    Entity.AbrufNr = oAe.AbrufNr;
+                }
+            
+                
+                
+                
+            }
+          
+        }
+
         public mmBindingList<WaegeEntity> GetLsListe(DateTime vonDatum, DateTime bisDatum, string f1, string mc1,
-                                              string f2, string mc2, string f3, string mc3)
+            string f2, string mc2, string f3, string mc3)
         {
             string lieferscheinnr = "";
             string auftraggeber = "";
@@ -114,63 +140,55 @@ namespace HWB.NETSCALE.BOEF
                 fahrzeug = mc3;
 
             IQueryable<WaegeEntity> query = from w in ObjectContext.WaegeEntities
-                                            where w.Waegung == 2
-                                                  && w.LSDatum >= vonDatum
-                                                  && w.LSDatum <= bisDatum
-                                                  && w.LieferscheinNr.Contains(lieferscheinnr)
-                                                  && w.customerBusinessIdentifier.Contains(auftraggeber)
-                                                  && w.productdescription.Contains(produkt)
-                                                  && w.Fahrzeug.Contains(fahrzeug)
-                                            select w;
+                where w.Waegung == 2
+                      && w.LSDatum >= vonDatum
+                      && w.LSDatum <= bisDatum
+                      && w.LieferscheinNr.Contains(lieferscheinnr)
+                      && w.customerBusinessIdentifier.Contains(auftraggeber)
+                      && w.productdescription.Contains(produkt)
+                      && w.Fahrzeug.Contains(fahrzeug)
+                select w;
 
             return GetEntityList(query);
         }
 
-        public mmBindingList<WaegeEntity> GetYeomanTaabListe( DateTime ExportDatum, string auftraggeber)
+        public mmBindingList<WaegeEntity> GetYeomanTaabListe(DateTime ExportDatum, string auftraggeber)
         {
             IQueryable<WaegeEntity> query = from w in ObjectContext.WaegeEntities
-                                            where w.Waegung == 2
-                                               && w.LSDatum == ExportDatum
-                                                 
-                                                 
-                                                  && w.customerBusinessIdentifier.Contains(auftraggeber)
-                                                  && (w.taabExcel==false | w.taabExcel==null)
-                                                 orderby(w.LieferscheinNr) descending 
-                                            select w;
+                where w.Waegung == 2
+                      && w.LSDatum == ExportDatum
+                      && w.customerBusinessIdentifier.Contains(auftraggeber)
+                      && (w.taabExcel == false | w.taabExcel == null)
+                orderby (w.LieferscheinNr) descending
+                select w;
 
             return GetEntityList(query);
-
         }
 
         public mmBindingList<WaegeEntity> GetYeomanTaabListeRecover(DateTime ExportDatum, string auftraggeber)
         {
             IQueryable<WaegeEntity> query = from w in ObjectContext.WaegeEntities
-                                            where w.Waegung == 2
-                                                  && w.LSDatum == ExportDatum
-                                                
-
-                                                  && w.customerBusinessIdentifier.Contains(auftraggeber)
-                                                  && w.Waegung == 2
-                                                
-                                            select w;
+                where w.Waegung == 2
+                      && w.LSDatum == ExportDatum
+                      && w.customerBusinessIdentifier.Contains(auftraggeber)
+                      && w.Waegung == 2
+                select w;
 
             return GetEntityList(query);
-
         }
 
-    
-        
 
         private static AdressenEntity GetApByPk(int pk)
         {
             var boA = new Adressen();
             return boA.GetByPk(pk);
         }
-        public void Product2Waege(int pk )
+
+        public void Product2Waege(int pk)
         {
             Produkte boP = new Produkte();
             ProdukteEntity boPE = boP.GetByPk(pk);
-            if(boPE!=null)
+            if (boPE != null)
             {
                 Entity.product = boPE.id;
                 Entity.productdescription = boPE.description;
@@ -181,25 +199,25 @@ namespace HWB.NETSCALE.BOEF
                 Entity.productdescription = null;
             }
         }
+
         public void WarenArt2Waege(int pk)
         {
             Warenarten boW = new Warenarten();
             WarenartenEntity boWE = boW.GetByPk(pk);
-            if(boWE!=null)
+            if (boWE != null)
             {
                 // TODO:
                 // Entity.kindOfGoodId = boWE.id; Typen passt nicht
                 Entity.kindOfGoodDescription = boWE.description;
-
             }
             else
             {
                 ClearWarenArtInWaege();
             }
         }
+
         public void ClearWarenArtInWaege()
         {
-
         }
 
         public void Article2Waege(int pk)
@@ -207,12 +225,11 @@ namespace HWB.NETSCALE.BOEF
         {
             Artikel boA = new Artikel();
             ArtikelEntity boAE = boA.GetByPk(pk);
-            if(boAE!=null)
+            if (boAE != null)
             {
                 Entity.articleId = boAE.id;
                 Entity.articleNumber = boAE.number;
                 Entity.articleDescription = boAE.description;
-                
             }
         }
 
@@ -231,22 +248,23 @@ namespace HWB.NETSCALE.BOEF
                 if (_boFE != null)
                 {
                     Entity.Fahrzeug = _boFE.Kennzeichen1;
-                 //   Entity.Frachtführer = _boFE.Frachtfuehrer;
+                    //   Entity.Frachtführer = _boFE.Frachtfuehrer;
                     Entity.Frachtmittel = _boFE.Bezeichnung;
                 }
                 else
                 {
                     Entity.Fahrzeug = "";
-                   // Entity.Frachtführer = "";
+                    // Entity.Frachtführer = "";
                     Entity.Frachtmittel = "";
                 }
             }
         }
-        public void FillFrachtmittel(int pk )
+
+        public void FillFrachtmittel(int pk)
         {
             Frachtmittel boF = new Frachtmittel();
             FrachtmittelEntity boFE = boF.GetFrachtmittelByPK(pk);
-            if(boFE!=null)
+            if (boFE != null)
             {
                 Entity.Frachtmittel = boFE.Bezeichnung;
             }
@@ -255,7 +273,6 @@ namespace HWB.NETSCALE.BOEF
                 Entity.Frachtmittel = null;
             }
         }
-      
 
         #region Adressen 2 Waege
 
@@ -276,6 +293,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.customerIsocodeCountry = boAE.isocodeCountry;
             }
         }
+
         public void ClearCustomerInWaege()
         {
             Entity.customerBusinessIdentifier = null;
@@ -288,7 +306,7 @@ namespace HWB.NETSCALE.BOEF
             Entity.customerIdCountry = null;
             Entity.customerIsocodeCountry = null;
         }
-        
+
         public void InvoiceReceiver2Waege(int pk)
         {
             AdressenEntity boAe = GetApByPk(pk);
@@ -306,6 +324,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.invoiceReceiverIsocodeCountry = boAe.isocodeCountry;
             }
         }
+
         public void ClearinvoiceReceiverInWaege()
         {
             Entity.invoiceReceiverId = null;
@@ -338,6 +357,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.supplierOrConsigneeIsocodeCountry = boAe.isocodeCountry;
             }
         }
+
         public void ClearsupplierOrConsigneeInWaege()
         {
             Entity.supplierOrConsigneeId = null;
@@ -353,27 +373,27 @@ namespace HWB.NETSCALE.BOEF
         }
 
         public void FrachtFuehrer2Waege(int pk)
-        {      AdressenEntity boAE = GetAPByPk(pk);
-        if (boAE != null)
         {
-            Entity.ffId = boAE.id;
-            Entity.ffBusinessIdentifier = boAE.businessIdentifier;
-            Entity.ffName = boAE.name;
-            Entity.ffSubName2 = boAE.subName2;
-            Entity.ffOwningLocationId = boAE.owningLocationId;
-            Entity.ffStreet = boAE.street;
-            Entity.ffZipCode = boAE.zipCode;
-            Entity.ffCity = boAE.city;
-            Entity.ffIdCountry = boAE.idCountry;
-            Entity.ffIsocodeCountry = boAE.isocodeCountry;
-       
-         
+            AdressenEntity boAE = GetAPByPk(pk);
+            if (boAE != null)
+            {
+                Entity.ffId = boAE.id;
+                Entity.ffBusinessIdentifier = boAE.businessIdentifier;
+                Entity.ffName = boAE.name;
+                Entity.ffSubName2 = boAE.subName2;
+                Entity.ffOwningLocationId = boAE.owningLocationId;
+                Entity.ffStreet = boAE.street;
+                Entity.ffZipCode = boAE.zipCode;
+                Entity.ffCity = boAE.city;
+                Entity.ffIdCountry = boAE.idCountry;
+                Entity.ffIsocodeCountry = boAE.isocodeCountry;
+            }
+            else
+            {
+                ClearFrachtFuehrerInWaege();
+            }
         }
-        else
-        {
-            ClearFrachtFuehrerInWaege();
-        }
-        }
+
         public void ClearFrachtFuehrerInWaege()
         {
             Entity.ffId = null;
@@ -387,7 +407,7 @@ namespace HWB.NETSCALE.BOEF
             Entity.ffIdCountry = null;
             Entity.ffIsocodeCountry = null;
         }
-     
+
         public void Owner2Waege(int pk)
         {
             AdressenEntity boAE = GetAPByPk(pk);
@@ -405,6 +425,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.ownerIsocodeCountry = boAE.isocodeCountry;
             }
         }
+
         public void ClearOwnerInWaege()
         {
             Entity.ownerId = null;
@@ -419,14 +440,12 @@ namespace HWB.NETSCALE.BOEF
             Entity.ownerIsocodeCountry = null;
         }
 
-     
 
         private AdressenEntity GetAPByPk(int pk)
         {
             Adressen boA = new Adressen();
-    
+
             return boA.GetByPk(pk);
-            
         }
 
         #endregion
@@ -439,7 +458,7 @@ namespace HWB.NETSCALE.BOEF
 
             if (_boOISE == null)
                 return;
-            if(_boOISE.PKOrderItem==null)
+            if (_boOISE.PKOrderItem == null)
                 return;
 
             OrderitemEntity _boOIE = _boOI.GetByPk(_boOISE.PKOrderItem);
@@ -447,7 +466,7 @@ namespace HWB.NETSCALE.BOEF
             if (_boOI != null & _boOIE != null)
             {
                 // Kopfdaten
-                Entity.locationId = _boOIE.locationId;// ???? Kopf oder Detail
+                Entity.locationId = _boOIE.locationId; // ???? Kopf oder Detail
                 Entity.customerBusinessIdentifier = _boOIE.customerBusinessIdentifier;
                 Entity.invoiceReceicerBusinessIdentifier = _boOIE.invoiceReceicerBusinessIdentifier;
                 Entity.reference = _boOIE.reference;
@@ -488,32 +507,32 @@ namespace HWB.NETSCALE.BOEF
         public mmBindingList<WaegeEntity> GetHofListe()
         {
             IQueryable<WaegeEntity> query = from Waege in this.ObjectContext.WaegeEntities
-                                            where Waege.Waegung == 1
-                                            select Waege;
+                where Waege.Waegung == 1
+                select Waege;
             return this.GetEntityList(query);
         }
 
         public WaegeEntity GetWaegungByPk(int pk)
         {
             IQueryable<WaegeEntity> query = from Waege in this.ObjectContext.WaegeEntities
-                                            where Waege.PK == pk
-                                            select Waege;
+                where Waege.PK == pk
+                select Waege;
             return this.GetEntity(query);
         }
 
         public int GetLastWaegung()
         {
             int i = (from w in this.ObjectContext.WaegeEntities
-                     where w.Waegung == 2
-                     select w.PK).DefaultIfEmpty().Max();
+                where w.Waegung == 2
+                select w.PK).DefaultIfEmpty().Max();
             return i;
         }
 
         public ObjectDataProvider GetWaegungOdpbyPk(int pWaegePk)
         {
             IQueryable<WaegeEntity> query = from waege in ObjectContext.WaegeEntities
-                                            where waege.PK == pWaegePk
-                                            select waege;
+                where waege.PK == pWaegePk
+                select waege;
             var oDp = new ObjectDataProvider(query, 2);
             return oDp;
         }
@@ -521,12 +540,10 @@ namespace HWB.NETSCALE.BOEF
         public ObjectDataProvider GetLsbyLsnrGlobal(string lsnr)
         {
             IQueryable<WaegeEntity> query = from waege in ObjectContext.WaegeEntities
-                                            where waege.LieferscheinNr == lsnr
-                                            select waege;
+                where waege.LieferscheinNr == lsnr
+                select waege;
             var oDp = new ObjectDataProvider(query, 2);
             return oDp;
         }
-
-
     }
 }

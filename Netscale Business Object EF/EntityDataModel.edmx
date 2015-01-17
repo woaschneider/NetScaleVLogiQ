@@ -149,6 +149,8 @@
           <Property Name="ffIsocodeCountry" Type="varchar" MaxLength="10" />
           <Property Name="incoterm" Type="varchar" MaxLength="10" />
           <Property Name="articleNumber" Type="varchar" MaxLength="240" />
+          <Property Name="abrufDatum" Type="date" />
+          <Property Name="abrufFest" Type="bit" />
         </EntityType>
         <EntityType Name="Adressen">
           <Key>
@@ -1417,6 +1419,8 @@
           <Property Type="String" Name="ffIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="incoterm" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="articleNumber" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="abrufDatum" />
+          <Property Type="Boolean" Name="abrufFest" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1973,6 +1977,8 @@
           <EntitySetMapping Name="AbrufEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AbrufEntity">
               <MappingFragment StoreEntitySet="Abruf">
+                <ScalarProperty Name="abrufFest" ColumnName="abrufFest" />
+                <ScalarProperty Name="abrufDatum" ColumnName="abrufDatum" />
                 <ScalarProperty Name="articleNumber" ColumnName="articleNumber" />
                 <ScalarProperty Name="incoterm" ColumnName="incoterm" />
                 <ScalarProperty Name="ffIsocodeCountry" ColumnName="ffIsocodeCountry" />
@@ -2129,7 +2135,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="24.479554036458325" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="12.375" PointY="0.75" Height="3.3263964843750102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FreistellungenEntity" Width="1.5" PointX="15.375" PointY="7.75" Height="2.1725878906250102" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="12.375" PointY="15.75" Height="18.90281250000001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="12.375" PointY="15.75" Height="19.287415364583325" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
