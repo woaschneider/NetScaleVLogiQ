@@ -110,11 +110,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abruf\Abruf.cs" />
-    <Compile Include="Abruf\Abruf.Partial.cs" />
-    <Compile Include="Abruf\AbrufEntity.cs" />
-    <Compile Include="Abruf\AbrufRules.cs" />
-    <Compile Include="Abruf\AbrufRules.Partial.cs" />
     <Compile Include="ABusinessEntity.cs" />
     <Compile Include="ABusinessObject.cs" />
     <Compile Include="ABusinessRule.cs" />
@@ -297,7 +292,9 @@
       <Name>NetScaleGlobal</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Abruf\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
