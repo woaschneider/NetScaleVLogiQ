@@ -77,7 +77,7 @@
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr." />
                 <DataGridTextColumn Binding="{Binding description}" Header="artikel-Bez." />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart-Bez." />
-               
+
                 <DataGridTextColumn Binding="{Binding ownerId}" Header="Lagermandant" />
                 <DataGridTextColumn Binding="{Binding baseUnitDescription}" Header="BME-Einheit" />
             </DataGrid.Columns>
@@ -85,12 +85,13 @@
         <TextBox x:Name="txtSearch"
                  Width="318"
                  Height="30"
-                 Margin="97,107,0,0"
-                 HorizontalAlignment="Left"
+                 Margin="0,107,221,0"
+                 HorizontalAlignment="Right"
                  VerticalAlignment="Top"
                  Background="#FFFFF7B2"
                  FontSize="16"
                  Opacity="50"
+                 TabIndex="1010"
                  TextChanged="txtSearch_TextChanged" />
         <Label x:Name="label1"
                Height="28"
@@ -98,6 +99,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
-               FontWeight="Bold" />
+               FontWeight="Bold"
+               TabIndex="1000" />
     </Grid>
 </mmwpf:mmBusinessWindow>

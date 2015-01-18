@@ -555,6 +555,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = true;
             //   ribbonAbrufListe.IsEnabled = true;
+            ribbonAuftrag.IsEnabled = false;
             ribbonCancel.IsEnabled = false;
             ribbonDelete.IsEnabled = false;
 
@@ -586,7 +587,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufNeu.IsEnabled = true;
             radioAbrufEdit.IsEnabled = false;
             radioLSNew.IsEnabled = true;
-
+            ribbonAuftrag.IsEnabled = true;
             EnableFrmTb();
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = true;
@@ -622,7 +623,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonLsListe.IsEnabled = false;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-
+            ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
         }
@@ -649,7 +650,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonLsListe.IsEnabled = false;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-
+            ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
         }
@@ -676,7 +677,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonLsListe.IsEnabled = false;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-
+            ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
         }
@@ -705,7 +706,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonLsListe.IsEnabled = true;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-
+            ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
@@ -811,7 +812,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonLsListe.IsEnabled = true;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-
+            ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
         }
@@ -1083,13 +1084,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         #region LookUps
 
 
-        private void txtKfzKennzeichen_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.F4)
-            {
-                lookupKfz();
-            }
-        }
+        //private void txtKfzKennzeichen_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.F4)
+        //    {
+        //        lookupKfz();
+        //    }
+        //}
 
         private void cmdLookUpKfz_Click(object sender, RoutedEventArgs e)
         {
@@ -1101,12 +1102,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             CFListFrm oKfzListeFrm = new CFListFrm(true, txtKfzKennzeichen.Text);
             oKfzListeFrm.ShowDialog();
             var uRet = oKfzListeFrm.uRet;
+            oKfzListeFrm.Close();
             if (_boWe != null)
             {
                 _boW.FillKfz(uRet, _boWe);
             }
 
-            oKfzListeFrm.Close();
+           
         }
 
         private void luFrachtmittel_Click(object sender, RoutedEventArgs e)

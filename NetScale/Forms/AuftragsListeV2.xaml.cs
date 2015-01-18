@@ -45,8 +45,29 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             DataGridOrderItems.SelectedValuePath = "PK";
             DataGridOrderItemService.SelectedValuePath = "PK";
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+            this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
+        private void HandleKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Hide();
+                e.Handled = true;
+            }
+            if (e.Key == Key.Return)
+            {
+                //cmdSelect_Click(CmdSelect, e);
+                //Hide();
+                //e.Handled = true;
+            }
+            if (e.Key == Key.Tab)
+            {
+                DataGridOrderItems.SelectedItem = DataGridOrderItems.Items[0];
+                DataGridOrderItems.Focus();
+            }
+
+        }
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
             Hide();
@@ -60,6 +81,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void GetValueOrderPos()
         {
             URet = Convert.ToInt32(DataGridOrderItemService.SelectedValue);
+            if (URet == 0)
+            {
+                MessageBox.Show("Sie müssen eine Auftragspositon auswählen!");
+                return;
+            }
             Hide();
         }
 

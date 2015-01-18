@@ -63,6 +63,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 Hide();
                 e.Handled = true;
             }
+            if (e.Key == Key.Tab)
+            {
+                dataGrid.SelectedItem = dataGrid.Items[0];
+                dataGrid.Focus();
+            }
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)

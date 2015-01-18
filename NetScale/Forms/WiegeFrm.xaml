@@ -378,7 +378,6 @@
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  CharacterCasing="Upper"
-                 KeyDown="txtKfzKennzeichen_KeyDown"
                  LostFocus="TxtKfzKennzeichen_OnLostFocus"
                  TabIndex="110"
                  Text="{Binding Fahrzeug}" />

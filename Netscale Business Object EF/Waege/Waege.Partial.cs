@@ -249,15 +249,15 @@ namespace HWB.NETSCALE.BOEF
                 FahrzeugeEntity _boFE = _boF.GetByPk(pk);
                 if (_boFE != null)
                 {
-                    Entity.Fahrzeug = _boFE.Kennzeichen1;
+                    oWe.Fahrzeug = _boFE.Kennzeichen1;
                     //   Entity.Frachtführer = _boFE.Frachtfuehrer;
-                    Entity.Frachtmittel = _boFE.Bezeichnung;
+                    oWe.Frachtmittel = _boFE.Bezeichnung;
                 }
                 else
                 {
-                    Entity.Fahrzeug = "";
+                    oWe.Fahrzeug = "";
                     // Entity.Frachtführer = "";
-                    Entity.Frachtmittel = "";
+                    oWe.Frachtmittel = "";
                 }
             }
         }

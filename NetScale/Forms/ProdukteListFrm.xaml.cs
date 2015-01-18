@@ -35,18 +35,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         }
 
-
-
-
         public ProdukteListFrm(string matchcode)
         {
             this.InitializeComponent();
             // PrimaryBizObj = 
 
-            dataGrid.SelectedValuePath = "PK";
-            dataGrid.ItemsSource = boP.GetByMatchCode(matchcode);
-            this.PreviewKeyDown += new KeyEventHandler(HandleKey);
+
+            
             txtSearch.Text = matchcode;
+            FillGrid((matchcode));
+            this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
 
         private void HandleKey(object sender, KeyEventArgs e)
@@ -63,7 +61,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 Hide();
                 e.Handled = true;
             }
+            if (e.Key == Key.Tab)
+            {
+                dataGrid.SelectedItem = dataGrid.Items[0];
+                dataGrid.Focus();
+            }
         }
+
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
@@ -91,8 +95,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             dataGrid.ItemsSource = boP.GetByMatchCode(txtSearch.Text);
         }
 
-        private void FillGrid()
+        private void FillGrid(string matchcode)
         {
+            dataGrid.SelectedValuePath = "PK";
+            dataGrid.ItemsSource = boP.GetByMatchCode(matchcode);
         }
 
         private void dataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -120,10 +126,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             InputManager.Current.ProcessInput(args);
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
 
 
     }

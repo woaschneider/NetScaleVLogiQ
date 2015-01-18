@@ -249,18 +249,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             this.Close();
         }
 
-        private void cmdAP_Click(object sender, RoutedEventArgs e)
-        {
-            //Forms.AddressFrm oAddressFrm = new Forms.AddressFrm();
-            //oAddressFrm.ShowDialog();
-            //oAddressFrm.Close();
-        }
-
-        private void cmdMG_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void cmdStartWaegebetrieb_Click(object sender, RoutedEventArgs e)
         {
             StartWiegeFrm();
@@ -319,12 +307,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             oU.Close();
         }
 
-        private void cmdUserSecurity_Click(object sender, RoutedEventArgs e)
-        {
-            //  UserSecurityFrm oUs = new UserSecurityFrm();
-            // oUs.ShowDialog();
-            /// oUs.Close();
-        }
+      
 
 
         private void Module_Click(object sender, RoutedEventArgs e)
@@ -341,30 +324,5 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             oMV.Close();
         }
 
-        private void cmdKFZ_Click(object sender, RoutedEventArgs e)
-        {
-            CFListFrm oCFFrm = new CFListFrm(false,"");
-            oCFFrm.ShowDialog();
-            oCFFrm.Close();
-        }
-
-        private void cmdMandant_Click(object sender, RoutedEventArgs e)
-        {
-            if (Convert.ToInt32(goApp.acessLevel) > 2)
-            {
-                MessageBox.Show("Sie haben für diese Funktion keine Berechtigung!", "ACHTUNG", MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
-                return;
-            }
-            MandantListFrm oMFrm = new MandantListFrm();
-            oMFrm.ShowDialog();
-            oMFrm.Close();
-        }
-
-        private void cmdImport_Click(object sender, RoutedEventArgs e)
-        {
-            new ImportExportPolos().Import();
-            MessageBox.Show("Import fertig!");
-        }
     }
 }

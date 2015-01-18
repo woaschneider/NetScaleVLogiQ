@@ -58,17 +58,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             Fillgrid();
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
-
-        private void KBDown()
-        {
-            KeyEventArgs args = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0,
-                                                 Key.Down);
-            args.RoutedEvent = Keyboard.KeyDownEvent;
-            InputManager.Current.ProcessInput(args);
-            args.RoutedEvent = Keyboard.KeyDownEvent;
-            InputManager.Current.ProcessInput(args);
-        }
-
         private void HandleKey(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
@@ -82,14 +71,22 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 Hide();
                 e.Handled = true;
             }
-            if(e.Key== Key.Tab)
+            if (e.Key == Key.Tab)
             {
                 dataGrid1.SelectedItem = dataGrid1.Items[0];
                 dataGrid1.Focus();
             }
 
         }
-
+        private void KBDown()
+        {
+            KeyEventArgs args = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0,
+                                                 Key.Down);
+            args.RoutedEvent = Keyboard.KeyDownEvent;
+            InputManager.Current.ProcessInput(args);
+            args.RoutedEvent = Keyboard.KeyDownEvent;
+            InputManager.Current.ProcessInput(args);
+        }
         private new void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dataGrid1.SelectedItem = dataGrid1.Items[0];

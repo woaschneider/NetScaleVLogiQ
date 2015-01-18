@@ -70,15 +70,15 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid x:Name="dataGrid1"
-                  
-                  MouseDoubleClick="dataGrid1_MouseDoubleClick" Height="502"
+                  Grid.Row="1"
+                  Height="502"
                   Margin="0,20,2,0"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
-                  
                   ItemsSource="{Binding Mode=OneWay}"
-              
-                  SelectedValuePath="&quot;PK&quot;" Grid.Row="1" Style="{DynamicResource DataGridStyle}">
+                  MouseDoubleClick="dataGrid1_MouseDoubleClick"
+                  SelectedValuePath="&quot;PK&quot;"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding businessIdentifier}" Header="Name-Id" />
@@ -90,19 +90,30 @@
                 <DataGridTextColumn Binding="{Binding isocodeCountry}" Header="Land" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="label1" Height="28"
+        <Label x:Name="label1"
+               Height="28"
                Margin="12,120,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
-               FontWeight="Bold" TabIndex="1000" />
-        <TextBox Name="txtSearch" Height="30"
+               FontWeight="Bold"
+               TabIndex="1000" />
+        <TextBox Name="txtSearch"
+                 Width="466"
+                 Height="30"
                  Margin="106,120,0,0"
+                 HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  Background="#FFFFF7B2"
                  FontSize="16"
-                 TextChanged="txtSearch_TextChanged"
-                 Opacity="50" TabIndex="1010" HorizontalAlignment="Left" Width="466" />
-        <Label Content="0" Height="28" HorizontalAlignment="Right" Margin="0,122,62,0" Name="lblCount" VerticalAlignment="Top" />
+                 Opacity="50"
+                 TabIndex="1010"
+                 TextChanged="txtSearch_TextChanged" />
+        <Label Name="lblCount"
+               Height="28"
+               Margin="0,122,62,0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Content="0" />
     </Grid>
 </mmwpf:mmBusinessWindow>

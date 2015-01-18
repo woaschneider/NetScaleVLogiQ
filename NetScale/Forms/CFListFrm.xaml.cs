@@ -89,6 +89,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             uRet = Convert.ToInt32(dataGrid1.SelectedValue);
             this.Hide();
+            e.Handled = true;
         }
 
         private void Fillgrid()

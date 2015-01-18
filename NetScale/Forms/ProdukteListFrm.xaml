@@ -70,7 +70,6 @@
                   ItemsSource="{Binding Mode=OneWay}"
                   MouseDoubleClick="dataGrid_MouseDoubleClick"
                   SelectedValuePath="&quot;PK&quot;"
-                  SelectionChanged="dataGrid_SelectionChanged"
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id" />
@@ -87,6 +86,7 @@
                  Background="#FFFFF7B2"
                  FontSize="16"
                  Opacity="50"
+                 TabIndex="1010"
                  TextChanged="txtSearch_TextChanged" />
         <Label x:Name="label1"
                Height="28"
@@ -94,6 +94,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
-               FontWeight="Bold" />
+               FontWeight="Bold"
+               TabIndex="1000" />
     </Grid>
 </mmwpf:mmBusinessWindow>

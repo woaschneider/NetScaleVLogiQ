@@ -343,6 +343,7 @@
         <ribbon:Ribbon x:Name="Ribbon"
                        Grid.ColumnSpan="3"
                        Height="136"
+                       Margin="0,7,0,0"
                        VerticalAlignment="Top"
                        Background="#FF77ABDC">
             <ribbon:Ribbon.ApplicationMenu>
@@ -367,39 +368,7 @@
 
             </ribbon:RibbonTab>
 
-            <ribbon:RibbonTab x:Name="StammdatenTab" Header="Stammdaten">
-                <ribbon:RibbonGroup x:Name="Group2" Header="Stammdaten">
 
-                    <ribbon:RibbonButton x:Name="cmdAP"
-                                         Click="cmdAP_Click"
-                                         FontSize="14"
-                                         Label="  Adressen  "
-                                         LargeImageSource="Images\1328089907_address-book.png" />
-
-                    <ribbon:RibbonButton x:Name="cmdMG"
-                                         Click="cmdMG_Click"
-                                         FontSize="14"
-                                         Label="  Sorten  "
-                                         LargeImageSource="Images\1298575723_advancedsettings.png" />
-                    <ribbon:RibbonButton x:Name="cmdKFZ"
-                                         Click="cmdKFZ_Click"
-                                         FontSize="14"
-                                         Label="  Kfz  "
-                                         LargeImageSource="Images\1298027249_delivery.png" />
-                    <ribbon:RibbonButton x:Name="cmdMandant"
-                                         Click="cmdMandant_Click"
-                                         FontSize="14"
-                                         Label="  Mandant  "
-                                         LargeImageSource="Images\1360083317_Home.png" />
-                    <ribbon:RibbonButton x:Name="cmdImport"
-                                         Click="cmdImport_Click"
-                                         FontSize="14"
-                                         Label=" Import "
-                                         LargeImageSource="..\Images\1349852832_document-import.png" />
-
-                </ribbon:RibbonGroup>
-
-            </ribbon:RibbonTab>
 
             <ribbon:RibbonTab x:Name="SetupTab" Header="Einstellungen">
                 <ribbon:RibbonGroup x:Name="Group3" Header="Tools">

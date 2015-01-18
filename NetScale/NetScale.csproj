@@ -293,12 +293,6 @@
     </Compile>
     <Compile Include="MD5.cs" />
     <Compile Include="MyFunctions.cs" />
-    <Compile Include="NetScaleControls\AdressenExpander.xaml.cs">
-      <DependentUpon>AdressenExpander.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NetScaleControls\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
     <Compile Include="UserWindow.xaml.cs">
@@ -438,14 +432,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\MyLoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NetScaleControls\AdressenExpander.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NetScaleControls\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

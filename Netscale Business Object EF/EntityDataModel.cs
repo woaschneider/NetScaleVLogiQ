@@ -440,38 +440,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        public ObjectSet<FahrzeugeEntity> FahrzeugeEntities
-        {
-            get
-            {
-                if ((_FahrzeugeEntities == null))
-                {
-                    _FahrzeugeEntities = base.CreateObjectSet<FahrzeugeEntity>("FahrzeugeEntities");
-                }
-                return _FahrzeugeEntities;
-            }
-        }
-        private ObjectSet<FahrzeugeEntity> _FahrzeugeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<FreistellungenEntity> FreistellungenEntities
         {
             get
@@ -500,6 +468,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<AbrufEntity> _AbrufEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<FahrzeugeEntity> FahrzeugeEntities
+        {
+            get
+            {
+                if ((_FahrzeugeEntities == null))
+                {
+                    _FahrzeugeEntities = base.CreateObjectSet<FahrzeugeEntity>("FahrzeugeEntities");
+                }
+                return _FahrzeugeEntities;
+            }
+        }
+        private ObjectSet<FahrzeugeEntity> _FahrzeugeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -689,22 +689,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FahrzeugeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToFahrzeugeEntities(FahrzeugeEntity fahrzeugeEntity)
-        {
-            base.AddObject("FahrzeugeEntities", fahrzeugeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FreistellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToFreistellungenEntities(FreistellungenEntity freistellungenEntity)
@@ -718,6 +702,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToAbrufEntities(AbrufEntity abrufEntity)
         {
             base.AddObject("AbrufEntities", abrufEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FahrzeugeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToFahrzeugeEntities(FahrzeugeEntity fahrzeugeEntity)
+        {
+            base.AddObject("FahrzeugeEntities", fahrzeugeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -5157,6 +5157,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Kennzeichen2;
         partial void OnKennzeichen2Changing(global::System.String value);
         partial void OnKennzeichen2Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Kennzeichen1Raw
+        {
+            get
+            {
+                return _Kennzeichen1Raw;
+            }
+            set
+            {
+                OnKennzeichen1RawChanging(value);
+                ReportPropertyChanging("Kennzeichen1Raw");
+                _Kennzeichen1Raw = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Kennzeichen1Raw");
+                OnKennzeichen1RawChanged();
+            }
+        }
+        private global::System.String _Kennzeichen1Raw;
+        partial void OnKennzeichen1RawChanging(global::System.String value);
+        partial void OnKennzeichen1RawChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -13113,6 +13137,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _AbrufNr;
         partial void OnAbrufNrChanging(global::System.String value);
         partial void OnAbrufNrChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Kennzeichen1Raw
+        {
+            get
+            {
+                return _Kennzeichen1Raw;
+            }
+            set
+            {
+                OnKennzeichen1RawChanging(value);
+                ReportPropertyChanging("Kennzeichen1Raw");
+                _Kennzeichen1Raw = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Kennzeichen1Raw");
+                OnKennzeichen1RawChanged();
+            }
+        }
+        private global::System.String _Kennzeichen1Raw;
+        partial void OnKennzeichen1RawChanging(global::System.String value);
+        partial void OnKennzeichen1RawChanged();
 
         #endregion
     
