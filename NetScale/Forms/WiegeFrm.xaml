@@ -97,6 +97,7 @@
                                          Label=" Lieferscheine"
                                          LargeImageSource="..\Images\1328191024_edit-notes.png" />
                     <ribbon:RibbonButton x:Name="ribbonAbrufListe"
+                                         Click="ribbonAbrufListe_Click"
                                          FontSize="14"
                                          Label=" Abrufe"
                                          LargeImageSource="..\Images\1328191024_edit-notes.png" />

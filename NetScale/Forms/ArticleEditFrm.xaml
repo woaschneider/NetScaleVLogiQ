@@ -4,7 +4,7 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
-                        Title="BusinessWindow"
+                        Title="Artikel bearbeiten"
                         Width="799"
                         Height="455"
                         AllowsTransparency="False"

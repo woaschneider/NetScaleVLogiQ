@@ -59,49 +59,54 @@ namespace HWB.NETSCALE.BOEF
             FahrzeugeEntity boFe = boF.GetByExactKennzeichen(boWE.Fahrzeug);
             if (boFe == null)
             {
-                if (goApp.AutoAbruf)
-                    CheckAndCreateAbr(boWE);
-                //   
-
-
                 //TODO: Kunden fragen, ob es Sinn macht den FF zu speichern
                 boFe = boF.NewEntity();
                 boFe.Kennzeichen1 = boWE.Fahrzeug;
                 boFe.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
                 Entity.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
-
-                if (goApp.SAVE_ABR2CF)
-
-                {
-                    boFe.AbrufNr = boWE.AbrufNr;
-                    
-                }
-                else
-                {
-                    boFe.AbrufNr = null;
-                }
-                boF.SaveEntity(boFe);
             }
+            if (goApp.AutoAbruf)
+            {
+                CheckAndCreateAbr(boWE);
+            }
+
+            if (goApp.SAVE_ABR2CF)
+            {
+                boFe.AbrufNr = Entity.AbrufNr;
+                boFe.abruf_PK = Entity.abruf_PK;
+                boFe.AbrufDate = DateTime.Today;
+            }
+            else
+            {
+                boFe.abruf_PK = null;
+                boFe.AbrufNr = null;
+                boFe.AbrufDate = DateTime.Today;
+            }
+            boF.SaveEntity(boFe);
         }
 
         private void CheckAndCreateAbr(WaegeEntity boWE)
-        {
+        {     AbrufEntity oAe;
             var boA = new Abruf();
+          
             if (boWE.AbrufNr == null)
             {
                 // Gibt es einen Abruf mit diesen Daten
-                var oAe = boA.CompareAbrufData(boWE);
+                oAe = boA.CompareAbrufData(boWE);
                 if (oAe == null)
-
                 {
-                    AbrufEntity oAE = boA.CreateAbrufautomatically(boWE);
-                    Entity.AbrufNr = oAE.AbrufNr;
+                    oAe = boA.CreateAbrufautomatically(boWE);
+
+                    Entity.AbrufNr = oAe.AbrufNr;
+                    Entity.abruf_PK = oAe.PK;
                 }
                 else
                 {
                     Entity.AbrufNr = oAe.AbrufNr;
+                    Entity.abruf_PK = oAe.PK;
                 }
             }
+           
         }
 
         public mmBindingList<WaegeEntity> GetLsListe(DateTime vonDatum, DateTime bisDatum, string f1, string mc1,
@@ -452,8 +457,9 @@ namespace HWB.NETSCALE.BOEF
 
         #endregion
 
-        public void Auftrag2Waege(int fkpk)
+        public void Auftrag2Waege(int fkpk, WaegeEntity boWe)
         {
+            Entity = boWe;
             Orderitem _boOI = new Orderitem();
             OrderItemservice _boOIS = new OrderItemservice();
             OrderItemserviceEntity _boOISE = _boOIS.GetByPK(fkpk);
@@ -565,6 +571,9 @@ namespace HWB.NETSCALE.BOEF
 
         private string ConvertKfzToKfzRaw(string kfz)
         {
+            if (kfz == null)
+                kfz = "";
+
             string a = kfz.Replace("-", "");
             return a.Replace(" ", "");
         }

@@ -14,7 +14,6 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using HardwareDevices;
 using HWB.NETSCALE.BOEF;
-
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO;
@@ -75,7 +74,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!goApp.WaageModulAktiv)
             {
                 MessageBox.Show("Das Programm befindet sich im DEMO-Modus", "INFO", MessageBoxButton.OK,
-                                MessageBoxImage.Exclamation);
+                    MessageBoxImage.Exclamation);
                 goApp.WaageModulAktiv = false;
             }
 
@@ -137,7 +136,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             NewWaege();
         }
-      
+
 
         private void ribbonSave_Click(object sender, RoutedEventArgs e)
         {
@@ -176,14 +175,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             var oLSListe = new WiegelisteFrm();
             oLSListe.ShowDialog();
             int uRet = oLSListe.uRet;
-            if(uRet ==0)
+            if (uRet == 0)
             {
                 oLSListe.Close();
             }
             else
             {
                 _boWe = _boW.GetWaegungByPk(uRet);
-                if(_boWe!=null)
+                if (_boWe != null)
                 {
                     DataContext = _boWe;
                     oLSListe.Close();
@@ -192,6 +191,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
+        private void ribbonAbrufListe_Click(object sender, RoutedEventArgs e)
+        {
+            AbruflisteFrm oAFrm = new AbruflisteFrm();
+            oAFrm.ShowDialog();
+            oAFrm.Close();
+        }
 
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -208,7 +213,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (_boWe != null)
             {
                 MessageBoxResult uRet = MessageBox.Show("Wollen Sie diesen Datensatzwirklich löschen? ", "ACHTUNG",
-                                                        MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (uRet == MessageBoxResult.Yes)
                 {
                     if (_boWe.AbrechnungsKZ == "RG")
@@ -230,17 +235,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void ribbonCancel_Click(object sender, RoutedEventArgs e)
         {
             _boW.CancelEntity(_boWe);
-            
+
             Wiegestatus = 0;
         }
-
-
 
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
             netScaleView1.Close();
-                 Cancel();
+            Cancel();
             Close();
         }
 
@@ -321,14 +324,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             AuftragsListeV2 oAFrm = new AuftragsListeV2("");
             oAFrm.ShowDialog();
             int uRet = oAFrm.URet;
-            _boW.Auftrag2Waege(uRet);
+            _boW.Auftrag2Waege(uRet, _boWe);
 
             oAFrm.Close();
         }
 
         #endregion
-
-      
 
         #region GUI Umschaltung
 
@@ -388,7 +389,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                 if (ctrl is SplitButton)
                     ((SplitButton) ctrl).IsEnabled = false;
-                
             }
 
 
@@ -414,21 +414,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     ((Expander) ctrl).IsEnabled = true;
 
                 if (ctrl is SplitButton)
-                    ((SplitButton)ctrl).IsEnabled = true;
+                    ((SplitButton) ctrl).IsEnabled = true;
             }
 
 
-          
-
-        //    foreach (object ctrl in LayoutRoot.Children)
+            //    foreach (object ctrl in LayoutRoot.Children)
 
 
-        //        //foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
-        //        //{
-        //        //    this.expanderCustomerEdit.IsExpanded = false;
-        //        //    tb.IsEnabled = true;
-        //        //}
-        //
+            //        //foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
+            //        //{
+            //        //    this.expanderCustomerEdit.IsExpanded = false;
+            //        //    tb.IsEnabled = true;
+            //        //}
+            //
         }
 
         private void SetWeightBindingFormat()
@@ -470,10 +468,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
             tb_ZweitGewicht.SetBinding(TextBox.TextProperty, bZweitgewicht);
-
-
-
-
         }
 
 
@@ -488,6 +482,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     WiegeStatusChange(_wiegeStatus);
                 }
             }
+            get { return _wiegeStatus; }
         }
 
         private void WiegeStatusChange(int ws)
@@ -912,7 +907,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
 
-                    if(_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                    if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
                     {
                         _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
                     }
@@ -923,7 +918,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     // TODO: Welches Feld
                     _boWe.zweitDateTime = oRw.Time;
-                     _boWe.LSDatum = oRw.Date;
+                    _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
                     //  _boWe.wnr2 = netScaleView1.ActiveScale.ToString();
 
@@ -961,7 +956,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     boE = new Einstellungen();
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
                     // _boWe.lsnr = boMandant.GetLsNr(_boWe);
-                  
+
                     _boWe.zweitDateTime = oRw.Time;
                     //   _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
@@ -1019,7 +1014,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     if (_wiegeStatus != 4) // Erstwägung bearbeiten
                         if (
                             MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo,
-                                            MessageBoxImage.Warning) == MessageBoxResult.No)
+                                MessageBoxImage.Warning) == MessageBoxResult.No)
                         {
                             //do no stuff
                         }
@@ -1066,6 +1061,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             Wiegestatus = 0;
         }
+
         private void Cancel()
         {
             if (_boWe != null)
@@ -1074,6 +1070,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 Wiegestatus = 0;
             }
         }
+
         private void Export2Json(WaegeEntity we)
         {
             new ImportExportPolos().Export(we);
@@ -1082,7 +1079,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         #endregion
 
         #region LookUps
-
 
         //private void txtKfzKennzeichen_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         //{
@@ -1106,9 +1102,64 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (_boWe != null)
             {
                 _boW.FillKfz(uRet, _boWe);
+                bool lRet = IsKfzErstVerwogenDialog();
+                if (lRet) // Dann mach nichts
+                {
+                }
+                else // Schau mal ob das Kfz einen Abruf hat, den man bei der Erstwägung in die Maske schießen kann
+                {
+                    var oCfe = new Fahrzeuge().GetByPk(uRet);
+
+                    Abruf2Wage(oCfe);
+                }
+            }
+        }
+
+        private bool IsKfzErstVerwogenDialog()
+        {
+            int uRet = _boW.IsKfzErstVerwogen(txtKfzKennzeichen.Text);
+            if (uRet != 0 && Wiegestatus == 1) // Ungleich 0 bedeutet ist Erstgewogen
+            {
+                _boWe = _boW.GetWaegungByPk(uRet);
+                if (_boWe != null)
+                {
+                    DataContext = _boWe;
+                    Wiegestatus = 2;
+                    MessageBox.Show(
+                        "Dieses Fahrzeug ist schon erstgewogen. Das Programm schaltet aus diesem Grund nun automatisch auf Zweitwägung um!",
+                        "Achtung - Wichtiger Hinweis", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
 
-           
+
+            if (uRet != 0 && Wiegestatus == 2)
+            {
+                _boWe = _boW.GetWaegungByPk(uRet);
+                DataContext = _boWe;
+            }
+            if (uRet != 0) // Erstgewogen
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void Abruf2Wage(FahrzeugeEntity oCfe)
+        {
+            if (oCfe == null)
+                return;
+
+            int? uRet = oCfe.abruf_PK;
+            var boAbruf = new Abruf();
+            if (uRet != null)
+            {
+                WaegeEntity dc = boAbruf.CopyAbrufToWaege(uRet, _boWe);
+                if (dc != null)
+                {
+                    DataContext = dc;
+                    //  _wiegestatus = 1;
+                }
+            }
         }
 
         private void luFrachtmittel_Click(object sender, RoutedEventArgs e)
@@ -1116,10 +1167,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             FrachtmittelListFrm oFFrm = new FrachtmittelListFrm();
             oFFrm.ShowDialog();
             int uRet = oFFrm.uRet;
-            if(_boWe!=null)
+            if (_boWe != null)
             {
-              _boW.FillFrachtmittel(uRet);
-
+                _boW.FillFrachtmittel(uRet);
             }
             oFFrm.Close();
         }
@@ -1131,7 +1181,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtFrachtführer.Text, "FF");
             if (uRet != null)
             {
-                _boW.FrachtFuehrer2Waege((int)uRet);
+                _boW.FrachtFuehrer2Waege((int) uRet);
             }
             else
             {
@@ -1141,10 +1191,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luCustomer_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse(txtAuftraggeber.Text,"AG");
-            
-          
-            
+            int? uRet = lookUpAdresse(txtAuftraggeber.Text, "AG");
+
 
             if (uRet != null)
             {
@@ -1158,10 +1206,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luInvoiceReceiver_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse(txtRechnungsEmpfaenger.Text,"RE");
+            int? uRet = lookUpAdresse(txtRechnungsEmpfaenger.Text, "RE");
             if (uRet != null)
             {
-                _boW.InvoiceReceiver2Waege((int)uRet);
+                _boW.InvoiceReceiver2Waege((int) uRet);
             }
             else
             {
@@ -1171,10 +1219,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luLagermandant_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse(txtLagerMandant.Text,"LM");
+            int? uRet = lookUpAdresse(txtLagerMandant.Text, "LM");
             if (uRet != null)
             {
-                _boW.Owner2Waege((int)uRet);
+                _boW.Owner2Waege((int) uRet);
             }
             else
             {
@@ -1185,10 +1233,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luConsigneeSupplier_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse("","");
+            int? uRet = lookUpAdresse("", "");
             if (uRet != null)
             {
-                _boW.SupplierOrConsignee2Waege((int)uRet);
+                _boW.SupplierOrConsignee2Waege((int) uRet);
             }
             else
             {
@@ -1198,7 +1246,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private int? lookUpAdresse(string mc, string rolle)
         {
-            AdressenListeFrm oAFrm = new AdressenListeFrm(mc,rolle);
+            AdressenListeFrm oAFrm = new AdressenListeFrm(mc, rolle);
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
             oAFrm.Close();
@@ -1223,7 +1271,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int uRet = oWFrm.uRet;
             _boW.WarenArt2Waege(uRet);
             oWFrm.Close();
-
         }
 
         private void luArticle_Click(object sender, RoutedEventArgs e)
@@ -1234,6 +1281,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             _boW.Article2Waege(uRet);
             oAFrm.Close();
         }
+
         #endregion
 
         private void FillIncoterms()
@@ -1242,8 +1290,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
             Incoterm boI = new Incoterm();
-    
-            cbIncoterms.DisplayMemberPath= ("Kennung");
+
+            cbIncoterms.DisplayMemberPath = ("Kennung");
             cbIncoterms.ItemsSource = boI.GetAllIncoterm();
         }
 
@@ -1260,7 +1308,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtAuftraggeber.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text,"AU");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
                 if (boAe != null)
                 {
                     _boW.Customer2Waege(boAe.PK);
@@ -1277,7 +1325,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtRechnungsEmpfaenger.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtRechnungsEmpfaenger.Text,"RE");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtRechnungsEmpfaenger.Text, "RE");
                 if (boAe != null)
                 {
                     _boW.InvoiceReceiver2Waege(boAe.PK);
@@ -1287,7 +1335,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boW.ClearinvoiceReceiverInWaege();
                 }
             }
-          
         }
 
         private void TxtFrachtführer_OnLostFocus(object sender, RoutedEventArgs e)
@@ -1295,7 +1342,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtFrachtführer.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text,"LI");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text, "LI");
                 if (boAe != null)
                 {
                     _boW.FrachtFuehrer2Waege(boAe.PK);
@@ -1305,7 +1352,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boW.ClearFrachtFuehrerInWaege();
                 }
             }
-          
         }
 
         private void TxtLagerMandant_OnLostFocus(object sender, RoutedEventArgs e)
@@ -1313,7 +1359,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtLagerMandant.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLagerMandant.Text,"LM");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLagerMandant.Text, "LM");
                 if (boAe != null)
                 {
                     _boW.Owner2Waege(boAe.PK);
@@ -1322,7 +1368,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     _boW.ClearOwnerInWaege();
                 }
-
             }
         }
 
@@ -1331,7 +1376,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtLieferantEmpfaenger.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLieferantEmpfaenger.Text,"EM");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLieferantEmpfaenger.Text, "EM");
                 if (boAe != null)
                 {
                     _boW.SupplierOrConsignee2Waege(boAe.PK);
@@ -1351,16 +1396,28 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 _boW.FillKfz(boFe.PK, _boWe);
                 int uRet = _boW.IsKfzErstVerwogen(_boWe.Fahrzeug);
-                if(uRet!=0)
+                if (uRet != 0)
                 {
-                _boWe =   _boW.GetWaegungByPk(uRet);
-                  
-                if (_boWe != null)
-                {
-                    DataContext = _boWe;
-                  
-                    Wiegestatus = 2;
+                    _boWe = _boW.GetWaegungByPk(uRet);
+
+                    if (_boWe != null)
+                    {
+                        DataContext = _boWe;
+
+                        Wiegestatus = 2;
+                    }
                 }
+            }
+
+            if (_boWe != null)
+            {
+                bool lRet = IsKfzErstVerwogenDialog();
+                if (lRet) // Dann mach nichts
+                {
+                }
+                else // Schau mal ob das Kfz einen Abruf hat, den man bei der Erstwägung in die Maske schießen kann
+                {
+                    Abruf2Wage(boFe);
                 }
             }
         }

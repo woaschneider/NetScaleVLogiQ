@@ -188,7 +188,29 @@ namespace HWB.NETSCALE.BOEF
                 }
             }
         }
+        public void DeleteOldAbrufe()
+        {
+            Einstellungen _boE = new Einstellungen();
+            EinstellungenEntity _boEE = _boE.GetEinstellungen();
+            double DeleteAfterNDay = 0;
+            if (_boEE.AbrufeNachNTagenloeschen != null)
+                DeleteAfterNDay = (double)_boEE.AbrufeNachNTagenloeschen;
 
+            if (DeleteAfterNDay != 0)
+            {
+                DateTime today = DateTime.Today;
+                DateTime nDaysEarlier = today.AddDays(-DeleteAfterNDay + 1);
+
+
+                IQueryable<AbrufEntity> query = from a in ObjectContext.AbrufEntities
+                                                where a.abrufDatum < nDaysEarlier || a.abrufFest != true
+
+                                                select a;
+                var ii = GetEntityList(query);
+
+                DeleteEntityList();
+            }
+        }
 
 	   
 	}

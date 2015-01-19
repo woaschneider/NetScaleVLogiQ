@@ -16,6 +16,7 @@ using HWB.NETSCALE.FRONTEND.WPF.Forms;
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO;
+using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Security;
 using OakLeaf.MM.Main.WPF;
 
@@ -34,6 +35,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             try
             {
+        
                 InitializeComponent();
 
                 // DefaultMandant
@@ -163,7 +165,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                     goApp.KartenleserModulAktiv = true;
 
 
-             
+                // Temporäre Abruf löschen
+                Abruf boAbruf = new Abruf();
+                boAbruf.DeleteOldAbrufe();
+
+                // Abrufe-Nr vom Vortag oder älter aus Kfz löschen
+                Fahrzeuge ocf = new Fahrzeuge();
+                ocf.DeleteOldAbrufe();
 
               
 

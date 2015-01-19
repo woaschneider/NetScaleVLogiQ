@@ -8,7 +8,7 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
                         x:Name="Window"
-                        Title="BusinessWindow"
+                        Title="Fahrzeuge bearbeiten"
                         Width="575"
                         Height="449"
                         AllowsTransparency="False"
@@ -221,5 +221,34 @@
                 VerticalAlignment="Top"
                 Click="buttonLookUpFrachtführer_Click"
                 Content="..." />
+        <TextBox Name="textBox1"
+                 Width="79"
+                 Height="33"
+                 MaxHeight="30"
+                 Margin="192,362,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 FontSize="16"
+                 IsReadOnly="True"
+                 TabIndex="110"
+                 Text="{Binding AbrufNr}" />
+        <Label Name="label1"
+               Height="28"
+               Margin="27,365,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Abruf-Nr / Datum"
+               FontSize="14" />
+        <TextBox Name="textBox2"
+                 Width="122"
+                 Height="33"
+                 MaxHeight="30"
+                 Margin="275,362,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 FontSize="16"
+                 IsReadOnly="True"
+                 TabIndex="110"
+                 Text="{Binding AbrufDate}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

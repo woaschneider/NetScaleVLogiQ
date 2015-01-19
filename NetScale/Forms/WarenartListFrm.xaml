@@ -7,7 +7,7 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
-                        Title="Warenarten"
+                        Title="Warenartenliste"
                         Width="447"
                         Height="522"
                         AllowsTransparency="False"

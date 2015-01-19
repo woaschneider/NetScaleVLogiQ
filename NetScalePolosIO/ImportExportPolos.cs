@@ -53,7 +53,7 @@ namespace NetScalePolosIO
         private void BwDoWork(object sender, DoWorkEventArgs e)
         {  
             
-            //new ImportAddress().Import(e.Argument.ToString()); // OK
+            new ImportAddress().Import(e.Argument.ToString()); // OK
             //new ImportKindsOfGoods().Import(e.Argument.ToString());// OK
             //new ImportArticle().Import(e.Argument.ToString());// OK
             //new ImportProducts().Import(e.Argument.ToString()); // OK

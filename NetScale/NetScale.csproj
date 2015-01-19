@@ -196,6 +196,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AAppTest.cs" />
+    <Compile Include="Forms\AbruflisteFrm.xaml.cs">
+      <DependentUpon>AbruflisteFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddressEditFrm.xaml.cs">
       <DependentUpon>AddressEditFrm.xaml</DependentUpon>
     </Compile>
@@ -302,6 +305,10 @@
     <Page Include="BrokenRulesWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Forms\AbruflisteFrm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

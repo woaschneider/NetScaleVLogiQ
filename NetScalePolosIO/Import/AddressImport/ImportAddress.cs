@@ -17,7 +17,7 @@ namespace NetScalePolosIO.Import.AddressImport
     
         private Adressen _boA;
         private AdressenEntity _boAe;
-
+        private string ImportExportStatus;
    
 
         public bool Import(string baseUrl)

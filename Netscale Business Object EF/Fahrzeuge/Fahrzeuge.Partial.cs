@@ -80,6 +80,21 @@ namespace HWB.NETSCALE.BOEF
             string a = kfz.Replace("-", "");
             return a.Replace(" ", "");
         }
+        public void DeleteOldAbrufe()
+        {
+            IQueryable<FahrzeugeEntity> query = from a in ObjectContext.FahrzeugeEntities
+                                         where a.AbrufDate < DateTime.Today | a.AbrufDate == null
+
+                                         select a;
+            var List = GetEntityList(query);
+            int nc = List.Count;
+            for (int i = 0; i <= nc - 1; i++)
+            {
+                List[i].abruf_PK = null;
+                List[i].AbrufNr = null;
+            }
+
+        }
     }
 
 }
