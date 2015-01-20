@@ -51,16 +51,17 @@ namespace NetScalePolosIO
          
         }
         private void BwDoWork(object sender, DoWorkEventArgs e)
-        {  
-            
-            new ImportAddress().Import(e.Argument.ToString()); // OK
-            //new ImportKindsOfGoods().Import(e.Argument.ToString());// OK
-            //new ImportArticle().Import(e.Argument.ToString());// OK
-            //new ImportProducts().Import(e.Argument.ToString()); // OK
-            //new ImportArticleAttributes().Import(e.Argument.ToString());
-            //new ImportStorageArea().Import(e.Argument.ToString());
+        {
+        Einstellungen boE = new Einstellungen();
+        EinstellungenEntity boEe = boE.GetEinstellungen();
+            new ImportAddress().Import(e.Argument.ToString(),GetLocationId(),boEe.ImpRESTServerAdressesUrl); // OK
+            new ImportKindsOfGoods().Import(e.Argument.ToString(),GetLocationId(),boEe.ImpRESTServerKindofGoodsUrl);// OK
+            new ImportArticle().Import(e.Argument.ToString(),GetLocationId(),boEe.ImpRESTServerArticleUrl);// OK
+            new ImportProducts().Import(e.Argument.ToString(),GetLocationId(),boEe.ImpRESTServerProductsUrl); // OK
+            new ImportArticleAttributes().Import(e.Argument.ToString(),GetLocationId(),boEe.ImpRESTServertArticleAttributesUrl);
+            new ImportStorageArea().Import(e.Argument.ToString(),GetLocationId(),boEe.ImpRESTServerStorageAreaUrl);
 
-            new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId());
+            new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(),boEe.ImportRESTServerAuftraegeUrl);
         }
 
 
@@ -70,7 +71,7 @@ namespace NetScalePolosIO
             EinstellungenEntity boEe = boE.GetEinstellungen();
             if(boEe!=null)
             {
-                string restIp = boEe.RestServerAdresse;
+                string restIp = boEe.ImpRESTServerIp;
               if (restIp!=null)
               {
                   return restIp;
@@ -85,7 +86,7 @@ namespace NetScalePolosIO
             EinstellungenEntity boEe = boE.GetEinstellungen();
             if (boEe != null)
             {
-                string port= boEe.RestServerPort;
+                string port= boEe.ImpRESTServerPort;
                 if (port != null)
                 {
                     return port;
@@ -94,6 +95,38 @@ namespace NetScalePolosIO
             }
             return "";
         }
+        private string GetExportServerIp()
+            {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if (boEe != null)
+                {
+                string restIp = boEe.ExportRESTIp;
+                if (restIp != null)
+                    {
+                    return restIp;
+                    }
+                return "";
+                }
+            return "";
+            }
+        private string GetExportPort()
+            {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if (boEe != null)
+                {
+                string port = boEe.ExportRESTServerport;
+                if (port != null)
+                    {
+                    return port;
+                    }
+                return "";
+                }
+            return "";
+            }
+
+
         private int  GetLocationId()
         {
             Einstellungen boE = new Einstellungen();

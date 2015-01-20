@@ -18,9 +18,9 @@ namespace NetScalePolosIO.Import.AddressImport
         private Adressen _boA;
         private AdressenEntity _boAe;
         private string ImportExportStatus;
-   
 
-        public bool Import(string baseUrl)
+
+        public bool Import(string baseUrl, int location, string url)
         {
             try
             {
@@ -30,8 +30,9 @@ namespace NetScalePolosIO.Import.AddressImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer ());
               
-                var request = new RestRequest("/rest/address/all") {Method = Method.GET};
-                request.AddHeader("X-location-Id", "16");
+            //    var request = new RestRequest("/rest/address/all") {Method = Method.GET};
+                var request = new RestRequest(url) { Method = Method.GET };
+                request.AddHeader("X-location-Id", location.ToString());
             
                
                 var response = client.Execute(request);

@@ -14,7 +14,7 @@ namespace NetScalePolosIO.Import.ProductsImport
         private Produkte _boP;
         private ProdukteEntity _boPe;
 
-        public bool Import(string baseUrl)
+        public bool Import(string baseUrl, int location, string url)
         {
             try
             {
@@ -23,8 +23,9 @@ namespace NetScalePolosIO.Import.ProductsImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
 
-                var request = new RestRequest("/rest/data/products") {Method = Method.GET};
-                request.AddHeader("X-location-Id", "16");
+           //     var request = new RestRequest("/rest/data/products") {Method = Method.GET};
+                var request = new RestRequest("/rest/data/products") { Method = Method.GET };
+                request.AddHeader("X-location-Id", location.ToString());
 
 
                 var response = client.Execute(request);

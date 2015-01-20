@@ -14,7 +14,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
         private Artikelattribute _boA;
         private ArtikelattributeEntity _boAe;
 
-        public bool Import(string baseUrl)
+        public bool Import(string baseUrl, int location, string url)
         {
             try
             {
@@ -22,9 +22,9 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
 
-                var request = new RestRequest("/rest/article/attributes");
+                var request = new RestRequest(url);
                 request.Method = Method.GET;
-                request.AddHeader("X-location-Id", "16");
+                request.AddHeader("X-location-Id", location.ToString());
 
 
                 var response = client.Execute(request);

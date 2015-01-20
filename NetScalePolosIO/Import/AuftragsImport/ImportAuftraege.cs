@@ -22,13 +22,14 @@ namespace NetScalePolosIO.Import.AuftragsImport
   
 
         private int _totalresult;
-        public bool Import(string baseUrl, int location)
+        public bool Import(string baseUrl,int location,string url)
         {
             var client = new RestClient(baseUrl);
             client.ClearHandlers();
             client.AddHandler("application/json", new JsonDeserializer());
             //  var request = new RestRequest("/rest/order/query/200/1?status=NEW");
-            var request = new RestRequest("/rest/order/query/200/1") {Method = Method.GET};
+          //  
+            var request = new RestRequest(url+"200/1") { Method = Method.GET };
             request.AddHeader("X-location-Id", location.ToString());
 
 
