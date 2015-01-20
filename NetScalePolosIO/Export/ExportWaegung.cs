@@ -170,7 +170,7 @@ namespace NetScalePolosIO.Export
     // Abgespeckte Polosstruktur
     public class ExportWaegungVersion2Rest
     {
-        public bool ExportLs2Rest(string baseUrl, WaegeEntity boWe)
+        public bool ExportLs2Rest(string baseUrl, string url, int? location ,WaegeEntity boWe)
         {
 
 

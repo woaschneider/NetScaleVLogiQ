@@ -63,8 +63,9 @@ namespace HWB.NETSCALE.BOEF
                 boFe = boF.NewEntity();
                 boFe.Kennzeichen1 = boWE.Fahrzeug;
                 boFe.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
-                Entity.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
+             
             }
+            boWE.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
             if (goApp.AutoAbruf)
             {
                 CheckAndCreateAbr(boWE);
@@ -86,9 +87,10 @@ namespace HWB.NETSCALE.BOEF
         }
 
         private void CheckAndCreateAbr(WaegeEntity boWE)
-        {     AbrufEntity oAe;
+        {
+            AbrufEntity oAe;
             var boA = new Abruf();
-          
+
             if (boWE.AbrufNr == null)
             {
                 // Gibt es einen Abruf mit diesen Daten
@@ -106,7 +108,7 @@ namespace HWB.NETSCALE.BOEF
                     Entity.abruf_PK = oAe.PK;
                 }
             }
-           
+
         }
 
         public mmBindingList<WaegeEntity> GetLsListe(DateTime vonDatum, DateTime bisDatum, string f1, string mc1,
@@ -191,8 +193,10 @@ namespace HWB.NETSCALE.BOEF
             return boA.GetByPk(pk);
         }
 
-        public void Product2Waege(int pk)
+        public void Product2Waege(int pk, WaegeEntity we)
         {
+            Entity = we;
+
             Produkte boP = new Produkte();
             ProdukteEntity boPE = boP.GetByPk(pk);
             if (boPE != null)
@@ -207,8 +211,10 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
-        public void WarenArt2Waege(int pk)
+        public void WarenArt2Waege(int pk, WaegeEntity we)
         {
+            Entity = we;
+
             Warenarten boW = new Warenarten();
             WarenartenEntity boWE = boW.GetByPk(pk);
             if (boWE != null)
@@ -219,17 +225,22 @@ namespace HWB.NETSCALE.BOEF
             }
             else
             {
-                ClearWarenArtInWaege();
+                ClearWarenArtInWaege(Entity);
             }
         }
 
-        public void ClearWarenArtInWaege()
+        public void ClearWarenArtInWaege( WaegeEntity we)
         {
+            Entity = we;
+            Entity.kindOfGoodDescription = null;
+
         }
 
-        public void Article2Waege(int pk)
+        public void Article2Waege(int pk ,WaegeEntity we)
 
         {
+            Entity = we;
+
             Artikel boA = new Artikel();
             ArtikelEntity boAE = boA.GetByPk(pk);
             if (boAE != null)
@@ -240,8 +251,10 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
-        public void ClearArticleInWaege()
+        public void ClearArticleInWaege( WaegeEntity we)
         {
+            Entity = we;
+
             Entity.articleId = null;
             Entity.articleDescription = null;
         }
@@ -283,11 +296,13 @@ namespace HWB.NETSCALE.BOEF
 
         #region Adressen 2 Waege
 
-        public void Customer2Waege(int pk)
+        public void Customer2Waege(int pk, WaegeEntity _boWe)
         {
             AdressenEntity boAE = GetAPByPk(pk);
             if (boAE != null)
             {
+                Entity = _boWe;
+
                 Entity.customerId = boAE.id;
                 Entity.customerBusinessIdentifier = boAE.businessIdentifier;
                 Entity.customerName = boAE.name;
@@ -301,39 +316,50 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
-        public void ClearCustomerInWaege()
+        public void ClearCustomerInWaege(WaegeEntity _boWe)
         {
-            Entity.customerBusinessIdentifier = null;
-            Entity.customerName = null;
-            Entity.customerSubName2 = null;
-            Entity.customerOwningLocationId = null;
-            Entity.customerStreet = null;
-            Entity.customerZipCode = null;
-            Entity.customerCity = null;
-            Entity.customerIdCountry = null;
-            Entity.customerIsocodeCountry = null;
-        }
-
-        public void InvoiceReceiver2Waege(int pk)
-        {
-            AdressenEntity boAe = GetApByPk(pk);
-            if (boAe != null)
+            Entity = _boWe;
+            if (Entity != null)
             {
-                Entity.invoiceReceiverId = boAe.id;
-                Entity.invoiceReceicerBusinessIdentifier = boAe.businessIdentifier;
-                Entity.invoiceReceiverName = boAe.name;
-                Entity.invoiceReceiverSubName2 = boAe.subName2;
-                Entity.invoiceReceiverOwningLocationId = boAe.owningLocationId;
-                Entity.invoiceReceiverStreet = boAe.street;
-                Entity.invoiceReceiverZipCode = boAe.zipCode;
-                Entity.invoiceReceiverCity = boAe.city;
-                Entity.invoiceReceiverIdCountry = boAe.idCountry;
-                Entity.invoiceReceiverIsocodeCountry = boAe.isocodeCountry;
+                Entity.customerBusinessIdentifier = null;
+                Entity.customerName = null;
+                Entity.customerSubName2 = null;
+                Entity.customerOwningLocationId = null;
+                Entity.customerStreet = null;
+                Entity.customerZipCode = null;
+                Entity.customerCity = null;
+                Entity.customerIdCountry = null;
+                Entity.customerIsocodeCountry = null;
             }
         }
 
-        public void ClearinvoiceReceiverInWaege()
+
+        public void InvoiceReceiver2Waege(int pk, WaegeEntity we)
         {
+            Entity = we;
+            AdressenEntity boAe = GetApByPk(pk);
+            if (boAe != null)
+            {
+                if (Entity != null)
+                {
+                    Entity.invoiceReceiverId = boAe.id;
+                    Entity.invoiceReceicerBusinessIdentifier = boAe.businessIdentifier;
+                    Entity.invoiceReceiverName = boAe.name;
+                    Entity.invoiceReceiverSubName2 = boAe.subName2;
+                    Entity.invoiceReceiverOwningLocationId = boAe.owningLocationId;
+                    Entity.invoiceReceiverStreet = boAe.street;
+                    Entity.invoiceReceiverZipCode = boAe.zipCode;
+                    Entity.invoiceReceiverCity = boAe.city;
+                    Entity.invoiceReceiverIdCountry = boAe.idCountry;
+                    Entity.invoiceReceiverIsocodeCountry = boAe.isocodeCountry;
+                }
+            }
+        }
+
+        public void ClearinvoiceReceiverInWaege(WaegeEntity we)
+        {
+            Entity = we;
+
             Entity.invoiceReceiverId = null;
             Entity.invoiceReceicerBusinessIdentifier = null;
             Entity.invoiceReceiverName = null;
@@ -346,8 +372,9 @@ namespace HWB.NETSCALE.BOEF
             Entity.invoiceReceiverIsocodeCountry = null;
         }
 
-        public void SupplierOrConsignee2Waege(int pk)
+        public void SupplierOrConsignee2Waege(int pk,WaegeEntity we)
         {
+            Entity = we;
             AdressenEntity boAe = GetApByPk(pk);
             if (boAe != null)
             {
@@ -365,8 +392,10 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
-        public void ClearsupplierOrConsigneeInWaege()
+        public void ClearsupplierOrConsigneeInWaege( WaegeEntity we)
         {
+            Entity = we;
+
             Entity.supplierOrConsigneeId = null;
             Entity.supplierOrConsigneeBusinessIdentifier = null;
             Entity.supplierOrConsigneeName = null;
@@ -379,8 +408,9 @@ namespace HWB.NETSCALE.BOEF
             Entity.supplierOrConsigneeIsocodeCountry = null;
         }
 
-        public void FrachtFuehrer2Waege(int pk)
+        public void FrachtFuehrer2Waege(int pk, WaegeEntity we)
         {
+            Entity = we;
             AdressenEntity boAE = GetAPByPk(pk);
             if (boAE != null)
             {
@@ -397,12 +427,13 @@ namespace HWB.NETSCALE.BOEF
             }
             else
             {
-                ClearFrachtFuehrerInWaege();
+                ClearFrachtFuehrerInWaege(Entity);
             }
         }
 
-        public void ClearFrachtFuehrerInWaege()
+        public void ClearFrachtFuehrerInWaege(WaegeEntity we)
         {
+            Entity = we;
             Entity.ffId = null;
             Entity.ffBusinessIdentifier = null;
             Entity.ffName = null;
@@ -415,8 +446,10 @@ namespace HWB.NETSCALE.BOEF
             Entity.ffIsocodeCountry = null;
         }
 
-        public void Owner2Waege(int pk)
+        public void Owner2Waege(int pk, WaegeEntity we)
         {
+
+            Entity = we;
             AdressenEntity boAE = GetAPByPk(pk);
             if (boAE != null)
             {
@@ -433,8 +466,9 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
-        public void ClearOwnerInWaege()
+        public void ClearOwnerInWaege(WaegeEntity we)
         {
+            Entity = we;
             Entity.ownerId = null;
             Entity.ownerBusinessIdentifier = null;
             Entity.ownerName = null;
@@ -512,6 +546,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.dimension = _boOISE.dimension;
             }
         }
+       
 
 
         public mmBindingList<WaegeEntity> GetHofListe()

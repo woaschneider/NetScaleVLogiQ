@@ -1181,11 +1181,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtFrachtführer.Text, "FF");
             if (uRet != null)
             {
-                _boW.FrachtFuehrer2Waege((int) uRet);
+                _boW.FrachtFuehrer2Waege((int) uRet,_boWe);
             }
             else
             {
-                _boW.ClearFrachtFuehrerInWaege();
+                _boW.ClearFrachtFuehrerInWaege(_boWe);
             }
         }
 
@@ -1196,11 +1196,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             if (uRet != null)
             {
-                _boW.Customer2Waege((int) uRet);
+                _boW.Customer2Waege((int) uRet,_boWe);
             }
             else
             {
-                _boW.ClearCustomerInWaege();
+                _boW.ClearCustomerInWaege(_boWe);
             }
         }
 
@@ -1209,11 +1209,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtRechnungsEmpfaenger.Text, "RE");
             if (uRet != null)
             {
-                _boW.InvoiceReceiver2Waege((int) uRet);
+            _boW.InvoiceReceiver2Waege((int)uRet, _boWe);
             }
             else
             {
-                _boW.ClearinvoiceReceiverInWaege();
+            _boW.ClearinvoiceReceiverInWaege(_boWe);
             }
         }
 
@@ -1222,11 +1222,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtLagerMandant.Text, "LM");
             if (uRet != null)
             {
-                _boW.Owner2Waege((int) uRet);
+            _boW.Owner2Waege((int)uRet, _boWe);
             }
             else
             {
-                _boW.ClearOwnerInWaege();
+            _boW.ClearOwnerInWaege(_boWe);
             }
         }
 
@@ -1236,11 +1236,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse("", "");
             if (uRet != null)
             {
-                _boW.SupplierOrConsignee2Waege((int) uRet);
+            _boW.SupplierOrConsignee2Waege((int)uRet, _boWe);
             }
             else
             {
-                _boW.ClearsupplierOrConsigneeInWaege();
+            _boW.ClearsupplierOrConsigneeInWaege(_boWe);
             }
         }
 
@@ -1260,7 +1260,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ProdukteListFrm oPFrm = new ProdukteListFrm("");
             oPFrm.ShowDialog();
             int uRet = oPFrm.uRet;
-            _boW.Product2Waege(uRet);
+            _boW.Product2Waege(uRet, _boWe);
             oPFrm.Close();
         }
 
@@ -1269,7 +1269,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             WarenartListFrm oWFrm = new WarenartListFrm("");
             oWFrm.ShowDialog();
             int uRet = oWFrm.uRet;
-            _boW.WarenArt2Waege(uRet);
+            _boW.WarenArt2Waege(uRet, _boWe);
             oWFrm.Close();
         }
 
@@ -1278,7 +1278,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ArtikelListFrm oAFrm = new ArtikelListFrm("");
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
-            _boW.Article2Waege(uRet);
+            _boW.Article2Waege(uRet, _boWe);
             oAFrm.Close();
         }
 
@@ -1311,11 +1311,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
                 if (boAe != null)
                 {
-                    _boW.Customer2Waege(boAe.PK);
+                    _boW.Customer2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                    _boW.ClearCustomerInWaege();
+                    _boW.ClearCustomerInWaege(_boWe);
                 }
             }
         }
@@ -1328,11 +1328,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtRechnungsEmpfaenger.Text, "RE");
                 if (boAe != null)
                 {
-                    _boW.InvoiceReceiver2Waege(boAe.PK);
+                _boW.InvoiceReceiver2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                    _boW.ClearinvoiceReceiverInWaege();
+                _boW.ClearinvoiceReceiverInWaege(_boWe);
                 }
             }
         }
@@ -1345,11 +1345,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text, "LI");
                 if (boAe != null)
                 {
-                    _boW.FrachtFuehrer2Waege(boAe.PK);
+                _boW.FrachtFuehrer2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                    _boW.ClearFrachtFuehrerInWaege();
+                _boW.ClearFrachtFuehrerInWaege(_boWe);
                 }
             }
         }
@@ -1362,11 +1362,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLagerMandant.Text, "LM");
                 if (boAe != null)
                 {
-                    _boW.Owner2Waege(boAe.PK);
+                _boW.Owner2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                    _boW.ClearOwnerInWaege();
+                _boW.ClearOwnerInWaege(_boWe);
                 }
             }
         }
@@ -1379,11 +1379,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLieferantEmpfaenger.Text, "EM");
                 if (boAe != null)
                 {
-                    _boW.SupplierOrConsignee2Waege(boAe.PK);
+                _boW.SupplierOrConsignee2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                    _boW.ClearsupplierOrConsigneeInWaege();
+                _boW.ClearsupplierOrConsigneeInWaege(_boWe);
                 }
             }
         }

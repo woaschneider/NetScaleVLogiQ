@@ -92,5 +92,16 @@ namespace HWB.NETSCALE.BOEF
             }
             return Msg;
         }
+
+        //public string IsOrderChanged(WaegeEntity _we)
+        //{
+        //    if (!string.IsNullOrEmpty(_we.identifier))
+        //    {
+        //       // Temporär WaegeEntity
+        //        Waege w = new Waege();
+        //        WaegeEntity we = new WaegeEntity();
+        //        w.Auftrag2Waege(_we.identifier, we);
+        //    }
+        //}
 	}
 }

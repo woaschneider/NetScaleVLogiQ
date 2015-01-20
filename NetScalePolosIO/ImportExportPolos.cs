@@ -174,15 +174,20 @@ namespace NetScalePolosIO
         }
 
         public void ExportTestToRest(WaegeEntity boWe )
-        {string uri = GetImportServerIp() + ":" + GetImportPort();
-          
-            if (uri == "")
+        {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+
+            string baseUrl = GetExportServerIp() + ":" + GetExportPort();
+            
+            if (baseUrl == "")
             {
                 MessageBox.Show("Keine Import-URI in den Einstellungen");                                           
                 return;
             }
             var oEx = new ExportWaegungVersion2Rest();
-            oEx.ExportLs2Rest(uri, boWe);
+            int? l = ((boEe.RestLocation != null) ? boEe.RestLocation : 0);
+            oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, l, boWe);
         }
 
     }
