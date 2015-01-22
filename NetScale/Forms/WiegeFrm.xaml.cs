@@ -468,15 +468,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 cFormat = "F0";
 
             //**************************************************************
-            //var bNettogewicht = new Binding("Nettogewicht")
-            //{
-            //    StringFormat = cFormat,
-            //    Mode = BindingMode.TwoWay,
-            //    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            //};
+            var bNettogewicht = new Binding("Nettogewicht")
+            {
+                StringFormat = cFormat,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
 
 
-            //tb_Nettogewicht.SetBinding(TextBox.TextProperty, bNettogewicht);
+            tb_Nettogewicht.SetBinding(TextBox.TextProperty, bNettogewicht);
 
             //*******************************************************************
             var bErstgewicht = new Binding("Erstgewicht")
@@ -944,18 +944,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.LN2 = oRw.Ln;
                     _boWe.Zweitgewicht = oRw.weight;
 
-
+                    
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
-
-                    if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                    if (_wiegeStatus != 6 &_wiegeStatus != 7 )
                     {
-                        _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
+                        if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                        {
+                            _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
+                        }
+                        else
+                        {
+                            _boWe.Nettogewicht = _boWe.Erstgewicht - _boWe.Zweitgewicht;
+                        }
                     }
-                    else
-                    {
-                        _boWe.Nettogewicht = _boWe.Erstgewicht - _boWe.Zweitgewicht;
-                    }
-
                     // TODO: Welches Feld
                     _boWe.zweitDateTime = oRw.Time;
                     _boWe.LSDatum = oRw.Date;

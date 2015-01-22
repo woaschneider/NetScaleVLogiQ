@@ -250,15 +250,6 @@
                  Margin="956,454,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
-        <TextBox x:Name="tb_Nettogewicht"
-                 Width="85"
-                 Height="23"
-                 Margin="956,480,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 FontSize="112"
-                 FontWeight="Bold"
-                 IsReadOnly="true" Text="{Binding Nettogewicht}" />
         <Label x:Name="label15"
                Width="91"
                Height="28"
@@ -1752,5 +1743,11 @@
                   VerticalAlignment="Top"
                   Content="Fest"
                   IsChecked="{Binding abrufFest}" />
+        <TextBox Name="tb_Nettogewicht"
+                 Width="85"
+                 Height="23"
+                 Margin="956,482,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top" />
     </Grid>
 </mmwpf:mmBusinessWindow>

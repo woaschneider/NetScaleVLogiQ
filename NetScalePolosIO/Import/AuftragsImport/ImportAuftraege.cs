@@ -170,7 +170,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         #region orderItemService
 
                         request = new RestRequest("/rest/order/" + _boOe.id) {Method = Method.GET};
-                        request.AddHeader("X-location-Id", "16");
+                        request.AddHeader("X-location-Id", location.ToString());
 
 
                         response = client.Execute(request);

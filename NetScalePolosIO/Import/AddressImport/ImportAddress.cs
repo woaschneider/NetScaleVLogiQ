@@ -69,7 +69,7 @@ namespace NetScalePolosIO.Import.AddressImport
 
                         request.AddParameter("ID", _boAe.id.ToString(), ParameterType.UrlSegment);
                         request.Method = Method.GET;
-                        request.AddHeader("X-location-Id", "16");
+                        request.AddHeader("X-location-Id", location.ToString());
                
                         response = client.Execute(request);
                     

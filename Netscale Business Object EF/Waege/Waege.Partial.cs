@@ -54,7 +54,7 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(WaegeEntity boWE)
         {
-            // Fahrzeug prüfen und ggf. im Stamm neu anlegen
+            #region // Fahrzeug prüfen und ggf. im Stamm neu anlegen, Erstgewicht speichern
             Fahrzeuge boF = new Fahrzeuge();
             FahrzeugeEntity boFe = boF.GetByExactKennzeichen(boWE.Fahrzeug);
             if (boFe == null)
@@ -66,6 +66,17 @@ namespace HWB.NETSCALE.BOEF
              
             }
             boWE.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
+
+            //TODO: Wenn die Produkte bekannt sind, fertig machen!
+            if (goApp.SAVE_ERST2CFTARA && boWE.product==111)
+            {
+                if (boWE.Waegung == 1)
+                {
+                    boFe.Tara = boWE.Erstgewicht;
+                    boFe.Taradatum = DateTime.Today.Date;
+                }
+            }
+
             if (goApp.AutoAbruf)
             {
                 CheckAndCreateAbr(boWE);
@@ -84,6 +95,7 @@ namespace HWB.NETSCALE.BOEF
                 boFe.AbrufDate = DateTime.Today;
             }
             boF.SaveEntity(boFe);
+            #endregion
         }
 
         private void CheckAndCreateAbr(WaegeEntity boWE)

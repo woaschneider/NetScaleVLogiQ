@@ -195,7 +195,7 @@ namespace NetScalePolosIO.Export
             oWEx2.carrierVehicle = boWe.Fahrzeug;
             oWEx2.storageAreaId = "0";// boWe.storageAreaReferenceNumber;
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
-            
+
             oWEx2.scalePhaseData.FIRST.scaleId = "1";
             oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1;
             oWEx2.scalePhaseData.FIRST.amount =  (int) (boWe.Erstgewicht);

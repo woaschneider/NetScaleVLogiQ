@@ -27,10 +27,29 @@ namespace HWB.NETSCALE.BOEF
 			// Call Validation methods
             IsProductFilled(currentEntity);
 		    IsKfzFilled(currentEntity);
+
 		    IsCustomerFilled(currentEntity);
+            //IsInvoiceReceiver(currentEntity);
+            //IsOwner(currentEntity);
+            //IsKundenReferenz(currentEntity);
 		    IsArticlenumberFilled(currentEntity);
 
 		}
+
+        private void IsKundenReferenz(WaegeEntity currentEntity)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void IsOwner(WaegeEntity currentEntity)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void IsInvoiceReceiver(WaegeEntity currentEntity)
+        {
+            throw new NotImplementedException();
+        }
 
         public string IsProductFilled(WaegeEntity _we)
         {
