@@ -34,6 +34,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             boAddress = new Adressen();
             this.InitializeComponent();
+            PopulateInstalledPrintersCombo();
+
             if (New == true)
             {
                 this.Title = Partnerrollen.GetRollenBezeichnung(_rolle) + " - Neue Adresse anlegen";
@@ -50,11 +52,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             this.DataContext = boAPE;
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
 
-       //     DataContext = boAPE;
-          PopulateInstalledPrintersCombo();
-
-            //combo_LISTE_InstalledPrinters.SelectedValuePath = "Drucker";
-            //combo_LISTE_InstalledPrinters.DisplayMemberPath = "Drucker";
+      
         }
 
         private void HandleKey(object sender, KeyEventArgs e)
@@ -132,6 +130,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
         private void PopulateInstalledPrintersCombo()
         {
+      
             // Add list of installed printers found to the combo box.
             // The pkInstalledPrinters string will be used to provide the display string.
             String pkInstalledPrinters;

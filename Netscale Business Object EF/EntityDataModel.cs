@@ -456,22 +456,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<FahrzeugeEntity> FahrzeugeEntities
         {
             get
@@ -500,6 +484,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -697,14 +697,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'FahrzeugeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToFahrzeugeEntities(FahrzeugeEntity fahrzeugeEntity)
@@ -718,6 +710,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
         {
             base.AddObject("EinstellungenEntities", einstellungenEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -5342,6 +5342,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _ImportRESTServerAuftraegePageNumber;
         partial void OnImportRESTServerAuftraegePageNumberChanging(Nullable<global::System.Int32> value);
         partial void OnImportRESTServerAuftraegePageNumberChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ConsumerKey
+        {
+            get
+            {
+                return _ConsumerKey;
+            }
+            set
+            {
+                OnConsumerKeyChanging(value);
+                ReportPropertyChanging("ConsumerKey");
+                _ConsumerKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConsumerKey");
+                OnConsumerKeyChanged();
+            }
+        }
+        private global::System.String _ConsumerKey;
+        partial void OnConsumerKeyChanging(global::System.String value);
+        partial void OnConsumerKeyChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ConsumerSecret
+        {
+            get
+            {
+                return _ConsumerSecret;
+            }
+            set
+            {
+                OnConsumerSecretChanging(value);
+                ReportPropertyChanging("ConsumerSecret");
+                _ConsumerSecret = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ConsumerSecret");
+                OnConsumerSecretChanged();
+            }
+        }
+        private global::System.String _ConsumerSecret;
+        partial void OnConsumerSecretChanging(global::System.String value);
+        partial void OnConsumerSecretChanged();
 
         #endregion
     
@@ -13521,6 +13569,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _abruf_PK;
         partial void Onabruf_PKChanging(Nullable<global::System.Int32> value);
         partial void Onabruf_PKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> abrufDatum
+        {
+            get
+            {
+                return _abrufDatum;
+            }
+            set
+            {
+                OnabrufDatumChanging(value);
+                ReportPropertyChanging("abrufDatum");
+                _abrufDatum = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("abrufDatum");
+                OnabrufDatumChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _abrufDatum;
+        partial void OnabrufDatumChanging(Nullable<global::System.DateTime> value);
+        partial void OnabrufDatumChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> abrufFest
+        {
+            get
+            {
+                return _abrufFest;
+            }
+            set
+            {
+                OnabrufFestChanging(value);
+                ReportPropertyChanging("abrufFest");
+                _abrufFest = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("abrufFest");
+                OnabrufFestChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _abrufFest;
+        partial void OnabrufFestChanging(Nullable<global::System.Boolean> value);
+        partial void OnabrufFestChanged();
 
         #endregion
     

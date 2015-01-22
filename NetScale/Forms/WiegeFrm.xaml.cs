@@ -193,11 +193,40 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonAbrufListe_Click(object sender, RoutedEventArgs e)
         {
-            AbruflisteFrm oAFrm = new AbruflisteFrm();
-            oAFrm.ShowDialog();
-            oAFrm.Close();
+            lookAndFillWithAbruf();
         }
+        private void lookAndFillWithAbruf()
+        {
+            var oAbrufFrm = new AbruflisteFrm();
+            oAbrufFrm.ShowDialog();
+            int uRet = oAbrufFrm.URet;
 
+
+            if (uRet == 0)
+            {
+                _wiegeStatus = 0;
+                oAbrufFrm.Close();
+                return;
+            }
+            if (_wiegeStatus == 0) // Abruf bearbeiten
+            {
+                _boWe = null;
+                _boWe = _boW.NewEntity();
+                var boAbruf = new Abruf();
+                DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
+
+                Wiegestatus = 7;
+            }
+            if (_wiegeStatus == 1 | _wiegeStatus == 2 | _wiegeStatus == 3)
+            {
+                var boAbruf = new Abruf();
+                DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
+                
+            }
+          
+
+            oAbrufFrm.Close();
+        }
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
             //if (_wiegestatus == 7) // Abruf bearbeiten
@@ -439,15 +468,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 cFormat = "F0";
 
             //**************************************************************
-            var bNettogewicht = new Binding("Nettogewicht")
-            {
-                StringFormat = cFormat,
-                Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
+            //var bNettogewicht = new Binding("Nettogewicht")
+            //{
+            //    StringFormat = cFormat,
+            //    Mode = BindingMode.TwoWay,
+            //    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            //};
 
 
-            tb_Nettogewicht.SetBinding(TextBox.TextProperty, bNettogewicht);
+            //tb_Nettogewicht.SetBinding(TextBox.TextProperty, bNettogewicht);
 
             //*******************************************************************
             var bErstgewicht = new Binding("Erstgewicht")
@@ -544,18 +573,20 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufNeu.IsEnabled = false;
             radioAbrufEdit.IsEnabled = false;
             radioLSNew.IsChecked = false;
-
+            ribbonAbrufListe.IsEnabled = false;
             DisableFrmTb();
             ribbonNeu.IsEnabled = true;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = true;
-            //   ribbonAbrufListe.IsEnabled = true;
+              ribbonAbrufListe.IsEnabled = true;
             ribbonAuftrag.IsEnabled = false;
             ribbonCancel.IsEnabled = false;
             ribbonDelete.IsEnabled = false;
 
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = false;
+         //   txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
+           // cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus1()
@@ -573,7 +604,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufEdit.IsChecked = false;
             radioLSNew.IsChecked = false;
 
-
+            ribbonAbrufListe.IsEnabled = true;
             radioErst.IsEnabled = true;
             radioZweit.IsEnabled = true;
             radioEinmal.IsEnabled = true;
@@ -587,12 +618,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = false;
-            //  cmdAbrufListe.IsEnabled = true;
+             ribbonAbrufListe.IsEnabled = true;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = false;
 
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
+            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
+            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus2()
@@ -621,6 +654,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
+            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
+            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus3() // Einmal
@@ -648,6 +683,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
+            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
+            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus4()
@@ -705,6 +742,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
+            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
+            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
             // Damit immer die aktuellen Werte angezeigt werden
             // Abruf oAbruf = new Abruf();
             //  ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
@@ -737,12 +776,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonAbrufListe.IsEnabled = false;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-
+            ribbonAbrufListe.IsEnabled = false;
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
-            //  tb_kfzid.IsEnabled = false;
-
+           txtKfzKennzeichen.IsEnabled = false;
+           CbAbruffest.Visibility = System.Windows.Visibility.Visible;
+            txtAbrufDate.Visibility = System.Windows.Visibility.Visible;
             //tb_Kfz1.IsEnabled = false;
             //  tb_Kfz2.IsEnabled = false;
         }
@@ -779,9 +819,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
-            //tb_kfzid.IsEnabled = false;
-            //tb_Kfz1.IsEnabled = false;
-            //tb_Kfz2.IsEnabled = false;
+            txtKfzKennzeichen.IsEnabled = false;
+            CbAbruffest.Visibility = System.Windows.Visibility.Visible;
+            txtAbrufDate.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Wiegestatus8() // LS NEU
@@ -1033,25 +1073,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (_wiegeStatus == 6)
             {
-                //decimal soll;
-                //decimal ist;
-                //decimal rest;
-                //Decimal.TryParse(tb_abruf_soll.Text, NumberStyles.Any, CultureInfo.CurrentCulture,
-                //                 out soll);
-                //Decimal.TryParse(tb_abruf_ist.Text, NumberStyles.Any, CultureInfo.CurrentCulture.NumberFormat, out ist);
-                //Decimal.TryParse(tb_abruf_rest.Text, NumberStyles.Any, CultureInfo.CurrentCulture.NumberFormat,
-                //                 out rest);
-                //AbrufEntity oAE = boA.CreateAbruf(_boWe, ist, soll, rest);
-                //_boWe.Abrufid = oAE.PK;
-                //_boWe.Abrufnr = oAE.Abrufnr;
+                Abruf boA = new Abruf();
+              AbrufEntity oAE = boA.CreateAbruf(_boWe);
+                _boWe.abruf_PK = oAE.PK;
+                _boWe.AbrufNr = oAE.AbrufNr;
             }
 
             if (_wiegeStatus == 7)
             {
                 // Ein wenig tricky : Die Abrufentity wird zurück gegeben, damit die  Restmenge bei Änderung gleich nach
                 // dem Speichern angezeigt wird.
-
-                //var oAE = boA.SaveAbruf(_boWe);
+                Abruf boA = new Abruf();
+                var oAE = boA.SaveAbruf(_boWe);
                 //_boWe.Abrufid = oAE.PK;
                 //_boWe.Abrufnr = oAE.Abrufnr;
                 //ShowAbrufMengen(oAE);
@@ -1420,6 +1453,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     Abruf2Wage(boFe);
                 }
             }
+        }
+
+        private void CmdExport_OnClick(object sender, RoutedEventArgs e)
+        {
+          WaegeEntity boWe = _boW.GetWaegungByPk(1104);
+            ImportExportPolos oIO = new ImportExportPolos();
+            oIO.ExportTestToRest(boWe);
         }
     }
 }

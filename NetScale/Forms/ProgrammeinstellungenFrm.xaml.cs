@@ -63,6 +63,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             FillFrm();
             boE = new Einstellungen();
             boEE = boE.GetEinstellungen();
+            passwordBoxConsumerKey.Password = boEE.ConsumerKey;
+            passwordBoxConsumerSecret.Password = boEE.ConsumerSecret;
             if (boEE == null)
             {
                 MessageBox.Show("Die Tabelle Einstellungen auf dem SQL-Server ist leer!", "Warnung",
@@ -285,6 +287,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLE.ZWEITWAEGUNGSWAAGE = tb_zweitw.Text;
 
             boEE.LsAsPdf = cbPdfaktiv.IsChecked;
+
+           boEE.ConsumerKey=passwordBoxConsumerKey.Password ;
+           boEE.ConsumerSecret=  passwordBoxConsumerSecret.Password ;
 
             // TODO Die folgende Zeile tut es nicht #
             // Wochenende nun!!!

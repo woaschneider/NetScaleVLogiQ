@@ -119,7 +119,7 @@ namespace HWB.NETSCALE.BOEF
                 return false;
             }
         }
-        public AbrufEntity CreateAbruf(WaegeEntity oWE, decimal ist, decimal soll, decimal rest)
+        public AbrufEntity CreateAbruf(WaegeEntity oWE)
         {
 
             Abruf boA = new Abruf();
@@ -136,7 +136,15 @@ namespace HWB.NETSCALE.BOEF
             boA.SaveEntity(boAE);
             return boAE;
         }
-
+        public AbrufEntity SaveAbruf(WaegeEntity oWe)
+        {
+            int? pk = oWe.abruf_PK;
+            AbrufEntity boAE = GetAbrufById(pk);
+            CopyEntityPropertyValues(oWe, boAE);
+        
+            SaveEntity(boAE);
+            return boAE;
+        }
         public AbrufEntity CreateAbrufautomatically(WaegeEntity oWe)
         {
             AbrufEntity boAe = NewEntity();
@@ -156,7 +164,8 @@ namespace HWB.NETSCALE.BOEF
                 CopyEntityPropertyValues(boAe, oWe);
                // oWe.Abrufid = boAe.PK;
                 oWe.AbrufNr = boAe.AbrufNr;
-              //  oWe.PK_Mandant = boAe.PK_Mandant;
+                oWe.abruf_PK = boAe.PK;
+                //  oWe.PK_Mandant = boAe.PK_Mandant;
             }
 
             return oWe;

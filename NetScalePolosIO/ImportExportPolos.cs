@@ -170,7 +170,9 @@ namespace NetScalePolosIO
         {
             string exportPath = GetExportPath();
             new ExportWaegung().ExportLs(exportPath,boWe);
- 
+            ExportTestToRest(boWe);
+            
+
         }
 
         public void ExportTestToRest(WaegeEntity boWe )

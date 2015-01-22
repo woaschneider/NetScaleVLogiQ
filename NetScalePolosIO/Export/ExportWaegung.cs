@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
+using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
+using RestSharp.Contrib;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
@@ -11,10 +15,12 @@ namespace NetScalePolosIO.Export
 {
     public class ExportWaegung
     {
+        
         public void ExportLs(string exportPath,WaegeEntity boWe)
         {
-          //   Einstellungen boE = new Einstellungen();
-         //    boE.GetEinstellungen();
+            
+           
+
 
             #region JSON-Polos Struktur aufbauen
             NetScalePolosIO.Export.RootObject oWEx = new RootObject();
@@ -172,7 +178,9 @@ namespace NetScalePolosIO.Export
     {
         public bool ExportLs2Rest(string baseUrl, string url, int? location ,WaegeEntity boWe)
         {
-
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+      
 
             #region JSON-Polos Struktur aufbauen
 
@@ -182,18 +190,20 @@ namespace NetScalePolosIO.Export
             oWEx2.scalePhaseData.SECOND = new SECOND();
 
             oWEx2.orderItemServiceId = boWe.identifier;
-            oWEx2.carrierName = boWe.ffBusinessIdentifier;
+           // oWEx2.carrierName = boWe.ffBusinessIdentifier;
+            oWEx2.carrierName = boWe.ffName;
             oWEx2.carrierVehicle = boWe.Fahrzeug;
-            oWEx2.storageAreaId = boWe.storageAreaReferenceNumber;
+            oWEx2.storageAreaId = "0";// boWe.storageAreaReferenceNumber;
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
             
             oWEx2.scalePhaseData.FIRST.scaleId = "1";
             oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1;
-            oWEx2.scalePhaseData.FIRST.amount =  (int) (boWe.Erstgewicht*1000);
-          //  oWEx2.scalePhaseData.FIRST.date =
+            oWEx2.scalePhaseData.FIRST.amount =  (int) (boWe.Erstgewicht);
+            oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime)+"000";
             oWEx2.scalePhaseData.SECOND.scaleId = "1";
             oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2;
-            oWEx2.scalePhaseData.SECOND.amount = (int)(boWe.Zweitgewicht * 1000);
+            oWEx2.scalePhaseData.SECOND.amount = (int)(boWe.Zweitgewicht);
+            oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) + "000";
             #endregion
 
 
@@ -201,25 +211,49 @@ namespace NetScalePolosIO.Export
 
             try
             {
-                var client = new RestClient(baseUrl);
+
+                //var client = new RestClient(baseUrl);
+                var client = new RestClient("http://10.127.8.221:10000");
                 client.ClearHandlers();
+
+                // authen
+              
+
+                // authen
                
-
-
-                var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
-                client.AddHandler("application/json",new JsonDeserializer());
-                request.AddHeader("X-location-Id", "16");
+                
+             var   request = new RestRequest("/rest/scale/set") {Method = Method.POST};
+             //   client.AddHandler("application/json",new JsonDeserializer());
+                request.AddHeader("X-location-Id", boEe.RestLocation.ToString());
                  request.RequestFormat= DataFormat.Json;
                
-                var obj = request.JsonSerializer.Serialize(oWEx2);
-                request.AddBody(obj);
+              //  var obj = request.JsonSerializer.Serialize(oWEx2);
+                 var obj = JsonConvert.SerializeObject(oWEx2);
+             //   request.AddBody(obj);
 
-                var response = client.Execute(request);
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    return false;
+                request.AddParameter("application/json; charset=utf-8", obj, ParameterType.RequestBody);
+                request.RequestFormat = DataFormat.Json;
+                // Test
+            
+                //
+                client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(), boEe.ConsumerSecret.Trim(),
+                    string.Empty, string.Empty);
 
-                }
+            var  response = client.Execute(request);
+              //var asyncHandler = client.ExecuteAsync(request, r =>
+              //{
+              //    if (r.ResponseStatus == ResponseStatus.Completed)
+              //    {
+              //        MessageBox.Show("Send");
+
+              //    }
+              //});
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return false;
+
+            }
             }
             catch (Exception ee)
             {
