@@ -29,12 +29,29 @@ namespace HWB.NETSCALE.BOEF
 		    IsKfzFilled(currentEntity);
 
 		    IsCustomerFilled(currentEntity);
+		    IsFfFilled(currentEntity);
             //IsInvoiceReceiver(currentEntity);
             //IsOwner(currentEntity);
             //IsKundenReferenz(currentEntity);
 		    IsArticlenumberFilled(currentEntity);
 
 		}
+
+        private string IsFfFilled(WaegeEntity currentEntity)
+        {
+            string Msg = null;
+            if (mmType.IsEmpty(currentEntity.ffName))
+            {
+                this.EntityPropertyDisplayName = "Frachtführer-Name";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
+                Msg = this.RequiredFieldMessagePrefix +
+                      this.EntityPropertyDisplayName + " " +
+                      this.RequiredFieldMessageSuffix;
+
+                AddErrorProviderBrokenRule("ffBusinessIdentifier", Msg);
+            }
+            return Msg;
+        }
 
         private void IsKundenReferenz(WaegeEntity currentEntity)
         {

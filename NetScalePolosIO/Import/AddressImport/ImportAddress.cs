@@ -52,9 +52,17 @@ namespace NetScalePolosIO.Import.AddressImport
                      
                         _boAe.id = obj.id;
                         _boAe.businessIdentifier = obj.businessIdentifier;
-                        _boAe.name = obj.name;
+                        if (obj.subName2 != null)
+                        {
+                            _boAe.name = obj.subName2;
+                        }
+                        else
+                        {
+                            _boAe.name = obj.name;
+                        }
+                      
                         _boAe.owningLocationId = obj.owningLocationId;
-                        _boAe.subName2 = obj.subName;
+                        _boAe.subName2 = obj.subName2;
 
                         _boAe.street = obj.address.street;
                         _boAe.zipCode = obj.address.zipCode;

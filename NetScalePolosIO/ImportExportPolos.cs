@@ -15,6 +15,7 @@ using NetScalePolosIO.Import.AuftragsImport;
 using NetScalePolosIO.Import.KindOfGoodsImport;
 using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
+using OakLeaf.MM.Main.Collections;
 using Xceed.Wpf.Toolkit;
 using Xceed.Wpf.Toolkit.Core.Converters;
 
@@ -169,13 +170,17 @@ namespace NetScalePolosIO
         }
         #endregion
 
-        public void Export(WaegeEntity boWe)
+        public void Export()
         {
-       
-         ExceExportThread(boWe);
+           
+                ExceExportThread();
+           
+
+
+            
         }
 
-        private void ExceExportThread(WaegeEntity boWe)
+        private void ExceExportThread()
         {
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork +=BwDoWorkExport;
@@ -183,17 +188,22 @@ namespace NetScalePolosIO
             //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             //   bw.WorkerReportsProgress = true;
-            bw.RunWorkerAsync(boWe.PK);
+            bw.RunWorkerAsync();
         }
 
         private void BwDoWorkExport(object sender, DoWorkEventArgs e)
         {
-            int y = (int) e.Argument;
-            WaegeEntity boWe = new Waege().GetWaegungByPk(y);
-             ExportTestToRest(boWe);
+             Waege boW = new Waege();
+            mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
+            foreach (var w in ol)
+            {
+
+
+                ExportToRESTServer(w);
+            }
         }
 
-        public void ExportTestToRest(WaegeEntity boWe)
+        public void ExportToRESTServer(WaegeEntity boWe)
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();

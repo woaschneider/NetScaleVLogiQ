@@ -13,9 +13,9 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Einstellungen.
+	/// Summary description for ExportLog.
 	/// </summary>
-	public partial class Einstellungen : ABusinessObject<EinstellungenEntity>
+	public partial class ExportLog : ABusinessObject<ExportLogEntity>
 	{
 		
 		#region Association Properties
@@ -23,9 +23,9 @@ namespace HWB.NETSCALE.BOEF
 
 		/// Business Rule object
 		/// </summary>
-		public virtual EinstellungenRules Rules
+		public virtual ExportLogRules Rules
 		{
-			get { return (EinstellungenRules)this.BusinessRuleObj; }
+			get { return (ExportLogRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +48,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Einstellungen()
+		public ExportLog()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Einstellungen";
-			this.PhysicalDbcObjectName = "dbo.Einstellungen";
+			this.TableName = "ExportLog";
+			this.PhysicalDbcObjectName = "dbo.ExportLog";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +64,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new EinstellungenRules(this);
+			return new ExportLogRules(this);
 		}
 
 		/// <summary>
@@ -87,22 +87,6 @@ namespace HWB.NETSCALE.BOEF
 			return new EntityDataModelContainer(conn);
 		}
 		
-
-		/// <summary>
-		/// Set default values on the new entity
-		/// </summary>
-		/// <param name="entity">New Entity</param>
-		protected override void HookSetDefaultValues(EinstellungenEntity entity)
-		{
-
-			// Store the hard-coded default values via the entity object
-			if (entity != null)
-			{
-				entity.AP_Id_counter = (0);
-				entity.MG_Id_counter = (0);
-				entity.MischerCounterId = (0);
-			}
-		}
 
 	}
 }

@@ -20,7 +20,7 @@ namespace HWB.NETSCALE.BOEF
 		
 		#region Association Properties
 
-
+	
 		/// Business Rule object
 		/// </summary>
 		public virtual OrderItemserviceRules Rules
@@ -87,6 +87,21 @@ namespace HWB.NETSCALE.BOEF
 			return new EntityDataModelContainer(conn);
 		}
 		
+
+		/// <summary>
+		/// Set default values on the new entity
+		/// </summary>
+		/// <param name="entity">New Entity</param>
+		protected override void HookSetDefaultValues(OrderItemserviceEntity entity)
+		{
+
+			// Store the hard-coded default values via the entity object
+			if (entity != null)
+			{
+				entity.HasBinSended = false;
+				entity.InvisibleSendedOrderItems = false;
+			}
+		}
 
 	}
 }

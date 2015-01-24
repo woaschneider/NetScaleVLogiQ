@@ -209,6 +209,12 @@
                                          FontSize="14"
                                          Label=" Yeoman Export "
                                          LargeImageSource="..\Images\1420389255_xls.png" />
+
+                    <ribbon:RibbonButton x:Name="cmdExportLog"
+                                         Click="CmdExportLog_OnClick"
+                                         FontSize="14"
+                                         Label=" Yeoman Export "
+                                         LargeImageSource="..\Images\1298575723_advancedsettings.png" />
                 </ribbon:RibbonGroup>
 
             </ribbon:RibbonTab>

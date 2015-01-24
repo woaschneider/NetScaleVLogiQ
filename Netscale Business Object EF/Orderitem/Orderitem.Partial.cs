@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.EntityClient;
 using System.Linq;
 using HWB.NETSCALE.BOEF.JoinClasses;
+using Microsoft.Win32.SafeHandles;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.Data;
@@ -50,13 +51,15 @@ namespace HWB.NETSCALE.BOEF
                                                                                string artikelbeschreibung, string freistellung  )
         {
             IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
-                                                from ois in ObjectContext.OrderItemserviceEntities
-                                                where o.PK== ois.PKOrderItem &&
-                                                o.customerBusinessIdentifier.Contains(customerBi) &&
-                                                o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi) &&
-                                                o.reference.Contains(kundenreferenz) &&
-                                                ois.articleDescription.Contains(artikelbeschreibung)&&
-                                                ois.clearanceReferenz.Contains(freistellung)
+                from ois in ObjectContext.OrderItemserviceEntities
+                where o.PK == ois.PKOrderItem &&
+                      o.customerBusinessIdentifier.Contains(customerBi) &&
+                      o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi) &&
+                      o.reference.Contains(kundenreferenz) &&
+                      ois.articleDescription.Contains(artikelbeschreibung) &&
+                      ois.clearanceReferenz.Contains(freistellung) &
+                     ( ois.InvisibleSendedOrderItems == false) 
+            
 
                                                 orderby o.id 
                                                 select o;

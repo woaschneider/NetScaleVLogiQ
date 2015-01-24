@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Diagnostics;
 using System.Net;
 using HWB.NETSCALE.BOEF;
@@ -197,17 +198,17 @@ namespace NetScalePolosIO.Export
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
 
             oWEx2.scalePhaseData.FIRST.scaleId = "1";
-            oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1;
-            oWEx2.scalePhaseData.FIRST.amount =  (int) (boWe.Erstgewicht);
+            oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
+            oWEx2.scalePhaseData.FIRST.amount =  ((int) (boWe.Erstgewicht)*1000);
             oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime)+"000";
             oWEx2.scalePhaseData.SECOND.scaleId = "1";
-            oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2;
-            oWEx2.scalePhaseData.SECOND.amount = (int)(boWe.Zweitgewicht);
+            oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
+            oWEx2.scalePhaseData.SECOND.amount = ((int)(boWe.Zweitgewicht)*1000);
             oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) + "000";
             #endregion
 
 
-            #region
+            #region REST Export
 
             try
             {
@@ -240,29 +241,71 @@ namespace NetScalePolosIO.Export
                     string.Empty, string.Empty);
 
             var  response = client.Execute(request);
-              //var asyncHandler = client.ExecuteAsync(request, r =>
-              //{
-              //    if (r.ResponseStatus == ResponseStatus.Completed)
-              //    {
-              //        MessageBox.Show("Send");
+         
+            //TODO:Export Fehlschläge loggen - Erfolgreiche unvisible setzen
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    WriteToExportLog(response,boWe);
+                    
+                    return false;
 
-              //    }
-              //});
+                }
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    Waege w = new Waege();
+                    WaegeEntity we = w.GetWaegungByPk((boWe.PK));
+                    if (we != null)
+                    {
+                        we.taab = true;
+                        we.HasBinSended = true;
+                     //   we.HasBinSendedDateTime = DateTime.Today;
+                        w.SaveEntity(we);
+                        SetOrderItemServiceAsSend(we);
+                    }  
+                }
+              
+              
 
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                return false;
+                   
 
-            }
+
+                    WriteToExportLog(response,boWe);
+               
             }
             catch (Exception ee)
             {
-                MessageBox.Show(ee.Message.ToString());
+            
                 return false;
             }
 
-
+           
             return false;
+        }
+
+        private static void SetOrderItemServiceAsSend(WaegeEntity we)
+        {
+            OrderItemservice oIE = new OrderItemservice();
+            OrderItemserviceEntity oIES = oIE.GetByPK(we.PK);
+            if (oIES != null)
+            {
+              
+                oIES.HasBinSended = true;
+                oIE.SaveEntity(oIES);
+            }
+        }
+
+        private void WriteToExportLog(IRestResponse response,WaegeEntity we)
+        {
+            var oR = JsonConvert.DeserializeObject<RestServerError>(response.Content);
+
+            ExportLog boE = new ExportLog();
+            ExportLogEntity boEe = boE.NewEntity();
+            boEe.dt = DateTime.Now;
+            boEe.Message1 = oR.statusCode;
+            boEe.Message2 = oR.message;
+            boEe.OrderItemNumber = we.number;
+            boEe.OrderItemServiceIdentifier = we.identifier;
+            boE.SaveEntity(boEe);
         }
     }
 

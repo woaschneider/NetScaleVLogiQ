@@ -376,22 +376,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
-        {
-            get
-            {
-                if ((_OrderItemserviceEntities == null))
-                {
-                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
-                }
-                return _OrderItemserviceEntities;
-            }
-        }
-        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<MandantEntity> MandantEntities
         {
             get
@@ -500,6 +484,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ExportLogEntity> ExportLogEntities
+        {
+            get
+            {
+                if ((_ExportLogEntities == null))
+                {
+                    _ExportLogEntities = base.CreateObjectSet<ExportLogEntity>("ExportLogEntities");
+                }
+                return _ExportLogEntities;
+            }
+        }
+        private ObjectSet<ExportLogEntity> _ExportLogEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
+        {
+            get
+            {
+                if ((_OrderItemserviceEntities == null))
+                {
+                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
+                }
+                return _OrderItemserviceEntities;
+            }
+        }
+        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -657,14 +673,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
-        {
-            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'MandantEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToMandantEntities(MandantEntity mandantEntity)
@@ -718,6 +726,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ExportLogEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToExportLogEntities(ExportLogEntity exportLogEntity)
+        {
+            base.AddObject("ExportLogEntities", exportLogEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
+        {
+            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
         }
 
         #endregion
@@ -5390,6 +5414,277 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ConsumerSecret;
         partial void OnConsumerSecretChanging(global::System.String value);
         partial void OnConsumerSecretChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RemoveSendedOrderItems
+        {
+            get
+            {
+                return _RemoveSendedOrderItems;
+            }
+            set
+            {
+                OnRemoveSendedOrderItemsChanging(value);
+                ReportPropertyChanging("RemoveSendedOrderItems");
+                _RemoveSendedOrderItems = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RemoveSendedOrderItems");
+                OnRemoveSendedOrderItemsChanged();
+            }
+        }
+        private global::System.String _RemoveSendedOrderItems;
+        partial void OnRemoveSendedOrderItemsChanging(global::System.String value);
+        partial void OnRemoveSendedOrderItemsChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> MakeInvisibleSendedOrderItems
+        {
+            get
+            {
+                return _MakeInvisibleSendedOrderItems;
+            }
+            set
+            {
+                OnMakeInvisibleSendedOrderItemsChanging(value);
+                ReportPropertyChanging("MakeInvisibleSendedOrderItems");
+                _MakeInvisibleSendedOrderItems = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MakeInvisibleSendedOrderItems");
+                OnMakeInvisibleSendedOrderItemsChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _MakeInvisibleSendedOrderItems;
+        partial void OnMakeInvisibleSendedOrderItemsChanging(Nullable<global::System.Boolean> value);
+        partial void OnMakeInvisibleSendedOrderItemsChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ExportLogEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ExportLogEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues ExportLogEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static ExportLogEntity CreateExportLogEntity(global::System.Int32 pK)
+        {
+            ExportLogEntity exportLogEntity = new ExportLogEntity();
+            exportLogEntity.PK = pK;
+            return exportLogEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> dt
+        {
+            get
+            {
+                return _dt;
+            }
+            set
+            {
+                OndtChanging(value);
+                ReportPropertyChanging("dt");
+                _dt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("dt");
+                OndtChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _dt;
+        partial void OndtChanging(Nullable<global::System.DateTime> value);
+        partial void OndtChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message1
+        {
+            get
+            {
+                return _Message1;
+            }
+            set
+            {
+                OnMessage1Changing(value);
+                ReportPropertyChanging("Message1");
+                _Message1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message1");
+                OnMessage1Changed();
+            }
+        }
+        private global::System.String _Message1;
+        partial void OnMessage1Changing(global::System.String value);
+        partial void OnMessage1Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OrderItemServiceIdentifier
+        {
+            get
+            {
+                return _OrderItemServiceIdentifier;
+            }
+            set
+            {
+                OnOrderItemServiceIdentifierChanging(value);
+                ReportPropertyChanging("OrderItemServiceIdentifier");
+                _OrderItemServiceIdentifier = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OrderItemServiceIdentifier");
+                OnOrderItemServiceIdentifierChanged();
+            }
+        }
+        private global::System.String _OrderItemServiceIdentifier;
+        partial void OnOrderItemServiceIdentifierChanging(global::System.String value);
+        partial void OnOrderItemServiceIdentifierChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String httpcode
+        {
+            get
+            {
+                return _httpcode;
+            }
+            set
+            {
+                OnhttpcodeChanging(value);
+                ReportPropertyChanging("httpcode");
+                _httpcode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("httpcode");
+                OnhttpcodeChanged();
+            }
+        }
+        private global::System.String _httpcode;
+        partial void OnhttpcodeChanging(global::System.String value);
+        partial void OnhttpcodeChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message2
+        {
+            get
+            {
+                return _Message2;
+            }
+            set
+            {
+                OnMessage2Changing(value);
+                ReportPropertyChanging("Message2");
+                _Message2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message2");
+                OnMessage2Changed();
+            }
+        }
+        private global::System.String _Message2;
+        partial void OnMessage2Changing(global::System.String value);
+        partial void OnMessage2Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message3
+        {
+            get
+            {
+                return _Message3;
+            }
+            set
+            {
+                OnMessage3Changing(value);
+                ReportPropertyChanging("Message3");
+                _Message3 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message3");
+                OnMessage3Changed();
+            }
+        }
+        private global::System.String _Message3;
+        partial void OnMessage3Changing(global::System.String value);
+        partial void OnMessage3Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OrderItemNumber
+        {
+            get
+            {
+                return _OrderItemNumber;
+            }
+            set
+            {
+                OnOrderItemNumberChanging(value);
+                ReportPropertyChanging("OrderItemNumber");
+                _OrderItemNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OrderItemNumber");
+                OnOrderItemNumberChanged();
+            }
+        }
+        private global::System.String _OrderItemNumber;
+        partial void OnOrderItemNumberChanging(global::System.String value);
+        partial void OnOrderItemNumberChanged();
 
         #endregion
     
@@ -9871,6 +10166,126 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _dimension;
         partial void OndimensionChanging(global::System.String value);
         partial void OndimensionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> HasBinUsed
+        {
+            get
+            {
+                return _HasBinUsed;
+            }
+            set
+            {
+                OnHasBinUsedChanging(value);
+                ReportPropertyChanging("HasBinUsed");
+                _HasBinUsed = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HasBinUsed");
+                OnHasBinUsedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _HasBinUsed;
+        partial void OnHasBinUsedChanging(Nullable<global::System.Boolean> value);
+        partial void OnHasBinUsedChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> HasBinUsedDateTime
+        {
+            get
+            {
+                return _HasBinUsedDateTime;
+            }
+            set
+            {
+                OnHasBinUsedDateTimeChanging(value);
+                ReportPropertyChanging("HasBinUsedDateTime");
+                _HasBinUsedDateTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HasBinUsedDateTime");
+                OnHasBinUsedDateTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _HasBinUsedDateTime;
+        partial void OnHasBinUsedDateTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnHasBinUsedDateTimeChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> HasBinSended
+        {
+            get
+            {
+                return _HasBinSended;
+            }
+            set
+            {
+                OnHasBinSendedChanging(value);
+                ReportPropertyChanging("HasBinSended");
+                _HasBinSended = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HasBinSended");
+                OnHasBinSendedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _HasBinSended;
+        partial void OnHasBinSendedChanging(Nullable<global::System.Boolean> value);
+        partial void OnHasBinSendedChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> HasBinSendedDateTime
+        {
+            get
+            {
+                return _HasBinSendedDateTime;
+            }
+            set
+            {
+                OnHasBinSendedDateTimeChanging(value);
+                ReportPropertyChanging("HasBinSendedDateTime");
+                _HasBinSendedDateTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HasBinSendedDateTime");
+                OnHasBinSendedDateTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _HasBinSendedDateTime;
+        partial void OnHasBinSendedDateTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnHasBinSendedDateTimeChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> InvisibleSendedOrderItems
+        {
+            get
+            {
+                return _InvisibleSendedOrderItems;
+            }
+            set
+            {
+                OnInvisibleSendedOrderItemsChanging(value);
+                ReportPropertyChanging("InvisibleSendedOrderItems");
+                _InvisibleSendedOrderItems = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InvisibleSendedOrderItems");
+                OnInvisibleSendedOrderItemsChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _InvisibleSendedOrderItems;
+        partial void OnInvisibleSendedOrderItemsChanging(Nullable<global::System.Boolean> value);
+        partial void OnInvisibleSendedOrderItemsChanged();
 
         #endregion
     
@@ -13617,6 +14032,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _abrufFest;
         partial void OnabrufFestChanging(Nullable<global::System.Boolean> value);
         partial void OnabrufFestChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> HasBinSended
+        {
+            get
+            {
+                return _HasBinSended;
+            }
+            set
+            {
+                OnHasBinSendedChanging(value);
+                ReportPropertyChanging("HasBinSended");
+                _HasBinSended = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HasBinSended");
+                OnHasBinSendedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _HasBinSended;
+        partial void OnHasBinSendedChanging(Nullable<global::System.Boolean> value);
+        partial void OnHasBinSendedChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HasBinSendedDateTime
+        {
+            get
+            {
+                return _HasBinSendedDateTime;
+            }
+            set
+            {
+                OnHasBinSendedDateTimeChanging(value);
+                ReportPropertyChanging("HasBinSendedDateTime");
+                _HasBinSendedDateTime = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HasBinSendedDateTime");
+                OnHasBinSendedDateTimeChanged();
+            }
+        }
+        private global::System.String _HasBinSendedDateTime;
+        partial void OnHasBinSendedDateTimeChanging(global::System.String value);
+        partial void OnHasBinSendedDateTimeChanged();
 
         #endregion
     

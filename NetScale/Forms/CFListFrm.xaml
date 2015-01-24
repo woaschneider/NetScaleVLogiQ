@@ -61,7 +61,8 @@
                   AutoGenerateColumns="False"
                   FontSize="14"
                   IsReadOnly="True"
-                  SelectionMode="Single" Style="{DynamicResource DataGridStyle}">
+                  SelectionMode="Single"
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
 
                 <DataGridTextColumn MinWidth="296"

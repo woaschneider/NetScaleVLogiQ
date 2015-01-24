@@ -38,11 +38,19 @@ namespace HWB.NETSCALE.BOEF
                                                        select o;
             return GetEntity(query);
         }
+        public OrderItemserviceEntity GetByIdentitifier(string ident)
+        {
+            IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
+                                                       where o.identifier == ident
+                                                       select o;
+            return GetEntity(query);
+        }
 
         public mmBindingList<OrderItemserviceEntity> GetByParentPK(int pk)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
-                                                       where o.PKOrderItem == pk
+                where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false 
+            
                                                        select o;
             var uRet = GetEntityList(query);
             return uRet ;

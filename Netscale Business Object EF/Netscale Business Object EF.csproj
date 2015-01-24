@@ -149,6 +149,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ExportLog\ExportLog.cs" />
+    <Compile Include="ExportLog\ExportLog.Partial.cs" />
+    <Compile Include="ExportLog\ExportLogEntity.cs" />
+    <Compile Include="ExportLog\ExportLogRules.cs" />
+    <Compile Include="ExportLog\ExportLogRules.Partial.cs" />
     <Compile Include="Fahrzeuge\Fahrzeuge.cs" />
     <Compile Include="Fahrzeuge\Fahrzeuge.Partial.cs" />
     <Compile Include="Fahrzeuge\FahrzeugeEntity.cs" />

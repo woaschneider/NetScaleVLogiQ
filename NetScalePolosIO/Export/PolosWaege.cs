@@ -243,4 +243,13 @@ namespace NetScalePolosIO.Export
    
 #endregion
 
+
+
+    // 
+
+    public class RestServerError
+    {
+        public string statusCode { get; set; }
+        public string message { get; set; }
+    }
 }

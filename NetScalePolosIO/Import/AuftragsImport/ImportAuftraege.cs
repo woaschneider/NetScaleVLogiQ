@@ -33,6 +33,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
             request.AddHeader("X-location-Id", location.ToString());
 
 
+
+            #region// Anzahl der Order ermittlen
             var response = client.Execute(request);
             if (response.StatusCode != HttpStatusCode.OK)
                 return false;
@@ -51,7 +53,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
             {
                 nPage = _totalresult/200+1;
             }
+            #endregion
 
+           
             for (int ii = 1; ii <= nPage; ii++)
             {
 
@@ -84,9 +88,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 #endregion
 
                 // Das müssen wir noch klären
-                //if (obj.orderState == "NEW")
-               // {
-
+                if (obj.orderState == "READY_TO_DISPATCH")
+               {
+                
                     #region Eigentlicher Import
 
                     // Order Status prüfen
@@ -101,7 +105,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         _boOe = _boO.NewEntity();
                     }
                     if (_boOe != null)
-                    {
+                    { 
                         _boOe.id = obj.id;
                         _boOe.locationId = obj.locationId;
                         _boOe.number = obj.number;
@@ -176,7 +180,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         response = client.Execute(request);
                         if (response.StatusCode == HttpStatusCode.OK)
                         {
-                
+
 
                             OrderEntity oOEntity = JsonConvert.DeserializeObject<OrderEntity>(response.Content);
 
@@ -186,6 +190,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     _boOis = new OrderItemservice();
                                     _boOise = _boOis.GetByIdAndPKOrderItem(_boOe.PK, t.identifier) ?? _boOis.NewEntity();
 
+                                    _boOise.HasBinSended = false;
+                                    _boOise.InvisibleSendedOrderItems = false;
                                     _boOise.identifier = t.identifier;
                                     _boOise.remark = t.remark;
                                     _boOise.sequence = t.sequence;
@@ -262,7 +268,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     #region Clearance
 
                                     // boOISE.clearanceQuantity   = Nicht vorhanden
-                                    _boOise.clearanceReferenz = ""; // Damit die abfrage in den Aufträgen funktiniert darf kein NULL in der Freistellungen sein
+                                    _boOise.clearanceReferenz = "";
+                                        // Damit die abfrage in den Aufträgen funktiniert darf kein NULL in der Freistellungen sein
                                     if (t.clearance != null)
                                     {
                                         _boOise.clearanceReferenz = t.clearance.reference;
@@ -333,18 +340,18 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     _boOis.SaveEntity(_boOise);
                                 }
 
-
                         }
+                    }
 
                         #endregion
 
                     }
 
                     #endregion
-               // }
+              }
             }
 
-            }
+           // }
 
 
             return true;

@@ -225,6 +225,9 @@
     <Compile Include="Forms\CFListFrm.xaml.cs">
       <DependentUpon>CFListFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ExportLogFrm.xaml.cs">
+      <DependentUpon>ExportLogFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExportYeoman2XlsFrm.xaml.cs">
       <DependentUpon>ExportYeoman2XlsFrm.xaml</DependentUpon>
     </Compile>
@@ -341,6 +344,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\CFListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ExportLogFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

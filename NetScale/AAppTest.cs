@@ -23,15 +23,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             mmAppBase.IsRunning = true;
         }
 
-        [Test]
-        public void ExportTest()
-        {
-            Waege boW = new Waege();
-            int pk = boW.GetLastWaegung();
-            WaegeEntity boWe = boW.GetWaegungByPk(pk);
-            ImportExportPolos oE = new ImportExportPolos();
-            oE.Export(boWe);
-        }
+     
 
           [Test]
         public void ImportTest()

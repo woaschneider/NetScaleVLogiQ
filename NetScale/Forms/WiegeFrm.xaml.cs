@@ -966,6 +966,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     try
                     {
                         _result = SaveEntity(_boW, _boWe);
+                        if (_result == mmSaveDataResult.RulesPassed)
+                        {
+                            _boW.SetOrderItemsServiceInvisible(_boWe);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -979,6 +983,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
                     //  PrintLs();
+                  
                     Export2Json(_boWe);
                     if (netScaleView1.oWF != null)
                         netScaleView1.oWF.SetGreenLight();
@@ -1001,6 +1006,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.zweitDateTime = oRw.Time;
                     //   _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
+                  
 
 
                     try
@@ -1014,6 +1020,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     if (_result != mmSaveDataResult.RulesPassed)
                         return;
 
+                
                     // PrintLs();
                     Wiegestatus = 0;
                     break;
@@ -1038,6 +1045,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                     _boWe.zweitDateTime = DateTime.Now;
                     //  _boWe.LSDatum = DateTime.Today;
+                    
                     _boWe.Waegung = 2;
                     if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
                     {
@@ -1061,6 +1069,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         }
                         else
                         {
+                            
                             //  PrintLs();
                             Export2Json(_boWe);
                         }
@@ -1069,8 +1078,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     MessageBox.Show(ex.Message);
                 }
+
                 if (_result != mmSaveDataResult.RulesPassed)
+                {
                     return;
+                }
+                else
+                {
+                    
+                }
             }
             if (_wiegeStatus == 6)
             {
@@ -1086,6 +1102,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 // dem Speichern angezeigt wird.
                 Abruf boA = new Abruf();
                 var oAE = boA.SaveAbruf(_boWe);
+         
                 //_boWe.Abrufid = oAE.PK;
                 //_boWe.Abrufnr = oAE.Abrufnr;
                 //ShowAbrufMengen(oAE);
@@ -1107,7 +1124,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Export2Json(WaegeEntity we)
         {
-            new ImportExportPolos().Export(we);
+            new ImportExportPolos().Export();
         }
 
         #endregion
@@ -1376,7 +1393,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtFrachtführer.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text, "LI");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text, "FF");
                 if (boAe != null)
                 {
                 _boW.FrachtFuehrer2Waege(boAe.PK, _boWe);
@@ -1458,9 +1475,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdExport_OnClick(object sender, RoutedEventArgs e)
         {
-          WaegeEntity boWe = _boW.GetWaegungByPk(1104);
-            ImportExportPolos oIO = new ImportExportPolos();
-            oIO.ExportTestToRest(boWe);
+            new ImportExportPolos().Export();
+        
+        }
+
+        private void CmdExportLog_OnClick(object sender, RoutedEventArgs e)
+        {
+            ExportLogFrm oEFrm = new ExportLogFrm();
+            oEFrm.ShowDialog();
+            oEFrm.Close();
         }
     }
 }

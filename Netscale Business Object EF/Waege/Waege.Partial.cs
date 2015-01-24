@@ -50,6 +50,7 @@ namespace HWB.NETSCALE.BOEF
         {
             Incoterm boI = new Incoterm();
             Entity.incoterm = boI.GetDefaultIncoterm().Kennung;
+            Entity.taab = false;
         }
 
         public void PreSaveHook(WaegeEntity boWE)
@@ -524,7 +525,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.customerBusinessIdentifier = _boOIE.customerBusinessIdentifier;
                 Entity.invoiceReceicerBusinessIdentifier = _boOIE.invoiceReceicerBusinessIdentifier;
                 Entity.reference = _boOIE.reference;
-
+                Entity.number = _boOIE.number; // Auftrasgnummer
                 // Detail
                 Entity.sequence = _boOISE.sequence;
 
@@ -566,6 +567,15 @@ namespace HWB.NETSCALE.BOEF
             IQueryable<WaegeEntity> query = from Waege in this.ObjectContext.WaegeEntities
                 where Waege.Waegung == 1
                 select Waege;
+            return this.GetEntityList(query);
+        }
+
+        public mmBindingList<WaegeEntity> PendingListToPolos()
+        {
+            IQueryable<WaegeEntity> query = from Waege in this.ObjectContext.WaegeEntities
+                                            where Waege.Waegung == 2 && Waege.taab==false
+                                            orderby Waege.PK
+                                            select Waege;
             return this.GetEntityList(query);
         }
 
@@ -623,6 +633,24 @@ namespace HWB.NETSCALE.BOEF
 
             string a = kfz.Replace("-", "");
             return a.Replace(" ", "");
+        }
+
+        public bool SetOrderItemsServiceInvisible(WaegeEntity we)
+        {
+            
+            OrderItemservice boOIS = new OrderItemservice();
+            OrderItemserviceEntity boOISE = boOIS.GetByIdentitifier(we.identifier);
+            if (boOISE != null)
+            {
+                boOISE.InvisibleSendedOrderItems = true;
+                boOIS.SaveEntity(boOISE);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }
