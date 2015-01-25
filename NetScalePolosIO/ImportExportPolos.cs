@@ -23,9 +23,9 @@ namespace NetScalePolosIO
 {
     public class ImportExportPolos : IImportInterface
     {
-        // Constructor
+        #region Import Stammdaten
 
-        public void Import()
+        public void ImportStammdaten()
         {
             string uri = GetImportServerIp() + ":" + GetImportPort();
 
@@ -36,11 +36,11 @@ namespace NetScalePolosIO
             }
 
 
-            ExceImportThread(uri);
-            //   Xceed.Wpf.Toolkit.MessageBox.Show("Import fertig!");
+            ExceImportStammdatenThread(uri);
+           
         }
 
-        private void ExceImportThread(string uri)
+        private void ExceImportStammdatenThread(string uri)
         {
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += BwDoWorkImport;
@@ -64,9 +64,98 @@ namespace NetScalePolosIO
                 boEe.ImpRESTServertArticleAttributesUrl);
             new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
 
-            new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
+       //     new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
+        }
+        #endregion
+        //*****************************************************************
+        #region Import Auftrage
+
+        public void ImportAuftraege()
+        {
+            string uri = GetImportServerIp() + ":" + GetImportPort();
+
+            if (uri == "")
+            {
+                MessageBox.Show("Keine Import-URI in den Einstellungen");
+                return;
+            }
+
+
+            ExceImportAuftraegeThread(uri);
+
         }
 
+        private void ExceImportAuftraegeThread(string uri)
+        {
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork += BwDoWorkImportAuftraege;
+
+            //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            //   bw.WorkerReportsProgress = true;
+            bw.RunWorkerAsync(uri);
+        }
+
+        private void BwDoWorkImportAuftraege(object sender, DoWorkEventArgs e)
+        {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+        new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
+        }
+        #endregion
+        //*****************************************************************
+        #region Export
+        public void Export()
+        {
+           
+                ExceExportThread();
+           
+
+
+            
+        }
+
+        private void ExceExportThread()
+        {
+            BackgroundWorker bw = new BackgroundWorker();
+            bw.DoWork +=BwDoWorkExport;
+
+            //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+            //   bw.WorkerReportsProgress = true;
+            bw.RunWorkerAsync();
+        }
+
+        private void BwDoWorkExport(object sender, DoWorkEventArgs e)
+        {
+             Waege boW = new Waege();
+            mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
+            foreach (var w in ol)
+            {
+
+
+                ExportToRESTServer(w);
+            }
+        }
+
+        public void ExportToRESTServer(WaegeEntity boWe)
+        {
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+
+            string baseUrl = GetExportServerIp() + ":" + GetExportPort();
+
+            if (baseUrl == "")
+            {
+                MessageBox.Show("Keine Import-URI in den Einstellungen");
+                return;
+            }
+            var oEx = new ExportWaegungVersion2Rest();
+            int? l = ((boEe.RestLocation != null) ? boEe.RestLocation : 0);
+            oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, l, boWe);
+        }
+        #endregion
+        //*****************************************************************
         #region Einstellung
         private string GetImportServerIp()
         {
@@ -140,7 +229,7 @@ namespace NetScalePolosIO
             {
                 if (boEe.RestLocation != null)
                 {
-                    int locationId = (int) boEe.RestLocation;
+                    int locationId = (int)boEe.RestLocation;
                     return locationId;
                 }
             }
@@ -169,55 +258,6 @@ namespace NetScalePolosIO
             return oBe.EXPORT_PATH;
         }
         #endregion
-
-        public void Export()
-        {
-           
-                ExceExportThread();
-           
-
-
-            
-        }
-
-        private void ExceExportThread()
-        {
-            BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork +=BwDoWorkExport;
-
-            //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-            //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            //   bw.WorkerReportsProgress = true;
-            bw.RunWorkerAsync();
-        }
-
-        private void BwDoWorkExport(object sender, DoWorkEventArgs e)
-        {
-             Waege boW = new Waege();
-            mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
-            foreach (var w in ol)
-            {
-
-
-                ExportToRESTServer(w);
-            }
-        }
-
-        public void ExportToRESTServer(WaegeEntity boWe)
-        {
-            Einstellungen boE = new Einstellungen();
-            EinstellungenEntity boEe = boE.GetEinstellungen();
-
-            string baseUrl = GetExportServerIp() + ":" + GetExportPort();
-
-            if (baseUrl == "")
-            {
-                MessageBox.Show("Keine Import-URI in den Einstellungen");
-                return;
-            }
-            var oEx = new ExportWaegungVersion2Rest();
-            int? l = ((boEe.RestLocation != null) ? boEe.RestLocation : 0);
-            oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, l, boWe);
-        }
+        //*****************************************************************
     }
 }

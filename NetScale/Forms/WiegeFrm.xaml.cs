@@ -277,11 +277,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        private void cmdImport_Click(object sender, RoutedEventArgs e)
-        {
-            new ImportExportPolos().Import();
-        }
-
+        
         private void cmdArtikel_Click(object sender, RoutedEventArgs e)
         {
             ArtikelListFrm oAListFrm = new ArtikelListFrm("");
@@ -358,6 +354,33 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oAFrm.Close();
         }
 
+        #region Import / Export
+        private void CmdExport_OnClick(object sender, RoutedEventArgs e)
+        {
+            new ImportExportPolos().Export();
+
+        }
+        private void CmdExportLog_OnClick(object sender, RoutedEventArgs e)
+        {
+            ExportLogFrm oEFrm = new ExportLogFrm();
+            oEFrm.ShowDialog();
+            oEFrm.Close();
+        }
+        private void cmdImportAuftraege_OnClick(object sender, RoutedEventArgs e)
+        {
+            new ImportExportPolos().ImportAuftraege();
+        }
+        private void CmdImporStammdaten_OnClick(object sender, RoutedEventArgs e)
+        {
+            new ImportExportPolos().ImportStammdaten();
+        }
+        private void cmdExportToYeoman_Click(object sender, RoutedEventArgs e)
+        {
+            ExportYeoman2XlsFrm oyXlsFrmFrm = new ExportYeoman2XlsFrm();
+            oyXlsFrmFrm.ShowDialog();
+            oyXlsFrmFrm.Close();
+        }
+        #endregion
         #endregion
 
         #region GUI Umschaltung
@@ -1354,13 +1377,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             cbIncoterms.ItemsSource = boI.GetAllIncoterm();
         }
 
-        private void cmdExportToYeoman_Click(object sender, RoutedEventArgs e)
-        {
-            ExportYeoman2XlsFrm oyXlsFrmFrm = new ExportYeoman2XlsFrm();
-            oyXlsFrmFrm.ShowDialog();
-            oyXlsFrmFrm.Close();
-        }
-
 
         private void TxtAuftraggeber_OnLostFocus(object sender, RoutedEventArgs e)
         {
@@ -1481,17 +1497,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void CmdExport_OnClick(object sender, RoutedEventArgs e)
-        {
-            new ImportExportPolos().Export();
-        
-        }
 
-        private void CmdExportLog_OnClick(object sender, RoutedEventArgs e)
+        private void TxtProductId_OnLostFocus(object sender, RoutedEventArgs e)
         {
-            ExportLogFrm oEFrm = new ExportLogFrm();
-            oEFrm.ShowDialog();
-            oEFrm.Close();
+            _boW.Product2Waege(txtProductId.Text,_boWe);
+
         }
     }
 }

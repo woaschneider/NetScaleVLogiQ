@@ -183,26 +183,26 @@
                                          FontSize="14"
                                          Label="  Mandant  "
                                          LargeImageSource="..\Images\1360083317_Home.png" />
-                    <ribbon:RibbonButton x:Name="cmdImport"
-                                         Click="cmdImport_Click"
-                                         FontSize="14"
-                                         Label=" Import "
-                                         LargeImageSource="..\Images\1349852832_document-import.png" />
-
+                    /&gt;
                 </ribbon:RibbonGroup>
 
             </ribbon:RibbonTab>
             <ribbon:RibbonTab x:Name="io" Header="Im- und Export">
                 <ribbon:RibbonGroup x:Name="Group2" Header="Betrieb">
-                    <ribbon:RibbonButton x:Name="cmdImportx"
-                                         Click="cmdImport_Click"
+                    <ribbon:RibbonButton x:Name="cmdImportAuftraege"
+                                         Click="cmdImportAuftraege_OnClick"
                                          FontSize="14"
-                                         Label=" Import "
+                                         Label=" Import Aufträge"
+                                         LargeImageSource="..\Images\1349852832_document-import.png" />
+                    <ribbon:RibbonButton x:Name="cmdImporStammdaten"
+                                         Click="CmdImporStammdaten_OnClick"
+                                         FontSize="14"
+                                         Label=" Import Stammdaten"
                                          LargeImageSource="..\Images\1349852832_document-import.png" />
                     <ribbon:RibbonButton x:Name="cmdExport"
                                          Click="CmdExport_OnClick"
                                          FontSize="14"
-                                         Label=" Export "
+                                         Label="Lieferscheine exportieren "
                                          LargeImageSource="..\Images\1349852786_document-export.png" />
                     <ribbon:RibbonButton x:Name="cmdExportToYeoman"
                                          Click="cmdExportToYeoman_Click"
@@ -213,7 +213,7 @@
                     <ribbon:RibbonButton x:Name="cmdExportLog"
                                          Click="CmdExportLog_OnClick"
                                          FontSize="14"
-                                         Label=" Yeoman Export "
+                                         Label=" Export-Log "
                                          LargeImageSource="..\Images\1298575723_advancedsettings.png" />
                 </ribbon:RibbonGroup>
 
@@ -1327,7 +1327,7 @@
         <TextBox Name="textBox24"
                  Width="217"
                  Height="23"
-                 Margin="151,208,0,0"
+                 Margin="202,208,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TabIndex="100"
@@ -1729,7 +1729,6 @@
                  Margin="151,181,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 CharacterCasing="Upper"
                  TabIndex="110"
                  Text="{Binding AbrufNr}" />
         <TextBox Name="txtAbrufDate"
@@ -1755,5 +1754,14 @@
                  Margin="956,482,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
+        <TextBox Name="txtProductId"
+                 Width="48"
+                 Height="23"
+                 Margin="151,208,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 LostFocus="TxtProductId_OnLostFocus"
+                 TabIndex="100"
+                 Text="{Binding productid}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Odbc;
 using System.Diagnostics;
 using System.Net;
+using System.Windows.Controls;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
 using Newtonsoft.Json;
@@ -265,10 +266,6 @@ namespace NetScalePolosIO.Export
                 }
               
               
-
-                   
-
-
                     WriteToExportLog(response,boWe);
                
             }
@@ -301,8 +298,15 @@ namespace NetScalePolosIO.Export
             ExportLog boE = new ExportLog();
             ExportLogEntity boEe = boE.NewEntity();
             boEe.dt = DateTime.Now;
-            boEe.Message1 = oR.statusCode;
-            boEe.Message2 = oR.message;
+            if (oR != null)
+            {
+                boEe.Message1 = oR.statusCode;
+                boEe.Message2 = oR.message;
+            }
+            else
+            {
+                boEe.Message1 = response.ErrorException.Message;
+            }
             boEe.OrderItemNumber = we.number;
             boEe.OrderItemServiceIdentifier = we.identifier;
             boE.SaveEntity(boEe);

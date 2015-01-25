@@ -223,7 +223,37 @@ namespace HWB.NETSCALE.BOEF
                 Entity.productdescription = null;
             }
         }
+        public void Product2Waege(string pid, WaegeEntity we)
+        {   int iPid=0;
+            Entity = we;
+            try
+            {
+              iPid  = Convert.ToInt32(pid);
+              Produkte boP = new Produkte();
 
+
+              ProdukteEntity boPE = boP.GetById(iPid);
+              if (boPE != null)
+              {
+                  Entity.productid = boPE.id;
+                  Entity.productdescription = boPE.description;
+              }
+              else
+              {
+                  Entity.productid = null;
+                  Entity.productdescription = null;
+              }
+            }
+            catch (Exception)
+            {
+                Entity.productid = null;
+                Entity.productdescription = null; 
+               
+            }
+            
+
+            
+        }
         public void WarenArt2Waege(int pk, WaegeEntity we)
         {
             Entity = we;

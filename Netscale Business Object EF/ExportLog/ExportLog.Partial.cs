@@ -49,5 +49,7 @@ namespace HWB.NETSCALE.BOEF
                                                 select e;
             return GetEntityList(query);
         }
+ 
+
 	}
 }

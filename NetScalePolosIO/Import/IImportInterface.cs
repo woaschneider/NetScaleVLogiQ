@@ -2,6 +2,6 @@
 {
     internal interface IImportInterface
     {
-        void Import();
+        void ImportStammdaten();
     }
 }

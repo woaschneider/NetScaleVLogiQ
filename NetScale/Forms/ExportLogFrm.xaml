@@ -47,18 +47,18 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top" />
         <DataGrid Name="dataGrid"
-                  Width="665"
-                  Height="195"
-                  Margin="32,123,0,0"
+                  Width="742"
+                  Height="354"
+                  Margin="2,100,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding dt}" Header="Datum / Zeit" />
-                <DataGridTextColumn Header="Message 1" />
-                <DataGridTextColumn Header="Message 2" />
-                <DataGridTextColumn Header="OrderItem" />
-                <DataGridTextColumn Header="OrderItemservcie" />
+                <DataGridTextColumn Binding="{Binding Message1}" Header="Message 1" />
+                <DataGridTextColumn Binding="{Binding Message2}" Header="Message 2" />
+                <DataGridTextColumn Binding="{Binding OrderItemNumber}" Header="OrderItem" />
+                <DataGridTextColumn Binding="{Binding OrderItemServiceIdentifier}" Header="OrderItemservcie" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

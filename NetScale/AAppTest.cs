@@ -25,12 +25,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
      
 
-          [Test]
-        public void ImportTest()
-        {
-            ImportExportPolos oI = new ImportExportPolos();
-            oI.Import();
-        }
+   
     }
 
     /// <summary>

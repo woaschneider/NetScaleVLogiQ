@@ -31,7 +31,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void FillGrid(DateTime? dt)
         {
-        dataGrid.ItemsSource=  new ExportLog().GetAll(dt);
+        dataGrid.ItemsSource=  new ExportLog().GetAll();
         }
 
 
