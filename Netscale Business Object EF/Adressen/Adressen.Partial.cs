@@ -23,7 +23,7 @@ namespace HWB.NETSCALE.BOEF
             // Place code here to be executed when the business object instantiates
         }
 
-        public AdressenEntity GetByPk(int pk)
+        public AdressenEntity GetByPk(int? pk)
         {
             IQueryable<AdressenEntity> query
                 = from a in ObjectContext.AdressenEntities

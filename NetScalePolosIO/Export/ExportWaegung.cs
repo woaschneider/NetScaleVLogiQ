@@ -129,7 +129,7 @@ namespace NetScalePolosIO.Export
             
             
             // Produkt
-            oWEx.orderItems[0].product.id = boWe.product;
+            oWEx.orderItems[0].product.id = boWe.productid;
             oWEx.orderItems[0].product.description = boWe.productdescription;
 
             #endregion 

@@ -34,8 +34,28 @@ namespace HWB.NETSCALE.BOEF
             //IsOwner(currentEntity);
             //IsKundenReferenz(currentEntity);
 		    IsArticlenumberFilled(currentEntity);
+		    IsExistedProductFilled(currentEntity);
 
 		}
+
+        private string IsExistedProductFilled(WaegeEntity currentEntity)
+        {
+            Produkte boP = new Produkte();
+            ProdukteEntity boPe = boP.GetById(currentEntity.productid);
+            string Msg = null;
+            if (mmType.IsEmpty(currentEntity.productid))
+            {
+                this.EntityPropertyDisplayName = "Produkt";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld oder das eingetragene Produkt ist unbekannt!";
+                Msg = this.RequiredFieldMessagePrefix +
+                      this.EntityPropertyDisplayName + " " +
+                      this.RequiredFieldMessageSuffix;
+
+                AddErrorProviderBrokenRule("productdescription", Msg);
+            }
+            return Msg;
+        }
+
 
         private string IsFfFilled(WaegeEntity currentEntity)
         {

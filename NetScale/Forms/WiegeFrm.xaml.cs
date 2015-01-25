@@ -982,7 +982,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     }
 
 
-                    //  PrintLs();
+                     PrintLs();
                   
                     Export2Json(_boWe);
                     if (netScaleView1.oWF != null)
@@ -1021,7 +1021,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         return;
 
                 
-                    // PrintLs();
+                PrintLs();
                     Wiegestatus = 0;
                     break;
             }
@@ -1070,7 +1070,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         else
                         {
                             
-                            //  PrintLs();
+                           PrintLs();
                             Export2Json(_boWe);
                         }
                 }
@@ -1111,6 +1111,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             //var boA = new Abruf();
 
             Wiegestatus = 0;
+        }
+
+        private void PrintLs()
+        {
+            var oLe = new Lokaleeinstellungen();
+            oLe = oLe.Load();
+            var oPls = new PrinterLs();
+            oPls.DoPrintLs(oLe, _boWe, false);
         }
 
         private void Cancel()
