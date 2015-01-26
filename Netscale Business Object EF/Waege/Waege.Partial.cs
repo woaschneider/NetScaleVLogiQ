@@ -688,7 +688,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.remark = _boOISE.remark;
 
                 
-              Entity.supplierOrConsigneeBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
+              Entity.supplierOrConsigneeBusinessIdentifier = _boOISE.supplierOrConsigneeBusinessIdentifier;
                 Entity.supplierOrConsigneeId = _boOISE.supplierOrConsigneeId;
               
                 // SupplierOrConsignee2Waege(Entity.supplierOrConsigneeId,Entity);

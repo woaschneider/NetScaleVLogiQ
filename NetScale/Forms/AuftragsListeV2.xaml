@@ -100,7 +100,7 @@
                 <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikel-Bezeichnung" />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
                 <DataGridTextColumn Binding="{Binding targedAmount}" Header="Sollmenge" />
-                <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lieferant / Empfänger" />
+                <DataGridTextColumn Binding="{Binding supplierOrConsigneeBusinessIdentifier}" Header="Lieferant / Empfänger" />
                 <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermandant" />
                 <DataGridTextColumn Binding="{Binding plannedDate}" Header="gpl. Leistungsdatum" />
                 <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung" />
