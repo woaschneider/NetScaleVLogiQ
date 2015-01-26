@@ -626,7 +626,7 @@
                            Content="Schwellwert Ampel Rot" />
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabitem4" Header="Import / Exportpfade">
+            <TabItem x:Name="tabitem4" Header="Import / ExportAllpfade">
                 <Grid>
                     <Label x:Name="label8"
                            Height="28"
@@ -639,7 +639,7 @@
                            Margin="10,41,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Yeoman-Xls-Export-Pfad" />
+                           Content="Yeoman-Xls-ExportAll-Pfad" />
                     <TextBox x:Name="tb_pdf_path"
                              Width="236"
                              Height="23"
@@ -693,7 +693,7 @@
                               Margin="429,75,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
-                              Content="Export aktiv"
+                              Content="ExportAll aktiv"
                               IsEnabled="True" />
                     <TextBox x:Name="textBox3"
                              Width="81"
@@ -740,7 +740,7 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               Checked="checkBox1_Checked"
-                              Content="Pdf-Export Aktiv" />
+                              Content="Pdf-ExportAll Aktiv" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabitem5" Header="REST Services">
@@ -783,7 +783,7 @@
                            Margin="13,17,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Import/Export-Location Id" />
+                           Content="Import/ExportAll-Location Id" />
                     <Label Name="label24"
                            Height="28"
                            Margin="13,103,0,0"
@@ -893,7 +893,7 @@
                            Margin="356,19,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Export-IP" />
+                           Content="ExportAll-IP" />
                     <TextBox Name="textBox17"
                              Width="159"
                              Height="23"
@@ -906,7 +906,7 @@
                            Margin="355,47,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Export-Port" />
+                           Content="ExportAll-Port" />
                     <TextBox Name="textBox18"
                              Width="159"
                              Height="23"
@@ -919,7 +919,7 @@
                            Margin="355,75,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Export-Waegungen-Url" />
+                           Content="ExportAll-Waegungen-Url" />
                     <TextBox Name="textBox19"
                              Width="159"
                              Height="23"

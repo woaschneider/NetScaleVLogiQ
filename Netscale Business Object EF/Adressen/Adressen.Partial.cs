@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,15 +43,18 @@ namespace HWB.NETSCALE.BOEF
 
         // 
         public AdressenEntity GetByBusinenessIdentifier(string mc, string role)
-        {
+        {   
+   
+
             IQueryable<AdressenEntity> query;
             switch (role)
             {
                 case "AU": // Client / Auftraggeber
                     query = from a in ObjectContext.AdressenEntities
-                        where a.businessIdentifier == mc.Trim()
+                        where a.businessIdentifier.Equals(mc)
                               && a.roleClient == true
                         select a;
+                
                     return GetEntity(query);
 
 
@@ -131,6 +135,16 @@ namespace HWB.NETSCALE.BOEF
                     a.city.Contains(mc) ||
                     a.street.Contains(mc)
                 select a;
+            return GetEntityList(query);
+        }
+        public mmBindingList<AdressenEntity> GetByBusinessIdentifier(string mc)
+        {
+            IQueryable<AdressenEntity> query = from a in ObjectContext.AdressenEntities
+                                               orderby a.businessIdentifier
+                                               where
+                                                   a.businessIdentifier==mc
+                                                
+                                               select a;
             return GetEntityList(query);
         }
 

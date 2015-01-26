@@ -35,6 +35,7 @@ namespace HWB.NETSCALE.BOEF
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
                                                        where o.PK == pk
+                                                       
                                                        select o;
             return GetEntity(query);
         }

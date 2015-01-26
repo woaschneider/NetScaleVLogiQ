@@ -61,7 +61,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oTaabYeo = new Waege().GetYeomanTaabListe(datePicker.SelectedDate.Value, txtAuftraggeber.Text);
             if(oTaabYeo!=null)
             {
-                txtInfo.AppendText("Anzahl der Datensätze die zum Export bereit stehen: " + oTaabYeo.Count.ToString()+ "\r\n");
+                txtInfo.AppendText("Anzahl der Datensätze die zum ExportAll bereit stehen: " + oTaabYeo.Count.ToString()+ "\r\n");
             }
         }
     }

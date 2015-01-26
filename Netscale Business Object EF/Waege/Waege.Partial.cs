@@ -200,11 +200,7 @@ namespace HWB.NETSCALE.BOEF
         }
 
 
-        private static AdressenEntity GetApByPk(int? pk)
-        {
-            var boA = new Adressen();
-            return boA.GetByPk(pk);
-        }
+       
 
         public void Product2Waege(int pk, WaegeEntity we)
         {
@@ -323,17 +319,17 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
-        public void FillFrachtmittel(int pk)
+        public void FillFrachtmittel(int pk,WaegeEntity oWe)
         {
             Frachtmittel boF = new Frachtmittel();
             FrachtmittelEntity boFE = boF.GetFrachtmittelByPK(pk);
             if (boFE != null)
             {
-                Entity.Frachtmittel = boFE.Bezeichnung;
+                oWe.Frachtmittel = boFE.Bezeichnung;
             }
             else
             {
-                Entity.Frachtmittel = null;
+                oWe.Frachtmittel = null;
             }
         }
 
@@ -437,7 +433,6 @@ namespace HWB.NETSCALE.BOEF
                 }
             }
         }
-
         public void ClearinvoiceReceiverInWaege(WaegeEntity we)
         {
             Entity = we;
@@ -492,7 +487,6 @@ namespace HWB.NETSCALE.BOEF
                 Entity.supplierOrConsigneeIsocodeCountry = boAe.isocodeCountry;
             }
         }
-
         public void ClearsupplierOrConsigneeInWaege( WaegeEntity we)
         {
             Entity = we;
@@ -622,6 +616,11 @@ namespace HWB.NETSCALE.BOEF
         }
 
 
+        private static AdressenEntity GetApByPk(int? pk)
+        {
+            var boA = new Adressen();
+            return boA.GetByPk(pk);
+        }
         private AdressenEntity GetAPByPk(int? pk)
         {
             Adressen boA = new Adressen();
@@ -636,8 +635,8 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
-
-        public void Auftrag2Waege(int fkpk, WaegeEntity boWe)
+        //**************************************************************************
+             public void Auftrag2Waege(int fkpk, WaegeEntity boWe)
         {
             Entity = boWe;
             Orderitem _boOI = new Orderitem();
@@ -720,7 +719,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.dimension = _boOISE.dimension;
             }
         }
-       
+        //**************************************************************************
 
 
         public mmBindingList<WaegeEntity> GetHofListe()

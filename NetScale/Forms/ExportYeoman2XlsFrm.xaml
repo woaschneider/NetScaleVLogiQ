@@ -4,7 +4,7 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
-                        Title="Yeoman Export"
+                        Title="Yeoman ExportAll"
                         Width="550"
                         Height="450"
                         AllowsTransparency="False"
@@ -34,7 +34,7 @@
                                          Width="80"
                                          Click="cmdExportXls_Click"
                                          FontSize="14"
-                                         Label=" Export starten "
+                                         Label=" ExportAll starten "
                                          LargeImageSource="..\Images\1420389255_xls.png" />
 
                 </ribbon:RibbonGroup>

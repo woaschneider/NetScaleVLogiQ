@@ -209,7 +209,7 @@ namespace NetScalePolosIO.Export
             #endregion
 
 
-            #region REST Export
+            #region REST ExportAll
 
             try
             {
@@ -243,7 +243,7 @@ namespace NetScalePolosIO.Export
 
             var  response = client.Execute(request);
          
-            //TODO:Export Fehlschläge loggen - Erfolgreiche unvisible setzen
+            //TODO:ExportAll Fehlschläge loggen - Erfolgreiche unvisible setzen
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     WriteToExportLog(response,boWe);
@@ -262,6 +262,7 @@ namespace NetScalePolosIO.Export
                      //   we.HasBinSendedDateTime = DateTime.Today;
                         w.SaveEntity(we);
                         SetOrderItemServiceAsSend(we);
+                        WriteToExportLog(response, boWe);
                     }  
                 }
               

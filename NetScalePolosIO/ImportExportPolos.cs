@@ -104,8 +104,8 @@ namespace NetScalePolosIO
         }
         #endregion
         //*****************************************************************
-        #region Export
-        public void Export()
+        #region ExportAll
+        public void ExportAll()
         {
            
                 ExceExportThread();
@@ -113,6 +113,11 @@ namespace NetScalePolosIO
 
 
             
+        }
+
+        public void ExportSingle(WaegeEntity boWe)
+        {
+            ExportToRESTServer(boWe);
         }
 
         private void ExceExportThread()
@@ -138,7 +143,7 @@ namespace NetScalePolosIO
             }
         }
 
-        public void ExportToRESTServer(WaegeEntity boWe)
+        private void ExportToRESTServer(WaegeEntity boWe)
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -154,6 +159,12 @@ namespace NetScalePolosIO
             int? l = ((boEe.RestLocation != null) ? boEe.RestLocation : 0);
             oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, l, boWe);
         }
+
+     
+     
+          
+
+
         #endregion
         //*****************************************************************
         #region Einstellung

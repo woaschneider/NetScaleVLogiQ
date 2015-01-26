@@ -82,7 +82,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             PrintPaperLs(ll, kopie, copies, isLsDruck, druckerName);
 
 
-            // TODO: Diesen Abschnitt vornehmen: Export Pfad prüfen
+            // TODO: Diesen Abschnitt vornehmen: ExportAll Pfad prüfen
             //***************************************************************************
             //  Filename und Pfad (hier: PDF)
             var boE = new Einstellungen();

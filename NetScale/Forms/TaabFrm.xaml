@@ -4,7 +4,7 @@
 	xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
 	x:Class="HWB.NETSCALE.FRONTEND.WPF.Forms.TaabFrm"
 	x:Name="Window"
-	Title="Export Tagesabschluss "
+	Title="ExportAll Tagesabschluss "
 	Width="168" Height="131" AllowsTransparency="False" Background="#FFC1D5F2" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
 
     <Grid x:Name="LayoutRoot">

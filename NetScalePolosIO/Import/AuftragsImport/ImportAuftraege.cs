@@ -188,10 +188,18 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                 foreach (OrderItemService t in obj2.orderItemServices)
                                 {
                                     _boOis = new OrderItemservice();
-                                    _boOise = _boOis.GetByIdAndPKOrderItem(_boOe.PK, t.identifier) ?? _boOis.NewEntity();
+                                    _boOise = _boOis.GetByIdAndPKOrderItem(_boOe.PK, t.identifier);
 
-                                    _boOise.HasBinSended = false;
-                                    _boOise.InvisibleSendedOrderItems = false;
+                                    if (_boOise == null)
+                                    {
+                                        _boOise = _boOis.NewEntity();
+                                        _boOise.HasBinSended = false;
+                                        _boOise.InvisibleSendedOrderItems = false;
+                                    }
+
+                                    _boOis.NewEntity();
+
+                                  
                                     _boOise.identifier = t.identifier;
                                     _boOise.remark = t.remark;
                                     _boOise.sequence = t.sequence;

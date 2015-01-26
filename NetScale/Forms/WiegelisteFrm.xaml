@@ -79,6 +79,7 @@
                 <DataGridTextColumn Binding="{Binding invoiceReceicerBusinessIdentifier}" Header="Rechnungsempfänger" />
                 <DataGridTextColumn Binding="{Binding productdescription}" Header="Produkt" />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
+                <DataGridCheckBoxColumn Header="An Polos gesendet" Binding="{Binding HasBinSended}" />
             </DataGrid.Columns>
         </DataGrid>
         <DatePicker x:Name="vondatePicker"

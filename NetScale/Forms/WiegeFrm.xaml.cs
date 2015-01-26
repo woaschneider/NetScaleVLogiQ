@@ -354,10 +354,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oAFrm.Close();
         }
 
-        #region Import / Export
+        #region Import / ExportAll
         private void CmdExport_OnClick(object sender, RoutedEventArgs e)
         {
-            new ImportExportPolos().Export();
+            new ImportExportPolos().ExportAll();
 
         }
         private void CmdExportLog_OnClick(object sender, RoutedEventArgs e)
@@ -877,7 +877,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         #endregion
 
-        #region  Neu / Wiegen / Save / Cancel / Export
+        #region  Neu / Wiegen / Save / Cancel / ExportAll
 
         private void NewWaege()
         {
@@ -1155,7 +1155,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Export2Json(WaegeEntity we)
         {
-            new ImportExportPolos().Export();
+            new ImportExportPolos().ExportSingle(we);
         }
 
         #endregion
@@ -1251,7 +1251,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int uRet = oFFrm.uRet;
             if (_boWe != null)
             {
-                _boW.FillFrachtmittel(uRet);
+                _boW.FillFrachtmittel(uRet,_boWe);
             }
             oFFrm.Close();
         }
@@ -1383,7 +1383,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (!string.IsNullOrEmpty(txtAuftraggeber.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
+                AdressenEntity boAe=null;
+
+                //var boAeL = boA.GetByBusinessIdentifier(txtAuftraggeber.Text);
+                //if (boAeL != null)
+                //{
+                //    if (boAeL.Count > 1)
+                //    {  lookUpAdresse(txtAuftraggeber.Text, "AU");}
+                //    {
+                        
+                //    }
+                //}
+
+                boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
                 if (boAe != null)
                 {
                     _boW.Customer2Waege(boAe.PK, _boWe);
