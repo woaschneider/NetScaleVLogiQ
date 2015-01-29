@@ -50,7 +50,7 @@ namespace HWB.NETSCALE.BOEF
         public mmBindingList<OrderItemserviceEntity> GetByParentPK(int pk)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
-                where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false 
+                where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false & o.HasBinUsed==false
             
                                                        select o;
             var uRet = GetEntityList(query);

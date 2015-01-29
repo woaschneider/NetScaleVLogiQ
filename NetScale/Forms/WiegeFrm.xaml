@@ -1738,7 +1738,7 @@
         <ComboBox Name="cbIncoterms"
                   Width="64"
                   Height="23"
-                  Margin="592,314,0,0"
+                  Margin="151,229,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   Text="{Binding incoterm}" />
@@ -1798,7 +1798,48 @@
                  KeyDown="TxtProductId_OnKeyDown"
                  TabIndex="140"
                  Text="{Binding productid}" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="249,504,0,0" Name="textBox47" TabIndex="350" Text="{Binding freitext1}" VerticalAlignment="Top" Width="337" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="249,582,0,0" Name="textBox48" TabIndex="350" Text="{Binding freitext2}" VerticalAlignment="Top" Width="337" />
+        <TextBox Name="textBox47"
+                 Width="337"
+                 Height="23"
+                 Margin="249,504,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TabIndex="350"
+                 Text="{Binding freitext1}" />
+        <TextBox Name="textBox48"
+                 Width="337"
+                 Height="23"
+                 Margin="249,582,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TabIndex="350"
+                 Text="{Binding freitext2}" />
+        <Button Name="luQuellLagerplatz"
+                Click="LuQuellLagerplatz_OnClick"
+                Width="38.333"
+                Height="22"
+                Margin="596,292,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
+        <Button Name="luZielLagerplatz"Click="LuZielLagerplatz_OnClick"
+                Width="38.333"
+                Height="22"
+                Margin="596,317,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+            <StackPanel>
+                <Image Width="18"
+                       Height="18"
+                       HorizontalAlignment="Left"
+                       Source="..\Images\1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
     </Grid>
 </mmwpf:mmBusinessWindow>

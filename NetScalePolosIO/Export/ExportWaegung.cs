@@ -193,7 +193,7 @@ namespace NetScalePolosIO.Export
 
             oWEx2.orderItemServiceId = boWe.identifier;
            // oWEx2.carrierName = boWe.ffBusinessIdentifier;
-            oWEx2.carrierName = boWe.ffName;
+            oWEx2.carrierName = boWe.ffSubName2;
             oWEx2.carrierVehicle = boWe.Fahrzeug;
             oWEx2.storageAreaId = "0";// boWe.storageAreaReferenceNumber;
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;

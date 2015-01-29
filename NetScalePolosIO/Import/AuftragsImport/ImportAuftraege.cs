@@ -195,6 +195,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                         _boOise = _boOis.NewEntity();
                                         _boOise.HasBinSended = false;
                                         _boOise.InvisibleSendedOrderItems = false;
+                                        _boOise.HasBinUsed = false;
                                     }
 
                                     _boOis.NewEntity();

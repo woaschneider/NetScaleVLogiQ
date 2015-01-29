@@ -34,8 +34,31 @@ namespace HWB.NETSCALE.BOEF
             if (this.State == mmBusinessState.PreSaving)
             {
                 PreSaveHook(this.Entity);
+                if (this.Entity.Waegung == 1 && Entity.identifier != null)
+                {
+                    OrderItemservice boOES = new OrderItemservice();
+                    OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifier);
+                    if (boOEISe != null)
+                    {
+                        boOEISe.HasBinUsed = true;
+                        boOES.SaveEntity(boOEISe);
+                    }
+                }
             }
 
+            if (this.State == mmBusinessState.Deleting)
+            {
+                if (this.Entity.Waegung == 1 && Entity.identifier != null)
+                {
+                    OrderItemservice boOES = new OrderItemservice();
+                    OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifier);
+                    if (boOEISe != null)
+                    {
+                        boOEISe.HasBinUsed = false;
+                        boOES.SaveEntity(boOEISe);
+                    }
+                }
+            }
             if (this.State == mmBusinessState.Added)
             {
                 OnNew(Entity);
