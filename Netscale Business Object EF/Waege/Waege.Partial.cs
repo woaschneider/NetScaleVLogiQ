@@ -47,15 +47,18 @@ namespace HWB.NETSCALE.BOEF
             }
 
             if (this.State == mmBusinessState.Deleting)
-            {
-                if (this.Entity.Waegung == 1 && Entity.identifier != null)
+            {// Wenn eine Erstwägung gelöscht wird, Orderitemservice wieder aktiv machen
+                if (this.Entity != null)
                 {
-                    OrderItemservice boOES = new OrderItemservice();
-                    OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifier);
-                    if (boOEISe != null)
+                    if (this.Entity.Waegung == 1 && Entity.identifier != null)
                     {
-                        boOEISe.HasBinUsed = false;
-                        boOES.SaveEntity(boOEISe);
+                        OrderItemservice boOES = new OrderItemservice();
+                        OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifier);
+                        if (boOEISe != null)
+                        {
+                            boOEISe.HasBinUsed = false;
+                            boOES.SaveEntity(boOEISe);
+                        }
                     }
                 }
             }

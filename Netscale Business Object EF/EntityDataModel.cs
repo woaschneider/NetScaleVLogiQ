@@ -14272,6 +14272,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _freitext5;
         partial void Onfreitext5Changing(global::System.String value);
         partial void Onfreitext5Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String IstQuellLagerPlatzId
+        {
+            get
+            {
+                return _IstQuellLagerPlatzId;
+            }
+            set
+            {
+                OnIstQuellLagerPlatzIdChanging(value);
+                ReportPropertyChanging("IstQuellLagerPlatzId");
+                _IstQuellLagerPlatzId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("IstQuellLagerPlatzId");
+                OnIstQuellLagerPlatzIdChanged();
+            }
+        }
+        private global::System.String _IstQuellLagerPlatzId;
+        partial void OnIstQuellLagerPlatzIdChanging(global::System.String value);
+        partial void OnIstQuellLagerPlatzIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String IstZielLagerPlatzId
+        {
+            get
+            {
+                return _IstZielLagerPlatzId;
+            }
+            set
+            {
+                OnIstZielLagerPlatzIdChanging(value);
+                ReportPropertyChanging("IstZielLagerPlatzId");
+                _IstZielLagerPlatzId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("IstZielLagerPlatzId");
+                OnIstZielLagerPlatzIdChanged();
+            }
+        }
+        private global::System.String _IstZielLagerPlatzId;
+        partial void OnIstZielLagerPlatzIdChanging(global::System.String value);
+        partial void OnIstZielLagerPlatzIdChanged();
 
         #endregion
     

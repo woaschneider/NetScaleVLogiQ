@@ -708,6 +708,8 @@
           <Property Name="freitext3" Type="varchar" MaxLength="100" />
           <Property Name="freitext4" Type="varchar" MaxLength="100" />
           <Property Name="freitext5" Type="varchar" MaxLength="100" />
+          <Property Name="IstQuellLagerPlatzId" Type="varchar" MaxLength="20" />
+          <Property Name="IstZielLagerPlatzId" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1525,6 +1527,8 @@
           <Property Type="String" Name="freitext3" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="freitext4" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="freitext5" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IstQuellLagerPlatzId" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IstZielLagerPlatzId" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2094,6 +2098,8 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="IstZielLagerPlatzId" ColumnName="IstZielLagerPlatzId" />
+                <ScalarProperty Name="IstQuellLagerPlatzId" ColumnName="IstQuellLagerPlatzId" />
                 <ScalarProperty Name="freitext5" ColumnName="freitext5" />
                 <ScalarProperty Name="freitext4" ColumnName="freitext4" />
                 <ScalarProperty Name="freitext3" ColumnName="freitext3" />
@@ -2292,7 +2298,7 @@
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="0.75" PointY="9.75" Height="7.36472656250001" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="9.5" PointY="11.5" Height="2.1725878906250102" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="12.375" PointY="12.75" Height="26.787171223958325" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="12.375" PointY="12.75" Height="27.171774088541667" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

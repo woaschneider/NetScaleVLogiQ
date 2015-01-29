@@ -1564,6 +1564,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key == Key.F4)
             {
+                luFrachtfuehrer.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
         }
 
@@ -1574,7 +1575,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 searchLagerMandant();
             }
             if (e.Key == Key.F4)
-            {
+            { 
+
             }
         }
 
@@ -1628,7 +1630,54 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key == Key.F4)
             {
+                cmdLookUpKfz.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             }
+        }
+
+        private void LuQuellLagerplatz_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            LagerplaetzeListeFrm oFrm = new LagerplaetzeListeFrm("");
+            oFrm.ShowDialog();
+           int uRet = oFrm.uRet;
+           if (uRet != null)
+           {
+               Lagerplaetze boL = new Lagerplaetze();
+               LagerplaetzeEntity boLe = boL.GetByPk(uRet);
+               if (boLe != null)
+               {
+                   _boWe.IstQuellLagerPlatzId = boLe.id;
+                   _boWe.IstQuellLagerPlatz = boLe.name;
+               }
+               else
+               {
+                   _boWe.IstQuellLagerPlatzId = null;
+                   _boWe.IstQuellLagerPlatz = null;
+               }
+           }
+           oFrm.Close();
+        }
+
+        private void LuZielLagerplatz_OnClick(object sender, RoutedEventArgs e)
+        {
+            LagerplaetzeListeFrm oFrm = new LagerplaetzeListeFrm("");
+            oFrm.ShowDialog();
+            int uRet = oFrm.uRet;
+            if (uRet != null)
+            {
+                Lagerplaetze boL = new Lagerplaetze();
+                LagerplaetzeEntity boLe = boL.GetByPk(uRet);
+                if (boLe != null)
+                {
+                    _boWe.IstZielLagerPlatzId = boLe.id;
+                    _boWe.IstZielLagerPlatz = boLe.name;
+                }
+                else {
+                    _boWe.IstZielLagerPlatzId = null;
+                    _boWe.IstZielLagerPlatz = null;
+                }
+            }
+            oFrm.Close();
         }
     }
 }

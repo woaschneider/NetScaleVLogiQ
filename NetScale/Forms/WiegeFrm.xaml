@@ -537,9 +537,9 @@
                Content="gepl. Leistungsdatum"
                TabIndex="440" />
         <TextBox x:Name="txtAuftraggeber_Copy3"
-                 Width="436"
+                 Width="385"
                  Height="23"
-                 Margin="151,290,0,0"
+                 Margin="202,290,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TabIndex="230"
@@ -552,9 +552,9 @@
                Content="Ist-Quell-Lagerplatz"
                TabIndex="220" />
         <TextBox x:Name="txtAuftraggeber_Copy4"
-                 Width="436"
+                 Width="385"
                  Height="23"
-                 Margin="151,315,0,0"
+                 Margin="202,315,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TabIndex="250"
@@ -1815,12 +1815,12 @@
                  TabIndex="350"
                  Text="{Binding freitext2}" />
         <Button Name="luQuellLagerplatz"
-                Click="LuQuellLagerplatz_OnClick"
                 Width="38.333"
                 Height="22"
                 Margin="596,292,0,0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                Click="LuQuellLagerplatz_OnClick">
             <StackPanel>
                 <Image Width="18"
                        Height="18"
@@ -1828,12 +1828,13 @@
                        Source="..\Images\1329900378_search_button.ico" />
             </StackPanel>
         </Button>
-        <Button Name="luZielLagerplatz"Click="LuZielLagerplatz_OnClick"
+        <Button Name="luZielLagerplatz"
                 Width="38.333"
                 Height="22"
                 Margin="596,317,0,0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                Click="LuZielLagerplatz_OnClick">
             <StackPanel>
                 <Image Width="18"
                        Height="18"
@@ -1841,5 +1842,21 @@
                        Source="..\Images\1329900378_search_button.ico" />
             </StackPanel>
         </Button>
+        <TextBox Name="textBox49"
+                 Width="48"
+                 Height="23"
+                 Margin="151,291,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TabIndex="230"
+                 Text="{Binding IstQuellLagerPlatzId}" />
+        <TextBox Name="textBox50"
+                 Width="48"
+                 Height="23"
+                 Margin="151,316,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TabIndex="250"
+                 Text="{Binding IstZielLagerPlatzId}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

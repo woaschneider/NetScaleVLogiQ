@@ -23,7 +23,15 @@ namespace HWB.NETSCALE.BOEF
 		{
 			// Place code here to be executed when the business object instantiates
 		}
-        
+
+
+        public LagerplaetzeEntity GetByPk(int pk)
+        {
+            IQueryable<LagerplaetzeEntity> query = from l in ObjectContext.LagerplaetzeEntities
+                                                   where l.PK == pk
+                                                   select l;
+            return GetEntity(query);
+        }
         public LagerplaetzeEntity GetById(string id)
         {
             IQueryable<LagerplaetzeEntity> query = from l in ObjectContext.LagerplaetzeEntities
