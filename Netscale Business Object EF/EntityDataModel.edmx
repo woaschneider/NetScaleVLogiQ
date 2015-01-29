@@ -703,6 +703,11 @@
           <Property Name="abrufFest" Type="bit" />
           <Property Name="HasBinSended" Type="bit" />
           <Property Name="HasBinSendedDateTime" Type="char" MaxLength="10" />
+          <Property Name="freitext1" Type="varchar" MaxLength="100" />
+          <Property Name="freitext2" Type="varchar" MaxLength="100" />
+          <Property Name="freitext3" Type="varchar" MaxLength="100" />
+          <Property Name="freitext4" Type="varchar" MaxLength="100" />
+          <Property Name="freitext5" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1515,6 +1520,11 @@
           <Property Type="Boolean" Name="abrufFest" />
           <Property Type="Boolean" Name="HasBinSended" />
           <Property Type="String" Name="HasBinSendedDateTime" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="freitext1" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="freitext2" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="freitext3" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="freitext4" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="freitext5" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2084,6 +2094,11 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="freitext5" ColumnName="freitext5" />
+                <ScalarProperty Name="freitext4" ColumnName="freitext4" />
+                <ScalarProperty Name="freitext3" ColumnName="freitext3" />
+                <ScalarProperty Name="freitext2" ColumnName="freitext2" />
+                <ScalarProperty Name="freitext1" ColumnName="freitext1" />
                 <ScalarProperty Name="HasBinSendedDateTime" ColumnName="HasBinSendedDateTime" />
                 <ScalarProperty Name="HasBinSended" ColumnName="HasBinSended" />
                 <ScalarProperty Name="abrufFest" ColumnName="abrufFest" />
@@ -2277,7 +2292,7 @@
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="0.75" PointY="9.75" Height="7.36472656250001" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="9.5" PointY="11.5" Height="2.1725878906250102" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="11.125" PointY="11.625" Height="25.825664062499996" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="12.375" PointY="12.75" Height="26.787171223958325" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

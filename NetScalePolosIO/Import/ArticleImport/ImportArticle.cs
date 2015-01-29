@@ -67,8 +67,9 @@ namespace NetScalePolosIO.Import.ArticleImport
                             _boAe.conversionUnitId = obj.article.conversionUnit.id;
                             _boAe.conversionUnitDescription = obj.article.conversionUnit.description;
                             _boAe.conversionUnitShortDescription = obj.article.conversionUnit.shortDescription;
-                            _boA.SaveEntity(_boAe);
+                           
                         }
+                        _boA.SaveEntity(_boAe);
                     }
                 }
             }

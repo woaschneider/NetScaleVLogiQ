@@ -195,6 +195,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             lookAndFillWithAbruf();
         }
+
         private void lookAndFillWithAbruf()
         {
             var oAbrufFrm = new AbruflisteFrm();
@@ -221,12 +222,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 var boAbruf = new Abruf();
                 DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
-                
             }
-          
+
 
             oAbrufFrm.Close();
         }
+
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
             //if (_wiegestatus == 7) // Abruf bearbeiten
@@ -277,7 +278,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        
         private void cmdArtikel_Click(object sender, RoutedEventArgs e)
         {
             ArtikelListFrm oAListFrm = new ArtikelListFrm("");
@@ -355,32 +355,38 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
         #region Import / ExportAll
+
         private void CmdExport_OnClick(object sender, RoutedEventArgs e)
         {
             new ImportExportPolos().ExportAll();
-
         }
+
         private void CmdExportLog_OnClick(object sender, RoutedEventArgs e)
         {
             ExportLogFrm oEFrm = new ExportLogFrm();
             oEFrm.ShowDialog();
             oEFrm.Close();
         }
+
         private void cmdImportAuftraege_OnClick(object sender, RoutedEventArgs e)
         {
             new ImportExportPolos().ImportAuftraege();
         }
+
         private void CmdImporStammdaten_OnClick(object sender, RoutedEventArgs e)
         {
             new ImportExportPolos().ImportStammdaten();
         }
+
         private void cmdExportToYeoman_Click(object sender, RoutedEventArgs e)
         {
             ExportYeoman2XlsFrm oyXlsFrmFrm = new ExportYeoman2XlsFrm();
             oyXlsFrmFrm.ShowDialog();
             oyXlsFrmFrm.Close();
         }
+
         #endregion
+
         #endregion
 
         #region GUI Umschaltung
@@ -573,8 +579,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Wiegestatus0()
         {
-            if (_boWe != null)
-                _boW.CancelEntity(_boWe);
+            //if (_boWe != null)
+            //    _boW.CancelEntity(_boWe);
             // 
             DataContext = _boWe;
             tb_wiegestatus.Text = "...";
@@ -601,15 +607,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = true;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = true;
-              ribbonAbrufListe.IsEnabled = true;
+            ribbonAbrufListe.IsEnabled = true;
             ribbonAuftrag.IsEnabled = false;
             ribbonCancel.IsEnabled = false;
             ribbonDelete.IsEnabled = false;
 
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = false;
-         //   txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
-           // cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
+            //   txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
+            // cb_Abruffest.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void Wiegestatus1()
@@ -641,7 +647,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = false;
-             ribbonAbrufListe.IsEnabled = true;
+            ribbonAbrufListe.IsEnabled = true;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = false;
 
@@ -803,8 +809,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
-           txtKfzKennzeichen.IsEnabled = false;
-           CbAbruffest.Visibility = System.Windows.Visibility.Visible;
+            txtKfzKennzeichen.IsEnabled = false;
+            CbAbruffest.Visibility = System.Windows.Visibility.Visible;
             txtAbrufDate.Visibility = System.Windows.Visibility.Visible;
             //tb_Kfz1.IsEnabled = false;
             //  tb_Kfz2.IsEnabled = false;
@@ -967,9 +973,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.LN2 = oRw.Ln;
                     _boWe.Zweitgewicht = oRw.weight;
 
-                    
+
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
-                    if (_wiegeStatus != 6 &_wiegeStatus != 7 )
+                    if (_wiegeStatus != 6 & _wiegeStatus != 7)
                     {
                         if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
                         {
@@ -1005,8 +1011,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     }
 
 
-                     PrintLs();
-                  
+                    PrintLs();
+
                     Export2Json(_boWe);
                     if (netScaleView1.oWF != null)
                         netScaleView1.oWF.SetGreenLight();
@@ -1029,7 +1035,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.zweitDateTime = oRw.Time;
                     //   _boWe.LSDatum = oRw.Date;
                     _boWe.Waegung = 2;
-                  
 
 
                     try
@@ -1043,8 +1048,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     if (_result != mmSaveDataResult.RulesPassed)
                         return;
 
-                
-                PrintLs();
+
+                    PrintLs();
                     Wiegestatus = 0;
                     break;
             }
@@ -1065,56 +1070,59 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     var boE = new Einstellungen();
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
 
+                    _boWe.ErstDatetime = DateTime.Today;
+                     _boWe.zweitDateTime = DateTime.Now;
+                     _boWe.LSDatum = DateTime.Today;
 
-                    _boWe.zweitDateTime = DateTime.Now;
-                    //  _boWe.LSDatum = DateTime.Today;
-                    
                     _boWe.Waegung = 2;
-                    if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                    if (_boWe.Erstgewicht != null && _boWe.Zweitgewicht != null)
                     {
-                        _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
-                    }
-                    else
-                    {
-                        _boWe.Nettogewicht = _boWe.Erstgewicht - _boWe.Zweitgewicht;
+                        if (_boWe.Erstgewicht < _boWe.Zweitgewicht)
+                        {
+                            _boWe.Nettogewicht = _boWe.Zweitgewicht - _boWe.Erstgewicht;
+                        }
+                        else
+                        {
+                            _boWe.Nettogewicht = _boWe.Erstgewicht - _boWe.Zweitgewicht;
+                        }
                     }
                 }
 
                 try
                 {
                     _result = SaveEntity(_boW, _boWe);
-                    if (_wiegeStatus != 4) // Erstwägung bearbeiten
-                        if (
-                            MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo,
-                                MessageBoxImage.Warning) == MessageBoxResult.No)
-                        {
-                            //do no stuff
-                        }
-                        else
-                        {
-                            
-                           PrintLs();
-                            Export2Json(_boWe);
-                        }
+                    if (_result == mmSaveDataResult.RulesPassed)
+                    {
+                        if (_wiegeStatus != 4) // Erstwägung bearbeiten
+                            if (
+                                MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo,
+                                    MessageBoxImage.Warning) == MessageBoxResult.No)
+                            {
+                                Export2Json(_boWe);
+                                //do no stuff
+                            }
+                            else
+                            {
+                                PrintLs();
+                                Export2Json(_boWe);
+                            }
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
 
-                if (_result != mmSaveDataResult.RulesPassed)
-                {
-                    return;
-                }
-                else
-                {
-                    
-                }
+            
             }
             if (_wiegeStatus == 6)
             {
                 Abruf boA = new Abruf();
-              AbrufEntity oAE = boA.CreateAbruf(_boWe);
+                AbrufEntity oAE = boA.CreateAbruf(_boWe);
                 _boWe.abruf_PK = oAE.PK;
                 _boWe.AbrufNr = oAE.AbrufNr;
             }
@@ -1125,7 +1133,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 // dem Speichern angezeigt wird.
                 Abruf boA = new Abruf();
                 var oAE = boA.SaveAbruf(_boWe);
-         
+
                 //_boWe.Abrufid = oAE.PK;
                 //_boWe.Abrufnr = oAE.Abrufnr;
                 //ShowAbrufMengen(oAE);
@@ -1251,7 +1259,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int uRet = oFFrm.uRet;
             if (_boWe != null)
             {
-                _boW.FillFrachtmittel(uRet,_boWe);
+                _boW.FillFrachtmittel(uRet, _boWe);
             }
             oFFrm.Close();
         }
@@ -1263,7 +1271,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtFrachtführer.Text, "FF");
             if (uRet != null)
             {
-                _boW.FrachtFuehrer2Waege((int) uRet,_boWe);
+                _boW.FrachtFuehrer2Waege((int) uRet, _boWe);
             }
             else
             {
@@ -1278,7 +1286,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             if (uRet != null)
             {
-                _boW.Customer2Waege((int) uRet,_boWe);
+                _boW.Customer2Waege((int) uRet, _boWe);
             }
             else
             {
@@ -1291,11 +1299,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtRechnungsEmpfaenger.Text, "RE");
             if (uRet != null)
             {
-            _boW.InvoiceReceiver2Waege((int)uRet, _boWe);
+                _boW.InvoiceReceiver2Waege((int) uRet, _boWe);
             }
             else
             {
-            _boW.ClearinvoiceReceiverInWaege(_boWe);
+                _boW.ClearinvoiceReceiverInWaege(_boWe);
             }
         }
 
@@ -1304,11 +1312,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse(txtLagerMandant.Text, "LM");
             if (uRet != null)
             {
-            _boW.Owner2Waege((int)uRet, _boWe);
+                _boW.Owner2Waege((int) uRet, _boWe);
             }
             else
             {
-            _boW.ClearOwnerInWaege(_boWe);
+                _boW.ClearOwnerInWaege(_boWe);
             }
         }
 
@@ -1318,11 +1326,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             int? uRet = lookUpAdresse("", "");
             if (uRet != null)
             {
-            _boW.SupplierOrConsignee2Waege((int)uRet, _boWe);
+                _boW.SupplierOrConsignee2Waege((int) uRet, _boWe);
             }
             else
             {
-            _boW.ClearsupplierOrConsigneeInWaege(_boWe);
+                _boW.ClearsupplierOrConsigneeInWaege(_boWe);
             }
         }
 
@@ -1348,7 +1356,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luWarenArt_Click(object sender, RoutedEventArgs e)
         {
-            WarenartListFrm oWFrm = new WarenartListFrm("");
+            WarenartListFrm oWFrm = new WarenartListFrm(txtWarenArt.Text ?? "");
             oWFrm.ShowDialog();
             int uRet = oWFrm.uRet;
             _boW.WarenArt2Waege(uRet, _boWe);
@@ -1357,7 +1365,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luArticle_Click(object sender, RoutedEventArgs e)
         {
-            ArtikelListFrm oAFrm = new ArtikelListFrm("");
+            ArtikelListFrm oAFrm = new ArtikelListFrm(txtArtikelNr.Text ?? "");
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
             _boW.Article2Waege(uRet, _boWe);
@@ -1378,22 +1386,15 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        private void TxtAuftraggeber_OnLostFocus(object sender, RoutedEventArgs e)
+        
+
+        private void searchCustomer()
         {
             if (!string.IsNullOrEmpty(txtAuftraggeber.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe=null;
+                AdressenEntity boAe = null;
 
-                //var boAeL = boA.GetByBusinessIdentifier(txtAuftraggeber.Text);
-                //if (boAeL != null)
-                //{
-                //    if (boAeL.Count > 1)
-                //    {  lookUpAdresse(txtAuftraggeber.Text, "AU");}
-                //    {
-                        
-                //    }
-                //}
 
                 boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
                 if (boAe != null)
@@ -1407,7 +1408,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void TxtRechnungsEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+     
+
+        private void searchInvocieReceiver()
         {
             if (!string.IsNullOrEmpty(txtRechnungsEmpfaenger.Text))
             {
@@ -1415,16 +1418,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtRechnungsEmpfaenger.Text, "RE");
                 if (boAe != null)
                 {
-                _boW.InvoiceReceiver2Waege(boAe.PK, _boWe);
+                    _boW.InvoiceReceiver2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                _boW.ClearinvoiceReceiverInWaege(_boWe);
+                    _boW.ClearinvoiceReceiverInWaege(_boWe);
                 }
             }
         }
 
-        private void TxtFrachtführer_OnLostFocus(object sender, RoutedEventArgs e)
+      
+
+        private void searchFrachtführer()
         {
             if (!string.IsNullOrEmpty(txtFrachtführer.Text))
             {
@@ -1432,16 +1437,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtFrachtführer.Text, "FF");
                 if (boAe != null)
                 {
-                _boW.FrachtFuehrer2Waege(boAe.PK, _boWe);
+                    _boW.FrachtFuehrer2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                _boW.ClearFrachtFuehrerInWaege(_boWe);
+                    _boW.ClearFrachtFuehrerInWaege(_boWe);
                 }
             }
         }
 
-        private void TxtLagerMandant_OnLostFocus(object sender, RoutedEventArgs e)
+
+
+        private void searchLagerMandant()
         {
             if (!string.IsNullOrEmpty(txtLagerMandant.Text))
             {
@@ -1449,16 +1456,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLagerMandant.Text, "LM");
                 if (boAe != null)
                 {
-                _boW.Owner2Waege(boAe.PK, _boWe);
+                    _boW.Owner2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                _boW.ClearOwnerInWaege(_boWe);
+                    _boW.ClearOwnerInWaege(_boWe);
                 }
+
             }
         }
 
-        private void TxtLieferantEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        void searchLieferantEmpfänger()
         {
             if (!string.IsNullOrEmpty(txtLieferantEmpfaenger.Text))
             {
@@ -1466,16 +1474,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLieferantEmpfaenger.Text, "EM");
                 if (boAe != null)
                 {
-                _boW.SupplierOrConsignee2Waege(boAe.PK, _boWe);
+                    _boW.SupplierOrConsignee2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                _boW.ClearsupplierOrConsigneeInWaege(_boWe);
+                    _boW.ClearsupplierOrConsigneeInWaege(_boWe);
                 }
             }
         }
 
-        private void TxtKfzKennzeichen_OnLostFocus(object sender, RoutedEventArgs e)
+
+        private void searchKfz()
         {
             Fahrzeuge boF = new Fahrzeuge();
             FahrzeugeEntity boFe = boF.GetByExactKennzeichen(txtKfzKennzeichen.Text);
@@ -1509,11 +1518,117 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-
-        private void TxtProductId_OnLostFocus(object sender, RoutedEventArgs e)
+        private void searchProduct()
         {
-            _boW.Product2Waege(txtProductId.Text,_boWe);
+            Produkte boP = new Produkte();
+            ProdukteEntity boPe = null;
 
+            if (!string.IsNullOrEmpty(txtProductId.Text))
+            {
+                _boW.Product2Waege(txtProductId.Text,_boWe);
+            }
+            else
+            {
+                
+            }
+        }
+
+//***************************************************************************************************
+        private void TxtAuftraggeber_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchCustomer();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtRechnungsEmpfaenger_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchInvocieReceiver();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtFrachtführer_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchFrachtführer();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtLagerMandant_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchLagerMandant();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtLieferantEmpfaenger_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchLieferantEmpfänger();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtWarenArt_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtArtikelNr_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtProductId_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchProduct();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+        private void TxtKfzKennzeichen_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                searchKfz();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
         }
     }
 }

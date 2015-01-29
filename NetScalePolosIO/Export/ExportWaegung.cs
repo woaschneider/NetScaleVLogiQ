@@ -199,12 +199,21 @@ namespace NetScalePolosIO.Export
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
 
             oWEx2.scalePhaseData.FIRST.scaleId = "1";
+            if (boWe.LN1!=null)
             oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
-            oWEx2.scalePhaseData.FIRST.amount =  ((int) (boWe.Erstgewicht)*1000);
+            
+            if (boWe.Erstgewicht!=null)
+            oWEx2.scalePhaseData.FIRST.amount =  ((int) (boWe.Erstgewicht));
+           
             oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime)+"000";
             oWEx2.scalePhaseData.SECOND.scaleId = "1";
+           
+            if(boWe.LN2!=null)
             oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
-            oWEx2.scalePhaseData.SECOND.amount = ((int)(boWe.Zweitgewicht)*1000);
+            
+            if (boWe.Zweitgewicht != null)
+            oWEx2.scalePhaseData.SECOND.amount = ((int)(boWe.Zweitgewicht));
+
             oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) + "000";
             #endregion
 
