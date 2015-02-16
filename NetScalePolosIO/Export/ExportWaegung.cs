@@ -223,8 +223,8 @@ namespace NetScalePolosIO.Export
             try
             {
 
-                //var client = new RestClient(baseUrl);
-                var client = new RestClient("http://10.127.8.221:10000");
+                var client = new RestClient(baseUrl);
+             //   var client = new RestClient("http://10.127.8.221:10000");
                 client.ClearHandlers();
 
                 // authen

@@ -7,19 +7,20 @@ using System.Windows;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main.Collections;
 using HWB.NETSCALE.BOEF;
+
 namespace YeomanExport
 {
-   public class WriteTaabToExcel
+    public class WriteTaabToExcel
     {
         private string exportpfad = "";
-        private string ExcelFileName ="";
+        private string ExcelFileName = "";
 
-        public int Export2Xls(  mmBindingList<WaegeEntity> oExport)
+        public int Export2Xls(mmBindingList<WaegeEntity> oExport)
         {
             int uRet = 0;
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEE = boE.GetEinstellungen();
-            if(boEE==null)
+            if (boEE == null)
             {
                 return 0;
             }
@@ -54,7 +55,7 @@ namespace YeomanExport
                 writer.WriteCell(0, 13, "Mengeneinheit");
                 // Header Ende
 
-                int lc = 1;  // LineCounter
+                int lc = 1; // LineCounter
                 foreach (var w in oExport)
                 {
                     writer.WriteCell(lc, 0, w.LieferscheinNr ?? "");
@@ -63,8 +64,9 @@ namespace YeomanExport
                     writer.WriteCell(lc, 3, w.articleDescription ?? "");
                     writer.WriteCell(lc, 4, w.customerBusinessIdentifier ?? "");
                     writer.WriteCell(lc, 5, w.customerName ?? "");
-                    writer.WriteCell(lc, 6, w.invoiceReceicerBusinessIdentifier ?? "");
-                    writer.WriteCell(lc, 7, w.invoiceReceiverName ?? "");
+
+                    writer.WriteCell(lc, 6, w.supplierOrConsigneeBusinessIdentifier ?? "");
+                    writer.WriteCell(lc, 7, w.supplierOrConsigneeName ?? "");
                     writer.WriteCell(lc, 8, w.Fahrzeug ?? "");
                     //   writer.WriteCell(lc, 9, w.deliveryType ?? "");
                     writer.WriteCell(lc, 9, w.incoterm ?? "");
@@ -75,7 +77,6 @@ namespace YeomanExport
                     writer.WriteCell(lc, 13, "t" ?? ""); // TODO: Aus den Daten entnehmen
                     uRet = lc;
                     lc = lc + 1;
-
                 }
 
                 writer.EndWrite();
@@ -83,11 +84,10 @@ namespace YeomanExport
             }
             catch (Exception ee)
             {
-
                 MessageBox.Show((ee.Message));
             }
-        
-            
+
+
             return uRet;
         }
     }

@@ -456,22 +456,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
-        {
-            get
-            {
-                if ((_OrderItemserviceEntities == null))
-                {
-                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
-                }
-                return _OrderItemserviceEntities;
-            }
-        }
-        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<EinstellungenEntity> EinstellungenEntities
         {
             get
@@ -516,6 +500,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
+        {
+            get
+            {
+                if ((_OrderItemserviceEntities == null))
+                {
+                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
+                }
+                return _OrderItemserviceEntities;
+            }
+        }
+        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -713,14 +713,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
-        {
-            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'EinstellungenEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
@@ -742,6 +734,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
+        {
+            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
         }
 
         #endregion
@@ -10310,6 +10310,54 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _InvisibleSendedOrderItems;
         partial void OnInvisibleSendedOrderItemsChanging(Nullable<global::System.Boolean> value);
         partial void OnInvisibleSendedOrderItemsChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> serviceId
+        {
+            get
+            {
+                return _serviceId;
+            }
+            set
+            {
+                OnserviceIdChanging(value);
+                ReportPropertyChanging("serviceId");
+                _serviceId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("serviceId");
+                OnserviceIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _serviceId;
+        partial void OnserviceIdChanging(Nullable<global::System.Int32> value);
+        partial void OnserviceIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String serviceDescription
+        {
+            get
+            {
+                return _serviceDescription;
+            }
+            set
+            {
+                OnserviceDescriptionChanging(value);
+                ReportPropertyChanging("serviceDescription");
+                _serviceDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("serviceDescription");
+                OnserviceDescriptionChanged();
+            }
+        }
+        private global::System.String _serviceDescription;
+        partial void OnserviceDescriptionChanging(global::System.String value);
+        partial void OnserviceDescriptionChanged();
 
         #endregion
     

@@ -4,6 +4,7 @@ using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 using RestSharp.Deserializers;
 
 namespace NetScalePolosIO.Import.AuftragsImport
@@ -32,7 +33,10 @@ namespace NetScalePolosIO.Import.AuftragsImport
             var request = new RestRequest(url+"200/1") { Method = Method.GET };
             request.AddHeader("X-location-Id", location.ToString());
 
-
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(), boEe.ConsumerSecret.Trim(),
+               string.Empty, string.Empty);
 
             #region// Anzahl der Order ermittlen
             var response = client.Execute(request);
@@ -204,7 +208,12 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     _boOise.identifier = t.identifier;
                                     _boOise.remark = t.remark;
                                     _boOise.sequence = t.sequence;
-                                    _boOise.product = oOEntity.orderItems[0].product.id;
+                              //      _boOise.product = oOEntity.orderItems[0].product.id;
+                                    _boOise.product = obj2.product.id;
+                                    _boOise.productdescription = obj2.product.description;
+                                    _boOise.serviceId = t.service.id;
+                                //    _boOise.serviceDescription = t.service.
+
                                     // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
                                     _boOise.productdescription = oOEntity.orderItems[0].product.description;
                                     // 14.11.2014 Das entspricht der Schnittstellenbeschreibung

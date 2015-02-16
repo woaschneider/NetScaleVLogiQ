@@ -5,6 +5,7 @@ using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
@@ -24,7 +25,7 @@ namespace NetScalePolosIO.Import.AddressImport
         {
             try
             {
-              
+                
                
                 var client = new RestClient( baseUrl);
                 client.ClearHandlers();
@@ -33,13 +34,17 @@ namespace NetScalePolosIO.Import.AddressImport
             //    var request = new RestRequest("/rest/address/all") {Method = Method.GET};
                 var request = new RestRequest(url) { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
-            
-               
+
+                Einstellungen boE = new Einstellungen();
+                EinstellungenEntity boEe = boE.GetEinstellungen();
+                client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(), boEe.ConsumerSecret.Trim(),
+                   string.Empty, string.Empty);
+                
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
-            
-               
+
+                
                 var oR = JsonConvert.DeserializeObject<AddressRootObject>(response.Content);
 
                 _boA = new Adressen();

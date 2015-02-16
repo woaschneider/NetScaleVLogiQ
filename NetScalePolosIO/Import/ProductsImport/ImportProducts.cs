@@ -4,6 +4,7 @@ using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Authenticators;
 using RestSharp.Deserializers;
 using Xceed.Wpf.Toolkit;
 
@@ -27,7 +28,10 @@ namespace NetScalePolosIO.Import.ProductsImport
                 var request = new RestRequest("/rest/data/products") { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
 
-
+                Einstellungen boE = new Einstellungen();
+                EinstellungenEntity boEe = boE.GetEinstellungen();
+                client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(), boEe.ConsumerSecret.Trim(),
+                   string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
