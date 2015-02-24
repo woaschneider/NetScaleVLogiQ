@@ -61,20 +61,20 @@ namespace HWB.NETSCALE.BOEF
         }
 
         // TODO_ Erweitern nach Kundenwunsch
-        public AbrufEntity CompareAbrufData(WaegeEntity oWe)
-        {
-            IQueryable<AbrufEntity> query = from a in ObjectContext.AbrufEntities
-                orderby a.AbrufNr
-                where a.customerBusinessIdentifier == oWe.customerBusinessIdentifier &&
-                      a.invoiceReceicerBusinessIdentifier == oWe.invoiceReceicerBusinessIdentifier &&
-                      a.ownerBusinessIdentifier == oWe.ownerBusinessIdentifier &&
-                      a.supplierOrConsigneeBusinessIdentifier == oWe.supplierOrConsigneeBusinessIdentifier &&
-                      a.articleNumber == oWe.articleNumber && a.identifier == oWe.identifier                                     
-                                            select a;
-            AbrufEntity oAE = GetEntity(query);
+        //public AbrufEntity CompareAbrufData(WaegeEntity oWe)
+        //{
+        //    IQueryable<AbrufEntity> query = from a in ObjectContext.AbrufEntities
+        //        orderby a.AbrufNr
+        //        where a.customerBusinessIdentifier == oWe.customerBusinessIdentifier &&
+        //              a.invoiceReceicerBusinessIdentifier == oWe.invoiceReceicerBusinessIdentifier &&
+        //              a.ownerBusinessIdentifier == oWe.ownerBusinessIdentifier &&
+        //              a.supplierOrConsigneeBusinessIdentifier == oWe.supplierOrConsigneeBusinessIdentifier &&
+        //              a.articleNumber == oWe.articleNumber && a.identifier == oWe.identifier                                     
+        //                                    select a;
+        //    AbrufEntity oAE = GetEntity(query);
 
-            return oAE;
-        }
+        //    return oAE;
+        //}
         public bool HasAbrufChanged(WaegeEntity boWE)
         {
             // Vergleiche

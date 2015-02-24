@@ -84,7 +84,8 @@ public class SupplierOrConsignee
 public class Service
 {
     public int id { get; set; }
-    public string state { get; set; }
+    public string description { get; set; }
+    
     public double targedAmount { get; set; }
 }
 

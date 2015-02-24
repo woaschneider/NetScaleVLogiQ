@@ -26,9 +26,9 @@
 
 
     </mmwpf:mmBusinessWindow.Resources>
-	<mmwpf:mmBusinessWindow.DataContext>
-		<HWB_NETSCALE_BOEF:AdressenEntity/>
-	</mmwpf:mmBusinessWindow.DataContext>
+    <mmwpf:mmBusinessWindow.DataContext>
+        <HWB_NETSCALE_BOEF:AdressenEntity />
+    </mmwpf:mmBusinessWindow.DataContext>
     <Grid x:Name="grid1" Background="{DynamicResource HWB_Frm_BackGround}">
         <ribbon:Ribbon x:Name="ribbon1"
                        Height="120"

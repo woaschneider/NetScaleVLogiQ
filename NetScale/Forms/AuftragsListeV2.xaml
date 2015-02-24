@@ -80,16 +80,20 @@
                 <DataGridTextColumn Binding="{Binding invoiceReceicerBusinessIdentifier}" Header="Rechnungsempfänger" />
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="DataGridOrderItemService" Height="220"
-                  Margin="2,449,0,0" VerticalAlignment="Top"
+        <DataGrid Name="DataGridOrderItemService"
+                  Width="1135"
+                  Height="220"
+                  Margin="2,449,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
                   AutoGenerateColumns="False"
                   MouseDoubleClick="DataGridOrderItemService_OnMouseDoubleClick"
-                  Style="{DynamicResource DataGridStyle}" HorizontalAlignment="Left" Width="1135">
+                  Style="{DynamicResource DataGridStyle}">
             <DataGrid.DataContext>
                 <hwbNetscaleBoef:OrderItemserviceEntity />
             </DataGrid.DataContext>
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding identifier}" Header="Identifier." />
+                
                 <DataGridTextColumn Binding="{Binding sequence}" Header="Seq." />
                 <DataGridTextColumn Binding="{Binding deliveryType}" Header="Frankatur" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
@@ -100,7 +104,10 @@
                 <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermandant" />
                 <DataGridTextColumn Binding="{Binding plannedDate}" Header="gpl. Leistungsdatum" />
                 <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung" />
-                <DataGridTextColumn Binding="{Binding serviceDescription}"  Header="Leistung"/>
+                <DataGridTextColumn Binding="{Binding productdescription}" Header="Produkt" />
+                <DataGridTextColumn Binding="{Binding serviceDescription}" Header="Leistung" />
+                <DataGridTextColumn Binding="{Binding identifierOItem}" Header="Ident OI." />
+                <DataGridTextColumn Binding="{Binding identifierOItemService}" Header="Ident OIS." />
             </DataGrid.Columns>
         </DataGrid>
         <Label Name="LblAuftragGeber"

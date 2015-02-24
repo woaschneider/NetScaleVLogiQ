@@ -27,7 +27,7 @@ namespace HWB.NETSCALE.BOEF
         public OrderItemserviceEntity GetByIdAndPKOrderItem(int pkorderitem, string id)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
-                                                       where o.identifier == id & o.PKOrderItem== pkorderitem
+                                                       where o.identifierOItemService == id & o.PKOrderItem== pkorderitem
                                                        select o;
             return GetEntity(query);
         }
@@ -42,7 +42,7 @@ namespace HWB.NETSCALE.BOEF
         public OrderItemserviceEntity GetByIdentitifier(string ident)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
-                                                       where o.identifier == ident
+                                                       where o.identifierOItem == ident
                                                        select o;
             return GetEntity(query);
         }
@@ -51,6 +51,7 @@ namespace HWB.NETSCALE.BOEF
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
                 where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false & o.HasBinUsed==false
+                orderby o.sequence
             
                                                        select o;
             var uRet = GetEntityList(query);

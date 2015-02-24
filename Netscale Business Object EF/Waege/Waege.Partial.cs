@@ -34,10 +34,10 @@ namespace HWB.NETSCALE.BOEF
             if (this.State == mmBusinessState.PreSaving)
             {
                 PreSaveHook(this.Entity);
-                if (this.Entity.Waegung == 1 && Entity.identifier != null)
+                if (this.Entity.Waegung == 1 && Entity.identifierOItem != null)
                 {
                     OrderItemservice boOES = new OrderItemservice();
-                    OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifier);
+                    OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifierOItem);
                     if (boOEISe != null)
                     {
                         boOEISe.HasBinUsed = true;
@@ -50,10 +50,10 @@ namespace HWB.NETSCALE.BOEF
             {// Wenn eine Erstwägung gelöscht wird, Orderitemservice wieder aktiv machen
                 if (this.Entity != null)
                 {
-                    if (this.Entity.Waegung == 1 && Entity.identifier != null)
+                    if (this.Entity.Waegung == 1 && Entity.identifierOItem != null)
                     {
                         OrderItemservice boOES = new OrderItemservice();
-                        OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifier);
+                        OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifierOItem);
                         if (boOEISe != null)
                         {
                             boOEISe.HasBinUsed = false;
@@ -106,7 +106,7 @@ namespace HWB.NETSCALE.BOEF
 
             if (goApp.AutoAbruf)
             {
-                CheckAndCreateAbr(boWE);
+                //CheckAndCreateAbr(boWE);
             }
 
             if (goApp.SAVE_ABR2CF)
@@ -125,30 +125,30 @@ namespace HWB.NETSCALE.BOEF
             #endregion
         }
 
-        private void CheckAndCreateAbr(WaegeEntity boWE)
-        {
-            AbrufEntity oAe;
-            var boA = new Abruf();
+        //private void CheckAndCreateAbr(WaegeEntity boWE)
+        //{
+        //    AbrufEntity oAe;
+        //    var boA = new Abruf();
 
-            if (boWE.AbrufNr == null)
-            {
-                // Gibt es einen Abruf mit diesen Daten
-                oAe = boA.CompareAbrufData(boWE);
-                if (oAe == null)
-                {
-                    oAe = boA.CreateAbrufautomatically(boWE);
+        //    if (boWE.AbrufNr == null)
+        //    {
+        //        // Gibt es einen Abruf mit diesen Daten
+        //        oAe = boA.CompareAbrufData(boWE);
+        //        if (oAe == null)
+        //        {
+        //            oAe = boA.CreateAbrufautomatically(boWE);
 
-                    Entity.AbrufNr = oAe.AbrufNr;
-                    Entity.abruf_PK = oAe.PK;
-                }
-                else
-                {
-                    Entity.AbrufNr = oAe.AbrufNr;
-                    Entity.abruf_PK = oAe.PK;
-                }
-            }
+        //            Entity.AbrufNr = oAe.AbrufNr;
+        //            Entity.abruf_PK = oAe.PK;
+        //        }
+        //        else
+        //        {
+        //            Entity.AbrufNr = oAe.AbrufNr;
+        //            Entity.abruf_PK = oAe.PK;
+        //        }
+        //    }
 
-        }
+        //}
 
         public mmBindingList<WaegeEntity> GetLsListe(DateTime vonDatum, DateTime bisDatum, string f1, string mc1,
             string f2, string mc2, string f3, string mc3)
@@ -703,9 +703,9 @@ namespace HWB.NETSCALE.BOEF
                 Entity.number = _boOIE.number; // Auftrasgnummer
                 // Detail
                 Entity.sequence = _boOISE.sequence;
-
+                Entity.productid = _boOISE.product;
                 Entity.productdescription = _boOISE.productdescription;
-                Entity.identifier = _boOISE.identifier;
+                Entity.identifierOItem = _boOISE.identifierOItem;
               Entity.ownerBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
                 Entity.ownerId = _boOISE.ownerId;
                 
@@ -823,9 +823,9 @@ namespace HWB.NETSCALE.BOEF
 
         public bool SetOrderItemsServiceInvisible(WaegeEntity we)
         {
-            
+
             OrderItemservice boOIS = new OrderItemservice();
-            OrderItemserviceEntity boOISE = boOIS.GetByIdentitifier(we.identifier);
+            OrderItemserviceEntity boOISE = boOIS.GetByIdentitifier(we.identifierOItem);
             if (boOISE != null)
             {
                 boOISE.InvisibleSendedOrderItems = true;

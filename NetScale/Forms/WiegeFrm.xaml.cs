@@ -1163,7 +1163,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Export2Json(WaegeEntity we)
         {
-            new ImportExportPolos().ExportSingle(we);
+           // new ImportExportPolos().ExportSingle(we);
         }
 
         #endregion
