@@ -21,7 +21,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FK_Message_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HWB.NETSCALE.BOEF.Language), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.Message), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Artikel_hat_Attribute", "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), "OrderArticleAttributeEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderArticleAttributeEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "OrderitemEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderitemEntity), "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Relation_234", "Produkte", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.ProdukteEntity), "ServiceEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.ServiceEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Relation_234", "ProdukteEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.ProdukteEntity), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.ServEntity), true)]
 
 #endregion
 
@@ -505,22 +505,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<ServiceEntity> ServiceEntities
-        {
-            get
-            {
-                if ((_ServiceEntities == null))
-                {
-                    _ServiceEntities = base.CreateObjectSet<ServiceEntity>("ServiceEntities");
-                }
-                return _ServiceEntities;
-            }
-        }
-        private ObjectSet<ServiceEntity> _ServiceEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<ProdukteEntity> ProdukteEntities
         {
             get
@@ -533,6 +517,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ProdukteEntity> _ProdukteEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ServEntity> ServEntities
+        {
+            get
+            {
+                if ((_ServEntities == null))
+                {
+                    _ServEntities = base.CreateObjectSet<ServEntity>("ServEntities");
+                }
+                return _ServEntities;
+            }
+        }
+        private ObjectSet<ServEntity> _ServEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -754,19 +754,19 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ServiceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToServiceEntities(ServiceEntity serviceEntity)
-        {
-            base.AddObject("ServiceEntities", serviceEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ProdukteEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToProdukteEntities(ProdukteEntity produkteEntity)
         {
             base.AddObject("ProdukteEntities", produkteEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ServEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToServEntities(ServEntity servEntity)
+        {
+            base.AddObject("ServEntities", servEntity);
         }
 
         #endregion
@@ -10656,18 +10656,18 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Relation_234", "ServiceEntity")]
-        public EntityCollection<ServiceEntity> Services
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Relation_234", "Service")]
+        public EntityCollection<ServEntity> Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ServiceEntity>("HWB.NETSCALE.BOEF.Relation_234", "ServiceEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ServEntity>("HWB.NETSCALE.BOEF.Relation_234", "Service");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ServiceEntity>("HWB.NETSCALE.BOEF.Relation_234", "ServiceEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ServEntity>("HWB.NETSCALE.BOEF.Relation_234", "Service", value);
                 }
             }
         }
@@ -10678,22 +10678,22 @@ namespace HWB.NETSCALE.BOEF
     /// <summary>
     /// Keine Dokumentation für Metadaten verfügbar.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ServiceEntity")]
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ServEntity")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class ServiceEntity : ABusinessEntity
+    public partial class ServEntity : ABusinessEntity
     {
         #region Factory-Methode
     
         /// <summary>
-        /// Erstellt ein neues ServiceEntity-Objekt.
+        /// Erstellt ein neues ServEntity-Objekt.
         /// </summary>
         /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
-        public static ServiceEntity CreateServiceEntity(global::System.Int32 pK)
+        public static ServEntity CreateServEntity(global::System.Int32 pK)
         {
-            ServiceEntity serviceEntity = new ServiceEntity();
-            serviceEntity.PK = pK;
-            return serviceEntity;
+            ServEntity servEntity = new ServEntity();
+            servEntity.PK = pK;
+            return servEntity;
         }
 
         #endregion
@@ -10808,16 +10808,16 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Relation_234", "Produkte")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Relation_234", "ProdukteEntity")]
         public ProdukteEntity Produkte
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "Produkte").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "Produkte").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity").Value = value;
             }
         }
         /// <summary>
@@ -10829,13 +10829,13 @@ namespace HWB.NETSCALE.BOEF
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "Produkte");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "Produkte", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity", value);
                 }
             }
         }

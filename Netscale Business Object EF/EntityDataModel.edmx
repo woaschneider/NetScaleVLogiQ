@@ -843,11 +843,11 @@
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
-          <EntitySet Name="ServiceEntities" EntityType="HWB.NETSCALE.BOEF.ServiceEntity" />
           <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
+          <EntitySet Name="ServEntities" EntityType="HWB.NETSCALE.BOEF.ServEntity" />
           <AssociationSet Name="Relation_234" Association="HWB.NETSCALE.BOEF.Relation_234">
-            <End Role="Produkte" EntitySet="ProdukteEntities" />
-            <End Role="ServiceEntity" EntitySet="ServiceEntities" />
+            <End Role="ProdukteEntity" EntitySet="ProdukteEntities" />
+            <End Role="Service" EntitySet="ServEntities" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Class">
@@ -1560,16 +1560,6 @@
           <Property Type="String" Name="IstZielLagerPlatzId" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="identifierOItemService" MaxLength="22" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ServiceEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="id" />
-          <Property Type="String" Name="description" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="FK" />
-          <NavigationProperty Name="Produkte" Relationship="HWB.NETSCALE.BOEF.Relation_234" FromRole="ServiceEntity" ToRole="Produkte" />
-        </EntityType>
         <EntityType Name="ProdukteEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1578,16 +1568,26 @@
           <Property Type="Int32" Name="id" />
           <Property Type="String" Name="description" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="shortdescirption" MaxLength="64" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Services" Relationship="HWB.NETSCALE.BOEF.Relation_234" FromRole="Produkte" ToRole="ServiceEntity" />
+          <NavigationProperty Name="Services" Relationship="HWB.NETSCALE.BOEF.Relation_234" FromRole="ProdukteEntity" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="ServEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="id" />
+          <Property Type="String" Name="description" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FK" />
+          <NavigationProperty Name="Produkte" Relationship="HWB.NETSCALE.BOEF.Relation_234" FromRole="Service" ToRole="ProdukteEntity" />
         </EntityType>
         <Association Name="Relation_234">
-          <End Type="HWB.NETSCALE.BOEF.ProdukteEntity" Role="Produkte" Multiplicity="0..1" />
-          <End Type="HWB.NETSCALE.BOEF.ServiceEntity" Role="ServiceEntity" Multiplicity="*" />
+          <End Type="HWB.NETSCALE.BOEF.ProdukteEntity" Role="ProdukteEntity" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.ServEntity" Role="Service" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Produkte">
+            <Principal Role="ProdukteEntity">
               <PropertyRef Name="PK" />
             </Principal>
-            <Dependent Role="ServiceEntity">
+            <Dependent Role="Service">
               <PropertyRef Name="FK" />
             </Dependent>
           </ReferentialConstraint>
@@ -2293,20 +2293,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ServiceEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ServiceEntity">
-              <MappingFragment StoreEntitySet="Services">
-                <ScalarProperty Name="FK" ColumnName="FK" />
+          <EntitySetMapping Name="ProdukteEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ProdukteEntity">
+              <MappingFragment StoreEntitySet="Produkte">
+                <ScalarProperty Name="shortdescirption" ColumnName="shortdescirption" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProdukteEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ProdukteEntity">
-              <MappingFragment StoreEntitySet="Produkte">
-                <ScalarProperty Name="shortdescirption" ColumnName="shortdescirption" />
+          <EntitySetMapping Name="ServEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ServEntity">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="FK" ColumnName="FK" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
@@ -2375,8 +2375,8 @@
           <edmx:ConnectorPoint PointX="6" PointY="15.639109700520834" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="12.375" PointY="12.75" Height="27.364075520833325" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ServiceEntity" Width="1.5" PointX="9.25" PointY="38.25" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="7" PointY="38.25" Height="1.9802864583333246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ServEntity" Width="1.5" PointX="9.25" PointY="38.25" Height="1.9802864583333246" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Relation_234" >
           <edmx:ConnectorPoint PointX="8.5" PointY="39.240143229166662" />
           <edmx:ConnectorPoint PointX="9.25" PointY="39.240143229166662" />
