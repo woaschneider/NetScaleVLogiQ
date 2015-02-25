@@ -34,6 +34,7 @@
           <EntitySet Name="Orderitem" EntityType="$namespace$.Target.Orderitem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderItemservice" EntityType="$namespace$.Target.OrderItemservice" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Services" EntityType="$namespace$.Target.Services" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="$namespace$.Target.Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Waagentypen" EntityType="$namespace$.Target.Waagentypen" store:Type="Tables" Schema="dbo" />
@@ -51,6 +52,10 @@
           <AssociationSet Name="FK_Message_Language" Association="$namespace$.Target.FK_Message_Language">
             <End Role="Language" EntitySet="Language" />
             <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="Relation_234" Association="$namespace$.Target.Relation_234">
+            <End Role="Produkte" EntitySet="Produkte" />
+            <End Role="Services" EntitySet="Services" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Abruf">
@@ -280,6 +285,7 @@
           <Property Name="RemoveSendedOrderItems" Type="varchar" MaxLength="10" />
           <Property Name="MakeInvisibleSendedOrderItems" Type="bit" />
           <Property Name="WiegescheinNr" Type="int" />
+          <Property Name="ExportRestCreateOrderUrl" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="ExportLog">
           <Key>
@@ -468,7 +474,6 @@
           </Key>
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PKOrderItem" Type="int" />
-          <Property Name="identifierOItemService" Type="varchar" MaxLength="22" />
           <Property Name="sequence" Type="int" />
           <Property Name="remark" Type="varchar" MaxLength="100" />
           <Property Name="ownerId" Type="int" />
@@ -527,10 +532,11 @@
           <Property Name="HasBinSended" Type="bit" />
           <Property Name="HasBinSendedDateTime" Type="datetime" />
           <Property Name="InvisibleSendedOrderItems" Type="bit" />
+          <Property Name="identifierOItem" Type="varchar" MaxLength="22" />
+          <Property Name="identifierOItemService" Type="varchar" MaxLength="22" />
           <Property Name="serviceId" Type="int" />
           <Property Name="serviceDescription" Type="varchar" MaxLength="50" />
           <Property Name="orderstate" Type="varchar" MaxLength="32" />
-          <Property Name="identifierOItem" Type="varchar" MaxLength="22" />
         </EntityType>
         <EntityType Name="Produkte">
           <Key>
@@ -540,8 +546,15 @@
           <Property Name="id" Type="int" />
           <Property Name="description" Type="varchar" MaxLength="255" />
           <Property Name="shortdescirption" Type="varchar" MaxLength="64" />
-          <Property Name="Wiegeschein" Type="bit" />
-          <Property Name="Lierferschein" Type="bit" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="64" />
+          <Property Name="FK" Type="int" />
         </EntityType>
         <EntityType Name="UserRollen">
           <Key>
@@ -624,7 +637,6 @@
           <Property Name="invoiceReceiverIsocodeCountry" Type="varchar" MaxLength="10" />
           <Property Name="productid" Type="int" />
           <Property Name="productdescription" Type="char" MaxLength="64" />
-          <Property Name="identifierOItem" Type="varchar" MaxLength="22" />
           <Property Name="sequence" Type="int" />
           <Property Name="articleId" Type="int" />
           <Property Name="deliveryType" Type="varchar" MaxLength="100" />
@@ -714,6 +726,7 @@
           <Property Name="freitext5" Type="varchar" MaxLength="100" />
           <Property Name="IstQuellLagerPlatzId" Type="varchar" MaxLength="20" />
           <Property Name="IstZielLagerPlatzId" Type="varchar" MaxLength="20" />
+          <Property Name="identifierOItem" Type="varchar" MaxLength="22" />
           <Property Name="identifierOItemService" Type="varchar" MaxLength="22" />
         </EntityType>
         <EntityType Name="Warenarten">
@@ -774,6 +787,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Relation_234">
+          <End Role="Produkte" Type="$namespace$.Target.Produkte" Multiplicity="0..1" />
+          <End Role="Services" Type="$namespace$.Target.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkte">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -808,7 +833,6 @@
           <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
           <EntitySet Name="ExportLogEntities" EntityType="HWB.NETSCALE.BOEF.ExportLogEntity" />
           <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
-          <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
           <EntitySet Name="OrderItemserviceEntities" EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" />
           <AssociationSet Name="Artikel_hat_Attribute" Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute">
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
@@ -819,6 +843,12 @@
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
+          <EntitySet Name="ServiceEntities" EntityType="HWB.NETSCALE.BOEF.ServiceEntity" />
+          <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
+          <AssociationSet Name="Relation_234" Association="HWB.NETSCALE.BOEF.Relation_234">
+            <End Role="Produkte" EntitySet="ProdukteEntities" />
+            <End Role="ServiceEntity" EntitySet="ServiceEntities" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1290,17 +1320,7 @@
           <Property Type="String" Name="RemoveSendedOrderItems" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="MakeInvisibleSendedOrderItems" />
           <Property Type="Int32" Name="WiegescheinNr" />
-        </EntityType>
-        <EntityType Name="ProdukteEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="id" />
-          <Property Type="String" Name="description" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="shortdescirption" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="Wiegeschein" />
-          <Property Type="Boolean" Name="Lierferschein" />
+          <Property Type="String" Name="ExportRestCreateOrderUrl" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OrderItemserviceEntity">
           <Key>
@@ -1540,6 +1560,38 @@
           <Property Type="String" Name="IstZielLagerPlatzId" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="identifierOItemService" MaxLength="22" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="ServiceEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="id" />
+          <Property Type="String" Name="description" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="FK" />
+          <NavigationProperty Name="Produkte" Relationship="HWB.NETSCALE.BOEF.Relation_234" FromRole="ServiceEntity" ToRole="Produkte" />
+        </EntityType>
+        <EntityType Name="ProdukteEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="id" />
+          <Property Type="String" Name="description" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shortdescirption" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Services" Relationship="HWB.NETSCALE.BOEF.Relation_234" FromRole="Produkte" ToRole="ServiceEntity" />
+        </EntityType>
+        <Association Name="Relation_234">
+          <End Type="HWB.NETSCALE.BOEF.ProdukteEntity" Role="Produkte" Multiplicity="0..1" />
+          <End Type="HWB.NETSCALE.BOEF.ServiceEntity" Role="ServiceEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkte">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="ServiceEntity">
+              <PropertyRef Name="FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1990,6 +2042,7 @@
           <EntitySetMapping Name="EinstellungenEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
               <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="ExportRestCreateOrderUrl" ColumnName="ExportRestCreateOrderUrl" />
                 <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
                 <ScalarProperty Name="MakeInvisibleSendedOrderItems" ColumnName="MakeInvisibleSendedOrderItems" />
                 <ScalarProperty Name="RemoveSendedOrderItems" ColumnName="RemoveSendedOrderItems" />
@@ -2022,18 +2075,6 @@
                 <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
                 <ScalarProperty Name="Mandant" ColumnName="Mandant" />
                 <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProdukteEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ProdukteEntity">
-              <MappingFragment StoreEntitySet="Produkte">
-                <ScalarProperty Name="Lierferschein" ColumnName="Lierferschein" />
-                <ScalarProperty Name="Wiegeschein" ColumnName="Wiegeschein" />
-                <ScalarProperty Name="shortdescirption" ColumnName="shortdescirption" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="PK" ColumnName="PK" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2252,6 +2293,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ServiceEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ServiceEntity">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="FK" ColumnName="FK" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProdukteEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ProdukteEntity">
+              <MappingFragment StoreEntitySet="Produkte">
+                <ScalarProperty Name="shortdescirption" ColumnName="shortdescirption" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2303,7 +2364,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="3.9033007812500102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ExportLogEntity" Width="1.5" PointX="12.375" PointY="0.75" Height="2.5571907552083246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="0.75" PointY="9.75" Height="7.36472656250001" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="9.5" PointY="11.5" Height="2.1725878906250102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="6" PointY="15.125" Height="13.902975260416667" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
           <edmx:ConnectorPoint PointX="6.75" PointY="15.125" />
@@ -2315,6 +2375,12 @@
           <edmx:ConnectorPoint PointX="6" PointY="15.639109700520834" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="12.375" PointY="12.75" Height="27.364075520833325" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ServiceEntity" Width="1.5" PointX="9.25" PointY="38.25" Height="1.9802864583333246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="7" PointY="38.25" Height="1.9802864583333246" />
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Relation_234" >
+          <edmx:ConnectorPoint PointX="8.5" PointY="39.240143229166662" />
+          <edmx:ConnectorPoint PointX="9.25" PointY="39.240143229166662" />
+        </edmx:AssociationConnector>
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

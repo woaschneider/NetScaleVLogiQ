@@ -13,19 +13,39 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Produkte.
+	/// Summary description for Services.
 	/// </summary>
-	public partial class Produkte : ABusinessObject<ProdukteEntity>
+	public partial class Services : ABusinessObject<ServicesEntity>
 	{
 		
 		#region Association Properties
 
-	
+		/// <summary>
+		/// Business Entity object
+		/// </summary>
+		public override ServicesEntity Entity
+		{
+			get
+			{
+				if (this._entity == null)
+				{
+					this._entity = this.CreateEntityObject();
+				}
+				return this._entity;
+			}
+			set
+			{
+				this._entity = value;
+			}
+		}
+		private ServicesEntity _entity;
+
+		/// <summary>
 		/// Business Rule object
 		/// </summary>
-		public virtual ProdukteRules Rules
+		public virtual ServicesRules Rules
 		{
-			get { return (ProdukteRules)this.BusinessRuleObj; }
+			get { return (ServicesRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +68,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Produkte()
+		public Services()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Produkte";
-			this.PhysicalDbcObjectName = "dbo.Produkte";
+			this.TableName = "Services";
+			this.PhysicalDbcObjectName = "dbo.Services";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +84,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new ProdukteRules(this);
+			return new ServicesRules(this);
 		}
 
 		/// <summary>

@@ -212,6 +212,11 @@
     <Compile Include="Produkte\ProdukteEntity.cs" />
     <Compile Include="Produkte\ProdukteRules.cs" />
     <Compile Include="Produkte\ProdukteRules.Partial.cs" />
+    <Compile Include="Services\Services.cs" />
+    <Compile Include="Services\Services.Partial.cs" />
+    <Compile Include="Services\ServicesEntity.cs" />
+    <Compile Include="Services\ServicesRules.cs" />
+    <Compile Include="Services\ServicesRules.Partial.cs" />
     <Compile Include="VFP.cs" />
     <Compile Include="ObjectXMLSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
