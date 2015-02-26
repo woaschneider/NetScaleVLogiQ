@@ -56,6 +56,33 @@ namespace NetScalePolosIO.Import.ProductsImport
                     _boPe.description = obj.description;
                     _boPe.shortdescirption = obj.description;
                     _boP.SaveEntity(_boPe);
+
+                    var oService = JsonConvert.DeserializeObject<Service>(response.Content);
+                    foreach (Service S in obj.services)
+                    {
+                        int id = S.id;
+                        string description = S.description;
+                        // Prüfe ob das Produkt schon diese LEistung in seiner Tabelle hat
+                        _boPe = _boP.GetById(_boPe.id);
+                        if (_boPe!=null)
+                        {   Serv _boServ = new Serv();
+
+                            ServEntity boSerE = _boServ.GetById_Fk(S.id, _boPe.PK);
+                            if (boSerE == null)
+                            {
+                                boSerE= new ServEntity();
+                            }
+                            boSerE.FK = _boPe.PK;
+                            boSerE.id = id;
+                            boSerE.description = description;
+
+                            _boServ.SaveEntity(boSerE);
+
+                        }
+
+
+
+                    }
                 }
             }
 

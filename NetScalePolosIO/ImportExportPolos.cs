@@ -159,14 +159,14 @@ namespace NetScalePolosIO
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
-            new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl); // OK
-            new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
-                // OK
-            new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl); // OK
+            //new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl); // OK
+            //new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
+            //    // OK
+            //new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl); // OK
             new ImportProducts().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl); // OK
-            new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId(),
-                boEe.ImpRESTServertArticleAttributesUrl);
-            new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
+            //new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId(),
+            //    boEe.ImpRESTServertArticleAttributesUrl);
+            //new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
 
        //     new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
         }

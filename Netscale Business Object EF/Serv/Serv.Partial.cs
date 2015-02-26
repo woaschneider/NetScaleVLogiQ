@@ -33,6 +33,15 @@ namespace HWB.NETSCALE.BOEF
 
         }
 
+        public ServEntity GetById_Fk(int id , int fk)
+        {
+            IQueryable<ServEntity> query = from s in ObjectContext.ServEntities
+                                           where s.id== id && s.FK == fk
+                                           select s;
+            return GetEntity(query);
+
+        }
+
         public mmBindingList<ServEntity> GetAllByFk(int fk)
         {
             IQueryable<ServEntity> query = from s in ObjectContext.ServEntities
