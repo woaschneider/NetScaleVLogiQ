@@ -49,5 +49,14 @@ namespace HWB.NETSCALE.BOEF
                 select s;
             return GetEntityList(query);
         }
+
+        public mmBindingList<ServEntity> GetAllByProduktId(int? id)
+        {
+            int? ProductPk = new Produkte().GetById(id).PK;
+            IQueryable<ServEntity> query = from s in ObjectContext.ServEntities
+                                           where  s.FK == ProductPk
+                                           select s;
+            return GetEntityList(query);
+        }
     }
 }

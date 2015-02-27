@@ -206,6 +206,9 @@
       <DependentUpon>AdressenListeFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Forms\ArbeitsleistungFilterFrm.xaml.cs">
+      <DependentUpon>ArbeitsleistungFilterFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ArticleEditFrm.xaml.cs">
       <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
     </Compile>
@@ -320,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\AdressenListeFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ArbeitsleistungFilterFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,19 +13,39 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Serv.
+	/// Summary description for Arbeitsleistungsfilter.
 	/// </summary>
-	public partial class Serv : ABusinessObject<ServEntity>
+	public partial class Arbeitsleistungsfilter : ABusinessObject<ArbeitsleistungsfilterEntity>
 	{
 		
 		#region Association Properties
 
-	
+		/// <summary>
+		/// Business Entity object
+		/// </summary>
+		public override ArbeitsleistungsfilterEntity Entity
+		{
+			get
+			{
+				if (this._entity == null)
+				{
+					this._entity = this.CreateEntityObject();
+				}
+				return this._entity;
+			}
+			set
+			{
+				this._entity = value;
+			}
+		}
+		private ArbeitsleistungsfilterEntity _entity;
+
+		/// <summary>
 		/// Business Rule object
 		/// </summary>
-		public virtual ServRules Rules
+		public virtual ArbeitsleistungsfilterRules Rules
 		{
-			get { return (ServRules)this.BusinessRuleObj; }
+			get { return (ArbeitsleistungsfilterRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +68,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Serv()
+		public Arbeitsleistungsfilter()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Services";
-			this.PhysicalDbcObjectName = "dbo.Services";
+			this.TableName = "Arbeitsleistungsfilter";
+			this.PhysicalDbcObjectName = "dbo.Arbeitsleistungsfilter";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +84,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new ServRules(this);
+			return new ArbeitsleistungsfilterRules(this);
 		}
 
 		/// <summary>

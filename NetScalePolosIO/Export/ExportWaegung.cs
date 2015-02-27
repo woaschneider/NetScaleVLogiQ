@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
 using Newtonsoft.Json;
+using OakLeaf.MM.Main.Collections;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Contrib;
@@ -184,39 +185,116 @@ namespace NetScalePolosIO.Export
             else // Kein Auftrag vorhanden
             {
                 // Lege OrderItemObject an
-                RootObject oOI = CreateOrderItem(boWe);
+                RootObject oOI = CreateOrderItem(boWe, location);
+                // 3. Die Id in die WaegeEntiy füllen (boWe.identifierOItemService)
+                boWe.identifierOItemService = GetIdentifierOItemService(oOI, boWe, baseUrl).ToString();
             }
         }
 
-        private RootObject CreateOrderItem(WaegeEntity w)
+        private RootObject CreateOrderItem(WaegeEntity w, int? location)
         {
             NetScalePolosIO.Export.RootObject oOI = new RootObject();
 
             // RootObject *********************************************************************
-           oOI.customer = new Customer();
-            oOI.customer.id = w.customerId;
-
-            oOI.invoiceReceiver = new InvoiceReceiver();
-            oOI.invoiceReceiver.id = w.invoiceReceiverId;
-            
+            //TODO: Frankatur / Incoterm
+            oOI.reference = "FREE";
             oOI.orderState = "NEW";
-            oOI.reference = "UNKNOWN";
-            oOI.locationId = w.locationId;
+         
+            oOI.locationId = location.ToString();
             oOI.date = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
 
+            // Customer
+            oOI.customer = new Customer();
+            oOI.customer.id = w.customerId;
+            //Invocie Receiver
+            oOI.invoiceReceiver = new InvoiceReceiver();
+            oOI.invoiceReceiver.id = w.invoiceReceiverId;
+
+
             // OrderItems**********************************************************************
+
+            // Ein OrderItem Object erzeugen
+            oOI.orderItems = new List<OrderItem>();
             oOI.orderItems.Add(new OrderItem());
+
+
             oOI.orderItems[0].orderItemState = "NEW";
             oOI.orderItems[0].plannedDate = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
-            
-                oOI.orderItems[0].product = new Product();
-                oOI.orderItems[0].product.id = w.productid;
-                
+
+            oOI.orderItems[0].product = new Product();
+            oOI.orderItems[0].product.id = w.productid;
+
+
+            // Wieviele Leistungen hat das Produkt 
+            Serv boS = new Serv();
+            mmBindingList<ServEntity> boSe = boS.GetAllByProduktId(w.productid);
+            if (boSe.Count > 0)
+            {
+                oOI.orderItems[0].orderItemServices = new List<OrderItemService>();
+                for (int i = 0; i <= boSe.Count - 1; i++)
+                {
+                    
+
                     oOI.orderItems[0].orderItemServices.Add(new OrderItemService());
-                    oOI.orderItems[0].orderItemServices[0].state = "NEW";
+                    oOI.orderItems[0].orderItemServices[i].remark = "NO ORDER";
+                    oOI.orderItems[0].orderItemServices[i].state = "NEW";
+                    oOI.orderItems[0].orderItemServices[i].targetAmount = 40000; // Muss das sein ?
+                    oOI.orderItems[0].orderItemServices[i].plannedBeginDate = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
+                    oOI.orderItems[0].orderItemServices[i].plannedEndDate = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
+                    oOI.orderItems[0].orderItemServices[i].deliveryType = "FREE"; // TODO auf Frankatur / Incoterm umstellen
+
+                    // ArtikelInstance
+                    oOI.orderItems[0].orderItemServices[i].articleInstance= new ArticleInstance();
+                    oOI.orderItems[0].orderItemServices[i].articleInstance.article = new Article();
+                    oOI.orderItems[0].orderItemServices[i].articleInstance.article.id = w.articleId;
+                    oOI.orderItems[0].orderItemServices[i].articleInstance.attributes = new Attributes(); // Warum auch immer muss hier ein leeres Objekt erzeugt werden ?
+                    oOI.orderItems[0].orderItemServices[i].supplierOrConsignee= new SupplierOrConsignee();
+                    oOI.orderItems[0].orderItemServices[i].supplierOrConsignee.id = w.supplierOrConsigneeId;
+
+
+                    // Service
+                    oOI.orderItems[0].orderItemServices[i].service = new Service();
+                    oOI.orderItems[0].orderItemServices[i].service.id = boSe[i].id;
+                }
+            }
+
 
             //
             return oOI;
+        }
+
+        private int GetIdentifierOItemService(RootObject oOi, WaegeEntity boWe, string baseUrl)
+        {
+            // Das ist hier ein wenig kompliziert
+            // Nachdem wir die Auftragshülle mit CreateOrderItem erstellt und mit den  entsprechenden Ids gefüllt haben:
+            // 1. Senden der Auftragshülle an Polos
+            // 2. Ausfiltern der relevanten Arbeitsleistung (service id) an Hand der Filtertabelle
+            // 3. Dann die die entsprechende OrdItemServiceId raussuchen und zurückliefern
+
+
+            // Schritt 1 Senden der Auftragshülle an Polos
+            // 
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            var client = new RestClient(baseUrl);
+
+            client.ClearHandlers();
+            var request = new RestRequest("/rest/order") {Method = Method.PUT};
+            request.AddHeader("X-location-Id", boEe.RestLocation.ToString());
+            request.RequestFormat = DataFormat.Json;
+
+            var obj = JsonConvert.SerializeObject(oOi);
+            request.AddParameter("application/json; charset=utf-8", obj, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+
+            client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(),
+                boEe.ConsumerSecret.Trim(),
+                string.Empty, string.Empty);
+
+            var response = client.Execute(request);
+
+            int OrdItemServiceId = 0;
+            return OrdItemServiceId;
         }
 
 

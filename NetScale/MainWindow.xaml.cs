@@ -332,5 +332,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             oMV.Close();
         }
 
+        private void ArbeitsleistungsFilte_OnClick(object sender, RoutedEventArgs e)
+        {
+            ArbeitsleistungFilterFrm oAFrm = new ArbeitsleistungFilterFrm();
+            oAFrm.ShowDialog();
+        }
     }
 }

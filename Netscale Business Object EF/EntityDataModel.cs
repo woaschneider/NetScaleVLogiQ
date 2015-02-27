@@ -21,7 +21,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FK_Message_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HWB.NETSCALE.BOEF.Language), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.Message), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Artikel_hat_Attribute", "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), "OrderArticleAttributeEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderArticleAttributeEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "OrderitemEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderitemEntity), "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Relation_234", "ProdukteEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.ProdukteEntity), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.ServEntity), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "C_Hat_Arbeitsleistungen_", "ProdukteEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.ProdukteEntity), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.ServEntity), true)]
 
 #endregion
 
@@ -521,6 +521,22 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
+        public ObjectSet<ArbeitsleistungsfilterEntity> ArbeitsleistungsfilterEntities
+        {
+            get
+            {
+                if ((_ArbeitsleistungsfilterEntities == null))
+                {
+                    _ArbeitsleistungsfilterEntities = base.CreateObjectSet<ArbeitsleistungsfilterEntity>("ArbeitsleistungsfilterEntities");
+                }
+                return _ArbeitsleistungsfilterEntities;
+            }
+        }
+        private ObjectSet<ArbeitsleistungsfilterEntity> _ArbeitsleistungsfilterEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
         public ObjectSet<ServEntity> ServEntities
         {
             get
@@ -759,6 +775,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToProdukteEntities(ProdukteEntity produkteEntity)
         {
             base.AddObject("ProdukteEntities", produkteEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArbeitsleistungsfilterEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToArbeitsleistungsfilterEntities(ArbeitsleistungsfilterEntity arbeitsleistungsfilterEntity)
+        {
+            base.AddObject("ArbeitsleistungsfilterEntities", arbeitsleistungsfilterEntity);
         }
     
         /// <summary>
@@ -3618,6 +3642,157 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Drucker;
         partial void OnDruckerChanging(global::System.String value);
         partial void OnDruckerChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ArbeitsleistungsfilterEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ArbeitsleistungsfilterEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues ArbeitsleistungsfilterEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static ArbeitsleistungsfilterEntity CreateArbeitsleistungsfilterEntity(global::System.Int32 pK)
+        {
+            ArbeitsleistungsfilterEntity arbeitsleistungsfilterEntity = new ArbeitsleistungsfilterEntity();
+            arbeitsleistungsfilterEntity.PK = pK;
+            return arbeitsleistungsfilterEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ProduktId
+        {
+            get
+            {
+                return _ProduktId;
+            }
+            set
+            {
+                OnProduktIdChanging(value);
+                ReportPropertyChanging("ProduktId");
+                _ProduktId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProduktId");
+                OnProduktIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ProduktId;
+        partial void OnProduktIdChanging(Nullable<global::System.Int32> value);
+        partial void OnProduktIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProduktDescription
+        {
+            get
+            {
+                return _ProduktDescription;
+            }
+            set
+            {
+                OnProduktDescriptionChanging(value);
+                ReportPropertyChanging("ProduktDescription");
+                _ProduktDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProduktDescription");
+                OnProduktDescriptionChanged();
+            }
+        }
+        private global::System.String _ProduktDescription;
+        partial void OnProduktDescriptionChanging(global::System.String value);
+        partial void OnProduktDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ServicesId
+        {
+            get
+            {
+                return _ServicesId;
+            }
+            set
+            {
+                OnServicesIdChanging(value);
+                ReportPropertyChanging("ServicesId");
+                _ServicesId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ServicesId");
+                OnServicesIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ServicesId;
+        partial void OnServicesIdChanging(Nullable<global::System.Int32> value);
+        partial void OnServicesIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ServicesDescription
+        {
+            get
+            {
+                return _ServicesDescription;
+            }
+            set
+            {
+                OnServicesDescriptionChanging(value);
+                ReportPropertyChanging("ServicesDescription");
+                _ServicesDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ServicesDescription");
+                OnServicesDescriptionChanged();
+            }
+        }
+        private global::System.String _ServicesDescription;
+        partial void OnServicesDescriptionChanging(global::System.String value);
+        partial void OnServicesDescriptionChanged();
 
         #endregion
     
@@ -10656,18 +10831,18 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Relation_234", "Service")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "C_Hat_Arbeitsleistungen_", "Service")]
         public EntityCollection<ServEntity> Services
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ServEntity>("HWB.NETSCALE.BOEF.Relation_234", "Service");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ServEntity>("HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_", "Service");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ServEntity>("HWB.NETSCALE.BOEF.Relation_234", "Service", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ServEntity>("HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_", "Service", value);
                 }
             }
         }
@@ -10808,16 +10983,16 @@ namespace HWB.NETSCALE.BOEF
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "Relation_234", "ProdukteEntity")]
+        [EdmRelationshipNavigationPropertyAttribute("HWB.NETSCALE.BOEF", "C_Hat_Arbeitsleistungen_", "ProdukteEntity")]
         public ProdukteEntity Produkte
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_", "ProdukteEntity").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_", "ProdukteEntity").Value = value;
             }
         }
         /// <summary>
@@ -10829,13 +11004,13 @@ namespace HWB.NETSCALE.BOEF
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_", "ProdukteEntity");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.Relation_234", "ProdukteEntity", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ProdukteEntity>("HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_", "ProdukteEntity", value);
                 }
             }
         }
