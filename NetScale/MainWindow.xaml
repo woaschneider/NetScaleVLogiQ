@@ -401,7 +401,11 @@
                                          FontSize="14"
                                          Label=" Service-Filter "
                                          LargeImageSource="Images\1334130471_blockdevice.png" />
-
+                    <ribbon:RibbonButton x:Name="cmdErrorLog"
+                                         Click="CmdErrorLog_OnClick"
+                                         FontSize="14"
+                                         Label=" Errorlog "
+                                         LargeImageSource="Images\alert.jpg" />
                     <ribbon:RibbonButton x:Name="cmdInfo"
                                          Click="cmdInfo_Click"
                                          FontSize="14"

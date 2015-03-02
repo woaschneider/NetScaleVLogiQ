@@ -188,6 +188,11 @@ namespace NetScalePolosIO.Export
                 RootObject oOI = CreateOrderItem(boWe, location);
                 // 3. Die Id in die WaegeEntiy füllen (boWe.identifierOItemService)
                 boWe.identifierOItemService = GetIdentifierOItemService(oOI, boWe, baseUrl).ToString();
+                if (boWe.identifierOItemService != "0") // = bedeutet die Auftragsanlage schlug fehl
+                {   Waege boW = new Waege();
+                    boW.SaveEntity(boWe); // Mal schauen ob das  so klappt.
+                    ExportExistingOrder2Rest(baseUrl, url, location, boWe);
+                }
             }
         }
 
@@ -293,6 +298,14 @@ namespace NetScalePolosIO.Export
 
             var response = client.Execute(request);
 
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                WriteToExportLog(response, boWe);
+
+                return 0;
+            }
+
+
             int OrdItemServiceId = 0;
             return OrdItemServiceId;
         }
@@ -343,29 +356,24 @@ namespace NetScalePolosIO.Export
             try
             {
                 var client = new RestClient(baseUrl);
-                //   var client = new RestClient("http://10.127.8.221:10000");
+             
                 client.ClearHandlers();
 
-                // authen
-
-
-                // authen
+             
 
 
                 var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
-                //   client.AddHandler("application/json",new JsonDeserializer());
+           
                 request.AddHeader("X-location-Id", boEe.RestLocation.ToString());
                 request.RequestFormat = DataFormat.Json;
 
                 //  var obj = request.JsonSerializer.Serialize(oWEx2);
                 var obj = JsonConvert.SerializeObject(oWEx2);
-                //   request.AddBody(obj);
+             
 
                 request.AddParameter("application/json; charset=utf-8", obj, ParameterType.RequestBody);
                 request.RequestFormat = DataFormat.Json;
-                // Test
-
-                //
+           
                 client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(),
                     boEe.ConsumerSecret.Trim(),
                     string.Empty, string.Empty);
@@ -399,12 +407,15 @@ namespace NetScalePolosIO.Export
             }
             catch (Exception ee)
             {
+                new WriteErrorLog().WriteToErrorLog(ee);
                 return false;
             }
 
 
             return false;
         }
+
+       
 
         private static void SetOrderItemServiceAsSend(WaegeEntity we)
         {
@@ -419,6 +430,9 @@ namespace NetScalePolosIO.Export
 
         private void WriteToExportLog(IRestResponse response, WaegeEntity we)
         {
+            try
+            {
+           
             var oR = JsonConvert.DeserializeObject<RestServerError>(response.Content);
 
             ExportLog boE = new ExportLog();
@@ -436,6 +450,14 @@ namespace NetScalePolosIO.Export
             boEe.OrderItemNumber = we.number;
             boEe.OrderItemServiceIdentifier = we.identifierOItemService;
             boE.SaveEntity(boEe);
+          
+
+            }
+            catch (Exception e)
+            {
+                
+                new WriteErrorLog().WriteToErrorLog(e);
+            }
         }
     }
 

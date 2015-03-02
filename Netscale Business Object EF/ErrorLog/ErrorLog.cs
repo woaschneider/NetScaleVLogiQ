@@ -13,19 +13,19 @@ using OakLeaf.MM.Main.Data;
 namespace HWB.NETSCALE.BOEF
 {
 	/// <summary>
-	/// Summary description for Artikel.
+	/// Summary description for ErrorLog.
 	/// </summary>
-	public partial class Artikel : ABusinessObject<ArtikelEntity>
+	public partial class ErrorLog : ABusinessObject<ErrorLogEntity>
 	{
 		
 		#region Association Properties
 
-	
+		
 		/// Business Rule object
 		/// </summary>
-		public virtual ArtikelRules Rules
+		public virtual ErrorLogRules Rules
 		{
-			get { return (ArtikelRules)this.BusinessRuleObj; }
+			get { return (ErrorLogRules)this.BusinessRuleObj; }
 			set { this.BusinessRuleObj = value; }
 		}
 
@@ -48,11 +48,11 @@ namespace HWB.NETSCALE.BOEF
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Artikel()
+		public ErrorLog()
 		{
 			this.EntityFramework = true;
-			this.TableName = "Artikel";
-			this.PhysicalDbcObjectName = "dbo.Artikel";
+			this.TableName = "ErrorLog";
+			this.PhysicalDbcObjectName = "dbo.ErrorLog";
 			this.PrimaryKey = "PK";
 			this.HookConstructor();
 			this.EntityCentric = true;
@@ -64,7 +64,7 @@ namespace HWB.NETSCALE.BOEF
 		/// <returns>Reference to the business rule object</returns>
 		protected override mmBusinessRule CreateBusinessRuleObject()
 		{
-			return new ArtikelRules(this);
+			return new ErrorLogRules(this);
 		}
 
 		/// <summary>

@@ -181,6 +181,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             }
             catch (InvalidCastException e)
             {
+                
                 MessageBox.Show( e.ToString());
             }
         }
@@ -336,6 +337,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             ArbeitsleistungFilterFrm oAFrm = new ArbeitsleistungFilterFrm();
             oAFrm.ShowDialog();
+        }
+
+        private void CmdErrorLog_OnClick(object sender, RoutedEventArgs e)
+        {
+            ErrorLogFrm oEF = new ErrorLogFrm();
+            oEF.ShowDialog();
         }
     }
 }

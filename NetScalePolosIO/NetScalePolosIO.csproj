@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ErrorLog.cs" />
     <Compile Include="Export\ExportWaegung.cs" />
     <Compile Include="Export\PolosWaege.cs" />
     <Compile Include="Import\AddressImport\ImportAddress.cs" />

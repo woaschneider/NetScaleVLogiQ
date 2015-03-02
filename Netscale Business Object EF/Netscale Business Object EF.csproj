@@ -154,6 +154,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ErrorLog\ErrorLog.cs" />
+    <Compile Include="ErrorLog\ErrorLog.Partial.cs" />
+    <Compile Include="ErrorLog\ErrorLogEntity.cs" />
+    <Compile Include="ErrorLog\ErrorLogRules.cs" />
+    <Compile Include="ErrorLog\ErrorLogRules.Partial.cs" />
     <Compile Include="ExportLog\ExportLog.cs" />
     <Compile Include="ExportLog\ExportLog.Partial.cs" />
     <Compile Include="ExportLog\ExportLogEntity.cs" />
