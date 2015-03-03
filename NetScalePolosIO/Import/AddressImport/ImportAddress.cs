@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
-
 using HWB.NETSCALE.POLOSIO;
 using Newtonsoft.Json;
 using RestSharp;
@@ -15,7 +14,6 @@ namespace NetScalePolosIO.Import.AddressImport
 {
     public class ImportAddress
     {
-    
         private Adressen _boA;
         private AdressenEntity _boAe;
         private string ImportExportStatus;
@@ -25,26 +23,25 @@ namespace NetScalePolosIO.Import.AddressImport
         {
             try
             {
-                
-               
-                var client = new RestClient( baseUrl);
+                var client = new RestClient(baseUrl);
                 client.ClearHandlers();
-                client.AddHandler("application/json", new JsonDeserializer ());
-              
-            //    var request = new RestRequest("/rest/address/all") {Method = Method.GET};
-                var request = new RestRequest(url) { Method = Method.GET };
+                client.AddHandler("application/json", new JsonDeserializer());
+
+
+                var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
 
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();
-                client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(), boEe.ConsumerSecret.Trim(),
-                   string.Empty, string.Empty);
-                
+                client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(),
+                    boEe.ConsumerSecret.Trim(),
+                    string.Empty, string.Empty);
+
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                     return false;
 
-                
+
                 var oR = JsonConvert.DeserializeObject<AddressRootObject>(response.Content);
 
                 _boA = new Adressen();
@@ -54,13 +51,13 @@ namespace NetScalePolosIO.Import.AddressImport
                     if (true)
                     {
                         _boAe = _boA.GetById(obj.id) ?? _boA.NewEntity();
-                     
+
                         _boAe.id = obj.id;
                         _boAe.businessIdentifier = obj.businessIdentifier;
-                     
-                            _boAe.name = obj.name;
-                      
-                      
+
+                        _boAe.name = obj.name;
+
+
                         _boAe.owningLocationId = obj.owningLocationId;
                         _boAe.subName2 = obj.subName2;
 
@@ -71,17 +68,16 @@ namespace NetScalePolosIO.Import.AddressImport
                         _boAe.idCountry = obj.address.country.id;
                         _boAe.isocodeCountry = obj.address.country.isoCode;
 
-                 
-                       
-                         request = new RestRequest("/rest/address/details/{ID}");
+
+                        request = new RestRequest("/rest/address/details/{ID}");
 
                         request.AddParameter("ID", _boAe.id.ToString(), ParameterType.UrlSegment);
                         request.Method = Method.GET;
                         request.AddHeader("X-location-Id", location.ToString());
-               
+
                         response = client.Execute(request);
-                    
-                    
+
+
                         if (response.StatusCode == HttpStatusCode.OK)
                         {
                             _boAe.roleClient = false;
@@ -101,7 +97,7 @@ namespace NetScalePolosIO.Import.AddressImport
                                 {
                                     _boAe.roleClient = true;
                                 }
-                               
+
                                 // INVOICE Receiver
                                 if (t == "BILLING_RECEIVER")
                                 {
@@ -151,14 +147,11 @@ namespace NetScalePolosIO.Import.AddressImport
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                new WriteErrorLog().WriteToErrorLog(e);
             }
 
 
             return true;
         }
-
-     
-
     }
 }

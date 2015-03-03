@@ -60,7 +60,7 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                new WriteErrorLog().WriteToErrorLog(e);
             }
             return true;
         }

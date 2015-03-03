@@ -1,13 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using System.Net.Mail;
+﻿using System.ComponentModel;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
-using HWB.NETSCALE.POLOSIO.ArticleAttributes;
-using HWB.NETSCALE.POLOSIO.AuftragsImport;
-using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
-using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
-using HWB.NETSCALE.POLOSIO.ProductsImport;
 using NetScalePolosIO.Export;
 using NetScalePolosIO.Import.AddressImport;
 using NetScalePolosIO.Import.ArticleAttributesImport;
@@ -18,14 +11,16 @@ using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
 using OakLeaf.MM.Main.Collections;
 using Xceed.Wpf.Toolkit;
-using Xceed.Wpf.Toolkit.Core.Converters;
+
 
 namespace NetScalePolosIO
 {
     public class ImportExportPolos : IImportInterface
     {
         //*****************************************************************
+
         #region Einstellung
+
         private string GetImportServerIp()
         {
             Einstellungen boE = new Einstellungen();
@@ -98,36 +93,17 @@ namespace NetScalePolosIO
             {
                 if (boEe.RestLocation != null)
                 {
-                    int locationId = (int)boEe.RestLocation;
+                    int locationId = (int) boEe.RestLocation;
                     return locationId;
                 }
             }
             return 0;
         }
 
-        private string GetExportPath()
-        {
-            var oBe = new Lokaleeinstellungen();
-            oBe = oBe.Load();
-            if (oBe.EXPORT_PATH == null)
-            {
-                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Exportpfades!",
-                    "Warnung: Import nicht möglich!");
-
-                return "";
-            }
-            oBe.Load();
-            if (oBe.EXPORT_PATH == "")
-            {
-                MessageBox.Show("Möglicherweise fehlt in den Programmeinstellungen die Angabe des Exportpfades!",
-                    "Warnung: Import nicht möglich!");
-
-                return "";
-            }
-            return oBe.EXPORT_PATH;
-        }
         #endregion
+
         //*****************************************************************
+
         #region Import Stammdaten
 
         public void ImportStammdaten()
@@ -142,17 +118,12 @@ namespace NetScalePolosIO
 
 
             ExceImportStammdatenThread(uri);
-           
         }
 
         private void ExceImportStammdatenThread(string uri)
         {
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += BwDoWorkImport;
-
-            //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-            //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            //   bw.WorkerReportsProgress = true;
             bw.RunWorkerAsync(uri);
         }
 
@@ -160,19 +131,25 @@ namespace NetScalePolosIO
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
-            new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl); // OK
+            // Adressen
+            new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
+            // Warenarten
             new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
-            // OK
-            new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl); // OK
-            new ImportProducts().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl); // OK
+            // Artikel
+            new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl);
+            // Produkte
+            new ImportProducts().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl);
+            // Artikelattribute
             new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId(),
                 boEe.ImpRESTServertArticleAttributesUrl);
+            // Lagerplätze
             new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
-
-       //     new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
         }
+
         #endregion
+
         //*****************************************************************
+
         #region Import Auftrage
 
         public void ImportAuftraege()
@@ -187,7 +164,6 @@ namespace NetScalePolosIO
 
 
             ExceImportAuftraegeThread(uri);
-
         }
 
         private void ExceImportAuftraegeThread(string uri)
@@ -205,31 +181,27 @@ namespace NetScalePolosIO
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
-        new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
+            new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
         }
+
         #endregion
+
         //*****************************************************************
+
         #region Export
+
+        #region Alles Exportieren
+
+        // Alle noch offenen Wägungen werden exportiert
         public void ExportAll()
         {
-           
-                ExceExportThread();
-           
-
-
-            
-        }
-
-        // Export wir entweder aus der GUI angestoßen (synchron) oder im Rahmen des ExceExportThread innerhalb des Background Worker
-        public void ExportSingle(WaegeEntity boWe)
-        {
-            ExportToRESTServer(boWe);
+            ExceExportThread();
         }
 
         private void ExceExportThread()
         {
             BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork +=BwDoWorkExport;
+            bw.DoWork += BwDoWorkExport;
 
             //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
@@ -239,17 +211,29 @@ namespace NetScalePolosIO
 
         private void BwDoWorkExport(object sender, DoWorkEventArgs e)
         {
-             Waege boW = new Waege();
+            Waege boW = new Waege();
             mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
             foreach (var w in ol)
             {
-
-
-                ExportToRESTServer(w);
+                ExportToRestServer(w);
             }
         }
 
-        private void ExportToRESTServer(WaegeEntity boWe)
+        #endregion
+
+        // Wird nach einer Zweitwägung aufgerufen (sychron) 
+
+        #region Einzel-Export
+
+        public void ExportSingle(WaegeEntity boWe)
+        {
+            ExportToRestServer(boWe);
+        }
+
+        #endregion
+
+        // Wird von beiden Mehtoden (single / all benutzt)
+        private void ExportToRestServer(WaegeEntity boWe)
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -262,19 +246,12 @@ namespace NetScalePolosIO
                 return;
             }
             var oEx = new ExportWaegungVersion2Rest();
-            int? l = ((boEe.RestLocation != null) ? boEe.RestLocation : 0);
-            oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, l, boWe);
+
+            oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, boEe.RestLocation ?? 0, boWe);
         }
 
-     
-     
-          
-
-
         #endregion
-        //*****************************************************************
-      
 
-    
+        //*****************************************************************  
     }
 }

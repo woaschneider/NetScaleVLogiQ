@@ -63,7 +63,7 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
 
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                new WriteErrorLog().WriteToErrorLog(e);
             }
 
 

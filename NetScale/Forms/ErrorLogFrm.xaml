@@ -4,7 +4,7 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"
                         x:Name="Window"
-                        Title="BusinessWindow"
+                        Title="Error Log"
                         Width="992"
                         Height="450"
                         AllowsTransparency="False"

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NetScalePolosIO.Export.ExportWaegungVersion2Rest">
+    <Position X="1.5" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAQAAAAAAAAAEAAAAAAoBAAAAAAAAAAAA=</HashCode>
+      <FileName>Export\ExportWaegung.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.Article" Collapsed="true">
+    <Position X="5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.Attributes" Collapsed="true">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.ArticleInstance" Collapsed="true">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.SupplierOrConsignee" Collapsed="true">
+    <Position X="10.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.Service" Collapsed="true">
+    <Position X="8.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.OrderItemService" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAJAAAAAAAAAAAAQAAAAAAAAAAAAAAEhEAAAAAAEAA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.Product" Collapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.OrderItem" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.Customer" Collapsed="true">
+    <Position X="10.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.InvoiceReceiver" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.RootObject" Collapsed="true">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQABCAAAgAAAAAAAAAAABAAAAAAAAAAAAQAAACA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.RootObject2" Collapsed="true">
+    <Position X="10.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAACAAAAAAQAAAAAAAAgAAEAAABA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.FIRST" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAgAAAAABAAQAgAAA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.SECOND" Collapsed="true">
+    <Position X="6.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAgAAAAABAAQAgAAA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.ScalePhaseData" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.Export.RestServerError" Collapsed="true">
+    <Position X="6.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACA=</HashCode>
+      <FileName>Export\PolosWaege.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetScalePolosIO.ImportExportPolos">
+    <Position X="1.25" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAAACAAAAAAAKAAAACIAAAAAAAAAAAFEABAgICAAiAA=</HashCode>
+      <FileName>ImportExportPolos.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -329,22 +329,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<ArtikelEntity> ArtikelEntities
-        {
-            get
-            {
-                if ((_ArtikelEntities == null))
-                {
-                    _ArtikelEntities = base.CreateObjectSet<ArtikelEntity>("ArtikelEntities");
-                }
-                return _ArtikelEntities;
-            }
-        }
-        private ObjectSet<ArtikelEntity> _ArtikelEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<OrderitemEntity> OrderitemEntities
         {
             get
@@ -549,6 +533,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ServEntity> _ServEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ArtikelEntity> ArtikelEntities
+        {
+            get
+            {
+                if ((_ArtikelEntities == null))
+                {
+                    _ArtikelEntities = base.CreateObjectSet<ArtikelEntity>("ArtikelEntities");
+                }
+                return _ArtikelEntities;
+            }
+        }
+        private ObjectSet<ArtikelEntity> _ArtikelEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ErrorLogEntity> ErrorLogEntities
+        {
+            get
+            {
+                if ((_ErrorLogEntities == null))
+                {
+                    _ErrorLogEntities = base.CreateObjectSet<ErrorLogEntity>("ErrorLogEntities");
+                }
+                return _ErrorLogEntities;
+            }
+        }
+        private ObjectSet<ErrorLogEntity> _ErrorLogEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -682,14 +698,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArtikelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToArtikelEntities(ArtikelEntity artikelEntity)
-        {
-            base.AddObject("ArtikelEntities", artikelEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderitemEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToOrderitemEntities(OrderitemEntity orderitemEntity)
@@ -791,6 +799,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToServEntities(ServEntity servEntity)
         {
             base.AddObject("ServEntities", servEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArtikelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToArtikelEntities(ArtikelEntity artikelEntity)
+        {
+            base.AddObject("ArtikelEntities", artikelEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ErrorLogEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToErrorLogEntities(ErrorLogEntity errorLogEntity)
+        {
+            base.AddObject("ErrorLogEntities", errorLogEntity);
         }
 
         #endregion
@@ -5710,6 +5734,157 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ExportRestCreateOrderUrl;
         partial void OnExportRestCreateOrderUrlChanging(global::System.String value);
         partial void OnExportRestCreateOrderUrlChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="ErrorLogEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ErrorLogEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues ErrorLogEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static ErrorLogEntity CreateErrorLogEntity(global::System.Int32 pK)
+        {
+            ErrorLogEntity errorLogEntity = new ErrorLogEntity();
+            errorLogEntity.PK = pK;
+            return errorLogEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Dt
+        {
+            get
+            {
+                return _Dt;
+            }
+            set
+            {
+                OnDtChanging(value);
+                ReportPropertyChanging("Dt");
+                _Dt = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Dt");
+                OnDtChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Dt;
+        partial void OnDtChanging(Nullable<global::System.DateTime> value);
+        partial void OnDtChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message1
+        {
+            get
+            {
+                return _Message1;
+            }
+            set
+            {
+                OnMessage1Changing(value);
+                ReportPropertyChanging("Message1");
+                _Message1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message1");
+                OnMessage1Changed();
+            }
+        }
+        private global::System.String _Message1;
+        partial void OnMessage1Changing(global::System.String value);
+        partial void OnMessage1Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message2
+        {
+            get
+            {
+                return _Message2;
+            }
+            set
+            {
+                OnMessage2Changing(value);
+                ReportPropertyChanging("Message2");
+                _Message2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message2");
+                OnMessage2Changed();
+            }
+        }
+        private global::System.String _Message2;
+        partial void OnMessage2Changing(global::System.String value);
+        partial void OnMessage2Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message3
+        {
+            get
+            {
+                return _Message3;
+            }
+            set
+            {
+                OnMessage3Changing(value);
+                ReportPropertyChanging("Message3");
+                _Message3 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message3");
+                OnMessage3Changed();
+            }
+        }
+        private global::System.String _Message3;
+        partial void OnMessage3Changing(global::System.String value);
+        partial void OnMessage3Changed();
 
         #endregion
     
