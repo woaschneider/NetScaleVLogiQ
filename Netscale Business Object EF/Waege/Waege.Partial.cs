@@ -73,7 +73,11 @@ namespace HWB.NETSCALE.BOEF
         }
 
         private void OnNew(WaegeEntity boWE)
-        {
+        {   
+            Einstellungen boE = new Einstellungen();
+            boWE.locationId = new Einstellungen().GetEinstellungen().RestLocation.ToString(); 
+
+
             Incoterm boI = new Incoterm();
             Entity.incoterm = boI.GetDefaultIncoterm().Kennung;
             Entity.taab = false;
@@ -81,6 +85,7 @@ namespace HWB.NETSCALE.BOEF
 
         public void PreSaveHook(WaegeEntity boWE)
         {
+           
             #region // Fahrzeug prüfen und ggf. im Stamm neu anlegen, Erstgewicht speichern
             Fahrzeuge boF = new Fahrzeuge();
             FahrzeugeEntity boFe = boF.GetByExactKennzeichen(boWE.Fahrzeug);
@@ -123,6 +128,7 @@ namespace HWB.NETSCALE.BOEF
             }
             boF.SaveEntity(boFe);
             #endregion
+
         }
 
         //private void CheckAndCreateAbr(WaegeEntity boWE)
@@ -702,6 +708,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.reference = _boOIE.reference;
                 Entity.number = _boOIE.number; // Auftrasgnummer
                 // Detail
+                Entity.identifierOItemService = _boOISE.identifierOItemService;
                 Entity.sequence = _boOISE.sequence;
                 Entity.productid = _boOISE.product;
                 Entity.productdescription = _boOISE.productdescription;

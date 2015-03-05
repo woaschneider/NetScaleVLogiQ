@@ -247,7 +247,7 @@ namespace NetScalePolosIO
             }
             var oEx = new ExportWaegungVersion2Rest();
 
-            oEx.ExportLs2Rest(baseUrl, boEe.ExportRESTServerUrl, boEe.RestLocation ?? 0, boWe);
+            oEx.ExportLs2Rest(baseUrl, boEe.RestLocation ?? 0, boWe);
         }
 
         #endregion

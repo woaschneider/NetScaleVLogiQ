@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
-using Xceed.Wpf.Toolkit;
+
 
 namespace NetScalePolosIO.Import.ArticleImport
 {
@@ -15,7 +15,7 @@ namespace NetScalePolosIO.Import.ArticleImport
         private Artikel _boA;
         private ArtikelEntity _boAe;
 
-        public bool Import(string baseUrl, int location, string url)
+        public void Import(string baseUrl, int location, string url)
         {
             try
             {
@@ -25,8 +25,7 @@ namespace NetScalePolosIO.Import.ArticleImport
                 client.AddHandler("application/json", new JsonDeserializer());
 
                // var request = new RestRequest("/rest/article/all");
-                var request = new RestRequest(url);
-                request.Method = Method.GET;
+                var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
 
                 Einstellungen boE = new Einstellungen();
@@ -36,8 +35,8 @@ namespace NetScalePolosIO.Import.ArticleImport
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
-                    return false;
-         
+                    return;
+
 
                 var oA = JsonConvert.DeserializeObject<ArticleRootObject>(response.Content);
 
@@ -49,11 +48,7 @@ namespace NetScalePolosIO.Import.ArticleImport
                 foreach (ArticleInformation obj in oA.articleInformation)
                 {
                     {
-                        _boAe = _boA.GetById(obj.article.id);
-                        if (_boAe == null)
-                        {
-                            _boAe = _boA.NewEntity();
-                        }
+                        _boAe = _boA.GetById(obj.article.id) ?? _boA.NewEntity();
                         _boAe.id = obj.article.id;
                         _boAe.number = obj.article.number;
                         _boAe.description = obj.article.description;
@@ -86,7 +81,6 @@ namespace NetScalePolosIO.Import.ArticleImport
             }
 
 
-            return true;
         }
     }
 }

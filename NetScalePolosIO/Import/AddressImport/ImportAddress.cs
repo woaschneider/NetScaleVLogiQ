@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
-using Xceed.Wpf.Toolkit;
+
 
 // http://www.codeproject.com/Tips/668625/Simple-Usages-of-HttpWebRequest-and-RestSharp-with
 
@@ -16,10 +16,10 @@ namespace NetScalePolosIO.Import.AddressImport
     {
         private Adressen _boA;
         private AdressenEntity _boAe;
-        private string ImportExportStatus;
+       
 
 
-        public bool Import(string baseUrl, int location, string url)
+        public void Import(string baseUrl, int location, string url)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace NetScalePolosIO.Import.AddressImport
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
-                    return false;
+                    return;
 
 
                 var oR = JsonConvert.DeserializeObject<AddressRootObject>(response.Content);
@@ -151,7 +151,7 @@ namespace NetScalePolosIO.Import.AddressImport
             }
 
 
-            return true;
+   
         }
     }
 }

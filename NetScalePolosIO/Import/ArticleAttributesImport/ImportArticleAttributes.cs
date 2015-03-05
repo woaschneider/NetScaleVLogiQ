@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
-using Xceed.Wpf.Toolkit;
 
 namespace NetScalePolosIO.Import.ArticleAttributesImport
 {
@@ -15,7 +14,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
         private Artikelattribute _boA;
         private ArtikelattributeEntity _boAe;
 
-        public bool Import(string baseUrl, int location, string url)
+        public void Import(string baseUrl, int location, string url)
         {
             try
             {
@@ -23,8 +22,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
 
-                var request = new RestRequest(url);
-                request.Method = Method.GET;
+                var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
 
                 Einstellungen boE = new Einstellungen();
@@ -33,23 +31,19 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                    string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
-                    return false;
-            
+                    return;
+
 
                 var oA = JsonConvert.DeserializeObject<ArticleAttributesRootObject>(response.Content);
               
 
                 _boA = new Artikelattribute();
-                for (int i = 0; i < oA.articleAttributes.Count; i++)
+                foreach (string t in oA.articleAttributes)
                 {
-                    _boAe = _boA.GetArtikelAttributByBezeichnung(oA.articleAttributes[i]);
-                    if (_boAe == null)
-                    {
-                        _boAe = _boA.NewEntity();
-                    }
+                    _boAe = _boA.GetArtikelAttributByBezeichnung(t) ?? _boA.NewEntity();
                     if (_boAe != null)
                     {
-                        _boAe.AttributName = oA.articleAttributes[i];
+                        _boAe.AttributName = t;
                         _boA.SaveEntity(_boAe);
                     }
                 }
@@ -61,7 +55,6 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
             }
 
 
-            return true;
         }
     }
 }

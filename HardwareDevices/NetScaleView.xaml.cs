@@ -303,6 +303,10 @@ namespace HardwareDevices
                         tb_status.Text = _w2.Status;
                     }
                     break;
+                default:
+                      oW = _w1.GetPollGewicht("1");
+                    tb_status.Text = _w1.Status;
+                    break;
             }
             if (oWF != null)
             {
@@ -330,7 +334,7 @@ namespace HardwareDevices
                 toogle = toogle ? false : true;
             }
 
-
+            if(oW!=null)
             tb_gewicht.Text = oW.WeightValue.ToString() + _einheit;
         }
 

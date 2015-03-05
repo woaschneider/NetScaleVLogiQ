@@ -1163,7 +1163,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Export2Json(WaegeEntity we)
         {
-           // new ImportExportPolos().ExportSingle(we);
+          new ImportExportPolos().ExportSingle(we);
         }
 
         #endregion
@@ -1646,11 +1646,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                LagerplaetzeEntity boLe = boL.GetByPk(uRet);
                if (boLe != null)
                {
+                   _boWe.actualStorageAreaId = boLe.id;
                    _boWe.IstQuellLagerPlatzId = boLe.id;
                    _boWe.IstQuellLagerPlatz = boLe.name;
                }
                else
                {
+                   _boWe.actualStorageAreaId = null;
                    _boWe.IstQuellLagerPlatzId = null;
                    _boWe.IstQuellLagerPlatz = null;
                }
@@ -1669,10 +1671,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 LagerplaetzeEntity boLe = boL.GetByPk(uRet);
                 if (boLe != null)
                 {
+                    _boWe.targetStorageAreaId = boLe.id;
                     _boWe.IstZielLagerPlatzId = boLe.id;
                     _boWe.IstZielLagerPlatz = boLe.name;
                 }
                 else {
+                    _boWe.targetStorageAreaId = null;
                     _boWe.IstZielLagerPlatzId = null;
                     _boWe.IstZielLagerPlatz = null;
                 }

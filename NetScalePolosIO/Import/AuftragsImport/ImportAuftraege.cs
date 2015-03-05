@@ -229,11 +229,13 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                 _boOise.identifierOItemService = orderItemService.identifier;
                                                 _boOise.remark = orderItemService.remark;
 
-                                                //      _boOise.product = oOEntity.orderItems[0].product.id;
+                                                _boOise.actualStorageAreaId = orderItemService.actualStorageAreaId;
+                                                _boOise.targetStorageAreaId = orderItemService.targetStorageAreaId;
+                                              //  _boOise.IstQuellLagerPlatzId 
                                                 _boOise.product = orderItem.product.id;
                                                 _boOise.productdescription = orderItem.product.description;
                                                 _boOise.serviceId = orderItemService.service.id;
-                                                //    _boOise.serviceDescription = t.service.
+                                              
 
                                                 // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
                                                 _boOise.productdescription = oOEntity.orderItems[0].product.description;

@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -584,6 +585,22 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
                 tb_MaterialKundenStatistik.Text = filename;
+            }
+        }
+
+        private void PasswordBoxConsumerKey_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+          
+        }
+
+        private void Label35_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MyLoginWindow oLFrm = new MyLoginWindow();
+            oLFrm.ShowDialog();
+            if (oLFrm.DialogResult == true)
+            {
+                passwordBoxConsumerKey.IsEnabled = true;
+                passwordBoxConsumerSecret.IsEnabled = true;
             }
         }
     }

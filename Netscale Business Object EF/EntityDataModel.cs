@@ -19,9 +19,9 @@ using System.Runtime.Serialization;
 #region EDM-Beziehungsmetadaten
 
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "FK_Message_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HWB.NETSCALE.BOEF.Language), "Message", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.Message), true)]
+[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "C_Hat_Arbeitsleistungen_", "ProdukteEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.ProdukteEntity), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.ServEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Artikel_hat_Attribute", "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), "OrderArticleAttributeEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderArticleAttributeEntity), true)]
 [assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "Auftrag_hat_Positionen", "OrderitemEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.OrderitemEntity), "OrderItemservice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.OrderItemserviceEntity), true)]
-[assembly: EdmRelationshipAttribute("HWB.NETSCALE.BOEF", "C_Hat_Arbeitsleistungen_", "ProdukteEntity", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HWB.NETSCALE.BOEF.ProdukteEntity), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HWB.NETSCALE.BOEF.ServEntity), true)]
 
 #endregion
 
@@ -457,38 +457,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
-        {
-            get
-            {
-                if ((_OrderItemserviceEntities == null))
-                {
-                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
-                }
-                return _OrderItemserviceEntities;
-            }
-        }
-        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<ProdukteEntity> ProdukteEntities
         {
             get
@@ -565,6 +533,38 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ErrorLogEntity> _ErrorLogEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
+        {
+            get
+            {
+                if ((_OrderItemserviceEntities == null))
+                {
+                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
+                }
+                return _OrderItemserviceEntities;
+            }
+        }
+        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -762,22 +762,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
-        {
-            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
-        }
-    
-        /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ProdukteEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToProdukteEntities(ProdukteEntity produkteEntity)
@@ -815,6 +799,22 @@ namespace HWB.NETSCALE.BOEF
         public void AddToErrorLogEntities(ErrorLogEntity errorLogEntity)
         {
             base.AddObject("ErrorLogEntities", errorLogEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
+        {
+            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -9299,30 +9299,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String identifierOItemService
-        {
-            get
-            {
-                return _identifierOItemService;
-            }
-            set
-            {
-                OnidentifierOItemServiceChanging(value);
-                ReportPropertyChanging("identifierOItemService");
-                _identifierOItemService = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("identifierOItemService");
-                OnidentifierOItemServiceChanged();
-            }
-        }
-        private global::System.String _identifierOItemService;
-        partial void OnidentifierOItemServiceChanging(global::System.String value);
-        partial void OnidentifierOItemServiceChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> sequence
         {
             get
@@ -10715,6 +10691,54 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String identifierOItem
+        {
+            get
+            {
+                return _identifierOItem;
+            }
+            set
+            {
+                OnidentifierOItemChanging(value);
+                ReportPropertyChanging("identifierOItem");
+                _identifierOItem = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("identifierOItem");
+                OnidentifierOItemChanged();
+            }
+        }
+        private global::System.String _identifierOItem;
+        partial void OnidentifierOItemChanging(global::System.String value);
+        partial void OnidentifierOItemChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String identifierOItemService
+        {
+            get
+            {
+                return _identifierOItemService;
+            }
+            set
+            {
+                OnidentifierOItemServiceChanging(value);
+                ReportPropertyChanging("identifierOItemService");
+                _identifierOItemService = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("identifierOItemService");
+                OnidentifierOItemServiceChanged();
+            }
+        }
+        private global::System.String _identifierOItemService;
+        partial void OnidentifierOItemServiceChanging(global::System.String value);
+        partial void OnidentifierOItemServiceChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Int32> serviceId
         {
             get
@@ -10787,24 +10811,48 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String identifierOItem
+        public global::System.String actualStorageAreaId
         {
             get
             {
-                return _identifierOItem;
+                return _actualStorageAreaId;
             }
             set
             {
-                OnidentifierOItemChanging(value);
-                ReportPropertyChanging("identifierOItem");
-                _identifierOItem = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("identifierOItem");
-                OnidentifierOItemChanged();
+                OnactualStorageAreaIdChanging(value);
+                ReportPropertyChanging("actualStorageAreaId");
+                _actualStorageAreaId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("actualStorageAreaId");
+                OnactualStorageAreaIdChanged();
             }
         }
-        private global::System.String _identifierOItem;
-        partial void OnidentifierOItemChanging(global::System.String value);
-        partial void OnidentifierOItemChanged();
+        private global::System.String _actualStorageAreaId;
+        partial void OnactualStorageAreaIdChanging(global::System.String value);
+        partial void OnactualStorageAreaIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String targetStorageAreaId
+        {
+            get
+            {
+                return _targetStorageAreaId;
+            }
+            set
+            {
+                OntargetStorageAreaIdChanging(value);
+                ReportPropertyChanging("targetStorageAreaId");
+                _targetStorageAreaId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("targetStorageAreaId");
+                OntargetStorageAreaIdChanged();
+            }
+        }
+        private global::System.String _targetStorageAreaId;
+        partial void OntargetStorageAreaIdChanging(global::System.String value);
+        partial void OntargetStorageAreaIdChanged();
 
         #endregion
     
@@ -12800,30 +12848,6 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _productdescription;
         partial void OnproductdescriptionChanging(global::System.String value);
         partial void OnproductdescriptionChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String identifierOItem
-        {
-            get
-            {
-                return _identifierOItem;
-            }
-            set
-            {
-                OnidentifierOItemChanging(value);
-                ReportPropertyChanging("identifierOItem");
-                _identifierOItem = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("identifierOItem");
-                OnidentifierOItemChanged();
-            }
-        }
-        private global::System.String _identifierOItem;
-        partial void OnidentifierOItemChanging(global::System.String value);
-        partial void OnidentifierOItemChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -14966,6 +14990,30 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String identifierOItem
+        {
+            get
+            {
+                return _identifierOItem;
+            }
+            set
+            {
+                OnidentifierOItemChanging(value);
+                ReportPropertyChanging("identifierOItem");
+                _identifierOItem = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("identifierOItem");
+                OnidentifierOItemChanged();
+            }
+        }
+        private global::System.String _identifierOItem;
+        partial void OnidentifierOItemChanging(global::System.String value);
+        partial void OnidentifierOItemChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String identifierOItemService
         {
             get
@@ -14984,6 +15032,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _identifierOItemService;
         partial void OnidentifierOItemServiceChanging(global::System.String value);
         partial void OnidentifierOItemServiceChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String actualStorageAreaId
+        {
+            get
+            {
+                return _actualStorageAreaId;
+            }
+            set
+            {
+                OnactualStorageAreaIdChanging(value);
+                ReportPropertyChanging("actualStorageAreaId");
+                _actualStorageAreaId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("actualStorageAreaId");
+                OnactualStorageAreaIdChanged();
+            }
+        }
+        private global::System.String _actualStorageAreaId;
+        partial void OnactualStorageAreaIdChanging(global::System.String value);
+        partial void OnactualStorageAreaIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String targetStorageAreaId
+        {
+            get
+            {
+                return _targetStorageAreaId;
+            }
+            set
+            {
+                OntargetStorageAreaIdChanging(value);
+                ReportPropertyChanging("targetStorageAreaId");
+                _targetStorageAreaId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("targetStorageAreaId");
+                OntargetStorageAreaIdChanged();
+            }
+        }
+        private global::System.String _targetStorageAreaId;
+        partial void OntargetStorageAreaIdChanging(global::System.String value);
+        partial void OntargetStorageAreaIdChanged();
 
         #endregion
     
