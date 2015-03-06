@@ -84,7 +84,7 @@ namespace NetScalePolosIO.Import.ProductsImport
 
             catch (Exception e)
             {
-                new WriteErrorLog().WriteToErrorLog(e);
+                new WriteErrorLog().WriteToErrorLog(e,null);
             }
 
 

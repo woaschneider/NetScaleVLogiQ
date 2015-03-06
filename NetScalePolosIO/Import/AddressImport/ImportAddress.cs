@@ -147,7 +147,7 @@ namespace NetScalePolosIO.Import.AddressImport
             }
             catch (Exception e)
             {
-                new WriteErrorLog().WriteToErrorLog(e);
+                new WriteErrorLog().WriteToErrorLog(e,null);
             }
 
 

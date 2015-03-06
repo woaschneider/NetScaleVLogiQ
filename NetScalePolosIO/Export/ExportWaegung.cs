@@ -197,6 +197,7 @@ namespace NetScalePolosIO.Export
             // oWEx2.carrierName = boWe.ffBusinessIdentifier;
             oWEx2.carrierName = boWe.ffSubName2;
             oWEx2.carrierVehicle = boWe.Fahrzeug;
+            oWEx2.netAmount = (double)boWe.Nettogewicht;
 
             if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatz))
             {
@@ -282,7 +283,7 @@ namespace NetScalePolosIO.Export
             }
             catch (Exception ee)
             {
-                new WriteErrorLog().WriteToErrorLog(ee);
+                new WriteErrorLog().WriteToErrorLog(ee,boWe);
             }
         }
 
@@ -312,10 +313,13 @@ namespace NetScalePolosIO.Export
             if (oR != null)
             {
                 boEe.Message1 = oR.statusCode;
-                boEe.Message2 = oR.message;
+                boEe.Message2 = oR.additionalInformation;
+                boEe.Message3= we.LieferscheinNr;
             }
             else
             {
+                boEe.Message1 = we.LieferscheinNr+"  " +oR.statusCode;
+                boEe.Message2 = oR.additionalInformation;
                 boEe.Message1 = response.ErrorException.Message;
             }
             boEe.OrderItemNumber = we.number;
@@ -327,7 +331,7 @@ namespace NetScalePolosIO.Export
             catch (Exception e)
             {
                 
-                new WriteErrorLog().WriteToErrorLog(e);
+                new WriteErrorLog().WriteToErrorLog(e,we);
             }
         }
     }

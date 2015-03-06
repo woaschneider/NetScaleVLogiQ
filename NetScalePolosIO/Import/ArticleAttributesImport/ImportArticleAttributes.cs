@@ -51,7 +51,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
 
             catch (Exception e)
             {
-               new WriteErrorLog().WriteToErrorLog(e);
+               new WriteErrorLog().WriteToErrorLog(e,null);
             }
 
 

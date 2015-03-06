@@ -43,10 +43,6 @@
           <EntitySet Name="Waege" EntityType="$namespace$.Target.Waege" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Warenarten" EntityType="$namespace$.Target.Warenarten" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Wiegeart" EntityType="$namespace$.Target.Wiegeart" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="[Hat Arbeitsleistungen]" Association="$namespace$.Target.[Hat Arbeitsleistungen]">
-            <End Role="Produkte" EntitySet="Produkte" />
-            <End Role="Services" EntitySet="Services" />
-          </AssociationSet>
           <AssociationSet Name="Artikel hat Attribute" Association="$namespace$.Target.Artikel hat Attribute">
             <End Role="OrderItemservice" EntitySet="OrderItemservice" />
             <End Role="OrderArticleAttribute" EntitySet="OrderArticleAttribute" />
@@ -58,6 +54,10 @@
           <AssociationSet Name="FK_Message_Language" Association="$namespace$.Target.FK_Message_Language">
             <End Role="Language" EntitySet="Language" />
             <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="Hat Arbeitsleistungen" Association="$namespace$.Target.Hat Arbeitsleistungen">
+            <End Role="Produkte" EntitySet="Produkte" />
+            <End Role="Services" EntitySet="Services" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Abruf">
@@ -308,6 +308,7 @@
           <Property Name="Message1" Type="varchar" />
           <Property Name="Message2" Type="varchar" />
           <Property Name="Message3" Type="varchar" />
+          <Property Name="Lsnr" Type="varchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="ExportLog">
           <Key>
@@ -773,18 +774,6 @@
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="DefaultW" Type="bit" />
         </EntityType>
-        <Association Name="[Hat Arbeitsleistungen]">
-          <End Role="Produkte" Type="$namespace$.Target.Produkte" Multiplicity="0..1" />
-          <End Role="Services" Type="$namespace$.Target.Services" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Produkte">
-              <PropertyRef Name="PK" />
-            </Principal>
-            <Dependent Role="Services">
-              <PropertyRef Name="FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Artikel hat Attribute">
           <End Role="OrderItemservice" Type="$namespace$.Target.OrderItemservice" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -822,6 +811,18 @@
             </Principal>
             <Dependent Role="Message">
               <PropertyRef Name="LanguageFK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Hat Arbeitsleistungen">
+          <End Role="Produkte" Type="$namespace$.Target.Produkte" Multiplicity="0..1" />
+          <End Role="Services" Type="$namespace$.Target.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produkte">
+              <PropertyRef Name="PK" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -866,7 +867,6 @@
             <End Role="Service" EntitySet="ServEntities" />
           </AssociationSet>
           <EntitySet Name="ArtikelEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" />
-          <EntitySet Name="ErrorLogEntities" EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" />
           <EntitySet Name="OrderItemserviceEntities" EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" />
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Artikel_hat_Attribute" Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute">
@@ -877,6 +877,7 @@
             <End Role="OrderitemEntity" EntitySet="OrderitemEntities" />
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
+          <EntitySet Name="ErrorLogEntities" EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1392,16 +1393,6 @@
           <Property Type="String" Name="conversionUnitDescription" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="kindOfGoodId" />
         </EntityType>
-        <EntityType Name="ErrorLogEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="DateTime" Name="Dt" />
-          <Property Type="String" Name="Message1" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Message2" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Message3" MaxLength="8000" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="OrderItemserviceEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1644,6 +1635,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ErrorLogEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="DateTime" Name="Dt" />
+          <Property Type="String" Name="Message1" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message2" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message3" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lsnr" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2162,17 +2164,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ErrorLogEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ErrorLogEntity">
-              <MappingFragment StoreEntitySet="ErrorLog">
-                <ScalarProperty Name="Message3" ColumnName="Message3" />
-                <ScalarProperty Name="Message2" ColumnName="Message2" />
-                <ScalarProperty Name="Message1" ColumnName="Message1" />
-                <ScalarProperty Name="Dt" ColumnName="Dt" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
@@ -2391,6 +2382,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ErrorLogEntity">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="Lsnr" ColumnName="Lsnr" />
+                <ScalarProperty Name="Message3" ColumnName="Message3" />
+                <ScalarProperty Name="Message2" ColumnName="Message2" />
+                <ScalarProperty Name="Message1" ColumnName="Message1" />
+                <ScalarProperty Name="Dt" ColumnName="Dt" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2449,7 +2452,6 @@
           <edmx:ConnectorPoint PointX="9.25" PointY="39.240143229166662" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="14.375" PointY="12.75" Height="6.5955208333333246" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" Width="1.5" PointX="12.375" PointY="4.75" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="6.25" PointY="41.75" Height="14.28757812500001" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="11.375" PointY="12.75" Height="27.748678385416667" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
@@ -2462,6 +2464,7 @@
           <edmx:ConnectorPoint PointX="4.75" PointY="48.893789062500005" />
           <edmx:ConnectorPoint PointX="6.25" PointY="48.893789062500005" />
         </edmx:AssociationConnector>
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" Width="1.5" PointX="12.375" PointY="4.75" Height="2.1725878906250102" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -521,22 +521,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<ErrorLogEntity> ErrorLogEntities
-        {
-            get
-            {
-                if ((_ErrorLogEntities == null))
-                {
-                    _ErrorLogEntities = base.CreateObjectSet<ErrorLogEntity>("ErrorLogEntities");
-                }
-                return _ErrorLogEntities;
-            }
-        }
-        private ObjectSet<ErrorLogEntity> _ErrorLogEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
         {
             get
@@ -565,6 +549,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ErrorLogEntity> ErrorLogEntities
+        {
+            get
+            {
+                if ((_ErrorLogEntities == null))
+                {
+                    _ErrorLogEntities = base.CreateObjectSet<ErrorLogEntity>("ErrorLogEntities");
+                }
+                return _ErrorLogEntities;
+            }
+        }
+        private ObjectSet<ErrorLogEntity> _ErrorLogEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -794,14 +794,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ErrorLogEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToErrorLogEntities(ErrorLogEntity errorLogEntity)
-        {
-            base.AddObject("ErrorLogEntities", errorLogEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
@@ -815,6 +807,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ErrorLogEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToErrorLogEntities(ErrorLogEntity errorLogEntity)
+        {
+            base.AddObject("ErrorLogEntities", errorLogEntity);
         }
 
         #endregion
@@ -5885,6 +5885,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _Message3;
         partial void OnMessage3Changing(global::System.String value);
         partial void OnMessage3Changed();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Lsnr
+        {
+            get
+            {
+                return _Lsnr;
+            }
+            set
+            {
+                OnLsnrChanging(value);
+                ReportPropertyChanging("Lsnr");
+                _Lsnr = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Lsnr");
+                OnLsnrChanged();
+            }
+        }
+        private global::System.String _Lsnr;
+        partial void OnLsnrChanging(global::System.String value);
+        partial void OnLsnrChanged();
 
         #endregion
     

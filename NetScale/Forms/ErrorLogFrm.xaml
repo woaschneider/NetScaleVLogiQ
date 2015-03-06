@@ -42,6 +42,7 @@
                 <DataGridTextColumn Binding="{Binding Message1}" Header="Message 1" />
                 <DataGridTextColumn Binding="{Binding Message2}" Header="Message 2" />
                 <DataGridTextColumn Binding="{Binding Message3}" Header="Message 3" />
+                <DataGridTextColumn Binding="{Binding Lsnr}" Header="LS-NR" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

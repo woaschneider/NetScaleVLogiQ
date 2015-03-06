@@ -97,6 +97,7 @@ namespace NetScalePolosIO.Export
         public string carrierVehicle { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }
+        public double netAmount { get; set; }
 
     }
 
@@ -135,8 +136,9 @@ namespace NetScalePolosIO.Export
     // 
 
     public class RestServerError
-    {
+    {   
         public string statusCode { get; set; }
         public string message { get; set; }
+        public string additionalInformation { get; set; }
     }
 }

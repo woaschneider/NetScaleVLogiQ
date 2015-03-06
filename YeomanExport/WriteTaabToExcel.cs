@@ -47,12 +47,13 @@ namespace YeomanExport
                 writer.WriteCell(0, 5, "Kunden Name");
                 writer.WriteCell(0, 6, "Empfänger");
                 writer.WriteCell(0, 7, "Empfänger Name");
-                writer.WriteCell(0, 8, "Kfz-Kennzeichen");
-                writer.WriteCell(0, 9, "Incoterm");
-                writer.WriteCell(0, 10, "Spedition Nr.");
-                writer.WriteCell(0, 11, "Spedition Name");
-                writer.WriteCell(0, 12, "Menge");
-                writer.WriteCell(0, 13, "Mengeneinheit");
+                writer.WriteCell(0, 8, "Baustelle");
+                writer.WriteCell(0, 9, "Kfz-Kennzeichen");
+                writer.WriteCell(0, 10, "Incoterm");
+                writer.WriteCell(0, 11, "Spedition Nr.");
+                writer.WriteCell(0, 12, "Spedition Name");
+                writer.WriteCell(0, 13, "Menge");
+                writer.WriteCell(0, 14, "Mengeneinheit");
                 // Header Ende
 
                 int lc = 1; // LineCounter
@@ -67,14 +68,15 @@ namespace YeomanExport
 
                     writer.WriteCell(lc, 6, w.supplierOrConsigneeBusinessIdentifier ?? "");
                     writer.WriteCell(lc, 7, w.supplierOrConsigneeName ?? "");
-                    writer.WriteCell(lc, 8, w.Fahrzeug ?? "");
+                    writer.WriteCell(lc, 8, w.freitext1 ?? "");
+                    writer.WriteCell(lc, 9, w.Fahrzeug ?? "");
                     //   writer.WriteCell(lc, 9, w.deliveryType ?? "");
-                    writer.WriteCell(lc, 9, w.incoterm ?? "");
+                    writer.WriteCell(lc, 10, w.incoterm ?? "");
 
-                    writer.WriteCell(lc, 10, w.ffBusinessIdentifier ?? "");
-                    writer.WriteCell(lc, 11, w.ffName ?? "");
-                    writer.WriteCell(lc, 12, w.Nettogewicht.ToString() ?? "");
-                    writer.WriteCell(lc, 13, "t" ?? ""); // TODO: Aus den Daten entnehmen
+                    writer.WriteCell(lc, 11, w.ffBusinessIdentifier ?? "");
+                    writer.WriteCell(lc, 12, w.ffName ?? "");
+                    writer.WriteCell(lc, 13, w.Nettogewicht.ToString() ?? "");
+                    writer.WriteCell(lc, 14, "t" ?? ""); // TODO: Aus den Daten entnehmen
                     uRet = lc;
                     lc = lc + 1;
                 }

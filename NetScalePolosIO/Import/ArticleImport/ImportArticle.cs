@@ -76,7 +76,7 @@ namespace NetScalePolosIO.Import.ArticleImport
 
             catch (Exception e)
             {
-               new WriteErrorLog().WriteToErrorLog(e);
+               new WriteErrorLog().WriteToErrorLog(e,null);
              //   MessageBox.Show(e.Message);
             }
 

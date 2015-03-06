@@ -55,6 +55,7 @@
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding dt}" Header="Datum / Zeit" />
+                <DataGridTextColumn Binding="{Binding Message3}" Header="Message 3" />
                 <DataGridTextColumn Binding="{Binding Message1}" Header="Message 1" />
                 <DataGridTextColumn Binding="{Binding Message2}" Header="Message 2" />
                 <DataGridTextColumn Binding="{Binding OrderItemNumber}" Header="OrderItem" />
