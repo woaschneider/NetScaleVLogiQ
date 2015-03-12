@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Navigation;
 using HardwareDevices;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
-using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO;
-using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
-using OakLeaf.MM.Main.WPF;
 using Xceed.Wpf.Toolkit;
 using MessageBox = System.Windows.MessageBox;
 
@@ -28,11 +20,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     /// <summary>
     /// WiegeFrm Class
     /// </summary>
-    public partial class WiegeFrm : mmBusinessWindow
+    public sealed partial class WiegeFrm
     {
         #region Private Fields
 
-        private Waege _boW;
+        private readonly Waege _boW;
         private WaegeEntity _boWe;
         private int _wiegeStatus;
         private mmSaveDataResult _result;
@@ -44,8 +36,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// </summary>
         public WiegeFrm()
         {
-            this.InitializeComponent();
-            this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+            InitializeComponent();
+            Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             _boW = new Waege();
             DataContext = _boWe;
 
@@ -54,7 +46,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
 
             // Achtung - Hier wird der Observer abonniert
-            netScaleView1.OnWeightChanged += new WeightChangedHandler(ShowEventGewichtHasChanged);
+            netScaleView1.OnWeightChanged += ShowEventGewichtHasChanged;
             DisplayErrorDialog = true;
             DisplayErrorProvider = true;
             RegisterPrimaryBizObj(_boW);
@@ -121,7 +113,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
-        public void ShowEventGewichtHasChanged()
+        private void ShowEventGewichtHasChanged()
         {
             //  MessageBox.Show("Event");
             if (_wiegeStatus == 2)
@@ -172,12 +164,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonLsListe_Click(object sender, RoutedEventArgs e)
         {
-            var oLSListe = new WiegelisteFrm();
-            oLSListe.ShowDialog();
-            int uRet = oLSListe.uRet;
+            var oLsListe = new WiegelisteFrm();
+            oLsListe.ShowDialog();
+            int uRet = oLsListe.uRet;
             if (uRet == 0)
             {
-                oLSListe.Close();
+                oLsListe.Close();
             }
             else
             {
@@ -185,7 +177,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 if (_boWe != null)
                 {
                     DataContext = _boWe;
-                    oLSListe.Close();
+                    oLsListe.Close();
                     Wiegestatus = 5;
                 }
             }
@@ -193,10 +185,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonAbrufListe_Click(object sender, RoutedEventArgs e)
         {
-            lookAndFillWithAbruf();
+            LookAndFillWithAbruf();
         }
 
-        private void lookAndFillWithAbruf()
+        private void LookAndFillWithAbruf()
         {
             var oAbrufFrm = new AbruflisteFrm();
             oAbrufFrm.ShowDialog();
@@ -317,25 +309,21 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             AdressenListeFrm oA = new AdressenListeFrm();
             oA.ShowDialog();
-            if (oA != null)
-            {
-            }
+
             oA.Close();
         }
 
         private void cmdKFZ_Click(object sender, RoutedEventArgs e)
         {
-            CFListFrm oCFFrm = new CFListFrm(true, "");
-            oCFFrm.ShowDialog();
-            int uRet = oCFFrm.uRet;
-            oCFFrm.Close();
+            CFListFrm oCfFrm = new CFListFrm(true, "");
+            oCfFrm.ShowDialog();
+            oCfFrm.Close();
         }
 
         private void cmdFrachtmittel_Click(object sender, RoutedEventArgs e)
         {
             FrachtmittelListFrm oFFrm = new FrachtmittelListFrm();
             oFFrm.ShowDialog();
-            int uRet = oFFrm.uRet;
             oFFrm.Close();
         }
 
@@ -411,7 +399,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 Wiegestatus = 8;
         }
 
-        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+        private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
         {
             if (depObj != null)
             {
@@ -435,18 +423,22 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             foreach (object ctrl in LayoutRoot.Children)
             {
-                if (ctrl is TextBox)
-                    ((TextBox) ctrl).IsEnabled = false;
+                var textBox = ctrl as TextBox;
+                if (textBox != null)
+                    textBox.IsEnabled = false;
 
-                if (ctrl is Button)
-                    ((Button) ctrl).IsEnabled = false;
+                Button ctrl1 = ctrl as Button;
+                if (ctrl1 != null)
+                    ctrl1.IsEnabled = false;
 
 
-                if (ctrl is Expander)
-                    ((Expander) ctrl).IsEnabled = false;
+                Expander expander = ctrl as Expander;
+                if (expander != null)
+                    expander.IsEnabled = false;
 
-                if (ctrl is SplitButton)
-                    ((SplitButton) ctrl).IsEnabled = false;
+                SplitButton button = ctrl as SplitButton;
+                if (button != null)
+                    button.IsEnabled = false;
             }
 
 
@@ -462,17 +454,21 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             foreach (object ctrl in LayoutRoot.Children)
             {
-                if (ctrl is TextBox)
-                    ((TextBox) ctrl).IsEnabled = true;
+                TextBox box = ctrl as TextBox;
+                if (box != null)
+                    box.IsEnabled = true;
 
-                if (ctrl is Button)
-                    ((Button) ctrl).IsEnabled = true;
+                Button ctrl1 = ctrl as Button;
+                if (ctrl1 != null)
+                    ctrl1.IsEnabled = true;
 
-                if (ctrl is Expander)
-                    ((Expander) ctrl).IsEnabled = true;
+                Expander expander = ctrl as Expander;
+                if (expander != null)
+                    expander.IsEnabled = true;
 
-                if (ctrl is SplitButton)
-                    ((SplitButton) ctrl).IsEnabled = true;
+                SplitButton button = ctrl as SplitButton;
+                if (button != null)
+                    button.IsEnabled = true;
             }
 
 
@@ -653,8 +649,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
-            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
-            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
+            txtAbrufDate.Visibility = Visibility.Collapsed;
+            CbAbruffest.Visibility = Visibility.Collapsed;
         }
 
         private void Wiegestatus2()
@@ -683,8 +679,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
-            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
-            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
+            txtAbrufDate.Visibility = Visibility.Collapsed;
+            CbAbruffest.Visibility = Visibility.Collapsed;
         }
 
         private void Wiegestatus3() // Einmal
@@ -712,8 +708,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonAuftrag.IsEnabled = true;
             ribbonSave.IsEnabled = false;
             ribbonWiegen.IsEnabled = true;
-            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
-            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
+            txtAbrufDate.Visibility = Visibility.Collapsed;
+            CbAbruffest.Visibility = Visibility.Collapsed;
         }
 
         private void Wiegestatus4()
@@ -771,8 +767,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
-            CbAbruffest.Visibility = System.Windows.Visibility.Collapsed;
-            txtAbrufDate.Visibility = System.Windows.Visibility.Collapsed;
+            CbAbruffest.Visibility = Visibility.Collapsed;
+            txtAbrufDate.Visibility = Visibility.Collapsed;
             // Damit immer die aktuellen Werte angezeigt werden
             // Abruf oAbruf = new Abruf();
             //  ShowAbrufMengen(oAbruf.GetAbrufById(_boWe.Abrufid));
@@ -810,8 +806,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonWiegen.IsEnabled = false;
 
             txtKfzKennzeichen.IsEnabled = false;
-            CbAbruffest.Visibility = System.Windows.Visibility.Visible;
-            txtAbrufDate.Visibility = System.Windows.Visibility.Visible;
+            CbAbruffest.Visibility = Visibility.Visible;
+            txtAbrufDate.Visibility = Visibility.Visible;
             //tb_Kfz1.IsEnabled = false;
             //  tb_Kfz2.IsEnabled = false;
         }
@@ -849,8 +845,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonWiegen.IsEnabled = false;
 
             txtKfzKennzeichen.IsEnabled = false;
-            CbAbruffest.Visibility = System.Windows.Visibility.Visible;
-            txtAbrufDate.Visibility = System.Windows.Visibility.Visible;
+            CbAbruffest.Visibility = Visibility.Visible;
+            txtAbrufDate.Visibility = Visibility.Visible;
         }
 
         private void Wiegestatus8() // LS NEU
@@ -1071,8 +1067,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boWe.LieferscheinNr = boE.NewLsNrGlobal();
 
                     _boWe.ErstDatetime = DateTime.Today;
-                     _boWe.zweitDateTime = DateTime.Now;
-                     _boWe.LSDatum = DateTime.Today;
+                    _boWe.zweitDateTime = DateTime.Now;
+                    _boWe.LSDatum = DateTime.Today;
 
                     _boWe.Waegung = 2;
                     if (_boWe.Erstgewicht != null && _boWe.Zweitgewicht != null)
@@ -1116,15 +1112,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     MessageBox.Show(ex.Message);
                 }
-
-            
             }
             if (_wiegeStatus == 6)
             {
                 Abruf boA = new Abruf();
-                AbrufEntity oAE = boA.CreateAbruf(_boWe);
-                _boWe.abruf_PK = oAE.PK;
-                _boWe.AbrufNr = oAE.AbrufNr;
+                AbrufEntity oAe = boA.CreateAbruf(_boWe);
+                _boWe.abruf_PK = oAe.PK;
+                _boWe.AbrufNr = oAe.AbrufNr;
             }
 
             if (_wiegeStatus == 7)
@@ -1132,7 +1126,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 // Ein wenig tricky : Die Abrufentity wird zurück gegeben, damit die  Restmenge bei Änderung gleich nach
                 // dem Speichern angezeigt wird.
                 Abruf boA = new Abruf();
-                var oAE = boA.SaveAbruf(_boWe);
+                boA.SaveAbruf(_boWe);
 
                 //_boWe.Abrufid = oAE.PK;
                 //_boWe.Abrufnr = oAE.Abrufnr;
@@ -1163,7 +1157,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Export2Json(WaegeEntity we)
         {
-          new ImportExportPolos().ExportSingle(we);
+            new ImportExportPolos().ExportSingle(we);
         }
 
         #endregion
@@ -1180,10 +1174,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdLookUpKfz_Click(object sender, RoutedEventArgs e)
         {
-            lookupKfz();
+            LookupKfz();
         }
 
-        private void lookupKfz()
+        private void LookupKfz()
         {
             CFListFrm oKfzListeFrm = new CFListFrm(true, txtKfzKennzeichen.Text);
             oKfzListeFrm.ShowDialog();
@@ -1386,17 +1380,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        
-
-        private void searchCustomer()
+        private void SearchCustomer()
         {
             if (!string.IsNullOrEmpty(txtAuftraggeber.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = null;
 
 
-                boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
+                var boAe = boA.GetByBusinenessIdentifier(txtAuftraggeber.Text, "AU");
                 if (boAe != null)
                 {
                     _boW.Customer2Waege(boAe.PK, _boWe);
@@ -1408,9 +1399,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-     
 
-        private void searchInvocieReceiver()
+        private void SearchInvocieReceiver()
         {
             if (!string.IsNullOrEmpty(txtRechnungsEmpfaenger.Text))
             {
@@ -1427,9 +1417,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-      
 
-        private void searchFrachtführer()
+        private void SearchFrachtführer()
         {
             if (!string.IsNullOrEmpty(txtFrachtführer.Text))
             {
@@ -1447,8 +1436,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-
-        private void searchLagerMandant()
+        private void SearchLagerMandant()
         {
             if (!string.IsNullOrEmpty(txtLagerMandant.Text))
             {
@@ -1462,11 +1450,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     _boW.ClearOwnerInWaege(_boWe);
                 }
-
             }
         }
 
-        void searchLieferantEmpfänger()
+        private void SearchLieferantEmpfänger()
         {
             if (!string.IsNullOrEmpty(txtLieferantEmpfaenger.Text))
             {
@@ -1484,7 +1471,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        private void searchKfz()
+        private void SearchKfz()
         {
             Fahrzeuge boF = new Fahrzeuge();
             FahrzeugeEntity boFe = boF.GetByExactKennzeichen(txtKfzKennzeichen.Text);
@@ -1518,18 +1505,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void searchProduct()
+        private void SearchProduct()
         {
             Produkte boP = new Produkte();
-            ProdukteEntity boPe = null;
+            //  ProdukteEntity boPe = null;
 
             if (!string.IsNullOrEmpty(txtProductId.Text))
             {
-                _boW.Product2Waege(txtProductId.Text,_boWe);
+                _boW.Product2Waege(txtProductId.Text, _boWe);
             }
             else
             {
-                
             }
         }
 
@@ -1538,7 +1524,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchCustomer();
+                SearchCustomer();
             }
             if (e.Key == Key.F4)
             {
@@ -1549,7 +1535,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchInvocieReceiver();
+                SearchInvocieReceiver();
             }
             if (e.Key == Key.F4)
             {
@@ -1560,7 +1546,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchFrachtführer();
+                SearchFrachtführer();
             }
             if (e.Key == Key.F4)
             {
@@ -1572,11 +1558,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchLagerMandant();
+                SearchLagerMandant();
             }
             if (e.Key == Key.F4)
-            { 
-
+            {
             }
         }
 
@@ -1584,7 +1569,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchLieferantEmpfänger();
+                SearchLieferantEmpfänger();
             }
             if (e.Key == Key.F4)
             {
@@ -1615,7 +1600,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchProduct();
+                SearchProduct();
             }
             if (e.Key == Key.F4)
             {
@@ -1626,7 +1611,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (e.Key == Key.Tab)
             {
-                searchKfz();
+                SearchKfz();
             }
             if (e.Key == Key.F4)
             {
@@ -1636,28 +1621,27 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void LuQuellLagerplatz_OnClick(object sender, RoutedEventArgs e)
         {
-
             LagerplaetzeListeFrm oFrm = new LagerplaetzeListeFrm("");
             oFrm.ShowDialog();
-           int uRet = oFrm.uRet;
-           if (uRet != null)
-           {
-               Lagerplaetze boL = new Lagerplaetze();
-               LagerplaetzeEntity boLe = boL.GetByPk(uRet);
-               if (boLe != null)
-               {
-                   _boWe.actualStorageAreaId = boLe.id;
-                   _boWe.IstQuellLagerPlatzId = boLe.id;
-                   _boWe.IstQuellLagerPlatz = boLe.name;
-               }
-               else
-               {
-                   _boWe.actualStorageAreaId = null;
-                   _boWe.IstQuellLagerPlatzId = null;
-                   _boWe.IstQuellLagerPlatz = null;
-               }
-           }
-           oFrm.Close();
+            int uRet = oFrm.uRet;
+            //if (uRet != null)
+            //{
+            Lagerplaetze boL = new Lagerplaetze();
+            LagerplaetzeEntity boLe = boL.GetByPk(uRet);
+            if (boLe != null)
+            {
+                _boWe.actualStorageAreaId = boLe.id;
+                _boWe.IstQuellLagerPlatzId = boLe.id;
+                _boWe.IstQuellLagerPlatz = boLe.name;
+            }
+            else
+            {
+                _boWe.actualStorageAreaId = null;
+                _boWe.IstQuellLagerPlatzId = null;
+                _boWe.IstQuellLagerPlatz = null;
+            }
+            //}
+            oFrm.Close();
         }
 
         private void LuZielLagerplatz_OnClick(object sender, RoutedEventArgs e)
@@ -1665,22 +1649,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             LagerplaetzeListeFrm oFrm = new LagerplaetzeListeFrm("");
             oFrm.ShowDialog();
             int uRet = oFrm.uRet;
-            if (uRet != null)
+            //if (uRet != null)
+            //{
+            Lagerplaetze boL = new Lagerplaetze();
+            LagerplaetzeEntity boLe = boL.GetByPk(uRet);
+            if (boLe != null)
             {
-                Lagerplaetze boL = new Lagerplaetze();
-                LagerplaetzeEntity boLe = boL.GetByPk(uRet);
-                if (boLe != null)
-                {
-                    _boWe.targetStorageAreaId = boLe.id;
-                    _boWe.IstZielLagerPlatzId = boLe.id;
-                    _boWe.IstZielLagerPlatz = boLe.name;
-                }
-                else {
-                    _boWe.targetStorageAreaId = null;
-                    _boWe.IstZielLagerPlatzId = null;
-                    _boWe.IstZielLagerPlatz = null;
-                }
+                _boWe.targetStorageAreaId = boLe.id;
+                _boWe.IstZielLagerPlatzId = boLe.id;
+                _boWe.IstZielLagerPlatz = boLe.name;
             }
+            else
+            {
+                _boWe.targetStorageAreaId = null;
+                _boWe.IstZielLagerPlatzId = null;
+                _boWe.IstZielLagerPlatz = null;
+            }
+            //}
             oFrm.Close();
         }
     }

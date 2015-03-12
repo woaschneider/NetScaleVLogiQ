@@ -16,8 +16,7 @@
                         WindowStartupLocation="CenterScreen"
                         mc:Ignorable="d">
     <mmwpf:mmBusinessWindow.Resources>
-        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
-        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="LightGray" />
+     
 
         <!--  Border Brushes  -->
 

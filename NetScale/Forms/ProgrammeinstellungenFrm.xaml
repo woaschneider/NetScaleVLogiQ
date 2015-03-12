@@ -509,7 +509,6 @@
                              Margin="598,234,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
-                            
                              TabIndex="180"
                              Text="{Binding LSNRGlobal}" />
                     <TextBox Name="textBox21"
@@ -518,7 +517,6 @@
                              Margin="598,256,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
-                     
                              TabIndex="180"
                              Text="{Binding WiegescheinNr}" />
                     <Label Name="label37"
@@ -928,12 +926,12 @@
                              VerticalAlignment="Top"
                              Text="{Binding ExportRESTServerUrl}" />
                     <Label Name="label35"
-                           MouseDoubleClick="Label35_OnMouseDoubleClick"
                            Height="28"
                            Margin="355,109,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Content="Consumer key" />
+                           Content="Consumer key"
+                           MouseDoubleClick="Label35_OnMouseDoubleClick" />
                     <Label Name="label36"
                            Height="28"
                            Margin="354,137,0,0"
@@ -941,19 +939,20 @@
                            VerticalAlignment="Top"
                            Content="Consumer secret" />
                     <PasswordBox Name="passwordBoxConsumerKey"
-                                 MouseDoubleClick="PasswordBoxConsumerKey_OnMouseDoubleClick"
                                  Width="300"
                                  Height="23"
                                  Margin="517,110,0,0"
                                  HorizontalAlignment="Left"
-                                 VerticalAlignment="Top" IsEnabled="False" />
+                                 VerticalAlignment="Top"
+                                 IsEnabled="False"
+                                 MouseDoubleClick="PasswordBoxConsumerKey_OnMouseDoubleClick" />
                     <PasswordBox Name="passwordBoxConsumerSecret"
                                  Width="299"
                                  Height="23"
                                  Margin="518,138,0,0"
                                  HorizontalAlignment="Left"
-                                 
-                                 VerticalAlignment="Top" IsEnabled="False" />
+                                 VerticalAlignment="Top"
+                                 IsEnabled="False" />
                 </Grid>
             </TabItem>
         </TabControl>

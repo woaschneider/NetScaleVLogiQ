@@ -31,10 +31,11 @@
                 <ribbon:RibbonGroup x:Name="Group1" Header="Betrieb">
 
                     <ribbon:RibbonButton x:Name="cmdExportXls"
-                                         Width="80"
+                                         Width="100"
                                          Click="cmdExportXls_Click"
+                                     
                                          FontSize="14"
-                                         Label=" ExportAll starten "
+                                         Label="Excel-Export starten "
                                          LargeImageSource="..\Images\1420389255_xls.png" />
 
                 </ribbon:RibbonGroup>

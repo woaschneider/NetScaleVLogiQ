@@ -5,7 +5,7 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         xmlns:ribbon="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"
                         x:Name="Window"
-                        Title="Exportliste"
+                        Title="Exportprobleme"
                         Width="768"
                         Height="493"
                         AllowsTransparency="False"
@@ -31,21 +31,14 @@
                 </ribbon:RibbonApplicationMenu>
             </ribbon:Ribbon.ApplicationMenu>
             <ribbon:RibbonTab x:Name="wiegen" Header="Bearbeiten">
-                <ribbon:RibbonGroup x:Name="Group1" Header="Betrieb">
-
-
-                    <ribbon:RibbonButton x:Name="cmdPrintExportListe"
-                                         FontSize="14"
-                                         Label=" Exportliste"
-                                         LargeImageSource="..\Images\Printer_48x48.png"
-                                         ToolTip=" Wiegeliste drucken" />
-                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="Group1" Header="Betrieb" />
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DatePicker Name="DatePickerExport"
                     Margin="0,60,173.466,0"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Top" />
+                    VerticalAlignment="Top"
+                    SelectedDateChanged="DatePickerExport_SelectedDateChanged" />
         <DataGrid Name="dataGrid"
                   Width="742"
                   Height="354"
@@ -55,7 +48,7 @@
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding dt}" Header="Datum / Zeit" />
-                <DataGridTextColumn Binding="{Binding Message3}" Header="Message 3" />
+                <DataGridTextColumn Binding="{Binding Message3}" Header="LS-Nr." />
                 <DataGridTextColumn Binding="{Binding Message1}" Header="Message 1" />
                 <DataGridTextColumn Binding="{Binding Message2}" Header="Message 2" />
                 <DataGridTextColumn Binding="{Binding OrderItemNumber}" Header="OrderItem" />

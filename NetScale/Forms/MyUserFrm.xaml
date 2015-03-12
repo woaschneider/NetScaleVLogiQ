@@ -13,7 +13,7 @@
                         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <SolidColorBrush x:Key="DisabledForegroundBrush" Color="Black" />
-        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="LightGray" />
+        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="DarkGray" />
 
         <!--  Border Brushes  -->
 
@@ -204,13 +204,14 @@
             <TextBox Name="tb_unterschrift"
                      Grid.Row="1"
                      Grid.Column="1"
-                         Text="{Binding Unterschrift,
-                                    Mode=Default}"
                      Width="261"
                      Height="20"
                      Margin="236,10,0,0"
                      HorizontalAlignment="Left"
-                     VerticalAlignment="Top" TextChanged="tb_unterschrift_TextChanged" />
+                     VerticalAlignment="Top"
+                     Text="{Binding Unterschrift,
+                                    Mode=Default}"
+                     TextChanged="tb_unterschrift_TextChanged" />
         </Grid>
         <TextBox Name="tb_catchfocus"
                  Width="0"
