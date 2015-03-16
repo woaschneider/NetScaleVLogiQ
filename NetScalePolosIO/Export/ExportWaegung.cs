@@ -79,7 +79,12 @@ namespace NetScalePolosIO.Export
             oOi.orderItems[0].product = new Product();
             oOi.orderItems[0].product.id = w.productid;
 
-
+            oOi.orderItems[0].clearance = new Clearance();
+            oOi.orderItems[0].clearance.reference = w.clearanceReferenz;
+            oOi.orderItems[0].clearance.authorizerId = w.customerId;
+            oOi.orderItems[0].clearance.granteeId = w.supplierOrConsigneeId;
+            oOi.orderItems[0].clearance.validFrom= string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
+            oOi.orderItems[0].clearance.validTo = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
             // Wieviele Leistungen hat das Produkt 
             Serv boS = new Serv();
             mmBindingList<ServEntity> boSe = boS.GetAllByProduktId(w.productid);
@@ -93,7 +98,7 @@ namespace NetScalePolosIO.Export
                     oOi.orderItems[0].orderItemServices.Add(new OrderItemService());
                     oOi.orderItems[0].orderItemServices[i].remark = "NO ORDER";
                     oOi.orderItems[0].orderItemServices[i].state = "READY_TO_DISPATCH";
-                    oOi.orderItems[0].orderItemServices[i].targetAmount = 40000; // Muss das sein ?
+                    oOi.orderItems[0].orderItemServices[i].targetAmount = 0; // Muss das sein ?
                     oOi.orderItems[0].orderItemServices[i].plannedBeginDate = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
                     oOi.orderItems[0].orderItemServices[i].plannedEndDate = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
                     oOi.orderItems[0].orderItemServices[i].deliveryType = "FREE"; // TODO auf Frankatur / Incoterm umstellen
@@ -195,11 +200,12 @@ namespace NetScalePolosIO.Export
 
             oWEx2.orderItemServiceId = boWe.identifierOItemService;
             // oWEx2.carrierName = boWe.ffBusinessIdentifier;
+            oWEx2.carrierId = boWe.ffId;
             oWEx2.carrierName = boWe.ffSubName2;
             oWEx2.carrierVehicle = boWe.Fahrzeug;
             oWEx2.netAmount = (double)boWe.Nettogewicht;
 
-            if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatz))
+            if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatzId))
             {
                 oWEx2.storageAreaId = boWe.IstQuellLagerPlatzId; // Panko 04.03.2015;
             }

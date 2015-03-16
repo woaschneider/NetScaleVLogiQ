@@ -60,6 +60,18 @@ namespace HWB.NETSCALE.BOEF
                                               select a;
             return GetEntityList(query);
         }
+        public mmBindingList<ArtikelEntity> GetByMatchCode(string mc, string ownerId)
+        {
+
+            IQueryable<ArtikelEntity> query = from a in ObjectContext.ArtikelEntities
+                                              orderby a.kindOfGoodDescription
+                                              where a.ownerId==ownerId && (a.number.Contains(mc) ||
+                                              a.kindOfGoodDescription.Contains(mc) ||
+                                              a.description.Contains(mc))
+
+                                              select a;
+            return GetEntityList(query);
+        }
 
       
     }

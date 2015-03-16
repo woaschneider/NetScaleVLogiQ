@@ -25,6 +25,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         /// Constructor
         /// </summary>
         private int _uRet;
+
+        private string oid;
         // Deklariere das primäre BO 
         private Artikel boAr = new Artikel(); 
         //  private CFEditFrm EditFrm = CFEditFrm();
@@ -38,13 +40,21 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
 
 
-        public ArtikelListFrm(string matchcode)
+        public ArtikelListFrm(string matchcode, string ownerid)
         {
             this.InitializeComponent();
-           
+            string oid = ownerid;
 
             dataGrid.SelectedValuePath = "PK";
-            dataGrid.ItemsSource = boAr.GetByMatchCode(matchcode);
+            if (string.IsNullOrEmpty(oid))
+            {
+                dataGrid.ItemsSource = boAr.GetByMatchCode(matchcode);
+            }
+            else
+            {
+                dataGrid.ItemsSource = boAr.GetByMatchCode(matchcode,oid);
+            }
+
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
             txtSearch.Text = matchcode;
         }
@@ -93,7 +103,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid.ItemsSource = boAr.GetByMatchCode(txtSearch.Text.Trim());
+            if (string.IsNullOrEmpty(oid))
+            {
+                dataGrid.ItemsSource = boAr.GetByMatchCode(txtSearch.Text.Trim());
+            }
+            else
+            {
+                dataGrid.ItemsSource = boAr.GetByMatchCode(txtSearch.Text.Trim(), oid);
+            }
+
+         
         }
 
         private void FillGrid()

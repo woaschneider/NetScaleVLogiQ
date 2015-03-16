@@ -35,7 +35,7 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DatePicker Name="DatePickerExport"
-                    Margin="0,60,173.466,0"
+                    Margin="0,52,561,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     SelectedDateChanged="DatePickerExport_SelectedDateChanged" />

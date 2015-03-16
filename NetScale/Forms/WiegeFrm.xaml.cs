@@ -272,7 +272,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdArtikel_Click(object sender, RoutedEventArgs e)
         {
-            ArtikelListFrm oAListFrm = new ArtikelListFrm("");
+            ArtikelListFrm oAListFrm = new ArtikelListFrm("","");
             oAListFrm.ShowDialog();
             oAListFrm.Close();
         }
@@ -1317,7 +1317,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luConsigneeSupplier_Click(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse("", "");
+            int? uRet = lookUpAdresse(txtLieferantEmpfaenger.Text, "EM");
             if (uRet != null)
             {
                 _boW.SupplierOrConsignee2Waege((int) uRet, _boWe);
@@ -1359,7 +1359,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void luArticle_Click(object sender, RoutedEventArgs e)
         {
-            ArtikelListFrm oAFrm = new ArtikelListFrm(txtArtikelNr.Text ?? "");
+            string oid = null;
+            if (_boWe != null)
+            {
+                oid = _boWe.ownerId.ToString();
+            }
+
+            ArtikelListFrm oAFrm = new ArtikelListFrm(txtArtikelNr.Text ?? "",oid);
             oAFrm.ShowDialog();
             int uRet = oAFrm.uRet;
             _boW.Article2Waege(uRet, _boWe);
@@ -1450,6 +1456,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 {
                     _boW.ClearOwnerInWaege(_boWe);
                 }
+            }
+            else
+            {
+                _boW.ClearOwnerInWaege(_boWe);
             }
         }
 

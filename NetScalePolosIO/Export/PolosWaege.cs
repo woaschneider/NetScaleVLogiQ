@@ -35,6 +35,22 @@ namespace NetScalePolosIO.Export
     {
         public int? id { get; set; }
     }
+    public class Unit
+    {
+        public int id { get; set; }
+        public string shortDescription { get; set; }
+        public string description { get; set; }
+    }
+    public class Clearance
+    {
+
+        public string validFrom { get; set; }
+        public string validTo { get; set; }
+        public int? authorizerId { get; set; } // Auftraggeber
+        public int? granteeId { get; set; }   // Wem die Freistellung gewährt
+ 
+        public string reference { get; set; }
+    }
 
     public class OrderItemService
     {
@@ -56,7 +72,7 @@ namespace NetScalePolosIO.Export
     }
 
     public class OrderItem
-    {
+    {   public Clearance clearance { get; set; }
         public string orderItemState { get; set; }
         public IList<OrderItemService> orderItemServices { get; set; }
         public string plannedDate { get; set; }
@@ -94,6 +110,7 @@ namespace NetScalePolosIO.Export
         public ScalePhaseData scalePhaseData { get; set; }
         public string orderItemServiceId { get; set; }
         public string carrierName { get; set; }
+        public int? carrierId { get; set; }
         public string carrierVehicle { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }
