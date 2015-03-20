@@ -576,21 +576,6 @@
                VerticalAlignment="Top"
                Content="Ist-Quell-Lagerplatz"
                TabIndex="220" />
-        <TextBox x:Name="txtAuftraggeber_Copy4"
-                 Width="385"
-                 Height="23"
-                 Margin="202,315,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 TabIndex="250"
-                 Text="{Binding IstZielLagerPlatz}" />
-        <Label x:Name="lblFahrzeugtyp_Copy1"
-               Height="27.667"
-               Margin="14,312,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Content="Soll-Lagerplatz"
-               TabIndex="240" />
         <Button x:Name="cmdLookUpKfz"
                 Width="38.333"
                 Height="22"
@@ -1855,20 +1840,6 @@
                        Source="..\Images\1329900378_search_button.ico" />
             </StackPanel>
         </Button>
-        <Button Name="luZielLagerplatz"
-                Width="38.333"
-                Height="22"
-                Margin="595,317,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Click="LuZielLagerplatz_OnClick">
-            <StackPanel>
-                <Image Width="18"
-                       Height="18"
-                       HorizontalAlignment="Left"
-                       Source="..\Images\1329900378_search_button.ico" />
-            </StackPanel>
-        </Button>
         <TextBox Name="txtIstQuellLagerPlatzId"
                  Width="48"
                  Height="23"
@@ -1877,13 +1848,5 @@
                  VerticalAlignment="Top"
                  TabIndex="230"
                  Text="{Binding IstQuellLagerPlatzId}" />
-        <TextBox Name="textBox50"
-                 Width="48"
-                 Height="23"
-                 Margin="151,315,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 TabIndex="250"
-                 Text="{Binding IstZielLagerPlatzId}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

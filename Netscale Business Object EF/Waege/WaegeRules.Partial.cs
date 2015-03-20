@@ -21,8 +21,8 @@ namespace HWB.NETSCALE.BOEF
 		public override void CheckExtendedRulesHook<EntityType>(EntityType entity)
 		{
 			WaegeEntity currentEntity = entity as WaegeEntity;
-			
 
+		    IsNettoEmpty(currentEntity);
             
 			// Call Validation methods
             IsProductFilled(currentEntity);
@@ -38,7 +38,28 @@ namespace HWB.NETSCALE.BOEF
 
 		}
 
-        private string IsExistedProductFilled(WaegeEntity currentEntity)
+	    private string IsNettoEmpty(WaegeEntity currentEntity)
+        {
+            string Msg = null;
+	        if (currentEntity.Waegung == 2)
+	        {
+	          
+	            if (mmType.IsEmpty(currentEntity.Nettogewicht))
+	            {
+	                this.EntityPropertyDisplayName = "Netto";
+	                RequiredFieldMessageSuffix = " darf nicht null oder leer sein!";
+	                Msg = this.RequiredFieldMessagePrefix +
+	                      this.EntityPropertyDisplayName + " " +
+	                      this.RequiredFieldMessageSuffix;
+
+	                AddErrorProviderBrokenRule("Nettogewicht", Msg);
+	            }
+	        
+	        }
+            return Msg;
+	    }
+
+	    private string IsExistedProductFilled(WaegeEntity currentEntity)
         {
             Produkte boP = new Produkte();
             ProdukteEntity boPe = boP.GetById(currentEntity.productid);

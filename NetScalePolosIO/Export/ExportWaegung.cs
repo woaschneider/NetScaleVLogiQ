@@ -194,9 +194,7 @@ namespace NetScalePolosIO.Export
             #region JSON-Polos Struktur aufbauen
 
             var oWEx2 = new RootObject2();
-            oWEx2.scalePhaseData = new ScalePhaseData();
-            oWEx2.scalePhaseData.FIRST = new FIRST();
-            oWEx2.scalePhaseData.SECOND = new SECOND();
+           
 
             oWEx2.orderItemServiceId = boWe.identifierOItemService;
             // oWEx2.carrierName = boWe.ffBusinessIdentifier;
@@ -213,23 +211,46 @@ namespace NetScalePolosIO.Export
            
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
 
-            oWEx2.scalePhaseData.FIRST.scaleId = "1";
-            if (boWe.LN1 != null)
-                oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
 
-            if (boWe.Erstgewicht != null)
-                oWEx2.scalePhaseData.FIRST.amount = (double) boWe.Erstgewicht;
+            if (boWe.Erstgewicht > 0 | boWe.Zweitgewicht > 0)
+            {
+                oWEx2.scalePhaseData = new ScalePhaseData();
+                if (boWe.Erstgewicht > 0)
+                {
+                    oWEx2.scalePhaseData.FIRST = new FIRST();
+                    oWEx2.scalePhaseData.FIRST.scaleId = "1";
+                    if (boWe.LN1 != null)
+                        oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
 
-            oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime) + "000";
-            oWEx2.scalePhaseData.SECOND.scaleId = "1";
+                    if (boWe.Erstgewicht != null)
+                        oWEx2.scalePhaseData.FIRST.amount = (double)boWe.Erstgewicht;
 
-            if (boWe.LN2 != null)
-                oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
+                    oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime) + "000";
 
-            if (boWe.Zweitgewicht != null)
-                oWEx2.scalePhaseData.SECOND.amount = (double) boWe.Zweitgewicht;
 
-            oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) + "000";
+
+                }
+
+
+
+                if (boWe.Zweitgewicht > 0)
+                {
+                    oWEx2.scalePhaseData.SECOND = new SECOND();
+                    oWEx2.scalePhaseData.SECOND.scaleId = "1";
+                    if (boWe.LN2 != null)
+                        oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
+
+                    if (boWe.Zweitgewicht != null)
+                        oWEx2.scalePhaseData.SECOND.amount = (double)boWe.Zweitgewicht;
+
+                    oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) + "000";
+                }
+            }
+
+          
+
+      
+          
 
             #endregion
 

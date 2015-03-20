@@ -39,7 +39,7 @@ namespace HWB.NETSCALE.BOEF
                     OrderItemservice boOES = new OrderItemservice();
                     OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifierOItem);
                     if (boOEISe != null)
-                    {
+                    {  
                         boOEISe.HasBinUsed = true;
                         boOES.SaveEntity(boOEISe);
                     }
