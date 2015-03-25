@@ -227,7 +227,11 @@ namespace NetScalePolosIO
 
         public void ExportSingle(WaegeEntity boWe)
         {
-            ExportToRestServer(boWe);
+            if (boWe.taab == false)
+            {
+                ExportToRestServer(boWe);
+            }
+            
         }
 
         #endregion
