@@ -25,14 +25,14 @@
 
 
         <Rectangle Width="692"
-                   Height="75"
-                   Margin="-1,355,0,0"
+                   Height="103"
+                   Margin="-1,327,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Fill="#FF87B3DD"
                    Stroke="Black" />
         <Rectangle Width="692"
-                   Height="217"
+                   Height="189"
                    Margin="-1,136,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -1848,5 +1848,30 @@
                  VerticalAlignment="Top"
                  TabIndex="230"
                  Text="{Binding IstQuellLagerPlatzId}" />
+        <Label Name="label59"
+               Width="110"
+               Margin="16,341,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Auftrag-Nr. / Seq"
+               FontWeight="Bold"
+               TabIndex="260"
+             />
+        <TextBox Name="textBox49"
+                 Width="263"
+                 Height="23"
+                 Margin="150,344,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TabIndex="270"
+                 Text="{Binding number}" IsReadOnly="True" />
+        <TextBox Name="textBox50"
+                 Width="168"
+                 Height="23"
+                 Margin="419,343,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 TabIndex="270"
+                 Text="{Binding sequence}" IsReadOnly="True" />
     </Grid>
 </mmwpf:mmBusinessWindow>

@@ -26,15 +26,23 @@ namespace HWB.NETSCALE.BOEF
             
 			// Call Validation methods
             IsProductFilled(currentEntity);
-		    IsKfzFilled(currentEntity);
+		      IsExistedProductFilled(currentEntity);
+            IsKfzFilled(currentEntity);
 
 		    IsCustomerFilled(currentEntity);
 		    IsFfFilled(currentEntity);
             //IsInvoiceReceiver(currentEntity);
             //IsOwner(currentEntity);
             //IsKundenReferenz(currentEntity);
-		    IsArticlenumberFilled(currentEntity);
-		    IsExistedProductFilled(currentEntity);
+		 
+		    if (currentEntity.productdescription.Trim() != "Fremdverwiegung")
+		    {
+                IsArticlenumberFilled(currentEntity);
+		    }
+		    else
+		    {
+		        IsWarenArtFilled(currentEntity);
+		    }
 
 		}
 
@@ -115,7 +123,7 @@ namespace HWB.NETSCALE.BOEF
             if (mmType.IsEmpty(_we.productdescription))
             {
                 this.EntityPropertyDisplayName = "Produkt";
-                RequiredFieldMessageSuffix = " ist ein Pflchtfeld";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
                 Msg = this.RequiredFieldMessagePrefix +
                       this.EntityPropertyDisplayName + " " +
                       this.RequiredFieldMessageSuffix;
@@ -130,7 +138,7 @@ namespace HWB.NETSCALE.BOEF
             if (mmType.IsEmpty(_we.Fahrzeug))
             { 
                 this.EntityPropertyDisplayName = "Kfz-Kennzeichen";
-                RequiredFieldMessageSuffix = " ist ein Pflchtfeld";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
                 Msg = this.RequiredFieldMessagePrefix +
                       this.EntityPropertyDisplayName + " " +
                       this.RequiredFieldMessageSuffix;
@@ -145,7 +153,7 @@ namespace HWB.NETSCALE.BOEF
             if (mmType.IsEmpty(_we.customerBusinessIdentifier))
             {
                 this.EntityPropertyDisplayName = "Auftraggeber";
-                RequiredFieldMessageSuffix = " ist ein Pflchtfeld";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
                 Msg = this.RequiredFieldMessagePrefix +
                       this.EntityPropertyDisplayName + " " +
                       this.RequiredFieldMessageSuffix;
@@ -160,7 +168,7 @@ namespace HWB.NETSCALE.BOEF
             if (mmType.IsEmpty(_we.articleNumber))
             {
                 this.EntityPropertyDisplayName = "Artikel-Nr.";
-                RequiredFieldMessageSuffix = " ist ein Pflchtfeld";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
                 Msg = this.RequiredFieldMessagePrefix +
                       this.EntityPropertyDisplayName + " " +
                       this.RequiredFieldMessageSuffix;
@@ -170,7 +178,22 @@ namespace HWB.NETSCALE.BOEF
             return Msg;
         }
 
-        //public string IsOrderChanged(WaegeEntity _we)
+	    public string IsWarenArtFilled(WaegeEntity _we)
+	    {  string Msg = null;
+	        if (mmType.IsEmpty(_we.kindOfGoodDescription))
+	        {
+	            this.EntityPropertyDisplayName = "Warenart";
+	            RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
+	            Msg = this.RequiredFieldMessagePrefix +
+	                  this.EntityPropertyDisplayName + " " +
+	                  this.RequiredFieldMessageSuffix;
+
+                AddErrorProviderBrokenRule("kindOfGoodDescription", Msg);
+	        }
+	        return Msg;
+	    }
+
+	    //public string IsOrderChanged(WaegeEntity _we)
         //{
         //    if (!string.IsNullOrEmpty(_we.identifier))
         //    {

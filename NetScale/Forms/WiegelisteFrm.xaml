@@ -63,6 +63,7 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid x:Name="dataGrid1"
+                  MouseRightButtonUp="DataGrid1_OnMouseRightButtonUp"
                   Width="1110"
                   Height="439"
                   Margin="12,245,0,0"

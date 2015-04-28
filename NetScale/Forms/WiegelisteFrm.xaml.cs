@@ -229,5 +229,29 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             dataGrid1.Columns.Add(gc7);
             gc7.Width = 100;
         }
+
+   
+
+        private void DataGrid1_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            uRet = Convert.ToInt32(dataGrid1.SelectedValue);
+            Waege boW = new Waege();
+
+            WaegeEntity boWE = boW.GetWaegungByPk(uRet);
+            if (boWE != null)
+            {
+                if (boWE.taab != true)
+                    if (
+                        MessageBox.Show("Auftragsnummer entfernen um diesen Datensatz als initierten Auftrag zu senden?", "Frage", MessageBoxButton.YesNo,
+                            MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        boWE.identifierOItem = null;
+                        boWE.number = null;
+                        boWE.sequence = null;
+                        boW.SaveEntity(boWE);
+                    }
+
+            }
+        }
     }
 }

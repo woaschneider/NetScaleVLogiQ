@@ -10,7 +10,7 @@
                         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                         x:Name="Window"
                         Title="Adressenliste"
-                        Width="678"
+                        Width="944"
                         Height="734"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"

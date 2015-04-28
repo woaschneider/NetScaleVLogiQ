@@ -108,6 +108,10 @@
       <Project>{6E80C63E-1268-4C3C-90A6-688EBDADE587}</Project>
       <Name>Netscale Business Object EF</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NetScaleGlobal\NetScaleGlobal.csproj">
+      <Project>{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}</Project>
+      <Name>NetScaleGlobal</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

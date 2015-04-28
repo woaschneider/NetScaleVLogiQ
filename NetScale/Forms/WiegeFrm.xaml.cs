@@ -179,6 +179,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     DataContext = _boWe;
                     oLsListe.Close();
                     Wiegestatus = 5;
+                    //if (_boWe.taab == true)
+                    //{
+                    //    ribbonSave.IsEnabled = false;
+                    //    ribbonDelete.IsEnabled = false;
+                    //}
+                    //else
+                    //{
+                    //    ribbonSave.IsEnabled = true;
+                    //    ribbonDelete.IsEnabled = true;
+                    //}
                 }
             }
         }
@@ -346,6 +356,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdExport_OnClick(object sender, RoutedEventArgs e)
         {
+       
             new ImportExportPolos().ExportAll();
         }
 
@@ -1089,6 +1100,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _result = SaveEntity(_boW, _boWe);
                     if (_result == mmSaveDataResult.RulesPassed)
                     {
+                       
+                            _boW.SetOrderItemsServiceInvisible(_boWe);
+                       
                         if (_wiegeStatus != 4) // Erstwägung bearbeiten
                             if (
                                 MessageBox.Show("Lieferschein drucken?", "Frage", MessageBoxButton.YesNo,

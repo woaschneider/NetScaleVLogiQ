@@ -10,6 +10,7 @@ using OakLeaf.MM.Main.Collections;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
+using RestSharp.Extensions;
 
 
 namespace NetScalePolosIO.Export
@@ -21,7 +22,7 @@ namespace NetScalePolosIO.Export
 
     public class ExportWaegungVersion2Rest
     {
-        public void ExportLs2Rest(string baseUrl,  int? location, WaegeEntity boWe)
+        public void ExportLs2Rest(string baseUrl, int? location, WaegeEntity boWe)
         {
             // Diese Prüfung reicht nicht! Das muss angepaßt werden. 
             if (boWe.identifierOItem != null)
@@ -199,6 +200,7 @@ namespace NetScalePolosIO.Export
             oWEx2.orderItemServiceId = boWe.identifierOItemService;
             // oWEx2.carrierName = boWe.ffBusinessIdentifier;
             oWEx2.carrierId = boWe.ffId;
+            oWEx2.articleId = boWe.articleId;
             oWEx2.carrierName = boWe.ffSubName2;
             oWEx2.carrierVehicle = boWe.Fahrzeug;
             oWEx2.netAmount = (double)boWe.Nettogewicht;
@@ -225,7 +227,15 @@ namespace NetScalePolosIO.Export
                     if (boWe.Erstgewicht != null)
                         oWEx2.scalePhaseData.FIRST.amount = (double)boWe.Erstgewicht;
 
-                    oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime) + "000";
+                    if (boWe.ErstDatetime != null)
+                    {
+                        oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.ErstDatetime) + "000";
+                    }
+                    else
+                    {
+                        oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.LSDatum) + "000";
+                    }
+                    
 
 
 
@@ -243,7 +253,16 @@ namespace NetScalePolosIO.Export
                     if (boWe.Zweitgewicht != null)
                         oWEx2.scalePhaseData.SECOND.amount = (double)boWe.Zweitgewicht;
 
-                    oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) + "000";
+                    if (boWe.zweitDateTime != null)
+                    {
+                        oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.zweitDateTime) +
+                                                           "000";
+                    }
+                    else
+                    {
+                        oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.LSDatum) +
+                                                             "000";  
+                    }
                 }
             }
 
@@ -345,9 +364,9 @@ namespace NetScalePolosIO.Export
             }
             else
             {
-                boEe.Message1 = we.LieferscheinNr+"  " +oR.statusCode;
-                boEe.Message2 = oR.additionalInformation;
-                boEe.Message1 = response.ErrorException.Message;
+                boEe.Message3 = we.LieferscheinNr;
+                boEe.Message2 = "ResponseStatus:" + response.ResponseStatus;
+                boEe.Message1 ="Response Error Exception: "+ response.ErrorException.Message;
             }
             boEe.OrderItemNumber = we.number;
             boEe.OrderItemServiceIdentifier = we.identifierOItemService;

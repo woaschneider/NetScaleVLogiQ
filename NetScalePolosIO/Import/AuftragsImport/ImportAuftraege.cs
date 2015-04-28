@@ -143,22 +143,26 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                 }
                             }
                             //invoice
-
-                            _boOe.invoiceReceicerBusinessIdentifier = obj.invoiceReceiver.businessIdentifier ?? "";
-                            _boOe.invoiceReceiverId = obj.invoiceReceiver.id;
-                            if (_boOe.invoiceReceiverId != null)
+                            if (obj.invoiceReceiver != null)
                             {
-                                _boAe = _boA.GetById(obj.customer.id);
-                                if (_boAe != null)
+                                _boOe.invoiceReceicerBusinessIdentifier = obj.invoiceReceiver.businessIdentifier != null
+                                    ? obj.invoiceReceiver.businessIdentifier
+                                    : "";
+                                _boOe.invoiceReceiverId = obj.invoiceReceiver.id;
+                                if (_boOe.invoiceReceiverId != null)
                                 {
-                                    _boOe.invoiceReceiverName = _boAe.name;
-                                    _boOe.InvoiceReceiverSubName2 = _boAe.subName2;
-                                    _boOe.invoiceReceiverOwningLocationId = _boAe.owningLocationId;
-                                    _boOe.InvoiceReceiverZipCode = _boAe.zipCode;
-                                    _boOe.InvoiceReceiverCity = _boAe.city;
-                                    _boOe.invoiceReceiverStreet = _boAe.street;
-                                    _boOe.invoiceReceiverIdCountry = _boAe.idCountry;
-                                    _boOe.invoiceReceiverIsocodeCountry = _boAe.isocodeCountry;
+                                    _boAe = _boA.GetById(obj.customer.id);
+                                    if (_boAe != null)
+                                    {
+                                        _boOe.invoiceReceiverName = _boAe.name;
+                                        _boOe.InvoiceReceiverSubName2 = _boAe.subName2;
+                                        _boOe.invoiceReceiverOwningLocationId = _boAe.owningLocationId;
+                                        _boOe.InvoiceReceiverZipCode = _boAe.zipCode;
+                                        _boOe.InvoiceReceiverCity = _boAe.city;
+                                        _boOe.invoiceReceiverStreet = _boAe.street;
+                                        _boOe.invoiceReceiverIdCountry = _boAe.idCountry;
+                                        _boOe.invoiceReceiverIsocodeCountry = _boAe.isocodeCountry;
+                                    }
                                 }
                             }
 
@@ -184,6 +188,22 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                 foreach (var orderItem in oOEntity.orderItems)
                                 {
+                                    // TODO: Fertige Orderitem löschen
+
+
+                                    //#region Fertige Orderitems löschen
+                                    if (orderItem.orderItemState == "CANCELLED" | orderItem.orderItemState == "CLOSED" |
+                                        orderItem.orderItemState == " COMPLETELY_CLOSED")
+                                    {
+                                        _boOis = new OrderItemservice();
+                                        _boOise = _boOis.GetByIdentitifier(
+                                                orderItem.identifier);
+                                        if (_boOise != null)
+                                        {
+                                            _boOis.DeleteEntity(_boOise);
+                                        }
+                                    }
+
                                     if (orderItem.orderItemState == "READY_TO_DISPATCH")
                                     {
                                         foreach (OrderItemService orderItemService in orderItem.orderItemServices)
@@ -231,11 +251,11 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                                 _boOise.actualStorageAreaId = orderItemService.actualStorageAreaId;
                                                 _boOise.targetStorageAreaId = orderItemService.targetStorageAreaId;
-                                              //  _boOise.IstQuellLagerPlatzId 
+                                                //  _boOise.IstQuellLagerPlatzId 
                                                 _boOise.product = orderItem.product.id;
                                                 _boOise.productdescription = orderItem.product.description;
                                                 _boOise.serviceId = orderItemService.service.id;
-                                              
+
 
                                                 // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
                                                 _boOise.productdescription = oOEntity.orderItems[0].product.description;

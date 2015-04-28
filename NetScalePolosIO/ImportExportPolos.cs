@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO.Export;
 using NetScalePolosIO.Import.AddressImport;
@@ -200,22 +202,30 @@ namespace NetScalePolosIO
 
         private void ExceExportThread()
         {
+           
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += BwDoWorkExport;
 
+         
             //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             //   bw.WorkerReportsProgress = true;
             bw.RunWorkerAsync();
+     
         }
 
         private void BwDoWorkExport(object sender, DoWorkEventArgs e)
         {
-            Waege boW = new Waege();
-            mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
-            foreach (var w in ol)
+            if (goApp.ExportIsRunning == false)
             {
-                ExportToRestServer(w);
+                goApp.ExportIsRunning = true;
+                Waege boW = new Waege();
+                mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
+                foreach (var w in ol)
+                {
+                    ExportToRestServer(w);
+                }
+                goApp.ExportIsRunning = false;
             }
         }
 

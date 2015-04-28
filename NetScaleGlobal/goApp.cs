@@ -53,8 +53,10 @@ namespace HWB.NETSCALE.GLOBAL
         public static string LS_REPORTNAMELS3;
         public static string LS_DRUCKER_MANDANT_3_COPIES;
 
+        public static bool ExportIsRunning;
+
         // Das kommt später mit den Validierungen(y/n) in eine Tabelle
-      
+
 
     }
 }

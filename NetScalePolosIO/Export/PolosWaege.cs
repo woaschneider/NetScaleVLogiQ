@@ -111,6 +111,7 @@ namespace NetScalePolosIO.Export
         public string orderItemServiceId { get; set; }
         public string carrierName { get; set; }
         public int? carrierId { get; set; }
+        public int? articleId { get; set; }
         public string carrierVehicle { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }
