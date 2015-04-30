@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 
@@ -48,7 +49,7 @@ namespace NetScalePolosIO.Export
         public string validTo { get; set; }
         public int? authorizerId { get; set; } // Auftraggeber
         public int? granteeId { get; set; }   // Wem die Freistellung gewährt
- 
+        public string active { get; set; }
         public string reference { get; set; }
     }
 
@@ -64,7 +65,13 @@ namespace NetScalePolosIO.Export
         public Service service { get; set; }
         public int targetAmount { get; set; }
         public string deliveryType { get; set; }
+        public string kindOfGoodId { get; set; }
+
+
     }
+
+   
+
 
     public class Product
     {
@@ -77,6 +84,8 @@ namespace NetScalePolosIO.Export
         public IList<OrderItemService> orderItemServices { get; set; }
         public string plannedDate { get; set; }
         public Product product { get; set; }
+        public string remark { get; set; }
+        
     }
 
     public class Customer
@@ -99,6 +108,8 @@ namespace NetScalePolosIO.Export
         public string locationId { get; set; }
         public string date { get; set; }
     }
+
+    
 
 
     #endregion

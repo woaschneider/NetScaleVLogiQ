@@ -292,6 +292,7 @@ namespace HWB.NETSCALE.BOEF
             {
                 // TODO:
                 // Entity.kindOfGoodId = boWE.id; Typen passt nicht
+                Entity.kindOfGoodId = Convert.ToInt32( boWE.id);
                 Entity.kindOfGoodDescription = boWE.description;
             }
             else

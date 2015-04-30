@@ -49,6 +49,7 @@ namespace NetScalePolosIO.Export
 
         private RootObject CreateOrderItem(WaegeEntity w, int? location)
         {
+            var properties = new Dictionary<string, object>(); // Neu 28.4.15
             RootObject oOi = new RootObject();
 
             // RootObject *********************************************************************
@@ -84,8 +85,12 @@ namespace NetScalePolosIO.Export
             oOi.orderItems[0].clearance.reference = w.clearanceReferenz;
             oOi.orderItems[0].clearance.authorizerId = w.customerId;
             oOi.orderItems[0].clearance.granteeId = w.supplierOrConsigneeId;
+            oOi.orderItems[0].clearance.active = "false";
             oOi.orderItems[0].clearance.validFrom= string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
             oOi.orderItems[0].clearance.validTo = string.Format("{0:yyyyMMddHHmmss}", w.zweitDateTime) + "000";
+
+            //
+
             // Wieviele Leistungen hat das Produkt 
             Serv boS = new Serv();
             mmBindingList<ServEntity> boSe = boS.GetAllByProduktId(w.productid);
@@ -112,6 +117,33 @@ namespace NetScalePolosIO.Export
                     oOi.orderItems[0].orderItemServices[i].supplierOrConsignee= new SupplierOrConsignee();
                     oOi.orderItems[0].orderItemServices[i].supplierOrConsignee.id = w.supplierOrConsigneeId;
 
+                    // Neu 28.4.15
+                    if (w.productdescription.Trim() == "Fremdverwiegung")
+                    {
+
+                        oOi.orderItems[0].remark = "AU: " + (string.IsNullOrEmpty(w.customerName) ? "": w.customerName.Trim())+","+
+                                                            (string.IsNullOrEmpty(w.customerSubName2) ? "" : w.customerSubName2.Trim()) + ","+
+                                                            (string.IsNullOrEmpty(w.customerStreet) ? "" : w.customerStreet.Trim()) + ","+
+                                                            (string.IsNullOrEmpty(w.customerZipCode) ? "" : w.customerZipCode.Trim()) + ","+
+                                                            (string.IsNullOrEmpty(w.customerCity) ? "" : w.customerCity.Trim()) +","+
+
+
+                                                             "RE: " + (string.IsNullOrEmpty(w.invoiceReceiverName) ? "" : w.invoiceReceiverName.Trim()) + "," +
+                                                            (string.IsNullOrEmpty(w.invoiceReceiverSubName2) ? "" : w.invoiceReceiverSubName2.Trim()) + "," +
+                                                            (string.IsNullOrEmpty(w.invoiceReceiverStreet) ? "" : w.invoiceReceiverStreet.Trim()) + "," +
+                                                            (string.IsNullOrEmpty(w.invoiceReceiverZipCode) ? "" : w.invoiceReceiverZipCode.Trim()) + "," +
+                                                            (string.IsNullOrEmpty(w.invoiceReceiverCity) ? "" : w.invoiceReceiverCity.Trim())+" "+
+
+                            "FF: " + (string.IsNullOrEmpty(w.ffName) ? "" : w.ffName.Trim()) + "," +
+                      (string.IsNullOrEmpty(w.ffSubName2) ? "" : w.ffSubName2.Trim()) + "," +
+                      (string.IsNullOrEmpty(w.ffStreet) ? "" : w.ffStreet.Trim()) + "," +
+                      (string.IsNullOrEmpty(w.ffZipCode) ? "" : w.ffZipCode.Trim()) + "," +
+                      (string.IsNullOrEmpty(w.ffCity) ? "" : w.ffCity.Trim());
+
+
+
+                        oOi.orderItems[0].orderItemServices[i].kindOfGoodId = w.kindOfGoodId.ToString();
+                    }
 
                     // Service
                     oOi.orderItems[0].orderItemServices[i].service = new Service();
