@@ -110,10 +110,14 @@ namespace NetScalePolosIO.Export
                     oOi.orderItems[0].orderItemServices[i].deliveryType = "FREE"; // TODO auf Frankatur / Incoterm umstellen
 
                     // ArtikelInstance
-                    oOi.orderItems[0].orderItemServices[i].articleInstance= new ArticleInstance();
-                    oOi.orderItems[0].orderItemServices[i].articleInstance.article = new Article();
-                    oOi.orderItems[0].orderItemServices[i].articleInstance.article.id = w.articleId;
-                    oOi.orderItems[0].orderItemServices[i].articleInstance.attributes = new Attributes(); // Warum auch immer muss hier ein leeres Objekt erzeugt werden ?
+                    if (w.articleId != null)
+                    {
+                        oOi.orderItems[0].orderItemServices[i].articleInstance = new ArticleInstance();
+                        oOi.orderItems[0].orderItemServices[i].articleInstance.article = new Article();
+                        oOi.orderItems[0].orderItemServices[i].articleInstance.article.id = w.articleId;
+                        oOi.orderItems[0].orderItemServices[i].articleInstance.attributes = new Attributes(); // Warum auch immer muss hier ein leeres Objekt erzeugt werden ?
+                    }
+                  
                     oOi.orderItems[0].orderItemServices[i].supplierOrConsignee= new SupplierOrConsignee();
                     oOi.orderItems[0].orderItemServices[i].supplierOrConsignee.id = w.supplierOrConsigneeId;
 
@@ -176,7 +180,7 @@ namespace NetScalePolosIO.Export
             request.AddHeader("X-location-Id", boEe.RestLocation.ToString());
             request.RequestFormat = DataFormat.Json;
 
-            var obj = JsonConvert.SerializeObject(oOi);
+            var obj = JsonConvert.SerializeObject(oOi, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             request.AddParameter("application/json; charset=utf-8", obj, ParameterType.RequestBody);
 
             client.ClearHandlers();
@@ -216,7 +220,6 @@ namespace NetScalePolosIO.Export
            
             return ordItemServiceId;
         }
-
 
         // Wenn Auftrag vorliegt
         private void ExportExistingOrder2Rest(string baseUrl, WaegeEntity boWe)
@@ -364,8 +367,6 @@ namespace NetScalePolosIO.Export
                 new WriteErrorLog().WriteToErrorLog(ee,boWe);
             }
         }
-
-       
 
         private static void SetOrderItemServiceAsSend(WaegeEntity we)
         {
