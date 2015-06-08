@@ -197,7 +197,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     {
                                         _boOis = new OrderItemservice();
                                         _boOise = _boOis.GetByIdentitifier(
-                                                orderItem.identifier);
+                                            orderItem.identifier);
                                         if (_boOise != null)
                                         {
                                             _boOis.DeleteEntity(_boOise);
@@ -417,9 +417,6 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     #endregion
                 }
             }
-
-            // }
-
 
             return true;
         }
