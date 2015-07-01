@@ -565,6 +565,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ErrorLogEntity> _ErrorLogEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<RoleEntity> RoleEntities
+        {
+            get
+            {
+                if ((_RoleEntities == null))
+                {
+                    _RoleEntities = base.CreateObjectSet<RoleEntity>("RoleEntities");
+                }
+                return _RoleEntities;
+            }
+        }
+        private ObjectSet<RoleEntity> _RoleEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -815,6 +831,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToErrorLogEntities(ErrorLogEntity errorLogEntity)
         {
             base.AddObject("ErrorLogEntities", errorLogEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'RoleEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToRoleEntities(RoleEntity roleEntity)
+        {
+            base.AddObject("RoleEntities", roleEntity);
         }
 
         #endregion
@@ -11095,6 +11119,111 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="RoleEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class RoleEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues RoleEntity-Objekt.
+        /// </summary>
+        /// <param name="rolePK">Anfangswert der Eigenschaft RolePK.</param>
+        /// <param name="description">Anfangswert der Eigenschaft Description.</param>
+        public static RoleEntity CreateRoleEntity(global::System.Int32 rolePK, global::System.String description)
+        {
+            RoleEntity roleEntity = new RoleEntity();
+            roleEntity.RolePK = rolePK;
+            roleEntity.Description = description;
+            return roleEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RolePK
+        {
+            get
+            {
+                return _RolePK;
+            }
+            set
+            {
+                if (_RolePK != value)
+                {
+                    OnRolePKChanging(value);
+                    ReportPropertyChanging("RolePK");
+                    _RolePK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RolePK");
+                    OnRolePKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RolePK;
+        partial void OnRolePKChanging(global::System.Int32 value);
+        partial void OnRolePKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AccessLevel
+        {
+            get
+            {
+                return _AccessLevel;
+            }
+            set
+            {
+                OnAccessLevelChanging(value);
+                ReportPropertyChanging("AccessLevel");
+                _AccessLevel = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AccessLevel");
+                OnAccessLevelChanged();
+            }
+        }
+        private global::System.String _AccessLevel;
+        partial void OnAccessLevelChanging(global::System.String value);
+        partial void OnAccessLevelChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

@@ -231,7 +231,7 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
-
+          
        
 
         public void Product2Waege(int pk, WaegeEntity we)
