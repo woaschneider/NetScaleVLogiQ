@@ -219,8 +219,15 @@ namespace NetScalePolosIO.Import.AuftragsImport
 //Order Item Service: Fremdverwiegung / Leistungs-ID: 10301/ Info: Diese Leistung wird im Produkt Fremdverwiegung (10301; Leistungs-ID = Produkt-ID) übermittelt
 //Order Item Service: Radladerverwiegung / Leistungs-ID: 10300/ Info: Diese Leistung wird im Produkt Radladerverwiegung 10300; Leistungs-ID = Produkt-ID) übermittelt 
 
+// Neu: 24.07.2015
+// Filter um 1003 erweitern
+// Produkt 8003 Warenausgang Schiff / Leistungsid 1003
+
+
+// Order Item Service: 
+
                                             // Filter auf die relevanten Leistungen
-                                            if (VFP.InList(orderItemService.service.id, 2003, 2001, 1001, 8103, 10301,
+                                            if (VFP.InList(orderItemService.service.id, 1003,2003, 2001, 1001, 8103, 10301,
                                                 10300))
                                             {
                                                 _boOis = new OrderItemservice();
