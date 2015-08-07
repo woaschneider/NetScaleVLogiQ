@@ -357,11 +357,14 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                             PolosUtitlities.ConvertPolosDateTime2DateTime(
                                                                 orderItemService.clearance.validTo);
                                                     }
-                                                    _boOise.clearanceUnitId = orderItemService.clearance.unit.id;
-                                                    _boOise.clearanceUnitShortDescription =
-                                                        orderItemService.clearance.unit.shortDescription;
-                                                    _boOise.clearanceDescription =
-                                                        orderItemService.clearance.unit.description;
+                                                    if (orderItemService.clearance.unit != null)
+                                                    {
+                                                        _boOise.clearanceUnitId = orderItemService.clearance.unit.id;
+                                                        _boOise.clearanceUnitShortDescription =
+                                                            orderItemService.clearance.unit.shortDescription;
+                                                        _boOise.clearanceDescription =
+                                                            orderItemService.clearance.unit.description;
+                                                    }
 
                                                     #endregion
 
