@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
+using HWB.Logging;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
@@ -51,7 +52,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             mmAppWPF.WindowManager.ShowInTaskbarDefault = ShowWindowsInTaskbarDefault;
 
             bool? Result = true;
-
+            Log.Instance.Info("Das Programm wurde gestartet");
             //// Display the login window
             //   UserLoginWindow LoginWindow = new UserLoginWindow();
             try

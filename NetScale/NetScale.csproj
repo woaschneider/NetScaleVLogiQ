@@ -104,6 +104,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.0.1\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\NUnit 2.6\bin\framework\nunit.framework.dll</HintPath>
@@ -196,6 +200,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AAppTest.cs" />
+    <Compile Include="ApplicationLog.cs" />
     <Compile Include="Forms\AbruflisteFrm.xaml.cs">
       <DependentUpon>AbruflisteFrm.xaml</DependentUpon>
     </Compile>
@@ -508,6 +513,12 @@
     <None Include="ClassDiagram2.cd" />
     <None Include="Forms\WiegeFrm.cd" />
     <None Include="NetScale_TemporaryKey.pfx" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
