@@ -536,7 +536,7 @@
           <Property Name="clearanceUnitShortDescription" Type="varchar" MaxLength="64" />
           <Property Name="clearanceDescription" Type="varchar" MaxLength="64" />
           <Property Name="ownerBusinessIdentifier" Type="varchar" MaxLength="64" />
-          <Property Name="articleDescription" Type="varchar" MaxLength="64" />
+          <Property Name="articleDescription" Type="varchar" MaxLength="256" />
           <Property Name="orign" Type="varchar" MaxLength="128" />
           <Property Name="grade" Type="varchar" MaxLength="128" />
           <Property Name="batch" Type="varchar" MaxLength="128" />
@@ -691,7 +691,7 @@
           <Property Name="clearanceUnitId" Type="int" />
           <Property Name="clearanceUnitShortDescription" Type="varchar" MaxLength="64" />
           <Property Name="clearanceDescription" Type="varchar" MaxLength="64" />
-          <Property Name="articleDescription" Type="varchar" MaxLength="64" />
+          <Property Name="articleDescription" Type="varchar" MaxLength="256" />
           <Property Name="Waegung" Type="int" />
           <Property Name="zweitDateTime" Type="datetime" />
           <Property Name="AbrechnungsKZ" Type="varchar" MaxLength="2" />
@@ -736,7 +736,7 @@
           <Property Name="Mandant_PK" Type="int" />
           <Property Name="taabExcel" Type="bit" />
           <Property Name="incoterm" Type="varchar" MaxLength="10" />
-          <Property Name="articleNumber" Type="varchar" MaxLength="240" />
+          <Property Name="articleNumber" Type="varchar" MaxLength="256" />
           <Property Name="AbrufNr" Type="varchar" MaxLength="22" />
           <Property Name="Kennzeichen1Raw" Type="varchar" MaxLength="22" />
           <Property Name="abruf_PK" Type="int" />
@@ -867,6 +867,7 @@
             <End Role="Service" EntitySet="ServEntities" />
           </AssociationSet>
           <EntitySet Name="ArtikelEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" />
+          <EntitySet Name="ErrorLogEntities" EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" />
           <EntitySet Name="OrderItemserviceEntities" EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" />
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <AssociationSet Name="Artikel_hat_Attribute" Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute">
@@ -877,7 +878,6 @@
             <End Role="OrderitemEntity" EntitySet="OrderitemEntities" />
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
-          <EntitySet Name="ErrorLogEntities" EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1393,6 +1393,17 @@
           <Property Type="String" Name="conversionUnitDescription" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="kindOfGoodId" />
         </EntityType>
+        <EntityType Name="ErrorLogEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="DateTime" Name="Dt" />
+          <Property Type="String" Name="Message1" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message2" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Message3" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Lsnr" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="OrderItemserviceEntity">
           <Key>
             <PropertyRef Name="PK" />
@@ -1438,7 +1449,7 @@
           <Property Type="String" Name="clearanceUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="articleDescription" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="orign" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="grade" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="batch" MaxLength="128" FixedLength="false" Unicode="false" />
@@ -1546,7 +1557,7 @@
           <Property Type="Int32" Name="clearanceUnitId" />
           <Property Type="String" Name="clearanceUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="articleDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="articleDescription" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Waegung" />
           <Property Type="DateTime" Name="zweitDateTime" />
           <Property Type="String" Name="AbrechnungsKZ" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -1591,7 +1602,7 @@
           <Property Type="Int32" Name="Mandant_PK" />
           <Property Type="Boolean" Name="taabExcel" />
           <Property Type="String" Name="incoterm" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="articleNumber" MaxLength="240" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="articleNumber" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AbrufNr" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Kennzeichen1Raw" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="abruf_PK" />
@@ -1635,17 +1646,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ErrorLogEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="DateTime" Name="Dt" />
-          <Property Type="String" Name="Message1" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Message2" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Message3" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Lsnr" MaxLength="32" FixedLength="false" Unicode="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2164,6 +2164,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ErrorLogEntity">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="Lsnr" ColumnName="Lsnr" />
+                <ScalarProperty Name="Message3" ColumnName="Message3" />
+                <ScalarProperty Name="Message2" ColumnName="Message2" />
+                <ScalarProperty Name="Message1" ColumnName="Message1" />
+                <ScalarProperty Name="Dt" ColumnName="Dt" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
@@ -2382,18 +2394,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ErrorLogEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ErrorLogEntity">
-              <MappingFragment StoreEntitySet="ErrorLog">
-                <ScalarProperty Name="Lsnr" ColumnName="Lsnr" />
-                <ScalarProperty Name="Message3" ColumnName="Message3" />
-                <ScalarProperty Name="Message2" ColumnName="Message2" />
-                <ScalarProperty Name="Message1" ColumnName="Message1" />
-                <ScalarProperty Name="Dt" ColumnName="Dt" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2452,6 +2452,7 @@
           <edmx:ConnectorPoint PointX="9.25" PointY="39.240143229166662" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="14.375" PointY="12.75" Height="6.5955208333333246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" Width="1.5" PointX="12.375" PointY="4.75" Height="2.1725878906250102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="6.25" PointY="41.75" Height="14.28757812500001" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="11.375" PointY="12.75" Height="27.748678385416667" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
@@ -2464,7 +2465,6 @@
           <edmx:ConnectorPoint PointX="4.75" PointY="48.893789062500005" />
           <edmx:ConnectorPoint PointX="6.25" PointY="48.893789062500005" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" Width="1.5" PointX="12.375" PointY="4.75" Height="2.1725878906250102" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
