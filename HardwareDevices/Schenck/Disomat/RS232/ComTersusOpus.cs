@@ -142,7 +142,11 @@ namespace HardwareDevices.Schenck.Disomat.RS232
                 string sGewicht =
                     ret.Substring(48, 6).Replace("t", "").Replace("k", "").Replace("<", "").Replace(">", "").Replace(
                         "g", "").Replace(".", ",");
+
+              
                 oRW.weight = Convert.ToDecimal(sGewicht);
+
+
                 System.Threading.Thread.Sleep(500);
                 var dummy = oCom.ReadExisting();
             }

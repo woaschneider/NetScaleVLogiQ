@@ -28,7 +28,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private WaegeEntity _boWe;
         private int _wiegeStatus;
         private mmSaveDataResult _result;
-
+        private decimal? tempErstgewicht;
+        private decimal? tempZweitgewicht;
         #endregion
 
         /// <summary>
@@ -1691,6 +1692,43 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             //}
             oFrm.Close();
+        }
+
+        private void RibbonWiegen_OnPreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void RibbonSave_OnPreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void Tb_ErstGewicht_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            tempErstgewicht = _boWe.Erstgewicht;
+        }
+
+        private void Tb_ErstGewicht_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (_boWe.LN1 != null)
+            {
+                _boWe.Erstgewicht = tempErstgewicht;
+            }
+        }
+
+        private void Tb_ZweitGewicht_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            tempZweitgewicht = _boWe.Zweitgewicht;
+        }
+
+        private void Tb_ZweitGewicht_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if (_boWe.LN2 != null)
+            {
+                _boWe.Zweitgewicht = tempZweitgewicht;
+            }
         }
     }
 }

@@ -122,6 +122,7 @@
 
                     <ribbon:RibbonButton x:Name="ribbonSave"
                                          Click="ribbonSave_Click"
+                                         PreviewMouseDoubleClick="RibbonSave_OnPreviewMouseDoubleClick"
                                          FontSize="14"
                                          Label=" Speichern "
                                          LargeImageSource="..\Images\1328252493_save.png"
@@ -135,6 +136,7 @@
 
                     <ribbon:RibbonButton x:Name="ribbonWiegen"
                                          Click="ribbonWiegen_Click"
+                                         PreviewMouseDoubleClick="RibbonWiegen_OnPreviewMouseDoubleClick"
                                          FontSize="14"
                                          Label=" Wiegen "
                                          LargeImageSource="..\Images\1299661846_weight.png"
@@ -268,12 +270,16 @@
                  IsReadOnly="True"
                  Text="{Binding LieferscheinNr}" />
         <TextBox x:Name="tb_ErstGewicht"
+                 GotFocus="Tb_ErstGewicht_OnGotFocus"
+                 LostFocus="Tb_ErstGewicht_OnLostFocus"
                  Width="85"
                  Height="23"
                  Margin="806,454,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
         <TextBox x:Name="tb_ZweitGewicht"
+                 GotFocus="Tb_ZweitGewicht_OnGotFocus"
+                 LostFocus="Tb_ZweitGewicht_OnLostFocus"
                  Width="85"
                  Height="23"
                  Margin="806,480,0,0"
