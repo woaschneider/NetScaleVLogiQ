@@ -238,8 +238,8 @@ namespace NetScalePolosIO.Export
             oWEx2.articleId = boWe.articleId;
             oWEx2.carrierName = boWe.ffSubName2;
             oWEx2.carrierVehicle = boWe.Fahrzeug;
-            oWEx2.netAmount = (double)boWe.Nettogewicht;
-
+         //   oWEx2.netAmount = (double)boWe.Nettogewicht;
+            oWEx2.netAmount = boWe.Nettogewicht;
             if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatzId))
             {
                 oWEx2.storageAreaId = boWe.IstQuellLagerPlatzId; // Panko 04.03.2015;
@@ -260,7 +260,7 @@ namespace NetScalePolosIO.Export
                         oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
 
                     if (boWe.Erstgewicht != null)
-                        oWEx2.scalePhaseData.FIRST.amount = (double)boWe.Erstgewicht;
+                        oWEx2.scalePhaseData.FIRST.amount = boWe.Erstgewicht;
 
                     if (boWe.ErstDatetime != null)
                     {
@@ -286,7 +286,7 @@ namespace NetScalePolosIO.Export
                         oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
 
                     if (boWe.Zweitgewicht != null)
-                        oWEx2.scalePhaseData.SECOND.amount = (double)boWe.Zweitgewicht;
+                        oWEx2.scalePhaseData.SECOND.amount = boWe.Zweitgewicht;
 
                     if (boWe.zweitDateTime != null)
                     {
@@ -300,10 +300,10 @@ namespace NetScalePolosIO.Export
                     }
                 }
             }
-
+            // Neu 30.8.2015
             Log.Instance.Info("Export Wiegedaten: LS-NR: "+ boWe.LieferscheinNr + "Erstgewicht/lfd Nr : "+boWe.LN1+ " "  + boWe.Erstgewicht.ToString() + " Zeitgewicht/lfd Nr: "
               + boWe.LN2+" " +boWe.Zweitgewicht.ToString()+ " Nettogewicht :"+boWe.Nettogewicht.ToString());
-          
+          /////////////////////////////////////////////////////
       
           
 

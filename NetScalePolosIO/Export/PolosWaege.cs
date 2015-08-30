@@ -126,7 +126,8 @@ namespace NetScalePolosIO.Export
         public string carrierVehicle { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }
-        public double netAmount { get; set; }
+     //   public double netAmount { get; set; }
+        public decimal? netAmount { get; set; }
 
     }
 
@@ -135,7 +136,8 @@ namespace NetScalePolosIO.Export
     {
         public string scaleId { get; set; }
         public string scaleNumber { get; set; }
-        public double amount { get; set; }
+      //  public double amount { get; set; }
+        public decimal? amount { get; set; }
         public int additionalAmount { get; set; }
         public string date { get; set; }
     }
@@ -144,7 +146,8 @@ namespace NetScalePolosIO.Export
     {
         public string scaleId { get; set; }
         public string scaleNumber { get; set; }
-        public double amount { get; set; }
+     //   public double amount { get; set; }
+        public decimal? amount { get; set; }
         public int additionalAmount { get; set; }
         public string date { get; set; }
     }
