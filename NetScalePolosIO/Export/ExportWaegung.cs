@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 
 using HWB.NETSCALE.BOEF;
-
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using OakLeaf.MM.Main.Collections;
 using RestSharp;
@@ -301,8 +301,9 @@ namespace NetScalePolosIO.Export
                 }
             }
 
+            Log.Instance.Info("Export Wiegedaten: LS-NR: "+ boWe.LieferscheinNr + "Erstgewicht/lfd Nr : "+boWe.LN1+ " "  + boWe.Erstgewicht.ToString() + " Zeitgewicht/lfd Nr: "
+              + boWe.LN2+" " +boWe.Zweitgewicht.ToString()+ " Nettogewicht :"+boWe.Nettogewicht.ToString());
           
-
       
           
 

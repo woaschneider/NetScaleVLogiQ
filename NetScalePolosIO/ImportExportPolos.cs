@@ -192,7 +192,7 @@ namespace NetScalePolosIO
 
         #region Export
 
-        #region Alles Exportieren
+        #region Alles Exportieren // Asynchron
 
         // Alle noch offenen Wägungen werden exportiert
         public void ExportAll()
@@ -231,9 +231,7 @@ namespace NetScalePolosIO
 
         #endregion
 
-        // Wird nach einer Zweitwägung aufgerufen (sychron) 
-
-        #region Einzel-Export
+        #region Einzel-Export // Wird nach einer Zweitwägung aufgerufen (sychron)
 
         public void ExportSingle(WaegeEntity boWe)
         {
