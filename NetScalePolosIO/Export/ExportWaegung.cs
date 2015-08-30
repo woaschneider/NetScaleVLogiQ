@@ -22,8 +22,21 @@ namespace NetScalePolosIO.Export
 
     public class ExportWaegungVersion2Rest
     {
-        public void ExportLs2Rest(string baseUrl, int? location, WaegeEntity boWe)
+        public void ExportLs2Rest(string baseUrl, int? location, WaegeEntity _boWe)
         {
+            /// Neu 30.8.2015 die Waegeentitaet trennen
+
+            int waegePk = _boWe.PK;
+           Waege boW = new Waege();
+
+            WaegeEntity boWe = boW.GetWaegungByPk(waegePk);
+            if (boWe == null)
+                return;
+            
+
+            ////
+
+
             // Diese Prüfung reicht nicht! Das muss angepaßt werden. 
             if (boWe.identifierOItem != null)
             {
@@ -39,7 +52,7 @@ namespace NetScalePolosIO.Export
                     boWe.identifierOItemService = GetIdentifierOItemService(oOi, boWe, baseUrl).ToString();
                     if (boWe.identifierOItemService != "0") // = bedeutet die Auftragsanlage schlug fehl
                     {
-                        Waege boW = new Waege();
+                      //  Waege boW = new Waege();
                         // boW.SaveEntity(boWe); // Mal schauen ob das  so klappt.
                         ExportExistingOrder2Rest(baseUrl, boWe);
                     }
