@@ -47,7 +47,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             // Instantiate the Application object
             App = new AppWPF();
-
+            IsSingleInstance = true;
             // Set the ShowInTaskbar default
             mmAppWPF.WindowManager.ShowInTaskbarDefault = ShowWindowsInTaskbarDefault;
 
@@ -92,6 +92,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                             // Display the Exception form
                             mmExceptionWindow ExceptionWindow = new mmExceptionWindow(e.Exception.Message,
                                                                                       e.Exception.StackTrace);
+                            Log.Instance.Error(e.Exception.Message + e.Exception.StackTrace);
                             ExceptionWindow.ShowDialog();
                         };
 

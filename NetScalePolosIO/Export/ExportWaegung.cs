@@ -34,8 +34,7 @@ namespace NetScalePolosIO.Export
                 return;
             
 
-            ////
-
+    
 
             // Diese Prüfung reicht nicht! Das muss angepaßt werden. 
             if (boWe.identifierOItem != null)
@@ -46,14 +45,13 @@ namespace NetScalePolosIO.Export
             {
                 if (boWe.productid != null)
                 {
-                    // Lege OrderItemObject an
+                    // Lege OrderItemObject an (Auftragshülle)
                     RootObject oOi = CreateOrderItem(boWe, location);
                     // 3. Die Id in die WaegeEntiy füllen (boWe.identifierOItemService)
                     boWe.identifierOItemService = GetIdentifierOItemService(oOi, boWe, baseUrl).ToString();
                     if (boWe.identifierOItemService != "0") // = bedeutet die Auftragsanlage schlug fehl
                     {
-                      //  Waege boW = new Waege();
-                        // boW.SaveEntity(boWe); // Mal schauen ob das  so klappt.
+                    
                         ExportExistingOrder2Rest(baseUrl, boWe);
                     }
                 }

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetScalePolosIO", "NetScale
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeomanExport", "YeomanExport\YeomanExport.csproj", "{40A8E553-24BC-47A6-AD44-CE57FCB8FFE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D36BBD9F-5750-4C11-BE16-736F60E3F956}"
+EndProject
 Global
 	GlobalSection(MercurialSourceControlSolutionProperties) = preSolution
 		SolutionIsControlled = True

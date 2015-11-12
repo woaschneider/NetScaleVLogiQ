@@ -1706,20 +1706,27 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Tb_ErstGewicht_OnGotFocus(object sender, RoutedEventArgs e)
         {
-            tempErstgewicht = _boWe.Erstgewicht;
+          //  tempErstgewicht = _boWe.Erstgewicht;
+            if (_boWe.LN1 != null)
+            {
+                tb_ErstGewicht.IsEnabled = false;
+                
+            }
         }
 
         private void Tb_ErstGewicht_OnLostFocus(object sender, RoutedEventArgs e)
         {
-            if (_boWe.LN1 != null)
-            {
-                _boWe.Erstgewicht = tempErstgewicht;
-            }
+       
         }
 
         private void Tb_ZweitGewicht_OnGotFocus(object sender, RoutedEventArgs e)
         {
-            tempZweitgewicht = _boWe.Zweitgewicht;
+           // tempZweitgewicht = _boWe.Zweitgewicht;
+            if (_boWe.LN2 != null)
+            {
+                tb_ZweitGewicht.IsEnabled = false;
+                // _boWe.Zweitgewicht = tempZweitgewicht;
+            }
         }
 
         private void Tb_ZweitGewicht_OnLostFocus(object sender, RoutedEventArgs e)
@@ -1727,7 +1734,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             if (_boWe.LN2 != null)
             {
-                _boWe.Zweitgewicht = tempZweitgewicht;
+               // _boWe.Zweitgewicht = tempZweitgewicht;
             }
         }
     }

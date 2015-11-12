@@ -6,6 +6,103 @@ namespace HardwareDevices.Systec
 {
     public class SystecTcp1Adm : IWaagenSchnittstelle
     {
+        private bool _x1;
+        private bool _x2;
+        private bool _x3;
+        private bool _x4;
+        private bool _x5;
+        private bool _x6;
+        private bool _x7;
+        private bool _x8;
+        private bool _x9;
+        private bool _x10;
+        private bool _x11;
+        private bool _x12;
+        private bool _x13;
+        private bool _x14;
+        public bool X1
+        {
+            get { return _x1; }
+            set { _x1 = value; }
+        }
+
+        public bool X2
+        {
+            get { return _x2; }
+            set { _x2 = value; }
+        }
+
+        public bool X3
+        {
+            get { return _x3; }
+            set { _x3 = value; }
+        }
+
+        public bool X4
+        {
+            get { return _x4; }
+            set { _x4 = value; }
+        }
+
+        public bool X5
+        {
+            get { return _x5; }
+            set { _x5 = value; }
+        }
+
+        public bool X6
+        {
+            get { return _x6; }
+            set { _x6 = value; }
+        }
+
+        public bool X7
+        {
+            get { return _x7; }
+            set { _x7 = value; }
+        }
+
+        public bool X8
+        {
+            get { return _x8; }
+            set { _x8 = value; }
+        }
+
+        public bool X9
+        {
+            get { return _x9; }
+            set { _x9 = value; }
+        }
+
+        public bool X10
+        {
+            get { return _x10; }
+            set { _x10 = value; }
+        }
+
+        public bool X11
+        {
+            get { return _x11; }
+            set { _x11 = value; }
+        }
+
+        public bool X12
+        {
+            get { return _x12; }
+            set { _x12 = value; }
+        }
+
+        public bool X13
+        {
+            get { return _x13; }
+            set { _x13 = value; }
+        }
+
+        public bool X14
+        {
+            get { return _x14; }
+            set { _x14 = value; }
+        }
         public String Status { get; set; }
         public bool PollStop { get; set; }
         public bool Connected { get; set; }
@@ -51,9 +148,9 @@ namespace HardwareDevices.Systec
         public Weight GetPollGewicht(string wnr)
         {
             byte[] rcvBuffer = new byte[Bufsize]; // TCP Buffer
-
+            byte[] rcvBuffer2 = new byte[Bufsize]; // TCP Buffer
             Weight oW = new Weight();
-            string Telegramm = Chr(60) + "RM1" + wnr + Chr(62);
+            string Telegramm = Chr(60) + "RM" + Chr(62);
             /////////////////////////////////////////////////
             byte[] cpolltelegramm = Encoding.ASCII.GetBytes(Telegramm); // <--------
             /////////////////////////////////////////////////
@@ -67,8 +164,11 @@ namespace HardwareDevices.Systec
             NetStream.Read(rcvBuffer, 0, rcvBuffer.Length);
             while (stopTime > DateTime.Now)
             {
-                if (rcvBuffer[ii] == 62) // "]"
+                if (rcvBuffer[ii] == 62) // ">"
+                    
                 {
+                    System.Threading.Thread.Sleep(500);
+                    NetStream.Read(rcvBuffer2, 0,rcvBuffer2.Length ); // <- Hier sind dasCR / LN
                     ASCIIEncoding enc = new System.Text.ASCIIEncoding();
                     string Test = enc.GetString(rcvBuffer);
 
@@ -81,6 +181,9 @@ namespace HardwareDevices.Systec
                         return oW;
                     }
 
+
+                    
+
                     string gewicht = enc.GetString(rcvBuffer).Substring(25, 6);
                     string sGewicht =
                         gewicht.Replace("k", "").Replace("<", "").Replace(">", "").Replace("g", "").Replace(".", ",");
@@ -88,7 +191,7 @@ namespace HardwareDevices.Systec
 
                     Statusanzeigen("00");
                     oW.WeightValue = Convert.ToDecimal(sGewicht);
-                    NetStream.Read(rcvBuffer, 0, rcvBuffer.Length); // Buffer leer machen
+                   // NetStream.Read(rcvBuffer, 0, rcvBuffer.Length); // Buffer leer machen
 
                     return oW;
                 }
@@ -197,5 +300,19 @@ namespace HardwareDevices.Systec
                     break;
             }
         }
+
+        public string WaageAufschalten(string wnr)
+        {
+            return "";
+        }
+
+        public void ReadAllContacts()
+        {
+            
+        }
+        public void SetContact(int k)
+        {
+        }
     }
+
 }

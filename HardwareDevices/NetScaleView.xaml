@@ -1,11 +1,16 @@
 ﻿<mmwpf:mmUserControl x:Class="HardwareDevices.NetScaleView"
                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
-                     Width="267"
-                     Height="179"
-                     Background="#FF2F4160">
-    <Grid Background="#FF748080">
+                     Background="#FF2F4160"
+                     d:DesignHeight="266"
+                     d:DesignWidth="348"
+                     mc:Ignorable="d" Height="200">
+    <Grid Width="342"
+          Height="260"
+          Background="#FF748080">
         <TextBlock Name="tb_e"
                    Height="23"
                    Margin="10,149,0,0"
@@ -43,10 +48,10 @@
                  VerticalAlignment="Top"
                  Background="Black"
                  FontSize="55"
-                 TextChanged="tb_gewicht_TextChanged"
                  Foreground="#FF00E500"
                  Text="99,99 t"
-                 TextAlignment="Center" />
+                 TextAlignment="Center"
+                 TextChanged="tb_gewicht_TextChanged" />
         <TextBlock Name="tb_waagennr"
                    Height="23"
                    Margin="10,10,0,0"
@@ -75,5 +80,68 @@
                 Minimum="0"
                 TickFrequency="0.02"
                 ValueChanged="slider1_ValueChanged" />
+        <Expander Name="expanderKontakte"
+                  Width="83"
+                  Height="259"
+                  Margin="259,6,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Header="Kontakte" Collapsed="expanderKontakte_Collapsed" Expanded="expanderKontakte_Expanded">
+            <Grid Width="125"
+                  Height="242"
+                  HorizontalAlignment="Left">
+                <StackPanel Name="stackPanel5"
+                            Width="98"
+                            Height="228"
+                            Margin="13,6,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="White">
+                    <CheckBox Name="cbx1"
+                              Height="16"
+                              Content="E 1"
+                              IsChecked="{Binding Path=X1}" />
+                    <CheckBox Name="cbx2"
+                              Height="16"
+                              Content="E 2" />
+                    <CheckBox Name="cbx3"
+                              Height="16"
+                              Content="E 3" />
+                    <CheckBox Name="cbx4"
+                              Height="16"
+                              Content="E 4" />
+                    <CheckBox Name="cbx5"
+                              Height="16"
+                              Content="A 1" />
+                    <CheckBox Name="cbx6"
+                              Height="16"
+                              Content="A 2" />
+                    <CheckBox Name="cbx7"
+                              Height="16"
+                              Content="A 3" />
+                    <CheckBox Name="cbx8"
+                              Height="16"
+                              Content="A 4" />
+                    <CheckBox Name="cbx9"
+                              Height="16"
+                              Content="A 5" />
+                    <CheckBox Name="cbx10"
+                              Height="16"
+                              Content="A 6" />
+                    <CheckBox Name="cbx11"
+                              Height="16"
+                              Content="EDV 1" />
+                    <CheckBox Name="cbx12"
+                              Height="16"
+                              Content="EDV 2" />
+                    <CheckBox Name="cbx13"
+                              Height="16"
+                              Content="EDV 3" />
+                    <CheckBox Name="cbx14"
+                              Height="16"
+                              Content="EDV 4" />
+                </StackPanel>
+            </Grid>
+        </Expander>
     </Grid>
 </mmwpf:mmUserControl>

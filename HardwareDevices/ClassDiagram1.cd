@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="HardwareDevices.Weight">
-    <Position X="4" Y="1.5" Width="1.5" />
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAAAAAA=</HashCode>
       <FileName>HelperClass.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="HardwareDevices.Utils" Collapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAABAAAAAAA=</HashCode>
       <FileName>utils.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -28,24 +28,10 @@
       <FileName>Schenck\Disomat\RS232\PortCom.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HardwareDevices.Schenck.Disomat.RS232.EDVContractDataReturn">
-    <Position X="5" Y="6" Width="2" />
+  <Class Name="HardwareDevices.Schenck.Disomat.RS232.ComTersusOpus">
+    <Position X="6.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Schenck\Disomat\RS232\TersusYaraBunkerScale.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HardwareDevices.NetScaleView">
-    <Position X="0.5" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQQAAAAAAAAAAAgAAAAAAAAAABAAAAAQAAAQAACAQAA=</HashCode>
-      <FileName>NetScaleView.xaml.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HardwareDevices.Schenck.Disomat.RS232.ComTersusOpus" Collapsed="true">
-    <Position X="4.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAMAAAgAAACAjAAAA=</HashCode>
+      <HashCode>CAAAAAAEQAAAQAAAAAAAAAAAAAEIMQAAgAAACAiAAAA=</HashCode>
       <FileName>Schenck\Disomat\RS232\ComTersusOpus.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -54,5 +40,50 @@
     <Position X="6.5" Y="1.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
+  <Class Name="HardwareDevices.Systec.SystecTcp1Adm">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>TAAAAAAEQAAAQEAAAAAAAAAAABAIIQAAgAAAAACAAAQ=</HashCode>
+      <FileName>Systec\SystecTCP_1_ADM.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HardwareDevices.DemoDevice">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEQAAAQAAAAAAAAAAAAAAIIQAAAAAAAACAAAA=</HashCode>
+      <FileName>DemoDevice.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HardwareDevices.Schenck.Disomat.MODBUSTCP.TersusOpusModBusTcp">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAEEUAAAQAiAAAAAAABAAAAIIQQAAAAEAICAICA=</HashCode>
+      <FileName>Schenck\Disomat\MODBUSTCP\TersusOpusModBusTcp.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HardwareDevices.NetScaleView">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAQAUEiAAUABggAICACAAAAJAAKQEQgAiUAACAAAA=</HashCode>
+      <FileName>NetScaleView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="HardwareDevices.IWaagenSchnittstelle">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEQAAAQAAAAAAAAAAAAAAIIQAAAAAAAACAAAA=</HashCode>
+      <FileName>IWaagenSchnittstelle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="HardwareDevices.WeightChangedHandler" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NetScaleView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HWB.Logging;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.FRONTEND.WPF.Forms;
 
@@ -265,9 +266,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void StartWiegeFrm()
         {
-            Forms.WiegeFrm oWFFrm = new WiegeFrm();
-            oWFFrm.ShowDialog();
-            oWFFrm.Close();
+            try
+            {
+                Forms.WiegeFrm oWFFrm = new WiegeFrm();
+                oWFFrm.ShowDialog();
+                oWFFrm.Close();
+            }
+            catch (Exception e)
+            {
+
+                Log.Instance.Error(e.Message + " "+ e.InnerException + " "+ e.Source);
+            }
+           
         }
 
         private void cmdSetUpWaagen_Click(object sender, RoutedEventArgs e)

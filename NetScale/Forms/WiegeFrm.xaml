@@ -1869,7 +1869,7 @@
                  Margin="150,344,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 TabIndex="270"
+                 TabIndex="240"
                  Text="{Binding number}" IsReadOnly="True" />
         <TextBox Name="textBox50"
                  Width="168"
@@ -1877,7 +1877,7 @@
                  Margin="419,343,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 TabIndex="270"
+                 TabIndex="245"
                  Text="{Binding sequence}" IsReadOnly="True" />
     </Grid>
 </mmwpf:mmBusinessWindow>
