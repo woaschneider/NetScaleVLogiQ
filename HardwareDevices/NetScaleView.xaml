@@ -64,11 +64,11 @@
         <TextBlock Name="tb_status"
                    Width="116"
                    Height="18"
-                   Margin="99,13,0,0"
+                   Margin="141,13,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Foreground="#FFE91010"
-                   Text="..." />
+                   Text="..." FontWeight="ExtraBold" />
         <Slider Name="slider1"
                 Width="234"
                 Height="23"

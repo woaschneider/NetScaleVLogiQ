@@ -9,7 +9,7 @@ namespace HardwareDevices
     // "Hilfs"-Klassen
     public class Weight
     {
-       
+        private string _status;
         private decimal _weightValue;
         
         // public decimal WeightValue = 0.00m;
@@ -21,8 +21,13 @@ namespace HardwareDevices
                 _weightValue = value;
             
             }
-        }   
+        }
 
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
     }
 
     public class RegisterWeight

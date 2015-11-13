@@ -138,6 +138,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonWiegen_Click(object sender, RoutedEventArgs e)
         {
+            if (!netScaleView1.Stillstand)
+            {
+                MessageBoxResult uRet = MessageBox.Show("Waage hat keinen Stillstand!!!", "ACHTUNG");
+                return;
+            }
             Wiegen();
         }
 

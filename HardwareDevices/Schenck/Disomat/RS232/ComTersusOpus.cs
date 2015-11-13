@@ -239,7 +239,7 @@ namespace HardwareDevices.Schenck.Disomat.RS232
                     {
                         string sGewicht = ret.Substring(7, 7);
                         sGewicht = sGewicht.Replace(".", ",");
-
+                        oPW.Status = ret.Substring(31, 2);
                         oPW.WeightValue = Convert.ToDecimal(sGewicht);
                     }
                  
@@ -282,7 +282,9 @@ namespace HardwareDevices.Schenck.Disomat.RS232
                             oCom.Read(buffer, 0, oCom.BytesToRead);
                             Log.Instance.Info("RS232  Buffer - Disomat : " + Encoding.UTF8.GetString(buffer, 0, buffer.Length));
                             System.Threading.Thread.Sleep(1000);
-                            var x = oCom.ReadExisting();
+                            string  x = oCom.ReadExisting();
+                      
+                   
                             return oRW;
                         }
                     }
@@ -293,6 +295,7 @@ namespace HardwareDevices.Schenck.Disomat.RS232
                     oRW.Status = ret.Substring(22, 2);
                     if (oRW.Status != "80")
                     {
+                        Log.Instance.Error("Status bei Eichwaegung "+ oRW.Status);
                         oRW.Status = "00";
                         return oRW;
                     }
