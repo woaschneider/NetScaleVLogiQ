@@ -10,8 +10,8 @@
                         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                         x:Name="Window"
                         Title="Wiegemaske"
-                        Width="1204"
-                        Height="778"
+                        Width="1195"
+                        Height="779"
                         AllowsTransparency="False"
                         Background="#FFC2CCDB"
                         WindowStartupLocation="CenterScreen"
@@ -21,7 +21,7 @@
         <HWB_NETSCALE_BOEF:WaegeEntity />
     </mmwpf:mmBusinessWindow.DataContext>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Height="743" Width="1177">
         <Rectangle Fill="#FF87B3DD" Height="235" HorizontalAlignment="Left" Margin="697,136,0,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
         <Rectangle Fill="#FF87B3DD" Height="361" HorizontalAlignment="Left" Margin="697,377,0,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
         <Rectangle Width="692"
