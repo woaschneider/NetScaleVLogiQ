@@ -79,7 +79,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 {
                     //#region Fertige Aufträge löschen
                     if ((obj.orderState == "CANCELLED") || (obj.orderState == "CLOSED") ||
-                        (obj.orderState == " COMPLETELY_CLOSED"))
+                        (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState ==  "READY_FOR_BILLING"))
                     {
                         _boOe = _boO.GetById(obj.id);
                         if (_boOe != null)
@@ -193,7 +193,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                     //#region Fertige Orderitems löschen
                                     if ((orderItem.orderItemState == "CANCELLED") || (orderItem.orderItemState == "CLOSED") ||
-                                        (orderItem.orderItemState == " COMPLETELY_CLOSED"))
+                                        (orderItem.orderItemState == " COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING"))
                                     {
                                         _boOis = new OrderItemservice();
                                         _boOise = _boOis.GetByIdentitifier(
