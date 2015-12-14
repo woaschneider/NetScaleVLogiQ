@@ -52,8 +52,8 @@ namespace NetScalePolosIO.Import.AddressImport
                     {
                     //TODO: auf BI prüfen statt auf Id
 
-                        _boAe = _boA.GetById(obj.id) ?? _boA.NewEntity();
-                   
+                      //  _boAe = _boA.GetById(obj.id) ?? _boA.NewEntity();
+                        _boAe = _boA.GetByBusinenessIdentifier(obj.businessIdentifier) ?? _boA.NewEntity();
 
                         _boAe.id = obj.id;
                         _boAe.businessIdentifier = obj.businessIdentifier;
