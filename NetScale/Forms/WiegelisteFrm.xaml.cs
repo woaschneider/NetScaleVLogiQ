@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,6 +18,7 @@ using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
+using Xceed.Wpf.DataGrid.FilterCriteria;
 
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
@@ -65,6 +68,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
               
             }
             PartialSetGrid();
+
+            DeserializeFilter();
             FillGrid();
             PreviewKeyDown += new KeyEventHandler(HandleKey);
         }
@@ -72,10 +77,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void HandleKey(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
+                SerializeFilter();
                 Hide();
             if (e.Key == Key.Return)
             {
                 CmdSelectClick(cmdSelect, e);
+                SerializeFilter();
                 Hide();
             }
         }
@@ -92,12 +99,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdSelectClick(object sender, RoutedEventArgs e)
         {
+            SerializeFilter();
             uRet = Convert.ToInt32(dataGrid1.SelectedValue);
             Hide();
         }
 
         private void MenuItemCloseClick(object sender, RoutedEventArgs e)
         {
+            SerializeFilter();
             uRet = 0;
             Hide();
         }
@@ -158,7 +167,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             // L&L
         }
 
-
         protected override void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.HideCloseButton();
@@ -181,8 +189,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             PrinterLs oPLS = new PrinterLs();
             oPLS.DoPrintLs(oLE, boWE, true);
         }
-
-    
 
         private void VondatePickerSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -230,8 +236,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             gc7.Width = 100;
         }
 
-   
-
         private void DataGrid1_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             uRet = Convert.ToInt32(dataGrid1.SelectedValue);
@@ -253,5 +257,61 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             }
         }
+
+        private void SerializeFilter()
+        {
+            FilterObject oFO = new FilterObject();
+            oFO.cb1 = cbFelder1.Text;
+            oFO.cb2 = cbFelder2.Text;
+            oFO.cb3 = cbFelder3.Text;
+
+            oFO.mc1 = tbMatch1.Text;
+            oFO.mc2 = tbMatch2.Text;
+            oFO.mc3 = tbMatch3.Text;
+
+            oFO.DatumVon = vondatePicker.DisplayDate;
+            oFO.DatumBis = bisdatePicker.DisplayDate;
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, oFO);
+            stream.Close();
+        }
+
+        private void DeserializeFilter()
+        {
+            
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            FilterObject oFo = (FilterObject)formatter.Deserialize(stream);
+            stream.Close();
+
+            cbFelder1.Text = oFo.cb1;
+            cbFelder2.Text = oFo.cb2;
+            cbFelder3.Text = oFo.cb3;
+
+            tbMatch1.Text = oFo.mc1;
+            tbMatch2.Text = oFo.mc2;
+            tbMatch3.Text = oFo.mc3;
+
+            vondatePicker.SelectedDate = oFo.DatumVon;
+            bisdatePicker.SelectedDate = oFo.DatumBis;
+        }
     }
+    [Serializable]
+    public class FilterObject
+    {
+        
+        
+        public string cb1 = "";
+        public string cb2 = "";
+        public string cb3 = "";
+
+        public string mc1 = "";
+        public string mc2 = "";
+        public string mc3 = "";
+
+        public DateTime DatumVon = System.DateTime.Now;
+        public DateTime DatumBis = System.DateTime.Now; 
+    }
+
 }

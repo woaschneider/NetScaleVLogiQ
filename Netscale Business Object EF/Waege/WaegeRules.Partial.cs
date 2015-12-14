@@ -14,37 +14,40 @@ namespace HWB.NETSCALE.BOEF
 	/// </summary>
 	public partial class WaegeRules
 	{
-		/// <summary>
-		/// Checks business rules against the specified entity
-		/// </summary>
-		/// <param name="entity">Entity</param>
-		public override void CheckExtendedRulesHook<EntityType>(EntityType entity)
-		{
-			WaegeEntity currentEntity = entity as WaegeEntity;
+	    /// <summary>
+	    /// Checks business rules against the specified entity
+	    /// </summary>
+	    /// <param name="entity">Entity</param>
+	    public override void CheckExtendedRulesHook<EntityType>(EntityType entity)
+	    {
+	        WaegeEntity currentEntity = entity as WaegeEntity;
 
-		    IsNettoEmpty(currentEntity);
-            
-			// Call Validation methods
-            IsProductFilled(currentEntity);
-		      IsExistedProductFilled(currentEntity);
-            IsKfzFilled(currentEntity);
+	        IsNettoEmpty(currentEntity);
 
-		    IsCustomerFilled(currentEntity);
-		    IsFfFilled(currentEntity);
-            //IsInvoiceReceiver(currentEntity);
-            //IsOwner(currentEntity);
-            //IsKundenReferenz(currentEntity);
-		 
-		    if (currentEntity.productdescription.Trim() != "Fremdverwiegung")
-		    {
-                IsArticlenumberFilled(currentEntity);
-		    }
-		    else
-		    {
-		        IsWarenArtFilled(currentEntity);
-		    }
+	        // Call Validation methods
+	        IsProductFilled(currentEntity);
+	        IsExistedProductFilled(currentEntity);
+	        IsKfzFilled(currentEntity);
 
-		}
+	        IsCustomerFilled(currentEntity);
+	        IsFfFilled(currentEntity);
+	        //IsInvoiceReceiver(currentEntity);
+	        //IsOwner(currentEntity);
+	        //IsKundenReferenz(currentEntity);
+
+	        if (currentEntity.productdescription != null)
+            {
+	            if (currentEntity.productdescription.Trim() != "Fremdverwiegung")
+	            {
+	                IsArticlenumberFilled(currentEntity);
+	            }
+	            else
+	            {
+	                IsWarenArtFilled(currentEntity);
+	            }
+	    }
+
+	}
 
 	    private string IsNettoEmpty(WaegeEntity currentEntity)
         {

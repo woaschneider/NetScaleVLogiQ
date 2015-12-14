@@ -1560,6 +1560,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
             }
         }
+        private void TxtAuftraggeber_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+           SearchCustomer();
+        }
 
         private void TxtRechnungsEmpfaenger_OnKeyDown(object sender, KeyEventArgs e)
         {
@@ -1570,6 +1574,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (e.Key == Key.F4)
             {
             }
+        }
+        private void TxtRechnungsEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchInvocieReceiver();
         }
 
         private void TxtFrachtführer_OnKeyDown(object sender, KeyEventArgs e)
@@ -1584,6 +1592,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
+        private void TxtFrachtführer_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+           SearchFrachtführer();
+        }
+
         private void TxtLagerMandant_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Tab)
@@ -1593,6 +1606,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (e.Key == Key.F4)
             {
             }
+        }
+        private void TxtLagerMandant_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchLagerMandant();
         }
 
         private void TxtLieferantEmpfaenger_OnKeyDown(object sender, KeyEventArgs e)
@@ -1604,6 +1621,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             if (e.Key == Key.F4)
             {
             }
+        }
+        private void TxtLieferantEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchLieferantEmpfänger();
         }
 
         private void TxtWarenArt_OnKeyDown(object sender, KeyEventArgs e)
@@ -1742,5 +1763,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                // _boWe.Zweitgewicht = tempZweitgewicht;
             }
         }
+
+
+      
     }
 }
