@@ -246,13 +246,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 if (boWE.taab != true)
                     if (
-                        MessageBox.Show("Auftragsnummer entfernen um diesen Datensatz als initierten Auftrag zu senden?", "Frage", MessageBoxButton.YesNo,
+                        MessageBox.Show("Wollen Sie diesen Lieferschein wirklich als bereits gesendet markieren?", "Frage", MessageBoxButton.YesNo,
                             MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-                        boWE.identifierOItem = null;
-                        boWE.number = null;
-                        boWE.sequence = null;
+                        boWE.taab= true;
+                        boWE.HasBinSended = true;
+                       
                         boW.SaveEntity(boWE);
+                        FillGrid();
                     }
 
             }
