@@ -16,6 +16,7 @@ using HWB.NETSCALE.BOEF;
 
 using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main;
+using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 using Xceed.Wpf.DataGrid.FilterCriteria;
@@ -77,8 +78,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private void HandleKey(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
+            {
                 SerializeFilter();
                 Hide();
+            }
+            
             if (e.Key == Key.Return)
             {
                 CmdSelectClick(cmdSelect, e);
@@ -252,7 +256,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         boWE.taab= true;
                         boWE.HasBinSended = true;
                        
-                        boW.SaveEntity(boWE);
+                    mmSaveDataResult oSr =    boW.SaveEntity(boWE);
                         FillGrid();
                     }
 
@@ -270,8 +274,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oFO.mc2 = tbMatch2.Text;
             oFO.mc3 = tbMatch3.Text;
 
-            oFO.DatumVon = vondatePicker.DisplayDate;
-            oFO.DatumBis = bisdatePicker.DisplayDate;
+            oFO.DatumVon = vondatePicker.SelectedDate.Value;
+            oFO.DatumBis = bisdatePicker.SelectedDate.Value;
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("MyFile.bin", FileMode.Create, FileAccess.Write, FileShare.None);
             formatter.Serialize(stream, oFO);

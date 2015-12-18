@@ -105,6 +105,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                         break;
                 }
             }
+            else
+            {
+                ll.Dispose();
+            }
+          
         }
 
         private static void PrintPaperLs(ListLabel ll, bool kopie, int copies, bool? isLsDruck, string druckerName)
