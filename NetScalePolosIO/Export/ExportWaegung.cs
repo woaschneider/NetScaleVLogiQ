@@ -22,7 +22,7 @@ namespace NetScalePolosIO.Export
 
     public class ExportWaegungVersion2Rest
     {
-        public void ExportLs2Rest(string baseUrl, int? location, WaegeEntity _boWe)
+        public void ExportLs2Rest(string baseUrl, string location, WaegeEntity _boWe)
         {
             /// Neu 30.8.2015 die Waegeentitaet trennen
 
@@ -58,7 +58,7 @@ namespace NetScalePolosIO.Export
             }
         }
 
-        private RootObject CreateOrderItem(WaegeEntity w, int? location)
+        private RootObject CreateOrderItem(WaegeEntity w, string location)
         {
             var properties = new Dictionary<string, object>(); // Neu 28.4.15
             RootObject oOi = new RootObject();

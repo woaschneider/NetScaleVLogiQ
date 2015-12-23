@@ -248,7 +248,7 @@
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RM.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RMLogiQ.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
       -->
         <EntityType Name="Classes">
           <Key>
@@ -279,7 +279,7 @@
           <Property Name="MG_Id_counter" Type="int" />
           <Property Name="ImpRESTServerIp" Type="varchar" MaxLength="254" />
           <Property Name="ImpRESTServerPort" Type="varchar" MaxLength="20" />
-          <Property Name="RestLocation" Type="int" />
+          <Property Name="RestLocation" Type="varchar" MaxLength="20" />
           <Property Name="ImpRESTServerAdressesUrl" Type="varchar" MaxLength="200" />
           <Property Name="ImpRESTServerKindofGoodsUrl" Type="varchar" MaxLength="200" />
           <Property Name="ImpRESTServerArticleUrl" Type="varchar" MaxLength="200" />
@@ -1297,7 +1297,7 @@
           <Property Type="Int32" Name="MG_Id_counter" />
           <Property Type="String" Name="ImpRESTServerIp" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ImpRESTServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="RestLocation" />
+          <Property Type="String" Name="RestLocation" />
           <Property Type="String" Name="ImpRESTServerAdressesUrl" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ImpRESTServerKindofGoodsUrl" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ImpRESTServerArticleUrl" MaxLength="200" FixedLength="false" Unicode="false" />

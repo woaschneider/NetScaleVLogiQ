@@ -14,7 +14,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
         private Artikelattribute _boA;
         private ArtikelattributeEntity _boAe;
 
-        public void Import(string baseUrl, int location, string url)
+        public void Import(string baseUrl, string location, string url)
         {
             try
             {

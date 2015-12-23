@@ -15,7 +15,7 @@ namespace NetScalePolosIO.Import.ProductsImport
         private Produkte _boP;
         private ProdukteEntity _boPe;
 
-        public bool Import(string baseUrl, int location, string url)
+        public bool Import(string baseUrl, string location, string url)
         {
             try
             {

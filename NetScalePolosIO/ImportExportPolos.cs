@@ -87,7 +87,7 @@ namespace NetScalePolosIO
             return "";
         }
 
-        private int GetLocationId()
+        private string GetLocationId()
         {
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -95,11 +95,11 @@ namespace NetScalePolosIO
             {
                 if (boEe.RestLocation != null)
                 {
-                    int locationId = (int) boEe.RestLocation;
+                    string locationId =  boEe.RestLocation;
                     return locationId;
                 }
             }
-            return 0;
+            return "";
         }
 
         #endregion
@@ -259,7 +259,7 @@ namespace NetScalePolosIO
             }
             var oEx = new ExportWaegungVersion2Rest();
 
-            oEx.ExportLs2Rest(baseUrl, boEe.RestLocation ?? 0, boWe);
+            oEx.ExportLs2Rest(baseUrl, boEe.RestLocation, boWe);
         }
 
         #endregion

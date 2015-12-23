@@ -774,6 +774,7 @@
                              Height="23"
                              Margin="174,21,0,0"
                              HorizontalAlignment="Left"
+                             MaxLength="20"
                              VerticalAlignment="Top"
                              Text="{Binding RestLocation}" />
                     <Label Name="label17"

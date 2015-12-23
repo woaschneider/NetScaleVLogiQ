@@ -22,7 +22,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
         private int _totalresult;
 
-        public bool Import(string baseUrl, int location, string url)
+        public bool Import(string baseUrl, string location, string url)
         {
             var client = new RestClient(baseUrl);
             client.ClearHandlers();

@@ -16,7 +16,7 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
         private LagerplaetzeEntity _boLe;
 
 
-        public bool Import(string baseUrl, int location, string url)
+        public bool Import(string baseUrl, string location, string url)
         {
             try
             {

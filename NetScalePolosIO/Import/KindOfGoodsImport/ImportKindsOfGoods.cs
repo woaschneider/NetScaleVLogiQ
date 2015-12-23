@@ -17,7 +17,7 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
         private Warenarten _boW;
         private WarenartenEntity _boWe;
 
-        public bool Import(string baseUrl, int location, string url)
+        public bool Import(string baseUrl, string location, string url)
         {
             try
             {
