@@ -4221,7 +4221,7 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> baseUnitId
+        public global::System.String baseUnitId
         {
             get
             {
@@ -4231,13 +4231,13 @@ namespace HWB.NETSCALE.BOEF
             {
                 OnbaseUnitIdChanging(value);
                 ReportPropertyChanging("baseUnitId");
-                _baseUnitId = StructuralObject.SetValidValue(value);
+                _baseUnitId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("baseUnitId");
                 OnbaseUnitIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _baseUnitId;
-        partial void OnbaseUnitIdChanging(Nullable<global::System.Int32> value);
+        private global::System.String _baseUnitId;
+        partial void OnbaseUnitIdChanging(global::System.String value);
         partial void OnbaseUnitIdChanged();
     
         /// <summary>
@@ -4581,7 +4581,7 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> conversionUnitId
+        public global::System.String conversionUnitId
         {
             get
             {
@@ -4591,13 +4591,13 @@ namespace HWB.NETSCALE.BOEF
             {
                 OnconversionUnitIdChanging(value);
                 ReportPropertyChanging("conversionUnitId");
-                _conversionUnitId = StructuralObject.SetValidValue(value);
+                _conversionUnitId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("conversionUnitId");
                 OnconversionUnitIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _conversionUnitId;
-        partial void OnconversionUnitIdChanging(Nullable<global::System.Int32> value);
+        private global::System.String _conversionUnitId;
+        partial void OnconversionUnitIdChanging(global::System.String value);
         partial void OnconversionUnitIdChanged();
     
         /// <summary>
@@ -4653,7 +4653,7 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> kindOfGoodId
+        public global::System.String kindOfGoodId
         {
             get
             {
@@ -4663,13 +4663,13 @@ namespace HWB.NETSCALE.BOEF
             {
                 OnkindOfGoodIdChanging(value);
                 ReportPropertyChanging("kindOfGoodId");
-                _kindOfGoodId = StructuralObject.SetValidValue(value);
+                _kindOfGoodId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("kindOfGoodId");
                 OnkindOfGoodIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _kindOfGoodId;
-        partial void OnkindOfGoodIdChanging(Nullable<global::System.Int32> value);
+        private global::System.String _kindOfGoodId;
+        partial void OnkindOfGoodIdChanging(global::System.String value);
         partial void OnkindOfGoodIdChanged();
 
         #endregion

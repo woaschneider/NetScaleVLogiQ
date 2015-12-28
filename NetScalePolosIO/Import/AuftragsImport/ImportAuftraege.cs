@@ -4,6 +4,7 @@ using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
+using OakLeaf.MM.Main.Business;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
@@ -133,7 +134,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                 _boA = new Adressen();
                                 if (_boOe.customerId != null)
                                 {
-                                    _boAe = _boA.GetById(obj.customer.id);
+                                    //_boAe = _boA.GetById(obj.customer.id);
+                                    _boAe = _boA.GetByBusinenessIdentifier(_boOe.customerBusinessIdentifier);
                                     if (_boAe != null)
                                     {
                                         _boOe.customerName = _boAe.name;
@@ -172,7 +174,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                 #endregion
 
-                                _boO.SaveEntity(_boOe);
+                         mmSaveDataResult  sret =    _boO.SaveEntity(_boOe);
                                 _boOe = _boO.GetById(_boOe.id); // Damit ich jetzt den OK habe
 
                                 // *******************************************************************************************************
@@ -208,7 +210,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                             }
                                         }
 
-                                        if (orderItem.orderItemState == "READY_TO_DISPATCH")
+                                        if (orderItem.orderItemState == "READY_TO_DISPATCH" || orderItem.orderItemState == "NEW" )
                                         {
                                             foreach (OrderItemService orderItemService in orderItem.orderItemServices)
                                             {
@@ -231,8 +233,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                 // Order Item Service: 
 
                                                 // Filter auf die relevanten Leistungen
-                                                if (VFP.InList(orderItemService.service.id, 1003, 2003, 2001, 1001, 8103, 10301,
-                                                    10300))
+                                       //         if (VFP.InList(orderItemService.service.id, 1003, 2003, 2001, 1001, 8103, 10301,
+                                         //           10300))
+                                               if(orderItemService.service.scaleRelevant==true)
                                                 {
                                                     _boOis = new OrderItemservice();
 

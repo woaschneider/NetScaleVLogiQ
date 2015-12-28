@@ -67,9 +67,6 @@
     <Reference Include="HWB.Framework">
       <HintPath>..\..\..\..\..\HWBFramework\HwbMmWpfLibrary\HwbMmWpfLibrary\bin\Debug\HWB.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="HWB.NETSCALE.FRONTEND.WPF">
-      <HintPath>..\NetScale\bin\Debug\HWB.NETSCALE.FRONTEND.WPF.exe</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -88,7 +85,6 @@
     <Reference Include="OakLeaf.MM2010.WF, Version=4.0.0.0, Culture=neutral, PublicKeyToken=73b2ce9691f17e63" />
     <Reference Include="OakLeaf.MM2010.WinForms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=57ceb69243304587" />
     <Reference Include="OakLeaf.MM2010.WPF, Version=4.0.0.0, Culture=neutral, PublicKeyToken=961d2024ab381c81, processorArchitecture=MSIL" />
-    <Reference Include="Oracle.DataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework">
@@ -126,9 +122,6 @@
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="WPFToolkit.Extended">
-      <HintPath>..\NetScale\bin\Debug\WPFToolkit.Extended.dll</HintPath>
-    </Reference>
     <Reference Include="Xceed.Wpf.Toolkit">
       <HintPath>..\NetScale\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>

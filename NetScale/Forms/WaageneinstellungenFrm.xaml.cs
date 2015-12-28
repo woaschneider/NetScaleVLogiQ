@@ -36,8 +36,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void FillFrm()
         {
-            tb_anzahlauswertegeraete.Text = oWE.SCALES;
-            tb_anzahlmesskreise.Text = oWE.MESSKREISE;
+            //tb_anzahlauswertegeraete.Text = oWE.SCALES;
+            //tb_anzahlmesskreise.Text = oWE.MESSKREISE;
 
             tb_w1WaagenID.Text = oWE.W1_WAAGENID;
             tb_w1waagentypbeschreibung.Text = oWE.W1_WAAGENBESCHREIBUNG;
@@ -69,19 +69,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             tb_minW2.Text = oWE.W2_min;
             tb_maxW2.Text = oWE.W2_max;
             tb_waagennameW2.Text = oWE.W2_WAAGENNAME;
-            if (tb_anzahlauswertegeraete.Text == "1")
-            {
-                Window.Width = 460;
-            }
-            else
-            {
-                Window.Width = 879;
-            }
-            if (tb_anzahlmesskreise.Text == "2")
-            {
-                buttonSpinner1.IsEnabled = false;
-                tb_anzahlauswertegeraete.IsEnabled = false;
-            }
+            //if (tb_anzahlauswertegeraete.Text == "1")
+            //{
+            //    Window.Width = 460;
+            //}
+            //else
+            //{
+            //    Window.Width = 879;
+            //}
+            //if (tb_anzahlmesskreise.Text == "2")
+            //{
+            //    buttonSpinner1.IsEnabled = false;
+            //    tb_anzahlauswertegeraete.IsEnabled = false;
+            //}
         }
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
@@ -91,8 +91,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)
         {
-            oWE.SCALES = tb_anzahlauswertegeraete.Text;
-            oWE.MESSKREISE = tb_anzahlmesskreise.Text;
+            //oWE.SCALES = tb_anzahlauswertegeraete.Text;
+            //oWE.MESSKREISE = tb_anzahlmesskreise.Text;
             oWE.Einheit = cb_ME.Text;
 
             oWE.W1_WAAGENID = tb_w1WaagenID.Text;
@@ -159,40 +159,40 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oWTListeFrm.Close();
         }
 
-        private void buttonSpinner1_Spin(object sender, Microsoft.Windows.Controls.SpinEventArgs e)
-        {
-            int value = String.IsNullOrEmpty(tb_anzahlauswertegeraete.Text)
-                            ? 0
-                            : Convert.ToInt32(tb_anzahlauswertegeraete.Text);
-            if (e.Direction == Microsoft.Windows.Controls.SpinDirection.Increase)
-                if (value == 2)
-                {
-                    value = 1;
-                }
-                else
-                {
-                    value++;
-                }
+        //private void buttonSpinner1_Spin(object sender, Microsoft.Windows.Controls.SpinEventArgs e)
+        //{
+        //    int value = String.IsNullOrEmpty(tb_anzahlauswertegeraete.Text)
+        //                    ? 0
+        //                    : Convert.ToInt32(tb_anzahlauswertegeraete.Text);
+        //    if (e.Direction == Microsoft.Windows.Controls.SpinDirection.Increase)
+        //        if (value == 2)
+        //        {
+        //            value = 1;
+        //        }
+        //        else
+        //        {
+        //            value++;
+        //        }
 
-            else if (value == 1)
-            {
-                value = 2;
-            }
-            else
-            {
-                value--;
-            }
+        //    else if (value == 1)
+        //    {
+        //        value = 2;
+        //    }
+        //    else
+        //    {
+        //        value--;
+        //    }
 
-            tb_anzahlauswertegeraete.Text = value.ToString();
-            if (tb_anzahlauswertegeraete.Text == "1")
-            {
-                Window.Width = 460;
-            }
-            else
-            {
-                Window.Width = 879;
-            }
-        }
+        //    tb_anzahlauswertegeraete.Text = value.ToString();
+        //    if (tb_anzahlauswertegeraete.Text == "1")
+        //    {
+        //        Window.Width = 460;
+        //    }
+        //    else
+        //    {
+        //        Window.Width = 879;
+        //    }
+        //}
 
         private void cmdGetComPorts1_Click(object sender, RoutedEventArgs e)
         {
@@ -218,42 +218,42 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void buttonSpinner2_Spin(object sender, Microsoft.Windows.Controls.SpinEventArgs e)
-        {
-            int value = String.IsNullOrEmpty(tb_anzahlmesskreise.Text) ? 0 : Convert.ToInt32(tb_anzahlmesskreise.Text);
-            if (e.Direction == Microsoft.Windows.Controls.SpinDirection.Increase)
-                if (value == 2)
-                {
-                    value = 1;
-                }
-                else
-                {
-                    value++;
-                }
+        //private void buttonSpinner2_Spin(object sender, Microsoft.Windows.Controls.SpinEventArgs e)
+        //{
+        //    int value = String.IsNullOrEmpty(tb_anzahlmesskreise.Text) ? 0 : Convert.ToInt32(tb_anzahlmesskreise.Text);
+        //    if (e.Direction == Microsoft.Windows.Controls.SpinDirection.Increase)
+        //        if (value == 2)
+        //        {
+        //            value = 1;
+        //        }
+        //        else
+        //        {
+        //            value++;
+        //        }
 
-            else if (value == 1)
-            {
-                value = 2;
-            }
-            else
-            {
-                value--;
-            }
+        //    else if (value == 1)
+        //    {
+        //        value = 2;
+        //    }
+        //    else
+        //    {
+        //        value--;
+        //    }
 
-            tb_anzahlmesskreise.Text = value.ToString();
-            if (tb_anzahlmesskreise.Text == "1")
-            {
-                buttonSpinner1.IsEnabled = true;
-                tb_anzahlauswertegeraete.IsEnabled = true;
-            }
-            if (tb_anzahlmesskreise.Text == "2")
-            {
-                tb_anzahlauswertegeraete.Text = "1";
+        //    tb_anzahlmesskreise.Text = value.ToString();
+        //    if (tb_anzahlmesskreise.Text == "1")
+        //    {
+        //        buttonSpinner1.IsEnabled = true;
+        //        tb_anzahlauswertegeraete.IsEnabled = true;
+        //    }
+        //    if (tb_anzahlmesskreise.Text == "2")
+        //    {
+        //        tb_anzahlauswertegeraete.Text = "1";
 
-                buttonSpinner1.IsEnabled = false;
-                tb_anzahlauswertegeraete.IsEnabled = false;
-            }
-        }
+        //        buttonSpinner1.IsEnabled = false;
+        //        tb_anzahlauswertegeraete.IsEnabled = false;
+        //    }
+        //}
 
        
     }

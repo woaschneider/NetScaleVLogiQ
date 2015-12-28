@@ -28,8 +28,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private WaegeEntity _boWe;
         private int _wiegeStatus;
         private mmSaveDataResult _result;
-        private decimal? tempErstgewicht;
-        private decimal? tempZweitgewicht;
+      
         #endregion
 
         /// <summary>

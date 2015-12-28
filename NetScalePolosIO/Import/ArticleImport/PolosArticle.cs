@@ -22,11 +22,11 @@ namespace HWB.NETSCALE.POLOSIO.ArticleImport
         }
 
         public string id { get; set; }
-        public int ownerId { get; set; }
+        public string ownerId { get; set; }
         public string locationId { get; set; }
         public string number { get; set; }
         public string kindOfGoodDescription { get; set; }
-        public int kindOfGoodId { get; set; }
+        public string kindOfGoodId { get; set; }
         public string description { get; set; }
         public BaseUnit baseUnit { get; set; }
         public ConversionUnit conversionUnit { get; set; }
@@ -34,14 +34,14 @@ namespace HWB.NETSCALE.POLOSIO.ArticleImport
 
     public class BaseUnit
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string shortDescription { get; set; }
         public string description { get; set; }
     }
 
     public class ConversionUnit
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string shortDescription { get; set; }
         public string description { get; set; }
     }

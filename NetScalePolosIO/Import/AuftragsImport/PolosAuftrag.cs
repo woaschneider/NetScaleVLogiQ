@@ -7,14 +7,14 @@ namespace HWB.NETSCALE.POLOSIO.AuftragsImport
 
 public class BaseUnit
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string shortDescription { get; set; }
     public string description { get; set; }
 }
 
 public class ConversionUnit
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string shortDescription { get; set; }
     public string description { get; set; }
 }
@@ -85,6 +85,7 @@ public class Service
 {
     public string id { get; set; }
     public string description { get; set; }
+    public bool scaleRelevant;
     
     public double targedAmount { get; set; }
 }

@@ -19,7 +19,7 @@ using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
-using Xceed.Wpf.DataGrid.FilterCriteria;
+
 
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms

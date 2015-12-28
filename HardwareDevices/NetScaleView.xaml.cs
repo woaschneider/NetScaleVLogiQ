@@ -612,15 +612,20 @@ namespace HardwareDevices
                 case 1: // Waage 1
                     
                         oW = _w1.GetPollGewicht("01");
-                    if (oW.Status.Substring(0, 1) == "0")
-                    { tb_status.Text = "Kein Stillstand";
-                    Stillstand = false;}
+                    if (oW.Status != null)
+                    {
+                        if (oW.Status.Substring(0, 1) == "0")
+                        {
+                            tb_status.Text = "Kein Stillstand";
+                            Stillstand = false;
+                        }
+                    }
                     else
                     {
                         tb_status.Text = "";
                         Stillstand = true;
                     }
-               //    tb_status.Text = _w1.Status;
+                    //    tb_status.Text = _w1.Status;
                     break;
                 case 2: // Waage 2
                     if (oWE.MESSKREISE == "2")
@@ -718,7 +723,7 @@ namespace HardwareDevices
                     }
 
 
-                    break;
+                 
 
                 case 3:
                     _poll = false;
@@ -726,7 +731,7 @@ namespace HardwareDevices
                     SaveClearWAlarm(oRW);
                     _poll = true;
                     return oRW;
-                    break;
+                 
                 default:
 
                     RegisterWeight dummy = new RegisterWeight();

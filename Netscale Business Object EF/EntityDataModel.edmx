@@ -205,12 +205,12 @@
           <Property Name="locationId" Type="varchar" MaxLength="64" />
           <Property Name="number" Type="varchar" MaxLength="256" />
           <Property Name="description" Type="varchar" MaxLength="128" />
-          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="32" />
+          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="64" />
           <Property Name="ownerId" Type="varchar" MaxLength="64" />
           <Property Name="origin" Type="bit" />
           <Property Name="grade" Type="bit" />
           <Property Name="batch" Type="bit" />
-          <Property Name="baseUnitId" Type="int" />
+          <Property Name="baseUnitId" Type="varchar" MaxLength="64" />
           <Property Name="baseUnitShortDescription" Type="varchar" MaxLength="64" />
           <Property Name="baseUnitDescription" Type="varchar" MaxLength="64" />
           <Property Name="attributes_SerialNumber" Type="varchar" MaxLength="64" />
@@ -225,10 +225,10 @@
           <Property Name="attributes_Original_Marking" Type="varchar" MaxLength="64" />
           <Property Name="attributes_Storage_Area_Referenz_Number" Type="varchar" MaxLength="64" />
           <Property Name="attributes_Dimension" Type="varchar" MaxLength="64" />
-          <Property Name="conversionUnitId" Type="int" />
+          <Property Name="conversionUnitId" Type="varchar" MaxLength="64" />
           <Property Name="conversionUnitShortDescription" Type="varchar" MaxLength="128" />
           <Property Name="conversionUnitDescription" Type="varchar" MaxLength="128" />
-          <Property Name="kindOfGoodId" Type="int" />
+          <Property Name="kindOfGoodId" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Artikelattribute">
           <Key>
@@ -464,11 +464,11 @@
             <PropertyRef Name="PK" />
           </Key>
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="locationId" Type="varchar" MaxLength="22" />
-          <Property Name="id" Type="varchar" MaxLength="32" />
-          <Property Name="number" Type="varchar" MaxLength="32" />
-          <Property Name="reference" Type="varchar" MaxLength="32" />
-          <Property Name="orderstate" Type="varchar" MaxLength="32" />
+          <Property Name="locationId" Type="varchar" MaxLength="64" />
+          <Property Name="id" Type="varchar" MaxLength="64" />
+          <Property Name="number" Type="varchar" MaxLength="64" />
+          <Property Name="reference" Type="varchar" MaxLength="64" />
+          <Property Name="orderstate" Type="varchar" MaxLength="64" />
           <Property Name="date" Type="datetime" />
           <Property Name="customerName" Type="varchar" MaxLength="64" />
           <Property Name="customerSubName2" Type="varchar" MaxLength="64" />
@@ -501,20 +501,20 @@
           <Property Name="remark" Type="varchar" MaxLength="100" />
           <Property Name="ownerId" Type="varchar" MaxLength="64" />
           <Property Name="deliveryType" Type="varchar" MaxLength="100" />
-          <Property Name="wa_Id" Type="varchar" MaxLength="32" />
-          <Property Name="wa_Description" Type="varchar" MaxLength="32" />
-          <Property Name="wa_Baseunit_ShortDescription" Type="varchar" MaxLength="10" />
+          <Property Name="wa_Id" Type="varchar" MaxLength="64" />
+          <Property Name="wa_Description" Type="varchar" MaxLength="64" />
+          <Property Name="wa_Baseunit_ShortDescription" Type="varchar" MaxLength="64" />
           <Property Name="articleId" Type="varchar" MaxLength="64" />
           <Property Name="plannedDate" Type="datetime" />
           <Property Name="targedAmount" Type="numeric" Precision="22" Scale="2" />
           <Property Name="additionalTargetAmount" Type="numeric" Precision="22" Scale="2" />
           <Property Name="locationId" Type="varchar" MaxLength="64" />
-          <Property Name="locationName" Type="varchar" MaxLength="32" />
+          <Property Name="locationName" Type="varchar" MaxLength="64" />
           <Property Name="locationFullname" Type="varchar" MaxLength="254" />
           <Property Name="product" Type="varchar" MaxLength="64" />
           <Property Name="productdescription" Type="char" MaxLength="64" />
           <Property Name="number" Type="varchar" MaxLength="256" />
-          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="32" />
+          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="64" />
           <Property Name="kindOfGoodId" Type="varchar" MaxLength="64" />
           <Property Name="supplierOrConsigneeId" Type="varchar" MaxLength="64" />
           <Property Name="supplierOrConsigneeBusinessIdentifier" Type="varchar" MaxLength="64" />
@@ -555,13 +555,13 @@
           <Property Name="HasBinSended" Type="bit" />
           <Property Name="HasBinSendedDateTime" Type="datetime" />
           <Property Name="InvisibleSendedOrderItems" Type="bit" />
-          <Property Name="identifierOItem" Type="varchar" MaxLength="22" />
-          <Property Name="identifierOItemService" Type="varchar" MaxLength="22" />
+          <Property Name="identifierOItem" Type="varchar" MaxLength="64" />
+          <Property Name="identifierOItemService" Type="varchar" MaxLength="64" />
           <Property Name="serviceId" Type="varchar" MaxLength="64" />
           <Property Name="serviceDescription" Type="varchar" MaxLength="50" />
           <Property Name="orderstate" Type="varchar" MaxLength="32" />
-          <Property Name="actualStorageAreaId" Type="varchar" MaxLength="20" />
-          <Property Name="targetStorageAreaId" Type="varchar" MaxLength="20" />
+          <Property Name="actualStorageAreaId" Type="varchar" MaxLength="64" />
+          <Property Name="targetStorageAreaId" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Produkte">
           <Key>
@@ -623,8 +623,8 @@
           <Property Name="WaagennummerZweit" Type="varchar" MaxLength="22" />
           <Property Name="LieferscheinNr" Type="varchar" MaxLength="64" />
           <Property Name="WiegescheinNr" Type="varchar" MaxLength="64" />
-          <Property Name="IstQuellLagerPlatz" Type="varchar" MaxLength="22" />
-          <Property Name="IstZielLagerPlatz" Type="varchar" MaxLength="22" />
+          <Property Name="IstQuellLagerPlatz" Type="varchar" MaxLength="64" />
+          <Property Name="IstZielLagerPlatz" Type="varchar" MaxLength="64" />
           <Property Name="Erstgewicht" Type="numeric" Precision="10" Scale="3" />
           <Property Name="ErstDatetime" Type="datetime" />
           <Property Name="Zweitgewicht" Type="numeric" Precision="10" Scale="3" />
@@ -634,12 +634,12 @@
           <Property Name="Arbeitsende" Type="datetime" />
           <Property Name="StornoKennzeichen" Type="bit" />
           <Property Name="Finalisieren" Type="bit" />
-          <Property Name="locationId" Type="varchar" MaxLength="22" />
-          <Property Name="id" Type="varchar" MaxLength="32" />
-          <Property Name="reference" Type="varchar" MaxLength="32" />
-          <Property Name="orderstate" Type="varchar" MaxLength="32" />
+          <Property Name="locationId" Type="varchar" MaxLength="64" />
+          <Property Name="id" Type="varchar" MaxLength="64" />
+          <Property Name="reference" Type="varchar" MaxLength="64" />
+          <Property Name="orderstate" Type="varchar" MaxLength="64" />
           <Property Name="date" Type="datetime" />
-          <Property Name="number" Type="varchar" MaxLength="32" />
+          <Property Name="number" Type="varchar" MaxLength="64" />
           <Property Name="customerId" Type="varchar" MaxLength="64" />
           <Property Name="customerBusinessIdentifier" Type="varchar" MaxLength="64" />
           <Property Name="customerName" Type="varchar" MaxLength="64" />
@@ -668,9 +668,9 @@
           <Property Name="targedAmount" Type="numeric" Precision="22" Scale="2" />
           <Property Name="remark" Type="varchar" MaxLength="100" />
           <Property Name="additionalTargetAmount" Type="numeric" Precision="22" Scale="2" />
-          <Property Name="locationName" Type="varchar" MaxLength="32" />
+          <Property Name="locationName" Type="varchar" MaxLength="64" />
           <Property Name="locationFullname" Type="varchar" MaxLength="254" />
-          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="32" />
+          <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="64" />
           <Property Name="kindOfGoodId" Type="varchar" MaxLength="64" />
           <Property Name="supplierOrConsigneeId" Type="varchar" MaxLength="64" />
           <Property Name="supplierOrConsigneeBusinessIdentifier" Type="varchar" MaxLength="64" />
@@ -749,11 +749,11 @@
           <Property Name="freitext3" Type="varchar" MaxLength="100" />
           <Property Name="freitext4" Type="varchar" MaxLength="100" />
           <Property Name="freitext5" Type="varchar" MaxLength="100" />
-          <Property Name="IstQuellLagerPlatzId" Type="varchar" MaxLength="20" />
+          <Property Name="IstQuellLagerPlatzId" Type="varchar" MaxLength="64" />
           <Property Name="IstZielLagerPlatzId" Type="varchar" MaxLength="20" />
-          <Property Name="identifierOItem" Type="varchar" MaxLength="22" />
-          <Property Name="identifierOItemService" Type="varchar" MaxLength="22" />
-          <Property Name="actualStorageAreaId" Type="varchar" MaxLength="20" />
+          <Property Name="identifierOItem" Type="varchar" MaxLength="64" />
+          <Property Name="identifierOItemService" Type="varchar" MaxLength="64" />
+          <Property Name="actualStorageAreaId" Type="varchar" MaxLength="64" />
           <Property Name="targetStorageAreaId" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Warenarten">
@@ -1373,7 +1373,7 @@
           <Property Type="Boolean" Name="origin" />
           <Property Type="Boolean" Name="grade" />
           <Property Type="Boolean" Name="batch" />
-          <Property Type="Int32" Name="baseUnitId" />
+          <Property Type="String" Name="baseUnitId" />
           <Property Type="String" Name="baseUnitShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="baseUnitDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="attributes_SerialNumber" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1388,10 +1388,10 @@
           <Property Type="String" Name="attributes_Original_Marking" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="attributes_Storage_Area_Referenz_Number" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="attributes_Dimension" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="conversionUnitId" />
+          <Property Type="String" Name="conversionUnitId" />
           <Property Type="String" Name="conversionUnitShortDescription" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="conversionUnitDescription" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="kindOfGoodId" />
+          <Property Type="String" Name="kindOfGoodId" />
         </EntityType>
         <EntityType Name="ErrorLogEntity">
           <Key>
@@ -2415,7 +2415,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="32" >
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="93" >
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />
@@ -2451,7 +2451,7 @@
           <edmx:ConnectorPoint PointX="8.5" PointY="39.240143229166662" />
           <edmx:ConnectorPoint PointX="9.25" PointY="39.240143229166662" />
         </edmx:AssociationConnector>
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="14.375" PointY="12.75" Height="6.5955208333333246" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="14.375" PointY="11.875" Height="6.5955208333333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ErrorLogEntity" Width="1.5" PointX="12.375" PointY="4.75" Height="2.1725878906250102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="6.25" PointY="41.75" Height="14.28757812500001" />
         <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >

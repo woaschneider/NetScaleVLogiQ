@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
 using RestSharp.Deserializers;
-using Xceed.Wpf.Toolkit;
+
 
 namespace NetScalePolosIO.Import.ProductsImport
 {

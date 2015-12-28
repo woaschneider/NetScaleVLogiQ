@@ -44,7 +44,7 @@ namespace HWB.NETSCALE.POLOSIO
 
     public class Country
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string isoCode { get; set; }
     }
 }

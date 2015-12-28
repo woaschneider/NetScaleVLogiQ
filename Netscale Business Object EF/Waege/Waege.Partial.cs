@@ -252,7 +252,7 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         public void Product2Waege(string pid, WaegeEntity we)
-        {   int iPid=0;
+        { 
             Entity = we;
             try
             {

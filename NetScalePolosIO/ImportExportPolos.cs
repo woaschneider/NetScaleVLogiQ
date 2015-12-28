@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading;
+using System.Windows;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
@@ -12,7 +13,7 @@ using NetScalePolosIO.Import.KindOfGoodsImport;
 using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
 using OakLeaf.MM.Main.Collections;
-using Xceed.Wpf.Toolkit;
+
 
 
 namespace NetScalePolosIO
