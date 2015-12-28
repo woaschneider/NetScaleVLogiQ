@@ -100,7 +100,7 @@ namespace HWB.NETSCALE.BOEF
             boWE.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
 
             //TODO: Wenn die Produkte bekannt sind, fertig machen!
-            if (goApp.SAVE_ERST2CFTARA && boWE.productid==111)
+            if (goApp.SAVE_ERST2CFTARA && boWE.productid=="111")
             {
                 if (boWE.Waegung == 1)
                 {
@@ -256,11 +256,11 @@ namespace HWB.NETSCALE.BOEF
             Entity = we;
             try
             {
-              iPid  = Convert.ToInt32(pid);
+              
               Produkte boP = new Produkte();
 
 
-              ProdukteEntity boPE = boP.GetById(iPid);
+              ProdukteEntity boPE = boP.GetById(pid);
               if (boPE != null)
               {
                   Entity.productid = boPE.id;
@@ -292,7 +292,7 @@ namespace HWB.NETSCALE.BOEF
             {
                 // TODO:
                 // Entity.kindOfGoodId = boWE.id; Typen passt nicht
-                Entity.kindOfGoodId = Convert.ToInt32( boWE.id);
+                Entity.kindOfGoodId =  boWE.id;
                 Entity.kindOfGoodDescription = boWE.description;
             }
             else

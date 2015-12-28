@@ -14,7 +14,7 @@ namespace NetScalePolosIO.Export
 
     public class Article
     {
-        public int? id { get; set; }
+        public string id { get; set; }
     }
 
     public class Attributes
@@ -29,12 +29,12 @@ namespace NetScalePolosIO.Export
 
     public class SupplierOrConsignee
     {
-        public int? id { get; set; }
+        public string id { get; set; }
     }
 
     public class Service
     {
-        public int? id { get; set; }
+        public string id { get; set; }
     }
     public class Unit
     {
@@ -47,8 +47,8 @@ namespace NetScalePolosIO.Export
 
         public string validFrom { get; set; }
         public string validTo { get; set; }
-        public int? authorizerId { get; set; } // Auftraggeber
-        public int? granteeId { get; set; }   // Wem die Freistellung gewährt
+        public string authorizerId { get; set; } // Auftraggeber
+        public string granteeId { get; set; }   // Wem die Freistellung gewährt
         public string active { get; set; }
         public string reference { get; set; }
     }
@@ -75,7 +75,7 @@ namespace NetScalePolosIO.Export
 
     public class Product
     {
-        public int? id { get; set; }
+        public string id { get; set; }
     }
 
     public class OrderItem
@@ -90,12 +90,12 @@ namespace NetScalePolosIO.Export
 
     public class Customer
     {
-        public int? id { get; set; }
+        public string id { get; set; }
     }
 
     public class InvoiceReceiver
     {
-        public int? id { get; set; }
+        public string id { get; set; }
     }
 
     public class RootObject
@@ -121,8 +121,8 @@ namespace NetScalePolosIO.Export
         public ScalePhaseData scalePhaseData { get; set; }
         public string orderItemServiceId { get; set; }
         public string carrierName { get; set; }
-        public int? carrierId { get; set; }
-        public int? articleId { get; set; }
+        public string carrierId { get; set; }
+        public string articleId { get; set; }
         public string carrierVehicle { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }

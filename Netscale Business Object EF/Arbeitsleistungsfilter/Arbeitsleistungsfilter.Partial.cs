@@ -30,7 +30,7 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
-        public int? GetServiceByProduct(int? productId)
+        public string GetServiceByProduct(string productId)
         {
             IQueryable<ArbeitsleistungsfilterEntity> query = from a in ObjectContext.ArbeitsleistungsfilterEntities
                 where a.ProduktId == productId
@@ -43,7 +43,7 @@ namespace HWB.NETSCALE.BOEF
             }
             else
             {
-                return 0;
+                return "";
             }
         }
     }

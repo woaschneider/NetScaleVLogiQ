@@ -24,7 +24,7 @@ namespace HWB.NETSCALE.BOEF
             // Place code here to be executed when the business object instantiates
         }
 
-        public ArtikelEntity GetById(int id)
+        public ArtikelEntity GetById(string id)
         {
             IQueryable<ArtikelEntity> query = from a in this.ObjectContext.ArtikelEntities
                                               where a.id == id

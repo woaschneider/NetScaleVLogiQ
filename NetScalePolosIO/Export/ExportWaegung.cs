@@ -214,7 +214,7 @@ namespace NetScalePolosIO.Export
             var oO = JsonConvert.DeserializeObject<RootObject>(response.Content);
             int ordItemServiceId = 0;
              Arbeitsleistungsfilter boA = new Arbeitsleistungsfilter();
-             int? Arbeitsleistung = boA.GetServiceByProduct(oO.orderItems[0].product.id);
+            string Arbeitsleistung = boA.GetServiceByProduct(oO.orderItems[0].product.id);
 
             if (Arbeitsleistung != null)
             {

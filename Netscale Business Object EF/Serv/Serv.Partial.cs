@@ -33,7 +33,7 @@ namespace HWB.NETSCALE.BOEF
 
         }
 
-        public ServEntity GetById_Fk(int id , int fk)
+        public ServEntity GetById_Fk(string id , int fk)
         {
             IQueryable<ServEntity> query = from s in ObjectContext.ServEntities
                                            where s.id== id && s.FK == fk
@@ -50,9 +50,9 @@ namespace HWB.NETSCALE.BOEF
             return GetEntityList(query);
         }
 
-        public mmBindingList<ServEntity> GetAllByProduktId(int? id)
+        public mmBindingList<ServEntity> GetAllByProduktId(string id)
         {
-            int? ProductPk = new Produkte().GetById(id).PK;
+            int ProductPk = new Produkte().GetById(id).PK;
             IQueryable<ServEntity> query = from s in ObjectContext.ServEntities
                                            where  s.FK == ProductPk
                                            select s;

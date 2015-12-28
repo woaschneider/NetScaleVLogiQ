@@ -21,7 +21,7 @@ namespace HWB.NETSCALE.POLOSIO.ArticleImport
             var conversionUnit = new ConversionUnit();
         }
 
-        public int id { get; set; }
+        public string id { get; set; }
         public int ownerId { get; set; }
         public string locationId { get; set; }
         public string number { get; set; }

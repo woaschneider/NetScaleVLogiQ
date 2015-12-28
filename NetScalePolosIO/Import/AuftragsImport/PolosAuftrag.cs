@@ -21,12 +21,12 @@ public class ConversionUnit
 
 public class Article
 {
-    public int id { get; set; }
-    public int ownerId { get; set; }
+    public string id { get; set; }
+    public string ownerId { get; set; }
     public string locationId { get; set; }
     public string number { get; set; }
     public string kindOfGoodDescription { get; set; }
-    public int kindOfGoodId { get; set; }
+    public string kindOfGoodId { get; set; }
     public string description { get; set; }
     public BaseUnit baseUnit { get; set; }
     public ConversionUnit conversionUnit { get; set; }
@@ -58,7 +58,7 @@ public class ArticleInstance
 
 public class Country
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string isoCode { get; set; }
 }
 
@@ -73,7 +73,7 @@ public class Address
 
 public class SupplierOrConsignee
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string businessIdentifier { get; set; }
     public string name { get; set; }
     public string owningLocationId { get; set; }
@@ -83,7 +83,7 @@ public class SupplierOrConsignee
 
 public class Service
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string description { get; set; }
     
     public double targedAmount { get; set; }
@@ -91,7 +91,7 @@ public class Service
 
 public class Unit
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string shortDescription { get; set; }
     public string description { get; set; }
 }
@@ -110,7 +110,7 @@ public class OrderItemService
 {
     public string identifier { get; set; }
     public string remark { get; set; }
-    public int sequence { get; set; }
+    public string sequence { get; set; }
     public ArticleInstance articleInstance { get; set; }
     public string state { get; set; }
     public SupplierOrConsignee supplierOrConsignee { get; set; }
@@ -126,14 +126,14 @@ public class OrderItemService
 
 public class Product
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string description { get; set; }
 }
 
 public class OrderItem
 {
     public string identifier { get; set; }
-    public int sequence { get; set; }
+    public string sequence { get; set; }
     public string orderItemState { get; set; }
     public List<OrderItemService> orderItemServices { get; set; }
     public string plannedDate { get; set; }
@@ -142,7 +142,7 @@ public class OrderItem
 
 public class Country2
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string isoCode { get; set; }
 }
 
@@ -157,7 +157,7 @@ public class Address2
 
 public class Customer
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string businessIdentifier { get; set; }
     public string name { get; set; }
     public string owningLocationId { get; set; }
@@ -167,7 +167,7 @@ public class Customer
 
 public class Country3
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string isoCode { get; set; }
 }
 
@@ -182,7 +182,7 @@ public class Address3
 
 public class InvoiceReceiver
 {
-    public int id { get; set; }
+    public string id { get; set; }
     public string businessIdentifier { get; set; }
     public string name { get; set; }
     public string owningLocationId { get; set; }

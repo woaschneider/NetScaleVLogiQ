@@ -59,7 +59,7 @@ namespace NetScalePolosIO.Import.ProductsImport
                     var oService = JsonConvert.DeserializeObject<Service>(response.Content);
                     foreach (Service S in obj.services)
                     {
-                        int id = S.id;
+                      
                         string description = S.description;
                         // Prüfe ob das Produkt schon diese Leistung in seiner Tabelle hat
                         _boPe = _boP.GetById(_boPe.id);
@@ -73,7 +73,7 @@ namespace NetScalePolosIO.Import.ProductsImport
                                 boSerE = new ServEntity();
                             }
                             boSerE.FK = _boPe.PK;
-                            boSerE.id = id;
+                            boSerE.id =_boPe.id;
                             boSerE.description = description;
 
                             _boServ.SaveEntity(boSerE);

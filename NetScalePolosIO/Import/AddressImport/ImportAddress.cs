@@ -2,6 +2,7 @@
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO;
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -29,7 +30,7 @@ namespace NetScalePolosIO.Import.AddressImport
 
 
                 var request = new RestRequest(url) {Method = Method.GET};
-                request.AddHeader("X-location-Id", location.ToString());
+                request.AddHeader("X-location-Id", location);
 
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -68,7 +69,7 @@ namespace NetScalePolosIO.Import.AddressImport
                         _boAe.zipCode = obj.address.zipCode;
                         _boAe.city = obj.address.city;
 
-                        _boAe.idCountry = obj.address.country.id;
+                     //   _boAe.idCountry = obj.address.country.id;
                         _boAe.isocodeCountry = obj.address.country.isoCode;
 
 
@@ -76,7 +77,7 @@ namespace NetScalePolosIO.Import.AddressImport
 
                         request.AddParameter("ID", _boAe.id.ToString(), ParameterType.UrlSegment);
                         request.Method = Method.GET;
-                        request.AddHeader("X-location-Id", location.ToString());
+                        request.AddHeader("X-location-Id", location);
 
                         response = client.Execute(request);
 
@@ -150,7 +151,8 @@ namespace NetScalePolosIO.Import.AddressImport
             }
             catch (Exception e)
             {
-                new WriteErrorLog().WriteToErrorLog(e,null);
+                Log.Instance.Error("Fehler im AP Import: "+ e.Message);
+                
             }
 
 
