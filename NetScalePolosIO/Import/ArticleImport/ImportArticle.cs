@@ -2,6 +2,7 @@
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.ArticleImport;
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -12,7 +13,7 @@ namespace NetScalePolosIO.Import.ArticleImport
 {
     internal class ImportArticle
     {
-        private Artikel _boA;
+        private Artikel _boArtikel;
         private ArtikelEntity _boAe;
 
         public void Import(string baseUrl, string location, string url)
@@ -43,20 +44,33 @@ namespace NetScalePolosIO.Import.ArticleImport
 
              
 
-                _boA = new Artikel();
+                _boArtikel = new Artikel();
+                Adressen boA = new Adressen();
 
                 foreach (ArticleInformation obj in oA.articleInformation)
                 {
                     {
-                        _boAe = _boA.GetById(obj.article.id) ?? _boA.NewEntity();
+                        _boAe = _boArtikel.GetById(obj.article.id) ?? _boArtikel.NewEntity();
                         _boAe.id = obj.article.id;
                         _boAe.number = obj.article.number;
                         _boAe.description = obj.article.description;
-                        _boAe.ownerId = obj.article.ownerId.ToString();
+
+                        _boAe.ownerId = obj.article.ownerId;
+
+
+
+
+
+                        // Neu 29.12.2015
+                        
+                        _boAe.ownerBI = boA.GetById(_boAe.ownerId).businessIdentifier;
+
                         _boAe.kindOfGoodId = obj.article.kindOfGoodId;
                         _boAe.kindOfGoodDescription = obj.article.kindOfGoodDescription;
-                        _boAe.locationId = obj.article.ownerId.ToString();
-
+                        
+                        // Geändert am 29.12.2015
+                        _boAe.locationId = obj.article.locationId;
+                       
 
                         _boAe.baseUnitId = obj.article.baseUnit.id;
                         _boAe.baseUnitShortDescription = obj.article.baseUnit.shortDescription;
@@ -69,14 +83,14 @@ namespace NetScalePolosIO.Import.ArticleImport
                             _boAe.conversionUnitShortDescription = obj.article.conversionUnit.shortDescription;
                            
                         }
-                        _boA.SaveEntity(_boAe);
+                        _boArtikel.SaveEntity(_boAe);
                     }
                 }
             }
 
             catch (Exception e)
             {
-               new WriteErrorLog().WriteToErrorLog(e,null);
+                Log.Instance.Error("Fehler im Artikel-Import: " + e.Message);
              //   MessageBox.Show(e.Message);
             }
 

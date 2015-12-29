@@ -1381,7 +1381,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             string oid = null;
             if (_boWe != null)
             {
-                oid = _boWe.ownerId.ToString();
+                oid = _boWe.ownerId;
             }
 
             ArtikelListFrm oAFrm = new ArtikelListFrm(txtArtikelNr.Text ?? "",oid);

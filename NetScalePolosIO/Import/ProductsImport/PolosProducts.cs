@@ -8,13 +8,16 @@ namespace HWB.NETSCALE.POLOSIO.ProductsImport
     {
         public string id { get; set; }
         public string description { get; set; }
+        public bool scaleRelevant { get; set; }
     }
 
     public class Product
     {
+        public List<Service> services { get; set; }
         public string id { get; set; }
         public string description { get; set; }
-        public List<Service> services { get; set; }
+        
+        
     }
 
     public class ProduktRootObject

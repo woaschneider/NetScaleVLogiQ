@@ -84,7 +84,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     {
                         //#region Fertige Aufträge löschen
                         if ((obj.orderState == "CANCELLED") || (obj.orderState == "CLOSED") ||
-                            (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") || (obj.orderState == "NEW"))
+                            (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") )
                         {
                             _boOe = _boO.GetById(obj.id);
                             if (_boOe != null)
@@ -94,7 +94,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         }
 
 
-                        if (obj.orderState == "READY_TO_DISPATCH" || (obj.orderState == "NEW"))
+                        if (obj.orderState == "READY_TO_DISPATCH" )
                         {
                             #region Eigentlicher Import
 
@@ -199,7 +199,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                         //#region Fertige Orderitems löschen
                                         if ((orderItem.orderItemState == "CANCELLED") || (orderItem.orderItemState == "CLOSED") ||
-                                            (orderItem.orderItemState == " COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") || (obj.orderState == "NEW"))
+                                            (orderItem.orderItemState == " COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") )
                                         {
                                             _boOis = new OrderItemservice();
                                             _boOise = _boOis.GetByIdentitifier(
@@ -210,7 +210,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                             }
                                         }
 
-                                        if (orderItem.orderItemState == "READY_TO_DISPATCH" || orderItem.orderItemState == "NEW" )
+                                        if (orderItem.orderItemState == "READY_TO_DISPATCH"  )
                                         {
                                             foreach (OrderItemService orderItemService in orderItem.orderItemServices)
                                             {

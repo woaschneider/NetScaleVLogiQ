@@ -505,22 +505,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<ArtikelEntity> ArtikelEntities
-        {
-            get
-            {
-                if ((_ArtikelEntities == null))
-                {
-                    _ArtikelEntities = base.CreateObjectSet<ArtikelEntity>("ArtikelEntities");
-                }
-                return _ArtikelEntities;
-            }
-        }
-        private ObjectSet<ArtikelEntity> _ArtikelEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<ErrorLogEntity> ErrorLogEntities
         {
             get
@@ -565,6 +549,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<ArtikelEntity> ArtikelEntities
+        {
+            get
+            {
+                if ((_ArtikelEntities == null))
+                {
+                    _ArtikelEntities = base.CreateObjectSet<ArtikelEntity>("ArtikelEntities");
+                }
+                return _ArtikelEntities;
+            }
+        }
+        private ObjectSet<ArtikelEntity> _ArtikelEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -786,14 +786,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArtikelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToArtikelEntities(ArtikelEntity artikelEntity)
-        {
-            base.AddObject("ArtikelEntities", artikelEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ErrorLogEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToErrorLogEntities(ErrorLogEntity errorLogEntity)
@@ -815,6 +807,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArtikelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToArtikelEntities(ArtikelEntity artikelEntity)
+        {
+            base.AddObject("ArtikelEntities", artikelEntity);
         }
 
         #endregion
@@ -4671,6 +4671,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _kindOfGoodId;
         partial void OnkindOfGoodIdChanging(global::System.String value);
         partial void OnkindOfGoodIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ownerBI
+        {
+            get
+            {
+                return _ownerBI;
+            }
+            set
+            {
+                OnownerBIChanging(value);
+                ReportPropertyChanging("ownerBI");
+                _ownerBI = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ownerBI");
+                OnownerBIChanged();
+            }
+        }
+        private global::System.String _ownerBI;
+        partial void OnownerBIChanging(global::System.String value);
+        partial void OnownerBIChanged();
 
         #endregion
     
@@ -11067,6 +11091,102 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _shortdescirption;
         partial void OnshortdescirptionChanging(global::System.String value);
         partial void OnshortdescirptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String serviceId
+        {
+            get
+            {
+                return _serviceId;
+            }
+            set
+            {
+                OnserviceIdChanging(value);
+                ReportPropertyChanging("serviceId");
+                _serviceId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("serviceId");
+                OnserviceIdChanged();
+            }
+        }
+        private global::System.String _serviceId;
+        partial void OnserviceIdChanging(global::System.String value);
+        partial void OnserviceIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String serviceDescription
+        {
+            get
+            {
+                return _serviceDescription;
+            }
+            set
+            {
+                OnserviceDescriptionChanging(value);
+                ReportPropertyChanging("serviceDescription");
+                _serviceDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("serviceDescription");
+                OnserviceDescriptionChanged();
+            }
+        }
+        private global::System.String _serviceDescription;
+        partial void OnserviceDescriptionChanging(global::System.String value);
+        partial void OnserviceDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String stockType
+        {
+            get
+            {
+                return _stockType;
+            }
+            set
+            {
+                OnstockTypeChanging(value);
+                ReportPropertyChanging("stockType");
+                _stockType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("stockType");
+                OnstockTypeChanged();
+            }
+        }
+        private global::System.String _stockType;
+        partial void OnstockTypeChanging(global::System.String value);
+        partial void OnstockTypeChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> scaleRelevant
+        {
+            get
+            {
+                return _scaleRelevant;
+            }
+            set
+            {
+                OnscaleRelevantChanging(value);
+                ReportPropertyChanging("scaleRelevant");
+                _scaleRelevant = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("scaleRelevant");
+                OnscaleRelevantChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _scaleRelevant;
+        partial void OnscaleRelevantChanging(Nullable<global::System.Boolean> value);
+        partial void OnscaleRelevantChanged();
 
         #endregion
     

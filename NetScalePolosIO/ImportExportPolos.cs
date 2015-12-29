@@ -135,7 +135,7 @@ namespace NetScalePolosIO
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
             // Adressen
-            new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
+      //      new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
             // Warenarten
             new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
             // Artikel

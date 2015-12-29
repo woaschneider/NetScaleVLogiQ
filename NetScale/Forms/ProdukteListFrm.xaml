@@ -8,7 +8,7 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="Produktliste"
-                        Width="443"
+                        Width="647"
                         Height="535"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
@@ -72,9 +72,11 @@
                   SelectedValuePath="&quot;PK&quot;"
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="Id" />
+               
                 <DataGridTextColumn Binding="{Binding shortdescirption}" Header="Kurzbezeichnung" />
                 <DataGridTextColumn Binding="{Binding description}" Header="Bezeichnung" />
+                <DataGridTextColumn Binding="{Binding serviceId}" Header="Service-Id" />
+                <DataGridTextColumn Binding="{Binding serviceDescription}" Header="Service-Bezeichnung" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="txtSearch"

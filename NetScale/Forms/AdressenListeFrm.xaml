@@ -80,7 +80,7 @@
                   SelectedValuePath="&quot;PK&quot;"
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="Id" />
+               
                 <DataGridTextColumn Binding="{Binding businessIdentifier}" Header="Name-Id" />
                 <DataGridTextColumn Binding="{Binding name}" Header="Name 1" />
                 <DataGridTextColumn Binding="{Binding subName2}" Header="Name2" />

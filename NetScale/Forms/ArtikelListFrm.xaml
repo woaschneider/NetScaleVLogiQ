@@ -73,12 +73,12 @@
                   SelectionChanged="dataGrid_SelectionChanged"
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="ID" />
+
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr." />
-                <DataGridTextColumn Binding="{Binding description}" Header="artikel-Bez." />
+                <DataGridTextColumn Binding="{Binding description}" Header="Artikel-Bez." />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart-Bez." />
 
-                <DataGridTextColumn Binding="{Binding ownerId}" Header="Lagermandant" />
+                <DataGridTextColumn Binding="{Binding ownerBI}" Header="Lagermandant" />
                 <DataGridTextColumn Binding="{Binding baseUnitDescription}" Header="BME-Einheit" />
             </DataGrid.Columns>
         </DataGrid>

@@ -2,6 +2,7 @@
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -44,47 +45,62 @@ namespace NetScalePolosIO.Import.ProductsImport
 
                 foreach (Product obj in oP.products)
                 {
+                    foreach (Service s in obj.services)
                     {
-                        _boPe = _boP.GetById(obj.id);
-                    }
-                    if (_boPe == null)
-                    {
-                        _boPe = _boP.NewEntity();
-                    }
-                    _boPe.id = obj.id;
-                    _boPe.description = obj.description;
-                    _boPe.shortdescirption = obj.description;
-                    _boP.SaveEntity(_boPe);
 
-                    var oService = JsonConvert.DeserializeObject<Service>(response.Content);
-                    foreach (Service S in obj.services)
-                    {
-                      
-                        string description = S.description;
-                        // Prüfe ob das Produkt schon diese Leistung in seiner Tabelle hat
-                        _boPe = _boP.GetById(_boPe.id);
-                        if (_boPe != null)
+                        if (s.scaleRelevant==true)
                         {
-                            Serv _boServ = new Serv();
+                            _boPe = _boP.GetById(obj.id);
 
-                            ServEntity boSerE = _boServ.GetById_Fk(S.id, _boPe.PK);
-                            if (boSerE == null)
+                            if (_boPe == null)
                             {
-                                boSerE = new ServEntity();
+                                _boPe = _boP.NewEntity();
                             }
-                            boSerE.FK = _boPe.PK;
-                            boSerE.id =_boPe.id;
-                            boSerE.description = description;
+                            _boPe.id = obj.id;
+                            _boPe.description = obj.description;
+                            _boPe.shortdescirption = obj.description;
 
-                            _boServ.SaveEntity(boSerE);
+                            _boPe.serviceId = s.id;
+                            _boPe.serviceDescription = s.description;
+                            _boPe.scaleRelevant = s.scaleRelevant; // Nur zum schauen
+
+                            _boP.SaveEntity(_boPe); 
                         }
                     }
+
+                   // if (obj.services[0].scaleRelevant == true)
+                  //  {
+                        
+                 //   }
+                    //var oService = JsonConvert.DeserializeObject<Service>(response.Content);
+                    //foreach (Service S in obj.services)
+                    //{
+                      
+                    //    string description = S.description;
+                    //    // Prüfe ob das Produkt schon diese Leistung in seiner Tabelle hat
+                    //    _boPe = _boP.GetById(_boPe.id);
+                    //    if (_boPe != null)
+                    //    {
+                    //        Serv _boServ = new Serv();
+
+                    //        ServEntity boSerE = _boServ.GetById_Fk(S.id, _boPe.PK);
+                    //        if (boSerE == null)
+                    //        {
+                    //            boSerE = new ServEntity();
+                    //        }
+                    //        boSerE.FK = _boPe.PK;
+                    //        boSerE.id =_boPe.id;
+                    //        boSerE.description = description;
+
+                    //        _boServ.SaveEntity(boSerE);
+                    //    }
+                    //}
                 }
             }
 
             catch (Exception e)
             {
-                new WriteErrorLog().WriteToErrorLog(e,null);
+                Log.Instance.Error("Fehler im Produkt-Import: " + e.Message);
             }
 
 
