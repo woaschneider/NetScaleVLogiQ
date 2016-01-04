@@ -123,6 +123,7 @@ public class OrderItemService
     public string actualStorageAreaId { get; set; }
     public string targetStorageAreaId { get; set; }
     public string deliveryType { get; set; }
+ 
 }
 
 public class Product
@@ -208,12 +209,8 @@ public class RootObject
 {
     public List<OrderEntity> orders { get; set; }
     public int totalResults  { get; set; }
-  
-
-  
+    
 }
-
-
 
     
   } 

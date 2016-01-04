@@ -2,6 +2,7 @@
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -60,7 +61,7 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
             }
             catch (Exception e)
             {
-                new WriteErrorLog().WriteToErrorLog(e,null);
+                Log.Instance.Error("Fehler im Storage-Area-Import: " + e.Message);
             }
             return true;
         }

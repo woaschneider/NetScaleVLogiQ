@@ -43,7 +43,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     boEe.ConsumerSecret.Trim(),
                     string.Empty, string.Empty);
 
-                #region// Anzahl der Order ermittlen
+                #region // Anzahl der Order und Seiten ermittlen
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -64,7 +64,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     nPage = _totalresult / 200 + 1;
                 }
 
-                #endregion
+                #endregion // Anzahl der Order und Seiten ermittlen
 
                 for (int ii = 1; ii <= nPage; ii++)
                 {
@@ -82,7 +82,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     //***********************************************************************
                     foreach (OrderEntity obj in oOi.orders)
                     {
-                        //#region Fertige Aufträge löschen
+                        //#region Fertige Aufträge, falls noch vorhanden löschen
                         if ((obj.orderState == "CANCELLED") || (obj.orderState == "CLOSED") ||
                             (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") )
                         {
@@ -94,7 +94,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         }
 
 
-                        if (obj.orderState == "READY_TO_DISPATCH" )
+                        if (obj.orderState == "READY_TO_DISPATCH" || obj.orderState == "NEW")
                         {
                             #region Eigentlicher Import
 
@@ -174,7 +174,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                 #endregion
 
-                         mmSaveDataResult  sret =    _boO.SaveEntity(_boOe);
+                                mmSaveDataResult  sret =    _boO.SaveEntity(_boOe);
                                 _boOe = _boO.GetById(_boOe.id); // Damit ich jetzt den OK habe
 
                                 // *******************************************************************************************************
@@ -210,7 +210,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                             }
                                         }
 
-                                        if (orderItem.orderItemState == "READY_TO_DISPATCH"  )
+                                        if (orderItem.orderItemState == "READY_TO_DISPATCH" || obj.orderState == "NEW")
                                         {
                                             foreach (OrderItemService orderItemService in orderItem.orderItemServices)
                                             {
@@ -255,8 +255,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                                                     _boOise.orderstate = orderItem.orderItemState;
-                                                    _boOise.sequence = orderItem.sequence;
-
+                                                //    _boOise.sequence = orderItem.sequence;
+                                                    _boOise.sequence = orderItemService.sequence;
                                                     _boOise.serviceId = orderItemService.service.id;
                                                     _boOise.serviceDescription = orderItemService.service.description;
                                                     _boOise.identifierOItem = orderItem.identifier;
@@ -316,7 +316,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                                     #endregion
 
-                                                    #region Supplier Consignee
+                                                        #region Supplier Consignee
 
                                                     if (orderItemService.supplierOrConsignee != null)
                                                     {
@@ -343,7 +343,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                                     #endregion
 
-                                                    #region Clearance
+                                                        #region Clearance
 
                                                     // boOISE.clearanceQuantity   = Nicht vorhanden
                                                     _boOise.clearanceReferenz = "";
