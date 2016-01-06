@@ -72,7 +72,7 @@
                   SelectedValuePath="&quot;PK&quot;"
                   SelectionChanged="dataGrid_SelectionChanged" Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding id}" Header="Id" />
+              
                 <DataGridTextColumn Binding="{Binding name}" Header="Name" />
                 <DataGridTextColumn Binding="{Binding fullname}" Header="Voller Name" />
                 <DataGridTextColumn Binding="{Binding locationid}" Header="Betriebstätte" />

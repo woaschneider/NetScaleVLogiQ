@@ -53,7 +53,7 @@ public class ArticleInstance
 {
     public Article article { get; set; }
     public Attributes attributes { get; set; }
-    public Service service { get; set; }
+  //  public Service service { get; set; } Das ist wohl überflüssig
 }
 
 public class Country

@@ -619,12 +619,13 @@ namespace HardwareDevices
                             tb_status.Text = "Kein Stillstand";
                             Stillstand = false;
                         }
+                        else
+                        {
+                            tb_status.Text = "";
+                            Stillstand = true;
+                        }
                     }
-                    else
-                    {
-                        tb_status.Text = "";
-                        Stillstand = true;
-                    }
+                
                     //    tb_status.Text = _w1.Status;
                     break;
                 case 2: // Waage 2

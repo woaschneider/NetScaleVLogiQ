@@ -226,6 +226,8 @@
           <Property Name="conversionUnitDescription" Type="varchar" MaxLength="128" />
           <Property Name="kindOfGoodId" Type="varchar" MaxLength="64" />
           <Property Name="ownerBI" Type="varchar" MaxLength="64" />
+          <Property Name="attributes_as_xml" Type="nvarchar(max)" />
+          <Property Name="attributes_as_json" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Artikelattribute">
           <Key>
@@ -385,9 +387,9 @@
           </Key>
           <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="locationid" Type="varchar" MaxLength="64" />
-          <Property Name="name" Type="varchar" MaxLength="32" />
+          <Property Name="name" Type="varchar" MaxLength="64" />
           <Property Name="fullname" Type="varchar" MaxLength="254" />
-          <Property Name="id" Type="varchar" MaxLength="20" />
+          <Property Name="id" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -1639,6 +1641,8 @@
           <Property Type="String" Name="conversionUnitDescription" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="kindOfGoodId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerBI" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_as_xml" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="attributes_as_json" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2360,6 +2364,8 @@
           <EntitySetMapping Name="ArtikelEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ArtikelEntity">
               <MappingFragment StoreEntitySet="Artikel">
+                <ScalarProperty Name="attributes_as_json" ColumnName="attributes_as_json" />
+                <ScalarProperty Name="attributes_as_xml" ColumnName="attributes_as_xml" />
                 <ScalarProperty Name="ownerBI" ColumnName="ownerBI" />
                 <ScalarProperty Name="kindOfGoodId" ColumnName="kindOfGoodId" />
                 <ScalarProperty Name="conversionUnitDescription" ColumnName="conversionUnitDescription" />

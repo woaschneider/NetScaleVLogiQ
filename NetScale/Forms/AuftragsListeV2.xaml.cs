@@ -89,7 +89,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             Hide();
         }
 
-
+        // Details
         private void FilldataGridOrderItemService(int pk)
         {
             DataGridOrderItemService.ItemsSource = _boOies.GetByParentPK(pk);
@@ -125,6 +125,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             GetOrderByMc();
         }
 
+        // Kopf
         private void GetOrderByMc()
         {
             DataGridOrderItems.SelectedValuePath = "PK";

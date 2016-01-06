@@ -72,7 +72,7 @@
                   SelectedValuePath="&quot;PK&quot;"
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-               
+
                 <DataGridTextColumn Binding="{Binding shortdescirption}" Header="Kurzbezeichnung" />
                 <DataGridTextColumn Binding="{Binding description}" Header="Bezeichnung" />
                 <DataGridTextColumn Binding="{Binding serviceId}" Header="Service-Id" />

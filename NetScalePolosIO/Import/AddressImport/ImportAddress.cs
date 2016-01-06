@@ -95,9 +95,9 @@ namespace NetScalePolosIO.Import.AddressImport
 
                             var oRoles = JsonConvert.DeserializeObject<AddressRolesRootObject>(response.Content);
                             foreach (string t in oRoles.roles)
-                            {
-// Client
-                                if (t == "CLIENT")
+                            {// Änderung am 04.01.2016
+                                // Auftraggeber
+                                if (t == "CUSTOMER") // vorher Client
                                 {
                                     _boAe.roleClient = true;
                                 }
@@ -109,7 +109,7 @@ namespace NetScalePolosIO.Import.AddressImport
                                 }
 
                                 // Storage_Client
-                                if (t == "STORAGE_CLIENT")
+                                if (t == "CLIENT") // Vor her Storage Client
                                 {
                                     _boAe.roleStorageClient = true;
                                 }

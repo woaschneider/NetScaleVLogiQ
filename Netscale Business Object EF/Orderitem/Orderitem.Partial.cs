@@ -52,17 +52,18 @@ namespace HWB.NETSCALE.BOEF
         {
             IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
                 from ois in ObjectContext.OrderItemserviceEntities
-                where o.PK == ois.PKOrderItem &&
-                      o.customerBusinessIdentifier.Contains(customerBi) &&
-                      o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi) &&
+                where o.PK == ois.PKOrderItem  &&
+                    o.customerBusinessIdentifier.Contains(customerBi) &&
+                     o.invoiceReceicerBusinessIdentifier.Contains(invoiceReceiverBi) &&
                       o.reference.Contains(kundenreferenz) &&
-                      ois.articleDescription.Contains(artikelbeschreibung) &&
-                      ois.clearanceReferenz.Contains(freistellung) &
-                     ( ois.InvisibleSendedOrderItems == false) 
+                    ( ois.articleDescription.Contains(artikelbeschreibung) || ois.articleDescription==null) &&
+                    ois.clearanceReferenz.Contains(freistellung) &&
+                   ( ois.InvisibleSendedOrderItems == false) 
             
-
                                                 orderby o.id 
                                                 select o;
+
+       // TODO: uRet.OrderBy(oo => int.Parse(oo.sequence));
             return GetEntityList(query);
         }
 
