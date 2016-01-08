@@ -17,9 +17,7 @@
                         mc:Ignorable="d">
 
 
-    <mmwpf:mmBusinessWindow.Resources>
-     
-    </mmwpf:mmBusinessWindow.Resources>
+    <mmwpf:mmBusinessWindow.Resources />
 
 
     <Grid x:Name="LayoutRoot"

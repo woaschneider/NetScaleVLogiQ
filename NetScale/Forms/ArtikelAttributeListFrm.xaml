@@ -92,6 +92,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Suchbegriff:"
-               FontWeight="Bold" TabIndex="1000" />
+               FontWeight="Bold"
+               TabIndex="1000" />
     </Grid>
 </mmwpf:mmBusinessWindow>
