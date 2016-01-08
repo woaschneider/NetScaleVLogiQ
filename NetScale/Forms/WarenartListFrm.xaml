@@ -18,7 +18,7 @@
 
 
     <mmwpf:mmBusinessWindow.Resources>
-        <HWB_NETSCALE_BOEF:WarenartenEntity x:Key="WarenartenEntityDataSource" d:IsDataSource="True" />
+     
     </mmwpf:mmBusinessWindow.Resources>
 
 

@@ -199,7 +199,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             string jsonObject_Start = "{attributes:{";
             string jsonObject_End = "}}";
             string jsonData = null;
-            int counter = 0;
+         
             foreach (TextBox tb in FindVisualChildren<TextBox>(this))
             {
                 if (!String.IsNullOrWhiteSpace(tb.Text))

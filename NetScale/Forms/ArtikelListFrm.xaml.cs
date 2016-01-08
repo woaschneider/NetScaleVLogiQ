@@ -26,7 +26,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         /// </summary>
         private int _uRet;
 
-        private string oid;
+    private string oid = null;
         // Deklariere das primäre BO 
         private Artikel boAr = new Artikel(); 
         //  private CFEditFrm EditFrm = CFEditFrm();
