@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.Ports;
-using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -13,9 +11,9 @@ namespace HardwareDevices.LedIt
     public class Wid100
     {
         private int _ampel;
-
-        private SerialPort sp;
         private bool _wStoerung;
+
+        private readonly SerialPort sp;
 
         public Wid100(string comport)
         {
@@ -60,11 +58,11 @@ namespace HardwareDevices.LedIt
         public void WriteToLed(string message)
 
         {
-            System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-            Byte[] aAmpelStatus = new byte[] {(byte) _ampel};
-            Byte[] aCr = new byte[] {13};
-            Byte[] aM = new byte[message.Length];
-            Byte[] aTg = new byte[message.Length + 2];
+            var enc = new ASCIIEncoding();
+            byte[] aAmpelStatus = {(byte) _ampel};
+            byte[] aCr = {13};
+            var aM = new byte[message.Length];
+            var aTg = new byte[message.Length + 2];
             Array.Copy(enc.GetBytes(message), aM, message.Length);
             aTg = Utils.Combine(aAmpelStatus, aM, aCr);
 

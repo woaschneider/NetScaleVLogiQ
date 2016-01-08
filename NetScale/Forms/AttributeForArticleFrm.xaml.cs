@@ -82,27 +82,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
              try
              {
-          
-            
-                 var attrobj = JsonConvert.DeserializeObject<RootObject>(_boWe.attributes_as_json);
-                 var PropertyInfos = attrobj.attributes.GetType().GetProperties();
-                 foreach (PropertyInfo prop in PropertyInfos)
-                 {
-                     string propName = prop.Name;
-                     object propValue = prop.GetValue(attrobj.attributes, null);
-                     if (propValue != null)
-                     {
-                         object t = this.FindName("txt" + propName);
-                         if (t != null)
-                         {
-                             if (t.GetType() == typeof (TextBox))
-                             {
-                                 ((TextBox) t).Text = propValue.ToString();
-                             }
-                         }
 
+                 JObject obj = JObject.Parse(_boWe.attributes_as_json);
+                 foreach (var pair in obj)
+                 {
+                string propName    =pair.Key;
+                string propValue =  pair.Value.ToString();
+
+                     object t = this.FindName("txt" + propName);
+                     if (t != null)
+                     {
+                         if (t.GetType() == typeof(TextBox))
+                         {
+                             ((TextBox)t).Text = propValue.ToString();
+                         }
                      }
-                 }
+                 }                
+             
              }
              catch (Exception e)
              {
@@ -144,50 +140,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             return sp;
         }
 
-        public class Attributes
-        {
-            //public Attributes(List<object> lo)
-            //{
-            //    if (lo != null)
-            //    {
-            //        for (int i = 0; i < lo.Count; i++)
-            //        {
-
-            //            string s = lo[i].ToString();
-
-            //            var x = new ExpandoObject() as IDictionary<string, Object>;
-            //            x.Add(s, string.Empty);
-
-            //        }
-            //    }
-            //}
-
-            public string SERIAL_NUMBER { get; set; }
-            public string BATCH { get; set; }
-            public string ORIGIN { get; set; }
-            public string GRADE { get; set; }
-            public string ORIGINAL_NUMBER { get; set; }
-            public string LENGTH { get; set; }
-            public string WIDTH { get; set; }
-            public string HEIGHT { get; set; }
-            public string STORAGE_AREA_REFERENCE { get; set; }
-            public string DIAMETER { get; set; }
-            public string ORIGINAL_MARKING { get; set; }
-            public string STORAGE_AREA_REFERENCE_NUMBER { get; set; }
-            public string DIMENSION { get; set; }
-        }
-
-        public class RootObject
-        {
-
-            public Attributes attributes { get; set; }
-            public RootObject()
-            {
-                attributes = new Attributes();
-            }
-
-
-        }
+        
 
         private void buttonOk_Click(object sender, RoutedEventArgs e)
         {
@@ -196,8 +149,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void WriteJsonToWaege()
         {
-            string jsonObject_Start = "{attributes:{";
-            string jsonObject_End = "}}";
+            string jsonObject_Start = "{";
+            string jsonObject_End = "}";
             string jsonData = null;
          
             foreach (TextBox tb in FindVisualChildren<TextBox>(this))

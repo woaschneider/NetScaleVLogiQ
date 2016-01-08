@@ -10,7 +10,7 @@ namespace HardwareDevices.Elseco
     public class RFReceiver : INotifyPropertyChanged
     {
         private string _kfzid;
-        private string ErrorMessage;
+ 
         private string LastKfzId;
         private DateTime LastRfcontact;
         private readonly Lokaleeinstellungen oLE;
@@ -36,11 +36,11 @@ namespace HardwareDevices.Elseco
                     oPortListener.Open();
                     oPortListener.DataReceived += serialPort_DataReceived;
                     oPortListener.ReceivedBytesThreshold = 2;
-                    ErrorMessage = "";
+             
                 }
                 catch (Exception e)
                 {
-                    ErrorMessage = "Funkmodul - Falsche Einstellunge im Programm-Setup -->" + e.Message;
+                 
                 }
             }
         }

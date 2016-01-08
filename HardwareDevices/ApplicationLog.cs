@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
+﻿using NLog;
 
 namespace HWB.Logging
 {
     internal static class Log
     {
-        public static Logger Instance { get; private set; }
         static Log()
         {
 //#if DEBUG
@@ -27,13 +20,13 @@ namespace HWB.Logging
 //            LogManager.Configuration.LoggingRules.Add(sentinalRule);
 
 
-
-
 //#endif
 
             LogManager.ReconfigExistingLoggers();
 
             Instance = LogManager.GetCurrentClassLogger();
         }
+
+        public static Logger Instance { get; private set; }
     }
 }

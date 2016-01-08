@@ -22,7 +22,7 @@
 
     <Grid x:Name="LayoutRoot"
           Background="#FFA5C8E8"
-          DataContext="{Binding Source={StaticResource WarenartenEntityDataSource}}">
+          >
         <ribbon:Ribbon x:Name="Ribbon"
                        Height="120"
                        Margin="-2,-21,2,0"

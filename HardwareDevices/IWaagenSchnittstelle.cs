@@ -1,12 +1,8 @@
-﻿using System;
-
-
-namespace HardwareDevices
+﻿namespace HardwareDevices
 {
     internal interface IWaagenSchnittstelle
     {
-     
-        String Status { get; set; }
+        string Status { get; set; }
         bool Connected { get; set; }
         bool X1 { get; set; }
         bool X2 { get; set; }
