@@ -1763,6 +1763,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
+        private void buttonArtickeAttr_Click(object sender, RoutedEventArgs e)
+        {
+            AttributeForArticleFrm oA = new AttributeForArticleFrm( _boWe.articleId,false,_boWe);
+            oA.ShowDialog();
+            oA.Close();
+
+
+        }
+
+       
+
 
       
     }

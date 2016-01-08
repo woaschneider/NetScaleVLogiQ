@@ -4701,30 +4701,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String attributes_as_xml
-        {
-            get
-            {
-                return _attributes_as_xml;
-            }
-            set
-            {
-                Onattributes_as_xmlChanging(value);
-                ReportPropertyChanging("attributes_as_xml");
-                _attributes_as_xml = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("attributes_as_xml");
-                Onattributes_as_xmlChanged();
-            }
-        }
-        private global::System.String _attributes_as_xml;
-        partial void Onattributes_as_xmlChanging(global::System.String value);
-        partial void Onattributes_as_xmlChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String attributes_as_json
         {
             get
@@ -15272,6 +15248,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _targetStorageAreaId;
         partial void OntargetStorageAreaIdChanging(global::System.String value);
         partial void OntargetStorageAreaIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String attributes_as_json
+        {
+            get
+            {
+                return _attributes_as_json;
+            }
+            set
+            {
+                Onattributes_as_jsonChanging(value);
+                ReportPropertyChanging("attributes_as_json");
+                _attributes_as_json = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("attributes_as_json");
+                Onattributes_as_jsonChanged();
+            }
+        }
+        private global::System.String _attributes_as_json;
+        partial void Onattributes_as_jsonChanging(global::System.String value);
+        partial void Onattributes_as_jsonChanged();
 
         #endregion
     

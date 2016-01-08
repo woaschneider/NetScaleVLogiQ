@@ -63,7 +63,7 @@ namespace NetScalePolosIO.Import.ArticleImport
 
                         // Neu 29.12.2015
                         
-           //            _boAe.ownerBI = boA.GetById(_boAe.ownerId).businessIdentifier;
+                     _boAe.ownerBI = boA.GetById(_boAe.ownerId).businessIdentifier;
 
                         _boAe.kindOfGoodId = obj.article.kindOfGoodId;
                         _boAe.kindOfGoodDescription = obj.article.kindOfGoodDescription;
@@ -85,8 +85,10 @@ namespace NetScalePolosIO.Import.ArticleImport
                         }
                         
                         // Neu 06.01.2015
-                       _boAe.attributes_as_json = JsonConvert.SerializeObject(obj.attributes);
+                       _boAe.attributes_as_json =  JsonConvert.SerializeObject(obj.attributes);
+                       
                         //
+                 
                         //
                         _boArtikel.SaveEntity(_boAe);
                     }

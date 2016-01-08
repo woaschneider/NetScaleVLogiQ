@@ -11,7 +11,7 @@
     <OutputType>winexe</OutputType>
     <MinFrameworkVersionRequired>3.0</MinFrameworkVersionRequired>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -217,6 +217,9 @@
     <Compile Include="Forms\ArtikelListFrm.xaml.cs">
       <DependentUpon>ArtikelListFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AttributeForArticleFrm.xaml.cs">
+      <DependentUpon>AttributeForArticleFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AuftragsListeV2.xaml.cs">
       <DependentUpon>AuftragsListeV2.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,7 @@
     <Compile Include="UserWindow.xaml.cs">
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\myFirstViewModel.cs" />
     <Compile Include="WindowExtensions.cs" />
     <Page Include="BrokenRulesWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -341,6 +345,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ArtikelListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\AttributeForArticleFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -819,6 +827,7 @@
   <ItemGroup>
     <Resource Include="Images\sand-bucket-icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

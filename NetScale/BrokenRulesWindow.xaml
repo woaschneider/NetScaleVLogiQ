@@ -1,33 +1,89 @@
-﻿<mmwpf:mmBrokenRulesBaseWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.BrokenRulesWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF" x:Name="Window" Title="Validierung" Width="400" Height="400" AllowsTransparency="False" SizeToContent="Height" WindowStartupLocation="CenterScreen" mc:Ignorable="d">
-	<mmwpf:mmBrokenRulesBaseWindow.Background>
-		<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" />
-	</mmwpf:mmBrokenRulesBaseWindow.Background>
+﻿<mmwpf:mmBrokenRulesBaseWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.BrokenRulesWindow"
+                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                               xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
+                               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                               xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
+                               x:Name="Window"
+                               Title="Validierung"
+                               Width="400"
+                               Height="400"
+                               AllowsTransparency="False"
+                               SizeToContent="Height"
+                               WindowStartupLocation="CenterScreen"
+                               mc:Ignorable="d">
+    <mmwpf:mmBrokenRulesBaseWindow.Background>
+        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightColorKey}}" />
+    </mmwpf:mmBrokenRulesBaseWindow.Background>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="75" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid Background="#FFFFFFFF">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<Image Grid.Column="1" Width="50" Height="50" Margin="0,0,20,0" HorizontalAlignment="Right" Source="Images\alert.jpg" Stretch="Fill" d:LayoutOverrides="VerticalAlignment, GridBox" />
-		</Grid>
-		<Label x:Name="lblHeader" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Dateneingabeinformation" FontSize="14" d:LayoutOverrides="Height" />
-		<Label x:Name="lblBrokenRules" Grid.Row="1" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Der Datensatz konnte nicht gespeichert werden: Siehe Liste" d:LayoutOverrides="Height" />
-		<TextBox x:Name="txtBrokenRules" Grid.Row="2" MinHeight="100" Margin="20,0,20,0" IsReadOnly="True" Text="{Binding Path=BrokenRuleText,
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Background="#FFFFFFFF">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1"
+                   Width="50"
+                   Height="50"
+                   Margin="0,0,20,0"
+                   HorizontalAlignment="Right"
+                   Source="Images\alert.jpg"
+                   Stretch="Fill"
+                   d:LayoutOverrides="VerticalAlignment, GridBox" />
+        </Grid>
+        <Label x:Name="lblHeader"
+               Margin="20,0,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Content="Dateneingabeinformation"
+               FontSize="14"
+               d:LayoutOverrides="Height" />
+        <Label x:Name="lblBrokenRules"
+               Grid.Row="1"
+               Margin="20,0,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Content="Der Datensatz konnte nicht gespeichert werden: Siehe Liste"
+               d:LayoutOverrides="Height" />
+        <TextBox x:Name="txtBrokenRules"
+                 Grid.Row="2"
+                 MinHeight="100"
+                 Margin="20,0,20,0"
+                 IsReadOnly="True"
+                 Text="{Binding Path=BrokenRuleText,
                                 ElementName=Window,
-                                Mode=Default}" TextWrapping="Wrap" />
-		<Label x:Name="lblWarnings" Grid.Row="3" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Warnungen:" d:LayoutOverrides="Height" />
-		<TextBox x:Name="txtWarnings" Grid.Row="4" MinHeight="100" Margin="20,0,20,0" IsReadOnly="True" Text="{Binding Path=WarningText,
+                                Mode=Default}"
+                 TextWrapping="Wrap" />
+        <Label x:Name="lblWarnings"
+               Grid.Row="3"
+               Margin="20,0,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Content="Warnungen:"
+               d:LayoutOverrides="Height" />
+        <TextBox x:Name="txtWarnings"
+                 Grid.Row="4"
+                 MinHeight="100"
+                 Margin="20,0,20,0"
+                 IsReadOnly="True"
+                 Text="{Binding Path=WarningText,
                                 ElementName=Window,
-                                Mode=Default}" TextWrapping="Wrap" />
-		<Button x:Name="btnOK" Grid.Row="5" Width="75" Height="22" Margin="0,20,0,20" Click="btnOK_Click" Content="OK" />
-	</Grid>
+                                Mode=Default}"
+                 TextWrapping="Wrap" />
+        <Button x:Name="btnOK"
+                Grid.Row="5"
+                Width="75"
+                Height="22"
+                Margin="0,20,0,20"
+                Click="btnOK_Click"
+                Content="OK" />
+    </Grid>
 </mmwpf:mmBrokenRulesBaseWindow>

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
@@ -36,5 +35,5 @@ using System.Runtime.InteropServices;
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("2.4.133.134")]
-[assembly: AssemblyFileVersion("2.4.133.134")]
+[assembly: AssemblyVersion("2.4.134.135")]
+[assembly: AssemblyFileVersion("2.4.134.135")]

@@ -226,7 +226,6 @@
           <Property Name="conversionUnitDescription" Type="varchar" MaxLength="128" />
           <Property Name="kindOfGoodId" Type="varchar" MaxLength="64" />
           <Property Name="ownerBI" Type="varchar" MaxLength="64" />
-          <Property Name="attributes_as_xml" Type="nvarchar(max)" />
           <Property Name="attributes_as_json" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Artikelattribute">
@@ -758,6 +757,7 @@
           <Property Name="identifierOItemService" Type="varchar" MaxLength="64" />
           <Property Name="actualStorageAreaId" Type="varchar" MaxLength="64" />
           <Property Name="targetStorageAreaId" Type="varchar" MaxLength="20" />
+          <Property Name="attributes_as_json" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1606,6 +1606,7 @@
           <Property Type="String" Name="identifierOItemService" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="actualStorageAreaId" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="targetStorageAreaId" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attributes_as_json" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ArtikelEntity">
           <Key>
@@ -1641,7 +1642,6 @@
           <Property Type="String" Name="conversionUnitDescription" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="kindOfGoodId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerBI" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="attributes_as_xml" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="attributes_as_json" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
@@ -2219,6 +2219,7 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="attributes_as_json" ColumnName="attributes_as_json" />
                 <ScalarProperty Name="targetStorageAreaId" ColumnName="targetStorageAreaId" />
                 <ScalarProperty Name="actualStorageAreaId" ColumnName="actualStorageAreaId" />
                 <ScalarProperty Name="identifierOItemService" ColumnName="identifierOItemService" />
@@ -2365,7 +2366,6 @@
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ArtikelEntity">
               <MappingFragment StoreEntitySet="Artikel">
                 <ScalarProperty Name="attributes_as_json" ColumnName="attributes_as_json" />
-                <ScalarProperty Name="attributes_as_xml" ColumnName="attributes_as_xml" />
                 <ScalarProperty Name="ownerBI" ColumnName="ownerBI" />
                 <ScalarProperty Name="kindOfGoodId" ColumnName="kindOfGoodId" />
                 <ScalarProperty Name="conversionUnitDescription" ColumnName="conversionUnitDescription" />
@@ -2420,7 +2420,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="93" >
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="89" >
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />
@@ -2469,7 +2469,7 @@
           <edmx:ConnectorPoint PointX="6.25" PointY="48.893789062500005" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="11.375" PointY="12.75" Height="27.748678385416667" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="13.375" PointY="12.75" Height="6.78782226562501" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="13.375" PointY="12.75" Height="6.9801236979166674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
