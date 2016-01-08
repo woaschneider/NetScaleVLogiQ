@@ -4,10 +4,11 @@
                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
+                     Height="200"
                      Background="#FF2F4160"
                      d:DesignHeight="266"
                      d:DesignWidth="348"
-                     mc:Ignorable="d" Height="200">
+                     mc:Ignorable="d">
     <Grid Width="342"
           Height="260"
           Background="#FF748080">
@@ -67,8 +68,9 @@
                    Margin="141,13,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
+                   FontWeight="ExtraBold"
                    Foreground="#FFE91010"
-                   Text="..." FontWeight="ExtraBold" />
+                   Text="..." />
         <Slider Name="slider1"
                 Width="234"
                 Height="23"
@@ -86,7 +88,9 @@
                   Margin="259,6,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
-                  Header="Kontakte" Collapsed="expanderKontakte_Collapsed" Expanded="expanderKontakte_Expanded">
+                  Collapsed="expanderKontakte_Collapsed"
+                  Expanded="expanderKontakte_Expanded"
+                  Header="Kontakte">
             <Grid Width="125"
                   Height="242"
                   HorizontalAlignment="Left">

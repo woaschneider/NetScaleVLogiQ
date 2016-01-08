@@ -1,24 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using System.Windows.Threading;
 using HardwareDevices.LedIt;
 using HardwareDevices.Schenck.Disomat.MODBUSTCP;
 using HardwareDevices.Schenck.Disomat.RS232;
 using HWB.NETSCALE.GLOBAL;
-using NetScaleGlobal;
-using OakLeaf.MM.Main;
+
 using OakLeaf.MM.Main.WPF;
 using HWB.NETSCALE.BOEF;
 
