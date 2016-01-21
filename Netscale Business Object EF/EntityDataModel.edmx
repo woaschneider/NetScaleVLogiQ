@@ -236,6 +236,7 @@
           <Property Name="Lagermandant" Type="varchar" MaxLength="64" />
           <Property Name="AttributName" Type="varchar" MaxLength="32" />
           <Property Name="AttributWert" Type="varchar" MaxLength="128" />
+          <Property Name="Datatyp" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
@@ -1014,6 +1015,7 @@
           <Property Type="String" Name="Lagermandant" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AttributName" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AttributWert" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Datatyp" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LagerplaetzeEntity">
           <Key>
@@ -1788,6 +1790,7 @@
           <EntitySetMapping Name="ArtikelattributeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ArtikelattributeEntity">
               <MappingFragment StoreEntitySet="Artikelattribute">
+                <ScalarProperty Name="Datatyp" ColumnName="Datatyp" />
                 <ScalarProperty Name="AttributWert" ColumnName="AttributWert" />
                 <ScalarProperty Name="AttributName" ColumnName="AttributName" />
                 <ScalarProperty Name="Lagermandant" ColumnName="Lagermandant" />

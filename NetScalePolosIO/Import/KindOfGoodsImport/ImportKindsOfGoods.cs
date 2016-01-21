@@ -28,6 +28,7 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
              //   var request = new RestRequest("/rest/data/kindofgoods") {Method = Method.GET};
                 var request = new RestRequest(url) { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
+                request.AddHeader("Accept-Language", "de");
 
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();

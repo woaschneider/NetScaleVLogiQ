@@ -3944,6 +3944,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _AttributWert;
         partial void OnAttributWertChanging(global::System.String value);
         partial void OnAttributWertChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Datatyp
+        {
+            get
+            {
+                return _Datatyp;
+            }
+            set
+            {
+                OnDatatypChanging(value);
+                ReportPropertyChanging("Datatyp");
+                _Datatyp = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Datatyp");
+                OnDatatypChanged();
+            }
+        }
+        private global::System.String _Datatyp;
+        partial void OnDatatypChanging(global::System.String value);
+        partial void OnDatatypChanged();
 
         #endregion
     

@@ -24,6 +24,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
 
                 var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
+                request.AddHeader("Accept-Language", "de");
 
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();

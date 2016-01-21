@@ -27,6 +27,7 @@ namespace NetScalePolosIO.Import.ProductsImport
                 //     var request = new RestRequest("/rest/data/products") {Method = Method.GET};
                 var request = new RestRequest("/rest/data/products") {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
+                request.AddHeader("Accept-Language", "de");
 
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -35,8 +36,9 @@ namespace NetScalePolosIO.Import.ProductsImport
                     string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
                     return false;
-
+                }
 
                 var oP = JsonConvert.DeserializeObject<ProduktRootObject>(response.Content);
 

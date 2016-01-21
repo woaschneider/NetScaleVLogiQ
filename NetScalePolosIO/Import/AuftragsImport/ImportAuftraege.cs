@@ -36,6 +36,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 //  
                 var request = new RestRequest(url + "200/1") { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
+                request.AddHeader("Accept-Language", "de");
 
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -185,6 +186,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                 request = new RestRequest("/rest/order/" + _boOe.id) { Method = Method.GET };
                                 request.AddHeader("X-location-Id", location.ToString());
+                                request.AddHeader("Accept-Language", "de");
 
 
                                 response = client.Execute(request);

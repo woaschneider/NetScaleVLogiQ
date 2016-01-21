@@ -4,30 +4,27 @@
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         x:Name="Window"
                         Title="BusinessWindow"
-                        Width="550"
-                        Height="569"
+                        Width="660"
+                        Height="275"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
                         WindowStartupLocation="CenterScreen">
 
-    <Grid x:Name="LayoutRoot" Background="#FFC8D6E4">
-        <StackPanel Name="stackPanel1"
-                    Margin="42,40,52,77"
-                    Background="#FFFFEFBB" />
+    <Grid x:Name="LayoutRoot"
+          Height="Auto"
+          Background="#FFC8D6E4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="143*" />
+            <RowDefinition Height="66*" />
+        </Grid.RowDefinitions>
+        <StackPanel Name="stackPanel1" Margin="42,40,32,32" Background="#FFFFEFBB" />
         <Button Name="buttonOk"
-                Width="113"
-                Height="36"
-                Margin="42,0,0,18"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Click="buttonOk_Click"
-                Content="Ok" />
-        <Button Name="buttonCancel"
-                Width="113"
-                Height="36"
-                Margin="363,0,0,18"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Content="Abbrechen" />
+                Width="118" Margin="42,17,0,20"
+                HorizontalAlignment="Left" Click="buttonOk_Click"
+                Content="Ok" Grid.Row="1" Height="38" VerticalAlignment="Top" />
+        <Button Name="buttonCancel" Height="38"
+                Margin="480,18,0,32" VerticalAlignment="Top"
+                Click="buttonCancel_Click"
+                Content="Abbrechen" Grid.Row="1" Width="118" HorizontalAlignment="Left" />
     </Grid>
 </mmwpf:mmBusinessWindow>

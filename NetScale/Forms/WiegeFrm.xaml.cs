@@ -49,7 +49,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             netScaleView1.OnWeightChanged += ShowEventGewichtHasChanged;
             DisplayErrorDialog = true;
             DisplayErrorProvider = true;
-            RegisterPrimaryBizObj(_boW);
+         //   RegisterPrimaryBizObj(_boW);
 
 
             tb_me1.Text = goApp.MengenEinheit;

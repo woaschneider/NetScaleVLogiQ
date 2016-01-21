@@ -17,14 +17,17 @@ namespace NetScalePolosIO.Export
         public string id { get; set; }
     }
 
-    public class Attributes
-    {
-    }
+
+
 
     public class ArticleInstance
     {
+  
+
         public Article article { get; set; }
-        public Attributes attributes { get; set; }
+   //   public ExpandoObject attributes { get; set; }
+        public string[] attributes { get; set; }
+
     }
 
     public class SupplierOrConsignee
@@ -118,15 +121,22 @@ namespace NetScalePolosIO.Export
     #region Neue abgespeckte Struktur
     public class RootObject2
     {
+     
+
         public ScalePhaseData scalePhaseData { get; set; }
         public string orderItemServiceId { get; set; }
-        public string carrierName { get; set; }
-        public string carrierId { get; set; }
-        public string articleId { get; set; }
+        public string carrierBusinessIdentifier { get; set; }
+        public string customerBusinessIdentifier { get; set; }
+
+    
         public string carrierVehicle { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }
-     //   public double netAmount { get; set; }
+
+       public ArticleInstance articleInstance { get; set; }
+       
+
+        //   public double netAmount { get; set; }
         public decimal? netAmount { get; set; }
 
     }

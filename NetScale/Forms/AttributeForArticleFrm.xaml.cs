@@ -50,6 +50,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
               GetAttrValuesFromWaege();
             }
+
+            
+            // Automatically resize height and width relative to content
+            this.SizeToContent = SizeToContent.WidthAndHeight;
         }
 
         private void GetAttrForArticle( string id )
@@ -63,10 +67,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
                 var array = (JArray)JsonConvert.DeserializeObject(json);
                 List<object> attributList = array.ToList<object>();
-              //  rO = new RootObject();
-
-                // 
-
+   
                 for (int i = 0; i < attributList.Count; i++)
                 {
                     stackPanel1.Children.Add(CreateStackPanel(attributList[i].ToString()));
@@ -122,7 +123,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             TextBox txt = new TextBox();
             txt.Name = "txt" + attributName;
-            txt.Width = 150;
+            txt.Width = 250;
             txt.Margin = new Thickness(10);
             RegisterName(txt.Name,txt);
             return txt;
@@ -191,6 +192,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     }
                 }
             }
+        }
+
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }

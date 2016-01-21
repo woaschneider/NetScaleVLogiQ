@@ -40,7 +40,7 @@ namespace HardwareDevices.Elseco
                 }
                 catch (Exception e)
                 {
-                 
+                    var m = e.Message;
                 }
             }
         }
