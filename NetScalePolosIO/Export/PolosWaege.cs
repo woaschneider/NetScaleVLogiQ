@@ -17,6 +17,12 @@ namespace NetScalePolosIO.Export
         public string id { get; set; }
     }
 
+    public class ArticleAttribute
+    {
+        public string BATCH { get; set; }
+        public string SERIAL_NUMBER { get; set; }
+    }
+
 
 
 
@@ -26,7 +32,8 @@ namespace NetScalePolosIO.Export
 
         public Article article { get; set; }
    //   public ExpandoObject attributes { get; set; }
-        public string[] attributes { get; set; }
+        public ArticleAttribute attributes { get; set; }
+
 
     }
 

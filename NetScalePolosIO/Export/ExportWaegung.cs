@@ -69,10 +69,10 @@ namespace NetScalePolosIO.Export
 
              oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
              oWEx2.netAmount = boWe.Nettogewicht;
-            if (oWEx2.orderItemServiceId == null)
-            {
+            //if (oWEx2.orderItemServiceId == null)
+            //{
                 oWEx2.customerBusinessIdentifier = boWe.customerBusinessIdentifier;
-            }
+            //}
           
           // Artikel       
           oWEx2.articleInstance = new ArticleInstance();
@@ -85,7 +85,8 @@ namespace NetScalePolosIO.Export
  
             if (attObj != null)
             {
-              
+           oWEx2.articleInstance.attributes = new ArticleAttribute();
+        
                 int counter =  attObj.Count;
         
                 string[] att = new string[counter];
@@ -93,6 +94,7 @@ namespace NetScalePolosIO.Export
                 foreach (var pair in attObj)
                 {
 
+                
                  string _propName = pair.Key;
                  string _propValue = pair.Value.ToString();
                  string _propDataTyp = "string"; // Default
@@ -112,7 +114,7 @@ namespace NetScalePolosIO.Export
                         switch (dt)
                         {
                             case "string":
-                                att[counter] = _propName + ": " + '\u0022' + _propValue + '\u0022';
+                                att[counter] = _propName + ": " +  _propValue ;
                                 break;
                             case "numeric":
                                 att[counter] = _propName + ": " + _propValue.Replace(",",".");
@@ -129,14 +131,15 @@ namespace NetScalePolosIO.Export
 
                         }
                     }
-                    //
 
+         
+                 oWEx2.articleInstance.attributes.BATCH = '\u0022' + _propValue + '\u0022';
                    
                     counter = counter + 1;
 
                 }
 
-                oWEx2.articleInstance.attributes = att;
+           
                
                 
             }
@@ -227,9 +230,9 @@ namespace NetScalePolosIO.Export
                 request.RequestFormat = DataFormat.Json;
 
                 //  var obj = request.JsonSerializer.Serialize(oWEx2);
-                var obj = JsonConvert.SerializeObject(oWEx2);
-             
-
+                var obj = JsonConvert.SerializeObject(oWEx2,Formatting.Indented,    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+               
+                
                 request.AddParameter("application/json; charset=utf-8", obj, ParameterType.RequestBody);
                 request.RequestFormat = DataFormat.Json;
            
