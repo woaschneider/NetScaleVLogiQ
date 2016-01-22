@@ -5,7 +5,6 @@
                         xmlns:HWB_NETSCALE_BOEF="clr-namespace:HWB.NETSCALE.BOEF;assembly=HWB.NETSCALE.BOEF"
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
-                        xmlns:my="clr-namespace:combit.ListLabel20.Wpf;assembly=combit.ListLabel20.Wpf"
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="Wiegeliste"

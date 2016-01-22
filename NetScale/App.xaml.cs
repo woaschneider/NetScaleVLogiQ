@@ -2,7 +2,6 @@ using System;
 using System.Windows;
 using System.Data;
 using System.Windows.Controls;
-using System.Xml;
 using System.Configuration;
 
 namespace HWB.NETSCALE.FRONTEND.WPF

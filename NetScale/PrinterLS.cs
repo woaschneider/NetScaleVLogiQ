@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ServiceModel.Dispatcher;
 using System.Windows;
 using System.Windows.Media.Animation;
 using combit.ListLabel20;

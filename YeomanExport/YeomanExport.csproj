@@ -17,6 +17,7 @@
     <SccLocalPath>&lt;Local Binding Root of Project&gt;</SccLocalPath>
     <SccAuxPath>&lt;Source Control Database&gt;</SccAuxPath>
     <SccProvider>Mercurial Source Control Package</SccProvider>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,7 +32,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,25 +53,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="OakLeaf.MM2010.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=511bd18e16c7f771, processorArchitecture=MSIL" />
-    <Reference Include="OakLeaf.MM2010.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2312fefb461dbb0e, processorArchitecture=MSIL" />
-    <Reference Include="OakLeaf.MM2010.WPF, Version=4.0.0.0, Culture=neutral, PublicKeyToken=961d2024ab381c81, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Printing" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -106,10 +93,6 @@
     <ProjectReference Include="..\Netscale Business Object EF\Netscale Business Object EF.csproj">
       <Project>{6E80C63E-1268-4C3C-90A6-688EBDADE587}</Project>
       <Name>Netscale Business Object EF</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetScaleGlobal\NetScaleGlobal.csproj">
-      <Project>{2E7D1EC8-5E6F-45DB-A867-3F2C19E581C1}</Project>
-      <Name>NetScaleGlobal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

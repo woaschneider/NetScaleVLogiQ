@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.EntityClient;
 using System.Linq;
-using System.Windows.Xps;
 using combit.ListLabel20.DataProviders;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;

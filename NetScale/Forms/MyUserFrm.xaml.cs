@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Xml.XPath;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.BOEF.User;
 using HWB.NETSCALE.GLOBAL;

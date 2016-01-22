@@ -83,12 +83,6 @@
     <Reference Include="combit.ListLabel20">
       <HintPath>C:\Program Files (x86)\combit\LL20\Redistributierbare Dateien\combit.ListLabel20.dll</HintPath>
     </Reference>
-    <Reference Include="combit.ListLabel20.Wpf">
-      <HintPath>C:\Program Files (x86)\combit\LL20\Redistributierbare Dateien\combit.ListLabel20.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="DataGridThemes">
-      <HintPath>C:\Program Files (x86)\Microsoft\DataGridThemesSetup\DataGridThemes.dll</HintPath>
-    </Reference>
     <Reference Include="HWB.Framework">
       <HintPath>..\..\..\..\..\HWBFramework\HwbMmWpfLibrary\HwbMmWpfLibrary\bin\Debug\HWB.Framework.dll</HintPath>
     </Reference>
@@ -96,14 +90,6 @@
       <HintPath>..\Netscale Business Object EF\bin\Debug\HWB.NETSCALE.BOEF.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.Windows.Design.Extensibility, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Microsoft.Windows.Design.Extensibility.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Windows.Design.Interaction, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Microsoft.Windows.Design.Interaction.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -113,60 +99,24 @@
       <HintPath>..\packages\NLog.4.2.3\lib\net40\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\NUnit 2.6\bin\framework\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="OakLeaf.MM2010.Automation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94f0661eaef8568c" />
     <Reference Include="OakLeaf.MM2010.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=511bd18e16c7f771, processorArchitecture=MSIL" />
     <Reference Include="OakLeaf.MM2010.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2312fefb461dbb0e, processorArchitecture=MSIL" />
-    <Reference Include="OakLeaf.MM2010.WF, Version=4.0.0.0, Culture=neutral, PublicKeyToken=73b2ce9691f17e63" />
-    <Reference Include="OakLeaf.MM2010.WinForms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=57ceb69243304587" />
     <Reference Include="OakLeaf.MM2010.WPF, Version=4.0.0.0, Culture=neutral, PublicKeyToken=961d2024ab381c81, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Mere Mortals .NET Framework 2010\Mere Mortals Framework WPF\OakLeaf.MM2010.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationFramework.Aero">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationFramework.Classic">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationFramework.Luna">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationFramework.Royale">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationUI, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Windows\Microsoft.NET\Framework\v3.0\WPF\PresentationUI.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -177,15 +127,6 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="UIAutomationProvider">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="UIAutomationTypes" />
-    <Reference Include="ReachFramework" />
-    <Reference Include="System.Printing" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.IdentityModel" />
     <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\CS\WPF Extended Toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
@@ -505,6 +446,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="WaageneinstellungenObject.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -518,7 +462,13 @@
     </None>
     <None Include="ClassDiagram2.cd" />
     <None Include="Forms\WiegeFrm.cd" />
+    <Content Include="MyFile.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="NetScale_TemporaryKey.pfx" />
+    <Content Include="LokaleeinstellungenObject.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

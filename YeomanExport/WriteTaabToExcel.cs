@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main.Collections;
 using HWB.NETSCALE.BOEF;
 
