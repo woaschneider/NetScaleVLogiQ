@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Markup;
@@ -139,7 +140,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             if (!netScaleView1.Stillstand)
             {
-                MessageBoxResult uRet = MessageBox.Show("Waage hat keinen Stillstand!!!", "ACHTUNG");
+                MessageBox.Show("Waage hat keinen Stillstand!!!", "ACHTUNG");
                 return;
             }
             Wiegen();
@@ -1536,8 +1537,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void SearchProduct()
         {
-            Produkte boP = new Produkte();
-            //  ProdukteEntity boPe = null;
+  
 
             if (!string.IsNullOrEmpty(txtProductId.Text))
             {
@@ -1587,7 +1587,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key == Key.F4)
             {
-                luFrachtfuehrer.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                luFrachtfuehrer.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
             }
         }
 
@@ -1665,7 +1665,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             if (e.Key == Key.F4)
             {
-                cmdLookUpKfz.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                cmdLookUpKfz.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
             }
         }
 
@@ -1694,30 +1694,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oFrm.Close();
         }
 
-        private void LuZielLagerplatz_OnClick(object sender, RoutedEventArgs e)
-        {
-            LagerplaetzeListeFrm oFrm = new LagerplaetzeListeFrm("");
-            oFrm.ShowDialog();
-            int uRet = oFrm.uRet;
-            //if (uRet != null)
-            //{
-            Lagerplaetze boL = new Lagerplaetze();
-            LagerplaetzeEntity boLe = boL.GetByPk(uRet);
-            if (boLe != null)
-            {
-                _boWe.targetStorageAreaId = boLe.id;
-                _boWe.IstZielLagerPlatzId = boLe.id;
-                _boWe.IstZielLagerPlatz = boLe.name;
-            }
-            else
-            {
-                _boWe.targetStorageAreaId = null;
-                _boWe.IstZielLagerPlatzId = null;
-                _boWe.IstZielLagerPlatz = null;
-            }
-            //}
-            oFrm.Close();
-        }
+       
 
         private void RibbonWiegen_OnPreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -1765,7 +1742,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void buttonArtickeAttr_Click(object sender, RoutedEventArgs e)
         {
-            AttributeForArticleFrm oA = new AttributeForArticleFrm( _boWe.articleId,false,_boWe);
+            AttributeForArticleFrm oA = new AttributeForArticleFrm( _boWe.articleId,_boWe);
             oA.ShowDialog();
             oA.Close();
 

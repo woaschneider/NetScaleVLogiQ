@@ -3,11 +3,12 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                         xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                         x:Name="Window"
-                        Title="BusinessWindow"
+                        Title="Artikelattribute"
                         Width="660"
                         Height="275"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
+                        Loaded="Window_Loaded"
                         WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="LayoutRoot"
@@ -17,14 +18,26 @@
             <RowDefinition Height="143*" />
             <RowDefinition Height="66*" />
         </Grid.RowDefinitions>
-        <StackPanel Name="stackPanel1" Margin="42,40,32,32" Background="#FFFFEFBB" />
+        <StackPanel Name="stackPanel1"
+                    Margin="42,40,32,32"
+                    Background="#FFFFEFBB" />
         <Button Name="buttonOk"
-                Width="118" Margin="42,17,0,20"
-                HorizontalAlignment="Left" Click="buttonOk_Click"
-                Content="Ok" Grid.Row="1" Height="38" VerticalAlignment="Top" />
-        <Button Name="buttonCancel" Height="38"
-                Margin="480,18,0,32" VerticalAlignment="Top"
+                Grid.Row="1"
+                Width="118"
+                Height="38"
+                Margin="42,17,0,20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="buttonOk_Click"
+                Content="Ok" />
+        <Button Name="buttonCancel"
+                Grid.Row="1"
+                Width="118"
+                Height="38"
+                Margin="480,18,0,32"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
                 Click="buttonCancel_Click"
-                Content="Abbrechen" Grid.Row="1" Width="118" HorizontalAlignment="Left" />
+                Content="Abbrechen" />
     </Grid>
 </mmwpf:mmBusinessWindow>
