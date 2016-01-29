@@ -1,53 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
-using System.Linq;
 using System.Net;
-using System.Windows.Controls;
 using HWB.NETSCALE.BOEF;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using OakLeaf.MM.Main.Collections;
 using RestSharp;
 using RestSharp.Authenticators;
-using RestSharp.Deserializers;
-using RestSharp.Extensions;
 
 
 namespace NetScalePolosIO.Export
 {
-    
-
-
-
-
     public class ExportWaegungVersion2Rest
     {
         public void ExportLs2Rest(string baseUrl, string location, WaegeEntity _boWe)
         {
-            /// Neu 30.8.2015 die Waegeentitaet trennen
+            // Neu 30.8.2015 die Waegeentitaet trennen
 
             int waegePk = _boWe.PK;
-           Waege boW = new Waege();
+            Waege boW = new Waege();
 
             WaegeEntity boWe = boW.GetWaegungByPk(waegePk);
             if (boWe == null)
                 return;
-            
 
-    
 
             // Diese Prüfung reicht nicht! Das muss angepaßt werden. 
             if (boWe.identifierOItem != null)
             {
                 Export2Rest(baseUrl, boWe);
             }
-       
         }
 
-    
+
         private void Export2Rest(string baseUrl, WaegeEntity boWe)
         {
             Einstellungen boE = new Einstellungen();
@@ -55,102 +39,85 @@ namespace NetScalePolosIO.Export
 
             #region JSON-Polos Struktur aufbauen
 
-            var oWEx2 = new RootObject2();
-           
+            var oWEx2 = new RootObject2
+            {
+                orderItemServiceId = boWe.identifierOItemService,
+                carrierBusinessIdentifier = boWe.ffBusinessIdentifier,
+                carrierVehicle = boWe.Fahrzeug
+            };
 
-            oWEx2.orderItemServiceId = boWe.identifierOItemService;
-             oWEx2.carrierBusinessIdentifier = boWe.ffBusinessIdentifier;
-             oWEx2.carrierVehicle = boWe.Fahrzeug;
 
-             if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatzId))
-             {
-                 oWEx2.storageAreaId = boWe.IstQuellLagerPlatzId; // Panko 04.03.2015;
-             }
+            if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatzId))
+            {
+                oWEx2.storageAreaId = boWe.IstQuellLagerPlatzId; // Panko 04.03.2015;
+            }
 
-             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
-             oWEx2.netAmount = boWe.Nettogewicht;
+            oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
+            oWEx2.netAmount = boWe.Nettogewicht;
             //if (oWEx2.orderItemServiceId == null)
             //{
-                oWEx2.customerBusinessIdentifier = boWe.customerBusinessIdentifier;
+            oWEx2.customerBusinessIdentifier = boWe.customerBusinessIdentifier;
             //}
-          
-          // Artikel       
-          oWEx2.articleInstance = new ArticleInstance();
-          oWEx2.articleInstance.article = new Article();
-          oWEx2.articleInstance.article.id = boWe.articleId;
 
-   
-          // Artikelatributte
-          JObject attObj = JObject.Parse(boWe.attributes_as_json);
- 
+            // Artikel       
+            oWEx2.articleInstance = new ArticleInstance {article = new Article {id = boWe.articleId}};
+
+
+            // Artikelatributte
+            JObject attObj = JObject.Parse(boWe.attributes_as_json);
+
             if (attObj != null)
             {
-           oWEx2.articleInstance.attributes = new ArticleAttribute();
-        
-                int counter =  attObj.Count;
-        
+                oWEx2.articleInstance.attributes = new ArticleAttribute();
+
+                int counter = attObj.Count;
+
                 string[] att = new string[counter];
                 counter = 0;
                 foreach (var pair in attObj)
                 {
-
-                
-                 string _propName = pair.Key;
-                 string _propValue = pair.Value.ToString();
-                 string _propDataTyp = "string"; // Default
+                    string propName = pair.Key;
+                    string propValue = pair.Value.ToString();
+                    string propDataTyp = "string"; // Default
 
                     // Datentyp für Attribut erfragen
                     // string, numeric, float und int
                     Artikelattribute boAa = new Artikelattribute();
-                    ArtikelattributeEntity boAae = boAa.GetArtikelAttributByBezeichnung(_propName);
+                    ArtikelattributeEntity boAae = boAa.GetArtikelAttributByBezeichnung(propName);
                     if (boAae != null)
                     {
                         if (boAae.Datatyp != null)
                         {
-                            _propDataTyp = boAae.Datatyp;
+                            propDataTyp = boAae.Datatyp;
                         }
 
-                        string dt = _propDataTyp;
+                        string dt = propDataTyp;
                         switch (dt)
                         {
                             case "string":
-                                att[counter] = _propName + ": " +  _propValue ;
+                                att[counter] = propName + ": " + propValue;
                                 break;
                             case "numeric":
-                                att[counter] = _propName + ": " + _propValue.Replace(",",".");
+                                att[counter] = propName + ": " + propValue.Replace(",", ".");
                                 break;
                             case "float":
-                                att[counter] = _propName + ": " + _propValue.Replace(",",".");;
+                                att[counter] = propName + ": " + propValue.Replace(",", ".");
                                 break;
                             case "int":
-                                att[counter] = _propName + ": " + _propValue.Replace(",","");;
+                                att[counter] = propName + ": " + propValue.Replace(",", "");
                                 break;
                             default:
-                                att[counter] = _propName + ": " + '\u0022' + _propValue + '\u0022';
+                                att[counter] = propName + ": " + '\u0022' + propValue + '\u0022';
                                 break;
-
                         }
                     }
 
-         
-                 oWEx2.articleInstance.attributes.BATCH = '\u0022' + _propValue + '\u0022';
-                   
+
+                    oWEx2.articleInstance.attributes.BATCH = '\u0022' + propValue + '\u0022';
+
                     counter = counter + 1;
-
                 }
-
-           
-               
-                
             }
-
-           
-           
-   
-          
-            
-           
-            
 
 
             if (boWe.Erstgewicht > 0 | boWe.Zweitgewicht > 0)
@@ -158,8 +125,7 @@ namespace NetScalePolosIO.Export
                 oWEx2.scalePhaseData = new ScalePhaseData();
                 if (boWe.Erstgewicht > 0)
                 {
-                    oWEx2.scalePhaseData.FIRST = new FIRST();
-                    oWEx2.scalePhaseData.FIRST.scaleId = "1";
+                    oWEx2.scalePhaseData.FIRST = new FIRST {scaleId = "1"};
                     if (boWe.LN1 != null)
                         oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
 
@@ -174,18 +140,12 @@ namespace NetScalePolosIO.Export
                     {
                         oWEx2.scalePhaseData.FIRST.date = string.Format("{0:yyyyMMddHHmmss}", boWe.LSDatum) + "000";
                     }
-                    
-
-
-
                 }
-
 
 
                 if (boWe.Zweitgewicht > 0)
                 {
-                    oWEx2.scalePhaseData.SECOND = new SECOND();
-                    oWEx2.scalePhaseData.SECOND.scaleId = "1";
+                    oWEx2.scalePhaseData.SECOND = new SECOND {scaleId = "1"};
                     if (boWe.LN2 != null)
                         oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
 
@@ -200,16 +160,16 @@ namespace NetScalePolosIO.Export
                     else
                     {
                         oWEx2.scalePhaseData.SECOND.date = string.Format("{0:yyyyMMddHHmmss}", boWe.LSDatum) +
-                                                             "000";  
+                                                           "000";
                     }
                 }
             }
             // Neu 30.8.2015
-            Log.Instance.Info("Export Wiegedaten: LS-NR: "+ boWe.LieferscheinNr + "Erstgewicht/lfd Nr : "+boWe.LN1+ " "  + boWe.Erstgewicht.ToString() + " Zeitgewicht/lfd Nr: "
-              + boWe.LN2+" " +boWe.Zweitgewicht.ToString()+ " Nettogewicht :"+boWe.Nettogewicht.ToString());
-          /////////////////////////////////////////////////////
-      
-          
+            Log.Instance.Info("Export Wiegedaten: LS-NR: " + boWe.LieferscheinNr + "Erstgewicht/lfd Nr : " + boWe.LN1 +
+                              " " + boWe.Erstgewicht.ToString() + " Zeitgewicht/lfd Nr: "
+                              + boWe.LN2 + " " + boWe.Zweitgewicht.ToString() + " Nettogewicht :" +
+                              boWe.Nettogewicht.ToString());
+            /////////////////////////////////////////////////////
 
             #endregion
 
@@ -218,24 +178,24 @@ namespace NetScalePolosIO.Export
             try
             {
                 var client = new RestClient(baseUrl);
-             
-                client.ClearHandlers();
 
-             
+                client.ClearHandlers();
 
 
                 var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
-           
-                request.AddHeader("X-location-Id", boEe.RestLocation.ToString());
+
+                request.AddHeader("X-location-Id", boEe.RestLocation);
+                request.AddHeader("Accept-Language", "de");
                 request.RequestFormat = DataFormat.Json;
 
                 //  var obj = request.JsonSerializer.Serialize(oWEx2);
-                var obj = JsonConvert.SerializeObject(oWEx2,Formatting.Indented,    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-               
-                
+                var obj = JsonConvert.SerializeObject(oWEx2, Formatting.Indented,
+                    new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore});
+
+
                 request.AddParameter("application/json; charset=utf-8", obj, ParameterType.RequestBody);
                 request.RequestFormat = DataFormat.Json;
-           
+
                 client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(),
                     boEe.ConsumerSecret.Trim(),
                     string.Empty, string.Empty);
@@ -269,7 +229,7 @@ namespace NetScalePolosIO.Export
             }
             catch (Exception ee)
             {
-                new WriteErrorLog().WriteToErrorLog(ee,boWe);
+                new WriteErrorLog().WriteToErrorLog(ee, boWe);
             }
         }
 
@@ -288,34 +248,30 @@ namespace NetScalePolosIO.Export
         {
             try
             {
-           
-            var oR = JsonConvert.DeserializeObject<RestServerError>(response.Content);
+                var oR = JsonConvert.DeserializeObject<RestServerError>(response.Content);
 
-            ExportLog boE = new ExportLog();
-            ExportLogEntity boEe = boE.NewEntity();
-            boEe.dt = DateTime.Now;
-            if (oR != null)
-            {
-                boEe.Message1 = oR.statusCode;
-                boEe.Message2 = oR.additionalInformation;
-                boEe.Message3= we.LieferscheinNr;
-            }
-            else
-            {
-                boEe.Message3 = we.LieferscheinNr;
-                boEe.Message2 = "ResponseStatus:" + response.ResponseStatus;
-                boEe.Message1 ="Response Error Exception: "+ response.ErrorException.Message;
-            }
-            boEe.OrderItemNumber = we.number;
-            boEe.OrderItemServiceIdentifier = we.identifierOItemService;
-            boE.SaveEntity(boEe);
-          
-
+                ExportLog boE = new ExportLog();
+                ExportLogEntity boEe = boE.NewEntity();
+                boEe.dt = DateTime.Now;
+                if (oR != null)
+                {
+                    boEe.Message1 = oR.statusCode;
+                    boEe.Message2 = oR.additionalInformation;
+                    boEe.Message3 = we.LieferscheinNr;
+                }
+                else
+                {
+                    boEe.Message3 = we.LieferscheinNr;
+                    boEe.Message2 = "ResponseStatus:" + response.ResponseStatus;
+                    boEe.Message1 = "Response Error Exception: " + response.ErrorException.Message;
+                }
+                boEe.OrderItemNumber = we.number;
+                boEe.OrderItemServiceIdentifier = we.identifierOItemService;
+                boE.SaveEntity(boEe);
             }
             catch (Exception e)
             {
-                
-                new WriteErrorLog().WriteToErrorLog(e,we);
+                new WriteErrorLog().WriteToErrorLog(e, we);
             }
         }
     }

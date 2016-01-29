@@ -41,7 +41,11 @@ namespace NetScalePolosIO.Import.AddressImport
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Instance.Error("AP-Import:Request HttpStatusCode " + response.StatusCode);
                     return;
+                }
+                
 
 
                 var oR = JsonConvert.DeserializeObject<AddressRootObject>(response.Content);

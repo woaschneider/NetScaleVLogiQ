@@ -12,6 +12,7 @@ using NetScalePolosIO.Import.AuftragsImport;
 using NetScalePolosIO.Import.KindOfGoodsImport;
 using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
+using NetScalePolosIO.Logging;
 using OakLeaf.MM.Main.Collections;
 
 
@@ -110,7 +111,7 @@ namespace NetScalePolosIO
         #region Import Stammdaten
 
         public void ImportStammdaten()
-        {
+        {   
             string uri = GetImportServerIp() + ":" + GetImportPort();
 
             if (uri == "")
@@ -132,6 +133,7 @@ namespace NetScalePolosIO
 
         private void BwDoWorkImport(object sender, DoWorkEventArgs e)
         {
+            Log.Instance.Info("Stammdatenimport wurde gestartet!");
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
             // Adressen
@@ -146,6 +148,7 @@ namespace NetScalePolosIO
             new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId()  ,   boEe.ImpRESTServertArticleAttributesUrl);
             // Lagerplätze
             new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
+            Log.Instance.Info("Stammdatenimport wurde beendet!");
         }
 
         #endregion
@@ -154,7 +157,11 @@ namespace NetScalePolosIO
 
         #region Import Auftrage
 
-        public void ImportAuftraege()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="only_Ready_To_Dispatch"></param>
+        public void ImportAuftraege(bool only_Ready_To_Dispatch)
         {
             string uri = GetImportServerIp() + ":" + GetImportPort();
 
@@ -164,28 +171,39 @@ namespace NetScalePolosIO
                 return;
             }
 
-
-            ExceImportAuftraegeThread(uri);
+            ExceImportAuftraegeThread(uri, only_Ready_To_Dispatch);
         }
 
-        private void ExceImportAuftraegeThread(string uri)
+        private void ExceImportAuftraegeThread(string uri, bool only_Ready_To_Dispatch)
         {
             BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork += BwDoWorkImportAuftraege;
+            //  bw.DoWork += BwDoWorkImportAuftraege;
+            bw.DoWork += (obj, e) => BwDoWorkImportAuftraege(uri, only_Ready_To_Dispatch);
 
-            //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
-            //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-            //   bw.WorkerReportsProgress = true;
-            bw.RunWorkerAsync(uri);
+            bw.RunWorkerAsync();
+            // bw.RunWorkerAsync(uri, only_Ready_To_Dispatch);
         }
 
-        private void BwDoWorkImportAuftraege(object sender, DoWorkEventArgs e)
+        private void BwDoWorkImportAuftraege(string uri, bool only_Ready_To_Dispatch)
         {
+            string info = "";
+
+            if (only_Ready_To_Dispatch)
+            {
+                info = "Nur Ready For Dispatch";
+            }
+            else
+            {
+                info = "Alle Aufträge";
+            }
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
-            new ImportAuftraege().Import(e.Argument.ToString(), GetLocationId(), boEe.ImportRESTServerAuftraegeUrl);
-        }
 
+            Log.Instance.Info("Auftragsimport wurde gestartet! " + info);
+            new ImportAuftraege().Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, only_Ready_To_Dispatch);
+            Log.Instance.Info("Auftragsimport wurde beendet! " + info);
+        }
+        
         #endregion
 
         //*****************************************************************

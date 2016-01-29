@@ -25,7 +25,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
         private int _totalresult;
 
-        public bool Import(string baseUrl, string location, string url)
+        public bool Import(string baseUrl, string location, string url,  bool Only_Read_To_Dispatch)
         {
             try
             {
@@ -37,7 +37,10 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 var request = new RestRequest(url + "200/1") { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
                 request.AddHeader("Accept-Language", "de");
-
+                if (Only_Read_To_Dispatch)
+                {
+                    request.AddQueryParameter("status", "READY_TO_DISPATCH");
+                }
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();
                 client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(),
@@ -71,7 +74,11 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 {
                     request = new RestRequest("/rest/order/query/200/" + ii) { Method = Method.GET };
                     request.AddHeader("X-location-Id", location.ToString());
-
+                    request.AddHeader("Accept-Language", "de");
+                    if (Only_Read_To_Dispatch)
+                    {
+                        request.AddQueryParameter("status", "READY_TO_DISPATCH");
+                    }
 
                     response = client.Execute(request);
                     if (response.StatusCode != HttpStatusCode.OK)
@@ -95,7 +102,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         }
 
 
-                        if (obj.orderState == "READY_TO_DISPATCH" || obj.orderState == "NEW")
+                        if (obj.orderState == "READY_TO_DISPATCH")
                         {
                             #region Eigentlicher Import
 
@@ -212,7 +219,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                             }
                                         }
 
-                                        if (orderItem.orderItemState == "READY_TO_DISPATCH" || obj.orderState == "NEW")
+                                        if (orderItem.orderItemState == "READY_TO_DISPATCH")
                                         {
                                             foreach (OrderItemService orderItemService in orderItem.orderItemServices)
                                             {

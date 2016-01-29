@@ -7,50 +7,24 @@ using System.Text;
 namespace NetScalePolosIO.Export
 {
 
-
-
-    #region Auftragsanlage
-    
-
     public class Article
     {
         public string id { get; set; }
     }
-
     public class ArticleAttribute
     {
         public string BATCH { get; set; }
         public string SERIAL_NUMBER { get; set; }
     }
-
-
-
-
     public class ArticleInstance
     {
   
 
         public Article article { get; set; }
-   //   public ExpandoObject attributes { get; set; }
+
         public ArticleAttribute attributes { get; set; }
 
 
-    }
-
-    public class SupplierOrConsignee
-    {
-        public string id { get; set; }
-    }
-
-    public class Service
-    {
-        public string id { get; set; }
-    }
-    public class Unit
-    {
-        public int id { get; set; }
-        public string shortDescription { get; set; }
-        public string description { get; set; }
     }
     public class Clearance
     {
@@ -62,68 +36,6 @@ namespace NetScalePolosIO.Export
         public string active { get; set; }
         public string reference { get; set; }
     }
-
-    public class OrderItemService
-    {
-        public int identifier { get; set; }
-        public string remark { get; set; }
-        public ArticleInstance articleInstance { get; set; }
-        public string state { get; set; }
-        public SupplierOrConsignee supplierOrConsignee { get; set; }
-        public string plannedBeginDate { get; set; }
-        public string plannedEndDate { get; set; }
-        public Service service { get; set; }
-        public int targetAmount { get; set; }
-        public string deliveryType { get; set; }
-        public string kindOfGoodId { get; set; }
-
-
-    }
-
-   
-
-
-    public class Product
-    {
-        public string id { get; set; }
-    }
-
-    public class OrderItem
-    {   public Clearance clearance { get; set; }
-        public string orderItemState { get; set; }
-        public IList<OrderItemService> orderItemServices { get; set; }
-        public string plannedDate { get; set; }
-        public Product product { get; set; }
-        public string remark { get; set; }
-        
-    }
-
-    public class Customer
-    {
-        public string id { get; set; }
-    }
-
-    public class InvoiceReceiver
-    {
-        public string id { get; set; }
-    }
-
-    public class RootObject
-    {
-        public IList<OrderItem> orderItems { get; set; }
-        public string reference { get; set; }
-        public string orderState { get; set; }
-        public Customer customer { get; set; }
-        public InvoiceReceiver invoiceReceiver { get; set; }
-        public string locationId { get; set; }
-        public string date { get; set; }
-    }
-
-    
-
-
-    #endregion
-
 
     #region Neue abgespeckte Struktur
     public class RootObject2
@@ -179,10 +91,6 @@ namespace NetScalePolosIO.Export
 
    
 #endregion
-
-
-
-    // 
 
     public class RestServerError
     {   

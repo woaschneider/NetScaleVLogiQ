@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Threading;
 using HardwareDevices;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
@@ -31,7 +32,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private mmSaveDataResult _result;
       
         #endregion
-
+        private DispatcherTimer DT;
         /// <summary>
         /// Constructor
         /// </summary>
@@ -111,6 +112,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             SetWeightBindingFormat();
             FillIncoterms();
+            DT = new DispatcherTimer();
+            DT.Tick += new EventHandler(Poll_TICK);
+            DT.Interval = TimeSpan.FromSeconds(900);
+            DT.Start();
+            new ImportExportPolos().ImportStammdaten();
+            new ImportExportPolos().ImportAuftraege(false);
+        }
+        private void Poll_TICK(object sender, EventArgs e)
+        {
+
+            new ImportExportPolos().ImportStammdaten();
+            new ImportExportPolos().ImportAuftraege(true);
+
         }
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
@@ -375,7 +389,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdImportAuftraege_OnClick(object sender, RoutedEventArgs e)
         {
-            new ImportExportPolos().ImportAuftraege();
+            new ImportExportPolos().ImportAuftraege(false);
         }
 
         private void CmdImporStammdaten_OnClick(object sender, RoutedEventArgs e)
