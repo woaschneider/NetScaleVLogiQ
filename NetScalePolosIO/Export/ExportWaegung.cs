@@ -63,61 +63,66 @@ namespace NetScalePolosIO.Export
             oWEx2.articleInstance = new ArticleInstance {article = new Article {id = boWe.articleId}};
 
 
-            // Artikelatributte
-            JObject attObj = JObject.Parse(boWe.attributes_as_json);
-
-            if (attObj != null)
+           
+            #region Artikelattribute
+            if (boWe.attributes_as_json != null)
             {
-                oWEx2.articleInstance.attributes = new ArticleAttribute();
+                JObject attObj = JObject.Parse(boWe.attributes_as_json);
 
-                int counter = attObj.Count;
-
-                string[] att = new string[counter];
-                counter = 0;
-                foreach (var pair in attObj)
+                if (attObj != null)
                 {
-                    string propName = pair.Key;
-                    string propValue = pair.Value.ToString();
-                    string propDataTyp = "string"; // Default
+                    oWEx2.articleInstance.attributes = new ArticleAttribute();
 
-                    // Datentyp für Attribut erfragen
-                    // string, numeric, float und int
-                    Artikelattribute boAa = new Artikelattribute();
-                    ArtikelattributeEntity boAae = boAa.GetArtikelAttributByBezeichnung(propName);
-                    if (boAae != null)
+                    int counter = attObj.Count;
+
+                    string[] att = new string[counter];
+                    counter = 0;
+                    foreach (var pair in attObj)
                     {
-                        if (boAae.Datatyp != null)
+                        string propName = pair.Key;
+                        string propValue = pair.Value.ToString();
+                        string propDataTyp = "string"; // Default
+
+                        // Datentyp für Attribut erfragen
+                        // string, numeric, float und int
+                        Artikelattribute boAa = new Artikelattribute();
+                        ArtikelattributeEntity boAae = boAa.GetArtikelAttributByBezeichnung(propName);
+                        if (boAae != null)
                         {
-                            propDataTyp = boAae.Datatyp;
+                            if (boAae.Datatyp != null)
+                            {
+                                propDataTyp = boAae.Datatyp;
+                            }
+
+                            string dt = propDataTyp;
+                            switch (dt)
+                            {
+                                case "string":
+                                    att[counter] = propName + ": " + propValue;
+                                    break;
+                                case "numeric":
+                                    att[counter] = propName + ": " + propValue.Replace(",", ".");
+                                    break;
+                                case "float":
+                                    att[counter] = propName + ": " + propValue.Replace(",", ".");
+                                    break;
+                                case "int":
+                                    att[counter] = propName + ": " + propValue.Replace(",", "");
+                                    break;
+                                default:
+                                    att[counter] = propName + ": " + '\u0022' + propValue + '\u0022';
+                                    break;
+                            }
                         }
 
-                        string dt = propDataTyp;
-                        switch (dt)
-                        {
-                            case "string":
-                                att[counter] = propName + ": " + propValue;
-                                break;
-                            case "numeric":
-                                att[counter] = propName + ": " + propValue.Replace(",", ".");
-                                break;
-                            case "float":
-                                att[counter] = propName + ": " + propValue.Replace(",", ".");
-                                break;
-                            case "int":
-                                att[counter] = propName + ": " + propValue.Replace(",", "");
-                                break;
-                            default:
-                                att[counter] = propName + ": " + '\u0022' + propValue + '\u0022';
-                                break;
-                        }
+
+                 oWEx2.articleInstance.attributes.BATCH = '\u0022' + propValue + '\u0022';
+                  //      oWEx2.articleInstance.attributes.BATCH =  propValue;
+                        counter = counter + 1;
                     }
-
-
-                    oWEx2.articleInstance.attributes.BATCH = '\u0022' + propValue + '\u0022';
-
-                    counter = counter + 1;
                 }
             }
+            #endregion
 
 
             if (boWe.Erstgewicht > 0 | boWe.Zweitgewicht > 0)
@@ -125,7 +130,7 @@ namespace NetScalePolosIO.Export
                 oWEx2.scalePhaseData = new ScalePhaseData();
                 if (boWe.Erstgewicht > 0)
                 {
-                    oWEx2.scalePhaseData.FIRST = new FIRST {scaleId = "1"};
+                    oWEx2.scalePhaseData.FIRST = new FIRST {scaleId = "3"};
                     if (boWe.LN1 != null)
                         oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
 
@@ -145,7 +150,7 @@ namespace NetScalePolosIO.Export
 
                 if (boWe.Zweitgewicht > 0)
                 {
-                    oWEx2.scalePhaseData.SECOND = new SECOND {scaleId = "1"};
+                    oWEx2.scalePhaseData.SECOND = new SECOND {scaleId = "3"};
                     if (boWe.LN2 != null)
                         oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
 

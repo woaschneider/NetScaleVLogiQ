@@ -77,7 +77,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     request.AddHeader("Accept-Language", "de");
                     if (Only_Read_To_Dispatch)
                     {
-                        request.AddQueryParameter("status", "READY_TO_DISPATCH");
+                      //  request.AddQueryParameter("status", "READY_TO_DISPATCH");
+                        request.AddQueryParameter("status", "state = READY_TO_DISPATCH & scaleRelevant = true & scalingProcessed = false");
                     }
 
                     response = client.Execute(request);

@@ -116,14 +116,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             DT.Tick += new EventHandler(Poll_TICK);
             DT.Interval = TimeSpan.FromSeconds(900);
             DT.Start();
-            new ImportExportPolos().ImportStammdaten();
-            new ImportExportPolos().ImportAuftraege(false);
+         //   new ImportExportPolos().ImportStammdaten();
+         //   new ImportExportPolos().ImportAuftraege(false);
         }
         private void Poll_TICK(object sender, EventArgs e)
         {
 
-            new ImportExportPolos().ImportStammdaten();
-            new ImportExportPolos().ImportAuftraege(true);
+         //   new ImportExportPolos().ImportStammdaten();
+         //   new ImportExportPolos().ImportAuftraege(true);
 
         }
 
