@@ -62,9 +62,18 @@ namespace NetScalePolosIO.Import.AddressImport
                         _boAe = _boA.GetByBusinenessIdentifier(obj.businessIdentifier) ?? _boA.NewEntity();
                        
                         _boAe.id = obj.id;
-                        _boAe.businessIdentifier = obj.businessIdentifier;
+                        try
+                        {
+                            _boAe.businessIdentifier = obj.businessIdentifier.Trim();
 
-                        _boAe.name = obj.name;
+                            _boAe.name = obj.name.Trim();
+                        }
+                        catch (Exception ee)
+                        {
+
+                            Log.Instance.Error("Fehler im AP Import: Bussines Identifier oder Name = Null ? " + ee.Message);
+                        }
+                        
 
 
                         _boAe.owningLocationId = obj.owningLocationId;
@@ -81,6 +90,7 @@ namespace NetScalePolosIO.Import.AddressImport
                         request = new RestRequest("/rest/address/details/{ID}");
 
                         request.AddParameter("ID", _boAe.id.ToString(), ParameterType.UrlSegment);
+                    //  request.AddParameter("ID", _boAe.businessIdentifier.ToString(), ParameterType.UrlSegment);
                         request.Method = Method.GET;
                         request.AddHeader("X-location-Id", location);
 

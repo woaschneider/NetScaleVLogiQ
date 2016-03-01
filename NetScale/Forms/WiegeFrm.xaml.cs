@@ -1549,18 +1549,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void SearchProduct()
-        {
+        //private void SearchProduct()
+        //{
   
 
-            if (!string.IsNullOrEmpty(txtProductId.Text))
-            {
-                _boW.Product2Waege(txtProductId.Text, _boWe);
-            }
-            else
-            {
-            }
-        }
+        //    if (!string.IsNullOrEmpty(txtProductId.Text))
+        //    {
+        //        _boW.Product2Waege(txtProductId.Text, _boWe);
+        //    }
+        //    else
+        //    {
+        //    }
+        //}
 
 //***************************************************************************************************
         private void TxtAuftraggeber_OnKeyDown(object sender, KeyEventArgs e)
@@ -1660,16 +1660,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void TxtProductId_OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Tab)
-            {
-                SearchProduct();
-            }
-            if (e.Key == Key.F4)
-            {
-            }
-        }
+        //private void TxtProductId_OnKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Tab)
+        //    {
+        //        SearchProduct();
+        //    }
+        //    if (e.Key == Key.F4)
+        //    {
+        //    }
+        //}
 
         private void TxtKfzKennzeichen_OnKeyDown(object sender, KeyEventArgs e)
         {

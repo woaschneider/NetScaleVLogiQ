@@ -265,8 +265,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                                                     _boOise.orderstate = orderItem.orderItemState;
-                                                //    _boOise.sequence = orderItem.sequence;
-                                                    _boOise.sequence = orderItemService.sequence;
+                                                      _boOise.sequence = orderItem.sequence;
+                                                  //  _boOise.sequence = orderItemService.sequence;
                                                     _boOise.serviceId = orderItemService.service.id;
                                                     _boOise.serviceDescription = orderItemService.service.description;
                                                     _boOise.identifierOItem = orderItem.identifier;

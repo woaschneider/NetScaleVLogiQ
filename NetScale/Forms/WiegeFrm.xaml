@@ -438,6 +438,7 @@
                TabIndex="100"
                Target="{Binding ElementName=txtKfzKennzeichen}" />
         <TextBox x:Name="txtFrachtführer"
+               
                  Width="436"
                  Height="23"
                  Margin="151,199,0,0"
@@ -586,9 +587,10 @@
                Content="gepl. Leistungsdatum"
                TabIndex="440" />
         <TextBox x:Name="txtAuftraggeber_Copy3"
-                 Width="385"
+                   IsReadOnly="True"
+                 Width="436"
                  Height="23"
-                 Margin="202,290,0,0"
+                 Margin="151,290,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TabIndex="230"
@@ -1386,10 +1388,11 @@
                 </StackPanel>
             </xctk:SplitButton.DropDownContent>
         </xctk:SplitButton>
-        <TextBox Name="textBox24"
-                 Width="217"
+        <TextBox Name="textBox24" 
+                   IsReadOnly="True"
+                 Width="436"
                  Height="23"
-                 Margin="202,265,0,0"
+                 Margin="151,265,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  TabIndex="160"
@@ -1832,15 +1835,6 @@
                  Margin="806,508,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top" />
-        <TextBox Name="txtProductId"
-                 Width="48"
-                 Height="23"
-                 Margin="151,265,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 KeyDown="TxtProductId_OnKeyDown"
-                 TabIndex="140"
-                 Text="{Binding productid}" />
         <TextBox Name="textBox47"
                  Width="301"
                  Height="23"
@@ -1871,14 +1865,6 @@
                        Source="..\Images\1329900378_search_button.ico" />
             </StackPanel>
         </Button>
-        <TextBox Name="txtIstQuellLagerPlatzId"
-                 Width="48"
-                 Height="23"
-                 Margin="151,290,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 TabIndex="230"
-                 Text="{Binding IstQuellLagerPlatzId}" />
         <Label Name="label59"
                Width="110"
                Margin="16,341,0,0"

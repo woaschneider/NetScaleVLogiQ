@@ -24,11 +24,9 @@ namespace NetScalePolosIO.Export
                 return;
 
 
-            // Diese Prüfung reicht nicht! Das muss angepaßt werden. 
-            if (boWe.identifierOItem != null)
-            {
+          
                 Export2Rest(baseUrl, boWe);
-            }
+       
         }
 
 
