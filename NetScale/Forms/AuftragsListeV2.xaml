@@ -71,7 +71,7 @@
                   SelectionChanged="dataGridOrderItems_SelectionChanged"
                   Style="{DynamicResource DataGridStyle}">
             <DataGrid.Columns>
-                
+
                 <DataGridTextColumn Binding="{Binding number}" Header="Nummer" />
                 <DataGridTextColumn Binding="{Binding date}" Header="Datum" />
                 <DataGridTextColumn Binding="{Binding reference}" Header="Referenz" />
@@ -93,9 +93,9 @@
                 <hwbNetscaleBoef:OrderItemserviceEntity />
             </DataGrid.DataContext>
             <DataGrid.Columns>
-                
+
                 <DataGridTextColumn Binding="{Binding sequence}" Header="Seq." />
-                <DataGridTextColumn Binding="{Binding deliveryType}" Header="Frankatur" />
+                <DataGridTextColumn Binding="{Binding PlanningDivisionDescription}" Header="Dispobreich" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
                 <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikel-Bezeichnung" />
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />

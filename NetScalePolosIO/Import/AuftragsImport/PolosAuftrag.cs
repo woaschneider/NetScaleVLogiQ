@@ -71,7 +71,16 @@ public class Address
     public Country country { get; set; }
 }
 
-public class SupplierOrConsignee
+public class Supplier
+{
+    public string id { get; set; }
+    public string businessIdentifier { get; set; }
+    public string name { get; set; }
+    public string owningLocationId { get; set; }
+    public string subName { get; set; }
+    public Address address { get; set; }
+}
+public class Receiver
 {
     public string id { get; set; }
     public string businessIdentifier { get; set; }
@@ -89,6 +98,14 @@ public class Service
     
     public double targedAmount { get; set; }
 }
+
+public class PlanningDivision
+{
+    public string id { get; set; }
+    public string description { get; set; }
+    public bool active { get; set; }
+}
+
 
 public class Unit
 {
@@ -114,11 +131,13 @@ public class OrderItemService
     public string sequence { get; set; }
     public ArticleInstance articleInstance { get; set; }
     public string state { get; set; }
-    public SupplierOrConsignee supplierOrConsignee { get; set; }
+    public Supplier supplier { get; set; }
+    public Receiver receiver { get; set; }
     public string plannedBeginDate { get; set; }
     public string plannedEndDate { get; set; }
     public Service service { get; set; }
     public Clearance clearance { get; set; }
+    public PlanningDivision planningDivision { get; set; }
  //   public double targetAmount { get; set; }
     public string actualStorageAreaId { get; set; }
     public string targetStorageAreaId { get; set; }

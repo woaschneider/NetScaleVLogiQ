@@ -565,6 +565,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<ArtikelEntity> _ArtikelEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<PlanningdivisionEntity> PlanningdivisionEntities
+        {
+            get
+            {
+                if ((_PlanningdivisionEntities == null))
+                {
+                    _PlanningdivisionEntities = base.CreateObjectSet<PlanningdivisionEntity>("PlanningdivisionEntities");
+                }
+                return _PlanningdivisionEntities;
+            }
+        }
+        private ObjectSet<PlanningdivisionEntity> _PlanningdivisionEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -815,6 +831,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToArtikelEntities(ArtikelEntity artikelEntity)
         {
             base.AddObject("ArtikelEntities", artikelEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'PlanningdivisionEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToPlanningdivisionEntities(PlanningdivisionEntity planningdivisionEntity)
+        {
+            base.AddObject("PlanningdivisionEntities", planningdivisionEntity);
         }
 
         #endregion
@@ -5806,6 +5830,102 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ExportRestCreateOrderUrl;
         partial void OnExportRestCreateOrderUrlChanging(global::System.String value);
         partial void OnExportRestCreateOrderUrlChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImpRESTServerPlanningDivision
+        {
+            get
+            {
+                return _ImpRESTServerPlanningDivision;
+            }
+            set
+            {
+                OnImpRESTServerPlanningDivisionChanging(value);
+                ReportPropertyChanging("ImpRESTServerPlanningDivision");
+                _ImpRESTServerPlanningDivision = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImpRESTServerPlanningDivision");
+                OnImpRESTServerPlanningDivisionChanged();
+            }
+        }
+        private global::System.String _ImpRESTServerPlanningDivision;
+        partial void OnImpRESTServerPlanningDivisionChanging(global::System.String value);
+        partial void OnImpRESTServerPlanningDivisionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanningDivisionId
+        {
+            get
+            {
+                return _PlanningDivisionId;
+            }
+            set
+            {
+                OnPlanningDivisionIdChanging(value);
+                ReportPropertyChanging("PlanningDivisionId");
+                _PlanningDivisionId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanningDivisionId");
+                OnPlanningDivisionIdChanged();
+            }
+        }
+        private global::System.String _PlanningDivisionId;
+        partial void OnPlanningDivisionIdChanging(global::System.String value);
+        partial void OnPlanningDivisionIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanningDivisionDescription
+        {
+            get
+            {
+                return _PlanningDivisionDescription;
+            }
+            set
+            {
+                OnPlanningDivisionDescriptionChanging(value);
+                ReportPropertyChanging("PlanningDivisionDescription");
+                _PlanningDivisionDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanningDivisionDescription");
+                OnPlanningDivisionDescriptionChanged();
+            }
+        }
+        private global::System.String _PlanningDivisionDescription;
+        partial void OnPlanningDivisionDescriptionChanging(global::System.String value);
+        partial void OnPlanningDivisionDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> PlanningDivisionActive
+        {
+            get
+            {
+                return _PlanningDivisionActive;
+            }
+            set
+            {
+                OnPlanningDivisionActiveChanging(value);
+                ReportPropertyChanging("PlanningDivisionActive");
+                _PlanningDivisionActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PlanningDivisionActive");
+                OnPlanningDivisionActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _PlanningDivisionActive;
+        partial void OnPlanningDivisionActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnPlanningDivisionActiveChanged();
 
         #endregion
     
@@ -10949,6 +11069,78 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _targetStorageAreaId;
         partial void OntargetStorageAreaIdChanging(global::System.String value);
         partial void OntargetStorageAreaIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanningDivisionId
+        {
+            get
+            {
+                return _PlanningDivisionId;
+            }
+            set
+            {
+                OnPlanningDivisionIdChanging(value);
+                ReportPropertyChanging("PlanningDivisionId");
+                _PlanningDivisionId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanningDivisionId");
+                OnPlanningDivisionIdChanged();
+            }
+        }
+        private global::System.String _PlanningDivisionId;
+        partial void OnPlanningDivisionIdChanging(global::System.String value);
+        partial void OnPlanningDivisionIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanningDivisionDescription
+        {
+            get
+            {
+                return _PlanningDivisionDescription;
+            }
+            set
+            {
+                OnPlanningDivisionDescriptionChanging(value);
+                ReportPropertyChanging("PlanningDivisionDescription");
+                _PlanningDivisionDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanningDivisionDescription");
+                OnPlanningDivisionDescriptionChanged();
+            }
+        }
+        private global::System.String _PlanningDivisionDescription;
+        partial void OnPlanningDivisionDescriptionChanging(global::System.String value);
+        partial void OnPlanningDivisionDescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> PlanningDivisionActive
+        {
+            get
+            {
+                return _PlanningDivisionActive;
+            }
+            set
+            {
+                OnPlanningDivisionActiveChanging(value);
+                ReportPropertyChanging("PlanningDivisionActive");
+                _PlanningDivisionActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PlanningDivisionActive");
+                OnPlanningDivisionActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _PlanningDivisionActive;
+        partial void OnPlanningDivisionActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnPlanningDivisionActiveChanged();
 
         #endregion
     
@@ -11015,6 +11207,133 @@ namespace HWB.NETSCALE.BOEF
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// Keine Dokumentation für Metadaten verfügbar.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HWB.NETSCALE.BOEF", Name="PlanningdivisionEntity")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PlanningdivisionEntity : ABusinessEntity
+    {
+        #region Factory-Methode
+    
+        /// <summary>
+        /// Erstellt ein neues PlanningdivisionEntity-Objekt.
+        /// </summary>
+        /// <param name="pK">Anfangswert der Eigenschaft PK.</param>
+        public static PlanningdivisionEntity CreatePlanningdivisionEntity(global::System.Int32 pK)
+        {
+            PlanningdivisionEntity planningdivisionEntity = new PlanningdivisionEntity();
+            planningdivisionEntity.PK = pK;
+            return planningdivisionEntity;
+        }
+
+        #endregion
+        #region Primitive Eigenschaften
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PK
+        {
+            get
+            {
+                return _PK;
+            }
+            set
+            {
+                if (_PK != value)
+                {
+                    OnPKChanging(value);
+                    ReportPropertyChanging("PK");
+                    _PK = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PK");
+                    OnPKChanged();
+                }
+            }
+        }
+        private global::System.Int32 _PK;
+        partial void OnPKChanging(global::System.Int32 value);
+        partial void OnPKChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                OnidChanging(value);
+                ReportPropertyChanging("id");
+                _id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("id");
+                OnidChanged();
+            }
+        }
+        private global::System.String _id;
+        partial void OnidChanging(global::System.String value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> active
+        {
+            get
+            {
+                return _active;
+            }
+            set
+            {
+                OnactiveChanging(value);
+                ReportPropertyChanging("active");
+                _active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("active");
+                OnactiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _active;
+        partial void OnactiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnactiveChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

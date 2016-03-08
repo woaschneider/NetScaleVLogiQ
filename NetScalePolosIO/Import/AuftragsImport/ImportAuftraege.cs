@@ -265,8 +265,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                                                     _boOise.orderstate = orderItem.orderItemState;
-                                                      _boOise.sequence = orderItem.sequence;
-                                                  //  _boOise.sequence = orderItemService.sequence;
+                                                   //  _boOise.sequence = orderItem.sequence;
+                                                     _boOise.sequence = orderItemService.sequence;
                                                     _boOise.serviceId = orderItemService.service.id;
                                                     _boOise.serviceDescription = orderItemService.service.description;
                                                     _boOise.identifierOItem = orderItem.identifier;
@@ -288,6 +288,21 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                     _boOise.remark = orderItemService.remark;
 
                                                     _boOise.deliveryType = orderItemService.deliveryType;
+
+
+                                                    #region PlanningDivision
+
+                                                    if (orderItemService.planningDivision != null)
+                                                    {
+                                                        _boOise.PlanningDivisionId =
+                                                            orderItemService.planningDivision.id;
+                                                        _boOise.PlanningDivisionDescription =
+                                                            orderItemService.planningDivision.description;
+                                                        _boOise.PlanningDivisionActive =
+                                                            orderItemService.planningDivision.active;
+                                                    }
+
+                                                    #endregion
 
                                                     #region ArticelInstance
 
@@ -326,30 +341,56 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                                     #endregion
 
-                                                        #region Supplier Consignee
+                                                        #region Supplier Receiver
 
-                                                    if (orderItemService.supplierOrConsignee != null)
+                                                    if (orderItemService.supplier != null)
                                                     {
                                                         _boOise.supplierOrConsigneeId =
-                                                            orderItemService.supplierOrConsignee.id;
+                                                            orderItemService.supplier.id;
                                                         _boOise.supplierOrConsigneeBusinessIdentifier =
-                                                            orderItemService.supplierOrConsignee.businessIdentifier;
+                                                            orderItemService.supplier.businessIdentifier;
                                                         _boOise.supplierOrConsigneeName =
-                                                            orderItemService.supplierOrConsignee.name;
+                                                            orderItemService.supplier.name;
                                                         _boOise.supplierOrConsigneeSubName2 =
-                                                            orderItemService.supplierOrConsignee.subName;
+                                                            orderItemService.supplier.subName;
                                                         _boOise.supplierOrConsigneeCity =
-                                                            orderItemService.supplierOrConsignee.address.city;
+                                                            orderItemService.supplier.address.city;
                                                         _boOise.supplierOrConsigneeStreet =
-                                                            orderItemService.supplierOrConsignee.address.street;
+                                                            orderItemService.supplier.address.street;
                                                         _boOise.supplierOrConsigneeZipCode =
-                                                            orderItemService.supplierOrConsignee.address.zipCode;
+                                                            orderItemService.supplier.address.zipCode;
                                                         _boOise.supplierOrConsigneedIdCountry =
-                                                            orderItemService.supplierOrConsignee.address.country.id;
+                                                            orderItemService.supplier.address.country.id;
 
                                                         _boOise.supplierOrConsigneeIsocodeCountry =
-                                                            orderItemService.supplierOrConsignee.address.country.isoCode;
+                                                            orderItemService.supplier.address.country.isoCode;
                                                     }
+
+                                                   //TODO Fall doch beides kommen kann müssen wir hier noch nachbessern
+                                                    if (orderItemService.receiver != null)
+                                                    {
+                                                        _boOise.supplierOrConsigneeId =
+                                                            orderItemService.receiver.id;
+                                                        _boOise.supplierOrConsigneeBusinessIdentifier =
+                                                            orderItemService.receiver.businessIdentifier;
+                                                        _boOise.supplierOrConsigneeName =
+                                                            orderItemService.receiver.name;
+                                                        _boOise.supplierOrConsigneeSubName2 =
+                                                            orderItemService.receiver.subName;
+                                                        _boOise.supplierOrConsigneeCity =
+                                                            orderItemService.receiver.address.city;
+                                                        _boOise.supplierOrConsigneeStreet =
+                                                            orderItemService.receiver.address.street;
+                                                        _boOise.supplierOrConsigneeZipCode =
+                                                            orderItemService.receiver.address.zipCode;
+                                                        _boOise.supplierOrConsigneedIdCountry =
+                                                            orderItemService.receiver.address.country.id;
+
+                                                        _boOise.supplierOrConsigneeIsocodeCountry =
+                                                            orderItemService.receiver.address.country.isoCode;
+                                                    }
+
+
 
                                                     #endregion
 

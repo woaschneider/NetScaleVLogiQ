@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.EntityClient;
 using System.Linq;
-
+using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.Data;
@@ -50,7 +50,9 @@ namespace HWB.NETSCALE.BOEF
         public mmBindingList<OrderItemserviceEntity> GetByParentPK(int pk)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
-                where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false & o.HasBinUsed==false
+                where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false & o.HasBinUsed == false
+                      & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)  
+            
               
             select o;
             var uRet = GetEntityList(query);

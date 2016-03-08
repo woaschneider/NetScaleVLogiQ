@@ -35,6 +35,14 @@
           <EntitySet Name="OrderArticleAttribute" EntityType="$namespace$.Target.OrderArticleAttribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orderitem" EntityType="$namespace$.Target.Orderitem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderItemservice" EntityType="$namespace$.Target.OrderItemservice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Planningdivision" EntityType="$namespace$.Target.Planningdivision" store:Type="Tables" store:Schema="dbo" store:Name="Planningdivision">
+            <DefiningQuery>SELECT 
+      [Planningdivision].[PK] AS [PK], 
+      [Planningdivision].[id] AS [id], 
+      [Planningdivision].[description] AS [description], 
+      [Planningdivision].[active] AS [active]
+      FROM [dbo].[Planningdivision] AS [Planningdivision]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Services" EntityType="$namespace$.Target.Services" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" />
@@ -297,6 +305,10 @@
           <Property Name="MakeInvisibleSendedOrderItems" Type="bit" />
           <Property Name="WiegescheinNr" Type="int" />
           <Property Name="ExportRestCreateOrderUrl" Type="varchar" MaxLength="200" />
+          <Property Name="ImpRESTServerPlanningDivision" Type="varchar" MaxLength="200" />
+          <Property Name="PlanningDivisionId" Type="varchar" MaxLength="64" />
+          <Property Name="PlanningDivisionDescription" Type="varchar" MaxLength="128" />
+          <Property Name="PlanningDivisionActive" Type="bit" />
         </EntityType>
         <EntityType Name="ErrorLog">
           <Key>
@@ -561,6 +573,21 @@
           <Property Name="orderstate" Type="varchar" MaxLength="32" />
           <Property Name="actualStorageAreaId" Type="varchar" MaxLength="64" />
           <Property Name="targetStorageAreaId" Type="varchar" MaxLength="64" />
+          <Property Name="PlanningDivisionId" Type="varchar" MaxLength="64" />
+          <Property Name="PlanningDivisionDescription" Type="varchar" MaxLength="128" />
+          <Property Name="PlanningDivisionActive" Type="bit" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RMLogiQ.dbo.Planningdivision' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
+      -->
+        <EntityType Name="Planningdivision">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="varchar" MaxLength="64" />
+          <Property Name="description" Type="varchar" MaxLength="128" />
+          <Property Name="active" Type="bit" />
         </EntityType>
         <EntityType Name="Produkte">
           <Key>
@@ -870,6 +897,7 @@
           </AssociationSet>
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
           <EntitySet Name="ArtikelEntities" EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" />
+          <EntitySet Name="PlanningdivisionEntities" EntityType="HWB.NETSCALE.BOEF.PlanningdivisionEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1309,6 +1337,10 @@
           <Property Type="Boolean" Name="MakeInvisibleSendedOrderItems" />
           <Property Type="Int32" Name="WiegescheinNr" />
           <Property Type="String" Name="ExportRestCreateOrderUrl" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImpRESTServerPlanningDivision" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlanningDivisionId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlanningDivisionDescription" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="PlanningDivisionActive" />
         </EntityType>
         <EntityType Name="ProdukteEntity">
           <Key>
@@ -1440,6 +1472,9 @@
           <Property Type="String" Name="targetStorageAreaId" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderArticleAttributes" Relationship="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" FromRole="OrderItemservice" ToRole="OrderArticleAttributeEntity" />
           <NavigationProperty Name="Orderitem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderItemservice" ToRole="OrderitemEntity" />
+          <Property Type="String" Name="PlanningDivisionId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlanningDivisionDescription" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="PlanningDivisionActive" />
         </EntityType>
         <Association Name="Artikel_hat_Attribute">
           <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="0..1" />
@@ -1645,6 +1680,15 @@
           <Property Type="String" Name="kindOfGoodId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ownerBI" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="attributes_as_json" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PlanningdivisionEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="id" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="active" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2062,6 +2106,10 @@
           <EntitySetMapping Name="EinstellungenEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
               <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="PlanningDivisionActive" ColumnName="PlanningDivisionActive" />
+                <ScalarProperty Name="PlanningDivisionDescription" ColumnName="PlanningDivisionDescription" />
+                <ScalarProperty Name="PlanningDivisionId" ColumnName="PlanningDivisionId" />
+                <ScalarProperty Name="ImpRESTServerPlanningDivision" ColumnName="ImpRESTServerPlanningDivision" />
                 <ScalarProperty Name="ExportRestCreateOrderUrl" ColumnName="ExportRestCreateOrderUrl" />
                 <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
                 <ScalarProperty Name="MakeInvisibleSendedOrderItems" ColumnName="MakeInvisibleSendedOrderItems" />
@@ -2149,6 +2197,9 @@
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="PlanningDivisionActive" ColumnName="PlanningDivisionActive" />
+                <ScalarProperty Name="PlanningDivisionDescription" ColumnName="PlanningDivisionDescription" />
+                <ScalarProperty Name="PlanningDivisionId" ColumnName="PlanningDivisionId" />
                 <ScalarProperty Name="targetStorageAreaId" ColumnName="targetStorageAreaId" />
                 <ScalarProperty Name="actualStorageAreaId" ColumnName="actualStorageAreaId" />
                 <ScalarProperty Name="orderstate" ColumnName="orderstate" />
@@ -2402,6 +2453,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PlanningdivisionEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.PlanningdivisionEntity">
+              <MappingFragment StoreEntitySet="Planningdivision">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2451,7 +2512,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="7.875" PointY="14" Height="19.287415364583325" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="3.9033007812500102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ExportLogEntity" Width="1.5" PointX="12.375" PointY="0.75" Height="2.5571907552083246" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="0.75" PointY="9.75" Height="7.36472656250001" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="2.5" PointX="0.75" PointY="9.75" Height="7.7493294270833353" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="7" PointY="38.25" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArbeitsleistungsfilterEntity" Width="1.5" PointX="17.5" PointY="8.125" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ServEntity" Width="1.5" PointX="9.25" PointY="38.25" Height="1.9802864583333246" />
@@ -2473,6 +2534,7 @@
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="11.375" PointY="12.75" Height="27.748678385416667" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="13.375" PointY="12.75" Height="6.9801236979166674" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.PlanningdivisionEntity" Width="1.5" PointX="14.375" PointY="0.75" Height="1.7879850260416674" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

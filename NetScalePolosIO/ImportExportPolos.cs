@@ -12,6 +12,7 @@ using NetScalePolosIO.Import.AuftragsImport;
 using NetScalePolosIO.Import.KindOfGoodsImport;
 using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
+using NetScalePolosIO.Import.PlanningDivisionImport;
 using NetScalePolosIO.Logging;
 using OakLeaf.MM.Main.Collections;
 
@@ -148,6 +149,12 @@ namespace NetScalePolosIO
             new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId()  ,   boEe.ImpRESTServertArticleAttributesUrl);
             // Lagerplätze
             new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
+           //  PlanningDevision
+            new ImportPlanningDivison().Import(e.Argument.ToString(), GetLocationId(),
+                boEe.ImpRESTServerPlanningDivision);
+
+
+
             Log.Instance.Info("Stammdatenimport wurde beendet!");
         }
 

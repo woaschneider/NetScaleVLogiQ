@@ -99,6 +99,8 @@
     <Compile Include="Import\KindOfGoodsImport\PolosKindsOfGoods.cs" />
     <Compile Include="Import\LagerPlaetzeImport\ImportStorageArea.cs" />
     <Compile Include="Import\LagerPlaetzeImport\PolosStorageArea.cs" />
+    <Compile Include="Import\PlanningDivisionImport\ImportPlanningDivison.cs" />
+    <Compile Include="Import\PlanningDivisionImport\PolosPlanningdivison.cs" />
     <Compile Include="Import\ProductsImport\ImportProducts.cs" />
     <Compile Include="Import\ProductsImport\PolosProducts.cs" />
     <Compile Include="PolosUtitlities.cs" />

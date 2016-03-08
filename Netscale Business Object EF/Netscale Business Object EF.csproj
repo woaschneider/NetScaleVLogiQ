@@ -190,6 +190,11 @@
     <Compile Include="Orderitem\OrderitemEntity.cs" />
     <Compile Include="Orderitem\OrderitemRules.cs" />
     <Compile Include="Orderitem\OrderitemRules.Partial.cs" />
+    <Compile Include="Planningdivision\Planningdivision.cs" />
+    <Compile Include="Planningdivision\Planningdivision.Partial.cs" />
+    <Compile Include="Planningdivision\PlanningdivisionEntity.cs" />
+    <Compile Include="Planningdivision\PlanningdivisionRules.cs" />
+    <Compile Include="Planningdivision\PlanningdivisionRules.Partial.cs" />
     <Compile Include="Produkte\Produkte.cs" />
     <Compile Include="Produkte\Produkte.Partial.cs" />
     <Compile Include="Produkte\ProdukteEntity.cs" />

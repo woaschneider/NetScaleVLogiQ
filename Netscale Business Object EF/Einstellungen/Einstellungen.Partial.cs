@@ -85,6 +85,21 @@ namespace HWB.NETSCALE.BOEF
             }
         }
 
+
+
+        public string GetPlanningDivisionId()
+        {
+            IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities
+                                                    select E;
+            EinstellungenEntity oEE = this.GetEntity(query);
+
+          
+                    return oEE.PlanningDivisionId;
+           
+            
+        }
+
+
         public bool GetMaxGewichtValidieren()
         {
             IQueryable<EinstellungenEntity> query = from E in this.ObjectContext.EinstellungenEntities

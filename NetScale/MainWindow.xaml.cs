@@ -54,6 +54,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
                 goApp.MaxGewicht = boE.GetMaxGewicht();
                 goApp.MaxGewichtValidieren = boE.GetMaxGewichtValidieren();
+                goApp.planningDivisionId = boE.GetPlanningDivisionId();
 
                 Lokaleeinstellungen oLE = new Lokaleeinstellungen();
                 oLE = oLE.Load();
@@ -142,6 +143,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 // DEFAULT Mandant PK eintragen
                 Mandant boM = new Mandant();
                 goApp.Mandant_PK = boM.GetDefaultMandantPK();
+
+              
 
 
 
