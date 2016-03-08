@@ -1,26 +1,21 @@
 ﻿using System;
-using System.ComponentModel;
+
 using System.Drawing.Printing;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Mime;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
+
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Navigation;
+
 using combit.ListLabel20;
 using HWB.NETSCALE.BOEF;
-using HWB.NETSCALE.BOEF.User;
+
 
 using HWB.NETSCALE.GLOBAL;
-using OakLeaf.MM.Main;
+
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 using MessageBox = System.Windows.MessageBox;
@@ -36,7 +31,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// <summary>
         /// Constructor
         /// </summary>
-        private NETSCALE.BOEF.Lokaleeinstellungen oLE;
+        private Lokaleeinstellungen oLE;
 
         private Einstellungen boE;
         private EinstellungenEntity boEE;
@@ -50,8 +45,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         public ProgrammeinstellungenFrm()
         {
-            this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
-            this.InitializeComponent();
+            Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+            InitializeComponent();
 
             FillPrinterDataGrid();
 
@@ -78,7 +73,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 boE.SaveEntity(boEE);
             }
 
-          this.DataContext = boEE;
+          DataContext = boEE;
             cbPdfaktiv.IsChecked = boEE.LsAsPdf;
             // Nur weil man das schnell vergißt:
             // Val. MaxGewicht u. Ein/Aus der selben ist nicht lokal sondern in der Servertabelle "Einstellungen" abgelegt.
@@ -162,10 +157,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
             // Add list of installed printers found to the combo box.
             // The pkInstalledPrinters string will be used to provide the display string.
-            String pkInstalledPrinters;
             for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
             {
-                pkInstalledPrinters = PrinterSettings.InstalledPrinters[i];
+                var pkInstalledPrinters = PrinterSettings.InstalledPrinters[i];
 
                 combo_LISTE_InstalledPrinters.Items.Add(pkInstalledPrinters);
             }
@@ -309,22 +303,22 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            Hide();
         }
 
 
         private void cmdEditLS_Click(object sender, RoutedEventArgs e)
         {
            
-              ListLabel LL = new ListLabel();
-              LL.LicensingInfo = "9yJKEQ";
+              ListLabel ll = new ListLabel();
+              ll.LicensingInfo = "9yJKEQ";
             Waege boW = new Waege();
            int  uRet=
             boW.GetLastWaegung();
            combit.ListLabel20.DataProviders.ObjectDataProvider oDP = boW.GetWaegungOdpbyPk(uRet);
 
-            LL.Variables.Add("Scheinbezeichnung", "Wiegenote");
-            LL.Variables.Add("Original_Kopie", "Original");
+            ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
+            ll.Variables.Add("Original_Kopie", "Original");
 
             //// Unterschriftendatei
             //User boU = new User();
@@ -347,13 +341,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             //// Unterschrift Ende
 
 
-            LL.DataSource = oDP;
+            ll.DataSource = oDP;
 
 
-            LL.AutoProjectType = LlProject.Label;
+            ll.AutoProjectType = LlProject.Label;
             try
             {
-                LL.Design();
+                ll.Design();
             }
             catch (ListLabelException ex)
             {
@@ -541,10 +535,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void tb_erstw_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (!HWB.MyFunctions.InList(tb_erstw.Text, "1", "2"))
+            if (!MyFunctions.InList(tb_erstw.Text, "1", "2"))
                 tb_erstw.Text = "1";
 
-            if (!HWB.MyFunctions.InList(tb_zweitw.Text, "1", "2"))
+            if (!MyFunctions.InList(tb_zweitw.Text, "1", "2"))
                 tb_zweitw.Text = "1";
         }
 
@@ -602,6 +596,31 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 passwordBoxConsumerKey.IsEnabled = true;
                 passwordBoxConsumerSecret.IsEnabled = true;
             }
+        }
+
+        private void CmdDispoListe_OnClick(object sender, RoutedEventArgs e)
+        {
+            DispoBereichListeFrm oDFrm = new DispoBereichListeFrm();
+
+            oDFrm.ShowDialog();
+            int uRet = oDFrm.URet;
+            Planningdivision boP = new Planningdivision();
+            PlanningdivisionEntity boPe = boP.GetByPk(uRet);
+            if (boPe != null)
+            {
+                boEE.PlanningDivisionId = boPe.id;
+                boEE.PlanningDivisionDescription = boPe.description;
+                boEE.PlanningDivisionActive = boPe.active;
+                goApp.planningDivisionId = boPe.id;
+            }
+            else
+            {
+                boEE.PlanningDivisionId = null;
+                boEE.PlanningDivisionDescription = null;
+                boEE.PlanningDivisionActive = null;
+            }
+
+            oDFrm.Close();
         }
     }
 }

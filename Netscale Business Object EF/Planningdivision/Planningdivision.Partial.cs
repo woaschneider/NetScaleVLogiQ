@@ -30,5 +30,22 @@ namespace HWB.NETSCALE.BOEF
                                                    select p;
             return GetEntity(query);
         }
+
+        public PlanningdivisionEntity GetByPk(int pk)
+        {
+            IQueryable<PlanningdivisionEntity> query = from p in ObjectContext.PlanningdivisionEntities
+                                                       where p.PK == pk
+                                                       select p;
+            return GetEntity(query);
+        }
+
+        public mmBindingList<PlanningdivisionEntity> GetAll()
+        {
+
+            IQueryable<PlanningdivisionEntity> query = from a in ObjectContext.PlanningdivisionEntities
+                                              orderby a.description
+                                              select a;
+            return GetEntityList(query);
+        }
 	}
 }

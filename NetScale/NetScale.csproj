@@ -176,6 +176,12 @@
     <Compile Include="Forms\CFListFrm.xaml.cs">
       <DependentUpon>CFListFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DispobereichEditFrm.xaml.cs">
+      <DependentUpon>DispobereichEditFrm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DispoBereichListeFrm.xaml.cs">
+      <DependentUpon>DispoBereichListeFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ErrorLogFrm.xaml.cs">
       <DependentUpon>ErrorLogFrm.xaml</DependentUpon>
     </Compile>
@@ -306,6 +312,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\CFListFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DispobereichEditFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DispoBereichListeFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
