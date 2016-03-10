@@ -265,8 +265,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                                                     _boOise.orderstate = orderItem.orderItemState;
-                                                   //  _boOise.sequence = orderItem.sequence;
-                                                     _boOise.sequence = orderItemService.sequence;
+                                                     _boOise.sequenceOItem = orderItem.sequence;
+                                                     _boOise.sequenceOItemService = orderItemService.sequence;
                                                     _boOise.serviceId = orderItemService.service.id;
                                                     _boOise.serviceDescription = orderItemService.service.description;
                                                     _boOise.identifierOItem = orderItem.identifier;
@@ -334,7 +334,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         #region // service
 
                                                         _boOise.targedAmount =
-                                                            (decimal)orderItemService.service.targedAmount;
+                                                            (decimal) orderItemService.targetAmount;
 
                                                         #endregion
                                                     }

@@ -36,7 +36,7 @@ namespace HWB.NETSCALE.BOEF
                 if (this.Entity.Waegung == 1 && Entity.identifierOItem != null)
                 {
                     OrderItemservice boOES = new OrderItemservice();
-                    OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifierOItem);
+                    OrderItemserviceEntity boOEISe = boOES.GetByOrderIdentifierItemService(Entity.identifierOItemService);
                     if (boOEISe != null)
                     {  
                         boOEISe.HasBinUsed = true;
@@ -52,7 +52,7 @@ namespace HWB.NETSCALE.BOEF
                     if (this.Entity.Waegung == 1 && Entity.identifierOItem != null)
                     {
                         OrderItemservice boOES = new OrderItemservice();
-                        OrderItemserviceEntity boOEISe = boOES.GetByIdentitifier(Entity.identifierOItem);
+                        OrderItemserviceEntity boOEISe = boOES.GetByOrderIdentifierItemService(Entity.identifierOItemService);
                         if (boOEISe != null)
                         {
                             boOEISe.HasBinUsed = false;
@@ -709,7 +709,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.number = _boOIE.number; // Auftrasgnummer
                 // Detail
                 Entity.identifierOItemService = _boOISE.identifierOItemService;
-                Entity.sequence = _boOISE.sequence;
+                Entity.sequence = _boOISE.sequenceOItemService;
                 Entity.productid = _boOISE.product;
                 Entity.productdescription = _boOISE.productdescription;
                 Entity.identifierOItem = _boOISE.identifierOItem;

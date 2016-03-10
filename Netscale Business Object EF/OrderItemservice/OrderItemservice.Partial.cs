@@ -39,6 +39,15 @@ namespace HWB.NETSCALE.BOEF
                                                        select o;
             return GetEntity(query);
         }
+        public OrderItemserviceEntity GetByOrderIdentifierItemService(string id)
+        {
+            IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
+                                                       where o.identifierOItemService == id
+
+                                                       select o;
+            return GetEntity(query);
+        }
+
         public OrderItemserviceEntity GetByIdentitifier(string ident)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
@@ -50,13 +59,13 @@ namespace HWB.NETSCALE.BOEF
         public mmBindingList<OrderItemserviceEntity> GetByParentPK(int pk)
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
-                where o.PKOrderItem == pk & o.InvisibleSendedOrderItems == false & o.HasBinUsed == false
-                      & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)  
+                where o.PKOrderItem == pk & o.HasBinSended == false  & o.HasBinUsed == false
+                     // & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)  
             
               
             select o;
             var uRet = GetEntityList(query);
-            uRet.OrderBy(oo => int.Parse(oo.sequence)); // Strings numerisch sortiert
+            uRet.OrderBy(oo => int.Parse(oo.sequenceOItem)); // Strings numerisch sortiert
             return uRet ;
 
         }

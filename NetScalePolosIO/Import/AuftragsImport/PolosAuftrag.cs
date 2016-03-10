@@ -138,7 +138,7 @@ public class OrderItemService
     public Service service { get; set; }
     public Clearance clearance { get; set; }
     public PlanningDivision planningDivision { get; set; }
- //   public double targetAmount { get; set; }
+     public double targetAmount { get; set; }
     public string actualStorageAreaId { get; set; }
     public string targetStorageAreaId { get; set; }
     public string deliveryType { get; set; }

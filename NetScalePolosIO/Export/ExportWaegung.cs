@@ -238,12 +238,14 @@ namespace NetScalePolosIO.Export
 
         private static void SetOrderItemServiceAsSend(WaegeEntity we)
         {
+            // Änderung Bug
             OrderItemservice oIe = new OrderItemservice();
-            OrderItemserviceEntity oIes = oIe.GetByPK(we.PK);
+            OrderItemserviceEntity oIes = oIe.GetByOrderIdentifierItemService(we.identifierOItemService);
             if (oIes != null)
             {
                 oIes.HasBinSended = true;
-                oIe.SaveEntity(oIes);
+                oIes.HasBinUsed = true;
+              var uRet=  oIe.SaveEntity(oIes);
             }
         }
 

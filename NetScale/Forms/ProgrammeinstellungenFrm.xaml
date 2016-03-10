@@ -982,12 +982,12 @@
                            VerticalAlignment="Top"
                            Content="Dispobereich" />
                     <Button Name="cmdDispoListe"
-                            Click="CmdDispoListe_OnClick"
                             Width="25"
                             Height="25"
                             Margin="307,48,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
+                            Click="CmdDispoListe_OnClick"
                             Content="..." />
                 </Grid>
             </TabItem>

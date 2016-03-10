@@ -94,7 +94,8 @@
             </DataGrid.DataContext>
             <DataGrid.Columns>
 
-                <DataGridTextColumn Binding="{Binding sequence}" Header="Seq." />
+                <DataGridTextColumn Binding="{Binding sequenceOItem}" Header="SeqOI." />
+                <DataGridTextColumn Binding="{Binding sequenceOItemService}" Header="SeqOIS." />
                 <DataGridTextColumn Binding="{Binding PlanningDivisionDescription}" Header="Dispobreich" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
                 <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikel-Bezeichnung" />

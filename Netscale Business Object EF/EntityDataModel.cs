@@ -521,22 +521,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
-        {
-            get
-            {
-                if ((_OrderItemserviceEntities == null))
-                {
-                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
-                }
-                return _OrderItemserviceEntities;
-            }
-        }
-        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<WaegeEntity> WaegeEntities
         {
             get
@@ -581,6 +565,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<PlanningdivisionEntity> _PlanningdivisionEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<OrderItemserviceEntity> OrderItemserviceEntities
+        {
+            get
+            {
+                if ((_OrderItemserviceEntities == null))
+                {
+                    _OrderItemserviceEntities = base.CreateObjectSet<OrderItemserviceEntity>("OrderItemserviceEntities");
+                }
+                return _OrderItemserviceEntities;
+            }
+        }
+        private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -810,14 +810,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
-        {
-            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
@@ -839,6 +831,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToPlanningdivisionEntities(PlanningdivisionEntity planningdivisionEntity)
         {
             base.AddObject("PlanningdivisionEntities", planningdivisionEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'OrderItemserviceEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
+        {
+            base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
         }
 
         #endregion
@@ -9515,24 +9515,24 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String sequence
+        public global::System.String sequenceOItem
         {
             get
             {
-                return _sequence;
+                return _sequenceOItem;
             }
             set
             {
-                OnsequenceChanging(value);
-                ReportPropertyChanging("sequence");
-                _sequence = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("sequence");
-                OnsequenceChanged();
+                OnsequenceOItemChanging(value);
+                ReportPropertyChanging("sequenceOItem");
+                _sequenceOItem = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sequenceOItem");
+                OnsequenceOItemChanged();
             }
         }
-        private global::System.String _sequence;
-        partial void OnsequenceChanging(global::System.String value);
-        partial void OnsequenceChanged();
+        private global::System.String _sequenceOItem;
+        partial void OnsequenceOItemChanging(global::System.String value);
+        partial void OnsequenceOItemChanged();
     
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
@@ -11141,6 +11141,30 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _PlanningDivisionActive;
         partial void OnPlanningDivisionActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnPlanningDivisionActiveChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String sequenceOItemService
+        {
+            get
+            {
+                return _sequenceOItemService;
+            }
+            set
+            {
+                OnsequenceOItemServiceChanging(value);
+                ReportPropertyChanging("sequenceOItemService");
+                _sequenceOItemService = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sequenceOItemService");
+                OnsequenceOItemServiceChanged();
+            }
+        }
+        private global::System.String _sequenceOItemService;
+        partial void OnsequenceOItemServiceChanging(global::System.String value);
+        partial void OnsequenceOItemServiceChanged();
 
         #endregion
     
