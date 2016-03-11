@@ -39,6 +39,10 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     Log.Instance.Error("Warenarten-Import:Request HttpStatusCode " + response.StatusCode);
+                    if (response.StatusCode == 0)
+                    {
+                        Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
+                    }
                     return false;
                 }
             

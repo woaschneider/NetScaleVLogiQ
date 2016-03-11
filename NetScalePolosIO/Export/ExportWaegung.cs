@@ -183,7 +183,7 @@ namespace NetScalePolosIO.Export
                 var client = new RestClient(baseUrl);
 
                 client.ClearHandlers();
-
+                client.Timeout = 15000;
 
                 var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
 
@@ -209,9 +209,18 @@ namespace NetScalePolosIO.Export
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     WriteToExportLog(response, boWe);
+                    
+                            Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
+                    if (response.StatusCode == 0)
+                    {
+                        Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
 
+                    }
                     return;
                 }
+
+
+
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     Waege w = new Waege();
@@ -225,7 +234,9 @@ namespace NetScalePolosIO.Export
                         SetOrderItemServiceAsSend(we);
                         WriteToExportLog(response, boWe);
                     }
+                  
                 }
+
 
 
                 WriteToExportLog(response, boWe);

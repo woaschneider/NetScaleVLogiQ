@@ -43,6 +43,10 @@ namespace NetScalePolosIO.Import.AddressImport
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     Log.Instance.Error("Adressen-Import:Request HttpStatusCode " + response.StatusCode);
+                    if (response.StatusCode == 0)
+                    {
+                        Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
+                    }
                     return;
                 }
                 
