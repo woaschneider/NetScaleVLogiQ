@@ -28,7 +28,7 @@ namespace NetScalePolosIO.Import.PlanningDivisionImport
                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
-
+                client.Timeout = 15000;
            //     var request = new RestRequest("/rest/data/storageareas") {Method = Method.GET};
                 var request = new RestRequest(url) { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
@@ -39,7 +39,10 @@ namespace NetScalePolosIO.Import.PlanningDivisionImport
                    string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Instance.Error("Dispobereiche-Import:Request HttpStatusCode " + response.StatusCode);
                     return false;
+                }
             
 
                 var oP = JsonConvert.DeserializeObject<PlanningDivisonRootObject>(response.Content);

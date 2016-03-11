@@ -24,7 +24,7 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
-
+                client.Timeout = 15000;
            //     var request = new RestRequest("/rest/data/storageareas") {Method = Method.GET};
                 var request = new RestRequest(url) { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
@@ -35,7 +35,11 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
                    string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Instance.Error("Storage-Area-Import:Request HttpStatusCode " + response.StatusCode);
                     return false;
+
+                }
             
 
                 var oL = JsonConvert.DeserializeObject<LagerPlaetzeRootObject>(response.Content);

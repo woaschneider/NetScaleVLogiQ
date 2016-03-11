@@ -23,7 +23,7 @@ namespace NetScalePolosIO.Import.ProductsImport
                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
-
+                client.Timeout = 15000;
                 //     var request = new RestRequest("/rest/data/products") {Method = Method.GET};
                 var request = new RestRequest("/rest/data/products") {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
@@ -37,6 +37,7 @@ namespace NetScalePolosIO.Import.ProductsImport
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
+                    Log.Instance.Error("Produkte-Import:Request HttpStatusCode " + response.StatusCode);
                     return false;
                 }
 

@@ -2,6 +2,7 @@
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -24,7 +25,7 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
-
+                client.Timeout = 15000;
              //   var request = new RestRequest("/rest/data/kindofgoods") {Method = Method.GET};
                 var request = new RestRequest(url) { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
@@ -36,7 +37,10 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
                    string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Instance.Error("Warenarten-Import:Request HttpStatusCode " + response.StatusCode);
                     return false;
+                }
             
 
                 var oK = JsonConvert.DeserializeObject<KindOfGoodsImportRootObject>(response.Content);

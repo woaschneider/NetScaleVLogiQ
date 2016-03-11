@@ -28,7 +28,7 @@ namespace NetScalePolosIO.Import.AddressImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
 
-
+                client.Timeout = 15000;
                 var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location);
                 request.AddHeader("Accept-Language", "de");
@@ -42,7 +42,7 @@ namespace NetScalePolosIO.Import.AddressImport
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    Log.Instance.Error("AP-Import:Request HttpStatusCode " + response.StatusCode);
+                    Log.Instance.Error("Adressen-Import:Request HttpStatusCode " + response.StatusCode);
                     return;
                 }
                 

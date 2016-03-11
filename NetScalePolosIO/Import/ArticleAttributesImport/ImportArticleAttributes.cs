@@ -2,6 +2,7 @@
 using System.Net;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.POLOSIO.ArticleAttributes;
+using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
@@ -21,7 +22,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
-
+                client.Timeout = 15000;
                 var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
                 request.AddHeader("Accept-Language", "de");
@@ -33,7 +34,10 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                    string.Empty, string.Empty);
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Instance.Error("Artikelattribute-Import:Request HttpStatusCode " + response.StatusCode);
                     return;
+                }
 
 
                 var oA = JsonConvert.DeserializeObject<ArticleAttributesRootObject>(response.Content);

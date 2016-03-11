@@ -33,7 +33,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
                 //  var request = new RestRequest("/rest/order/query/200/1?status=NEW");
-                //  
+                client.Timeout = 15000; 
                 var request = new RestRequest(url + "200/1") { Method = Method.GET };
                 request.AddHeader("X-location-Id", location.ToString());
                 request.AddHeader("Accept-Language", "de");
@@ -51,7 +51,10 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Instance.Error("Auftrag-Import:Request HttpStatusCode " + response.StatusCode);
                     return false;
+                }
 
 
                 var oOi = JsonConvert.DeserializeObject<RootObject>(response.Content);

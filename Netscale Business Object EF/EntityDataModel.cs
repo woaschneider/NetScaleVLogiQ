@@ -521,22 +521,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// Keine Dokumentation für Metadaten verfügbar.
         /// </summary>
-        public ObjectSet<WaegeEntity> WaegeEntities
-        {
-            get
-            {
-                if ((_WaegeEntities == null))
-                {
-                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
-                }
-                return _WaegeEntities;
-            }
-        }
-        private ObjectSet<WaegeEntity> _WaegeEntities;
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
         public ObjectSet<ArtikelEntity> ArtikelEntities
         {
             get
@@ -581,6 +565,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<OrderItemserviceEntity> _OrderItemserviceEntities;
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        public ObjectSet<WaegeEntity> WaegeEntities
+        {
+            get
+            {
+                if ((_WaegeEntities == null))
+                {
+                    _WaegeEntities = base.CreateObjectSet<WaegeEntity>("WaegeEntities");
+                }
+                return _WaegeEntities;
+            }
+        }
+        private ObjectSet<WaegeEntity> _WaegeEntities;
 
         #endregion
         #region AddTo-Methoden
@@ -810,14 +810,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
-        /// </summary>
-        public void AddToWaegeEntities(WaegeEntity waegeEntity)
-        {
-            base.AddObject("WaegeEntities", waegeEntity);
-        }
-    
-        /// <summary>
         /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'ArtikelEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
         /// </summary>
         public void AddToArtikelEntities(ArtikelEntity artikelEntity)
@@ -839,6 +831,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToOrderItemserviceEntities(OrderItemserviceEntity orderItemserviceEntity)
         {
             base.AddObject("OrderItemserviceEntities", orderItemserviceEntity);
+        }
+    
+        /// <summary>
+        /// Veraltete Methode zum Hinzufügen eines neuen Objekts zum EntitySet 'WaegeEntities'. Verwenden Sie stattdessen die Methode '.Add' der zugeordneten Eigenschaft 'ObjectSet&lt;T&gt;'.
+        /// </summary>
+        public void AddToWaegeEntities(WaegeEntity waegeEntity)
+        {
+            base.AddObject("WaegeEntities", waegeEntity);
         }
 
         #endregion
@@ -13389,30 +13389,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String sequence
-        {
-            get
-            {
-                return _sequence;
-            }
-            set
-            {
-                OnsequenceChanging(value);
-                ReportPropertyChanging("sequence");
-                _sequence = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("sequence");
-                OnsequenceChanged();
-            }
-        }
-        private global::System.String _sequence;
-        partial void OnsequenceChanging(global::System.String value);
-        partial void OnsequenceChanged();
-    
-        /// <summary>
-        /// Keine Dokumentation für Metadaten verfügbar.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String articleId
         {
             get
@@ -15639,6 +15615,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _attributes_as_json;
         partial void Onattributes_as_jsonChanging(global::System.String value);
         partial void Onattributes_as_jsonChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String sequenceOItem
+        {
+            get
+            {
+                return _sequenceOItem;
+            }
+            set
+            {
+                OnsequenceOItemChanging(value);
+                ReportPropertyChanging("sequenceOItem");
+                _sequenceOItem = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sequenceOItem");
+                OnsequenceOItemChanged();
+            }
+        }
+        private global::System.String _sequenceOItem;
+        partial void OnsequenceOItemChanging(global::System.String value);
+        partial void OnsequenceOItemChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String sequenceOItemService
+        {
+            get
+            {
+                return _sequenceOItemService;
+            }
+            set
+            {
+                OnsequenceOItemServiceChanging(value);
+                ReportPropertyChanging("sequenceOItemService");
+                _sequenceOItemService = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("sequenceOItemService");
+                OnsequenceOItemServiceChanged();
+            }
+        }
+        private global::System.String _sequenceOItemService;
+        partial void OnsequenceOItemServiceChanging(global::System.String value);
+        partial void OnsequenceOItemServiceChanged();
 
         #endregion
     

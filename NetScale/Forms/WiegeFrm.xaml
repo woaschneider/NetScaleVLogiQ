@@ -34,7 +34,7 @@
                    Stroke="Black" />
         <Rectangle Width="474"
                    Height="361"
-                   Margin="697,377,0,0"
+                   Margin="696,377,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Fill="#FF87B3DD"
@@ -438,7 +438,6 @@
                TabIndex="100"
                Target="{Binding ElementName=txtKfzKennzeichen}" />
         <TextBox x:Name="txtFrachtführer"
-               
                  Width="436"
                  Height="23"
                  Margin="151,199,0,0"
@@ -587,12 +586,12 @@
                Content="gepl. Leistungsdatum"
                TabIndex="440" />
         <TextBox x:Name="txtAuftraggeber_Copy3"
-                   IsReadOnly="True"
                  Width="436"
                  Height="23"
                  Margin="151,290,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 IsReadOnly="True"
                  TabIndex="230"
                  Text="{Binding IstQuellLagerPlatz}" />
         <Label x:Name="lblIstQuellLagerplatz"
@@ -1388,13 +1387,13 @@
                 </StackPanel>
             </xctk:SplitButton.DropDownContent>
         </xctk:SplitButton>
-        <TextBox Name="textBox24" 
-                   IsReadOnly="True"
+        <TextBox Name="textBox24"
                  Width="436"
                  Height="23"
                  Margin="151,265,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
+                 IsReadOnly="True"
                  TabIndex="160"
                  Text="{Binding productdescription}" />
         <Label Name="label35"
@@ -1876,21 +1875,21 @@
         <TextBox Name="textBox49"
                  Width="263"
                  Height="23"
-                 Margin="150,344,0,0"
+                 Margin="150,345,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  IsReadOnly="True"
                  TabIndex="240"
                  Text="{Binding number}" />
         <TextBox Name="textBox50"
-                 Width="168"
+                 Width="85"
                  Height="23"
-                 Margin="419,343,0,0"
+                 Margin="415,345,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  IsReadOnly="True"
                  TabIndex="245"
-                 Text="{Binding sequence}" />
+                 Text="{Binding sequenceOItem}" />
         <Button Name="buttonArtickeAttr"
                 Width="38.333"
                 Height="22"
@@ -1900,5 +1899,14 @@
                 Click="buttonArtickeAttr_Click">
             <StackPanel />
         </Button>
+        <TextBox Name="textBox33"
+                 Width="85"
+                 Height="23"
+                 Margin="502,345,0,0"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 TabIndex="245"
+                 Text="{Binding sequenceOItemService}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

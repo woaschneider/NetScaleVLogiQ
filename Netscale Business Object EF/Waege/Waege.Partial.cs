@@ -709,7 +709,8 @@ namespace HWB.NETSCALE.BOEF
                 Entity.number = _boOIE.number; // Auftrasgnummer
                 // Detail
                 Entity.identifierOItemService = _boOISE.identifierOItemService;
-                Entity.sequence = _boOISE.sequenceOItemService;
+                Entity.sequenceOItem = _boOISE.sequenceOItem;
+                Entity.sequenceOItemService = _boOISE.sequenceOItemService;
                 Entity.productid = _boOISE.product;
                 Entity.productdescription = _boOISE.productdescription;
                 Entity.identifierOItem = _boOISE.identifierOItem;

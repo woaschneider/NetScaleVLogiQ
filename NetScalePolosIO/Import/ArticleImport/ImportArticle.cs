@@ -16,7 +16,7 @@ namespace NetScalePolosIO.Import.ArticleImport
         private Artikel _boArtikel;
         private ArtikelEntity _boAe;
 
-        public void Import(string baseUrl, string location, string url)
+        public bool Import(string baseUrl, string location, string url)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace NetScalePolosIO.Import.ArticleImport
                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
-
+                client.Timeout = 15000;
                // var request = new RestRequest("/rest/article/all");
                 var request = new RestRequest(url) {Method = Method.GET};
                 request.AddHeader("X-location-Id", location.ToString());
@@ -37,7 +37,10 @@ namespace NetScalePolosIO.Import.ArticleImport
 
                 var response = client.Execute(request);
                 if (response.StatusCode != HttpStatusCode.OK)
-                    return;
+                {
+                    Log.Instance.Error("Artikel-Import:Request HttpStatusCode " + response.StatusCode);
+                    return false;
+                }
 
 
                 var oA = JsonConvert.DeserializeObject<ArticleRootObject>(response.Content);
@@ -99,10 +102,10 @@ namespace NetScalePolosIO.Import.ArticleImport
             catch (Exception e)
             {
                 Log.Instance.Error("Fehler im Artikel-Import: " + e.Message);
-             //   MessageBox.Show(e.Message);
+                return false;
             }
 
-
+            return true;
         }
     }
 }
