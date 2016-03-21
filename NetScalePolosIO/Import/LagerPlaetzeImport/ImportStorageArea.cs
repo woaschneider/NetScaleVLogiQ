@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
@@ -50,8 +51,11 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
          
                
                 _boL = new Lagerplaetze();
+                int recordCounter = 0;
                 foreach (PolosStorageArea obj in oL.storageAreas)
                 {
+                    recordCounter = recordCounter + 1;
+                    goApp.ProzentStammdaten = recordCounter / (oL.storageAreas.Count / 100);
                     if (obj.id != null)
                     {
                         _boLe = _boL.GetById(obj.id) ?? _boL.NewEntity();

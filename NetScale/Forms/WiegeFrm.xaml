@@ -25,6 +25,7 @@
     <Grid x:Name="LayoutRoot"
           Width="1177"
           Height="743">
+
         <Rectangle Width="474"
                    Height="235"
                    Margin="697,136,0,0"
@@ -1908,5 +1909,29 @@
                  IsReadOnly="True"
                  TabIndex="245"
                  Text="{Binding sequenceOItemService}" />
+        <Label Name="lblImportMessageStammdaten"
+               Width="174"
+               Height="28"
+               Margin="701,647,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Label" />
+        <Label Name="lblImportMessageAuftraege"
+               Width="174"
+               Height="28"
+               Margin="701,676,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Label" />
+        <ProgressBar Name="progressBarStammdaten"
+                     Width="267"
+                     Height="10"
+                     Margin="884,656,0,0"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Top" />
+        <ProgressBar Name="progressBarAuftraege"
+                     Width="267"
+                     Height="10"
+                     Margin="884,686,26,47" />
     </Grid>
 </mmwpf:mmBusinessWindow>

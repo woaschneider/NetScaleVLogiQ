@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO.LagerPlaetzeImport;
 using HWB.NETSCALE.POLOSIO.PlanningDivisionImport;
 using NetScalePolosIO.Logging;
@@ -53,8 +54,12 @@ namespace NetScalePolosIO.Import.PlanningDivisionImport
          
                
                 _boP = new Planningdivision();
+                int recordCounter = 0;
                 foreach (PolosPlanningdivison obj in oP.planningdivisons)
                 {
+                    recordCounter = recordCounter + 1;
+                    goApp.ProzentStammdaten = recordCounter / (oP.planningdivisons.Count / 100);
+
                     if (obj.id != null)
                     {
                         _boPe = _boP.GetById(obj.id) ?? _boP.NewEntity();

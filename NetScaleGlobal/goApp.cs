@@ -55,6 +55,14 @@ namespace HWB.NETSCALE.GLOBAL
         public static string planningDivisionId;
 
         public static bool ExportIsRunning;
+        public static bool ImportIsRunning;
+        
+        public static string ImportMessageStammdaten;
+        public static float ProzentStammdaten;
+
+        public static string ImportMessageAuftraege;
+        public static float ProzentAuftraege;
+
 
         // Das kommt später mit den Validierungen(y/n) in eine Tabelle
 

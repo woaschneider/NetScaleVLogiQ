@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO.KindOfGoodsImport;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
@@ -52,9 +53,12 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
 
               
                 _boW = new Warenarten();
-
+                int recordCounter = 0;
                 foreach (KindOfGood obj in oK.kindOfGoods)
                 {
+                    recordCounter = recordCounter + 1;
+                    goApp.ProzentStammdaten = recordCounter / (oK.kindOfGoods.Count / 100);
+
                     if (obj.id != null)
                     {
                         _boWe = _boW.GetById(obj.id);

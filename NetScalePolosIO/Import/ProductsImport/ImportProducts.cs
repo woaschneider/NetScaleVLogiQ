@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO.ProductsImport;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
@@ -49,9 +50,11 @@ namespace NetScalePolosIO.Import.ProductsImport
 
 
                 _boP = new Produkte();
-
+                int recordCounter = 0;
                 foreach (Product obj in oP.products)
                 {
+                    recordCounter = recordCounter + 1;
+                    goApp.ProzentStammdaten = recordCounter / (oP.products.Count / 100);
                     foreach (Service s in obj.services)
                     {
 

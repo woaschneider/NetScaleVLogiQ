@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO.AuftragsImport;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
@@ -94,10 +95,12 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                     oOi = JsonConvert.DeserializeObject<RootObject>(response.Content);
-
+                    int recordCounter = 0;
                     //***********************************************************************
                     foreach (OrderEntity obj in oOi.orders)
                     {
+                        recordCounter = recordCounter + 1;
+                        goApp.ProzentAuftraege = recordCounter / (_totalresult / 100);
                         //#region Fertige Aufträge, falls noch vorhanden löschen
                         if ((obj.orderState == "CANCELLED") || (obj.orderState == "CLOSED") ||
                             (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") )

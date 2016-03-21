@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
@@ -53,11 +54,16 @@ namespace NetScalePolosIO.Import.AddressImport
 
 
                 var oR = JsonConvert.DeserializeObject<AddressRootObject>(response.Content);
-
+                
                 _boA = new Adressen();
 
+
+               int  recordCounter = 0;
                 foreach (AddressableEntity obj in oR.addressableEntities)
                 {
+                    recordCounter = recordCounter + 1;
+                    goApp.ProzentStammdaten = recordCounter / (oR.addressableEntities.Count/100);
+                    
                     if (true)
                     {
                     //TODO: auf BI prüfen statt auf Id

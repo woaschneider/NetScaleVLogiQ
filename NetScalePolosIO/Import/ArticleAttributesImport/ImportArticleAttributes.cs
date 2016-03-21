@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using HWB.NETSCALE.BOEF;
+using HWB.NETSCALE.GLOBAL;
 using HWB.NETSCALE.POLOSIO.ArticleAttributes;
 using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
@@ -48,8 +49,12 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
               
 
                 _boA = new Artikelattribute();
+                int recordCounter = 0;
                 foreach (string t in oA.articleAttributes)
                 {
+                    recordCounter = recordCounter + 1;
+                    goApp.ProzentStammdaten = recordCounter / (oA.articleAttributes.Count / 100);
+
                     _boAe = _boA.GetArtikelAttributByBezeichnung(t) ?? _boA.NewEntity();
                     if (_boAe != null)
                     {
