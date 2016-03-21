@@ -54,7 +54,8 @@ namespace NetScalePolosIO.Import.ProductsImport
                 foreach (Product obj in oP.products)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oP.products.Count / 100);
+                    if(oP.products.Count > 0)
+                    goApp.ProzentStammdaten = recordCounter /(float) (oP.products.Count / 100);
                     foreach (Service s in obj.services)
                     {
 

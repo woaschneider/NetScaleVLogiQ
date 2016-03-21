@@ -59,8 +59,10 @@ namespace NetScalePolosIO.Import.ArticleImport
                 foreach (ArticleInformation obj in oA.articleInformation)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oA.articleInformation.Count / 100);
-
+                    if (oA.articleInformation.Count > 0)
+                    {
+                        goApp.ProzentStammdaten = recordCounter/(float)(oA.articleInformation.Count/100);
+                    }
                     {
                         _boAe = _boArtikel.GetById(obj.article.id) ?? _boArtikel.NewEntity();
                         _boAe.id = obj.article.id;

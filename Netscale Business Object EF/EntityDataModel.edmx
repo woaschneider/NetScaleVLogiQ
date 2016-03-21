@@ -35,14 +35,7 @@
           <EntitySet Name="OrderArticleAttribute" EntityType="$namespace$.Target.OrderArticleAttribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orderitem" EntityType="$namespace$.Target.Orderitem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderItemservice" EntityType="$namespace$.Target.OrderItemservice" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Planningdivision" EntityType="$namespace$.Target.Planningdivision" store:Type="Tables" store:Schema="dbo" store:Name="Planningdivision">
-            <DefiningQuery>SELECT 
-      [Planningdivision].[PK] AS [PK], 
-      [Planningdivision].[id] AS [id], 
-      [Planningdivision].[description] AS [description], 
-      [Planningdivision].[active] AS [active]
-      FROM [dbo].[Planningdivision] AS [Planningdivision]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Planningdivision" EntityType="$namespace$.Target.Planningdivision" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Services" EntityType="$namespace$.Target.Services" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" />
@@ -578,9 +571,6 @@
           <Property Name="PlanningDivisionActive" Type="bit" />
           <Property Name="sequenceOItemService" Type="varchar" MaxLength="64" />
         </EntityType>
-        <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RMLogiQ.dbo.Planningdivision' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
-      -->
         <EntityType Name="Planningdivision">
           <Key>
             <PropertyRef Name="PK" />

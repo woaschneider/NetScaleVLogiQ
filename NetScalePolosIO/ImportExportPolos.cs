@@ -144,36 +144,36 @@ namespace NetScalePolosIO
             EinstellungenEntity boEe = boE.GetEinstellungen();
             // Adressen
             goApp.ImportMessageStammdaten = "Adressen";
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 1;
             new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
             
             // Warenarten
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Warenarten";
            new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
 
             // Artikel
-           goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 01;
            goApp.ImportMessageStammdaten = "Artikel";
             new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl);
             
             // Produkte
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Produkte";
             new ImportProducts().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl);
             
             // Artikelattribute
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Artikelattribute";
             new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId()  ,   boEe.ImpRESTServertArticleAttributesUrl);
             
             // Lagerplätze
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Lagerplätze";
             new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
            
             //  PlanningDevision
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Dispobereiche";
             new ImportPlanningDivison().Import(e.Argument.ToString(), GetLocationId(),
             boEe.ImpRESTServerPlanningDivision);
@@ -221,7 +221,7 @@ namespace NetScalePolosIO
 
         private void BwDoWorkImportAuftraege(string uri, bool only_Ready_To_Dispatch)
         {
-            goApp.ImportMessageAuftraege = "Start Auftragsimport!";
+            goApp.ImportMessageAuftraege = "Auftragsimport!";
             string info = "";
 
             if (only_Ready_To_Dispatch)
@@ -239,7 +239,7 @@ namespace NetScalePolosIO
             new ImportAuftraege().Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, only_Ready_To_Dispatch);
             Log.Instance.Info("Auftragsimport wurde beendet! " + info);
             goApp.ImportMessageAuftraege = "";
-            goApp.ProzentStammdaten = 0;
+            goApp.ProzentAuftraege = 0;
         }
         
         #endregion

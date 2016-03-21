@@ -114,24 +114,30 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             FillIncoterms();
             DT = new DispatcherTimer();
             DT.Tick += new EventHandler(Poll_TICK);
-            DT.Interval = TimeSpan.FromSeconds(2);
+            DT.Interval = TimeSpan.FromSeconds(0.5);
             DT.Start();
 
           
             //   new ImportExportPolos().ImportStammdaten();
             //   new ImportExportPolos().ImportAuftraege(false);
         }
+
         private void Poll_TICK(object sender, EventArgs e)
         {
 
-         //   new ImportExportPolos().ImportStammdaten();
-         //   new ImportExportPolos().ImportAuftraege(true);
+            //   new ImportExportPolos().ImportStammdaten();
+            //   new ImportExportPolos().ImportAuftraege(true);
 
             lblImportMessageStammdaten.Content = goApp.ImportMessageStammdaten;
-            progressBarStammdaten.Value = goApp.ProzentStammdaten;
-
-            lblImportMessageAuftraege.Content =  goApp.ImportMessageAuftraege;
-            progressBarAuftraege.Value = goApp.ProzentAuftraege;
+            if (!Double.IsInfinity(goApp.ProzentStammdaten))
+            {
+                progressBarStammdaten.Value = goApp.ProzentStammdaten;
+            }
+            lblImportMessageAuftraege.Content = goApp.ImportMessageAuftraege;
+            if (!Double.IsInfinity(goApp.ProzentStammdaten))
+            {
+                progressBarAuftraege.Value = goApp.ProzentAuftraege;
+            }
         }
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird

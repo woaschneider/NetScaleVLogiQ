@@ -57,8 +57,10 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
                 foreach (KindOfGood obj in oK.kindOfGoods)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oK.kindOfGoods.Count / 100);
-
+                    if (oK.kindOfGoods.Count > 0)
+                    {
+                        goApp.ProzentStammdaten = recordCounter/(float)(oK.kindOfGoods.Count/100);
+                    }
                     if (obj.id != null)
                     {
                         _boWe = _boW.GetById(obj.id);

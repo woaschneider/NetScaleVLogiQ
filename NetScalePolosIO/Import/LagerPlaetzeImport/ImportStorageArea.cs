@@ -55,7 +55,10 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
                 foreach (PolosStorageArea obj in oL.storageAreas)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oL.storageAreas.Count / 100);
+                    if (oL.storageAreas.Count > 0)
+                    {
+                        goApp.ProzentStammdaten = recordCounter/(float)(oL.storageAreas.Count/100);
+                    }
                     if (obj.id != null)
                     {
                         _boLe = _boL.GetById(obj.id) ?? _boL.NewEntity();

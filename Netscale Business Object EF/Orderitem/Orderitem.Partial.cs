@@ -58,13 +58,13 @@ namespace HWB.NETSCALE.BOEF
                       o.reference.Contains(kundenreferenz) &&
                     ( ois.articleDescription.Contains(artikelbeschreibung) || ois.articleDescription==null) &&
                     ois.clearanceReferenz.Contains(freistellung) &&
-                   ( ois.InvisibleSendedOrderItems == false) 
-            
-                                                orderby o.id 
-                                                select o;
-
-       // TODO: uRet.OrderBy(oo => int.Parse(oo.sequence));
-            return GetEntityList(query);
+                   ( ois.InvisibleSendedOrderItems == false)  
+                   orderby(o.number)
+                   select o;
+                   var uRet = GetEntityList(query);
+              // uRet.OrderBy(o => int.Parse(o.number));
+      
+            return uRet;
         }
 
         public mmBindingList<OrderitemEntity> GetAll()

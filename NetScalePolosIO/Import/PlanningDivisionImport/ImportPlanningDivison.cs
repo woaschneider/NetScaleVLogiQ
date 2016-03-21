@@ -55,14 +55,20 @@ namespace NetScalePolosIO.Import.PlanningDivisionImport
                
                 _boP = new Planningdivision();
                 int recordCounter = 0;
-                foreach (PolosPlanningdivison obj in oP.planningdivisons)
+                foreach (PolosPlanningdivison obj in oP.planningDivisions)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oP.planningdivisons.Count / 100);
-
+                    //if (oP.planningdivisons.Count > 0)
+                    //{
+                    //    goApp.ProzentStammdaten = recordCounter/(float)(oP.planningdivisons.Count/100);
+                    //}
                     if (obj.id != null)
                     {
-                        _boPe = _boP.GetById(obj.id) ?? _boP.NewEntity();
+                        _boPe = _boP.GetById(obj.id);
+                        if (_boPe == null)
+                        {
+                      _boPe =      _boP.NewEntity();
+                        }
                         if (_boPe != null)
                         {
                             _boPe.id = obj.id;
@@ -70,14 +76,14 @@ namespace NetScalePolosIO.Import.PlanningDivisionImport
                             _boPe.active = obj.active;
                             
 
-                            _boP.SaveEntity(_boPe);
+                      var uRet =      _boP.SaveEntity(_boPe);
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                Log.Instance.Error("Fehler im Storage-Area-Import: " + e.Message);
+                Log.Instance.Error("Fehler im Planingdivision-Import: " + e.Message);
             }
             return true;
         }

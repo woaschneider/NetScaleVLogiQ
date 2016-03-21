@@ -78,6 +78,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                 #endregion // Anzahl der Order und Seiten ermittlen
 
+                int recordCounter = 0;
                 for (int ii = 1; ii <= nPage; ii++)
                 {
                     request = new RestRequest("/rest/order/query/200/" + ii) { Method = Method.GET };
@@ -95,7 +96,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                     oOi = JsonConvert.DeserializeObject<RootObject>(response.Content);
-                    int recordCounter = 0;
+         
                     //***********************************************************************
                     foreach (OrderEntity obj in oOi.orders)
                     {

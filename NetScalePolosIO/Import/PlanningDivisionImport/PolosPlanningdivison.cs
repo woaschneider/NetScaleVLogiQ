@@ -13,6 +13,6 @@ namespace HWB.NETSCALE.POLOSIO.PlanningDivisionImport
 
     public class PlanningDivisonRootObject
     {
-        public List<PolosPlanningdivison> planningdivisons{ get; set; }
+        public List<PolosPlanningdivison> planningDivisions { get; set; }
     }
 }

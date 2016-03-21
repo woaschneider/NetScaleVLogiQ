@@ -68,7 +68,8 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <TextBox x:Name="textBox7"
-                 Width="191"
+                 IsReadOnly="True"
+                 Width="385"
                  Height="33"
                  MaxHeight="30"
                  Margin="98,130,0,0"

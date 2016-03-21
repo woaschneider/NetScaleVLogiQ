@@ -62,14 +62,23 @@ namespace NetScalePolosIO.Import.AddressImport
                 foreach (AddressableEntity obj in oR.addressableEntities)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oR.addressableEntities.Count/100);
+                    if(oR.addressableEntities.Count > 0)
+                    {
+                        goApp.ProzentStammdaten = recordCounter/(oR.addressableEntities.Count/100);
+                    }
                     
                     if (true)
                     {
                     //TODO: auf BI prüfen statt auf Id
 
                       //  _boAe = _boA.GetId(obj.id) ?? _boA.NewEntity();
-                        _boAe = _boA.GetByBusinenessIdentifier(obj.businessIdentifier) ?? _boA.NewEntity();
+                        _boAe = _boA.GetByBusinenessIdentifier(obj.businessIdentifier.Trim());
+
+                        if (_boAe == null)
+                        {
+                          _boAe =  _boA.NewEntity();
+                        }
+                    
                        
                         _boAe.id = obj.id;
                         try

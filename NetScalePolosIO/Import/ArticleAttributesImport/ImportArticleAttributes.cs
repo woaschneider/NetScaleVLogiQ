@@ -53,8 +53,10 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                 foreach (string t in oA.articleAttributes)
                 {
                     recordCounter = recordCounter + 1;
-                    goApp.ProzentStammdaten = recordCounter / (oA.articleAttributes.Count / 100);
-
+                    if (oA.articleAttributes.Count > 0)
+                    {
+                        goApp.ProzentStammdaten = recordCounter/(oA.articleAttributes.Count/100);
+                    }
                     _boAe = _boA.GetArtikelAttributByBezeichnung(t) ?? _boA.NewEntity();
                     if (_boAe != null)
                     {
