@@ -53,6 +53,7 @@ namespace HWB.NETSCALE.GLOBAL
         public static string LS_DRUCKER_MANDANT_3_COPIES;
 
         public static string planningDivisionId;
+       
 
         public static bool ExportIsRunning;
         public static bool ImportIsRunning;

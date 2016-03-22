@@ -77,7 +77,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult uRet = MessageBox.Show("Wollen Sie diesen Datensatzwirklich löschen? ", "ACHTUNG",
+            MessageBoxResult uRet = MessageBox.Show("Wollen Sie diesen Datensatz wirklich löschen? ", "ACHTUNG",
                                                     MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (uRet == MessageBoxResult.Yes)
             {

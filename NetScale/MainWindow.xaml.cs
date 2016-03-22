@@ -55,6 +55,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 goApp.MaxGewicht = boE.GetMaxGewicht();
                 goApp.MaxGewichtValidieren = boE.GetMaxGewichtValidieren();
                 goApp.planningDivisionId = boE.GetPlanningDivisionId();
+             
 
                 Lokaleeinstellungen oLE = new Lokaleeinstellungen();
                 oLE = oLE.Load();
@@ -127,7 +128,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 goApp.ZweitW = oLE.ZWEITWAEGUNGSWAAGE;
 
 
-                Title = Title + "  " + " Straßenfahrzeugwaage für POLOS";
+                Title = Title + "  " + " Straßenfahrzeugwaage für LogIQ";
                 if (goApp.acessLevel == "1")
                     Title = Title + "   ----> Service " + goApp.username;
 

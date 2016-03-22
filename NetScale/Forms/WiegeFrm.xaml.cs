@@ -1776,6 +1776,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         }
 
+        private new  void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindowExtensions.HideCloseButton(this);
+        }
+
        
 
 

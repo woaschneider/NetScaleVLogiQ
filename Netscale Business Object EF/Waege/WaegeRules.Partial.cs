@@ -31,6 +31,7 @@ namespace HWB.NETSCALE.BOEF
 
 	        IsCustomerFilled(currentEntity);
 	        IsFfFilled(currentEntity);
+	        IsLagerPlatzFilled(currentEntity);
 	        //IsInvoiceReceiver(currentEntity);
 	        //IsOwner(currentEntity);
 	        //IsKundenReferenz(currentEntity);
@@ -195,6 +196,22 @@ namespace HWB.NETSCALE.BOEF
 	        }
 	        return Msg;
 	    }
+
+        public string IsLagerPlatzFilled(WaegeEntity _we)
+        {
+            string Msg = null;
+            if (mmType.IsEmpty(_we.IstQuellLagerPlatz))
+            {
+                this.EntityPropertyDisplayName = "Ist-Quell-Lagerplatz";
+                RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
+                Msg = this.RequiredFieldMessagePrefix +
+                      this.EntityPropertyDisplayName + " " +
+                      this.RequiredFieldMessageSuffix;
+
+                AddErrorProviderBrokenRule("IstQuellLagerPlatz", Msg);
+            }
+            return Msg;
+        }
 
 	    //public string IsOrderChanged(WaegeEntity _we)
         //{

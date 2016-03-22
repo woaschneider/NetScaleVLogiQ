@@ -11,10 +11,11 @@
                         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                         x:Name="Window"
                         Title="Wiegemaske"
-                        Width="1195"
-                        Height="779"
+                        Width="1191"
+                        Height="776"
                         AllowsTransparency="False"
                         Background="#FFC2CCDB"
+                        Loaded="Window_Loaded"
                         WindowStartupLocation="CenterScreen"
                         mc:Ignorable="d">
 
@@ -25,7 +26,13 @@
     <Grid x:Name="LayoutRoot"
           Width="1177"
           Height="743">
-
+        <Rectangle Width="474"
+                   Height="184"
+                   Margin="696,554,0,0"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Fill="#FF87B3DD"
+                   Stroke="Black" />
         <Rectangle Width="474"
                    Height="235"
                    Margin="697,136,0,0"
@@ -34,7 +41,7 @@
                    Fill="#FF87B3DD"
                    Stroke="Black" />
         <Rectangle Width="474"
-                   Height="361"
+                   Height="175"
                    Margin="696,377,0,0"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
@@ -70,7 +77,7 @@
                    Fill="#FF87B3DD"
                    Stroke="Black" />
         <ribbon:Ribbon x:Name="Ribbon"
-                       Width="1201"
+                       Width="1172"
                        Height="140"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
@@ -1915,14 +1922,14 @@
                Margin="701,647,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Label" />
+               Content="-" />
         <Label Name="lblImportMessageAuftraege"
                Width="174"
                Height="28"
                Margin="701,676,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Label" />
+               Content="-" />
         <ProgressBar Name="progressBarStammdaten"
                      Width="267"
                      Height="10"

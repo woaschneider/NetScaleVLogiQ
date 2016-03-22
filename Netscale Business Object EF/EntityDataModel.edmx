@@ -778,6 +778,8 @@
           <Property Name="attributes_as_json" Type="nvarchar(max)" />
           <Property Name="sequenceOItem" Type="varchar" MaxLength="64" />
           <Property Name="sequenceOItemService" Type="varchar" MaxLength="64" />
+          <Property Name="PlanningdivisionId" Type="varchar" MaxLength="64" />
+          <Property Name="PlanningdivisionDescription" Type="varchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1683,6 +1685,8 @@
           <Property Type="String" Name="attributes_as_json" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="sequenceOItem" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="sequenceOItemService" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlanningdivisionId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PlanningdivisionDescription" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2315,6 +2319,8 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="PlanningdivisionDescription" ColumnName="PlanningdivisionDescription" />
+                <ScalarProperty Name="PlanningdivisionId" ColumnName="PlanningdivisionId" />
                 <ScalarProperty Name="sequenceOItemService" ColumnName="sequenceOItemService" />
                 <ScalarProperty Name="sequenceOItem" ColumnName="sequenceOItem" />
                 <ScalarProperty Name="attributes_as_json" ColumnName="attributes_as_json" />

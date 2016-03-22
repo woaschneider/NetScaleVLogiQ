@@ -99,34 +99,23 @@ namespace HWB.NETSCALE.BOEF
             boWE.Kennzeichen1Raw = ConvertKfzToKfzRaw(boWE.Fahrzeug);
 
             //TODO: Wenn die Produkte bekannt sind, fertig machen!
-            if (goApp.SAVE_ERST2CFTARA && boWE.productid=="111")
+         
+            // Dispobereich
+            Planningdivision boP = new Planningdivision();
+            if (goApp.planningDivisionId != null)
             {
-                if (boWE.Waegung == 1)
+                PlanningdivisionEntity boPe = boP.GetById(goApp.planningDivisionId);
+                if (boPe != null)
                 {
-                    boFe.Tara = boWE.Erstgewicht;
-                    boFe.Taradatum = DateTime.Today.Date;
+                    boWE.PlanningdivisionId = boPe.id;
+                    boWE.PlanningdivisionDescription = boPe.description;
                 }
             }
 
-            if (goApp.AutoAbruf)
-            {
-                //CheckAndCreateAbr(boWE);
-            }
-
-            if (goApp.SAVE_ABR2CF)
-            {
-                boFe.AbrufNr = Entity.AbrufNr;
-                boFe.abruf_PK = Entity.abruf_PK;
-                boFe.AbrufDate = DateTime.Today;
-            }
-            else
-            {
-                boFe.abruf_PK = null;
-                boFe.AbrufNr = null;
-                boFe.AbrufDate = DateTime.Today;
-            }
-            boF.SaveEntity(boFe);
             #endregion
+
+
+
 
         }
 
