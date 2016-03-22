@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Markup;
 
-using combit.ListLabel20;
+using combit.ListLabel21;
 using HWB.NETSCALE.BOEF;
 
 
@@ -19,7 +19,7 @@ using HWB.NETSCALE.GLOBAL;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 using MessageBox = System.Windows.MessageBox;
-using ObjectDataProvider = combit.ListLabel20.DataProviders.ObjectDataProvider;
+using ObjectDataProvider = combit.ListLabel21.DataProviders.ObjectDataProvider;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 {
@@ -311,11 +311,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         {
            
               ListLabel ll = new ListLabel();
-              ll.LicensingInfo = "9yJKEQ";
+              ll.LicensingInfo = "pWFZEQ";
             Waege boW = new Waege();
            int  uRet=
             boW.GetLastWaegung();
-           combit.ListLabel20.DataProviders.ObjectDataProvider oDP = boW.GetWaegungOdpbyPk(uRet);
+           combit.ListLabel21.DataProviders.ObjectDataProvider oDP = boW.GetWaegungOdpbyPk(uRet);
 
             ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
             ll.Variables.Add("Original_Kopie", "Original");

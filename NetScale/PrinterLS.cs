@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media.Animation;
-using combit.ListLabel20;
-using combit.ListLabel20.DataProviders;
+using combit.ListLabel21;
+using combit.ListLabel21.DataProviders;
 using HWB.NETSCALE.BOEF;
 
 using HWB.NETSCALE.GLOBAL;
@@ -58,7 +58,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
             var boW = new Waege();
 
-            ll.LicensingInfo = "9yJKEQ";
+            ll.LicensingInfo = "pWFZEQ";
 
 
             ObjectDataProvider oDp = boW.GetWaegungOdpbyPk(boWe.PK);

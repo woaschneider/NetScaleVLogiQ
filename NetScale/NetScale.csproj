@@ -80,17 +80,14 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="combit.ListLabel20">
-      <HintPath>C:\Program Files (x86)\combit\LL20\Redistributierbare Dateien\combit.ListLabel20.dll</HintPath>
+    <Reference Include="combit.ListLabel21">
+      <HintPath>C:\Program Files (x86)\combit\LL21\Redistributierbare Dateien\combit.ListLabel21.dll</HintPath>
     </Reference>
-    <Reference Include="combit.ListLabel20.Wpf">
-      <HintPath>C:\Program Files (x86)\combit\LL20\Redistributierbare Dateien\combit.ListLabel20.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="DataGridThemes">
-      <HintPath>C:\Program Files (x86)\Microsoft\DataGridThemesSetup\DataGridThemes.dll</HintPath>
+    <Reference Include="combit.ListLabel21.Wpf">
+      <HintPath>C:\Program Files (x86)\combit\LL21\Redistributierbare Dateien\combit.ListLabel21.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="HWB.Framework">
-      <HintPath>..\..\..\..\..\HWBFramework\HwbMmWpfLibrary\HwbMmWpfLibrary\bin\Debug\HWB.Framework.dll</HintPath>
+      <HintPath>..\DLL\HWB.Framework.dll</HintPath>
     </Reference>
     <Reference Include="HWB.NETSCALE.BOEF">
       <HintPath>..\Netscale Business Object EF\bin\Debug\HWB.NETSCALE.BOEF.dll</HintPath>
@@ -108,7 +105,6 @@
       <HintPath>..\packages\NLog.4.2.3\lib\net40\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
     <Reference Include="OakLeaf.MM2010.Automation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94f0661eaef8568c" />
     <Reference Include="OakLeaf.MM2010.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=511bd18e16c7f771, processorArchitecture=MSIL" />
     <Reference Include="OakLeaf.MM2010.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2312fefb461dbb0e, processorArchitecture=MSIL" />
@@ -161,13 +157,29 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="WPFToolkit.Extended">
-      <HintPath>..\..\..\..\Schiewe\NetScaleV2_3 LL 20\NetScale\bin\Debug\WPFToolkit.Extended.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\CS\WPF Extended Toolkit\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

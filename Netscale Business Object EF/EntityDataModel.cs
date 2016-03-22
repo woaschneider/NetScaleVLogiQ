@@ -15663,6 +15663,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _sequenceOItemService;
         partial void OnsequenceOItemServiceChanging(global::System.String value);
         partial void OnsequenceOItemServiceChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanningdivisionId
+        {
+            get
+            {
+                return _PlanningdivisionId;
+            }
+            set
+            {
+                OnPlanningdivisionIdChanging(value);
+                ReportPropertyChanging("PlanningdivisionId");
+                _PlanningdivisionId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanningdivisionId");
+                OnPlanningdivisionIdChanged();
+            }
+        }
+        private global::System.String _PlanningdivisionId;
+        partial void OnPlanningdivisionIdChanging(global::System.String value);
+        partial void OnPlanningdivisionIdChanged();
+    
+        /// <summary>
+        /// Keine Dokumentation für Metadaten verfügbar.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PlanningdivisionDescription
+        {
+            get
+            {
+                return _PlanningdivisionDescription;
+            }
+            set
+            {
+                OnPlanningdivisionDescriptionChanging(value);
+                ReportPropertyChanging("PlanningdivisionDescription");
+                _PlanningdivisionDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PlanningdivisionDescription");
+                OnPlanningdivisionDescriptionChanged();
+            }
+        }
+        private global::System.String _PlanningdivisionDescription;
+        partial void OnPlanningdivisionDescriptionChanging(global::System.String value);
+        partial void OnPlanningdivisionDescriptionChanged();
 
         #endregion
     

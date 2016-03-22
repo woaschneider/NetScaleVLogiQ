@@ -59,8 +59,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="combit.ListLabel20">
-      <HintPath>C:\Program Files (x86)\combit\LL20\Redistributierbare Dateien\combit.ListLabel20.dll</HintPath>
+    <Reference Include="combit.ListLabel21">
+      <HintPath>C:\Program Files (x86)\combit\LL21\Redistributierbare Dateien\combit.ListLabel21.dll</HintPath>
     </Reference>
     <Reference Include="OakLeaf.MM2010.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=511bd18e16c7f771, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
