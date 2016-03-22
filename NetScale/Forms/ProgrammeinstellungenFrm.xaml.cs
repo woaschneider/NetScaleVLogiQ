@@ -615,9 +615,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             else
             {
-                boEE.PlanningDivisionId = null;
-                boEE.PlanningDivisionDescription = null;
-                boEE.PlanningDivisionActive = null;
+                //boEE.PlanningDivisionId = null;
+                //boEE.PlanningDivisionDescription = null;
+                //boEE.PlanningDivisionActive = null;
             }
 
             oDFrm.Close();

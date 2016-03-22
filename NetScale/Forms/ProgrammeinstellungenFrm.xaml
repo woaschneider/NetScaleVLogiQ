@@ -11,7 +11,7 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="Programmeinstellungen"
-                        Width="894"
+                        Width="1055"
                         Height="650"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
@@ -141,13 +141,13 @@
 
         </ribbon:Ribbon>
         <TabControl x:Name="tabControl1"
-                    Width="851"
+                    Width="1010"
                     Height="490"
                     Margin="11,109,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top">
             <TabItem x:Name="tabItem1" Header="Druckeinstellungen">
-                <Grid Width="830" Height="323">
+                <Grid Width="995" Height="451">
                     <Label x:Name="label3"
                            Height="28"
                            Margin="11,163,0,0"
@@ -173,9 +173,9 @@
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top" />
                     <DataGrid x:Name="dataGrid1"
-                              Width="813"
+                              Width="978"
                               Height="143"
-                              Margin="11,6,0,0"
+                              Margin="9,6,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               AlternatingRowBackground="#FFFFE8A6"
@@ -259,7 +259,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem2" Header="Verschiedene Einstellungen">
-                <Grid Width="827" Height="348">
+                <Grid Width="989" Height="452">
                     <CheckBox x:Name="cb_autokfz"
                               Height="16"
                               Margin="11,15,0,0"
@@ -641,19 +641,19 @@
                     <TextBox x:Name="tb_pdf_path"
                              Width="236"
                              Height="23"
-                             Margin="153,15,0,0"
+                             Margin="167,15,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top" />
                     <TextBox x:Name="tb_exportpath"
                              Width="236"
                              Height="23"
-                             Margin="152,43,0,0"
+                             Margin="166,43,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top" />
                     <Button x:Name="cmdGetDirPdf"
                             Width="27.8"
                             Height="23"
-                            Margin="395,14,0,0"
+                            Margin="409,14,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="cmdGetDirPdf_Click"
@@ -661,7 +661,7 @@
                     <Button x:Name="cmdGetDirExport"
                             Width="27.8"
                             Height="23"
-                            Margin="395,42,0,0"
+                            Margin="409,42,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="cmdGetDirExport_Click"
@@ -675,20 +675,20 @@
                     <TextBox x:Name="tb_mischerexportpfad"
                              Width="236"
                              Height="23"
-                             Margin="0,72,452,0"
-                             HorizontalAlignment="Right"
+                             Margin="166,72,0,0"
+                             HorizontalAlignment="Left"
                              VerticalAlignment="Top" />
                     <Button x:Name="cmdGetMischerExportPfad"
                             Width="27.8"
                             Height="23"
-                            Margin="395,71,0,0"
+                            Margin="409,71,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="cmdGetMischerExportPfad_Click"
                             Content="..." />
                     <CheckBox x:Name="cb_MischerExport"
                               Height="16"
-                              Margin="429,75,0,0"
+                              Margin="443,75,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               Content="ExportAll aktiv"
@@ -696,45 +696,45 @@
                     <TextBox x:Name="textBox3"
                              Width="81"
                              Height="23"
-                             Margin="630,66,0,0"
+                             Margin="662,71,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding MischerCounterId}" />
                     <Label x:Name="label19"
                            Height="28"
-                           Margin="522,61,0,0"
+                           Margin="554,69,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Mischer-Id-Zähler" />
                     <TextBox x:Name="textBox4"
                              Width="81"
                              Height="23"
-                             Margin="630,39,0,0"
+                             Margin="662,43,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding TaabCounterId}" />
                     <Label x:Name="label20"
                            Height="28"
-                           Margin="522,37,0,0"
+                           Margin="554,39,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="TAAB-Id-Zähler" />
                     <Label x:Name="label21"
                            Height="28"
-                           Margin="526,11,0,0"
+                           Margin="558,11,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="PDF-Typ" />
                     <TextBox x:Name="textBox5"
                              Height="23"
-                             Margin="630,14,183,0"
+                             Margin="662,15,0,0"
                              VerticalAlignment="Top"
                              Text="{Binding PdfCreator}"
-                             ToolTip=" 1 = List u. Label, 2 = StepOver mit Signpad" />
+                             ToolTip=" 1 = List u. Label, 2 = StepOver mit Signpad" HorizontalAlignment="Left" Width="81" />
                     <CheckBox x:Name="cbPdfaktiv"
                               Width="150"
                               Height="16"
-                              Margin="662,17,0,0"
+                              Margin="759,18,0,0"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
                               Checked="checkBox1_Checked"
@@ -742,7 +742,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabitem5" Header="REST Services">
-                <Grid Width="836" Height="435">
+                <Grid Width="995" Height="435">
                     <Label Name="label9"
                            Height="28"
                            Margin="13,111,0,0"
@@ -750,7 +750,7 @@
                            VerticalAlignment="Top"
                            Content="Import-IP" />
                     <TextBox Name="tb_importIp"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,114,0,0"
                              HorizontalAlignment="Left"
@@ -763,14 +763,14 @@
                            VerticalAlignment="Top"
                            Content="Import-Port" />
                     <TextBox Name="tb_importPort"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,141,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding ImpRESTServerPort}" />
                     <TextBox Name="textBox8"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,21,0,0"
                              HorizontalAlignment="Left"
@@ -790,7 +790,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Adressen-Url" />
                     <TextBox Name="textBox9"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,170,0,0"
                              HorizontalAlignment="Left"
@@ -803,7 +803,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Kind of Goods-Url" />
                     <TextBox Name="textBox10"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,199,0,0"
                              HorizontalAlignment="Left"
@@ -816,7 +816,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Article-Url" />
                     <TextBox Name="textBox11"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,228,0,0"
                              HorizontalAlignment="Left"
@@ -829,7 +829,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Products-Url" />
                     <TextBox Name="textBox12"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,257,0,0"
                              HorizontalAlignment="Left"
@@ -842,7 +842,7 @@
                            VerticalAlignment="Top"
                            Content="Import-ArticleAttributes-Url" />
                     <TextBox Name="textBox13"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,287,0,0"
                              HorizontalAlignment="Left"
@@ -855,7 +855,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Storage Area-Url" />
                     <TextBox Name="textBox14"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,316,0,0"
                              HorizontalAlignment="Left"
@@ -868,7 +868,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Orders-Url" />
                     <TextBox Name="textBox15"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,372,0,0"
                              HorizontalAlignment="Left"
@@ -876,12 +876,12 @@
                              Text="{Binding ImportRESTServerAuftraegeUrl}" />
                     <Label Name="label31"
                            Height="28"
-                           Margin="13,398,0,0"
+                           Margin="12,398,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Orders on Page" />
                     <TextBox Name="textBox16"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,401,0,0"
                              HorizontalAlignment="Left"
@@ -889,60 +889,60 @@
                              Text="{Binding ImportRESTServerAuftraegePageNumber}" />
                     <Label Name="label32"
                            Height="28"
-                           Margin="356,19,0,0"
+                           Margin="417,19,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="ExportAll-IP" />
                     <TextBox Name="textBox17"
                              Width="159"
                              Height="23"
-                             Margin="518,22,0,0"
+                             Margin="579,22,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding ExportRESTIp}" />
                     <Label Name="label33"
                            Height="28"
-                           Margin="355,47,0,0"
+                           Margin="416,47,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="ExportAll-Port" />
                     <TextBox Name="textBox18"
                              Width="159"
                              Height="23"
-                             Margin="518,49,0,0"
+                             Margin="579,49,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding ExportRESTServerport}" />
                     <Label Name="label34"
                            Height="28"
-                           Margin="355,75,0,0"
+                           Margin="416,75,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="ExportAll-Waegungen-Url" />
                     <TextBox Name="textBox19"
                              Width="159"
                              Height="23"
-                             Margin="518,78,0,0"
+                             Margin="579,78,0,0"
                              HorizontalAlignment="Left"
                              VerticalAlignment="Top"
                              Text="{Binding ExportRESTServerUrl}" />
                     <Label Name="label35"
                            Height="28"
-                           Margin="355,109,0,0"
+                           Margin="416,109,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Consumer key"
                            MouseDoubleClick="Label35_OnMouseDoubleClick" />
                     <Label Name="label36"
                            Height="28"
-                           Margin="354,137,0,0"
+                           Margin="415,137,0,0"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Consumer secret" />
                     <PasswordBox Name="passwordBoxConsumerKey"
                                  Width="300"
                                  Height="23"
-                                 Margin="517,110,0,0"
+                                 Margin="578,110,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  IsEnabled="False"
@@ -950,7 +950,7 @@
                     <PasswordBox Name="passwordBoxConsumerSecret"
                                  Width="299"
                                  Height="23"
-                                 Margin="518,138,0,0"
+                                 Margin="578,138,0,0"
                                  HorizontalAlignment="Left"
                                  VerticalAlignment="Top"
                                  IsEnabled="False" />
@@ -961,7 +961,7 @@
                            VerticalAlignment="Top"
                            Content="Import-Planningdivison-Url" />
                     <TextBox Name="textBox22"
-                             Width="159"
+                             Width="220"
                              Height="23"
                              Margin="174,345,0,0"
                              HorizontalAlignment="Left"
