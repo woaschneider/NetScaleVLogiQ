@@ -57,6 +57,7 @@ namespace NetScalePolosIO.Export
 
         //   public double netAmount { get; set; }
         public decimal? netAmount { get; set; }
+        public decimal? conversionUnitAmount { get; set; }
 
     }
 

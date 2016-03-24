@@ -350,9 +350,26 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         #endregion
                                                     }
 
+
+                                                    #region Conversionunit
+
+                                                    if (orderItemService.articleInstance.article.conversionUnit != null)
+                                                    {
+                                                        _boOise.conversionUnitId =
+                                                            orderItemService.articleInstance.article.conversionUnit.id;
+                                                        _boOise.conversionUnitDescription =
+                                                            orderItemService.articleInstance.article.conversionUnit
+                                                                .description;
+                                                        _boOise.conversionUnitShortDescription =
+                                                            orderItemService.articleInstance.article.conversionUnit
+                                                                .shortDescription;
+                                                    }
+
                                                     #endregion
 
-                                                        #region Supplier Receiver
+                                                    #endregion
+
+                                                    #region Supplier Receiver
 
                                                     if (orderItemService.supplier != null)
                                                     {

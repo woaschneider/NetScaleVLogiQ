@@ -52,6 +52,7 @@ namespace NetScalePolosIO.Export
 
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
             oWEx2.netAmount = boWe.Nettogewicht;
+            oWEx2.conversionUnitAmount = boWe.conversionUnitAmount;
             //if (oWEx2.orderItemServiceId == null)
             //{
             oWEx2.customerBusinessIdentifier = boWe.customerBusinessIdentifier;

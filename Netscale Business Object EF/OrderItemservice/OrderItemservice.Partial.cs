@@ -60,7 +60,7 @@ namespace HWB.NETSCALE.BOEF
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
                 where o.PKOrderItem == pk & o.HasBinSended == false  & o.HasBinUsed == false
-                     // & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)  
+                   & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)  
             
               
             select o;

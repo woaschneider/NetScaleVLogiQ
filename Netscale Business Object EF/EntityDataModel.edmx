@@ -570,6 +570,9 @@
           <Property Name="PlanningDivisionDescription" Type="varchar" MaxLength="128" />
           <Property Name="PlanningDivisionActive" Type="bit" />
           <Property Name="sequenceOItemService" Type="varchar" MaxLength="64" />
+          <Property Name="conversionUnitDescription" Type="varchar" MaxLength="32" />
+          <Property Name="conversionUnitId" Type="varchar" MaxLength="32" />
+          <Property Name="conversionUnitShortDescription" Type="varchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="Planningdivision">
           <Key>
@@ -780,6 +783,10 @@
           <Property Name="sequenceOItemService" Type="varchar" MaxLength="64" />
           <Property Name="PlanningdivisionId" Type="varchar" MaxLength="64" />
           <Property Name="PlanningdivisionDescription" Type="varchar" MaxLength="64" />
+          <Property Name="conversionUnitDescription" Type="varchar" MaxLength="32" />
+          <Property Name="conversionUnitId" Type="varchar" MaxLength="32" />
+          <Property Name="conversionUnitShortDescription" Type="varchar" MaxLength="32" />
+          <Property Name="conversionUnitAmount" Type="int" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1515,6 +1522,9 @@
           <Property Type="String" Name="sequenceOItemService" MaxLength="64" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderArticleAttributes" Relationship="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" FromRole="OrderItemservice" ToRole="OrderArticleAttributeEntity" />
           <NavigationProperty Name="Orderitem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderItemservice" ToRole="OrderitemEntity" />
+          <Property Type="String" Name="conversionUnitDescription" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnitId" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnitShortDescription" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="Artikel_hat_Attribute">
           <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="0..1" />
@@ -1687,6 +1697,10 @@
           <Property Type="String" Name="sequenceOItemService" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="PlanningdivisionId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="PlanningdivisionDescription" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnitDescription" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnitId" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conversionUnitShortDescription" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="conversionUnitAmount" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2242,6 +2256,9 @@
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="conversionUnitShortDescription" ColumnName="conversionUnitShortDescription" />
+                <ScalarProperty Name="conversionUnitId" ColumnName="conversionUnitId" />
+                <ScalarProperty Name="conversionUnitDescription" ColumnName="conversionUnitDescription" />
                 <ScalarProperty Name="sequenceOItemService" ColumnName="sequenceOItemService" />
                 <ScalarProperty Name="PlanningDivisionActive" ColumnName="PlanningDivisionActive" />
                 <ScalarProperty Name="PlanningDivisionDescription" ColumnName="PlanningDivisionDescription" />
@@ -2319,6 +2336,10 @@
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="conversionUnitAmount" ColumnName="conversionUnitAmount" />
+                <ScalarProperty Name="conversionUnitShortDescription" ColumnName="conversionUnitShortDescription" />
+                <ScalarProperty Name="conversionUnitId" ColumnName="conversionUnitId" />
+                <ScalarProperty Name="conversionUnitDescription" ColumnName="conversionUnitDescription" />
                 <ScalarProperty Name="PlanningdivisionDescription" ColumnName="PlanningdivisionDescription" />
                 <ScalarProperty Name="PlanningdivisionId" ColumnName="PlanningdivisionId" />
                 <ScalarProperty Name="sequenceOItemService" ColumnName="sequenceOItemService" />

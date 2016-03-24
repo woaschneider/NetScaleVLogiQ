@@ -723,6 +723,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.articleId = _boOISE.articleId;
                 Entity.articleNumber = _boOISE.number;
                 Entity.articleDescription = _boOISE.articleDescription;
+                Entity.conversionUnitShortDescription = _boOISE.conversionUnitShortDescription;
                 Entity.plannedDate = _boOISE.plannedDate;
                 Entity.clearanceReferenz = _boOISE.clearanceReferenz;
 

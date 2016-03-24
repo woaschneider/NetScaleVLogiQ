@@ -31,7 +31,8 @@ namespace HWB.NETSCALE.BOEF
 
 	        IsCustomerFilled(currentEntity);
 	        IsFfFilled(currentEntity);
-	        IsLagerPlatzFilled(currentEntity);
+	       IsLagerPlatzFilled(currentEntity);
+	        IsConversionUnitAmountFilled(currentEntity);
 	        //IsInvoiceReceiver(currentEntity);
 	        //IsOwner(currentEntity);
 	        //IsKundenReferenz(currentEntity);
@@ -49,6 +50,28 @@ namespace HWB.NETSCALE.BOEF
 	    }
 
 	}
+
+	    private string IsConversionUnitAmountFilled( WaegeEntity currentEntity )
+	    {
+            //  _boOISE.conversionUnitShortDescription
+            string Msg = null;
+            if (currentEntity.Waegung == 2) 
+            {
+
+                if (mmType.IsEmpty(currentEntity.conversionUnitAmount))
+                {
+                    this.EntityPropertyDisplayName = "Mengenangabe";
+                    RequiredFieldMessageSuffix = " darf nicht null oder leer sein!";
+                    Msg = this.RequiredFieldMessagePrefix +
+                          this.EntityPropertyDisplayName + " " +
+                          this.RequiredFieldMessageSuffix;
+
+                    AddErrorProviderBrokenRule("conversionUnitAmount", Msg);
+                }
+
+            }
+            return Msg;
+	    }
 
 	    private string IsNettoEmpty(WaegeEntity currentEntity)
         {
