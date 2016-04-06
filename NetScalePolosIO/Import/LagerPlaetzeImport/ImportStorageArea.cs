@@ -54,22 +54,24 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
                 int recordCounter = 0;
                 foreach (PolosStorageArea obj in oL.storageAreas)
                 {
-                    recordCounter = recordCounter + 1;
-                    if (oL.storageAreas.Count > 0)
+                    if (obj.storageAreaType == "REGULAR")
                     {
-                        goApp.ProzentStammdaten = recordCounter/(float)(oL.storageAreas.Count/100);
-                    }
-                    if (obj.id != null)
-                    {
-                        _boLe = _boL.GetById(obj.id) ?? _boL.NewEntity();
-                        if (_boLe != null)
+                        recordCounter = recordCounter + 1;
+                        if (oL.storageAreas.Count > 0)
                         {
-                            _boLe.id = obj.id;
-                            _boLe.locationid = obj.locationId;
-                            _boLe.name = obj.name;
-                            _boLe.fullname = obj.fullName;
-
-                            _boL.SaveEntity(_boLe);
+                            goApp.ProzentStammdaten = recordCounter/(float) (oL.storageAreas.Count/100);
+                        }
+                        if (obj.id != null)
+                        {
+                            _boLe = _boL.GetById(obj.id) ?? _boL.NewEntity();
+                            if (_boLe != null)
+                            {
+                                _boLe.id = obj.id;
+                                _boLe.locationid = obj.locationId;
+                                _boLe.name = obj.name;
+                                _boLe.fullname = obj.fullName;
+                                _boL.SaveEntity(_boLe);
+                            }
                         }
                     }
                 }
