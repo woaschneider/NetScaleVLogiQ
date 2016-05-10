@@ -284,22 +284,32 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void DeserializeFilter()
         {
-            
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            FilterObject oFo = (FilterObject)formatter.Deserialize(stream);
-            stream.Close();
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("MyFile.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                FilterObject oFo = (FilterObject)formatter.Deserialize(stream);
+                stream.Close();
 
-            cbFelder1.Text = oFo.cb1;
-            cbFelder2.Text = oFo.cb2;
-            cbFelder3.Text = oFo.cb3;
+                cbFelder1.Text = oFo.cb1;
+                cbFelder2.Text = oFo.cb2;
+                cbFelder3.Text = oFo.cb3;
 
-            tbMatch1.Text = oFo.mc1;
-            tbMatch2.Text = oFo.mc2;
-            tbMatch3.Text = oFo.mc3;
+                tbMatch1.Text = oFo.mc1;
+                tbMatch2.Text = oFo.mc2;
+                tbMatch3.Text = oFo.mc3;
 
-            vondatePicker.SelectedDate = oFo.DatumVon;
-            bisdatePicker.SelectedDate = oFo.DatumBis;
+                vondatePicker.SelectedDate = oFo.DatumVon;
+                bisdatePicker.SelectedDate = oFo.DatumBis;
+            }
+            catch (Exception)
+            {
+                
+           
+            }
+
+
+      
         }
     }
     [Serializable]

@@ -24,9 +24,7 @@ namespace NetScalePolosIO.Export
                 return;
 
 
-          
-                Export2Rest(baseUrl, boWe);
-       
+            Export2Rest(baseUrl, boWe);
         }
 
 
@@ -52,18 +50,16 @@ namespace NetScalePolosIO.Export
 
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
             oWEx2.netAmount = boWe.Nettogewicht;
-            oWEx2.conversionUnitAmount = boWe.conversionUnitAmount;
-            //if (oWEx2.orderItemServiceId == null)
-            //{
+            oWEx2.additionalAmount = boWe.conversionUnitAmount;
+
             oWEx2.customerBusinessIdentifier = boWe.customerBusinessIdentifier;
-            //}
+
 
             // Artikel       
             oWEx2.articleInstance = new ArticleInstance {article = new Article {id = boWe.articleId}};
 
-
-           
             #region Artikelattribute
+
             if (boWe.attributes_as_json != null)
             {
                 JObject attObj = JObject.Parse(boWe.attributes_as_json);
@@ -82,8 +78,7 @@ namespace NetScalePolosIO.Export
                         string propValue = pair.Value.ToString();
                         string propDataTyp = "string"; // Default
 
-                        // Datentyp für Attribut erfragen
-                        // string, numeric, float und int
+
                         Artikelattribute boAa = new Artikelattribute();
                         ArtikelattributeEntity boAae = boAa.GetArtikelAttributByBezeichnung(propName);
                         if (boAae != null)
@@ -115,14 +110,14 @@ namespace NetScalePolosIO.Export
                         }
 
 
-                 oWEx2.articleInstance.attributes.BATCH = '\u0022' + propValue + '\u0022';
-                  //      oWEx2.articleInstance.attributes.BATCH =  propValue;
+                        oWEx2.articleInstance.attributes.BATCH = '\u0022' + propValue + '\u0022';
+
                         counter = counter + 1;
                     }
                 }
             }
-            #endregion
 
+            #endregion
 
             if (boWe.Erstgewicht > 0 | boWe.Zweitgewicht > 0)
             {
@@ -192,7 +187,7 @@ namespace NetScalePolosIO.Export
                 request.AddHeader("Accept-Language", "de");
                 request.RequestFormat = DataFormat.Json;
 
-                //  var obj = request.JsonSerializer.Serialize(oWEx2);
+
                 var obj = JsonConvert.SerializeObject(oWEx2, Formatting.Indented,
                     new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore});
 
@@ -210,16 +205,14 @@ namespace NetScalePolosIO.Export
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     WriteToExportLog(response, boWe);
-                    
-                            Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
+
+                    Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
                     if (response.StatusCode == 0)
                     {
                         Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
-
                     }
                     return;
                 }
-
 
 
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -230,14 +223,12 @@ namespace NetScalePolosIO.Export
                     {
                         we.taab = true;
                         we.HasBinSended = true;
-                        //   we.HasBinSendedDateTime = DateTime.Today;
+
                         w.SaveEntity(we);
                         SetOrderItemServiceAsSend(we);
                         WriteToExportLog(response, boWe);
                     }
-                  
                 }
-
 
 
                 WriteToExportLog(response, boWe);
@@ -257,7 +248,7 @@ namespace NetScalePolosIO.Export
             {
                 oIes.HasBinSended = true;
                 oIes.HasBinUsed = true;
-              var uRet=  oIe.SaveEntity(oIes);
+                var uRet = oIe.SaveEntity(oIes);
             }
         }
 

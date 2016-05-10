@@ -101,7 +101,16 @@ namespace NetScalePolosIO.Import.AuftragsImport
                     foreach (OrderEntity obj in oOi.orders)
                     {
                         recordCounter = recordCounter + 1;
-                        goApp.ProzentAuftraege = recordCounter / (_totalresult / 100);
+                        try
+                        {
+                            goApp.ProzentAuftraege = recordCounter / (_totalresult / 100);
+                        }
+                        catch (Exception)
+                        {
+                            goApp.ProzentAuftraege = 0;
+
+                        }
+                       
                         //#region Fertige Aufträge, falls noch vorhanden löschen
                         if ((obj.orderState == "CANCELLED") || (obj.orderState == "CLOSED") ||
                             (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") )
@@ -114,7 +123,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         }
 
 
-                        if (obj.orderState == "READY_TO_DISPATCH")
+                        if (obj.orderState == "READY_TO_DISPATCH" || obj.orderState == "NEW")
                         {
                             #region Eigentlicher Import
 

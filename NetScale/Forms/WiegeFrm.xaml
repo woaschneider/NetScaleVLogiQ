@@ -608,7 +608,7 @@
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Ist-Quell-Lagerplatz"
-               TabIndex="220" />
+               TabIndex="220" FontWeight="Bold" />
         <Button x:Name="cmdLookUpKfz"
                 Width="38.333"
                 Height="22"
@@ -766,9 +766,7 @@
                Margin="14,395,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="_Rechnungsempfänger"
-               FontWeight="Bold"
-               TabIndex="280"
+               Content="_Rechnungsempfänger" TabIndex="280"
                Target="{Binding ElementName=txtRechnungsEmpfaenger}" />
         <TextBox x:Name="txtAuftraggeber"
                  Width="436"

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
@@ -45,6 +46,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         [STAThread]
         public static void Main(string[] args)
         {
+
+             File.Delete("MyFile.bin");
             // Instantiate the Application object
             App = new AppWPF();
             IsSingleInstance = true;

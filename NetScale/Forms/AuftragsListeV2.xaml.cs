@@ -46,6 +46,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             DataGridOrderItemService.SelectedValuePath = "PK";
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             this.PreviewKeyDown += new KeyEventHandler(HandleKey);
+            GetOrderByMc();
+
         }
 
         private void HandleKey(object sender, KeyEventArgs e)

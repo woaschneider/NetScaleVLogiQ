@@ -14,6 +14,7 @@ namespace HardwareDevices.Schenck.Disomat.RS232
     {
         public const char Stx = (char) 2;
         public const char Etx = (char) 3;
+        public const char DC1 = (char) 17;
         private readonly Parity _p;
         private readonly StopBits _s;
 
@@ -120,53 +121,62 @@ namespace HardwareDevices.Schenck.Disomat.RS232
 
         public Weight GetPollGewicht(string wnr)
         {
-            var oPW = new Weight();
-
-            try
+            oCom.ReadExisting();
+            Weight oPW = new Weight();
+            if (oCom.IsOpen)
             {
-                if (oCom.IsOpen)
+                string clear = oCom.ReadExisting();
+                // Pollstring zusammenbauen
+                string tg = Stx + "01#TG#" + Etx + DC1;
+                // String senden
+                DateTime stopTime = DateTime.Now.AddMilliseconds(3000);
+                oCom.WriteLine(tg);
+                while (oCom.BytesToRead < 36)
                 {
-                    var clear = oCom.ReadExisting();
-                    // Pollstring zusammenbauen
-                    var tg1 = wnr + "#TG#" + Etx;
-
-
-                    // String senden
-                    var stopTime = DateTime.Now.AddMilliseconds(3000);
-                    //     oCom.WriteTimeout = 1000;
-                    oCom.WriteLine(Stx + tg1 + Bcc(tg1));
-                    while (oCom.BytesToRead < 36)
+                    // Stoptime prüfen
+                    if (DateTime.Now > stopTime) // Timeout
                     {
-                        // Stoptime prüfen
-                        if (DateTime.Now > stopTime) // Timeout
+                        return oPW; // Wegen Timeout
+                    }
+                }
+
+                string ret = oCom.ReadExisting();
+
+
+                if (ret.Substring(4, 2) == "TG")
+                {
+                    string sGewicht = ret.Substring(7, 7);
+                    sGewicht = sGewicht.Replace(".", ",");
+                    oPW.Status = ret.Substring(31, 2).ToUpper();
+
+                    var BitString = Convert.ToString(Convert.ToInt32(oPW.Status, 16), 2);
+
+                    if (BitString != null)
+                    {
+                        if (BitString.Length == 8)
                         {
-                            Log.Instance.Error("Timeout (3000 ms) bei der Tersuspollabfrage");
-                            return oPW; // Wegen Timeout
+                            oPW.S0 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(7, 1))); // Unterbereich
+                            oPW.S1 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(6, 1))); // Überbereich
+                            oPW.S2 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(5, 1))); // Tara errechnet 
+                            oPW.S3 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(4, 1))); // Genau null
+                            oPW.S4 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(3, 1))); // 
+                            oPW.S5 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(2, 1))); // Gewicht ungültig
+                            oPW.S6 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(1, 1)));  // Tara gesetzt
+                            oPW.S7 = Convert.ToBoolean(Convert.ToInt16(BitString.Substring(0, 1))); // Stillstand
                         }
                     }
 
-                    var ret = oCom.ReadExisting();
-
-
-                    if (ret.Substring(4, 2) == "TG")
+                    if (oPW.S5)
                     {
-                        var sGewicht = ret.Substring(7, 7);
-                        sGewicht = sGewicht.Replace(".", ",");
-                        oPW.Status = ret.Substring(31, 2);
-                        oPW.WeightValue = Convert.ToDecimal(sGewicht);
+                        oPW.WeightValue = (decimal)99.99;
+                        return oPW;
                     }
-                }
-                else
-                {
-                    Log.Instance.Error(oCom.PortName + " " + "ist geschlossen!");
-                    oCom.Open();
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Instance.Error(e.Source + " " + e.InnerException + " " + e.Message);
-            }
 
+                    oPW.WeightValue = Convert.ToDecimal(sGewicht);
+
+                }
+            }
+            oCom.ReadExisting();
             return oPW;
         }
 

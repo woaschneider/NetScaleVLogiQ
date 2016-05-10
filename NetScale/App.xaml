@@ -27,7 +27,7 @@
             </Style.Triggers>
         </Style>
 
-
+    
 
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="VerticalContentAlignment" Value="Center" />
