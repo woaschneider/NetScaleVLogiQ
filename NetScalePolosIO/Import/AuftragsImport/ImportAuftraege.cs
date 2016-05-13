@@ -244,28 +244,18 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                         {
                                             foreach (OrderItemService orderItemService in orderItem.orderItemServices)
                                             {
-                                                // Order Item Service: Verladen LKW / Leistungs-ID: 2003 / Info: Diese Leistung wird im Produkt WA LKW (8005) übermittelt
-                                                //Order Item Service: Abladen LKW / Leistungs ID: 2001/ Info: Diese Leistung wird im Produkt WE LKW (8002) übermittelt 
-                                                //Order Item Service: Abladen Schiff / Leistungs ID: 1001/ Info: Diese Leistung wird im Produkt WE Schiff (8000) übermittelt
+       
+                                                if (orderItemService.service.scaleRelevant  && orderItemService.state != "READY_TO_DISPATCH")
+                                                {
+                                                    _boOise = _boOis.GetByIdAndPKOrderItem(_boOe.PK,
+                                                      orderItemService.identifier);
+                                                    if (_boOise != null)
+                                                    {
+                                                        _boOis.DeleteEntity(_boOise);
+                                                    }
+                                                }
 
-                                                //Order Item Service: Verladen LKW / Leistungs-ID: 2003 / Info: Diese Leistung wird im Produkt UMS Schiff LKW (3406) übermittelt
-                                                //Order Item Service: Abladen LKW / Leistungs-ID: 2001 / Info: Diese Leistung wird im Produkt UMS LKW Schiff (3402) übermittelt
-
-                                                //Order Item Service: Umlagern / Leistungs-ID: 8103 / Info: Diese Leistung wird im Produkt Umlagern (8103; Leistungs-ID = Produkt-ID) übermittelt
-                                                //Order Item Service: Fremdverwiegung / Leistungs-ID: 10301/ Info: Diese Leistung wird im Produkt Fremdverwiegung (10301; Leistungs-ID = Produkt-ID) übermittelt
-                                                //Order Item Service: Radladerverwiegung / Leistungs-ID: 10300/ Info: Diese Leistung wird im Produkt Radladerverwiegung 10300; Leistungs-ID = Produkt-ID) übermittelt 
-
-                                                // Neu: 24.07.2015
-                                                // Filter um 1003 erweitern
-                                                // Produkt 8003 Warenausgang Schiff / Leistungsid 1003
-
-
-                                                // Order Item Service: 
-
-                                                // Filter auf die relevanten Leistungen
-                                       //         if (VFP.InList(orderItemService.service.id, 1003, 2003, 2001, 1001, 8103, 10301,
-                                         //           10300))
-                                               if(orderItemService.service.scaleRelevant==true)
+                                                if (orderItemService.service.scaleRelevant == true && orderItemService.state == "READY_TO_DISPATCH")
                                                 {
                                                     _boOis = new OrderItemservice();
 
