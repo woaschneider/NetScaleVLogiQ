@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using System.Threading;
+
 using System.Windows;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
@@ -194,8 +194,8 @@ namespace NetScalePolosIO
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="only_Ready_To_Dispatch"></param>
-        public void ImportAuftraege(bool only_Ready_To_Dispatch)
+        /// <param name="onlyReadyToDispatch"></param>
+        public void ImportAuftraege(bool onlyReadyToDispatch)
         {
             
             string uri = GetImportServerIp() + ":" + GetImportPort();
@@ -206,37 +206,29 @@ namespace NetScalePolosIO
                 return;
             }
 
-            ExceImportAuftraegeThread(uri, only_Ready_To_Dispatch);
+            ExceImportAuftraegeThread(uri, onlyReadyToDispatch);
         }
 
-        private void ExceImportAuftraegeThread(string uri, bool only_Ready_To_Dispatch)
+        private void ExceImportAuftraegeThread(string uri, bool onlyReadyToDispatch)
         {
             BackgroundWorker bw = new BackgroundWorker();
-            //  bw.DoWork += BwDoWorkImportAuftraege;
-            bw.DoWork += (obj, e) => BwDoWorkImportAuftraege(uri, only_Ready_To_Dispatch);
+           
+            bw.DoWork += (obj, e) => BwDoWorkImportAuftraege(uri, onlyReadyToDispatch);
 
             bw.RunWorkerAsync();
-            // bw.RunWorkerAsync(uri, only_Ready_To_Dispatch);
+            
         }
 
-        private void BwDoWorkImportAuftraege(string uri, bool only_Ready_To_Dispatch)
+        private void BwDoWorkImportAuftraege(string uri, bool onlyReadyToDispatch)
         {
             goApp.ImportMessageAuftraege = "Auftragsimport!";
-            string info = "";
 
-            if (only_Ready_To_Dispatch)
-            {
-                info = "Nur Ready For Dispatch";
-            }
-            else
-            {
-                info = "Alle Aufträge";
-            }
+            var info = onlyReadyToDispatch ? "Nur Ready For Dispatch" : "Alle Aufträge";
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
 
             Log.Instance.Info("Auftragsimport wurde gestartet! " + info);
-            new ImportAuftraege().Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, only_Ready_To_Dispatch);
+            new ImportAuftraege().Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, onlyReadyToDispatch);
             Log.Instance.Info("Auftragsimport wurde beendet! " + info);
             goApp.ImportMessageAuftraege = "";
             goApp.ProzentAuftraege = 0;

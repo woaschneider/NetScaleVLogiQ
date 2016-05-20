@@ -32,7 +32,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private mmSaveDataResult _result;
       
         #endregion
-        private DispatcherTimer DT;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -51,7 +51,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             netScaleView1.OnWeightChanged += ShowEventGewichtHasChanged;
             DisplayErrorDialog = true;
             DisplayErrorProvider = true;
-         //   RegisterPrimaryBizObj(_boW);
+       
 
 
             tb_me1.Text = goApp.MengenEinheit;
@@ -112,10 +112,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             SetWeightBindingFormat();
             FillIncoterms();
-            DT = new DispatcherTimer();
-            DT.Tick += new EventHandler(Poll_TICK);
-            DT.Interval = TimeSpan.FromSeconds(0.5);
-            DT.Start();
+            var dt = new DispatcherTimer();
+            dt.Tick += Poll_TICK;
+            dt.Interval = TimeSpan.FromSeconds(0.5);
+            dt.Start();
 
           
             //   new ImportExportPolos().ImportStammdaten();
@@ -143,7 +143,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
         private void ShowEventGewichtHasChanged()
         {
-            //  MessageBox.Show("Event");
+          
             if (_wiegeStatus == 2)
             {
                 _boWe.Zweitgewicht = netScaleView1.Gewicht;
@@ -178,7 +178,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             var oHlFrm = new HoflisteFrm();
             oHlFrm.ShowDialog();
             int uRet = oHlFrm.uRet;
-            //TODO Verbessern!
+         
             if (uRet == 0)
             {
                 oHlFrm.Close();
@@ -212,16 +212,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     DataContext = _boWe;
                     oLsListe.Close();
                     Wiegestatus = 5;
-                    //if (_boWe.taab == true)
-                    //{
-                    //    ribbonSave.IsEnabled = false;
-                    //    ribbonDelete.IsEnabled = false;
-                    //}
-                    //else
-                    //{
-                    //    ribbonSave.IsEnabled = true;
-                    //    ribbonDelete.IsEnabled = true;
-                    //}
+              
                 }
             }
         }
@@ -265,15 +256,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
-            //if (_wiegestatus == 7) // Abruf bearbeiten
-            //{
-            //    var oAbruf = new Abruf();
-            //    AbrufEntity oAe = oAbruf.GetAbrufById(_boWe.Abrufid);
-            //    if (oAe != null)
-            //    {
-            //        oAbruf.DeleteEntity(oAe);
-            //    }
-            //}
+       
 
             if (_boWe != null)
             {
@@ -486,12 +469,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
 
 
-            // Hier wird gezielt gesucht, zB Exrechnung
-            //foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
-            //{
-            //    this.expanderCustomerEdit.IsExpanded = false;
-            //    tb.IsEnabled = false;
-            //}
+         
         }
 
         private void EnableFrmTb()
@@ -516,15 +494,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
 
 
-            //    foreach (object ctrl in LayoutRoot.Children)
-
-
-            //        //foreach (TextBox tb in FindVisualChildren<TextBox>(this.expanderCustomerEdit))
-            //        //{
-            //        //    this.expanderCustomerEdit.IsExpanded = false;
-            //        //    tb.IsEnabled = true;
-            //        //}
-            //
+      
         }
 
         private void SetWeightBindingFormat()

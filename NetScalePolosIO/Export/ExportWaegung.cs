@@ -124,7 +124,7 @@ namespace NetScalePolosIO.Export
                 oWEx2.scalePhaseData = new ScalePhaseData();
                 if (boWe.Erstgewicht > 0)
                 {
-                    oWEx2.scalePhaseData.FIRST = new FIRST {scaleId = "3"};
+                    oWEx2.scalePhaseData.FIRST = new FIRST {scaleId = "1"};
                     if (boWe.LN1 != null)
                         oWEx2.scalePhaseData.FIRST.scaleNumber = boWe.LN1.Trim();
 
@@ -144,7 +144,7 @@ namespace NetScalePolosIO.Export
 
                 if (boWe.Zweitgewicht > 0)
                 {
-                    oWEx2.scalePhaseData.SECOND = new SECOND {scaleId = "3"};
+                    oWEx2.scalePhaseData.SECOND = new SECOND {scaleId = "1"};
                     if (boWe.LN2 != null)
                         oWEx2.scalePhaseData.SECOND.scaleNumber = boWe.LN2.Trim();
 
@@ -204,13 +204,14 @@ namespace NetScalePolosIO.Export
                 //TODO:ExportAll Fehlschläge loggen - Erfolgreiche unvisible setzen
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    WriteToExportLog(response, boWe);
+                  //  WriteToExportLog(response, boWe);
 
-                    Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
-                    if (response.StatusCode == 0)
-                    {
-                        Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
-                    }
+                  //  Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
+                 
+                       // Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
+                        Log.Instance.Error("Exportfehler - Antwort vom Restserver: "+response.StatusCode + ", Message: "+response.Content);
+                   
+                 
                     return;
                 }
 
