@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Runtime.Serialization;
@@ -8,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
@@ -40,7 +42,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         public WiegelisteFrm()
         {
             this.InitializeComponent();
-
+            Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             _boW = new Waege();
             vondatePicker.SelectedDate = System.DateTime.Now;
             bisdatePicker.SelectedDate = System.DateTime.Now;

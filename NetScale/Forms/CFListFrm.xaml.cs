@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
@@ -32,6 +34,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             MatchCode = mc;
      
             this.InitializeComponent();
+            Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             dataGrid1.SelectedValuePath = "PK";
             if (edit == false)
                 cmdSelect.IsEnabled = false;
@@ -47,6 +50,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 cmdSelect_Click(cmdSelect, e);
                 Hide();
+            }
+            if (e.Key == Key.Tab)
+            {
+                dataGrid1.SelectedItem = dataGrid1.Items[0];
+                dataGrid1.Focus();
             }
         }
 
@@ -110,6 +118,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
                 WindowExtensions.HideCloseButton(this);
           
+        }
+
+        private void TxtSearch_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Fahrzeuge _boF = new Fahrzeuge();
+            dataGrid1.ItemsSource = _boF.GetByKennzeichen(txtSearch.Text);
         }
     }
 }

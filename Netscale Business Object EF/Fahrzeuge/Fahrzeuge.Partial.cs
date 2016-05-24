@@ -71,6 +71,7 @@ namespace HWB.NETSCALE.BOEF
         {
             IQueryable<FahrzeugeEntity> query = from f in ObjectContext.FahrzeugeEntities
                                                 where f.Kennzeichen1.Contains(mc)
+                                                orderby f.Kennzeichen1
                                                 select f;
             return GetEntityList(query);
         }

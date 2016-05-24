@@ -34,8 +34,8 @@ namespace HWB.NETSCALE.BOEF
             if (this.State == mmBusinessState.PreSaving)
             {
                 PreSaveHook(this.Entity);
-                if (this.Entity.Waegung == 1 && Entity.identifierOItem != null)
-                {
+                //if (this.Entity.Waegung == 1 && Entity.identifierOItem != null)
+                //{
                     OrderItemservice boOES = new OrderItemservice();
                     OrderItemserviceEntity boOEISe = boOES.GetByOrderIdentifierItemService(Entity.identifierOItemService);
                     if (boOEISe != null)
@@ -43,7 +43,7 @@ namespace HWB.NETSCALE.BOEF
                         boOEISe.HasBinUsed = true;
                         boOES.SaveEntity(boOEISe);
                     }
-                }
+                //}
             }
 
             if (this.State == mmBusinessState.Deleting)

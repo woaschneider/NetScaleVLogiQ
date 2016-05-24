@@ -240,7 +240,7 @@
                Content="Abruf-Nr / Datum"
                FontSize="14" />
         <TextBox Name="textBox2"
-                 Width="122"
+                 Width="216"
                  Height="33"
                  MaxHeight="30"
                  Margin="275,362,0,0"
