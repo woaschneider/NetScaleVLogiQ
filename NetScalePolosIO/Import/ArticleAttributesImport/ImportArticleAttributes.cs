@@ -49,7 +49,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
               
 
                 _boA = new Artikelattribute();
-                int recordCounter = 0;
+                float recordCounter = 0;
                 foreach (string t in oA.articleAttributes)
                 {
                     recordCounter = recordCounter + 1;

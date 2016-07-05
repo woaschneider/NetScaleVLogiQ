@@ -303,8 +303,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
                                                         // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
-                                                        _boOise.productdescription =
-                                                            oOEntity.orderItems[0].product.description;
+                                                        //_boOise.productdescription =
+                                                        //    oOEntity.orderItems[0].product.description;
                                                         // 14.11.2014 Das entspricht der Schnittstellenbeschreibung
 
                                                         _boOise.remark = orderItemService.remark;
