@@ -60,13 +60,14 @@ namespace HWB.NETSCALE.BOEF
         {
             IQueryable<OrderItemserviceEntity> query = from o in ObjectContext.OrderItemserviceEntities
                 where o.PKOrderItem == pk & o.HasBinSended == false  & o.HasBinUsed == false
-                   & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)  
+                & (o.PlanningDivisionId == goApp.planningDivisionId || o.PlanningDivisionId == null)
+               orderby  o.sequenceOItem.Length , o.sequenceOItem, o.sequenceOItemService.Length , o.sequenceOItemService
+                
             
               
             select o;
-            var uRet = GetEntityList(query);
-            uRet.OrderBy(oo => int.Parse(oo.sequenceOItem)); // Strings numerisch sortiert
-            return uRet ;
+            return  GetEntityList(query);
+     
 
         }
          

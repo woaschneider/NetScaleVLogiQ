@@ -88,7 +88,7 @@
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
                   MouseDoubleClick="DataGridOrderItemService_OnMouseDoubleClick"
-                  Style="{DynamicResource DataGridStyle}">
+                  Style="{DynamicResource DataGridStyle}" CanUserSortColumns="False">
             <DataGrid.DataContext>
                 <hwbNetscaleBoef:OrderItemserviceEntity />
             </DataGrid.DataContext>
