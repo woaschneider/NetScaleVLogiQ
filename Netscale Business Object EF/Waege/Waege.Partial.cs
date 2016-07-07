@@ -190,6 +190,7 @@ namespace HWB.NETSCALE.BOEF
                       && w.customerBusinessIdentifier.Contains(auftraggeber)
                       && w.productdescription.Contains(produkt)
                       && w.Fahrzeug.Contains(fahrzeug)
+                      orderby w.LieferscheinNr descending 
                 select w;
 
             return GetEntityList(query);
