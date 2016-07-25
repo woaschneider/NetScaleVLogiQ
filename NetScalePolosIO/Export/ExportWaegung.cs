@@ -79,39 +79,55 @@ namespace NetScalePolosIO.Export
                         string propDataTyp = "string"; // Default
 
 
-                        Artikelattribute boAa = new Artikelattribute();
-                        ArtikelattributeEntity boAae = boAa.GetArtikelAttributByBezeichnung(propName);
-                        if (boAae != null)
+                        switch (propName)
                         {
-                            if (boAae.Datatyp != null)
-                            {
-                                propDataTyp = boAae.Datatyp;
-                            }
-
-                            string dt = propDataTyp;
-                            switch (dt)
-                            {
-                                case "string":
-                                    att[counter] = propName + ": " + propValue;
-                                    break;
-                                case "numeric":
-                                    att[counter] = propName + ": " + propValue.Replace(",", ".");
-                                    break;
-                                case "float":
-                                    att[counter] = propName + ": " + propValue.Replace(",", ".");
-                                    break;
-                                case "int":
-                                    att[counter] = propName + ": " + propValue.Replace(",", "");
-                                    break;
-                                default:
-                                    att[counter] = propName + ": " + '\u0022' + propValue + '\u0022';
-                                    break;
-                            }
+                                 case "SERIAL_NUMBER":
+                                oWEx2.articleInstance.attributes.SERIAL_NUMBER = propValue;
+                                break;
+                                case "BARCODE":
+                                oWEx2.articleInstance.attributes.BARCODE = propValue;
+                                break;
+                            case "BATCH":
+                            oWEx2.articleInstance.attributes.BATCH = propValue;
+                                break;
+                              case "ORIGIN":
+                            oWEx2.articleInstance.attributes.ORIGN = propValue;
+                                break;
+                              case "GRADE":
+                            oWEx2.articleInstance.attributes.GRADE = propValue;
+                                break;
+                              case "ORIGINAL_NUMBER":
+                            oWEx2.articleInstance.attributes.ORIGINAL_NUMBER = propValue;
+                                break;
+                             case "ORIGINAL_MARKING":
+                            oWEx2.articleInstance.attributes.ORIGINAL_MARKING = propValue;
+                                break;
+                              case "LENGTH":
+                            oWEx2.articleInstance.attributes.LENGTH = propValue;
+                                break;
+                              case "WIDTH":
+                            oWEx2.articleInstance.attributes.WIDTH = propValue;
+                                break;
+                              case "HEIGHT":
+                            oWEx2.articleInstance.attributes.HEIGHT = propValue;
+                                break;
+                              case "DIMENSION":
+                            oWEx2.articleInstance.attributes.DIMENSION = propValue;
+                                break;
+                              case "STORAGE_AREA_REFERENCE":
+                            oWEx2.articleInstance.attributes.STORAGE_AREA_REFERENCE = propValue;
+                                break;
+                                  case "STORAGE_AREA_REFERENCE_NUMBER":
+                            oWEx2.articleInstance.attributes.STORAGE_AREA_REFERENCE_NUMBER = propValue;
+                                break;
+                                  case "DIAMETER":
+                            oWEx2.articleInstance.attributes.DIAMETER = propValue;
+                                break;
+                            
                         }
+                        
 
-
-                        oWEx2.articleInstance.attributes.BATCH = '\u0022' + propValue + '\u0022';
-
+               
                         counter = counter + 1;
                     }
                 }
