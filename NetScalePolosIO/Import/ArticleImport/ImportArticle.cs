@@ -22,7 +22,7 @@ namespace NetScalePolosIO.Import.ArticleImport
             try
             {
 
-                var client = new RestClient(baseUrl);
+                 var client = new RestClient(baseUrl);
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
                 client.Timeout = 15000;

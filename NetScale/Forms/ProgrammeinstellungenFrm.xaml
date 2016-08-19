@@ -183,9 +183,9 @@
                               IsReadOnly="False">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Binding="{Binding MandantNr}" Header="Mandant" />
-                            <DataGridTextColumn Binding="{Binding MandantName}" Header="Name" />
-                            <DataGridTextColumn Binding="{Binding AnzahlLS}" Header="Anzahl LS" />
+                            <DataGridTextColumn Binding="{Binding MandantNr, Mode=TwoWay}" Header="Mandant"  />
+                            <DataGridTextColumn Binding="{Binding MandantName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Header="Name" />
+                            <DataGridTextColumn Binding="{Binding AnzahlLS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl LS" />
                             <DataGridTemplateColumn Header="Drucker" IsReadOnly="False">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
