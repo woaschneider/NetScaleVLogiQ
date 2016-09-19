@@ -935,7 +935,7 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
                            Content="Consumer key"
-                           MouseDoubleClick="Label35_OnMouseDoubleClick" />
+                           MouseDoubleClick="Label35_OnMouseDoubleClick" ToolTip="Doppelklick zum Editieren der Keys" />
                     <Label Name="label36"
                            Height="28"
                            Margin="415,137,0,0"

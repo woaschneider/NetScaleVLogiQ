@@ -293,8 +293,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 return;
             }
             WaageneinstellungenFrm oWEFrm = new WaageneinstellungenFrm();
-            oWEFrm.ShowDialog();
-            oWEFrm.Close();
+            PasswortFrm oPwFrm = new PasswortFrm();
+            oPwFrm.ShowDialog();
+            if (oPwFrm.PWOk)
+            {
+                oPwFrm.Close();
+                oWEFrm.ShowDialog();
+                oWEFrm.Close();
+            }
+            else
+            {
+                oPwFrm.Close();
+            }
         }
 
         private void cmdSetUp_Click(object sender, RoutedEventArgs e)
@@ -305,9 +315,16 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                                 MessageBoxImage.Exclamation);
                 return;
             }
-            ProgrammeinstellungenFrm oSFrm = new ProgrammeinstellungenFrm();
-            oSFrm.ShowDialog();
-            oSFrm.Close();
+            PasswortFrm oPwFrm = new PasswortFrm();
+            oPwFrm.ShowDialog();
+            if (oPwFrm.PWOk)
+            {
+                ProgrammeinstellungenFrm oSFrm = new ProgrammeinstellungenFrm();
+                oPwFrm.Close();
+                oSFrm.ShowDialog();
+                oSFrm.Close();
+            }
+           
         }
 
         private void cmdInfo_Click(object sender, RoutedEventArgs e)

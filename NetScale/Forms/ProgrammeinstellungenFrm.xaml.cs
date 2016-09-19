@@ -589,10 +589,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Label35_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MyLoginWindow oLFrm = new MyLoginWindow();
-            oLFrm.ShowDialog();
-            if (oLFrm.DialogResult == true)
+          PasswortFrm oPwFrm = new PasswortFrm();
+            oPwFrm.ShowDialog();
+            if (oPwFrm.PWOk)
             {
+                oPwFrm.Close();
                 passwordBoxConsumerKey.IsEnabled = true;
                 passwordBoxConsumerSecret.IsEnabled = true;
             }

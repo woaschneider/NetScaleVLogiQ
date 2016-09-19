@@ -248,6 +248,9 @@
     <Compile Include="Forms\MyUserListeFrm.xaml.cs">
       <DependentUpon>MyUserListeFrm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PasswortFrm.xaml.cs">
+      <DependentUpon>PasswortFrm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PortListFrm.xaml.cs">
       <DependentUpon>PortListFrm.xaml</DependentUpon>
     </Compile>
@@ -398,6 +401,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\MyUserListeFrm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PasswortFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
