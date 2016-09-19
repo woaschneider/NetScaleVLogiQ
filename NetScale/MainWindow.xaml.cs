@@ -293,7 +293,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 return;
             }
             WaageneinstellungenFrm oWEFrm = new WaageneinstellungenFrm();
-            PasswortFrm oPwFrm = new PasswortFrm();
+            PasswortFrm2 oPwFrm = new PasswortFrm2();
             oPwFrm.ShowDialog();
             if (oPwFrm.PWOk)
             {
@@ -315,7 +315,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                                 MessageBoxImage.Exclamation);
                 return;
             }
-            PasswortFrm oPwFrm = new PasswortFrm();
+            PasswortFrm2 oPwFrm = new PasswortFrm2();
             oPwFrm.ShowDialog();
             if (oPwFrm.PWOk)
             {
@@ -323,6 +323,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 oPwFrm.Close();
                 oSFrm.ShowDialog();
                 oSFrm.Close();
+            }
+            else
+            {
+                oPwFrm.Close(); 
             }
            
         }

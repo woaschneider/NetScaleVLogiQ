@@ -248,9 +248,6 @@
     <Compile Include="Forms\MyUserListeFrm.xaml.cs">
       <DependentUpon>MyUserListeFrm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PasswortFrm.xaml.cs">
-      <DependentUpon>PasswortFrm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\PortListFrm.xaml.cs">
       <DependentUpon>PortListFrm.xaml</DependentUpon>
     </Compile>
@@ -292,6 +289,9 @@
     </Compile>
     <Compile Include="MD5.cs" />
     <Compile Include="MyFunctions.cs" />
+    <Compile Include="Forms\PasswortFrm2.xaml.cs">
+      <DependentUpon>PasswortFrm2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrinterLS.cs" />
     <Compile Include="TextDatei.cs" />
     <Compile Include="UserWindow.xaml.cs">
@@ -404,10 +404,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\PasswortFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forms\PortListFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -463,6 +459,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Forms\MyLoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\PasswortFrm2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

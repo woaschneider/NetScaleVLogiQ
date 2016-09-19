@@ -589,7 +589,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void Label35_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-          PasswortFrm oPwFrm = new PasswortFrm();
+          PasswortFrm2 oPwFrm = new PasswortFrm2();
             oPwFrm.ShowDialog();
             if (oPwFrm.PWOk)
             {
