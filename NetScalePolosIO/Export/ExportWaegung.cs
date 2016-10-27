@@ -195,10 +195,10 @@ namespace NetScalePolosIO.Export
                 var client = new RestClient(baseUrl);
 
                 client.ClearHandlers();
-                client.Timeout = 15000;
-
+            //    client.Timeout = 15000;
+             
                 var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
-
+                request.Timeout = 60000;
                 request.AddHeader("X-location-Id", boEe.RestLocation);
                 request.AddHeader("Accept-Language", "de");
                 request.RequestFormat = DataFormat.Json;
