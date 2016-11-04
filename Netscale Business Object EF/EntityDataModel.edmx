@@ -1,49 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="$namespace$.Target" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="$namespace$.Target" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="$namespace$TargetContainer">
-          <EntitySet Name="Abruf" EntityType="$namespace$.Target.Abruf" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Adressen" EntityType="$namespace$.Target.Adressen" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Arbeitsleistungsfilter" EntityType="$namespace$.Target.Arbeitsleistungsfilter" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Artikel" EntityType="$namespace$.Target.Artikel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Artikelattribute" EntityType="$namespace$.Target.Artikelattribute" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Bonitaet" EntityType="$namespace$.Target.Bonitaet" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Classes" EntityType="$namespace$.Target.Classes" store:Type="Tables" store:Schema="dbo" store:Name="Classes">
+          <EntitySet Name="Abruf" EntityType="$namespace$.Target.Abruf" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Adressen" EntityType="$namespace$.Target.Adressen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Arbeitsleistungsfilter" EntityType="$namespace$.Target.Arbeitsleistungsfilter" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Artikel" EntityType="$namespace$.Target.Artikel" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Artikelattribute" EntityType="$namespace$.Target.Artikelattribute" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Bonitaet" EntityType="$namespace$.Target.Bonitaet" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Classes" EntityType="$namespace$.Target.Classes" store:Type="Tables" store:Schema="dbo" store:Name="Classes" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [Classes].[ClassToken] AS [ClassToken], 
       [Classes].[ClassName] AS [ClassName], 
       [Classes].[Assembly] AS [Assembly]
       FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Einstellungen" EntityType="$namespace$.Target.Einstellungen" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ErrorLog" EntityType="$namespace$.Target.ErrorLog" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ExportLog" EntityType="$namespace$.Target.ExportLog" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Fahrzeuge" EntityType="$namespace$.Target.Fahrzeuge" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Freistellungen" EntityType="$namespace$.Target.Freistellungen" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Lagerplaetze" EntityType="$namespace$.Target.Lagerplaetze" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Language" EntityType="$namespace$.Target.Language" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Module" EntityType="$namespace$.Target.Module" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="OrderArticleAttribute" EntityType="$namespace$.Target.OrderArticleAttribute" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Orderitem" EntityType="$namespace$.Target.Orderitem" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="OrderItemservice" EntityType="$namespace$.Target.OrderItemservice" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Planningdivision" EntityType="$namespace$.Target.Planningdivision" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Services" EntityType="$namespace$.Target.Services" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="$namespace$.Target.Users" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Waagentypen" EntityType="$namespace$.Target.Waagentypen" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Waege" EntityType="$namespace$.Target.Waege" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Warenarten" EntityType="$namespace$.Target.Warenarten" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Wiegeart" EntityType="$namespace$.Target.Wiegeart" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Einstellungen" EntityType="$namespace$.Target.Einstellungen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ErrorLog" EntityType="$namespace$.Target.ErrorLog" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ExportLog" EntityType="$namespace$.Target.ExportLog" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Fahrzeuge" EntityType="$namespace$.Target.Fahrzeuge" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Freistellungen" EntityType="$namespace$.Target.Freistellungen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Lagerplaetze" EntityType="$namespace$.Target.Lagerplaetze" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Language" EntityType="$namespace$.Target.Language" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Module" EntityType="$namespace$.Target.Module" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrderArticleAttribute" EntityType="$namespace$.Target.OrderArticleAttribute" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Orderitem" EntityType="$namespace$.Target.Orderitem" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrderItemservice" EntityType="$namespace$.Target.OrderItemservice" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Planningdivision" EntityType="$namespace$.Target.Planningdivision" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Services" EntityType="$namespace$.Target.Services" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Users" EntityType="$namespace$.Target.Users" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Waagentypen" EntityType="$namespace$.Target.Waagentypen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Waege" EntityType="$namespace$.Target.Waege" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Warenarten" EntityType="$namespace$.Target.Warenarten" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Wiegeart" EntityType="$namespace$.Target.Wiegeart" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <AssociationSet Name="Artikel hat Attribute" Association="$namespace$.Target.Artikel hat Attribute">
             <End Role="OrderItemservice" EntitySet="OrderItemservice" />
             <End Role="OrderArticleAttribute" EntitySet="OrderArticleAttribute" />
@@ -849,7 +849,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HWB.NETSCALE.BOEF" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="HWB.NETSCALE.BOEF" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="EntityDataModelContainer">
           <EntitySet Name="Classes" EntityType="HWB.NETSCALE.BOEF.Class" />
           <EntitySet Name="Languages" EntityType="HWB.NETSCALE.BOEF.Language" />
@@ -1706,7 +1706,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <Alias Key="Model" Value="$namespace$" />
         <Alias Key="Target" Value="$namespace$.Target" />
         <EntityContainerMapping CdmEntityContainer="EntityDataModelContainer" StorageEntityContainer="$namespace$TargetContainer">
@@ -2507,11 +2507,11 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="86" >
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="86">
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.FK_Message_Language" >
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.FK_Message_Language">
           <edmx:ConnectorPoint PointX="4.25" PointY="2.075" />
           <edmx:ConnectorPoint PointX="4.75" PointY="2.075" />
         </edmx:AssociationConnector>
@@ -2539,7 +2539,7 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="7" PointY="38.25" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArbeitsleistungsfilterEntity" Width="1.5" PointX="17.5" PointY="8.125" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ServEntity" Width="1.5" PointX="9.25" PointY="38.25" Height="1.9802864583333246" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_" >
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_">
           <edmx:ConnectorPoint PointX="8.5" PointY="39.240143229166662" />
           <edmx:ConnectorPoint PointX="9.25" PointY="39.240143229166662" />
         </edmx:AssociationConnector>
@@ -2547,12 +2547,12 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArtikelEntity" Width="1.5" PointX="13.375" PointY="12.75" Height="6.9801236979166674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.PlanningdivisionEntity" Width="1.5" PointX="14.375" PointY="0.75" Height="1.7879850260416674" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Width="1.5" PointX="6.25" PointY="42.375" Height="15.056783854166667" />
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" >
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Artikel_hat_Attribute">
           <edmx:ConnectorPoint PointX="6.59375" PointY="42.375" />
           <edmx:ConnectorPoint PointX="6.59375" PointY="12.4612939453125" />
           <edmx:ConnectorPoint PointX="7.75" PointY="12.4612939453125" />
         </edmx:AssociationConnector>
-        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" >
+        <edmx:AssociationConnector Association="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen">
           <edmx:ConnectorPoint PointX="4.75" PointY="16.153219401041667" />
           <edmx:ConnectorPoint PointX="4.75" PointY="49.903391927083334" />
           <edmx:ConnectorPoint PointX="6.25" PointY="49.903391927083334" />

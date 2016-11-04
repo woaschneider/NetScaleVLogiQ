@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Waageneinstellungen xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SCALES>1</SCALES>
+  <MESSKREISE>1</MESSKREISE>
+  <Einheit>t</Einheit>
+  <W1_WAAGENID>10</W1_WAAGENID>
+  <W1_WAAGENBESCHREIBUNG>Disomat Opus RS232: 8785</W1_WAAGENBESCHREIBUNG>
+  <W1_WAAGENNAME>Waage 1 (unten)</W1_WAAGENNAME>
+  <W1_IP_NUMMER>192.168.240.001</W1_IP_NUMMER>
+  <W1_COM>COM5</W1_COM>
+  <W1_BAUD>9600</W1_BAUD>
+  <W1_DATA_BIT>8</W1_DATA_BIT>
+  <W1_PARITY_BIT>N</W1_PARITY_BIT>
+  <W1_STOP_BIT>1</W1_STOP_BIT>
+  <W1_e>e=20</W1_e>
+  <W1_min>min 400 kg</W1_min>
+  <W1_max>max 50000 kg</W1_max>
+  <W2_WAAGENID>10</W2_WAAGENID>
+  <W2_WAAGENBESCHREIBUNG>Disomat Opus RS232: 8785</W2_WAAGENBESCHREIBUNG>
+  <W2_WAAGENNAME>Waage 2 (oben)</W2_WAAGENNAME>
+  <W2_IP_NUMMER>192.168.000.202</W2_IP_NUMMER>
+  <W2_COM>COM2</W2_COM>
+  <W2_BAUD>9600</W2_BAUD>
+  <W2_DATA_BIT>8</W2_DATA_BIT>
+  <W2_PARITY_BIT>N</W2_PARITY_BIT>
+  <W2_STOP_BIT>1</W2_STOP_BIT>
+  <W2_e>e=0,02</W2_e>
+  <W2_min>min=0,4</W2_min>
+  <W2_max>max=50 t</W2_max>
+</Waageneinstellungen>
