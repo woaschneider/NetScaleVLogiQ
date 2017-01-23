@@ -4,64 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="$namespace$.Target" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="$namespace$TargetContainer">
-          <EntitySet Name="Abruf" EntityType="$namespace$.Target.Abruf" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Adressen" EntityType="$namespace$.Target.Adressen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Arbeitsleistungsfilter" EntityType="$namespace$.Target.Arbeitsleistungsfilter" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Artikel" EntityType="$namespace$.Target.Artikel" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Artikelattribute" EntityType="$namespace$.Target.Artikelattribute" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Bonitaet" EntityType="$namespace$.Target.Bonitaet" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Classes" EntityType="$namespace$.Target.Classes" store:Type="Tables" store:Schema="dbo" store:Name="Classes" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
-            <DefiningQuery>SELECT 
-      [Classes].[ClassToken] AS [ClassToken], 
-      [Classes].[ClassName] AS [ClassName], 
-      [Classes].[Assembly] AS [Assembly]
-      FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Einstellungen" EntityType="$namespace$.Target.Einstellungen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ErrorLog" EntityType="$namespace$.Target.ErrorLog" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ExportLog" EntityType="$namespace$.Target.ExportLog" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Fahrzeuge" EntityType="$namespace$.Target.Fahrzeuge" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Frachtmittel" EntityType="$namespace$.Target.Frachtmittel" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Freistellungen" EntityType="$namespace$.Target.Freistellungen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Incoterm" EntityType="$namespace$.Target.Incoterm" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="KbFnn" EntityType="$namespace$.Target.KbFnn" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Lagerplaetze" EntityType="$namespace$.Target.Lagerplaetze" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Language" EntityType="$namespace$.Target.Language" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Mandant" EntityType="$namespace$.Target.Mandant" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Message" EntityType="$namespace$.Target.Message" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Module" EntityType="$namespace$.Target.Module" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrderArticleAttribute" EntityType="$namespace$.Target.OrderArticleAttribute" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Orderitem" EntityType="$namespace$.Target.Orderitem" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrderItemservice" EntityType="$namespace$.Target.OrderItemservice" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Planningdivision" EntityType="$namespace$.Target.Planningdivision" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Produkte" EntityType="$namespace$.Target.Produkte" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Services" EntityType="$namespace$.Target.Services" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="UserRollen" EntityType="$namespace$.Target.UserRollen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Users" EntityType="$namespace$.Target.Users" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Waagentypen" EntityType="$namespace$.Target.Waagentypen" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Waege" EntityType="$namespace$.Target.Waege" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Warenarten" EntityType="$namespace$.Target.Warenarten" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Wiegeart" EntityType="$namespace$.Target.Wiegeart" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <AssociationSet Name="Artikel hat Attribute" Association="$namespace$.Target.Artikel hat Attribute">
-            <End Role="OrderItemservice" EntitySet="OrderItemservice" />
-            <End Role="OrderArticleAttribute" EntitySet="OrderArticleAttribute" />
-          </AssociationSet>
-          <AssociationSet Name="Auftrag hat Positionen" Association="$namespace$.Target.Auftrag hat Positionen">
-            <End Role="Orderitem" EntitySet="Orderitem" />
-            <End Role="OrderItemservice" EntitySet="OrderItemservice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Message_Language" Association="$namespace$.Target.FK_Message_Language">
-            <End Role="Language" EntitySet="Language" />
-            <End Role="Message" EntitySet="Message" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="$namespace$.Target" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abruf">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AbrufNr" Type="varchar" MaxLength="22" />
           <Property Name="IstQuellLagerPlatz" Type="varchar" MaxLength="22" />
           <Property Name="IstZielLagerPlatz" Type="varchar" MaxLength="22" />
@@ -161,7 +109,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id" Type="varchar" MaxLength="64" />
           <Property Name="businessIdentifier" Type="varchar" MaxLength="64" />
           <Property Name="name" Type="varchar" MaxLength="64" />
@@ -187,7 +135,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProduktId" Type="varchar" MaxLength="64" />
           <Property Name="ProduktDescription" Type="varchar" MaxLength="64" />
           <Property Name="ServicesId" Type="varchar" MaxLength="64" />
@@ -197,7 +145,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id" Type="varchar" MaxLength="64" />
           <Property Name="locationId" Type="varchar" MaxLength="64" />
           <Property Name="number" Type="varchar" MaxLength="256" />
@@ -233,7 +181,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lagermandant" Type="varchar" MaxLength="64" />
           <Property Name="AttributName" Type="varchar" MaxLength="32" />
           <Property Name="AttributWert" Type="varchar" MaxLength="128" />
@@ -243,28 +191,27 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kennung" Type="varchar" MaxLength="2" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
         </EntityType>
-        <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'NetScaleV2_5RMLogiQ.dbo.Classes' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
-      -->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Classes">
           <Key>
             <PropertyRef Name="ClassToken" />
             <PropertyRef Name="ClassName" />
             <PropertyRef Name="Assembly" />
           </Key>
-          <Property Name="ClassToken" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="ClassName" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="Assembly" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="ClassToken" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClassName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Assembly" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="Einstellungen">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LSNRGlobal" Type="int" />
           <Property Name="Mandant" Type="varchar" MaxLength="10" />
           <Property Name="MaxGewicht" Type="numeric" Precision="10" Scale="2" />
@@ -302,23 +249,26 @@
           <Property Name="PlanningDivisionId" Type="varchar" MaxLength="64" />
           <Property Name="PlanningDivisionDescription" Type="varchar" MaxLength="128" />
           <Property Name="PlanningDivisionActive" Type="bit" />
+          <Property Name="ReportLaufzettel" Type="varchar" MaxLength="250" />
+          <Property Name="PrintLaufzettel" Type="bit" />
+          <Property Name="AnzahlLz" Type="int" />
         </EntityType>
         <EntityType Name="ErrorLog">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Dt" Type="datetime" />
-          <Property Name="Message1" Type="varchar" />
-          <Property Name="Message2" Type="varchar" />
-          <Property Name="Message3" Type="varchar" />
+          <Property Name="Message1" Type="varchar" MaxLength="8000" />
+          <Property Name="Message2" Type="varchar" MaxLength="8000" />
+          <Property Name="Message3" Type="varchar" MaxLength="8000" />
           <Property Name="Lsnr" Type="varchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="ExportLog">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dt" Type="datetime" />
           <Property Name="Message1" Type="varchar" MaxLength="200" />
           <Property Name="OrderItemServiceIdentifier" Type="varchar" MaxLength="22" />
@@ -331,7 +281,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kennzeichen1" Type="varchar" MaxLength="22" />
           <Property Name="Kennzeichen2" Type="varchar" MaxLength="22" />
           <Property Name="Kennzeichen1Raw" Type="varchar" MaxLength="22" />
@@ -351,7 +301,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kennung" Type="varchar" MaxLength="2" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="MaxBrutto" Type="numeric" Precision="10" Scale="2" />
@@ -360,7 +310,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Freistellungsrefernz" Type="varchar" MaxLength="128" />
           <Property Name="FreistellungsMenge" Type="numeric" Precision="22" Scale="3" />
           <Property Name="FreistellungMengenEinheit" Type="varchar" MaxLength="22" />
@@ -371,7 +321,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kennung" Type="varchar" MaxLength="3" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="DefaultIncoterm" Type="bit" />
@@ -380,7 +330,7 @@
           <Key>
             <PropertyRef Name="pk" />
           </Key>
-          <Property Name="pk" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ActionNr" Type="varchar" MaxLength="10" />
           <Property Name="Actiondescription" Type="varchar" MaxLength="30" />
           <Property Name="Command" Type="varchar" MaxLength="10" />
@@ -390,7 +340,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="locationid" Type="varchar" MaxLength="64" />
           <Property Name="name" Type="varchar" MaxLength="64" />
           <Property Name="fullname" Type="varchar" MaxLength="254" />
@@ -400,15 +350,15 @@
           <Key>
             <PropertyRef Name="LanguagePK" />
           </Key>
-          <Property Name="LanguagePK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LanguagePK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Culture" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Mandant">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DefaultMandant" Type="bit" />
           <Property Name="MandantNr" Type="varchar" MaxLength="4" />
           <Property Name="MandantName" Type="varchar" MaxLength="50" />
@@ -438,9 +388,9 @@
           <Key>
             <PropertyRef Name="MessagePK" />
           </Key>
-          <Property Name="MessagePK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="MessageKey" Type="nvarchar" Nullable="false" MaxLength="400" />
-          <Property Name="MessageText" Type="nvarchar" Nullable="false" MaxLength="3000" />
+          <Property Name="MessagePK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageKey" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="MessageText" Type="nvarchar" MaxLength="3000" Nullable="false" />
           <Property Name="DialogText" Type="bit" Nullable="false" />
           <Property Name="LanguageFK" Type="int" Nullable="false" />
         </EntityType>
@@ -448,7 +398,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Modulkennung" Type="varchar" MaxLength="10" />
           <Property Name="Modulbezeichnung" Type="varchar" MaxLength="50" />
           <Property Name="Modul_Is_Active" Type="bit" />
@@ -457,7 +407,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lagermandant" Type="varchar" MaxLength="64" />
           <Property Name="AttributName" Type="varchar" MaxLength="32" />
           <Property Name="AttributWert" Type="varchar" MaxLength="128" />
@@ -467,7 +417,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="locationId" Type="varchar" MaxLength="64" />
           <Property Name="id" Type="varchar" MaxLength="64" />
           <Property Name="number" Type="varchar" MaxLength="64" />
@@ -499,7 +449,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PKOrderItem" Type="int" />
           <Property Name="sequenceOItem" Type="varchar" MaxLength="64" />
           <Property Name="remark" Type="varchar" MaxLength="100" />
@@ -578,7 +528,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id" Type="varchar" MaxLength="64" />
           <Property Name="description" Type="varchar" MaxLength="128" />
           <Property Name="active" Type="bit" />
@@ -587,7 +537,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id" Type="varchar" MaxLength="64" />
           <Property Name="description" Type="varchar" MaxLength="255" />
           <Property Name="shortdescirption" Type="varchar" MaxLength="64" />
@@ -600,7 +550,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" />
+          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="id" Type="varchar" MaxLength="64" />
           <Property Name="description" Type="varchar" MaxLength="64" />
           <Property Name="FK" Type="int" />
@@ -609,7 +559,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccessLevel" Type="varchar" MaxLength="50" />
           <Property Name="Profilbeschreibung" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -617,7 +567,7 @@
           <Key>
             <PropertyRef Name="UserPK" />
           </Key>
-          <Property Name="UserPK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserPK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="nvarchar" MaxLength="128" />
           <Property Name="Password" Type="nvarchar" MaxLength="10" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="40" />
@@ -630,7 +580,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WaagenID" Type="int" />
           <Property Name="Waagenbezeichnung" Type="varchar" MaxLength="50" />
           <Property Name="implementiert" Type="bit" />
@@ -640,7 +590,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LN1" Type="varchar" MaxLength="22" />
           <Property Name="WaagenummerErst" Type="varchar" MaxLength="1" />
           <Property Name="LN2" Type="varchar" MaxLength="22" />
@@ -792,7 +742,7 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id" Type="varchar" MaxLength="32" />
           <Property Name="description" Type="varchar" MaxLength="32" />
           <Property Name="baseunit_shortdescription" Type="varchar" MaxLength="10" />
@@ -801,16 +751,16 @@
           <Key>
             <PropertyRef Name="PK" />
           </Key>
-          <Property Name="PK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kennung" Type="varchar" MaxLength="1" />
           <Property Name="Bezeichnung" Type="varchar" MaxLength="20" />
           <Property Name="DefaultW" Type="bit" />
         </EntityType>
         <Association Name="Artikel hat Attribute">
-          <End Role="OrderItemservice" Type="$namespace$.Target.OrderItemservice" Multiplicity="0..1">
+          <End Role="OrderItemservice" Type="Self.OrderItemservice" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderArticleAttribute" Type="$namespace$.Target.OrderArticleAttribute" Multiplicity="*" />
+          <End Role="OrderArticleAttribute" Type="Self.OrderArticleAttribute" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderItemservice">
               <PropertyRef Name="PK" />
@@ -821,10 +771,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Auftrag hat Positionen">
-          <End Role="Orderitem" Type="$namespace$.Target.Orderitem" Multiplicity="0..1">
+          <End Role="Orderitem" Type="Self.Orderitem" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="OrderItemservice" Type="$namespace$.Target.OrderItemservice" Multiplicity="*" />
+          <End Role="OrderItemservice" Type="Self.OrderItemservice" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orderitem">
               <PropertyRef Name="PK" />
@@ -835,8 +785,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Message_Language">
-          <End Role="Language" Type="$namespace$.Target.Language" Multiplicity="1" />
-          <End Role="Message" Type="$namespace$.Target.Message" Multiplicity="*" />
+          <End Role="Language" Type="Self.Language" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Language">
               <PropertyRef Name="LanguagePK" />
@@ -846,6 +796,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="$namespace$TargetContainer">
+          <EntitySet Name="Abruf" EntityType="Self.Abruf" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adressen" EntityType="Self.Adressen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Arbeitsleistungsfilter" EntityType="Self.Arbeitsleistungsfilter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artikel" EntityType="Self.Artikel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artikelattribute" EntityType="Self.Artikelattribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bonitaet" EntityType="Self.Bonitaet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Einstellungen" EntityType="Self.Einstellungen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExportLog" EntityType="Self.ExportLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fahrzeuge" EntityType="Self.Fahrzeuge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Frachtmittel" EntityType="Self.Frachtmittel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Freistellungen" EntityType="Self.Freistellungen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Incoterm" EntityType="Self.Incoterm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KbFnn" EntityType="Self.KbFnn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lagerplaetze" EntityType="Self.Lagerplaetze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mandant" EntityType="Self.Mandant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderArticleAttribute" EntityType="Self.OrderArticleAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orderitem" EntityType="Self.Orderitem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItemservice" EntityType="Self.OrderItemservice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planningdivision" EntityType="Self.Planningdivision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkte" EntityType="Self.Produkte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRollen" EntityType="Self.UserRollen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Waagentypen" EntityType="Self.Waagentypen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Waege" EntityType="Self.Waege" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warenarten" EntityType="Self.Warenarten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wiegeart" EntityType="Self.Wiegeart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classes" EntityType="Self.Classes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Classes].[ClassToken] AS [ClassToken], 
+[Classes].[ClassName] AS [ClassName], 
+[Classes].[Assembly] AS [Assembly]
+FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Artikel hat Attribute" Association="Self.Artikel hat Attribute">
+            <End Role="OrderItemservice" EntitySet="OrderItemservice" />
+            <End Role="OrderArticleAttribute" EntitySet="OrderArticleAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="Auftrag hat Positionen" Association="Self.Auftrag hat Positionen">
+            <End Role="Orderitem" EntitySet="Orderitem" />
+            <End Role="OrderItemservice" EntitySet="OrderItemservice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Language" Association="Self.FK_Message_Language">
+            <End Role="Language" EntitySet="Language" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -878,7 +880,6 @@
           <EntitySet Name="AbrufEntities" EntityType="HWB.NETSCALE.BOEF.AbrufEntity" />
           <EntitySet Name="FahrzeugeEntities" EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" />
           <EntitySet Name="ExportLogEntities" EntityType="HWB.NETSCALE.BOEF.ExportLogEntity" />
-          <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           <EntitySet Name="ProdukteEntities" EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" />
           <EntitySet Name="ArbeitsleistungsfilterEntities" EntityType="HWB.NETSCALE.BOEF.ArbeitsleistungsfilterEntity" />
           <EntitySet Name="ServEntities" EntityType="HWB.NETSCALE.BOEF.ServEntity" />
@@ -899,6 +900,7 @@
             <End Role="OrderItemservice" EntitySet="OrderItemserviceEntities" />
           </AssociationSet>
           <EntitySet Name="WaegeEntities" EntityType="HWB.NETSCALE.BOEF.WaegeEntity" />
+          <EntitySet Name="EinstellungenEntities" EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" />
           </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -1052,9 +1054,9 @@
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="locationid" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="name" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="fullname" MaxLength="254" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="id" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OrderArticleAttributeEntity">
           <Key>
@@ -1072,12 +1074,12 @@
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="locationId" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="id" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="number" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="reference" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="orderstate" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="date" />
+          <Property Type="String" Name="locationId" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="number" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reference" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="orderstate" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date" Precision="3" />
           <Property Type="String" Name="customerName" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="customerSubName2" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="customerOwningLocationId" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1092,11 +1094,11 @@
           <Property Type="String" Name="InvoiceReceiverCity" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="customerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="invoiceReceicerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerId" />
-          <Property Type="String" Name="invoiceReceiverId" />
-          <Property Type="String" Name="invoiceReceiverIdCountry" />
+          <Property Type="String" Name="customerId" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="invoiceReceiverId" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="invoiceReceiverIdCountry" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="invoiceReceiverIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="customerIdCountry" />
+          <Property Type="String" Name="customerIdCountry" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="customerIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderItemservices" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderitemEntity" ToRole="OrderItemservice" />
         </EntityType>
@@ -1135,7 +1137,7 @@
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="id" />
+          <Property Type="String" Name="id" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="businessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="name" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="subName2" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1143,7 +1145,7 @@
           <Property Type="String" Name="street" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="zipCode" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="idCountry" />
+          <Property Type="String" Name="idCountry" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="isocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="roleClient" />
           <Property Type="Boolean" Name="roleInvoiceReceiver" />
@@ -1164,8 +1166,8 @@
           <Property Type="String" Name="Freistellungsrefernz" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="FreistellungsMenge" Precision="22" Scale="3" />
           <Property Type="String" Name="FreistellungMengenEinheit" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="gueltigVon" />
-          <Property Type="DateTime" Name="gueltigBis" />
+          <Property Type="DateTime" Name="gueltigVon" Precision="0" />
+          <Property Type="DateTime" Name="gueltigBis" Precision="0" />
         </EntityType>
         <EntityType Name="AbrufEntity">
           <Key>
@@ -1223,9 +1225,9 @@
           <Property Type="String" Name="supplierOrConsigneeCity" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="supplierOrConsigneeIdCountry" />
           <Property Type="String" Name="supplierOrConsigneeIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="plannedDate" />
-          <Property Type="DateTime" Name="clearanceValidFrom" />
-          <Property Type="DateTime" Name="clearanceValidTo" />
+          <Property Type="DateTime" Name="plannedDate" Precision="3" />
+          <Property Type="DateTime" Name="clearanceValidFrom" Precision="3" />
+          <Property Type="DateTime" Name="clearanceValidTo" Precision="3" />
           <Property Type="Int32" Name="clearanceGranteeId" />
           <Property Type="String" Name="clearanceReferenz" MaxLength="64" FixedLength="true" Unicode="false" />
           <Property Type="Decimal" Name="clearanceQuantity" Precision="22" Scale="2" />
@@ -1264,7 +1266,7 @@
           <Property Type="String" Name="ffIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="incoterm" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="articleNumber" MaxLength="240" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="abrufDatum" />
+          <Property Type="DateTime" Name="abrufDatum" Precision="0" />
           <Property Type="Boolean" Name="abrufFest" />
         </EntityType>
         <EntityType Name="FahrzeugeEntity">
@@ -1275,7 +1277,7 @@
           <Property Type="String" Name="Kennzeichen1" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Kennzeichen2" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Kennzeichen1Raw" MaxLength="22" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="Taradatum" />
+          <Property Type="DateTime" Name="Taradatum" Precision="3" />
           <Property Type="Decimal" Name="Tara" Precision="10" Scale="2" />
           <Property Type="String" Name="Kennung" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Bezeichnung" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -1285,14 +1287,14 @@
           <Property Type="String" Name="ffBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ffName" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="abruf_PK" />
-          <Property Type="DateTime" Name="AbrufDate" />
+          <Property Type="DateTime" Name="AbrufDate" Precision="3" />
         </EntityType>
         <EntityType Name="ExportLogEntity">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="DateTime" Name="dt" />
+          <Property Type="DateTime" Name="dt" Precision="3" />
           <Property Type="String" Name="Message1" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="OrderItemServiceIdentifier" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="httpcode" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -1300,55 +1302,12 @@
           <Property Type="String" Name="Message3" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="OrderItemNumber" MaxLength="22" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="EinstellungenEntity">
-          <Key>
-            <PropertyRef Name="PK" />
-          </Key>
-          <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="LSNRGlobal" />
-          <Property Type="String" Name="Mandant" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="MaxGewicht" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="MaxGewichtValidieren" />
-          <Property Type="Int32" Name="Schwellwertampel" />
-          <Property Type="Decimal" Name="Ust" Precision="4" Scale="2" />
-          <Property Type="Int32" Name="MischerCounterId" />
-          <Property Type="Int32" Name="TaabCounterId" />
-          <Property Type="Boolean" Name="LsAsPdf" />
-          <Property Type="Int32" Name="PdfCreator" />
-          <Property Type="Int32" Name="AP_Id_counter" />
-          <Property Type="Int32" Name="MG_Id_counter" />
-          <Property Type="String" Name="ImpRESTServerIp" MaxLength="254" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServerPort" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RestLocation" />
-          <Property Type="String" Name="ImpRESTServerAdressesUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServerKindofGoodsUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServerArticleUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServerProductsUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServertArticleAttributesUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServerStorageAreaUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImportRESTServerAuftraegeUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ExportRESTIp" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="AbrufeNachNTagenloeschen" />
-          <Property Type="String" Name="ExportRESTServerport" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ExportRESTServerUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ImportRESTServerAuftraegePageNumber" />
-          <Property Type="String" Name="ConsumerKey" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ConsumerSecret" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RemoveSendedOrderItems" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="MakeInvisibleSendedOrderItems" />
-          <Property Type="Int32" Name="WiegescheinNr" />
-          <Property Type="String" Name="ExportRestCreateOrderUrl" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ImpRESTServerPlanningDivision" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PlanningDivisionId" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PlanningDivisionDescription" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="PlanningDivisionActive" />
-        </EntityType>
         <EntityType Name="ProdukteEntity">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="id" />
+          <Property Type="String" Name="id" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="description" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="shortdescirption" MaxLength="64" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Services" Relationship="HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_" FromRole="ProdukteEntity" ToRole="Service" />
@@ -1362,17 +1321,17 @@
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="ProduktId" />
+          <Property Type="String" Name="ProduktId" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="ProduktDescription" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ServicesId" />
-          <Property Type="String" Name="ServicesDescription" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="ServicesId" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="ServicesDescription" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ServEntity">
           <Key>
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="String" Name="id" />
+          <Property Type="String" Name="id" MaxLength="64" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="description" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="FK" />
           <NavigationProperty Name="Produkte" Relationship="HWB.NETSCALE.BOEF.C_Hat_Arbeitsleistungen_" FromRole="Service" ToRole="ProdukteEntity" />
@@ -1394,7 +1353,7 @@
             <PropertyRef Name="PK" />
           </Key>
           <Property Type="Int32" Name="PK" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="DateTime" Name="Dt" />
+          <Property Type="DateTime" Name="Dt" Precision="3" />
           <Property Type="String" Name="Message1" MaxLength="8000" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Message2" MaxLength="8000" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Message3" MaxLength="8000" FixedLength="false" Unicode="false" />
@@ -1459,7 +1418,7 @@
           <Property Type="String" Name="wa_Description" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="wa_Baseunit_ShortDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="articleId" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="plannedDate" />
+          <Property Type="DateTime" Name="plannedDate" Precision="3" />
           <Property Type="Decimal" Name="targedAmount" Precision="22" Scale="2" />
           <Property Type="Decimal" Name="additionalTargetAmount" Precision="22" Scale="2" />
           <Property Type="String" Name="locationId" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1480,8 +1439,8 @@
           <Property Type="String" Name="supplierOrConsigneeCity" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="supplierOrConsigneedIdCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="supplierOrConsigneeIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="clearanceValidFrom" />
-          <Property Type="DateTime" Name="clearanceValidTo" />
+          <Property Type="DateTime" Name="clearanceValidFrom" Precision="3" />
+          <Property Type="DateTime" Name="clearanceValidTo" Precision="3" />
           <Property Type="String" Name="clearanceAuthorizerId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceGranteeId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceReferenz" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1505,9 +1464,9 @@
           <Property Type="String" Name="diameter" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="dimension" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="HasBinUsed" />
-          <Property Type="DateTime" Name="HasBinUsedDateTime" />
+          <Property Type="DateTime" Name="HasBinUsedDateTime" Precision="3" />
           <Property Type="Boolean" Name="HasBinSended" />
-          <Property Type="DateTime" Name="HasBinSendedDateTime" />
+          <Property Type="DateTime" Name="HasBinSendedDateTime" Precision="3" />
           <Property Type="Boolean" Name="InvisibleSendedOrderItems" />
           <Property Type="String" Name="identifierOItem" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="identifierOItemService" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1564,19 +1523,19 @@
           <Property Type="String" Name="IstQuellLagerPlatz" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="IstZielLagerPlatz" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="Erstgewicht" Precision="10" Scale="3" />
-          <Property Type="DateTime" Name="ErstDatetime" />
+          <Property Type="DateTime" Name="ErstDatetime" Precision="3" />
           <Property Type="Decimal" Name="Zweitgewicht" Precision="10" Scale="3" />
           <Property Type="Decimal" Name="Nettogewicht" Precision="10" Scale="3" />
           <Property Type="String" Name="IstMengeZMEI" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Type="DateTime" Name="Arbeitsbeginn" />
-          <Property Type="DateTime" Name="Arbeitsende" />
+          <Property Type="DateTime" Name="Arbeitsbeginn" Precision="3" />
+          <Property Type="DateTime" Name="Arbeitsende" Precision="3" />
           <Property Type="Boolean" Name="StornoKennzeichen" />
           <Property Type="Boolean" Name="Finalisieren" />
           <Property Type="String" Name="locationId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="id" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="reference" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="orderstate" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="date" />
+          <Property Type="DateTime" Name="date" Precision="3" />
           <Property Type="String" Name="number" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="customerId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="customerBusinessIdentifier" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1618,9 +1577,9 @@
           <Property Type="String" Name="supplierOrConsigneeZipCode" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="supplierOrConsigneeCity" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="supplierOrConsigneeIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="plannedDate" />
-          <Property Type="DateTime" Name="clearanceValidFrom" />
-          <Property Type="DateTime" Name="clearanceValidTo" />
+          <Property Type="DateTime" Name="plannedDate" Precision="3" />
+          <Property Type="DateTime" Name="clearanceValidFrom" Precision="3" />
+          <Property Type="DateTime" Name="clearanceValidTo" Precision="3" />
           <Property Type="String" Name="clearanceAuthorizerId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceGranteeId" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="clearanceReferenz" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1630,7 +1589,7 @@
           <Property Type="String" Name="clearanceDescription" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="articleDescription" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Waegung" />
-          <Property Type="DateTime" Name="zweitDateTime" />
+          <Property Type="DateTime" Name="zweitDateTime" Precision="3" />
           <Property Type="String" Name="AbrechnungsKZ" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Fahrzeug" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Frachtmittel" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1669,7 +1628,7 @@
           <Property Type="String" Name="ffIdCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ffIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="taab" />
-          <Property Type="DateTime" Name="LSDatum" />
+          <Property Type="DateTime" Name="LSDatum" Precision="0" />
           <Property Type="Int32" Name="Mandant_PK" />
           <Property Type="Boolean" Name="taabExcel" />
           <Property Type="String" Name="incoterm" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -1677,7 +1636,7 @@
           <Property Type="String" Name="AbrufNr" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Kennzeichen1Raw" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="abruf_PK" />
-          <Property Type="DateTime" Name="abrufDatum" />
+          <Property Type="DateTime" Name="abrufDatum" Precision="0" />
           <Property Type="Boolean" Name="abrufFest" />
           <Property Type="Boolean" Name="HasBinSended" />
           <Property Type="String" Name="HasBinSendedDateTime" MaxLength="10" FixedLength="true" Unicode="false" />
@@ -1701,6 +1660,52 @@
           <Property Type="String" Name="conversionUnitId" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="conversionUnitShortDescription" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="conversionUnitAmount" />
+        </EntityType>
+        <EntityType Name="EinstellungenEntity">
+          <Key>
+            <PropertyRef Name="PK" />
+          </Key>
+          <Property Name="PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LSNRGlobal" Type="Int32" />
+          <Property Name="Mandant" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MaxGewicht" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxGewichtValidieren" Type="Boolean" />
+          <Property Name="Schwellwertampel" Type="Int32" />
+          <Property Name="Ust" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="MischerCounterId" Type="Int32" />
+          <Property Name="TaabCounterId" Type="Int32" />
+          <Property Name="LsAsPdf" Type="Boolean" />
+          <Property Name="PdfCreator" Type="Int32" />
+          <Property Name="AP_Id_counter" Type="Int32" />
+          <Property Name="MG_Id_counter" Type="Int32" />
+          <Property Name="ImpRESTServerIp" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerPort" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RestLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerAdressesUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerKindofGoodsUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerArticleUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerProductsUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServertArticleAttributesUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerStorageAreaUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImportRESTServerAuftraegeUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ExportRESTIp" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AbrufeNachNTagenloeschen" Type="Int32" />
+          <Property Name="ExportRESTServerport" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ExportRESTServerUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImportRESTServerAuftraegePageNumber" Type="Int32" />
+          <Property Name="ConsumerKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ConsumerSecret" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RemoveSendedOrderItems" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MakeInvisibleSendedOrderItems" Type="Boolean" />
+          <Property Name="WiegescheinNr" Type="Int32" />
+          <Property Name="ExportRestCreateOrderUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImpRESTServerPlanningDivision" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PlanningDivisionId" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="PlanningDivisionDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PlanningDivisionActive" Type="Boolean" />
+          <Property Name="ReportLaufzettel" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PrintLaufzettel" Type="Boolean" />
+          <Property Name="AnzahlLz" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2115,50 +2120,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EinstellungenEntities">
-            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
-              <MappingFragment StoreEntitySet="Einstellungen">
-                <ScalarProperty Name="PlanningDivisionActive" ColumnName="PlanningDivisionActive" />
-                <ScalarProperty Name="PlanningDivisionDescription" ColumnName="PlanningDivisionDescription" />
-                <ScalarProperty Name="PlanningDivisionId" ColumnName="PlanningDivisionId" />
-                <ScalarProperty Name="ImpRESTServerPlanningDivision" ColumnName="ImpRESTServerPlanningDivision" />
-                <ScalarProperty Name="ExportRestCreateOrderUrl" ColumnName="ExportRestCreateOrderUrl" />
-                <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
-                <ScalarProperty Name="MakeInvisibleSendedOrderItems" ColumnName="MakeInvisibleSendedOrderItems" />
-                <ScalarProperty Name="RemoveSendedOrderItems" ColumnName="RemoveSendedOrderItems" />
-                <ScalarProperty Name="ConsumerSecret" ColumnName="ConsumerSecret" />
-                <ScalarProperty Name="ConsumerKey" ColumnName="ConsumerKey" />
-                <ScalarProperty Name="ImportRESTServerAuftraegePageNumber" ColumnName="ImportRESTServerAuftraegePageNumber" />
-                <ScalarProperty Name="ExportRESTServerUrl" ColumnName="ExportRESTServerUrl" />
-                <ScalarProperty Name="ExportRESTServerport" ColumnName="ExportRESTServerport" />
-                <ScalarProperty Name="AbrufeNachNTagenloeschen" ColumnName="AbrufeNachNTagenloeschen" />
-                <ScalarProperty Name="ExportRESTIp" ColumnName="ExportRESTIp" />
-                <ScalarProperty Name="ImportRESTServerAuftraegeUrl" ColumnName="ImportRESTServerAuftraegeUrl" />
-                <ScalarProperty Name="ImpRESTServerStorageAreaUrl" ColumnName="ImpRESTServerStorageAreaUrl" />
-                <ScalarProperty Name="ImpRESTServertArticleAttributesUrl" ColumnName="ImpRESTServertArticleAttributesUrl" />
-                <ScalarProperty Name="ImpRESTServerProductsUrl" ColumnName="ImpRESTServerProductsUrl" />
-                <ScalarProperty Name="ImpRESTServerArticleUrl" ColumnName="ImpRESTServerArticleUrl" />
-                <ScalarProperty Name="ImpRESTServerKindofGoodsUrl" ColumnName="ImpRESTServerKindofGoodsUrl" />
-                <ScalarProperty Name="ImpRESTServerAdressesUrl" ColumnName="ImpRESTServerAdressesUrl" />
-                <ScalarProperty Name="RestLocation" ColumnName="RestLocation" />
-                <ScalarProperty Name="ImpRESTServerPort" ColumnName="ImpRESTServerPort" />
-                <ScalarProperty Name="ImpRESTServerIp" ColumnName="ImpRESTServerIp" />
-                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
-                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
-                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
-                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
-                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
-                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
-                <ScalarProperty Name="Ust" ColumnName="Ust" />
-                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
-                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
-                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
-                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
-                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
-                <ScalarProperty Name="PK" ColumnName="PK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProdukteEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.ProdukteEntity">
               <MappingFragment StoreEntitySet="Produkte">
@@ -2486,6 +2447,53 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EinstellungenEntities">
+            <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.EinstellungenEntity">
+              <MappingFragment StoreEntitySet="Einstellungen">
+                <ScalarProperty Name="AnzahlLz" ColumnName="AnzahlLz" />
+                <ScalarProperty Name="PrintLaufzettel" ColumnName="PrintLaufzettel" />
+                <ScalarProperty Name="ReportLaufzettel" ColumnName="ReportLaufzettel" />
+                <ScalarProperty Name="PlanningDivisionActive" ColumnName="PlanningDivisionActive" />
+                <ScalarProperty Name="PlanningDivisionDescription" ColumnName="PlanningDivisionDescription" />
+                <ScalarProperty Name="PlanningDivisionId" ColumnName="PlanningDivisionId" />
+                <ScalarProperty Name="ImpRESTServerPlanningDivision" ColumnName="ImpRESTServerPlanningDivision" />
+                <ScalarProperty Name="ExportRestCreateOrderUrl" ColumnName="ExportRestCreateOrderUrl" />
+                <ScalarProperty Name="WiegescheinNr" ColumnName="WiegescheinNr" />
+                <ScalarProperty Name="MakeInvisibleSendedOrderItems" ColumnName="MakeInvisibleSendedOrderItems" />
+                <ScalarProperty Name="RemoveSendedOrderItems" ColumnName="RemoveSendedOrderItems" />
+                <ScalarProperty Name="ConsumerSecret" ColumnName="ConsumerSecret" />
+                <ScalarProperty Name="ConsumerKey" ColumnName="ConsumerKey" />
+                <ScalarProperty Name="ImportRESTServerAuftraegePageNumber" ColumnName="ImportRESTServerAuftraegePageNumber" />
+                <ScalarProperty Name="ExportRESTServerUrl" ColumnName="ExportRESTServerUrl" />
+                <ScalarProperty Name="ExportRESTServerport" ColumnName="ExportRESTServerport" />
+                <ScalarProperty Name="AbrufeNachNTagenloeschen" ColumnName="AbrufeNachNTagenloeschen" />
+                <ScalarProperty Name="ExportRESTIp" ColumnName="ExportRESTIp" />
+                <ScalarProperty Name="ImportRESTServerAuftraegeUrl" ColumnName="ImportRESTServerAuftraegeUrl" />
+                <ScalarProperty Name="ImpRESTServerStorageAreaUrl" ColumnName="ImpRESTServerStorageAreaUrl" />
+                <ScalarProperty Name="ImpRESTServertArticleAttributesUrl" ColumnName="ImpRESTServertArticleAttributesUrl" />
+                <ScalarProperty Name="ImpRESTServerProductsUrl" ColumnName="ImpRESTServerProductsUrl" />
+                <ScalarProperty Name="ImpRESTServerArticleUrl" ColumnName="ImpRESTServerArticleUrl" />
+                <ScalarProperty Name="ImpRESTServerKindofGoodsUrl" ColumnName="ImpRESTServerKindofGoodsUrl" />
+                <ScalarProperty Name="ImpRESTServerAdressesUrl" ColumnName="ImpRESTServerAdressesUrl" />
+                <ScalarProperty Name="RestLocation" ColumnName="RestLocation" />
+                <ScalarProperty Name="ImpRESTServerPort" ColumnName="ImpRESTServerPort" />
+                <ScalarProperty Name="ImpRESTServerIp" ColumnName="ImpRESTServerIp" />
+                <ScalarProperty Name="MG_Id_counter" ColumnName="MG_Id_counter" />
+                <ScalarProperty Name="AP_Id_counter" ColumnName="AP_Id_counter" />
+                <ScalarProperty Name="PdfCreator" ColumnName="PdfCreator" />
+                <ScalarProperty Name="LsAsPdf" ColumnName="LsAsPdf" />
+                <ScalarProperty Name="TaabCounterId" ColumnName="TaabCounterId" />
+                <ScalarProperty Name="MischerCounterId" ColumnName="MischerCounterId" />
+                <ScalarProperty Name="Ust" ColumnName="Ust" />
+                <ScalarProperty Name="Schwellwertampel" ColumnName="Schwellwertampel" />
+                <ScalarProperty Name="MaxGewichtValidieren" ColumnName="MaxGewichtValidieren" />
+                <ScalarProperty Name="MaxGewicht" ColumnName="MaxGewicht" />
+                <ScalarProperty Name="Mandant" ColumnName="Mandant" />
+                <ScalarProperty Name="LSNRGlobal" ColumnName="LSNRGlobal" />
+                <ScalarProperty Name="PK" ColumnName="PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2503,6 +2511,7 @@
         <edmx:DesignerProperty Name="EnablePluralization" Value="True" />
         <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="Keine" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="True" />
       </edmx:DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -2535,7 +2544,6 @@
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.AbrufEntity" Width="1.5" PointX="7.875" PointY="14" Height="19.287415364583325" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.FahrzeugeEntity" Width="1.5" PointX="0.75" PointY="4.75" Height="3.9033007812500102" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ExportLogEntity" Width="1.5" PointX="12.375" PointY="0.75" Height="2.5571907552083246" />
-        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="2.5" PointX="0.75" PointY="9.75" Height="7.7493294270833353" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ProdukteEntity" Width="1.5" PointX="7" PointY="38.25" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ArbeitsleistungsfilterEntity" Width="1.5" PointX="17.5" PointY="8.125" Height="1.9802864583333246" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.ServEntity" Width="1.5" PointX="9.25" PointY="38.25" Height="1.9802864583333246" />
@@ -2558,6 +2566,7 @@
           <edmx:ConnectorPoint PointX="6.25" PointY="49.903391927083334" />
         </edmx:AssociationConnector>
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.WaegeEntity" Width="1.5" PointX="15.375" PointY="11.75" Height="28.133281249999996" />
+        <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.EinstellungenEntity" Width="1.5" PointX="0.625" PointY="11" />
         </edmx:Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

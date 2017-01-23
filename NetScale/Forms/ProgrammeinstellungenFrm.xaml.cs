@@ -320,25 +320,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
             ll.Variables.Add("Original_Kopie", "Original");
 
-            //// Unterschriftendatei
-            //User boU = new User();
-            //int Wpk = boW.GetLastWaegung();
-            //UserEntity boUE;
-            //WaegeEntity boWE = null;
-
-            //if (Wpk != null)
-            //    boWE = boW.GetWaegungByID(Wpk);
-
-            //if (boWE.UserPK != null)
-            //{
-            //    boUE = boU.GetUserById(boWE.UserPK);
-
-            //    if (boUE != null)
-            //    {
-            //        LL.Variables.AddFromObject(boUE);
-            //    }
-            //}
-            //// Unterschrift Ende
 
 
             ll.DataSource = oDP;
@@ -356,7 +337,33 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     
         }
 
+        private void CmdEditLz_OnClick(object sender, RoutedEventArgs e)
+        {
+            ListLabel ll = new ListLabel();
+            ll.LicensingInfo = "pWFZEQ";
+            Waege boW = new Waege();
+            int uRet =
+             boW.GetLastWaegung();
+            combit.ListLabel21.DataProviders.ObjectDataProvider oDP = boW.GetWaegungOdpbyPk(uRet);
 
+            ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
+            ll.Variables.Add("Original_Kopie", "Original");
+
+
+
+            ll.DataSource = oDP;
+
+
+            ll.AutoProjectType = LlProject.Label;
+            try
+            {
+                ll.Design();
+            }
+            catch (ListLabelException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void cmdEditAPListe_Click(object sender, RoutedEventArgs e)
         {
           
@@ -453,6 +460,39 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                 // boM.Entity.LSReport = filename;
                 MandantEntity boME = boM.GetMandantByPK(uRet);
                 boME.LSReport = filename;
+            }
+        }
+        private void CmdSelectLaufzettel_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+
+            // Set filter for file extension and default file extension
+            dlg.DefaultExt = ".lbl";
+
+            dlg.Filter = "Text documents (.lbl)|*.lbl";
+
+
+            // Display OpenFileDialog by calling ShowDialog method
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+
+            // Get the selected file name and display in a TextBox
+
+            if (result == true)
+
+            {
+                // Open document
+
+                string filename = dlg.FileName;
+
+
+                int uRet = Convert.ToInt32(dataGrid1.SelectedValue);
+                // boM.Entity.LSReport = filename;
+                boEE.ReportLaufzettel = filename;
             }
         }
 
@@ -623,5 +663,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             oDFrm.Close();
         }
+
+
+     
     }
 }
