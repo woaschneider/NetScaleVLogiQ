@@ -442,22 +442,6 @@ namespace HWB.NETSCALE.BOEF
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<EinstellungenEntity> EinstellungenEntities
-        {
-            get
-            {
-                if ((_EinstellungenEntities == null))
-                {
-                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
-                }
-                return _EinstellungenEntities;
-            }
-        }
-        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<ProdukteEntity> ProdukteEntities
         {
             get
@@ -582,6 +566,22 @@ namespace HWB.NETSCALE.BOEF
             }
         }
         private ObjectSet<WaegeEntity> _WaegeEntities;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<EinstellungenEntity> EinstellungenEntities
+        {
+            get
+            {
+                if ((_EinstellungenEntities == null))
+                {
+                    _EinstellungenEntities = base.CreateObjectSet<EinstellungenEntity>("EinstellungenEntities");
+                }
+                return _EinstellungenEntities;
+            }
+        }
+        private ObjectSet<EinstellungenEntity> _EinstellungenEntities;
 
         #endregion
 
@@ -772,14 +772,6 @@ namespace HWB.NETSCALE.BOEF
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the EinstellungenEntities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
-        {
-            base.AddObject("EinstellungenEntities", einstellungenEntity);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the ProdukteEntities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToProdukteEntities(ProdukteEntity produkteEntity)
@@ -841,6 +833,14 @@ namespace HWB.NETSCALE.BOEF
         public void AddToWaegeEntities(WaegeEntity waegeEntity)
         {
             base.AddObject("WaegeEntities", waegeEntity);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the EinstellungenEntities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToEinstellungenEntities(EinstellungenEntity einstellungenEntity)
+        {
+            base.AddObject("EinstellungenEntities", einstellungenEntity);
         }
 
         #endregion
@@ -5945,6 +5945,78 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Boolean> _PlanningDivisionActive;
         partial void OnPlanningDivisionActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnPlanningDivisionActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ReportLaufzettel
+        {
+            get
+            {
+                return _ReportLaufzettel;
+            }
+            set
+            {
+                OnReportLaufzettelChanging(value);
+                ReportPropertyChanging("ReportLaufzettel");
+                _ReportLaufzettel = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ReportLaufzettel");
+                OnReportLaufzettelChanged();
+            }
+        }
+        private global::System.String _ReportLaufzettel;
+        partial void OnReportLaufzettelChanging(global::System.String value);
+        partial void OnReportLaufzettelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> PrintLaufzettel
+        {
+            get
+            {
+                return _PrintLaufzettel;
+            }
+            set
+            {
+                OnPrintLaufzettelChanging(value);
+                ReportPropertyChanging("PrintLaufzettel");
+                _PrintLaufzettel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PrintLaufzettel");
+                OnPrintLaufzettelChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _PrintLaufzettel;
+        partial void OnPrintLaufzettelChanging(Nullable<global::System.Boolean> value);
+        partial void OnPrintLaufzettelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AnzahlLz
+        {
+            get
+            {
+                return _AnzahlLz;
+            }
+            set
+            {
+                OnAnzahlLzChanging(value);
+                ReportPropertyChanging("AnzahlLz");
+                _AnzahlLz = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AnzahlLz");
+                OnAnzahlLzChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AnzahlLz;
+        partial void OnAnzahlLzChanging(Nullable<global::System.Int32> value);
+        partial void OnAnzahlLzChanged();
 
         #endregion
 

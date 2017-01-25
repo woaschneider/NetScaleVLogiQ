@@ -290,14 +290,18 @@
                         VerticalAlignment="Top"
                         Click="cmdMaterialKundenStatistik_Click"
                         Content="..." />
-                    <CheckBox Margin="817,290,20,139" Content="Bei Erstwägung drucken" IsChecked="{Binding PrintLaufzettel}" />
+                    <CheckBox
+                        Margin="817,290,20,139"
+                        Content="Bei Erstwägung drucken"
+                        IsChecked="{Binding PrintLaufzettel}" />
                     <TextBox
                         x:Name="tb_laufzettelreport"
                         Width="571"
                         Height="22"
                         Margin="192,290,0,0"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top" Text="{Binding ReportLaufzettel}" />
+                        VerticalAlignment="Top"
+                        Text="{Binding ReportLaufzettel}" />
                     <Button
                         x:Name="cmdSelectLaufzettel"
                         Width="28"
@@ -314,7 +318,8 @@
                         Height="22"
                         Margin="192,316,0,0"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Top" Text="{Binding AnzahlLz}" />
+                        VerticalAlignment="Top"
+                        Text="{Binding AnzahlLz}" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem2" Header="Verschiedene Einstellungen">
