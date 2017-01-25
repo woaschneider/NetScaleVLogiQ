@@ -118,6 +118,11 @@
     <Compile Include="Artikel\ArtikelEntity.cs" />
     <Compile Include="Artikel\ArtikelRules.cs" />
     <Compile Include="Artikel\ArtikelRules.Partial.cs" />
+    <Compile Include="Attribut\Attribut.cs" />
+    <Compile Include="Attribut\Attribut.Partial.cs" />
+    <Compile Include="Attribut\AttributEntity.cs" />
+    <Compile Include="Attribut\AttributRules.cs" />
+    <Compile Include="Attribut\AttributRules.Partial.cs" />
     <Compile Include="Bonitaet\Bonitaet.cs" />
     <Compile Include="Bonitaet\Bonitaet.Partial.cs" />
     <Compile Include="Bonitaet\BonitaetEntity.cs" />

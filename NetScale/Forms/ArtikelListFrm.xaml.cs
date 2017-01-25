@@ -19,6 +19,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
     /// <summary>
     /// ArtikelListFrm Class
     /// </summary>
+  
     public partial class ArtikelListFrm : mmBusinessWindow
     {
         /// <summary>
@@ -26,6 +27,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         /// </summary>
         private int _uRet;
 
+        private Attribut boAttribute;
     private string oid = null;
         // Deklariere das primäre BO 
         private Artikel boAr = new Artikel(); 
@@ -119,6 +121,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
         }
 
+        private void FillGrid2()
+        {
+
+        }
+
         private void dataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _uRet = Convert.ToInt32(dataGrid.SelectedValue);
@@ -146,7 +153,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            _uRet = Convert.ToInt32(dataGrid.SelectedValue);
+            boAttribute = new Attribut();
+            dataGrid1.ItemsSource = boAttribute.GetAttributeByArtikelPk(_uRet);
         }
 
 

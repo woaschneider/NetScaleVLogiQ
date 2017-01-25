@@ -1,5 +1,6 @@
-﻿using System.ComponentModel;
-
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
@@ -14,6 +15,8 @@ using NetScalePolosIO.Import.LagerPlaetzeImport;
 using NetScalePolosIO.Import.ProductsImport;
 using NetScalePolosIO.Import.PlanningDivisionImport;
 using NetScalePolosIO.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OakLeaf.MM.Main.Collections;
 
 
@@ -166,7 +169,13 @@ namespace NetScalePolosIO
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Artikelattribute";
             new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId()  ,   boEe.ImpRESTServertArticleAttributesUrl);
-            
+
+            // 25.01.2017
+            // Nach dem die Stammdaten Artikel und Artikelattribute(alle möglichen) eingelesen worden sind, werden die  
+            // Attribute des jeweiligen Artikel in eine eigen Tabelle geschrieben. Allerding stellt sich die Frage, ob wir
+            // ArticleAttribute als eigenständige Stammdaten noch brauchen. Sie kommen ja eh mit den Artikel...
+             Artikelattribute2TableAttribute();
+
             // Lagerplätze
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Lagerplätze";
@@ -313,5 +322,59 @@ namespace NetScalePolosIO
         #endregion
 
         //*****************************************************************  
+
+        // House keeping
+        // Da die Attribute durch den Superuser als Pflichtfelder definiert werden sollen
+        // packen wir diese Daten in eine eigene Tabelle. Diese enthält eigentlich nur das 
+        // zusätzliche Required-Feld. Der Rest sind FK's
+        private void Artikelattribute2TableAttribute()
+        {
+            // Alle Artikel-Entitäten parsen
+            Artikel boArtikel = new Artikel();
+            Attribut boAttribut = new Attribut();
+            Artikelattribute boAa = new Artikelattribute();
+            mmBindingList<ArtikelEntity> list = boArtikel.GetAll();
+            foreach (var a in list)
+            {
+                // Gibt es das Attribut in der Stammdatentabelle Artikelattribute
+                // Wenn ja, prüfe ob die Tabelle Attibute für die Artikel und dieses Attribut 
+                // bereits einen Eintrag besitzt. Wenn ja, dann passiert nix. Wenn nicht wird ein
+                // neuer angelegt
+                var json = a.attributes_as_json;
+                var array = (JArray)JsonConvert.DeserializeObject(json);
+                var attributList = array.ToList<object>();
+                foreach (var t in attributList)
+                {
+                  
+                    ArtikelattributeEntity boAaE = boAa.GetArtikelAttributByBezeichnung(t.ToString());
+                    if (boAaE != null)
+                    {
+                        boAttribut = new Attribut();
+                        bool uRet = boAttribut.IsArtikelAttribut(a.PK, boAaE.PK);
+                        if (uRet == false)
+                        {
+                            try
+                            {
+                               
+                               var boAttributEntity = boAttribut.NewEntity();
+                                boAttributEntity.Required = false;
+                                boAttributEntity.ArtikelFK = a.PK;
+                                boAttributEntity.AttributeFK = boAaE.PK;
+                                
+                                boAttribut.SaveEntity(boAttributEntity);
+                                
+                            }
+                            catch (Exception e)
+                            {
+                              Log.Instance.Error(e.ToString());
+                                Log.Instance.Error(e.InnerException);
+                            }
+                          
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }
