@@ -310,6 +310,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.articleId = boAE.id;
                 Entity.articleNumber = boAE.number;
                 Entity.articleDescription = boAE.description;
+                Entity.attributes_as_json = boAE.attributes_as_json;
             }
         }
 
@@ -705,7 +706,7 @@ namespace HWB.NETSCALE.BOEF
                 Entity.productid = _boOISE.product;
                 Entity.productdescription = _boOISE.productdescription;
                 Entity.identifierOItem = _boOISE.identifierOItem;
-              Entity.ownerBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
+                Entity.ownerBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
                 Entity.ownerId = _boOISE.ownerId;
                 
                 //Owner2Waege(Entity.ownerId,Entity);
@@ -724,12 +725,19 @@ namespace HWB.NETSCALE.BOEF
                 Entity.articleId = _boOISE.articleId;
                 Entity.articleNumber = _boOISE.number;
                 Entity.articleDescription = _boOISE.articleDescription;
+                Artikel boa = new Artikel();
+                ArtikelEntity boAe = boa.GetByNr(Entity.articleNumber);
+                if (boAe != null)
+                {
+                    Entity.attributes_as_json = boAe.attributes_as_json;
+                }
+
                 Entity.conversionUnitShortDescription = _boOISE.conversionUnitShortDescription;
                 Entity.plannedDate = _boOISE.plannedDate;
                 Entity.clearanceReferenz = _boOISE.clearanceReferenz;
 
 
-                // 
+                // Das brauchen wir eigentlich nicht mehr
                 Entity.orign = _boOISE.orign;
                 Entity.grade = _boOISE.grade;
                 Entity.batch = _boOISE.batch;

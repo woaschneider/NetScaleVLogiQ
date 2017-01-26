@@ -9,8 +9,8 @@
     xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
     x:Name="Window"
     Title="Artikelliste"
-    Width="883"
-    Height="566"
+    Width="845"
+    Height="612"
     AllowsTransparency="False"
     Background="#FFFFFFFF"
     Loaded="Window_Loaded"
@@ -46,20 +46,8 @@
             </ribbon:Ribbon.ApplicationMenu>
             <ribbon:RibbonTab x:Name="wiegen" Header="Bearbeiten">
                 <ribbon:RibbonGroup x:Name="Group1" Header="Betrieb">
-                    <ribbon:RibbonButton
-                        x:Name="cmdNeu"
-                        Width="80"
-                        Click="cmdNeu_Click"
-                        FontSize="14"
-                        Label=" Neu  "
-                        LargeImageSource="..\Images\1328191262_add-notes.png" />
-                    <ribbon:RibbonButton
-                        x:Name="cmdEdit"
-                        Width="80"
-                        Click="cmdEdit_Click"
-                        FontSize="14"
-                        Label=" Bearbeiten  "
-                        LargeImageSource="..\Images\1328191024_edit-notes.png" />
+
+
                     <ribbon:RibbonButton
                         x:Name="cmdSelect"
                         Width="80"
@@ -67,21 +55,27 @@
                         FontSize="14"
                         Label=" Auswählen "
                         LargeImageSource="..\Images\1328252503_ok.png" />
-
+                    <ribbon:RibbonButton x:Name="cmdEdit"
+                                         Width="80"
+                                         Click="cmdEdit_Click"
+                                         FontSize="14"
+                                         Label=" Pflichtfeld bearbeiten  "
+                                         LargeImageSource="..\Images\1328191024_edit-notes.png"
+                                         TabIndex="40" />
                 </ribbon:RibbonGroup>
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid
             x:Name="dataGrid"
-            Width="518"
-            Margin="0,152,0,12"
+            Width="607"
+            Margin="0,152,0,0"
             HorizontalAlignment="Left"
             AutoGenerateColumns="False"
             ItemsSource="{Binding Mode=OneWay}"
             MouseDoubleClick="dataGrid_MouseDoubleClick"
             SelectedValuePath="&quot;PK&quot;"
             SelectionChanged="dataGrid_SelectionChanged"
-            Style="{DynamicResource DataGridStyle}">
+            Style="{DynamicResource DataGridStyle}" Height="418" VerticalAlignment="Top">
             <DataGrid.Columns>
 
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr." />
@@ -113,6 +107,23 @@
             Content="Suchbegriff:"
             FontWeight="Bold"
             TabIndex="1000" />
-        <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="193" Margin="527,153,0,0" VerticalAlignment="Top" Width="339"/>
+        <DataGrid
+            x:Name="dataGrid1"
+            IsReadOnly="True"
+            Margin="607,152,0,0"
+            AutoGenerateColumns="False"
+            CanUserAddRows="false" HorizontalAlignment="Left" Width="222" Height="417" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding AttributName}"
+                    ClipboardContentBinding="{x:Null}"
+                    Header="Attributbezeichnung" />
+                <DataGridCheckBoxColumn
+                   
+                    Binding="{Binding Required}"
+                    ClipboardContentBinding="{x:Null}"
+                    Header="Pflichtfeld" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </mmwpf:mmBusinessWindow>

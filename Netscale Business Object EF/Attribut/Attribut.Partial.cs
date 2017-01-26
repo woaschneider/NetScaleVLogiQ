@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.EntityClient;
 using System.Linq;
-
+using Newtonsoft.Json.Converters;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.Data;
@@ -45,6 +45,22 @@ namespace HWB.NETSCALE.BOEF
 	            where a.ArtikelFK == pk
 	            select a;
 	        return GetEntityList(query);
+	    }
+
+	    public bool IsAttributRequired(string name)
+	    {
+	        IQueryable<AttributEntity> query = from a in ObjectContext.AttributEntities
+	            where a.AttributName == name && a.Required == true 
+	            select a;
+	        var x = GetEntity(query);
+	        if (x != null)
+	        { // Dann ist es ein Pflichtfeld
+	            return true;
+	        }
+	        else // Dann ist es kein Pflichtfeld
+	        {
+	            return false;
+	        }
 	    }
 	}
 }

@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
@@ -32,21 +35,11 @@ namespace HWB.NETSCALE.BOEF
             IsFfFilled(currentEntity);
             IsLagerPlatzFilled(currentEntity);
             IsConversionUnitAmountFilled(currentEntity);
-            //IsInvoiceReceiver(currentEntity);
-            //IsOwner(currentEntity);
-            //IsKundenReferenz(currentEntity);
+
             IsArticlenumberFilled(currentEntity);
-            //if (currentEntity.productdescription != null)
-            //{
-            //    if (currentEntity.productdescription.Trim() != "Fremdverwiegung")
-            //    {
-                  
-            //    }
-            //    else
-            //    {
-            //        IsWarenArtFilled(currentEntity);
-            //    }
-            //}
+
+            IsAttributeFilled(currentEntity);
+
         }
 
         private string IsConversionUnitAmountFilled(WaegeEntity currentEntity)
@@ -126,12 +119,47 @@ namespace HWB.NETSCALE.BOEF
             return Msg;
         }
 
-        private void IsKundenReferenz(WaegeEntity currentEntity)
+        private string IsAttributeFilled(WaegeEntity currentEntity)
         {
-            throw new NotImplementedException();
+            string Msg = null;
+         
+                var obj = JObject.Parse(currentEntity.attributes_as_json);
+                foreach (var pair in obj)
+                {
+                    var propName = pair.Key;
+                    var propValue = pair.Value.ToString();
+
+                    if (String.IsNullOrEmpty(propValue))
+                    {
+                        Attribut boA = new Attribut();
+                        if (boA.IsAttributRequired(propName))
+                        {
+                         
+                            this.EntityPropertyDisplayName = "Attribut: " + propName;
+                            RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
+                            Msg = this.RequiredFieldMessagePrefix +
+                                  this.EntityPropertyDisplayName + " " +
+                                  this.RequiredFieldMessageSuffix;
+
+                            AddErrorProviderBrokenRule("ffBusinessIdentifier", Msg);
+                        }
+                    }
+                }
+
+          
+            return Msg;
         }
 
-        private void IsOwner(WaegeEntity currentEntity)
+
+
+
+
+
+
+
+
+
+private void IsOwner(WaegeEntity currentEntity)
         {
             throw new NotImplementedException();
         }

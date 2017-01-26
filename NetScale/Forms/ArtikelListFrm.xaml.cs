@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using HWB.NETSCALE.BOEF;
 
 using OakLeaf.MM.Main;
+using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 
 namespace HWB.NETSCALE.FRONTEND.WPF
@@ -28,7 +29,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private int _uRet;
 
         private Attribut boAttribute;
-    private string oid = null;
+        private string oid = null;
+        private mmBindingList<AttributEntity> boAttributeEntitiesList;
         // Deklariere das primäre BO 
         private Artikel boAr = new Artikel(); 
         //  private CFEditFrm EditFrm = CFEditFrm();
@@ -46,6 +48,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         {
             this.InitializeComponent();
             string oid = ownerid;
+
+            boAttribute = new Attribut();
 
             dataGrid.SelectedValuePath = "PK";
             if (string.IsNullOrEmpty(oid))
@@ -84,6 +88,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
+            if (boAttributeEntitiesList != null)
+            {
+                boAttribute.SaveEntityList(boAttributeEntitiesList);
+            }
             Hide();
         }
 
@@ -96,6 +104,19 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
 
+            PasswortFrm2 oPwFrm = new PasswortFrm2();
+            oPwFrm.ShowDialog();
+            if (oPwFrm.PWOk)
+            {
+                dataGrid1.IsReadOnly = false;
+                oPwFrm.Close();
+            }
+            else
+            {
+                dataGrid1.IsReadOnly = true;
+                oPwFrm.Close();
+            }
+           
         }
 
         private void cmdNeu_Click(object sender, RoutedEventArgs e)
@@ -105,6 +126,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (boAttributeEntitiesList != null)
+            {
+                boAttribute.SaveEntityList(boAttributeEntitiesList);
+            }
             if (string.IsNullOrEmpty(oid))
             {
                 dataGrid.ItemsSource = boAr.GetByMatchCode(txtSearch.Text.Trim());
@@ -116,13 +141,24 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
          
         }
-
+    
         private void FillGrid()
         {
         }
 
         private void FillGrid2()
         {
+            if (boAttributeEntitiesList != null)
+            {
+                boAttribute.SaveEntityList(boAttributeEntitiesList);
+            }
+
+            _uRet = Convert.ToInt32(dataGrid.SelectedValue);
+            boAttributeEntitiesList = boAttribute.GetAttributeByArtikelPk(_uRet);
+            
+           
+     
+            dataGrid1.ItemsSource = boAttributeEntitiesList;
 
         }
 
@@ -153,9 +189,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _uRet = Convert.ToInt32(dataGrid.SelectedValue);
-            boAttribute = new Attribut();
-            dataGrid1.ItemsSource = boAttribute.GetAttributeByArtikelPk(_uRet);
+            FillGrid2();
         }
 
 

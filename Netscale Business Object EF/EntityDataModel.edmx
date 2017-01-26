@@ -183,6 +183,7 @@
           <Property Name="Required" Type="bit" />
           <Property Name="ArtikelFK" Type="int" />
           <Property Name="AttributeFK" Type="int" />
+          <Property Name="AttributName" Type="varchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="Bonitaet">
           <Key>
@@ -1702,6 +1703,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="Required" Type="Boolean" />
           <Property Name="ArtikelFK" Type="Int32" />
           <Property Name="AttributeFK" Type="Int32" />
+          <Property Name="AttributName" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2481,6 +2483,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="AttributEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.AttributEntity">
               <MappingFragment StoreEntitySet="Attribut">
+                <ScalarProperty Name="AttributName" ColumnName="AttributName" />
                 <ScalarProperty Name="AttributeFK" ColumnName="AttributeFK" />
                 <ScalarProperty Name="ArtikelFK" ColumnName="ArtikelFK" />
                 <ScalarProperty Name="Required" ColumnName="Required" />

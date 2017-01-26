@@ -359,7 +359,9 @@ namespace NetScalePolosIO
                                var boAttributEntity = boAttribut.NewEntity();
                                 boAttributEntity.Required = false;
                                 boAttributEntity.ArtikelFK = a.PK;
+
                                 boAttributEntity.AttributeFK = boAaE.PK;
+                                boAttributEntity.AttributName = boAaE.AttributName;
                                 
                                 boAttribut.SaveEntity(boAttributEntity);
                                 
