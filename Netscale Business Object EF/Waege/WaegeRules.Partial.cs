@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Windows.Media.Animation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using OakLeaf.MM.Main;
 using OakLeaf.MM.Main.Business;
 using OakLeaf.MM.Main.Collections;
@@ -39,7 +41,6 @@ namespace HWB.NETSCALE.BOEF
             IsArticlenumberFilled(currentEntity);
 
             IsAttributeFilled(currentEntity);
-
         }
 
         private string IsConversionUnitAmountFilled(WaegeEntity currentEntity)
@@ -121,45 +122,55 @@ namespace HWB.NETSCALE.BOEF
 
         private string IsAttributeFilled(WaegeEntity currentEntity)
         {
+            //// Welche Pflicht-Attribute hat der Artikel
+
             string Msg = null;
-         
-                var obj = JObject.Parse(currentEntity.attributes_as_json);
-                foreach (var pair in obj)
+            var artikelattribute = new Attribut().GetPflichtAttributeByArtikelPk(currentEntity.ArtikelPk);
+
+
+            foreach (var artikel in artikelattribute)
+            {
+                bool found = false;
+                try
                 {
-                    var propName = pair.Key;
-                    var propValue = pair.Value.ToString();
+                    //    string js = currentEntity.attributes_as_json.Replace("{", "").Replace("}", "");
+                    string js = currentEntity.attributes_as_json;
+                    JObject obj = JObject.Parse(js);
 
-                    if (String.IsNullOrEmpty(propValue))
+                    foreach (var pair  in obj)
                     {
-                        Attribut boA = new Attribut();
-                        if (boA.IsAttributRequired(propName))
+                        var propName = pair.Key;
+                        var propValue = pair.Value.ToString();
+                        if (artikel.AttributName == pair.Key)
                         {
-                         
-                            this.EntityPropertyDisplayName = "Attribut: " + propName;
-                            RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
-                            Msg = this.RequiredFieldMessagePrefix +
-                                  this.EntityPropertyDisplayName + " " +
-                                  this.RequiredFieldMessageSuffix;
-
-                            AddErrorProviderBrokenRule("ffBusinessIdentifier", Msg);
+                            found = true;
                         }
                     }
-                }
+                    if (found == false)
+                    {
+                        this.EntityPropertyDisplayName = "Attribut: " + artikel.AttributName;
+                        RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
+                        Msg = this.RequiredFieldMessagePrefix +
+                              this.EntityPropertyDisplayName + " " +
+                              this.RequiredFieldMessageSuffix;
 
-          
+                        AddErrorProviderBrokenRule("articleNumber", Msg);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+            //
+
+
             return Msg;
         }
 
 
-
-
-
-
-
-
-
-
-private void IsOwner(WaegeEntity currentEntity)
+        private void IsOwner(WaegeEntity currentEntity)
         {
             throw new NotImplementedException();
         }

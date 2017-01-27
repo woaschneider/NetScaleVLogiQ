@@ -46,8 +46,16 @@ namespace HWB.NETSCALE.BOEF
 	            select a;
 	        return GetEntityList(query);
 	    }
+        public mmBindingList<AttributEntity> GetPflichtAttributeByArtikelPk(int? pk)
+        {
+            IQueryable<AttributEntity> query = from a in ObjectContext.AttributEntities
+                                               where a.ArtikelFK == pk && a.Required==true
+                                               select a;
+            return GetEntityList(query);
+        }
 
-	    public bool IsAttributRequired(string name)
+
+        public bool IsAttributRequired(string name)
 	    {
 	        IQueryable<AttributEntity> query = from a in ObjectContext.AttributEntities
 	            where a.AttributName == name && a.Required == true 

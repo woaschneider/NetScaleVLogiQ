@@ -735,6 +735,7 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="conversionUnitId" Type="varchar" MaxLength="32" />
           <Property Name="conversionUnitShortDescription" Type="varchar" MaxLength="32" />
           <Property Name="conversionUnitAmount" Type="int" />
+          <Property Name="ArtikelPk" Type="int" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1624,6 +1625,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Type="String" Name="conversionUnitId" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="conversionUnitShortDescription" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="conversionUnitAmount" />
+          <Property Name="ArtikelPk" Type="Int32" />
         </EntityType>
         <EntityType Name="EinstellungenEntity">
           <Key>
@@ -2258,6 +2260,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="ArtikelPk" ColumnName="ArtikelPk" />
                 <ScalarProperty Name="conversionUnitAmount" ColumnName="conversionUnitAmount" />
                 <ScalarProperty Name="conversionUnitShortDescription" ColumnName="conversionUnitShortDescription" />
                 <ScalarProperty Name="conversionUnitId" ColumnName="conversionUnitId" />

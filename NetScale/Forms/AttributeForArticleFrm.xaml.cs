@@ -87,7 +87,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+              // MessageBox.Show(e.Message);
             }
         }
 
@@ -145,12 +145,23 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             {
                 if (!String.IsNullOrWhiteSpace(tb.Text))
                 {
-                    jsonData = jsonData + tb.Name + ":" + '\u0022' + tb.Text + '\u0022' + ",";
-                    Hide();
+                    if (!String.IsNullOrEmpty(tb.Text))
+                    {
+                        if (jsonData == null) // Dann Komma
+                        {
+                            jsonData = jsonData + tb.Name + ":" + '\u0022' + tb.Text + '\u0022' ;
+                        }
+                        else
+                        {
+                            jsonData = jsonData +","+ tb.Name + ":" + '\u0022' + tb.Text + '\u0022' ;
+                        }
+                    }
                 }
             }
-
+            // Entferne das rechte Komma
+         
             _boWe.attributes_as_json = jsonData != null ? (jsonObject_Start + jsonData + jsonObject_End).Replace("txt", "") : null;
+            Hide();
         }
 
         private static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject

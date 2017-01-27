@@ -4645,6 +4645,30 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _AttributeFK;
         partial void OnAttributeFKChanging(Nullable<global::System.Int32> value);
         partial void OnAttributeFKChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AttributName
+        {
+            get
+            {
+                return _AttributName;
+            }
+            set
+            {
+                OnAttributNameChanging(value);
+                ReportPropertyChanging("AttributName");
+                _AttributName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AttributName");
+                OnAttributNameChanged();
+            }
+        }
+        private global::System.String _AttributName;
+        partial void OnAttributNameChanging(global::System.String value);
+        partial void OnAttributNameChanged();
 
         #endregion
 
@@ -15886,6 +15910,30 @@ namespace HWB.NETSCALE.BOEF
         private Nullable<global::System.Int32> _conversionUnitAmount;
         partial void OnconversionUnitAmountChanging(Nullable<global::System.Int32> value);
         partial void OnconversionUnitAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ArtikelPk
+        {
+            get
+            {
+                return _ArtikelPk;
+            }
+            set
+            {
+                OnArtikelPkChanging(value);
+                ReportPropertyChanging("ArtikelPk");
+                _ArtikelPk = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ArtikelPk");
+                OnArtikelPkChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ArtikelPk;
+        partial void OnArtikelPkChanging(Nullable<global::System.Int32> value);
+        partial void OnArtikelPkChanged();
 
         #endregion
 

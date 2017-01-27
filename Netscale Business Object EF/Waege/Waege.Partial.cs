@@ -307,10 +307,11 @@ namespace HWB.NETSCALE.BOEF
             ArtikelEntity boAE = boA.GetByPk(pk);
             if (boAE != null)
             {
+                Entity.ArtikelPk = boAE.PK;
                 Entity.articleId = boAE.id;
                 Entity.articleNumber = boAE.number;
                 Entity.articleDescription = boAE.description;
-                Entity.attributes_as_json = boAE.attributes_as_json;
+              //  Entity.attributes_as_json ="{"+ boAE.attributes_as_json+"}";
             }
         }
 
@@ -727,10 +728,10 @@ namespace HWB.NETSCALE.BOEF
                 Entity.articleDescription = _boOISE.articleDescription;
                 Artikel boa = new Artikel();
                 ArtikelEntity boAe = boa.GetByNr(Entity.articleNumber);
-                if (boAe != null)
-                {
-                    Entity.attributes_as_json = boAe.attributes_as_json;
-                }
+                //if (boAe != null)
+                //{
+                //    Entity.attributes_as_json = boAe.attributes_as_json;
+                //}
 
                 Entity.conversionUnitShortDescription = _boOISE.conversionUnitShortDescription;
                 Entity.plannedDate = _boOISE.plannedDate;
