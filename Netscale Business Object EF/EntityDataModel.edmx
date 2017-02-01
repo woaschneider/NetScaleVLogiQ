@@ -442,6 +442,7 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="invoiceReceiverIsocodeCountry" Type="varchar" MaxLength="10" />
           <Property Name="customerIdCountry" Type="varchar" MaxLength="10" />
           <Property Name="customerIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="touch" Type="bit" />
         </EntityType>
         <EntityType Name="OrderItemservice">
           <Key>
@@ -1102,6 +1103,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Type="String" Name="customerIdCountry" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Type="String" Name="customerIsocodeCountry" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderItemservices" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderitemEntity" ToRole="OrderItemservice" />
+          <Property Name="touch" Type="Boolean" />
         </EntityType>
         <EntityType Name="MandantEntity">
           <Key>
@@ -1884,6 +1886,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="OrderitemEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderitemEntity">
               <MappingFragment StoreEntitySet="Orderitem">
+                <ScalarProperty Name="touch" ColumnName="touch" />
                 <ScalarProperty Name="customerIsocodeCountry" ColumnName="customerIsocodeCountry" />
                 <ScalarProperty Name="customerIdCountry" ColumnName="customerIdCountry" />
                 <ScalarProperty Name="invoiceReceiverIsocodeCountry" ColumnName="invoiceReceiverIsocodeCountry" />

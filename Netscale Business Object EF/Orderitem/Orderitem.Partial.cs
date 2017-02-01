@@ -76,6 +76,24 @@ namespace HWB.NETSCALE.BOEF
             return uRet;
         }
 
+        public void DeleteNotTouch()
+        {
+            IQueryable<OrderitemEntity> query = from o in ObjectContext.OrderitemEntities
+                where o.touch != true
+                select o;
+            var list = GetEntityList(query);
+
+            if (list != null)
+            {
+                foreach (var oi in list)
+                {
+                    DeleteEntity(oi);
+                   
+                }
+            }
+
+        }
+
 
     }
 }

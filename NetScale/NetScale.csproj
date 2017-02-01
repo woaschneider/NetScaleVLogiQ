@@ -198,18 +198,12 @@
     </ApplicationDefinition>
     <Compile Include="AAppTest.cs" />
     <Compile Include="ApplicationLog.cs" />
-    <Compile Include="Forms\AbruflisteFrm.xaml.cs">
-      <DependentUpon>AbruflisteFrm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AddressEditFrm.xaml.cs">
       <DependentUpon>AddressEditFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\AdressenListeFrm.xaml.cs">
       <DependentUpon>AdressenListeFrm.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Forms\ArbeitsleistungFilterFrm.xaml.cs">
-      <DependentUpon>ArbeitsleistungFilterFrm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ArticleEditFrm.xaml.cs">
       <DependentUpon>ArticleEditFrm.xaml</DependentUpon>
@@ -331,19 +325,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\AbruflisteFrm.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Forms\AddressEditFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\AdressenListeFrm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Forms\ArbeitsleistungFilterFrm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

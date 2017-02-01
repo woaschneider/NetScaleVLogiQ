@@ -217,42 +217,42 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void ribbonAbrufListe_Click(object sender, RoutedEventArgs e)
-        {
-            LookAndFillWithAbruf();
-        }
+        //private void ribbonAbrufListe_Click(object sender, RoutedEventArgs e)
+        //{
+        //    LookAndFillWithAbruf();
+        //}
 
-        private void LookAndFillWithAbruf()
-        {
-            var oAbrufFrm = new AbruflisteFrm();
-            oAbrufFrm.ShowDialog();
-            int uRet = oAbrufFrm.URet;
-
-
-            if (uRet == 0)
-            {
-                _wiegeStatus = 0;
-                oAbrufFrm.Close();
-                return;
-            }
-            if (_wiegeStatus == 0) // Abruf bearbeiten
-            {
-                _boWe = null;
-                _boWe = _boW.NewEntity();
-                var boAbruf = new Abruf();
-                DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
-
-                Wiegestatus = 7;
-            }
-            if (_wiegeStatus == 1 | _wiegeStatus == 2 | _wiegeStatus == 3)
-            {
-                var boAbruf = new Abruf();
-                DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
-            }
+        //private void LookAndFillWithAbruf()
+        //{
+        //    var oAbrufFrm = new AbruflisteFrm();
+        //    oAbrufFrm.ShowDialog();
+        //    int uRet = oAbrufFrm.URet;
 
 
-            oAbrufFrm.Close();
-        }
+        //    if (uRet == 0)
+        //    {
+        //        _wiegeStatus = 0;
+        //        oAbrufFrm.Close();
+        //        return;
+        //    }
+        //    if (_wiegeStatus == 0) // Abruf bearbeiten
+        //    {
+        //        _boWe = null;
+        //        _boWe = _boW.NewEntity();
+        //        var boAbruf = new Abruf();
+        //        DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
+
+        //        Wiegestatus = 7;
+        //    }
+        //    if (_wiegeStatus == 1 | _wiegeStatus == 2 | _wiegeStatus == 3)
+        //    {
+        //        var boAbruf = new Abruf();
+        //        DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
+        //    }
+
+
+        //    oAbrufFrm.Close();
+        //}
 
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -612,12 +612,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufNeu.IsEnabled = false;
             radioAbrufEdit.IsEnabled = false;
             radioLSNew.IsChecked = false;
-            ribbonAbrufListe.IsEnabled = false;
+         //   ribbonAbrufListe.IsEnabled = false;
             DisableFrmTb();
             ribbonNeu.IsEnabled = true;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = true;
-            ribbonAbrufListe.IsEnabled = true;
+      //      ribbonAbrufListe.IsEnabled = true;
             ribbonAuftrag.IsEnabled = false;
             ribbonCancel.IsEnabled = false;
             ribbonDelete.IsEnabled = false;
@@ -643,7 +643,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             radioAbrufEdit.IsChecked = false;
             radioLSNew.IsChecked = false;
 
-            ribbonAbrufListe.IsEnabled = true;
+       //     ribbonAbrufListe.IsEnabled = true;
             radioErst.IsEnabled = true;
             radioZweit.IsEnabled = true;
             radioEinmal.IsEnabled = true;
@@ -657,7 +657,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = true;
             ribbonLsListe.IsEnabled = false;
-            ribbonAbrufListe.IsEnabled = true;
+      //      ribbonAbrufListe.IsEnabled = true;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = false;
 
@@ -812,10 +812,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = false;
             ribbonLsListe.IsEnabled = false;
-            ribbonAbrufListe.IsEnabled = false;
+      //      ribbonAbrufListe.IsEnabled = false;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
-            ribbonAbrufListe.IsEnabled = false;
+     //       ribbonAbrufListe.IsEnabled = false;
             ribbonSave.IsEnabled = true;
             ribbonWiegen.IsEnabled = false;
 
@@ -851,7 +851,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ribbonNeu.IsEnabled = false;
             ribbonHofliste.IsEnabled = false;
             ribbonLsListe.IsEnabled = false;
-            ribbonAbrufListe.IsEnabled = false;
+      //      ribbonAbrufListe.IsEnabled = false;
             ribbonCancel.IsEnabled = true;
             ribbonDelete.IsEnabled = true;
 

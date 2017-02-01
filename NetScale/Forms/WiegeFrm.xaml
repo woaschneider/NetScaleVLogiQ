@@ -139,12 +139,12 @@
                         Label=" Lieferscheine"
                         LargeImageSource="..\Images\1328191024_edit-notes.png"
                         ToolTip="Lieferscheinliste öffnen" />
-                    <ribbon:RibbonButton
+                    <!--<ribbon:RibbonButton
                         x:Name="ribbonAbrufListe"
-                        Click="ribbonAbrufListe_Click"
+                    
                         FontSize="14"
                         Label=" Abrufe"
-                        LargeImageSource="..\Images\1328191024_edit-notes.png" />
+                        LargeImageSource="..\Images\1328191024_edit-notes.png" />-->
                     <ribbon:RibbonButton
                         x:Name="ribbonCancel"
                         Click="ribbonCancel_Click"

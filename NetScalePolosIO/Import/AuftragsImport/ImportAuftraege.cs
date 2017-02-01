@@ -206,6 +206,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                     #endregion
 
+
+                                    _boOe.touch = true;
+
                                     mmSaveDataResult sret = _boO.SaveEntity(_boOe);
                                     _boOe = _boO.GetById(_boOe.id); // Damit ich jetzt den OK habe
 
@@ -536,6 +539,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                               
                             }
+
+                           
                         }
                         catch (Exception ee)
                         {
@@ -546,7 +551,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                     #endregion
                 }
-
+                _boO.DeleteNotTouch();
                 return true;
             }
             catch (Exception e)

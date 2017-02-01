@@ -9416,6 +9416,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _customerIsocodeCountry;
         partial void OncustomerIsocodeCountryChanging(global::System.String value);
         partial void OncustomerIsocodeCountryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> touch
+        {
+            get
+            {
+                return _touch;
+            }
+            set
+            {
+                OntouchChanging(value);
+                ReportPropertyChanging("touch");
+                _touch = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("touch");
+                OntouchChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _touch;
+        partial void OntouchChanging(Nullable<global::System.Boolean> value);
+        partial void OntouchChanged();
 
         #endregion
 

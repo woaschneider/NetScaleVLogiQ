@@ -397,7 +397,7 @@
                                          Label=" Module "
                                          LargeImageSource="Images\1334130471_blockdevice.png" />
                     <ribbon:RibbonButton x:Name="ArbeitsleistungsFilte"
-                                         Click="ArbeitsleistungsFilte_OnClick"
+                                        
                                          FontSize="14"
                                          Label=" Service-Filter "
                                          LargeImageSource="Images\1334130471_blockdevice.png" />
