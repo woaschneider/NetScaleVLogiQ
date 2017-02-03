@@ -323,6 +323,18 @@ namespace HWB.NETSCALE.BOEF
             Entity.articleDescription = null;
         }
 
+        public void LagerOrt2Waege(string id, WaegeEntity we)
+        {
+            Lagerplaetze boL = new Lagerplaetze();
+            LagerplaetzeEntity boLe = boL.GetById(id);
+            if (boLe != null)
+            {
+                we.actualStorageAreaId = boLe.id;
+                we.IstQuellLagerPlatzId = boLe.id;
+                we.IstQuellLagerPlatz = boLe.name;
+            }
+        }
+
         public void FillKfz(int pk, WaegeEntity oWe)
         {
             if (oWe != null & pk != 0)
@@ -568,6 +580,9 @@ namespace HWB.NETSCALE.BOEF
                 Entity.receiverIsocodeCountry = boAe.isocodeCountry;
             }
         }
+
+     
+
         public void ClearReceiverInWaege()
         {
 
@@ -784,6 +799,12 @@ namespace HWB.NETSCALE.BOEF
                 // SupplierOrConsignee2Waege(Entity.supplierOrConsigneeId,Entity);
                 Receiver2Waege(Entity.receiverBusinessIdentifier, Entity);
 
+
+                Entity.ffId = _boOISE.ffId;
+                Entity.ffBusinessIdentifier = _boOISE.ffBusinessIdentifier;
+
+                 FrachtFuehrer2Waege(Entity.ffBusinessIdentifier, Entity);
+
                 Entity.deliveryType = _boOISE.deliveryType;
                 Entity.kindOfGoodDescription = _boOISE.kindOfGoodDescription;
                 Entity.articleId = _boOISE.articleId;
@@ -805,8 +826,14 @@ namespace HWB.NETSCALE.BOEF
                 Entity.orign = _boOISE.orign;
                 Entity.grade = _boOISE.grade;
                 Entity.batch = _boOISE.batch;
+
+                Entity.actualStorageAreaId = _boOISE.actualStorageAreaId;
+
+                LagerOrt2Waege(Entity.actualStorageAreaId, Entity);
+
                 Entity.storageAreaReference = _boOISE.storageAreaReference;
                 Entity.storageAreaReferenceNumber = _boOISE.storageAreaReferenceNumber;
+
                 Entity.originalNumber = _boOISE.originalNumber;
                 Entity.orignalMarking = _boOISE.orignalMarking;
                 Entity.SerialNumber = _boOISE.SerialNumber;
