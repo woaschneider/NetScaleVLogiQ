@@ -65,6 +65,10 @@ namespace NetScalePolosIO.Export
 
         public decimal? netAmount { get; set; }
         public decimal? additionalAmount { get; set; }
+
+        public string freightCarrierFreeText { get; set; }
+        public string recipientFreeText { get; set; }
+        public string releaseFreeText { get; set; }
     }
 
 

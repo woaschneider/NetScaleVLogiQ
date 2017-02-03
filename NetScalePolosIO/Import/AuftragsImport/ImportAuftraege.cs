@@ -26,7 +26,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
         private int _totalresult;
 
-        public bool Import(string baseUrl, string location, string url, bool only_Ready_To_Dispatch)
+        public bool Import(string baseUrl, string location, string url, bool onlyReadyToDispatch)
         {
             try
             {
@@ -36,9 +36,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 //  var request = new RestRequest("/rest/order/query/200/1?status=NEW");
                 client.Timeout = 15000;
                 var request = new RestRequest(url + "200/1") {Method = Method.GET};
-                request.AddHeader("X-location-Id", location.ToString());
+                request.AddHeader("X-location-Id", location);
                 request.AddHeader("Accept-Language", "de");
-                if (only_Ready_To_Dispatch)
+                if (onlyReadyToDispatch)
                 {
                     request.AddQueryParameter("status", "READY_TO_DISPATCH");
                 }
@@ -67,13 +67,13 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 _totalresult = oOi.totalResults;
                 int nPage;
 
-                if (_totalresult%200 == 0)
+                if (_totalresult % 200 == 0)
                 {
-                    nPage = _totalresult/200;
+                    nPage = _totalresult / 200;
                 }
                 else
                 {
-                    nPage = _totalresult/200 + 1;
+                    nPage = _totalresult / 200 + 1;
                 }
 
                 #endregion // Anzahl der Order und Seiten ermittlen
@@ -82,9 +82,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 for (int ii = 1; ii <= nPage; ii++)
                 {
                     request = new RestRequest("/rest/order/query/200/" + ii) {Method = Method.GET};
-                    request.AddHeader("X-location-Id", location.ToString());
+                    request.AddHeader("X-location-Id", location);
                     request.AddHeader("Accept-Language", "de");
-                    if (only_Ready_To_Dispatch)
+                    if (onlyReadyToDispatch)
                     {
                         //  request.AddQueryParameter("status", "READY_TO_DISPATCH");
                         request.AddQueryParameter("status",
@@ -106,7 +106,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                             recordCounter = recordCounter + 1;
                             try
                             {
-                                goApp.ProzentAuftraege = recordCounter/(_totalresult/100);
+                                goApp.ProzentAuftraege = recordCounter / (_totalresult / 100);
                             }
                             catch (Exception)
                             {
@@ -123,12 +123,11 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     _boO.DeleteEntity(_boOe);
                                 }
                             }
+
                             #region Eigentlicher Import
 
                             if (obj.orderState == "READY_TO_DISPATCH" || obj.orderState == "NEW")
                             {
-                               
-
                                 // Order Status prüfen
 
 
@@ -183,9 +182,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                     if (obj.invoiceReceiver != null)
                                     {
                                         _boOe.invoiceReceicerBusinessIdentifier =
-                                            obj.invoiceReceiver.businessIdentifier != null
-                                                ? obj.invoiceReceiver.businessIdentifier
-                                                : "";
+                                            obj.invoiceReceiver.businessIdentifier ?? "";
                                         _boOe.invoiceReceiverId = obj.invoiceReceiver.id;
                                         if (_boOe.invoiceReceiverId != null)
                                         {
@@ -206,10 +203,10 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                     #endregion
 
-
                                     _boOe.touch = true;
 
-                                    mmSaveDataResult sret = _boO.SaveEntity(_boOe);
+                                    mmSaveDataResult mmSaveDataResult;
+                                    mmSaveDataResult = _boO.SaveEntity(_boOe);
                                     _boOe = _boO.GetById(_boOe.id); // Damit ich jetzt den OK habe
 
                                     // *******************************************************************************************************
@@ -231,7 +228,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                         foreach (var orderItem in oOEntity.orderItems)
                                         {
-                                            // TODO: Fertige Orderitem löschen
+                                            // Fertige Orderitem löschen
 
 
                                             //#region Fertige Orderitems löschen
@@ -390,53 +387,74 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                                         #endregion
 
-                                                        #region Supplier Receiver
+                                                        #region Supplier Receiver  Freight Carrier
 
                                                         if (orderItemService.supplier != null)
                                                         {
-                                                            _boOise.supplierOrConsigneeId =
+                                                            _boOise.supplierId =
                                                                 orderItemService.supplier.id;
-                                                            _boOise.supplierOrConsigneeBusinessIdentifier =
+                                                            _boOise.supplierBusinessIdentifier =
                                                                 orderItemService.supplier.businessIdentifier;
-                                                            _boOise.supplierOrConsigneeName =
+                                                            _boOise.supplierName =
                                                                 orderItemService.supplier.name;
-                                                            _boOise.supplierOrConsigneeSubName2 =
+                                                            _boOise.supplierSubName2 =
                                                                 orderItemService.supplier.subName;
-                                                            _boOise.supplierOrConsigneeCity =
+                                                            _boOise.supplierCity =
                                                                 orderItemService.supplier.address.city;
-                                                            _boOise.supplierOrConsigneeStreet =
+                                                            _boOise.supplierStreet =
                                                                 orderItemService.supplier.address.street;
-                                                            _boOise.supplierOrConsigneeZipCode =
+                                                            _boOise.supplierZipCode =
                                                                 orderItemService.supplier.address.zipCode;
-                                                            _boOise.supplierOrConsigneedIdCountry =
+                                                            _boOise.supplierIdCountry =
                                                                 orderItemService.supplier.address.country.id;
-
-                                                            _boOise.supplierOrConsigneeIsocodeCountry =
+                                                            _boOise.supplierIsocodeCountry =
                                                                 orderItemService.supplier.address.country.isoCode;
                                                         }
 
-                                                        //TODO Fall doch beides kommen kann müssen wir hier noch nachbessern
+                                                        // Falls doch beides kommen kann müssen wir hier noch nachbessern
                                                         if (orderItemService.receiver != null)
                                                         {
-                                                            _boOise.supplierOrConsigneeId =
+                                                            _boOise.receiverId =
                                                                 orderItemService.receiver.id;
-                                                            _boOise.supplierOrConsigneeBusinessIdentifier =
+                                                            _boOise.receiverBusinessIdentifier =
                                                                 orderItemService.receiver.businessIdentifier;
-                                                            _boOise.supplierOrConsigneeName =
+                                                            _boOise.receiverName =
                                                                 orderItemService.receiver.name;
-                                                            _boOise.supplierOrConsigneeSubName2 =
+                                                            _boOise.receiverSubName2 =
                                                                 orderItemService.receiver.subName;
-                                                            _boOise.supplierOrConsigneeCity =
+                                                            _boOise.receiverCity =
                                                                 orderItemService.receiver.address.city;
-                                                            _boOise.supplierOrConsigneeStreet =
+                                                            _boOise.receiverStreet =
                                                                 orderItemService.receiver.address.street;
-                                                            _boOise.supplierOrConsigneeZipCode =
+                                                            _boOise.receiverZipCode =
                                                                 orderItemService.receiver.address.zipCode;
-                                                            _boOise.supplierOrConsigneedIdCountry =
+                                                            _boOise.receiverIdCountry =
                                                                 orderItemService.receiver.address.country.id;
-
-                                                            _boOise.supplierOrConsigneeIsocodeCountry =
+                                                            _boOise.receiverIsocodeCountry =
                                                                 orderItemService.receiver.address.country.isoCode;
+                                                        }
+
+                                                        // Frachtführer / Frachtführer
+                                                        if (orderItemService.freightCarrier != null)
+                                                        {
+                                                           
+                                                            _boOise.ffId = orderItemService.freightCarrier.id;
+                                                            _boOise.ffBusinessIdentifier =
+                                                                orderItemService.freightCarrier.businessIdentifier;
+                                                            _boOise.ffName =
+                                                                orderItemService.freightCarrier.name;
+                                                            _boOise.ffSubName2 =
+                                                                orderItemService.freightCarrier.subName;
+                                                            _boOise.ffCity =
+                                                                orderItemService.freightCarrier.address.city;
+                                                            _boOise.ffStreet =
+                                                                orderItemService.freightCarrier.address.street;
+                                                            _boOise.ffZipCode =
+                                                                orderItemService.freightCarrier.address.zipCode;
+                                                            _boOise.ffIdCountry =
+                                                                orderItemService.freightCarrier.address.country.id;
+                                                            _boOise.ffIsocodeCountry =
+                                                                orderItemService.freightCarrier.address.country.isoCode;
                                                         }
 
                                                         #endregion
@@ -534,13 +552,10 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                             }
                                         }
                                     }
+
                                     #endregion
                                 }
-
-                              
                             }
-
-                           
                         }
                         catch (Exception ee)
                         {

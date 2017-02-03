@@ -13,7 +13,7 @@
     x:Name="Window"
     Title="Wiegemaske"
     Width="1191"
-    Height="776"
+    Height="809"
     AllowsTransparency="False"
     Background="#FFC2CCDB"
     Loaded="Window_Loaded"
@@ -30,8 +30,8 @@
         Height="743">
         <Rectangle
             Width="474"
-            Height="138"
-            Margin="696,600,0,0"
+            Height="154"
+            Margin="696,601,0,-12"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Fill="#FF87B3DD"
@@ -71,15 +71,15 @@
             Stroke="Black" />
         <Rectangle
             Width="692"
-            Height="84"
-            Margin="-1,654,0,0"
+            Height="85"
+            Margin="-1,671,0,-13"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Fill="#FF87B3DD"
             Stroke="Black" />
         <Rectangle
             Width="692"
-            Height="219"
+            Height="234"
             Margin="-1,433,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -141,7 +141,7 @@
                         ToolTip="Lieferscheinliste öffnen" />
                     <!--<ribbon:RibbonButton
                         x:Name="ribbonAbrufListe"
-                    
+
                         FontSize="14"
                         Label=" Abrufe"
                         LargeImageSource="..\Images\1328191024_edit-notes.png" />-->
@@ -445,7 +445,7 @@
             x:Name="txtHerkunft"
             Width="436"
             Height="23"
-            Margin="151,663,0,0"
+            Margin="151,688,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="470"
@@ -453,16 +453,16 @@
         <Label
             x:Name="lblHerkunft"
             Height="28"
-            Margin="14,661,0,0"
+            Margin="14,686,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Herkunft"
             TabIndex="460" />
         <TextBox
             x:Name="txtFreistellungsReferenz"
-            Width="436"
+            Width="128"
             Height="23"
-            Margin="151,689,0,0"
+            Margin="151,714,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="490"
@@ -470,7 +470,7 @@
         <Label
             x:Name="lblGepelListungsdatum_Copy"
             Height="28"
-            Margin="12,689,0,0"
+            Margin="12,714,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Freistellungsreferenz"
@@ -498,7 +498,7 @@
             Target="{Binding ElementName=txtKfzKennzeichen}" />
         <TextBox
             x:Name="txtFrachtführer"
-            Width="436"
+            Width="128"
             Height="23"
             Margin="151,199,0,0"
             HorizontalAlignment="Left"
@@ -536,7 +536,7 @@
             TabIndex="120" />
         <TextBox
             x:Name="txtLagerMandant"
-            Width="435"
+            Width="436"
             Height="22"
             Margin="151,454,0,0"
             HorizontalAlignment="Left"
@@ -555,7 +555,7 @@
             TabIndex="300" />
         <TextBox
             x:Name="txtKundenReferenz"
-            Width="435"
+            Width="436"
             Height="22.003"
             Margin="151,479,0,0"
             HorizontalAlignment="Left"
@@ -565,62 +565,60 @@
         <Label
             x:Name="lblKundenReferenz"
             Height="26"
-            Margin="14,475,0,0"
+            Margin="14,476,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Kundenreferenz"
             TabIndex="320" />
         <TextBox
-            x:Name="txtLieferantEmpfaenger"
+            x:Name="txtEmpfaenger"
             Width="128"
             Height="23"
             Margin="151,504,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            KeyDown="TxtLieferantEmpfaenger_OnKeyDown"
-            LostFocus="TxtLieferantEmpfaenger_OnLostFocus"
+            KeyDown="TxtEmpfaenger_OnKeyDown"
+            LostFocus="TxtEmpfaenger_OnLostFocus"
             TabIndex="350"
-            Text="{Binding supplierOrConsigneeBusinessIdentifier}" />
+            Text="{Binding receiverBusinessIdentifier}" />
         <Label
-            x:Name="lblLieferantEmfaenger"
+            x:Name="lblEmfaenger"
             Height="28"
             Margin="14,503,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Lieferant / Empfänger"
+            Content="Empfänger"
             TabIndex="340" />
         <TextBox
             x:Name="txtFrankatur"
-            Width="435"
+            Width="436"
             Height="23"
-            Margin="151,529,0,0"
+            Margin="151,555,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            TabIndex="370"
-            Text="{Binding deliveryType}" />
+                        VerticalAlignment="Top"
+            TabIndex="370" />
         <Label
             x:Name="lblFankatur"
-            Height="25.335"
-            Margin="14,528,0,0"
+            Height="25"
+            Margin="14,554,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Frankatur"
             TabIndex="360" />
         <TextBox
             x:Name="txtWarenArt"
-            Width="435"
+            Width="436"
             Height="25"
-            Margin="151,554,0,0"
+            Margin="151,580,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             KeyDown="TxtWarenArt_OnKeyDown"
             TabIndex="390"
-            Text="{Binding kindOfGoodDescription}"
-            d:LayoutOverrides="HorizontalAlignment" />
+            Text="{Binding kindOfGoodDescription}" />
         <Label
             x:Name="lblWarenart"
             Height="28"
-            Margin="14,551,0,0"
+            Margin="14,577,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Warenart"
@@ -629,7 +627,7 @@
             x:Name="txtArtikelNr"
             Width="128"
             Height="23"
-            Margin="151,582,0,0"
+            Margin="151,608,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             KeyDown="TxtArtikelNr_OnKeyDown"
@@ -638,7 +636,7 @@
         <Label
             x:Name="lblArtikelNr"
             Height="28"
-            Margin="14,580,0,0"
+            Margin="14,606,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="_Artikel-Nr."
@@ -647,9 +645,9 @@
             Target="{Binding ElementName=txtArtikelNr}" />
         <TextBox
             x:Name="txtGeplLeistungsDatum"
-            Width="435"
+            Width="436"
             Height="23"
-            Margin="151,608,0,0"
+            Margin="151,634,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="450"
@@ -657,7 +655,7 @@
         <Label
             x:Name="lblGepelListungsdatum"
             Height="28"
-            Margin="14,607,0,0"
+            Margin="14,633,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="gepl. Leistungsdatum"
@@ -742,13 +740,13 @@
             </StackPanel>
         </Button>
         <Button
-            Name="luConsigneeSupplier"
+            Name="luReceiver"
             Width="38.333"
             Height="22"
             Margin="595,505,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Click="luConsigneeSupplier_Click">
+            Click="LuReceiver_OnClick">
             <StackPanel>
                 <Image
                     Width="18"
@@ -759,9 +757,9 @@
         </Button>
         <Button
             Name="luArticle"
-            Width="38.333"
+            Width="38"
             Height="22"
-            Margin="595,584,0,0"
+            Margin="595,610,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="luArticle_Click">
@@ -1412,7 +1410,7 @@
             Name="splitButton2"
             Width="18"
             Height="24"
-            Margin="638,504,0,0"
+            Margin="638,502,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
             <xctk:SplitButton.DropDownContent>
@@ -1438,7 +1436,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TabIndex="10"
-                            Text="{Binding supplierOrConsigneeId}" />
+                            Text="{Binding receiverId}" />
                         <Label
                             Name="label28"
                             Height="23"
@@ -1456,7 +1454,7 @@
                             VerticalAlignment="Top"
                             IsReadOnly="True"
                             TabIndex="20"
-                            Text="{Binding supplierOrConsigneeBusinessIdentifier}" />
+                            Text="{Binding receiverBusinessIdentifier}" />
                         <Label
                             Name="label29"
                             Height="23"
@@ -1473,7 +1471,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TabIndex="20"
-                            Text="{Binding supplierOrConsigneeName}" />
+                            Text="{Binding receiverName}" />
                         <Label
                             Name="label30"
                             Height="23"
@@ -1491,7 +1489,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TabIndex="30"
-                            Text="{Binding supplierOrConsigneeSubName2}" />
+                            Text="{Binding receiverSubName2}" />
                         <Label
                             Name="label31"
                             Height="23"
@@ -1509,7 +1507,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TabIndex="40"
-                            Text="{Binding supplierOrConsigneeZipCode}" />
+                            Text="{Binding receiverZipCode}" />
                         <Label
                             Name="label32"
                             Height="23"
@@ -1527,7 +1525,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TabIndex="50"
-                            Text="{Binding supplierOrConsigneeCity}" />
+                            Text="{Binding receiverCity}" />
                         <Label
                             Name="label33"
                             Height="23"
@@ -1544,7 +1542,7 @@
                             Margin="98,185,0,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            Text="{Binding supplierOrConsigneeIdCountry}" />
+                            Text="{Binding receiverIdCountry}" />
                         <Label
                             Name="label34"
                             Height="23"
@@ -1562,7 +1560,7 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             TabIndex="30"
-                            Text="{Binding supplierOrConsigneeStreet}" />
+                            Text="{Binding receiverStreet}" />
                     </Grid>
                     <Button Margin="10" Content="OK" />
                 </StackPanel>
@@ -1766,9 +1764,9 @@
         </xctk:SplitButton>
         <Button
             Name="luWarenArt"
-            Width="38.333"
+            Width="38"
             Height="22"
-            Margin="595,557,0,0"
+            Margin="595,583,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="luWarenArt_Click">
@@ -1841,18 +1839,18 @@
             VerticalAlignment="Top" />
         <TextBox
             Name="textBox47"
-            Width="301"
+            Width="306"
             Height="23"
-            Margin="285,504,0,0"
+            Margin="281,504,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
             Text="{Binding freitext1}" />
         <TextBox
             Name="textBox48"
-            Width="301"
+            Width="306"
             Height="23"
-            Margin="285,582,0,0"
+            Margin="281,608,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
@@ -1904,9 +1902,9 @@
             Text="{Binding sequenceOItem}" />
         <Button
             Name="buttonArtickeAttr"
-            Width="38.333"
+            Width="38"
             Height="22"
-            Margin="638,583,0,0"
+            Margin="638,611,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Click="buttonArtickeAttr_Click">
@@ -1980,5 +1978,228 @@
             IsEnabled="False"
             IsReadOnly="True"
             Text="{Binding conversionUnitShortDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox
+            x:Name="textBox48_Copy"
+            Width="306"
+            Height="23"
+            Margin="281,714,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TabIndex="350"
+            Text="{Binding freitext2}" />
+        <TextBox
+            x:Name="textBox48_Copy1"
+            Width="306"
+            Height="23"
+            Margin="281,199,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TabIndex="350"
+            Text="{Binding freitext2}" />
+        <Label
+            x:Name="lblEmfaenger_Copy"
+            Height="28"
+            Margin="14,529,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Lieferant"
+            TabIndex="340" />
+        <TextBox
+            x:Name="txtSupplier"
+            Width="128"
+            Height="23"
+            Margin="151,529,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            KeyDown="TxtSupplier_OnKeyDown"
+            LostFocus="TxtSupplier_OnLostFocus"
+            TabIndex="350"
+            Text="{Binding supplierBusinessIdentifier}" />
+        <TextBox
+            x:Name="textBox47_Copy"
+            Width="306"
+            Height="23"
+            Margin="281,529,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TabIndex="350"
+            Text="{Binding freitext1}" />
+        <xctk:SplitButton
+            x:Name="splitButton2_Copy"
+            Width="18"
+            Height="24"
+            Margin="638,534,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <xctk:SplitButton.DropDownContent>
+                <StackPanel>
+                    <Grid
+                        Width="502"
+                        Height="224"
+                        HorizontalAlignment="Left"
+                        Background="#FFFFE8A6">
+                        <Label
+                            x:Name="label45"
+                            Height="23"
+                            Margin="10,11,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Id" />
+                        <TextBox
+                            x:Name="textBox36"
+                            Width="191"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,10,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TabIndex="10"
+                            Text="{Binding supplierId}" />
+                        <Label
+                            x:Name="label46"
+                            Height="23"
+                            Margin="10,35,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Name-Id" />
+                        <TextBox
+                            x:Name="textBox37"
+                            Width="385"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,35,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            IsReadOnly="True"
+                            TabIndex="20"
+                            Text="{Binding supplierBusinessIdentifier}" />
+                        <Label
+                            x:Name="label47"
+                            Height="23"
+                            Margin="10,60,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Content="Name 1" />
+                        <TextBox
+                            x:Name="textBox38"
+                            Width="385"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,60,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TabIndex="20"
+                            Text="{Binding supplierName}" />
+                        <Label
+                            x:Name="label48"
+                            Height="23"
+                            Margin="10,86,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            ClipToBounds="True"
+                            Content="Name 2" />
+                        <TextBox
+                            x:Name="textBox39"
+                            Width="385"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,85,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TabIndex="30"
+                            Text="{Binding supplierSubName2}" />
+                        <Label
+                            x:Name="label49"
+                            Height="23"
+                            Margin="10,137,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            ClipToBounds="True"
+                            Content="PLZ" />
+                        <TextBox
+                            x:Name="textBox40"
+                            Width="111"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,135,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TabIndex="40"
+                            Text="{Binding supplierZipCode}" />
+                        <Label
+                            x:Name="label50"
+                            Height="23"
+                            Margin="12,161,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            ClipToBounds="True"
+                            Content="Ort" />
+                        <TextBox
+                            x:Name="textBox41"
+                            Width="385"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,160,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TabIndex="50"
+                            Text="{Binding supplierCity}" />
+                        <Label
+                            x:Name="label51"
+                            Height="23"
+                            Margin="12,185,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            ClipToBounds="True"
+                            Content="Land" />
+                        <TextBox
+                            x:Name="textBox42"
+                            Width="385"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,185,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Text="{Binding supplierIdCountry}" />
+                        <Label
+                            x:Name="label52"
+                            Height="23"
+                            Margin="10,110,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            ClipToBounds="True"
+                            Content="Strasse" />
+                        <TextBox
+                            x:Name="textBox43"
+                            Width="385"
+                            Height="23"
+                            MaxHeight="30"
+                            Margin="98,110,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            TabIndex="30"
+                            Text="{Binding supplierStreet}" />
+                    </Grid>
+                    <Button Margin="10" Content="OK" />
+                </StackPanel>
+            </xctk:SplitButton.DropDownContent>
+        </xctk:SplitButton>
+        <Button
+            x:Name="luSupplier"
+            Click="LuSupplier_OnClick"
+            Width="38"
+            Height="22"
+            Margin="595,533,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+
+            <StackPanel>
+                <Image
+                    Width="18"
+                    Height="18"
+                    HorizontalAlignment="Left"
+                    Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/1329900378_search_button.ico" />
+            </StackPanel>
+        </Button>
     </Grid>
 </mmwpf:mmBusinessWindow>

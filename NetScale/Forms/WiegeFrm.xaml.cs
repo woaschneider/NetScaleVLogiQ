@@ -1332,16 +1332,30 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-        private void luConsigneeSupplier_Click(object sender, RoutedEventArgs e)
+    
+
+        private void LuReceiver_OnClick(object sender, RoutedEventArgs e)
         {
-            int? uRet = lookUpAdresse(txtLieferantEmpfaenger.Text, "EM");
+            int? uRet = lookUpAdresse(txtEmpfaenger.Text, "EM");
             if (uRet != null)
             {
-                _boW.SupplierOrConsignee2Waege((int) uRet, _boWe);
+                _boW.Receiver2Waege((int)uRet, _boWe);
             }
             else
             {
-                _boW.ClearsupplierOrConsigneeInWaege(_boWe);
+                _boW.ClearReceiverInWaege();
+            }
+        }
+        private void LuSupplier_OnClick(object sender, RoutedEventArgs e)
+        {
+            int? uRet = lookUpAdresse(txtSupplier.Text, "LI");
+            if (uRet != null)
+            {
+                _boW.Supplier2Waege((int)uRet, _boWe);
+            }
+            else
+            {
+                _boW.ClearSupplierInWaege();
             }
         }
 
@@ -1480,19 +1494,36 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        private void SearchLieferantEmpfänger()
+        private void SearchEmpfänger()
         {
-            if (!string.IsNullOrEmpty(txtLieferantEmpfaenger.Text))
+            if (!string.IsNullOrEmpty(txtEmpfaenger.Text))
             {
                 Adressen boA = new Adressen();
-                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtLieferantEmpfaenger.Text, "EM");
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtEmpfaenger.Text, "EM");
                 if (boAe != null)
                 {
-                    _boW.SupplierOrConsignee2Waege(boAe.PK, _boWe);
+                    _boW.Receiver2Waege(boAe.PK, _boWe);
                 }
                 else
                 {
-                    _boW.ClearsupplierOrConsigneeInWaege(_boWe);
+                    _boW.ClearReceiverInWaege();
+                }
+            }
+        }
+
+        private void SearchSupplier()
+        {
+            if (!string.IsNullOrEmpty(txtSupplier.Text))
+            {
+                Adressen boA = new Adressen();
+                AdressenEntity boAe = boA.GetByBusinenessIdentifier(txtSupplier.Text, "LI");
+                if (boAe != null)
+                {
+                    _boW.Supplier2Waege(boAe.PK, _boWe);
+                }
+                else
+                {
+                    _boW.ClearSupplierInWaege();
                 }
             }
         }
@@ -1608,19 +1639,35 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             SearchLagerMandant();
         }
 
-        private void TxtLieferantEmpfaenger_OnKeyDown(object sender, KeyEventArgs e)
+        private void TxtEmpfaenger_OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Tab)
             {
-                SearchLieferantEmpfänger();
+                SearchEmpfänger();
             }
             if (e.Key == Key.F4)
             {
             }
         }
-        private void TxtLieferantEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        private void TxtSupplier_OnKeyDown(object sender, KeyEventArgs e)
         {
-            SearchLieferantEmpfänger();
+            if (e.Key == Key.Tab)
+            {
+                SearchSupplier();
+            }
+            if (e.Key == Key.F4)
+            {
+            }
+        }
+
+
+        private void TxtEmpfaenger_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchEmpfänger();
+        }
+        private void TxtSupplier_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+           SearchSupplier();
         }
 
         private void TxtWarenArt_OnKeyDown(object sender, KeyEventArgs e)
@@ -1751,9 +1798,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             WindowExtensions.HideCloseButton(this);
         }
 
-       
 
-
-      
+   
     }
 }

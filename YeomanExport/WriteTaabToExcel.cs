@@ -65,8 +65,8 @@ namespace YeomanExport
                     writer.WriteCell(lc, 4, w.customerBusinessIdentifier ?? "");
                     writer.WriteCell(lc, 5, w.customerName ?? "");
 
-                    writer.WriteCell(lc, 6, w.supplierOrConsigneeBusinessIdentifier ?? "");
-                    writer.WriteCell(lc, 7, w.supplierOrConsigneeName ?? "");
+                    writer.WriteCell(lc, 6, w.receiverBusinessIdentifier ?? "");
+                    writer.WriteCell(lc, 7, w.receiverName ?? "");
                     writer.WriteCell(lc, 8, w.freitext1 ?? "");
                     writer.WriteCell(lc, 9, w.Fahrzeug ?? "");
                     //   writer.WriteCell(lc, 9, w.deliveryType ?? "");

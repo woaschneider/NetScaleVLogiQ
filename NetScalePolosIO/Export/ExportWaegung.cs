@@ -81,53 +81,51 @@ namespace NetScalePolosIO.Export
 
                         switch (propName)
                         {
-                                 case "SERIAL_NUMBER":
+                            case "SERIAL_NUMBER":
                                 oWEx2.articleInstance.attributes.SERIAL_NUMBER = propValue;
                                 break;
-                                case "BARCODE":
+                            case "BARCODE":
                                 oWEx2.articleInstance.attributes.BARCODE = propValue;
                                 break;
                             case "BATCH":
-                            oWEx2.articleInstance.attributes.BATCH = propValue;
+                                oWEx2.articleInstance.attributes.BATCH = propValue;
                                 break;
-                              case "ORIGIN":
-                            oWEx2.articleInstance.attributes.ORIGN = propValue;
+                            case "ORIGIN":
+                                oWEx2.articleInstance.attributes.ORIGN = propValue;
                                 break;
-                              case "GRADE":
-                            oWEx2.articleInstance.attributes.GRADE = propValue;
+                            case "GRADE":
+                                oWEx2.articleInstance.attributes.GRADE = propValue;
                                 break;
-                              case "ORIGINAL_NUMBER":
-                            oWEx2.articleInstance.attributes.ORIGINAL_NUMBER = propValue;
+                            case "ORIGINAL_NUMBER":
+                                oWEx2.articleInstance.attributes.ORIGINAL_NUMBER = propValue;
                                 break;
-                             case "ORIGINAL_MARKING":
-                            oWEx2.articleInstance.attributes.ORIGINAL_MARKING = propValue;
+                            case "ORIGINAL_MARKING":
+                                oWEx2.articleInstance.attributes.ORIGINAL_MARKING = propValue;
                                 break;
-                              case "LENGTH":
-                            oWEx2.articleInstance.attributes.LENGTH = propValue;
+                            case "LENGTH":
+                                oWEx2.articleInstance.attributes.LENGTH = propValue;
                                 break;
-                              case "WIDTH":
-                            oWEx2.articleInstance.attributes.WIDTH = propValue;
+                            case "WIDTH":
+                                oWEx2.articleInstance.attributes.WIDTH = propValue;
                                 break;
-                              case "HEIGHT":
-                            oWEx2.articleInstance.attributes.HEIGHT = propValue;
+                            case "HEIGHT":
+                                oWEx2.articleInstance.attributes.HEIGHT = propValue;
                                 break;
-                              case "DIMENSION":
-                            oWEx2.articleInstance.attributes.DIMENSION = propValue;
+                            case "DIMENSION":
+                                oWEx2.articleInstance.attributes.DIMENSION = propValue;
                                 break;
-                              case "STORAGE_AREA_REFERENCE":
-                            oWEx2.articleInstance.attributes.STORAGE_AREA_REFERENCE = propValue;
+                            case "STORAGE_AREA_REFERENCE":
+                                oWEx2.articleInstance.attributes.STORAGE_AREA_REFERENCE = propValue;
                                 break;
-                                  case "STORAGE_AREA_REFERENCE_NUMBER":
-                            oWEx2.articleInstance.attributes.STORAGE_AREA_REFERENCE_NUMBER = propValue;
+                            case "STORAGE_AREA_REFERENCE_NUMBER":
+                                oWEx2.articleInstance.attributes.STORAGE_AREA_REFERENCE_NUMBER = propValue;
                                 break;
-                                  case "DIAMETER":
-                            oWEx2.articleInstance.attributes.DIAMETER = propValue;
+                            case "DIAMETER":
+                                oWEx2.articleInstance.attributes.DIAMETER = propValue;
                                 break;
-                            
                         }
-                        
 
-               
+
                         counter = counter + 1;
                     }
                 }
@@ -137,6 +135,8 @@ namespace NetScalePolosIO.Export
 
             if (boWe.Erstgewicht > 0 | boWe.Zweitgewicht > 0)
             {
+                #region Scale Data 1
+
                 oWEx2.scalePhaseData = new ScalePhaseData();
                 if (boWe.Erstgewicht > 0)
                 {
@@ -157,6 +157,9 @@ namespace NetScalePolosIO.Export
                     }
                 }
 
+                #endregion
+
+                #region Scale Data 2
 
                 if (boWe.Zweitgewicht > 0)
                 {
@@ -178,7 +181,14 @@ namespace NetScalePolosIO.Export
                                                            "000";
                     }
                 }
+
+                #endregion
             }
+
+            oWEx2.freightCarrierFreeText = "ff";
+            oWEx2.recipientFreeText = "rf";
+            oWEx2.releaseFreeText = "rf2";
+
             // Neu 30.8.2015
             Log.Instance.Info("Export Wiegedaten: LS-NR: " + boWe.LieferscheinNr + "Erstgewicht/lfd Nr : " + boWe.LN1 +
                               " " + boWe.Erstgewicht.ToString() + " Zeitgewicht/lfd Nr: "
@@ -187,7 +197,7 @@ namespace NetScalePolosIO.Export
             /////////////////////////////////////////////////////
 
             #endregion
-
+            
             #region REST ExportAll
 
             try
@@ -195,8 +205,8 @@ namespace NetScalePolosIO.Export
                 var client = new RestClient(baseUrl);
 
                 client.ClearHandlers();
-            //    client.Timeout = 15000;
-             
+                //    client.Timeout = 15000;
+
                 var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
                 request.Timeout = 60000;
                 request.AddHeader("X-location-Id", boEe.RestLocation);
@@ -220,14 +230,15 @@ namespace NetScalePolosIO.Export
                 //TODO:ExportAll Fehlschläge loggen - Erfolgreiche unvisible setzen
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                  //  WriteToExportLog(response, boWe);
+                    //  WriteToExportLog(response, boWe);
 
-                  //  Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
-                 
-                       // Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
-                        Log.Instance.Error("Exportfehler - Antwort vom Restserver: "+response.StatusCode + ", Message: "+response.Content);
-                   
-                 
+                    //  Log.Instance.Error("Export: Request HttpStatusCode " + response.StatusCode);
+
+                    // Log.Instance.Error("Wahrscheinlich keine Verbindung zum REST-Server / Rest-Service!");
+                    Log.Instance.Error("Exportfehler - Antwort vom Restserver: " + response.StatusCode + ", Message: " +
+                                       response.Content);
+
+
                     return;
                 }
 
