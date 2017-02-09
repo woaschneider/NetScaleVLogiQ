@@ -944,7 +944,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                         return;
                     }
 
-
+                    PrintLz();
                     Wiegestatus = 0;
                     break;
                 case 2:
@@ -1161,6 +1161,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             oLe = oLe.Load();
             var oPls = new PrinterLs();
             oPls.DoPrintLs(oLe, _boWe, false);
+        }
+
+        private void PrintLz()
+        {
+            var oPls = new PrinterLs();
+            oPls.PrintLz(_boWe);
         }
 
         private void Cancel()

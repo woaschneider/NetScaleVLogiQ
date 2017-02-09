@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Media.Animation;
 using combit.ListLabel21;
 using combit.ListLabel21.DataProviders;
 using HWB.NETSCALE.BOEF;
@@ -28,17 +27,17 @@ namespace HWB.NETSCALE.FRONTEND.WPF
            // Neu 14.01.2014 Auftraggeber abhängiger Druck
 
             Adressen boA = new Adressen();
-            AdressenEntity boAE = boA.GetByBusinenessIdentifier(boWe.customerBusinessIdentifier);
-            if (boAE != null)
+            AdressenEntity boAe = boA.GetByBusinenessIdentifier(boWe.customerBusinessIdentifier);
+            if (boAe != null)
             {
-                if (!string.IsNullOrEmpty( boAE.Lieferscheinvorlage))
+                if (!string.IsNullOrEmpty( boAe.Lieferscheinvorlage))
                 {
-                    lsReport = boAE.Lieferscheinvorlage;
+                    lsReport = boAe.Lieferscheinvorlage;
                 }
 
-                if (!string.IsNullOrEmpty(boAE.Drucker))
+                if (!string.IsNullOrEmpty(boAe.Drucker))
                 {
-                    druckerName = boAE.Drucker;
+                    druckerName = boAe.Drucker;
                 }
             }
 
@@ -110,6 +109,66 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             }
           
         }
+        public void PrintLz(WaegeEntity boWe)
+        {
+            if (boWe == null)
+            {
+                return;
+            }
+
+
+            Einstellungen boE = new Einstellungen();
+            EinstellungenEntity boEe = boE.GetEinstellungen();
+            if (boEe == null)
+            {
+                return;
+            }
+
+            if (boEe.PrintLaufzettel != true)
+            {
+                return;
+            }
+
+            var boM = new Mandant();
+            MandantEntity boMe = boM.GetMandantByPK(Convert.ToInt32(goApp.Mandant_PK));
+            if (boMe == null)
+                return;
+            string druckerName = boMe.LSDrucker;
+            
+            string lsReport = boEe.ReportLaufzettel;
+            // Neu 14.01.2014 Auftraggeber abhängiger Druck
+
+            int? copies = boEe.AnzahlLz;
+
+    
+           
+
+
+            var ll = new ListLabel();
+          
+       
+
+
+            var boW = new Waege();
+
+            ll.LicensingInfo = "pWFZEQ";
+
+
+            ObjectDataProvider oDp = boW.GetWaegungOdpbyPk(boWe.PK);
+
+            ll.DataSource = oDp;
+            ll.AutoProjectType = LlProject.Label;
+
+            ll.AutoProjectFile = lsReport;
+            ll.AutoShowSelectFile = false;
+            ll.AutoShowPrintOptions = false;
+            for (int nCopy = 0; nCopy < copies; ++nCopy)
+            {
+
+                ll.Print(druckerName);
+
+            }
+        }
 
         private static void PrintPaperLs(ListLabel ll, bool kopie, int copies, bool? isLsDruck, string druckerName)
         {
@@ -135,14 +194,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-/*
-        private static void CreateLsAsPdf(Lokaleeinstellungen oLe)
-        {
-            CreateLsAsPdf((IDisposable) null);
-        }
-*/
 
         private static void CreateLsAsPdf(IDisposable ll)
         {
@@ -184,5 +235,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 MessageBox.Show(ex.Message);
             }
         }
+
+      
     }
 }

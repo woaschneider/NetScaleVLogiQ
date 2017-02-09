@@ -15,11 +15,12 @@ using HWB.NETSCALE.BOEF;
 
 
 using HWB.NETSCALE.GLOBAL;
-
+using Newtonsoft.Json.Linq;
 using OakLeaf.MM.Main.Collections;
 using OakLeaf.MM.Main.WPF;
 using MessageBox = System.Windows.MessageBox;
 using ObjectDataProvider = combit.ListLabel21.DataProviders.ObjectDataProvider;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 {
@@ -309,8 +310,11 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdEditLS_Click(object sender, RoutedEventArgs e)
         {
-           
-              ListLabel ll = new ListLabel();
+
+          
+
+
+            ListLabel ll = new ListLabel();
               ll.LicensingInfo = "pWFZEQ";
             Waege boW = new Waege();
            int  uRet=
@@ -319,6 +323,37 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
             ll.Variables.Add("Original_Kopie", "Original");
+
+
+            //// Testweise
+            //try
+            //{
+            //    WaegeEntity _boWe = boW.GetWaegungByPk(uRet);
+            //    var obj = JObject.Parse("{Batch1:'1234',Batch2:'1234'}");
+            //    ll.Variables.Add("Attr",obj);
+
+
+            //    //foreach (var pair in obj)
+            //    //{
+            //    //    var propName = pair.Key;
+            //    //    var propValue = pair.Value.ToString();
+
+            //    //    var t = FindName("txt" + propName);
+            //    //    if (t != null)
+            //    //    {
+            //    //        if (t.GetType() == typeof(TextBox))
+            //    //        {
+            //    //            ((TextBox)t).Text = propValue;
+            //    //        }
+            //    //    }
+            //    //}
+            //}
+            //catch (Exception ee)
+            //{
+            //     MessageBox.Show(ee.Message);
+            //}
+            //
+
 
 
 

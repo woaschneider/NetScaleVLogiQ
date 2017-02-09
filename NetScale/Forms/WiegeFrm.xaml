@@ -595,7 +595,8 @@
             Height="23"
             Margin="151,554,0,0"
             HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
+             Text="{Binding deliveryType}"
+            VerticalAlignment="Top"
             TabIndex="370" />
         <Label
             x:Name="lblFankatur"
@@ -1845,7 +1846,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
-            Text="{Binding freitext1}" />
+            Text="{Binding recipientFreeText}" />
         <TextBox
             Name="textBox48"
             Width="306"
@@ -1854,7 +1855,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
-            Text="{Binding freitext2}" />
+            Text="{Binding articleFreeText}" />
         <Button
             Name="luQuellLagerplatz"
             Width="38.333"
@@ -1995,7 +1996,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
-            Text="{Binding freitext2}" />
+            Text="{Binding freightCarrierFreeText}" />
         <Label
             x:Name="lblEmfaenger_Copy"
             Height="28"
@@ -2023,7 +2024,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
-            Text="{Binding freitext3}" />
+            Text="{Binding supplierFreeText}" />
         <xctk:SplitButton
             x:Name="splitButton2_Copy"
             Width="18"
@@ -2186,12 +2187,12 @@
         </xctk:SplitButton>
         <Button
             x:Name="luSupplier"
-            Click="LuSupplier_OnClick"
             Width="38"
             Height="22"
             Margin="595,531,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            Click="LuSupplier_OnClick">
 
             <StackPanel>
                 <Image

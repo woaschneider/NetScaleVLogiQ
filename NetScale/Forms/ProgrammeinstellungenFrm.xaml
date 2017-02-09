@@ -127,7 +127,7 @@
                         Width="100"
                         Click="CmdEditLz_OnClick"
                         FontSize="14"
-                        Label=" Lieferschein "
+                        Label=" Laufzettel "
                         LargeImageSource="..\Images\1328191024_edit-notes.png"
                         ToolTip="Lieferscheinvorlage bearbeiten" />
 

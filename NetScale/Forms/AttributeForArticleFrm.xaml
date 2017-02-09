@@ -19,7 +19,7 @@
             <RowDefinition Height="66*" />
         </Grid.RowDefinitions>
         <StackPanel Name="stackPanel1"
-                    Margin="42,40,32,32"
+                    Margin="31,40,43,32"
                     Background="#FFFFEFBB" />
         <Button Name="buttonOk"
                 Grid.Row="1"
@@ -31,13 +31,12 @@
                 Click="buttonOk_Click"
                 Content="Ok" />
         <Button Name="buttonCancel"
+           
                 Grid.Row="1"
-                Width="118"
                 Height="38"
-                Margin="480,18,0,32"
-                HorizontalAlignment="Left"
+                Margin="480,18,0,0"
                 VerticalAlignment="Top"
                 Click="buttonCancel_Click"
-                Content="Abbrechen" />
+                Content="Abbrechen" HorizontalAlignment="Left" Width="118" />
     </Grid>
 </mmwpf:mmBusinessWindow>

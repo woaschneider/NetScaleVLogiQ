@@ -5,7 +5,7 @@
                         xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                         x:Name="Window"
                         Title="Fahrzeugliste"
-                        Width="345"
+                        Width="365.667"
                         Height="572"
                         AllowsTransparency="False"
                         Background="#FFFFFFFF"
@@ -53,9 +53,9 @@
             </ribbon:RibbonTab>
         </ribbon:Ribbon>
         <DataGrid Name="dataGrid1"
-                  Width="313"
+                  Width="344"
                   Height="356"
-                  Margin="6,172,0,0"
+                  Margin="8,172,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   AutoGenerateColumns="False"
