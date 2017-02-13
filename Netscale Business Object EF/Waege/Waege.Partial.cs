@@ -752,21 +752,17 @@ namespace HWB.NETSCALE.BOEF
                 Entity.locationId = _boOIE.locationId; // ???? Kopf oder Detail
 
                 Entity.customerId = _boOIE.customerId;
-               
-                Entity.customerBusinessIdentifier = _boOIE.customerBusinessIdentifier;
-                // Customer2Waege(Entity.customerId, Entity);
-                Customer2Waege(Entity.customerBusinessIdentifier, Entity);
+                 Entity.customerBusinessIdentifier = _boOIE.customerBusinessIdentifier;
+               Customer2Waege(Entity.customerBusinessIdentifier, Entity);
 
-                //Entity.customerName = _boOIE.customerName;
-                //Entity.customerStreet = _boOIE.customerStreet;
-                //Entity.customerZipCode = _boOIE.customerZipCode;
-                //Entity.customerCity = _boOIE.customerCity;
+     
 
                 Entity.invoiceReceiverId = _boOIE.invoiceReceiverId;
-                InvoiceReceiver2Waege(Entity.invoiceReceiverId,Entity);
                 Entity.invoiceReceicerBusinessIdentifier = _boOIE.invoiceReceicerBusinessIdentifier;
+                InvoiceReceiver2Waege(Entity.invoiceReceiverId,Entity);
+            
                // InvoiceReceiver2Waege(Entity.invoiceReceiverId, Entity);
-                 InvoiceReceiver2Waege(Entity.invoiceReceicerBusinessIdentifier,Entity);  
+              //   InvoiceReceiver2Waege(Entity.invoiceReceicerBusinessIdentifier,Entity);  
                 
                 
                 Entity.reference = _boOIE.reference;
@@ -778,25 +774,21 @@ namespace HWB.NETSCALE.BOEF
                 Entity.productid = _boOISE.product;
                 Entity.productdescription = _boOISE.productdescription;
                 Entity.identifierOItem = _boOISE.identifierOItem;
+
                 Entity.ownerBusinessIdentifier = _boOISE.ownerBusinessIdentifier;
                 Entity.ownerId = _boOISE.ownerId;
-                
-                //Owner2Waege(Entity.ownerId,Entity);
                 Owner2Waege(Entity.ownerBusinessIdentifier,Entity);
+
                 Entity.remark = _boOISE.remark;
 
                 
                 Entity.supplierBusinessIdentifier = _boOISE.supplierBusinessIdentifier;
                 Entity.supplierId = _boOISE.supplierId;
-              
-                // SupplierOrConsignee2Waege(Entity.supplierOrConsigneeId,Entity);
                 Supplier2Waege(Entity.supplierBusinessIdentifier, Entity);
 
 
                 Entity.receiverBusinessIdentifier = _boOISE.receiverBusinessIdentifier;
                 Entity.receiverId = _boOISE.receiverId;
-
-                // SupplierOrConsignee2Waege(Entity.supplierOrConsigneeId,Entity);
                 Receiver2Waege(Entity.receiverBusinessIdentifier, Entity);
 
 
@@ -812,9 +804,14 @@ namespace HWB.NETSCALE.BOEF
                 Entity.articleDescription = _boOISE.articleDescription;
                 Artikel boa = new Artikel();
                 ArtikelEntity boAe = boa.GetByNr(Entity.articleNumber);
+                if (boAe != null)
+                {
+                    Entity.ArtikelPk = boAe.PK;
+                    Entity.attributes_as_json = boAe.attributes_as_json;
+                }
                 //if (boAe != null)
                 //{
-                //    Entity.attributes_as_json = boAe.attributes_as_json;
+                //   
                 //}
 
                 Entity.conversionUnitShortDescription = _boOISE.conversionUnitShortDescription;

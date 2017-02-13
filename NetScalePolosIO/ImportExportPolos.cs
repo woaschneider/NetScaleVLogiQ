@@ -132,7 +132,6 @@ namespace NetScalePolosIO
         {
             BackgroundWorker bw = new BackgroundWorker();
           
-           
             bw.DoWork += BwDoWorkImport;
          
             bw.RunWorkerAsync(uri);

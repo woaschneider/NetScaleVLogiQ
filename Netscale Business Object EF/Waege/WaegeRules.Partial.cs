@@ -159,8 +159,13 @@ namespace HWB.NETSCALE.BOEF
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
-                    throw;
+                    this.EntityPropertyDisplayName = "Attribut: " + artikel.AttributName;
+                    RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
+                    Msg = this.RequiredFieldMessagePrefix +
+                          this.EntityPropertyDisplayName + " " +
+                          this.RequiredFieldMessageSuffix;
+
+                    AddErrorProviderBrokenRule("articleNumber", Msg);
                 }
             }
             //

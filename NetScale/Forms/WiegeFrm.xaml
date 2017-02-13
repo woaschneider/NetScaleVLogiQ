@@ -1987,7 +1987,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             TabIndex="350"
-            Text="{Binding freitext2}" />
+            Text="{Binding releaseFreeText}" />
         <TextBox
             x:Name="textBox48_Copy1"
             Width="306"

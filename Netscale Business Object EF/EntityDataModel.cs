@@ -15700,126 +15700,6 @@ namespace HWB.NETSCALE.BOEF
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String freitext1
-        {
-            get
-            {
-                return _freitext1;
-            }
-            set
-            {
-                Onfreitext1Changing(value);
-                ReportPropertyChanging("freitext1");
-                _freitext1 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("freitext1");
-                Onfreitext1Changed();
-            }
-        }
-        private global::System.String _freitext1;
-        partial void Onfreitext1Changing(global::System.String value);
-        partial void Onfreitext1Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String freitext2
-        {
-            get
-            {
-                return _freitext2;
-            }
-            set
-            {
-                Onfreitext2Changing(value);
-                ReportPropertyChanging("freitext2");
-                _freitext2 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("freitext2");
-                Onfreitext2Changed();
-            }
-        }
-        private global::System.String _freitext2;
-        partial void Onfreitext2Changing(global::System.String value);
-        partial void Onfreitext2Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String freitext3
-        {
-            get
-            {
-                return _freitext3;
-            }
-            set
-            {
-                Onfreitext3Changing(value);
-                ReportPropertyChanging("freitext3");
-                _freitext3 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("freitext3");
-                Onfreitext3Changed();
-            }
-        }
-        private global::System.String _freitext3;
-        partial void Onfreitext3Changing(global::System.String value);
-        partial void Onfreitext3Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String freitext4
-        {
-            get
-            {
-                return _freitext4;
-            }
-            set
-            {
-                Onfreitext4Changing(value);
-                ReportPropertyChanging("freitext4");
-                _freitext4 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("freitext4");
-                Onfreitext4Changed();
-            }
-        }
-        private global::System.String _freitext4;
-        partial void Onfreitext4Changing(global::System.String value);
-        partial void Onfreitext4Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String freitext5
-        {
-            get
-            {
-                return _freitext5;
-            }
-            set
-            {
-                Onfreitext5Changing(value);
-                ReportPropertyChanging("freitext5");
-                _freitext5 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("freitext5");
-                Onfreitext5Changed();
-            }
-        }
-        private global::System.String _freitext5;
-        partial void Onfreitext5Changing(global::System.String value);
-        partial void Onfreitext5Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String IstQuellLagerPlatzId
         {
             get
@@ -16678,6 +16558,126 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _supplierIsocodeCountry;
         partial void OnsupplierIsocodeCountryChanging(global::System.String value);
         partial void OnsupplierIsocodeCountryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String freightCarrierFreeText
+        {
+            get
+            {
+                return _freightCarrierFreeText;
+            }
+            set
+            {
+                OnfreightCarrierFreeTextChanging(value);
+                ReportPropertyChanging("freightCarrierFreeText");
+                _freightCarrierFreeText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("freightCarrierFreeText");
+                OnfreightCarrierFreeTextChanged();
+            }
+        }
+        private global::System.String _freightCarrierFreeText;
+        partial void OnfreightCarrierFreeTextChanging(global::System.String value);
+        partial void OnfreightCarrierFreeTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String recipientFreeText
+        {
+            get
+            {
+                return _recipientFreeText;
+            }
+            set
+            {
+                OnrecipientFreeTextChanging(value);
+                ReportPropertyChanging("recipientFreeText");
+                _recipientFreeText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("recipientFreeText");
+                OnrecipientFreeTextChanged();
+            }
+        }
+        private global::System.String _recipientFreeText;
+        partial void OnrecipientFreeTextChanging(global::System.String value);
+        partial void OnrecipientFreeTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String supplierFreeText
+        {
+            get
+            {
+                return _supplierFreeText;
+            }
+            set
+            {
+                OnsupplierFreeTextChanging(value);
+                ReportPropertyChanging("supplierFreeText");
+                _supplierFreeText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("supplierFreeText");
+                OnsupplierFreeTextChanged();
+            }
+        }
+        private global::System.String _supplierFreeText;
+        partial void OnsupplierFreeTextChanging(global::System.String value);
+        partial void OnsupplierFreeTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String releaseFreeText
+        {
+            get
+            {
+                return _releaseFreeText;
+            }
+            set
+            {
+                OnreleaseFreeTextChanging(value);
+                ReportPropertyChanging("releaseFreeText");
+                _releaseFreeText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("releaseFreeText");
+                OnreleaseFreeTextChanged();
+            }
+        }
+        private global::System.String _releaseFreeText;
+        partial void OnreleaseFreeTextChanging(global::System.String value);
+        partial void OnreleaseFreeTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String articleFreeText
+        {
+            get
+            {
+                return _articleFreeText;
+            }
+            set
+            {
+                OnarticleFreeTextChanging(value);
+                ReportPropertyChanging("articleFreeText");
+                _articleFreeText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("articleFreeText");
+                OnarticleFreeTextChanged();
+            }
+        }
+        private global::System.String _articleFreeText;
+        partial void OnarticleFreeTextChanging(global::System.String value);
+        partial void OnarticleFreeTextChanged();
 
         #endregion
 

@@ -726,11 +726,6 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="abrufFest" Type="bit" />
           <Property Name="HasBinSended" Type="bit" />
           <Property Name="HasBinSendedDateTime" Type="char" MaxLength="10" />
-          <Property Name="freitext1" Type="varchar" MaxLength="100" />
-          <Property Name="freitext2" Type="varchar" MaxLength="100" />
-          <Property Name="freitext3" Type="varchar" MaxLength="100" />
-          <Property Name="freitext4" Type="varchar" MaxLength="100" />
-          <Property Name="freitext5" Type="varchar" MaxLength="100" />
           <Property Name="IstQuellLagerPlatzId" Type="varchar" MaxLength="64" />
           <Property Name="IstZielLagerPlatzId" Type="varchar" MaxLength="20" />
           <Property Name="identifierOItem" Type="varchar" MaxLength="64" />
@@ -767,6 +762,11 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="supplierCity" Type="varchar" MaxLength="128" />
           <Property Name="supplierIdCountry" Type="varchar" MaxLength="10" />
           <Property Name="supplierIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="freightCarrierFreeText" Type="nvarchar" MaxLength="100" />
+          <Property Name="recipientFreeText" Type="nvarchar" MaxLength="100" />
+          <Property Name="supplierFreeText" Type="nvarchar" MaxLength="100" />
+          <Property Name="releaseFreeText" Type="nvarchar" MaxLength="100" />
+          <Property Name="articleFreeText" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1731,11 +1731,6 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="abrufFest" Type="Boolean" />
           <Property Name="HasBinSended" Type="Boolean" />
           <Property Name="HasBinSendedDateTime" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="freitext1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="freitext2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="freitext3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="freitext4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="freitext5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IstQuellLagerPlatzId" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="IstZielLagerPlatzId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="identifierOItem" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1772,6 +1767,11 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="supplierCity" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="supplierIdCountry" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="supplierIsocodeCountry" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="freightCarrierFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="recipientFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="supplierFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="releaseFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="articleFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2430,6 +2430,11 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="articleFreeText" ColumnName="articleFreeText" />
+                <ScalarProperty Name="releaseFreeText" ColumnName="releaseFreeText" />
+                <ScalarProperty Name="supplierFreeText" ColumnName="supplierFreeText" />
+                <ScalarProperty Name="recipientFreeText" ColumnName="recipientFreeText" />
+                <ScalarProperty Name="freightCarrierFreeText" ColumnName="freightCarrierFreeText" />
                 <ScalarProperty Name="supplierIsocodeCountry" ColumnName="supplierIsocodeCountry" />
                 <ScalarProperty Name="supplierIdCountry" ColumnName="supplierIdCountry" />
                 <ScalarProperty Name="supplierCity" ColumnName="supplierCity" />
@@ -2466,11 +2471,6 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
                 <ScalarProperty Name="identifierOItem" ColumnName="identifierOItem" />
                 <ScalarProperty Name="IstZielLagerPlatzId" ColumnName="IstZielLagerPlatzId" />
                 <ScalarProperty Name="IstQuellLagerPlatzId" ColumnName="IstQuellLagerPlatzId" />
-                <ScalarProperty Name="freitext5" ColumnName="freitext5" />
-                <ScalarProperty Name="freitext4" ColumnName="freitext4" />
-                <ScalarProperty Name="freitext3" ColumnName="freitext3" />
-                <ScalarProperty Name="freitext2" ColumnName="freitext2" />
-                <ScalarProperty Name="freitext1" ColumnName="freitext1" />
                 <ScalarProperty Name="HasBinSendedDateTime" ColumnName="HasBinSendedDateTime" />
                 <ScalarProperty Name="HasBinSended" ColumnName="HasBinSended" />
                 <ScalarProperty Name="abrufFest" ColumnName="abrufFest" />
@@ -2613,7 +2613,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="24">
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="13">
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />

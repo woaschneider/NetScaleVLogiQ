@@ -68,6 +68,8 @@ namespace NetScalePolosIO.Export
 
         public string freightCarrierFreeText { get; set; }
         public string recipientFreeText { get; set; }
+
+        public string supplierFreeText { get; set; }
         public string releaseFreeText { get; set; }
     }
 

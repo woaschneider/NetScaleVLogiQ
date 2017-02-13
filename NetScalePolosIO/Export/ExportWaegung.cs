@@ -64,7 +64,7 @@ namespace NetScalePolosIO.Export
             {
                 JObject attObj = JObject.Parse(boWe.attributes_as_json);
 
-                if (attObj != null)
+                if (attObj != null) 
                 {
                     oWEx2.articleInstance.attributes = new ArticleAttribute();
 
@@ -185,9 +185,10 @@ namespace NetScalePolosIO.Export
                 #endregion
             }
 
-            oWEx2.freightCarrierFreeText = "ff";
-            oWEx2.recipientFreeText = "rf";
-            oWEx2.releaseFreeText = "rf2";
+            oWEx2.freightCarrierFreeText = boWe.freightCarrierFreeText;
+            oWEx2.recipientFreeText = boWe.recipientFreeText;
+            oWEx2.supplierFreeText = boWe.supplierFreeText;
+            oWEx2.releaseFreeText = boWe.releaseFreeText;
 
             // Neu 30.8.2015
             Log.Instance.Info("Export Wiegedaten: LS-NR: " + boWe.LieferscheinNr + "Erstgewicht/lfd Nr : " + boWe.LN1 +
