@@ -60,9 +60,18 @@ namespace NetScalePolosIO.Export
 
             #region Artikelattribute
 
-            if (boWe.attributes_as_json != null)
+            JObject attObj;
+            if (boWe.attributes_as_json != null )
             {
-                JObject attObj = JObject.Parse(boWe.attributes_as_json);
+                try
+                {
+                    attObj = JObject.Parse(boWe.attributes_as_json);
+                }
+                catch (Exception e)
+                {
+                   attObj = null;
+                }
+              
 
                 if (attObj != null) 
                 {
@@ -184,11 +193,17 @@ namespace NetScalePolosIO.Export
 
                 #endregion
             }
+            if (!string.IsNullOrEmpty(boWe.freightCarrierFreeText))
+                oWEx2.freightCarrierFreeText = boWe.freightCarrierFreeText;
 
-            oWEx2.freightCarrierFreeText = boWe.freightCarrierFreeText;
-            oWEx2.recipientFreeText = boWe.recipientFreeText;
-            oWEx2.supplierFreeText = boWe.supplierFreeText;
-            oWEx2.releaseFreeText = boWe.releaseFreeText;
+            if (!string.IsNullOrEmpty(boWe.recipientFreeText))
+                oWEx2.recipientFreeText = boWe.recipientFreeText;
+
+            if (!string.IsNullOrEmpty(boWe.supplierFreeText))
+                oWEx2.supplierFreeText = boWe.supplierFreeText;
+
+            if (!string.IsNullOrEmpty(boWe.supplierFreeText))
+                oWEx2.releaseFreeText = boWe.supplierFreeText;
 
             // Neu 30.8.2015
             Log.Instance.Info("Export Wiegedaten: LS-NR: " + boWe.LieferscheinNr + "Erstgewicht/lfd Nr : " + boWe.LN1 +
