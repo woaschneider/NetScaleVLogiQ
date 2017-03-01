@@ -77,7 +77,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
                 copies = 1;
 
             // Drucken
-            PrintPaperLs(ll, kopie, copies, isLsDruck, druckerName);
+            PrintPaperLs(ll, kopie, copies, isLsDruck, druckerName,boWe.attributes_as_json);
 
 
             // TODO: Diesen Abschnitt vornehmen: ExportAll Pfad prüfen
@@ -170,12 +170,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             }
         }
 
-        private static void PrintPaperLs(ListLabel ll, bool kopie, int copies, bool? isLsDruck, string druckerName)
+        private static void PrintPaperLs(ListLabel ll, bool kopie, int copies, bool? isLsDruck, string druckerName,string attribute_as_json)
         {
             try
             {
                 for (int nCopy = 0; nCopy < copies; ++nCopy)
                 {
+                    ll.Variables.Add("Attribute",attribute_as_json);
+
                     if (nCopy == 0 & kopie == false)
                     {
                         ll.Variables.Add("Original_Kopie", "Original");

@@ -22,7 +22,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     {
         private string _mc;
 
-
+        
         public int URet
         {
             get { return _uRet; }

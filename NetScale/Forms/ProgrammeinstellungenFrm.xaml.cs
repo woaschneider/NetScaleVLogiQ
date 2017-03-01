@@ -319,10 +319,13 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             Waege boW = new Waege();
            int  uRet=
             boW.GetLastWaegung();
+
+            WaegeEntity boWe = boW.GetWaegungByPk(uRet);
            combit.ListLabel21.DataProviders.ObjectDataProvider oDP = boW.GetWaegungOdpbyPk(uRet);
 
             ll.Variables.Add("Scheinbezeichnung", "Wiegenote");
             ll.Variables.Add("Original_Kopie", "Original");
+            ll.Variables.Add("Attribute", boWe.attributes_as_json);
 
 
             //// Testweise
