@@ -113,9 +113,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                 goApp.ProzentAuftraege = 0;
                             }
 
-                            //#region Fertige Aufträge, falls noch vorhanden löschen
+                            //#region Fertige Aufträge falls noch vorhanden löschen
                             if ((obj.orderState == "CANCELLED") || (obj.orderState == "CLOSED") ||
-                                (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING"))
+                                (obj.orderState == "COMPLETELY_CLOSED") || (obj.orderState == "READY_FOR_BILLING") || (obj.orderState=="COMMITTED" ))
                             {
                                 _boOe = _boO.GetById(obj.id);
                                 if (_boOe != null)
@@ -235,7 +235,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                             if ((orderItem.orderItemState == "CANCELLED") ||
                                                 (orderItem.orderItemState == "CLOSED") ||
                                                 (orderItem.orderItemState == " COMPLETELY_CLOSED") ||
-                                                (obj.orderState == "READY_FOR_BILLING"))
+                                                (obj.orderState == "READY_FOR_BILLING") || (obj.orderState == "COMMITTED"))
                                             {
                                                 _boOis = new OrderItemservice();
                                                 _boOise = _boOis.GetByIdentitifier(
