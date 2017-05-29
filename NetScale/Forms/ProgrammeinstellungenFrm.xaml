@@ -1155,6 +1155,8 @@
                         VerticalAlignment="Top"
                         Click="CmdDispoListe_OnClick"
                         Content="..." />
+                    <Button x:Name="cmdDeleteStammdaten" Click="CmdDeleteStammdaten_OnClick"  Content="Alle Stammdaten löschen" Margin="580,168,118,235"></Button>
+                    <Button x:Name="cmdDeleteOrder" Click="CmdDeleteOrder_OnClick" Content="Alle Aufträge löschen" Margin="580,206,118,197"/>
                 </Grid>
             </TabItem>
         </TabControl>

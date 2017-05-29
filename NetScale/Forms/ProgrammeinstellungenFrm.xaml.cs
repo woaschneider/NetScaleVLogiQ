@@ -703,6 +703,52 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-     
+        private void CmdDeleteStammdaten_OnClick(object sender, RoutedEventArgs e)
+        {
+            var boA = new Adressen();
+            var AdressenEL = boA.GetAll();
+            boA.DeleteEntityList();
+            boA.SaveEntityList();
+
+            var boArtikel = new Artikel();
+            var ArtikelEL = boArtikel.GetAll();
+            boArtikel.DeleteEntityList();
+            boArtikel.SaveEntityList();
+
+            var boWarenarten = new Warenarten();
+            var WarenartenEL = boWarenarten.GetAllEntities();
+            boWarenarten.DeleteEntityList();
+            boWarenarten.SaveEntityList();
+
+
+            var boProdukte = new Produkte();
+            var ProdukteEL = boProdukte.GetAllEntities();
+            boProdukte.DeleteEntityList();
+            boProdukte.SaveEntityList();
+
+            var boArtikelAttribute = new Artikelattribute();
+            var ArtikelAtrributeEL = boArtikelAttribute.GetAll();
+            boArtikelAttribute.DeleteAll();
+            boArtikelAttribute.SaveEntityList();
+
+            var boLagerplaetze = new Lagerplaetze();
+            var LagerplaetzeEL = boLagerplaetze.GetAll();
+            boLagerplaetze.DeleteAll();
+            boLagerplaetze.SaveEntityList();
+
+        }
+
+        private void CmdDeleteOrder_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Es dürfen keine Erstwägungen mehr in der Hofliste sein! Es sollten auch alle fertigen Wägungen erfolgreich gesendet worden sein. Weiter???", "Bestätigung", MessageBoxButton.YesNo, MessageBoxImage.Stop);
+            if (result == MessageBoxResult.Yes)
+            {
+                var boOrderItem = new Orderitem();
+                var OrderItemEL = boOrderItem.GetAll();
+                boOrderItem.DeleteEntityList();
+                boOrderItem.SaveEntityList();
+            }
+   
+        }
     }
 }

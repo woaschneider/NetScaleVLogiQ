@@ -88,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationLog.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ErrorLog.cs" />
     <Compile Include="Export\ExportWaegung.cs" />
     <Compile Include="Export\PolosWaege.cs" />
@@ -100,7 +99,6 @@
     <Compile Include="Import\ArticleImport\ImportArticle.cs" />
     <Compile Include="Import\ArticleImport\PolosArticle.cs" />
     <Compile Include="Import\AuftragsImport\ImportAuftraege.cs" />
-    <Compile Include="Import\AuftragsImport\LogiQOrders.cs" />
     <Compile Include="Import\AuftragsImport\PolosAuftrag.cs" />
     <Compile Include="Import\IImportInterface.cs" />
     <Compile Include="ImportExportPolos.cs" />
@@ -152,6 +150,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagramm.cd" />
     <None Include="Export\ClassDiagram1.cd" />
     <None Include="LogiQOrders.cd" />

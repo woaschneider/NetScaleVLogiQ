@@ -20,7 +20,6 @@ using Newtonsoft.Json.Linq;
 using OakLeaf.MM.Main.Collections;
 
 
-
 namespace NetScalePolosIO
 {
     public class ImportExportPolos : IImportInterface
@@ -101,7 +100,7 @@ namespace NetScalePolosIO
             {
                 if (boEe.RestLocation != null)
                 {
-                    string locationId =  boEe.RestLocation;
+                    string locationId = boEe.RestLocation;
                     return locationId;
                 }
             }
@@ -115,7 +114,7 @@ namespace NetScalePolosIO
         #region Import Stammdaten
 
         public void ImportStammdaten()
-        {   
+        {
             string uri = GetImportServerIp() + ":" + GetImportPort();
 
             if (uri == "")
@@ -131,12 +130,12 @@ namespace NetScalePolosIO
         private void ExceImportStammdatenThread(string uri)
         {
             BackgroundWorker bw = new BackgroundWorker();
-          
+
             bw.DoWork += BwDoWorkImport;
-         
+
             bw.RunWorkerAsync(uri);
         }
-     
+
 
         private void BwDoWorkImport(object sender, DoWorkEventArgs e)
         {
@@ -148,49 +147,49 @@ namespace NetScalePolosIO
             goApp.ImportMessageStammdaten = "Adressen";
             goApp.ProzentStammdaten = 1;
             new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
-            
+
             // Warenarten
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Warenarten";
-           new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
+            new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
 
             // Artikel
             goApp.ProzentStammdaten = 01;
-           goApp.ImportMessageStammdaten = "Artikel";
+            goApp.ImportMessageStammdaten = "Artikel";
             new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl);
-            
+
             // Produkte
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Produkte";
             new ImportProducts().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl);
-            
+
             // Artikelattribute
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Artikelattribute";
-            new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId()  ,   boEe.ImpRESTServertArticleAttributesUrl);
+            new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId(),
+                boEe.ImpRESTServertArticleAttributesUrl);
 
             // 25.01.2017
             // Nach dem die Stammdaten Artikel und Artikelattribute(alle möglichen) eingelesen worden sind, werden die  
             // Attribute des jeweiligen Artikel in eine eigen Tabelle geschrieben. Allerding stellt sich die Frage, ob wir
             // ArticleAttribute als eigenständige Stammdaten noch brauchen. Sie kommen ja eh mit den Artikel...
-             Artikelattribute2TableAttribute();
+            Artikelattribute2TableAttribute();
 
             // Lagerplätze
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Lagerplätze";
             new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
-           
+
             //  PlanningDevision
             goApp.ProzentStammdaten = 1;
             goApp.ImportMessageStammdaten = "Dispobereiche";
             new ImportPlanningDivison().Import(e.Argument.ToString(), GetLocationId(),
-            boEe.ImpRESTServerPlanningDivision);
+                boEe.ImpRESTServerPlanningDivision);
 
 
             goApp.ImportMessageStammdaten = "";
             goApp.ProzentStammdaten = 0;
             Log.Instance.Info("Stammdatenimport wurde beendet!");
-          
         }
 
         #endregion
@@ -205,7 +204,6 @@ namespace NetScalePolosIO
         /// <param name="onlyReadyToDispatch"></param>
         public void ImportAuftraege(bool onlyReadyToDispatch)
         {
-            
             string uri = GetImportServerIp() + ":" + GetImportPort();
 
             if (uri == "")
@@ -220,11 +218,10 @@ namespace NetScalePolosIO
         private void ExceImportAuftraegeThread(string uri, bool onlyReadyToDispatch)
         {
             BackgroundWorker bw = new BackgroundWorker();
-           
+
             bw.DoWork += (obj, e) => BwDoWorkImportAuftraege(uri, onlyReadyToDispatch);
 
             bw.RunWorkerAsync();
-            
         }
 
         private void BwDoWorkImportAuftraege(string uri, bool onlyReadyToDispatch)
@@ -241,7 +238,7 @@ namespace NetScalePolosIO
             goApp.ImportMessageAuftraege = "";
             goApp.ProzentAuftraege = 0;
         }
-        
+
         #endregion
 
         //*****************************************************************
@@ -258,16 +255,14 @@ namespace NetScalePolosIO
 
         private void ExceExportThread()
         {
-           
             BackgroundWorker bw = new BackgroundWorker();
             bw.DoWork += BwDoWorkExport;
 
-         
+
             //     bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             //     bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             //   bw.WorkerReportsProgress = true;
             bw.RunWorkerAsync();
-     
         }
 
         private void BwDoWorkExport(object sender, DoWorkEventArgs e)
@@ -295,12 +290,11 @@ namespace NetScalePolosIO
             {
                 ExportToRestServer(boWe);
             }
-            
         }
 
         #endregion
 
-        // Wird von beiden Mehtoden (single / all benutzt)
+        // Wird von beiden Methoden (single / all benutzt)
         private void ExportToRestServer(WaegeEntity boWe)
         {
             Einstellungen boE = new Einstellungen();
@@ -340,11 +334,10 @@ namespace NetScalePolosIO
                 // bereits einen Eintrag besitzt. Wenn ja, dann passiert nix. Wenn nicht wird ein
                 // neuer angelegt
                 var json = a.attributes_as_json;
-                var array = (JArray)JsonConvert.DeserializeObject(json);
+                var array = (JArray) JsonConvert.DeserializeObject(json);
                 var attributList = array.ToList<object>();
                 foreach (var t in attributList)
                 {
-                  
                     ArtikelattributeEntity boAaE = boAa.GetArtikelAttributByBezeichnung(t.ToString());
                     if (boAaE != null)
                     {
@@ -354,25 +347,21 @@ namespace NetScalePolosIO
                         {
                             try
                             {
-                               
-                               var boAttributEntity = boAttribut.NewEntity();
+                                var boAttributEntity = boAttribut.NewEntity();
                                 boAttributEntity.Required = false;
                                 boAttributEntity.ArtikelFK = a.PK;
 
                                 boAttributEntity.AttributeFK = boAaE.PK;
                                 boAttributEntity.AttributName = boAaE.AttributName;
-                                
+
                                 boAttribut.SaveEntity(boAttributEntity);
-                                
                             }
                             catch (Exception e)
                             {
-                              Log.Instance.Error(e.ToString());
+                                Log.Instance.Error(e.ToString());
                                 Log.Instance.Error(e.InnerException);
                             }
-                          
                         }
-
                     }
                 }
             }
