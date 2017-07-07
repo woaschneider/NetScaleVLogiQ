@@ -464,31 +464,31 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         // boOISE.clearanceQuantity   = Nicht vorhanden
                                                         _boOise.clearanceReferenz = "";
                                                         // Damit die abfrage in den Aufträgen funktiniert darf kein NULL in der Freistellungen sein
-                                                        if (orderItemService.clearance != null)
+                                                        if (orderItem.clearance != null)
                                                         {
                                                             _boOise.clearanceReferenz =
-                                                                orderItemService.clearance.reference;
-                                                            if (orderItemService.clearance.validFrom != null)
+                                                                orderItem.clearance.reference;
+                                                            if (orderItem.clearance.validFrom != null)
                                                             {
                                                                 _boOise.clearanceValidFrom =
                                                                     PolosUtitlities.ConvertPolosDateTime2DateTime(
-                                                                        orderItemService.clearance.validFrom);
+                                                                        orderItem.clearance.validFrom);
                                                             }
 
-                                                            if (orderItemService.clearance.validTo != null)
+                                                            if (orderItem.clearance.validTo != null)
                                                             {
                                                                 _boOise.clearanceValidTo =
                                                                     PolosUtitlities.ConvertPolosDateTime2DateTime(
-                                                                        orderItemService.clearance.validTo);
+                                                                        orderItem.clearance.validTo);
                                                             }
-                                                            if (orderItemService.clearance.unit != null)
+                                                            if (orderItem.clearance.unit != null)
                                                             {
                                                                 _boOise.clearanceUnitId =
-                                                                    orderItemService.clearance.unit.id;
+                                                                    orderItem.clearance.unit.id;
                                                                 _boOise.clearanceUnitShortDescription =
-                                                                    orderItemService.clearance.unit.shortDescription;
+                                                                    orderItem.clearance.unit.shortDescription;
                                                                 _boOise.clearanceDescription =
-                                                                    orderItemService.clearance.unit.description;
+                                                                    orderItem.clearance.unit.description;
                                                             }
 
                                                             #endregion

@@ -203,7 +203,7 @@ namespace NetScalePolosIO.Export
                 oWEx2.supplierFreeText = boWe.supplierFreeText;
 
             if (!string.IsNullOrEmpty(boWe.supplierFreeText))
-                oWEx2.releaseFreeText = boWe.supplierFreeText;
+                oWEx2.releaseFreeText = boWe.releaseFreeText;
 
             // Neu 30.8.2015
             Log.Instance.Info("Export Wiegedaten: LS-NR: " + boWe.LieferscheinNr + "Erstgewicht/lfd Nr : " + boWe.LN1 +
