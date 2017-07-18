@@ -148,7 +148,7 @@ public class OrderItemService
     public string plannedBeginDate { get; set; }
     public string plannedEndDate { get; set; }
     public Service service { get; set; }
-   
+    public Clearance clearance { get; set; }
     public PlanningDivision planningDivision { get; set; }
      public double targetAmount { get; set; }
     public string actualStorageAreaId { get; set; }
@@ -171,8 +171,7 @@ public class OrderItem
     public List<OrderItemService> orderItemServices { get; set; }
     public string plannedDate { get; set; }
     public Product product { get; set; }
-    public Clearance clearance { get; set; }
-    }
+}
 
 public class Country2
 {
