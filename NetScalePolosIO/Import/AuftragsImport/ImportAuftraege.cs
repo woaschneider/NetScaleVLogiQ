@@ -545,8 +545,16 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
                                                         #endregion
 
-                                                        _boOise.PKOrderItem = _boOe.PK;
-                                                        _boOis.SaveEntity(_boOise);
+                                                        try
+                                                        {
+                                                            _boOise.PKOrderItem = _boOe.PK;
+                                                            _boOis.SaveEntity(_boOise);
+                                                        }
+                                                        catch (Exception e)
+                                                        {
+                                                            Log.Instance.Error("Fehler im Auftrags-Import: " + e.Message);
+                                                        }
+                                                        
                                                     }
                                                 }
                                             }
