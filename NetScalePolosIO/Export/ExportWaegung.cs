@@ -45,7 +45,7 @@ namespace NetScalePolosIO.Export
 
             if (!string.IsNullOrEmpty(boWe.IstQuellLagerPlatzId))
             {
-                oWEx2.storageAreaId = boWe.IstQuellLagerPlatzId; // Panko 04.03.2015;
+                oWEx2.storageAreaId = boWe.IstQuellLagerPlatzId; //Herr Panko 04.03.2015;
             }
 
             oWEx2.scaleNoteNumber = boWe.LieferscheinNr;
@@ -202,7 +202,7 @@ namespace NetScalePolosIO.Export
             if (!string.IsNullOrEmpty(boWe.supplierFreeText))
                 oWEx2.supplierFreeText = boWe.supplierFreeText;
 
-            if (!string.IsNullOrEmpty(boWe.supplierFreeText))
+            if (!string.IsNullOrEmpty(boWe.releaseFreeText))
                 oWEx2.releaseFreeText = boWe.releaseFreeText;
 
             // Neu 30.8.2015
@@ -224,7 +224,7 @@ namespace NetScalePolosIO.Export
                 //    client.Timeout = 15000;
 
                 var request = new RestRequest("/rest/scale/set") {Method = Method.POST};
-                request.Timeout = 60000;
+                request.Timeout = 60000; // auf Kundenwunsch !!!
                 request.AddHeader("X-location-Id", boEe.RestLocation);
                 request.AddHeader("Accept-Language", "de");
                 request.RequestFormat = DataFormat.Json;
