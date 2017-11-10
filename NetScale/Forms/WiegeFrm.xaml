@@ -595,9 +595,9 @@
             Height="23"
             Margin="151,554,0,0"
             HorizontalAlignment="Left"
-             Text="{Binding deliveryType}"
             VerticalAlignment="Top"
-            TabIndex="370" />
+            TabIndex="370"
+            Text="{Binding deliveryType}" />
         <Label
             x:Name="lblFankatur"
             Height="25"

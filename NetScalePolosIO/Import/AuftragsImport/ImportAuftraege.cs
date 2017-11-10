@@ -364,26 +364,28 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                             _boOise.targedAmount =
                                                                 (decimal) orderItemService.targetAmount;
 
+                                                            #region Conversionunit
+
+                                                            if (orderItemService.articleInstance.article.conversionUnit !=
+                                                                null)
+                                                            {
+                                                                _boOise.conversionUnitId =
+                                                                    orderItemService.articleInstance.article.conversionUnit
+                                                                        .id;
+                                                                _boOise.conversionUnitDescription =
+                                                                    orderItemService.articleInstance.article.conversionUnit
+                                                                        .description;
+                                                                _boOise.conversionUnitShortDescription =
+                                                                    orderItemService.articleInstance.article.conversionUnit
+                                                                        .shortDescription;
+                                                            }
+
+                                                            #endregion
+
                                                             #endregion
                                                         }
 
-                                                        #region Conversionunit
 
-                                                        if (orderItemService.articleInstance.article.conversionUnit !=
-                                                            null)
-                                                        {
-                                                            _boOise.conversionUnitId =
-                                                                orderItemService.articleInstance.article.conversionUnit
-                                                                    .id;
-                                                            _boOise.conversionUnitDescription =
-                                                                orderItemService.articleInstance.article.conversionUnit
-                                                                    .description;
-                                                            _boOise.conversionUnitShortDescription =
-                                                                orderItemService.articleInstance.article.conversionUnit
-                                                                    .shortDescription;
-                                                        }
-
-                                                        #endregion
 
                                                         #endregion
 
@@ -552,7 +554,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         }
                                                         catch (Exception e)
                                                         {
-                                                            Log.Instance.Error("Fehler im Auftrags-Import: " + e.Message);
+                                                            Log.Instance.Error("Fehler im Auftrags-Import: " + e.Message +" " + e.InnerException + " " + e.Source +" " +e.StackTrace);
                                                         }
                                                         
                                                     }
@@ -567,7 +569,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                         }
                         catch (Exception ee)
                         {
-                            Log.Instance.Error("Fehler im Auftrags-Import: " + ee.Message);
+                            Log.Instance.Error("Fehler im Auftrags-Import: " + ee.Message+ " "+ ee.InnerException + " " + ee.Source + " " + ee.StackTrace);
                             return false;
                         }
                     }
@@ -579,7 +581,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
             }
             catch (Exception e)
             {
-                Log.Instance.Error("Fehler im Auftrags-Import: " + e.Message);
+                Log.Instance.Error("Fehler im Auftrags-Import: " + e.Message +" "+e.InnerException+" "+e.Source + " " + e.StackTrace);
                 return false;
             }
         }
