@@ -112,33 +112,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
             SetWeightBindingFormat();
             FillIncoterms();
-            var dt = new DispatcherTimer();
-            dt.Tick += Poll_TICK;
-            dt.Interval = TimeSpan.FromSeconds(0.5);
-            dt.Start();
+      
 
           
             //   new ImportExportPolos().ImportStammdaten();
             //   new ImportExportPolos().ImportAuftraege(false);
         }
 
-        private void Poll_TICK(object sender, EventArgs e)
-        {
-
-            //   new ImportExportPolos().ImportStammdaten();
-            //   new ImportExportPolos().ImportAuftraege(true);
-
-            lblImportMessageStammdaten.Content = goApp.ImportMessageStammdaten;
-            if (!Double.IsInfinity(goApp.ProzentStammdaten))
-            {
-                progressBarStammdaten.Value = goApp.ProzentStammdaten;
-            }
-            lblImportMessageAuftraege.Content = goApp.ImportMessageAuftraege;
-            if (!Double.IsInfinity(goApp.ProzentStammdaten))
-            {
-                progressBarAuftraege.Value = goApp.ProzentAuftraege;
-            }
-        }
+     
 
         // Das Ereignis, welches ausgelöst wird, wenn die Gewichtsänderung in NetScale in der Wägemaske gemeldet wird
         private void ShowEventGewichtHasChanged()
@@ -290,6 +271,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
+            ImportStammdaten();
+            ImportAuftrage();
+            ExportWaegungen();
             netScaleView1.Close();
             Cancel();
             Close();
@@ -372,8 +356,18 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void CmdExport_OnClick(object sender, RoutedEventArgs e)
         {
-       
-            new ImportExportPolos().ExportAll();
+            ExportWaegungen();
+        }
+
+        private void ExportWaegungen()
+        {
+            var oIO = new ImportExportPolos();
+            if (oIO != null)
+            {
+                oIO.ExportAll();
+                progressBarExportWaegung.DataContext = oIO; ///????
+                lblExportMessageWaegungen.DataContext = oIO;
+            }
         }
 
         private void CmdExportLog_OnClick(object sender, RoutedEventArgs e)
@@ -385,12 +379,34 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void cmdImportAuftraege_OnClick(object sender, RoutedEventArgs e)
         {
-            new ImportExportPolos().ImportAuftraege(false);
+            ImportAuftrage();
+        }
+
+        private void ImportAuftrage()
+        {
+            var oIO = new ImportExportPolos();
+            if (oIO != null)
+            {
+                oIO.ImportAuftraege(false);
+                lblImportMessageAuftraege.DataContext = oIO;
+                progressBarAuftraege.DataContext = oIO;
+            }
         }
 
         private void CmdImporStammdaten_OnClick(object sender, RoutedEventArgs e)
         {
-            new ImportExportPolos().ImportStammdaten();
+            ImportStammdaten();
+        }
+
+        private void ImportStammdaten()
+        {
+            var oIO = new ImportExportPolos();
+            if (oIO != null)
+            {
+                oIO.ImportStammdaten();
+                lblImportMessageStammdaten.DataContext = oIO;
+                progressBarStammdaten.DataContext = oIO;
+            }
         }
 
         private void cmdExportToYeoman_Click(object sender, RoutedEventArgs e)
@@ -1802,6 +1818,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private new  void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WindowExtensions.HideCloseButton(this);
+            ImportStammdaten();
+            ImportAuftrage();
+            ExportWaegungen();
         }
 
 

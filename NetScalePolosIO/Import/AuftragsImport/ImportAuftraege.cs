@@ -25,7 +25,11 @@ namespace NetScalePolosIO.Import.AuftragsImport
 
 
         private int _totalresult;
-
+        private ImportExportPolos _oIO;
+        public ImportAuftraege(ImportExportPolos oIO)
+        {
+            _oIO = oIO;
+        }
         public bool Import(string baseUrl, string location, string url, bool onlyReadyToDispatch)
         {
             try
@@ -106,11 +110,11 @@ namespace NetScalePolosIO.Import.AuftragsImport
                             recordCounter = recordCounter + 1;
                             try
                             {
-                                goApp.ProzentAuftraege = recordCounter / (_totalresult / 100);
+                                _oIO.ProzentAuftraege = (int) (recordCounter / (_totalresult / 100F));
                             }
                             catch (Exception)
                             {
-                                goApp.ProzentAuftraege = 0;
+                                _oIO.ProzentAuftraege = 0;
                             }
 
                             //#region Fertige Aufträge falls noch vorhanden löschen

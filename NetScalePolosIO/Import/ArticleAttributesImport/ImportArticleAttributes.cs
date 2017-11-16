@@ -15,7 +15,11 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
     {
         private Artikelattribute _boA;
         private ArtikelattributeEntity _boAe;
-
+        private ImportExportPolos _oIO;
+        public ImportArticleAttributes(ImportExportPolos oIO)
+        {
+            _oIO = oIO;
+        }
         public void Import(string baseUrl, string location, string url)
         {
             try
@@ -55,7 +59,7 @@ namespace NetScalePolosIO.Import.ArticleAttributesImport
                     recordCounter = recordCounter + 1;
                     if (oA.articleAttributes.Count > 0)
                     {
-                        goApp.ProzentStammdaten = recordCounter/(oA.articleAttributes.Count/100);
+                        _oIO.ProzentStammdaten = (int) (recordCounter/(oA.articleAttributes.Count/100F));
                     }
                     _boAe = _boA.GetArtikelAttributByBezeichnung(t) ?? _boA.NewEntity();
                     if (_boAe != null)

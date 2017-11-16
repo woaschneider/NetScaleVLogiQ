@@ -18,8 +18,11 @@ namespace NetScalePolosIO.Import.AddressImport
     {
         private Adressen _boA;
         private AdressenEntity _boAe;
-
-
+        private ImportExportPolos _oIO;
+        public ImportAddress(ImportExportPolos oIO)
+        {
+            _oIO = oIO;
+        }
 
         public void Import(string baseUrl, string location, string url)
         {
@@ -58,17 +61,19 @@ namespace NetScalePolosIO.Import.AddressImport
                 _boA = new Adressen();
 
 
-                int recordCounter = 10;
+                float recordCounter = 0;
                 foreach (AddressableEntity obj in oR.addressableEntities)
                 {
                     recordCounter = recordCounter + 1;
+                    int totalNumberOfRecords = oR.addressableEntities.Count;
+              
                     if (oR.addressableEntities.Count > 0)
                     {
                         try
                         {
-                            goApp.ProzentStammdaten = recordCounter / (oR.addressableEntities.Count / 100);
+                          _oIO.ProzentStammdaten = (int) (recordCounter / (oR.addressableEntities.Count / 100F));
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
                             
                            

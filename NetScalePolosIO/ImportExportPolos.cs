@@ -18,12 +18,30 @@ using NetScalePolosIO.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OakLeaf.MM.Main.Collections;
+using PropertyChanged;
 
 
 namespace NetScalePolosIO
 {
-    public class ImportExportPolos : IImportInterface
+   // [AddINotifyPropertyChangedInterfaceAttribute]
+    public class ImportExportPolos : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        // Properties
+        public  bool ExportIsRunning { get; set; }
+        public  bool ImportIsRunning { get; set; }
+
+        public  string ImportMessageStammdaten { get; set; }
+        public  int ProzentStammdaten { get; set; }
+
+        public  string ImportMessageAuftraege { get; set; }
+        public  int ProzentAuftraege { get; set; }
+
+
+        public string ExportMessageWaegungen { get; set; }
+        public int ProzentWaegung { get; set; }
+        //
+
         //*****************************************************************
 
         #region Einstellung
@@ -139,34 +157,34 @@ namespace NetScalePolosIO
 
         private void BwDoWorkImport(object sender, DoWorkEventArgs e)
         {
-            goApp.ImportMessageStammdaten = "Start Stammdatenimport!";
+            ImportMessageStammdaten = "Start Stammdatenimport!";
             Log.Instance.Info("Stammdatenimport wurde gestartet!");
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
             // Adressen
-            goApp.ImportMessageStammdaten = "Adressen";
-            goApp.ProzentStammdaten = 1;
-            new ImportAddress().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
+            ImportMessageStammdaten = "Adressen";
+            ProzentStammdaten = 1;
+            new ImportAddress(this).Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerAdressesUrl);
 
             // Warenarten
-            goApp.ProzentStammdaten = 1;
-            goApp.ImportMessageStammdaten = "Warenarten";
-            new ImportKindsOfGoods().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
+            ProzentStammdaten = 1;
+            ImportMessageStammdaten = "Warenarten";
+            new ImportKindsOfGoods(this).Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerKindofGoodsUrl);
 
             // Artikel
-            goApp.ProzentStammdaten = 01;
-            goApp.ImportMessageStammdaten = "Artikel";
-            new ImportArticle().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl);
+            ProzentStammdaten = 01;
+            ImportMessageStammdaten = "Artikel";
+            new ImportArticle(this).Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerArticleUrl);
 
             // Produkte
-            goApp.ProzentStammdaten = 1;
-            goApp.ImportMessageStammdaten = "Produkte";
-            new ImportProducts().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl);
+            ProzentStammdaten = 1;
+            ImportMessageStammdaten = "Produkte";
+            new ImportProducts(this).Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerProductsUrl);
 
             // Artikelattribute
-            goApp.ProzentStammdaten = 1;
-            goApp.ImportMessageStammdaten = "Artikelattribute";
-            new ImportArticleAttributes().Import(e.Argument.ToString(), GetLocationId(),
+            ProzentStammdaten = 1;
+            ImportMessageStammdaten = "Artikelattribute";
+            new ImportArticleAttributes(this).Import(e.Argument.ToString(), GetLocationId(),
                 boEe.ImpRESTServertArticleAttributesUrl);
 
             // 25.01.2017
@@ -176,19 +194,19 @@ namespace NetScalePolosIO
             Artikelattribute2TableAttribute();
 
             // Lagerplätze
-            goApp.ProzentStammdaten = 1;
-            goApp.ImportMessageStammdaten = "Lagerplätze";
-            new ImportStorageArea().Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
+            ProzentStammdaten = 1;
+            ImportMessageStammdaten = "Lagerplätze";
+            new ImportStorageArea(this).Import(e.Argument.ToString(), GetLocationId(), boEe.ImpRESTServerStorageAreaUrl);
 
             //  PlanningDevision
-            goApp.ProzentStammdaten = 1;
-            goApp.ImportMessageStammdaten = "Dispobereiche";
+            ProzentStammdaten = 1;
+            ImportMessageStammdaten = "Dispobereiche";
             new ImportPlanningDivison().Import(e.Argument.ToString(), GetLocationId(),
                 boEe.ImpRESTServerPlanningDivision);
 
 
-            goApp.ImportMessageStammdaten = "";
-            goApp.ProzentStammdaten = 0;
+            ImportMessageStammdaten = "";
+            ProzentStammdaten = 0;
             Log.Instance.Info("Stammdatenimport wurde beendet!");
         }
 
@@ -226,17 +244,17 @@ namespace NetScalePolosIO
 
         private void BwDoWorkImportAuftraege(string uri, bool onlyReadyToDispatch)
         {
-            goApp.ImportMessageAuftraege = "Auftragsimport!";
+            ImportMessageAuftraege = "Auftragsimport!";
 
             var info = onlyReadyToDispatch ? "Nur Ready For Dispatch" : "Alle Aufträge";
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
 
             Log.Instance.Info("Auftragsimport wurde gestartet! " + info);
-            new ImportAuftraege().Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, onlyReadyToDispatch);
+            new ImportAuftraege(this).Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, onlyReadyToDispatch);
             Log.Instance.Info("Auftragsimport wurde beendet! " + info);
-            goApp.ImportMessageAuftraege = "";
-            goApp.ProzentAuftraege = 0;
+            ImportMessageAuftraege = "";
+            ProzentAuftraege = 0;
         }
 
         #endregion
@@ -267,16 +285,16 @@ namespace NetScalePolosIO
 
         private void BwDoWorkExport(object sender, DoWorkEventArgs e)
         {
-            if (goApp.ExportIsRunning == false)
+            if (ExportIsRunning == false)
             {
-                goApp.ExportIsRunning = true;
+                ExportIsRunning = true;
                 Waege boW = new Waege();
                 mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
                 foreach (var w in ol)
                 {
                     ExportToRestServer(w);
                 }
-                goApp.ExportIsRunning = false;
+                ExportIsRunning = false;
             }
         }
 

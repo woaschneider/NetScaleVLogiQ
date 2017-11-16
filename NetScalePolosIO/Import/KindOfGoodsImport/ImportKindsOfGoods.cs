@@ -18,7 +18,11 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
     {
         private Warenarten _boW;
         private WarenartenEntity _boWe;
-
+        private ImportExportPolos _oIO;
+        public ImportKindsOfGoods(ImportExportPolos oIO)
+        {
+            _oIO = oIO;
+        }
         public bool Import(string baseUrl, string location, string url)
         {
             try
@@ -59,7 +63,7 @@ namespace NetScalePolosIO.Import.KindOfGoodsImport
                     recordCounter = recordCounter + 1;
                     if (oK.kindOfGoods.Count > 0)
                     {
-                        goApp.ProzentStammdaten = recordCounter/(float)(oK.kindOfGoods.Count/100);
+                        _oIO.ProzentStammdaten =(int) (recordCounter/(float)(oK.kindOfGoods.Count/100F));
                     }
                     if (obj.id != null)
                     {

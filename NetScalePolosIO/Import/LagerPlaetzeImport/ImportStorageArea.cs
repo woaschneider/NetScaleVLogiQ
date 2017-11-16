@@ -17,7 +17,11 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
         private Lagerplaetze _boL;
         private LagerplaetzeEntity _boLe;
 
-
+        private ImportExportPolos _oIO;
+        public ImportStorageArea(ImportExportPolos oIO)
+        {
+            _oIO = oIO;
+        }
         public bool Import(string baseUrl, string location, string url)
         {
             try
@@ -59,7 +63,7 @@ namespace NetScalePolosIO.Import.LagerPlaetzeImport
                         recordCounter = recordCounter + 1;
                         if (oL.storageAreas.Count > 0)
                         {
-                            goApp.ProzentStammdaten = recordCounter/(float) (oL.storageAreas.Count/100);
+                            _oIO.ProzentStammdaten = (int) (recordCounter/(float) (oL.storageAreas.Count/100F));
                         }
                         if (obj.id != null)
                         {

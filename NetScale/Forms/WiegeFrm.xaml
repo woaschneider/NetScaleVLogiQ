@@ -29,6 +29,7 @@
         Width="1177"
         Height="743">
         <Rectangle
+            x:Name="ProgressMessageArea"
             Width="474"
             Height="154"
             Margin="696,601,0,-12"
@@ -1928,7 +1929,7 @@
             Margin="701,647,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="-" />
+            Content="{Binding ImportMessageStammdaten}" />
         <Label
             Name="lblImportMessageAuftraege"
             Width="174"
@@ -1936,19 +1937,21 @@
             Margin="701,676,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="-" />
+            Content="{Binding Path=ImportMessageAuftraege}" />
         <ProgressBar
             Name="progressBarStammdaten"
             Width="267"
             Height="10"
             Margin="884,656,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" />
+            VerticalAlignment="Top"
+            Value="{Binding Path=ProzentStammdaten}" />
         <ProgressBar
             Name="progressBarAuftraege"
             Width="267"
             Height="10"
-            Margin="884,686,26,47" />
+            Margin="884,685,26,48"
+            Value="{Binding Path=ProzentAuftraege}" />
         <Label
             Name="label44"
             Width="89"
@@ -2202,5 +2205,19 @@
                     Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/1329900378_search_button.ico" />
             </StackPanel>
         </Button>
+        <Label
+            x:Name="lblExportMessageWaegungen"
+            Width="174"
+            Height="28"
+            Margin="701,705,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="{Binding ExportMessageWaegungen}" />
+        <ProgressBar
+            x:Name="progressBarExportWaegung"
+            Width="267"
+            Height="10"
+            Margin="884,713,26,20"
+            Value="{Binding ProzentWaegung}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

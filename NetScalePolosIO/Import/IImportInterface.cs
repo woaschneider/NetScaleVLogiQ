@@ -1,6 +1,8 @@
-﻿namespace HWB.NETSCALE.POLOSIO
+﻿using System.ComponentModel;
+
+namespace HWB.NETSCALE.POLOSIO
 {
-    internal interface IImportInterface
+    internal interface IImportInterface :  INotifyPropertyChanged
     {
         void ImportStammdaten();
     }

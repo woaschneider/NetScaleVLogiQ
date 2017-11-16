@@ -16,7 +16,11 @@ namespace NetScalePolosIO.Import.ProductsImport
     {
         private Produkte _boP;
         private ProdukteEntity _boPe;
-
+        private ImportExportPolos _oIO;
+        public ImportProducts(ImportExportPolos oIO)
+        {
+            _oIO = oIO;
+        }
         public bool Import(string baseUrl, string location, string url)
         {
             try
@@ -55,7 +59,7 @@ namespace NetScalePolosIO.Import.ProductsImport
                 {
                     recordCounter = recordCounter + 1;
                     if(oP.products.Count > 0)
-                    goApp.ProzentStammdaten = recordCounter /(float) (oP.products.Count / 100);
+                    _oIO.ProzentStammdaten = (int) (recordCounter /(float) (oP.products.Count / 100F));
                     foreach (Service s in obj.services)
                     {
 
