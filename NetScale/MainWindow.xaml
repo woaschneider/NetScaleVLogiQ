@@ -1,16 +1,16 @@
-﻿<mmwpf:mmMainAppWindow x:Class="HWB.NETSCALE.FRONTEND.WPF.MainWindow"
+﻿<mmwpf:mmMainAppWindow
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                       xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
                        xmlns:my="clr-namespace:HardwareDevices;assembly=HardwareDevices"
                        xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+                       x:Class="HWB.NETSCALE.FRONTEND.WPF.MainWindow"
                        Title="Hamburger Waagenbau GmbH"
                        Width="800"
                        Height="600"
                        WindowState="Maximized">
-    <mmwpf:mmBaseWindow.Resources>
+    <mmwpf:mmMainAppWindow.Resources>
 
         <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
             <GradientStop Offset="0.0" Color="#CCC" />
@@ -65,9 +65,7 @@
                                        Style="{DynamicResource SimpleScrollBar}"
                                        ViewportSize="{TemplateBinding ViewportWidth}"
                                        Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
-                                       Value="{Binding Path=HorizontalOffset,
-                                                       Mode=OneWay,
-                                                       RelativeSource={RelativeSource TemplatedParent}}" />
+                                       Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                             <ScrollBar x:Name="PART_VerticalScrollBar"
                                        Grid.Row="0"
                                        Grid.Column="1"
@@ -78,9 +76,7 @@
                                        Style="{DynamicResource SimpleScrollBar}"
                                        ViewportSize="{TemplateBinding ViewportHeight}"
                                        Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                                       Value="{Binding Path=VerticalOffset,
-                                                       Mode=OneWay,
-                                                       RelativeSource={RelativeSource TemplatedParent}}" />
+                                       Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -123,8 +119,8 @@
 
         <!--  Simple MenuItem - The template uses triggers to provide four different arrangements of menu item which are set via the Role property  -->
         <Style TargetType="{x:Type MenuItem}">
-            <Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-            <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
             <Setter Property="Template">
@@ -189,8 +185,7 @@
                                 <Popup x:Name="SubMenuPopup"
                                        AllowsTransparency="true"
                                        Focusable="false"
-                                       IsOpen="{Binding Path=IsSubmenuOpen,
-                                                        RelativeSource={RelativeSource TemplatedParent}}"
+                                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                                        Placement="Right"
                                        PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                                        VerticalOffset="-3">
@@ -293,16 +288,16 @@
             <Setter Property="Background" Value="#FFCA5132" />
         </Style>
 
-    </mmwpf:mmBaseWindow.Resources>
-    <mmwpf:mmBaseWindow.Background>
+    </mmwpf:mmMainAppWindow.Resources>
+    <mmwpf:mmMainAppWindow.Background>
         <SolidColorBrush Color="{DynamicResource WindowBackcolor}" />
-    </mmwpf:mmBaseWindow.Background>
-    <mmwpf:mmBaseWindow.Triggers>
+    </mmwpf:mmMainAppWindow.Background>
+    <mmwpf:mmMainAppWindow.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded" />
-    </mmwpf:mmBaseWindow.Triggers>
-    <mmwpf:mmBaseWindow.ContextMenu>
+    </mmwpf:mmMainAppWindow.Triggers>
+    <mmwpf:mmMainAppWindow.ContextMenu>
         <ContextMenu />
-    </mmwpf:mmBaseWindow.ContextMenu>
+    </mmwpf:mmMainAppWindow.ContextMenu>
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="257*" />
@@ -418,7 +413,7 @@
             </ribbon:RibbonTab>
 
         </ribbon:Ribbon>
-        <Image Name="image1"
+        <Image x:Name="image1"
                Grid.Column="1"
                Width="257"
                Height="210"
@@ -427,7 +422,7 @@
                VerticalAlignment="Center"
                Source="/HWB.NETSCALE.FRONTEND.WPF;component/Images/Logo_Hamburger_Waagenbau_300dpi.bmp"
                Stretch="UniformToFill" />
-        <Image Name="image2"
+        <Image x:Name="image2"
                Grid.Column="2"
                Width="260"
                Height="48"

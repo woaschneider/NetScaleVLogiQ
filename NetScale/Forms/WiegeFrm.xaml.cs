@@ -30,6 +30,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private WaegeEntity _boWe;
         private int _wiegeStatus;
         private mmSaveDataResult _result;
+        private ImportExportPolos _oIO;
       
         #endregion
 
@@ -37,7 +38,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         /// Constructor
         /// </summary>
         public WiegeFrm()
-        {
+        {   _oIO = new ImportExportPolos();
             InitializeComponent();
             Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
             _boW = new Waege();
@@ -198,42 +199,9 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             }
         }
 
-        //private void ribbonAbrufListe_Click(object sender, RoutedEventArgs e)
-        //{
-        //    LookAndFillWithAbruf();
-        //}
-
-        //private void LookAndFillWithAbruf()
-        //{
-        //    var oAbrufFrm = new AbruflisteFrm();
-        //    oAbrufFrm.ShowDialog();
-        //    int uRet = oAbrufFrm.URet;
+     
 
 
-        //    if (uRet == 0)
-        //    {
-        //        _wiegeStatus = 0;
-        //        oAbrufFrm.Close();
-        //        return;
-        //    }
-        //    if (_wiegeStatus == 0) // Abruf bearbeiten
-        //    {
-        //        _boWe = null;
-        //        _boWe = _boW.NewEntity();
-        //        var boAbruf = new Abruf();
-        //        DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
-
-        //        Wiegestatus = 7;
-        //    }
-        //    if (_wiegeStatus == 1 | _wiegeStatus == 2 | _wiegeStatus == 3)
-        //    {
-        //        var boAbruf = new Abruf();
-        //        DataContext = boAbruf.CopyAbrufToWaege(uRet, _boWe);
-        //    }
-
-
-        //    oAbrufFrm.Close();
-        //}
 
         private void ribbonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -271,9 +239,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void MenuItemClose_Click(object sender, RoutedEventArgs e)
         {
-            ImportStammdaten();
-            ImportAuftrage();
-            ExportWaegungen();
+           
             netScaleView1.Close();
             Cancel();
             Close();
@@ -361,12 +327,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ExportWaegungen()
         {
-            var oIO = new ImportExportPolos();
-            if (oIO != null)
+            
+            if (_oIO != null)
             {
-                oIO.ExportAll();
-                progressBarExportWaegung.DataContext = oIO; ///????
-                lblExportMessageWaegungen.DataContext = oIO;
+                _oIO.ExportAll();
+                progressBarExportWaegung.DataContext = _oIO; ///????
+                lblExportMessageWaegungen.DataContext = _oIO;
             }
         }
 
@@ -384,12 +350,12 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ImportAuftrage()
         {
-            var oIO = new ImportExportPolos();
-            if (oIO != null)
+        
+            if (_oIO != null)
             {
-                oIO.ImportAuftraege(false);
-                lblImportMessageAuftraege.DataContext = oIO;
-                progressBarAuftraege.DataContext = oIO;
+                _oIO.ImportAuftraege(false);
+                lblImportMessageAuftraege.DataContext = _oIO;
+                progressBarAuftraege.DataContext = _oIO;
             }
         }
 

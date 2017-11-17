@@ -53,10 +53,6 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Windows.Design.Interaction, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="mscorlib" />
-    <Reference Include="NetScalePolosIO, Version=2.5.1.85, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\NetScalePolosIO\bin\Debug\NetScalePolosIO.dll</HintPath>
-    </Reference>
     <Reference Include="OakLeaf.MM2010.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=511bd18e16c7f771, processorArchitecture=MSIL" />
     <Reference Include="OakLeaf.MM2010.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2312fefb461dbb0e, processorArchitecture=MSIL" />
     <Reference Include="OakLeaf.MM2010.WPF, Version=4.0.0.0, Culture=neutral, PublicKeyToken=961d2024ab381c81, processorArchitecture=MSIL" />

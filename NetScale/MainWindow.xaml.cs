@@ -260,6 +260,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF
         /// <param name="e"></param>
         private void FileExitItem_Click(object sender, RoutedEventArgs e)
         {
+        
+
             this.Close();
         }
 
