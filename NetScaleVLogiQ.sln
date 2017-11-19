@@ -18,6 +18,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D36BBD9F-5750-4C11-BE16-736F60E3F956}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalExport", "ExternalExport\ExternalExport.csproj", "{A87DE250-355B-422B-8EA1-5BDA608E9AA0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BEFF5E7F-BE23-492B-8E7C-411A77747D9B} = {BEFF5E7F-BE23-492B-8E7C-411A77747D9B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

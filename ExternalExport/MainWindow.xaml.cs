@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using OakLeaf.MM.Main.WPF;
+using NetScalePolosIO;
 
 namespace HWB.EXTERNALEXPORT
 {
@@ -22,9 +24,32 @@ namespace HWB.EXTERNALEXPORT
         /// <summary>
         /// Constructor
         /// </summary>
+
+        #region Fields 
+        private ImportExportPolos _oIO;
+
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
+            _oIO =  new ImportExportPolos();
+            DataContext = _oIO;
+            _oIO.IOStatusHasChanged += IOStatusHasChanged;
+        }
+
+        private void IOStatusHasChanged(object sender, EventArgs e)
+        {
+            
+          
+            if (!_oIO.ExportIsRunning && !_oIO.ImportAuftrageIsRunning && !_oIO.ImportStammdatenIsRunning)
+            {
+                _oIO.IOStatusHasChanged -= IOStatusHasChanged;
+                _oIO = null;
+                Thread.Sleep(2000);
+                Application.Current.Dispatcher.Invoke(new Action(() => { Close();}));
+            
+      
+            }
         }
 
         /// <summary>
@@ -87,5 +112,12 @@ namespace HWB.EXTERNALEXPORT
             this.Close();
         }
 
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+            _oIO.ExportAll();
+            _oIO.ImportStammdaten();
+            _oIO.ImportAuftraege(false);
+        }
     }
 }

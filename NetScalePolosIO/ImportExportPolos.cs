@@ -24,22 +24,25 @@ using PropertyChanged;
 namespace NetScalePolosIO
 {
    // [AddINotifyPropertyChangedInterfaceAttribute]
-    public class ImportExportPolos : INotifyPropertyChanged
+    public class ImportExportPolos : INotifyPropertyChanged, IDisposable
     {
+        
         public event PropertyChangedEventHandler PropertyChanged;
         // Properties
         public  bool ExportIsRunning { get; set; }
-        public  bool ImportIsRunning { get; set; }
-
+        public  bool ImportStammdatenIsRunning { get; set; }
+        public bool ImportAuftrageIsRunning { get; set; }
         public  string ImportMessageStammdaten { get; set; }
         public  int ProzentStammdaten { get; set; }
 
         public  string ImportMessageAuftraege { get; set; }
         public  int ProzentAuftraege { get; set; }
 
-
         public string ExportMessageWaegungen { get; set; }
         public int ProzentWaegung { get; set; }
+
+        public EventHandler IOStatusHasChanged;
+
         //
 
         //*****************************************************************
@@ -158,6 +161,8 @@ namespace NetScalePolosIO
         private void BwDoWorkImport(object sender, DoWorkEventArgs e)
         {
             ImportMessageStammdaten = "Start Stammdatenimport!";
+            ImportStammdatenIsRunning = true;
+            IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
             Log.Instance.Info("Stammdatenimport wurde gestartet!");
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -207,6 +212,8 @@ namespace NetScalePolosIO
 
             ImportMessageStammdaten = "";
             ProzentStammdaten = 0;
+            ImportStammdatenIsRunning = false;
+            IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
             Log.Instance.Info("Stammdatenimport wurde beendet!");
         }
 
@@ -245,7 +252,8 @@ namespace NetScalePolosIO
         private void BwDoWorkImportAuftraege(string uri, bool onlyReadyToDispatch)
         {
             ImportMessageAuftraege = "Auftragsimport!";
-
+            ImportAuftrageIsRunning = true;
+            IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
             var info = onlyReadyToDispatch ? "Nur Ready For Dispatch" : "Alle Aufträge";
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
@@ -254,6 +262,8 @@ namespace NetScalePolosIO
             new ImportAuftraege(this).Import(uri, GetLocationId(), boEe.ImportRESTServerAuftraegeUrl, onlyReadyToDispatch);
             Log.Instance.Info("Auftragsimport wurde beendet! " + info);
             ImportMessageAuftraege = "";
+            ImportAuftrageIsRunning = false;
+            IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
             ProzentAuftraege = 0;
         }
 
@@ -287,14 +297,34 @@ namespace NetScalePolosIO
         {
             if (ExportIsRunning == false)
             {
-                ExportIsRunning = true;
-                Waege boW = new Waege();
-                mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
-                foreach (var w in ol)
+                try
                 {
-                    ExportToRestServer(w);
+                    
+
+                    ExportIsRunning = true;
+                    IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
+                    ExportMessageWaegungen = "Datenexport läuft...";
+
+                  
+                    Waege boW = new Waege();
+
+                    mmBindingList<WaegeEntity> ol = boW.PendingListToPolos();
+                    foreach (var w in ol)
+                    {
+                        ExportToRestServer(w);
+                    }
+                    ExportMessageWaegungen = "";
+                    ExportIsRunning = false;
+                    IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
                 }
-                ExportIsRunning = false;
+                catch (Exception exception)
+                {
+                    ExportMessageWaegungen = "";
+                    ExportIsRunning = false;
+                    IOStatusHasChanged?.Invoke(this, EventArgs.Empty);
+                }
+             
+               
             }
         }
 
@@ -315,6 +345,7 @@ namespace NetScalePolosIO
         // Wird von beiden Methoden (single / all benutzt)
         private void ExportToRestServer(WaegeEntity boWe)
         {
+        
             Einstellungen boE = new Einstellungen();
             EinstellungenEntity boEe = boE.GetEinstellungen();
 
@@ -328,6 +359,9 @@ namespace NetScalePolosIO
             var oEx = new ExportWaegungVersion2Rest();
 
             oEx.ExportLs2Rest(baseUrl, boEe.RestLocation, boWe);
+
+         
+      
         }
 
         #endregion
@@ -383,6 +417,11 @@ namespace NetScalePolosIO
                     }
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
