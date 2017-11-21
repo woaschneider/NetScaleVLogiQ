@@ -43,13 +43,18 @@ namespace HWB.EXTERNALEXPORT
           
             if (!_oIO.ExportIsRunning && !_oIO.ImportAuftrageIsRunning && !_oIO.ImportStammdatenIsRunning)
             {
-                _oIO.IOStatusHasChanged -= IOStatusHasChanged;
-                _oIO = null;
-                Thread.Sleep(2000);
-                Application.Current.Dispatcher.Invoke(new Action(() => { Close();}));
-            
-      
+                CloseApplication();
             }
+        }
+
+        private void CloseApplication()
+        {
+            _oIO.IOStatusHasChanged -= IOStatusHasChanged;
+            _oIO = null;
+            DataContext = null;
+         //   Thread.Sleep(2000);
+       //    Application.Current.Dispatcher.Invoke(new Action(() => { Close(); }));
+           Close(); 
         }
 
         /// <summary>
@@ -109,14 +114,17 @@ namespace HWB.EXTERNALEXPORT
         /// <param name="e"></param>
         private void FileExitItem_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+
+           CloseApplication();
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
 
-            _oIO.ExportAll();
+       _oIO.ExportAll();
+      //      Thread.Sleep(200);
             _oIO.ImportStammdaten();
+      //      Thread.Sleep(200);
             _oIO.ImportAuftraege(false);
         }
     }

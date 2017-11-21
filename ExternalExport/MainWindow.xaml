@@ -1,15 +1,15 @@
-﻿<mmwpf:mmMainAppWindow
+﻿<mmwpf:mmMainAppWindow x:Name="StartFrm"
     x:Class="HWB.EXTERNALEXPORT.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2006"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mmwpf="clr-namespace:OakLeaf.MM.Main.WPF;assembly=OakLeaf.MM2010.WPF"
-    Title="MM .NET Application"
-    Width="545"
-    Height="402"
+    Title="Automatischer Ex- und Import"
+    Width="706"
+    Height="476"
     Loaded="MainWindow_OnLoaded"
-    WindowState="Maximized"
+  
     mc:Ignorable="d">
 
     <mmwpf:mmBaseWindow.Resources>
@@ -317,7 +317,12 @@
         <ContextMenu />
     </mmwpf:mmBaseWindow.ContextMenu>
 
-    <Grid>
+    <Grid Background="White" HorizontalAlignment="Right" Width="688">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="146*" />
+            <RowDefinition Height="149*"/>
+            <RowDefinition Height="155*"/>
+        </Grid.RowDefinitions>
         <Menu Height="23" VerticalAlignment="Top">
             <MenuItem
                 x:Name="FilePad"
@@ -333,49 +338,51 @@
             </MenuItem>
 
         </Menu>
-        <Label
+        <Image x:Name="image" Source="Images/Logo_Hamburger_Waagenbau_300dpi.bmp" HorizontalAlignment="Left" Height="88" Margin="270,45,0,0" VerticalAlignment="Top" Width="110"/>
+        <Grid HorizontalAlignment="Left" Height="149" Margin="0,0,0,0" VerticalAlignment="Top" Width="642" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="63*"/>
+
+                <ColumnDefinition Width="151*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+            </Grid.RowDefinitions>
+            <Label
             x:Name="lblImportMessageStammdaten"
-            Width="174"
-            Height="28"
-            Margin="30,143,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFFFF29D"
-            Content="{Binding ImportMessageStammdaten}" />
-        <Label
+            Background="White"
+            Content="{Binding ImportMessageStammdaten}" HorizontalAlignment="Left" Width="189" FontSize="16" VerticalContentAlignment="Stretch" />
+            <Label
             x:Name="lblImportMessageAuftraege"
-            Width="174"
-            Height="28"
-            Margin="30,172,0,0"
+            Margin="0,0,0,47"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#FFFFF29D"
-            Content="{Binding ImportMessageAuftraege}" />
-        <ProgressBar
-            x:Name="progressBarStammdaten"
-            Width="267"
-            Margin="213,152,0,0"
-            HorizontalAlignment="Left"
-            Value="{Binding ProzentStammdaten}" Height="10" VerticalAlignment="Top" />
-        <ProgressBar
-            x:Name="progressBarAuftraege"
-            Width="267"
-            Height="10"
-            Margin="213,181,0,0"
-            Value="{Binding ProzentAuftraege}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Label
+            Background="White"
+            Content="{Binding ImportMessageAuftraege}" Grid.Row="1" Width="189" FontSize="16" VerticalContentAlignment="Stretch" Grid.RowSpan="2" />
+            <Label
             x:Name="lblExportMessageWaegungen"
-            Width="174"
-            Margin="30,201,0,0"
+            Margin="0,2,0,0"
             HorizontalAlignment="Left"
-            Background="#FFFFF29D"
-            Content="{Binding ExportMessageWaegungen}" Height="28" VerticalAlignment="Top" />
-        <ProgressBar
+            Background="White"
+            Content="{Binding ExportMessageWaegungen}" Grid.Row="2" Width="189" FontSize="16" VerticalContentAlignment="Stretch" />
+            <ProgressBar
+            x:Name="progressBarStammdaten"
+            Width="443"
+            HorizontalAlignment="Left"
+            Value="{Binding ProzentStammdaten}" Height="50" VerticalAlignment="Top" Grid.Column="1" Margin="26,0,-16,0" />
+            <ProgressBar
+            x:Name="progressBarAuftraege"
+            Width="443"
+            Height="50"
+            Value="{Binding ProzentAuftraege}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Margin="26,0,-16,0" />
+            <ProgressBar
             x:Name="progressBarExportWaegung"
-            Width="267"
-            Height="10"
-            Margin="213,209,0,0"
-            Value="{Binding ProzentWaegung}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            Width="443"
+            Height="49"
+            Value="{Binding ProzentWaegung}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Margin="26,0,-16,0" />
+        </Grid>
+        <TextBlock x:Name="textBlock" Margin="0,31,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Fahren Sie den Rechner erst dann runter, nachdem dieses Programm sich automatisch beendet hat. Das kann einige Minuten dauern!" VerticalAlignment="Top" Height="122" FontSize="24" TextAlignment="Center"/>
 
     </Grid>
 </mmwpf:mmMainAppWindow>

@@ -275,7 +275,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF
             {
                 myProcess.StartInfo.UseShellExecute = false;
                 // You can start any process, HelloWorld is a do-nothing example.
-                myProcess.StartInfo.FileName = path+ "\\HWB.EXTERNALEXPORT.exe";
+                myProcess.StartInfo.FileName = path+ "\\ExternalIO\\HWB.EXTERNALEXPORT.exe";
             //    myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.Start();
                 // This code assumes the process you are starting will terminate itself.
