@@ -11755,6 +11755,78 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _receiverIsocodeCountry;
         partial void OnreceiverIsocodeCountryChanging(global::System.String value);
         partial void OnreceiverIsocodeCountryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String vehicle
+        {
+            get
+            {
+                return _vehicle;
+            }
+            set
+            {
+                OnvehicleChanging(value);
+                ReportPropertyChanging("vehicle");
+                _vehicle = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("vehicle");
+                OnvehicleChanged();
+            }
+        }
+        private global::System.String _vehicle;
+        partial void OnvehicleChanging(global::System.String value);
+        partial void OnvehicleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String vehicle2
+        {
+            get
+            {
+                return _vehicle2;
+            }
+            set
+            {
+                Onvehicle2Changing(value);
+                ReportPropertyChanging("vehicle2");
+                _vehicle2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("vehicle2");
+                Onvehicle2Changed();
+            }
+        }
+        private global::System.String _vehicle2;
+        partial void Onvehicle2Changing(global::System.String value);
+        partial void Onvehicle2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContainerNo
+        {
+            get
+            {
+                return _ContainerNo;
+            }
+            set
+            {
+                OnContainerNoChanging(value);
+                ReportPropertyChanging("ContainerNo");
+                _ContainerNo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContainerNo");
+                OnContainerNoChanged();
+            }
+        }
+        private global::System.String _ContainerNo;
+        partial void OnContainerNoChanging(global::System.String value);
+        partial void OnContainerNoChanged();
 
         #endregion
 
@@ -16678,6 +16750,54 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _articleFreeText;
         partial void OnarticleFreeTextChanging(global::System.String value);
         partial void OnarticleFreeTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Fahrzeug2
+        {
+            get
+            {
+                return _Fahrzeug2;
+            }
+            set
+            {
+                OnFahrzeug2Changing(value);
+                ReportPropertyChanging("Fahrzeug2");
+                _Fahrzeug2 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Fahrzeug2");
+                OnFahrzeug2Changed();
+            }
+        }
+        private global::System.String _Fahrzeug2;
+        partial void OnFahrzeug2Changing(global::System.String value);
+        partial void OnFahrzeug2Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ContainerNo
+        {
+            get
+            {
+                return _ContainerNo;
+            }
+            set
+            {
+                OnContainerNoChanging(value);
+                ReportPropertyChanging("ContainerNo");
+                _ContainerNo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ContainerNo");
+                OnContainerNoChanged();
+            }
+        }
+        private global::System.String _ContainerNo;
+        partial void OnContainerNoChanging(global::System.String value);
+        partial void OnContainerNoChanged();
 
         #endregion
 

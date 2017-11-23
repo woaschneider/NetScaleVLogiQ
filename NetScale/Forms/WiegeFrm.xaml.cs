@@ -25,13 +25,14 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
     public sealed partial class WiegeFrm
     {
         #region Private Fields
-
+        
         private readonly Waege _boW;
         private WaegeEntity _boWe;
         private int _wiegeStatus;
         private mmSaveDataResult _result;
         private ImportExportPolos _oIO;
-      
+
+       
         #endregion
 
         /// <summary>
@@ -147,6 +148,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void ribbonWiegen_Click(object sender, RoutedEventArgs e)
         {
+            txtKfzKennzeichen.Focus();
+            var dataContext = DataContext;
+            DataContext = null;
+            DataContext = dataContext;
             if (!netScaleView1.Stillstand)
             {
                 MessageBox.Show("Waage hat keinen Stillstand!!!", "ACHTUNG");
@@ -918,7 +923,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     //  {
                     //    MessageBox.Show(ex.Message);
                     //  }
-
+                  
                     if (_result != mmSaveDataResult.RulesPassed)
                     {
                         _boWe.LN1 = null;
@@ -1597,6 +1602,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
 
         private void TxtFrachtführer_OnKeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.Key == Key.Tab)
             {
                 SearchFrachtführer();
@@ -1790,6 +1796,6 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         }
 
 
-   
+     
     }
 }

@@ -314,6 +314,8 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         _boOise.remark = orderItemService.remark;
 
                                                         _boOise.deliveryType = orderItemService.deliveryType;
+                                                        _boOise.vehicle = orderItemService.vehicle;
+                                                        _boOise.vehicle2 = orderItemService.vehicle2;
 
                                                         #region PlanningDivision
 

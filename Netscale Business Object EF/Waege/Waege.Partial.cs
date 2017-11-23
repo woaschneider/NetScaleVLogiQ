@@ -344,6 +344,8 @@ namespace HWB.NETSCALE.BOEF
                 if (_boFE != null)
                 {
                     oWe.Fahrzeug = _boFE.Kennzeichen1;
+                    oWe.Fahrzeug2 = _boFE.Kennzeichen2;
+                 
                     //   Entity.Frachtführer = _boFE.Frachtfuehrer;
                     oWe.Frachtmittel = _boFE.Bezeichnung;
                 }
@@ -791,6 +793,20 @@ namespace HWB.NETSCALE.BOEF
                 Entity.receiverId = _boOISE.receiverId;
                 Receiver2Waege(Entity.receiverBusinessIdentifier, Entity);
 
+
+
+                if (!string.IsNullOrEmpty(_boOISE.vehicle))
+                {
+                    Entity.Fahrzeug = _boOISE.vehicle;
+                }
+                if (!string.IsNullOrEmpty(_boOISE.vehicle2))
+                {
+                    Entity.Fahrzeug2 = _boOISE.vehicle2;
+                }
+                if (!string.IsNullOrEmpty(_boOISE.ContainerNo))
+                {
+                    Entity.ContainerNo = _boOISE.ContainerNo;
+                }
 
                 Entity.ffId = _boOISE.ffId;
                 Entity.ffBusinessIdentifier = _boOISE.ffBusinessIdentifier;

@@ -102,19 +102,30 @@
             </DataGrid.DataContext>
             <DataGrid.Columns>
 
-                <DataGridTextColumn Binding="{Binding sequenceOItem}" Header="SeqOI." />
-                <DataGridTextColumn Binding="{Binding sequenceOItemService}" Header="SeqOIS." />
-                <DataGridTextColumn Binding="{Binding PlanningDivisionDescription}" Header="Dispobreich" />
-                <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
-                <DataGridTextColumn Binding="{Binding articleDescription}" Header="Artikel-Bezeichnung" />
-                <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
-                <DataGridTextColumn Binding="{Binding targedAmount}" Header="Sollmenge" />
-                <DataGridTextColumn Binding="{Binding supplierOrConsigneeBusinessIdentifier}" Header="Lieferant / Empfänger" />
-                <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermandant" />
-                <DataGridTextColumn Binding="{Binding plannedDate}" Header="gpl. Leistungsdatum" />
-                <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung" />
+                <DataGridTextColumn Binding="{Binding sequenceOItem}" Header="OI" />
+                <DataGridTextColumn Binding="{Binding sequenceOItemService}" Header="OIS." />
+                <DataGridTextColumn Binding="{Binding plannedDate, StringFormat={}{0:dd/MM/yyyy}}" Header="gpl. Datum" />
                 <DataGridTextColumn Binding="{Binding productdescription}" Header="Produkt" />
-                <DataGridTextColumn Binding="{Binding serviceDescription}" Header="Leistung" />
+                <DataGridTextColumn Binding="{Binding ownerBusinessIdentifier}" Header="Lagermand." />
+                <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
+                <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
+                <DataGridTextColumn Binding="{Binding targedAmount}" Header="Sollmenge" />
+                <DataGridTextColumn Binding="{Binding actualStorageAreaId}" Header="Lagerplatz" />
+                <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung" />
+                <DataGridTextColumn Binding="{Binding ffBusinessIdentifier}" Header="Frachtführer" />
+                <DataGridTextColumn Binding="{Binding vehicle}" Header="Fahrzeug" />
+
+
+
+
+
+
+                <DataGridTextColumn Binding="{Binding receiverBusinessIdentifier}" Header="Lief./Empf." />
+
+
+
+
+
                 <DataGridTextColumn Binding="{Binding identifierOItem}" Header="Ident OI." />
                 <DataGridTextColumn Binding="{Binding identifierOItemService}" Header="Ident OIS." />
             </DataGrid.Columns>

@@ -25,16 +25,23 @@ namespace HWB.NETSCALE.BOEF
         public override void CheckExtendedRulesHook<EntityType>(EntityType entity)
         {
             WaegeEntity currentEntity = entity as WaegeEntity;
+            //ClearAll();
+            //ClearAllRules();
+            //AutoClearRules = true;
+            IsKfzFilled(currentEntity);
+            IsFfFilled(currentEntity);
+            IsSupplierFilled(currentEntity);
+
 
             IsNettoEmpty(currentEntity);
 
             // Call Validation methods
             IsProductFilled(currentEntity);
             IsExistedProductFilled(currentEntity);
-            IsKfzFilled(currentEntity);
+
 
             IsCustomerFilled(currentEntity);
-            IsFfFilled(currentEntity);
+
             IsLagerPlatzFilled(currentEntity);
             IsConversionUnitAmountFilled(currentEntity);
 
@@ -103,22 +110,68 @@ namespace HWB.NETSCALE.BOEF
             return Msg;
         }
 
-
+        /// <summary>
+        /// Neu Entweder FF-BI oder FF-Freitext
+        /// </summary>
+        /// <param name="currentEntity"></param>
+        /// <returns></returns>
         private string IsFfFilled(WaegeEntity currentEntity)
         {
             string Msg = null;
-            if (mmType.IsEmpty(currentEntity.ffName))
+            if (mmType.IsEmpty(currentEntity.ffName) && mmType.IsEmpty(currentEntity.freightCarrierFreeText))
             {
-                this.EntityPropertyDisplayName = "Frachtführer-Name";
+                this.EntityPropertyDisplayName = "Frachtführer-Name oder Frachtführer-Freitext";
                 RequiredFieldMessageSuffix = " ist ein Pflichtfeld";
                 Msg = this.RequiredFieldMessagePrefix +
                       this.EntityPropertyDisplayName + " " +
                       this.RequiredFieldMessageSuffix;
 
                 AddErrorProviderBrokenRule("ffBusinessIdentifier", Msg);
+                AddErrorProviderBrokenRule("freightCarrierFreeText", "");
             }
+            else
+            {
+                ClearRule("ffBusinessIdentifier");
+                ClearRule("freightCarrierFreeTextr");
+               
+                
+            }
+
             return Msg;
         }
+
+        private string IsSupplierFilled(WaegeEntity currentEntity)
+        {
+            string Msg = "";
+            if (mmType.IsEmpty(currentEntity.receiverBusinessIdentifier) &&
+                mmType.IsEmpty(currentEntity.recipientFreeText))
+            {
+                if (mmType.IsEmpty(currentEntity.supplierBusinessIdentifier) &&
+                    mmType.IsEmpty(currentEntity.supplierFreeText))
+                {
+                    this.EntityPropertyDisplayName = "Wenn Empfänger-Name und Empfänger-Freitext leer sind";
+                    RequiredFieldMessageSuffix = " dann ist Lieferant oder Lieferant-Freitext  ein Pflichtfeld!";
+                    Msg = this.RequiredFieldMessagePrefix +
+                          this.EntityPropertyDisplayName + " " +
+                          this.RequiredFieldMessageSuffix;
+
+                    AddErrorProviderBrokenRule("supplierBusinessIdentifier", Msg);
+                    AddErrorProviderBrokenRule("recipientFreeText","");
+                    AddErrorProviderBrokenRule("receiverBusinessIdentifier", "");
+                    AddErrorProviderBrokenRule("supplierFreeText", "");
+                
+                }
+                else
+                {
+                    ClearAllRules();
+                }
+            }
+            //receiverBusinessIdentifier
+            //   
+
+            return Msg;
+        }
+
 
         private string IsAttributeFilled(WaegeEntity currentEntity)
         {
@@ -137,7 +190,7 @@ namespace HWB.NETSCALE.BOEF
                     string js = currentEntity.attributes_as_json;
                     JObject obj = JObject.Parse(js);
 
-                    foreach (var pair  in obj)
+                    foreach (var pair in obj)
                     {
                         var propName = pair.Key;
                         var propValue = pair.Value.ToString();

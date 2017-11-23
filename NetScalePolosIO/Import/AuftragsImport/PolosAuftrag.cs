@@ -154,8 +154,10 @@ public class OrderItemService
     public string actualStorageAreaId { get; set; }
     public string targetStorageAreaId { get; set; }
     public string deliveryType { get; set; }
- 
-}
+    public string vehicle { get; set; }
+    public string vehicle2 { get; set; }
+
+    }
 
 public class Product
 {

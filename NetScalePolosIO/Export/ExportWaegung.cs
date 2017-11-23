@@ -39,7 +39,10 @@ namespace NetScalePolosIO.Export
             {
                 orderItemServiceId = boWe.identifierOItemService,
                 carrierBusinessIdentifier = boWe.ffBusinessIdentifier,
-                carrierVehicle = boWe.Fahrzeug
+                carrierVehicle = boWe.Fahrzeug,
+                carrierVehicle2 = boWe.Fahrzeug2,
+                ContainerNo = boWe.ContainerNo
+                
             };
 
 

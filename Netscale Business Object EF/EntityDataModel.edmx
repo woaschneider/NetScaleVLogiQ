@@ -542,6 +542,9 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="receiverCity" Type="varchar" MaxLength="128" />
           <Property Name="receiverIdCountry" Type="varchar" MaxLength="10" />
           <Property Name="receiverIsocodeCountry" Type="varchar" MaxLength="10" />
+          <Property Name="vehicle" Type="varchar" MaxLength="32" />
+          <Property Name="vehicle2" Type="varchar" MaxLength="32" />
+          <Property Name="ContainerNo" Type="nvarchar" MaxLength="22" />
         </EntityType>
         <EntityType Name="Planningdivision">
           <Key>
@@ -767,6 +770,8 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="supplierFreeText" Type="nvarchar" MaxLength="100" />
           <Property Name="releaseFreeText" Type="nvarchar" MaxLength="100" />
           <Property Name="articleFreeText" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fahrzeug2" Type="nvarchar" MaxLength="22" />
+          <Property Name="ContainerNo" Type="nvarchar" MaxLength="22" />
         </EntityType>
         <EntityType Name="Warenarten">
           <Key>
@@ -1581,6 +1586,9 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="receiverIsocodeCountry" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrderArticleAttributes" Relationship="HWB.NETSCALE.BOEF.Artikel_hat_Attribute" FromRole="OrderItemservice" ToRole="OrderArticleAttributeEntity" />
           <NavigationProperty Name="Orderitem" Relationship="HWB.NETSCALE.BOEF.Auftrag_hat_Positionen" FromRole="OrderItemservice" ToRole="OrderitemEntity" />
+          <Property Name="vehicle" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="vehicle2" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ContainerNo" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="Artikel_hat_Attribute">
           <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="0..1">
@@ -1772,6 +1780,8 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="supplierFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="releaseFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="articleFreeText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Fahrzeug2" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+          <Property Name="ContainerNo" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2330,6 +2340,9 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="ContainerNo" ColumnName="ContainerNo" />
+                <ScalarProperty Name="vehicle2" ColumnName="vehicle2" />
+                <ScalarProperty Name="vehicle" ColumnName="vehicle" />
                 <ScalarProperty Name="receiverIsocodeCountry" ColumnName="receiverIsocodeCountry" />
                 <ScalarProperty Name="receiverIdCountry" ColumnName="receiverIdCountry" />
                 <ScalarProperty Name="receiverCity" ColumnName="receiverCity" />
@@ -2430,6 +2443,8 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="WaegeEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.WaegeEntity">
               <MappingFragment StoreEntitySet="Waege">
+                <ScalarProperty Name="ContainerNo" ColumnName="ContainerNo" />
+                <ScalarProperty Name="Fahrzeug2" ColumnName="Fahrzeug2" />
                 <ScalarProperty Name="articleFreeText" ColumnName="articleFreeText" />
                 <ScalarProperty Name="releaseFreeText" ColumnName="releaseFreeText" />
                 <ScalarProperty Name="supplierFreeText" ColumnName="supplierFreeText" />
@@ -2613,7 +2628,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <edmx:Diagram Name="EntityDataModel" ZoomLevel="13">
+      <edmx:Diagram Name="EntityDataModel" ZoomLevel="94">
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Class" Width="1.5" PointX="0.875" PointY="1.25" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Language" Width="1.5" PointX="2.75" PointY="1.875" Height="0.4" IsExpanded="false" />
         <edmx:EntityTypeShape EntityType="HWB.NETSCALE.BOEF.Message" Width="1.5" PointX="4.75" PointY="1.875" Height="0.4" IsExpanded="false" />

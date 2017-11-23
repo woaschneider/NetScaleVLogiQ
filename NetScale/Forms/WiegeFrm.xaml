@@ -449,6 +449,7 @@
             Margin="151,688,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="470"
             Text="{Binding orign}" />
         <Label
@@ -466,6 +467,7 @@
             Margin="151,713,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="490"
             Text="{Binding clearanceReferenz}" />
         <Label
@@ -478,11 +480,12 @@
             TabIndex="480" />
         <TextBox
             x:Name="txtKfzKennzeichen"
-            Width="268"
+            Width="144"
             Height="23"
-            Margin="151,143,0,0"
+            Margin="151,145,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             CharacterCasing="Upper"
             KeyDown="TxtKfzKennzeichen_OnKeyDown"
             TabIndex="110"
@@ -493,7 +496,7 @@
             Margin="14,144,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="_Fahrzeug"
+            Content="_Kfz/Anh./Container"
             FontWeight="Bold"
             TabIndex="100"
             Target="{Binding ElementName=txtKfzKennzeichen}" />
@@ -504,8 +507,10 @@
             Margin="151,199,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtFrachtführer_OnKeyDown"
             LostFocus="TxtFrachtführer_OnLostFocus"
+           
             TabIndex="140"
             Text="{Binding ffBusinessIdentifier}" />
         <Label
@@ -525,6 +530,7 @@
             Margin="151,174,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="130"
             Text="{Binding Frachtmittel}" />
         <Label
@@ -542,6 +548,7 @@
             Margin="151,456,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtLagerMandant_OnKeyDown"
             LostFocus="TxtLagerMandant_OnLostFocus"
             TabIndex="310"
@@ -561,6 +568,7 @@
             Margin="151,480,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="330"
             Text="{Binding reference}" />
         <Label
@@ -578,6 +586,7 @@
             Margin="151,504,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtEmpfaenger_OnKeyDown"
             LostFocus="TxtEmpfaenger_OnLostFocus"
             TabIndex="350"
@@ -597,6 +606,7 @@
             Margin="151,554,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="370"
             Text="{Binding deliveryType}" />
         <Label
@@ -614,6 +624,7 @@
             Margin="151,579,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtWarenArt_OnKeyDown"
             TabIndex="390"
             Text="{Binding kindOfGoodDescription}" />
@@ -632,6 +643,7 @@
             Margin="151,606,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtArtikelNr_OnKeyDown"
             TabIndex="410"
             Text="{Binding articleNumber}" />
@@ -652,6 +664,7 @@
             Margin="151,631,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="450"
             Text="{Binding plannedDate}" />
         <Label
@@ -669,6 +682,7 @@
             Margin="151,290,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             IsReadOnly="True"
             TabIndex="230"
             Text="{Binding IstQuellLagerPlatz}" />
@@ -872,6 +886,7 @@
             Margin="151,370,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtAuftraggeber_OnKeyDown"
             LostFocus="TxtAuftraggeber_OnLostFocus"
             TabIndex="270"
@@ -883,6 +898,7 @@
             Margin="151,395,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtRechnungsEmpfaenger_OnKeyDown"
             LostFocus="TxtRechnungsEmpfaenger_OnLostFocus"
             TabIndex="290"
@@ -1575,6 +1591,7 @@
             Margin="151,265,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             IsReadOnly="True"
             TabIndex="160"
             Text="{Binding productdescription}" />
@@ -1846,6 +1863,7 @@
             Margin="281,504,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="350"
             Text="{Binding recipientFreeText}" />
         <TextBox
@@ -1855,6 +1873,7 @@
             Margin="281,606,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="350"
             Text="{Binding articleFreeText}" />
         <Button
@@ -1889,6 +1908,7 @@
             Margin="150,345,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             IsReadOnly="True"
             TabIndex="240"
             Text="{Binding number}" />
@@ -1899,6 +1919,7 @@
             Margin="415,345,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             IsReadOnly="True"
             TabIndex="245"
             Text="{Binding sequenceOItem}" />
@@ -1919,6 +1940,7 @@
             Margin="502,345,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             IsReadOnly="True"
             TabIndex="245"
             Text="{Binding sequenceOItemService}" />
@@ -1989,15 +2011,17 @@
             Margin="281,713,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="350"
             Text="{Binding releaseFreeText}" />
         <TextBox
-            x:Name="textBox48_Copy1"
+            x:Name="TxtfreightCarrierFreeText"
             Width="306"
             Height="23"
             Margin="281,199,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="350"
             Text="{Binding freightCarrierFreeText}" />
         <Label
@@ -2015,6 +2039,7 @@
             Margin="151,529,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             KeyDown="TxtSupplier_OnKeyDown"
             LostFocus="TxtSupplier_OnLostFocus"
             TabIndex="350"
@@ -2026,6 +2051,7 @@
             Margin="281,529,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
             TabIndex="350"
             Text="{Binding supplierFreeText}" />
         <xctk:SplitButton
@@ -2219,5 +2245,27 @@
             Height="10"
             Margin="884,713,26,20"
             Value="{Binding ProzentWaegung}" />
+        <TextBox
+            x:Name="txtKfzKennzeichen2"
+            Width="144"
+            Height="23"
+            Margin="297,145,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
+            CharacterCasing="Upper"
+            TabIndex="110"
+            Text="{Binding Fahrzeug2}" />
+        <TextBox
+            x:Name="txtKfzContainerNo"
+            Width="144"
+            Height="23"
+            Margin="444,145,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            VerticalContentAlignment="Center"
+            CharacterCasing="Upper"
+            TabIndex="110"
+            Text="{Binding ContainerNo}" />
     </Grid>
 </mmwpf:mmBusinessWindow>

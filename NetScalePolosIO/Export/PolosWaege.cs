@@ -57,6 +57,10 @@ namespace NetScalePolosIO.Export
 
 
         public string carrierVehicle { get; set; }
+
+        public string carrierVehicle2 { get; set; }
+
+        public string ContainerNo { get; set; }
         public string storageAreaId { get; set; }
         public string scaleNoteNumber { get; set; }
 
