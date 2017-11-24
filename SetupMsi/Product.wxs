@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define NetScale_TargetDir=$(var.NetScale.TargetDir)?>
+	<Product Id="*" Name="NetScaleLogIQ" Language="1033" Version="1.0.0.0" Manufacturer="Hamburger Waagenbau GmbH" UpgradeCode="13097641-f0af-46eb-8f42-1c6fe3d552d6">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+	  <Property Id="ROOTDRIVE" Value="C:\" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+	
+		<MediaTemplate  EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="SetupMsi" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+		
+				<Directory Id="INSTALLDIR" Name="NetScaleLogIQ">
+				  <Directory Id="ANOTHERLOCATION" />
+				  <Directory Id="bin" Name="bin">
+				    <Directory Id="bin_Debug" Name="Debug">
+				      <Directory Id="bin_Debug_de" Name="de" />
+				    </Directory>
+				  </Directory>
+				</Directory>
+			</Directory>
+
+	  <SetDirectory Id="ANOTHERLOCATION" Value="[WindowsVolume]MyNewDir" />
+	</Fragment>
+ 
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			<Component Id="HWB.NETSCALE.FRONTEND.WPF.exe" Guid="ae5d2446-5c5d-4ab0-bec8-31967cbc8ef7">
+			  <File Id="HWB.NETSCALE.FRONTEND.WPF.exe" Name="HWB.NETSCALE.FRONTEND.WPF.exe" Source="$(var.NetScale_TargetDir)HWB.NETSCALE.FRONTEND.WPF.exe" />
+			</Component>
+			<Component Id="HardwareDevices.dll" Guid="9dac041c-0b28-49ed-a7db-e4c41d6d353a">
+			  <File Id="HardwareDevices.dll" Name="HardwareDevices.dll" Source="$(var.NetScale_TargetDir)HardwareDevices.dll" />
+			</Component>
+			<Component Id="HWB.NETSCALE.BOEF.dll" Guid="5353238e-eafb-4d52-bdb8-d32a9ea70188">
+			  <File Id="HWB.NETSCALE.BOEF.dll" Name="HWB.NETSCALE.BOEF.dll" Source="$(var.NetScale_TargetDir)HWB.NETSCALE.BOEF.dll" />
+			</Component>
+			<Component Id="NetScaleGlobal.dll" Guid="353f3ebb-f4bd-44fd-9412-8f0b8e312915">
+			  <File Id="NetScaleGlobal.dll" Name="NetScaleGlobal.dll" Source="$(var.NetScale_TargetDir)NetScaleGlobal.dll" />
+			</Component>
+			<Component Id="NetScalePolosIO.dll" Guid="e6a8cd92-97a1-4d8a-93c4-b451f3b7b21e">
+			  <File Id="NetScalePolosIO.dll" Name="NetScalePolosIO.dll" Source="$(var.NetScale_TargetDir)NetScalePolosIO.dll" />
+			</Component>
+			<Component Id="YeomanExport.dll" Guid="b2dc129d-50b9-4362-a205-dc9459ccac0b">
+			  <File Id="YeomanExport.dll" Name="YeomanExport.dll" Source="$(var.NetScale_TargetDir)YeomanExport.dll" />
+			</Component>
+			<Component Id="NLog.dll" Guid="c6d21a88-4017-4a25-9e00-8f1c451f7414">
+			  <File Id="NLog.dll" Name="NLog.dll" Source="$(var.NetScale_TargetDir)NLog.dll" />
+			</Component>
+			<Component Id="Newtonsoft.Json.dll" Guid="b21172b1-ab6a-4087-85fc-6f549357b0a7">
+			  <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.NetScale_TargetDir)Newtonsoft.Json.dll" />
+			</Component>
+			<Component Id="RestSharp.dll" Guid="65e5ed89-ef99-4dbe-b21d-edd026cdcb36">
+			  <File Id="RestSharp.dll" Name="RestSharp.dll" Source="$(var.NetScale_TargetDir)RestSharp.dll" />
+			</Component>
+			<Component Id="HardwareDevices.pdb" Guid="8a5fca4c-df0a-4037-8088-eede55cb24d9">
+			  <File Id="HardwareDevices.pdb" Name="HardwareDevices.pdb" Source="$(var.NetScale_TargetDir)HardwareDevices.pdb" />
+			</Component>
+			<Component Id="HWB.NETSCALE.BOEF.pdb" Guid="4d3c5182-6233-43e7-afa2-52bd9f488fe6">
+			  <File Id="HWB.NETSCALE.BOEF.pdb" Name="HWB.NETSCALE.BOEF.pdb" Source="$(var.NetScale_TargetDir)HWB.NETSCALE.BOEF.pdb" />
+			</Component>
+			<Component Id="NetScaleGlobal.pdb" Guid="e9c52f5f-4b75-44a7-9ec5-1e1dc53fff94">
+			  <File Id="NetScaleGlobal.pdb" Name="NetScaleGlobal.pdb" Source="$(var.NetScale_TargetDir)NetScaleGlobal.pdb" />
+			</Component>
+			<Component Id="NetScalePolosIO.pdb" Guid="54c3173e-fbcf-4ccd-a520-e7d1c946880e">
+			  <File Id="NetScalePolosIO.pdb" Name="NetScalePolosIO.pdb" Source="$(var.NetScale_TargetDir)NetScalePolosIO.pdb" />
+			</Component>
+			<Component Id="YeomanExport.pdb" Guid="08de0e67-013e-4268-8f3e-945456a814a1">
+			  <File Id="YeomanExport.pdb" Name="YeomanExport.pdb" Source="$(var.NetScale_TargetDir)YeomanExport.pdb" />
+			</Component>
+			
+			
+			
+			
+			
+			
+		</ComponentGroup>
+	</Fragment>
+</Wix>

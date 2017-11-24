@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DeployedProjects>
+    <string>NetScale\NetScale.csproj</string>
+  </DeployedProjects>
+  <DirectoryMappings>
+    <Item Key="" Value="INSTALLFOLDER" />
+    <Item Key="de" Value="ProgramFilesFolder" />
+  </DirectoryMappings>
+  <FileMappings />
+  <DeploySymbols>true</DeploySymbols>
+  <DeployExternalLocalizations>false</DeployExternalLocalizations>
+</Configuration>
