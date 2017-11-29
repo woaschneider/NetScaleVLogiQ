@@ -11827,6 +11827,30 @@ namespace HWB.NETSCALE.BOEF
         private global::System.String _ContainerNo;
         partial void OnContainerNoChanging(global::System.String value);
         partial void OnContainerNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String actualStorageAreaName
+        {
+            get
+            {
+                return _actualStorageAreaName;
+            }
+            set
+            {
+                OnactualStorageAreaNameChanging(value);
+                ReportPropertyChanging("actualStorageAreaName");
+                _actualStorageAreaName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("actualStorageAreaName");
+                OnactualStorageAreaNameChanged();
+            }
+        }
+        private global::System.String _actualStorageAreaName;
+        partial void OnactualStorageAreaNameChanging(global::System.String value);
+        partial void OnactualStorageAreaNameChanged();
 
         #endregion
 

@@ -110,7 +110,7 @@
                 <DataGridTextColumn Binding="{Binding kindOfGoodDescription}" Header="Warenart" />
                 <DataGridTextColumn Binding="{Binding number}" Header="Artikel-Nr" />
                 <DataGridTextColumn Binding="{Binding targedAmount}" Header="Sollmenge" />
-                <DataGridTextColumn Binding="{Binding actualStorageAreaId}" Header="Lagerplatz" />
+                <DataGridTextColumn Binding="{Binding actualStorageAreaName}" Header="Lagerplatz" />
                 <DataGridTextColumn Binding="{Binding clearanceReferenz}" Header="Freistellung" />
                 <DataGridTextColumn Binding="{Binding ffBusinessIdentifier}" Header="Frachtführer" />
                 <DataGridTextColumn Binding="{Binding vehicle}" Header="Fahrzeug" />

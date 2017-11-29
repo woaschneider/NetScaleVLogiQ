@@ -450,7 +450,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="470"
+            TabIndex="440"
             Text="{Binding orign}" />
         <Label
             x:Name="lblHerkunft"
@@ -468,7 +468,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="490"
+            TabIndex="450"
             Text="{Binding clearanceReferenz}" />
         <Label
             x:Name="lblGepelListungsdatum_Copy"
@@ -589,7 +589,7 @@
             VerticalContentAlignment="Center"
             KeyDown="TxtEmpfaenger_OnKeyDown"
             LostFocus="TxtEmpfaenger_OnLostFocus"
-            TabIndex="350"
+            TabIndex="340"
             Text="{Binding receiverBusinessIdentifier}" />
         <Label
             x:Name="lblEmfaenger"
@@ -607,7 +607,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="370"
+            TabIndex="380"
             Text="{Binding deliveryType}" />
         <Label
             x:Name="lblFankatur"
@@ -665,7 +665,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="450"
+            TabIndex="430"
             Text="{Binding plannedDate}" />
         <Label
             x:Name="lblGepelListungsdatum"
@@ -1874,7 +1874,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="350"
+            TabIndex="420"
             Text="{Binding articleFreeText}" />
         <Button
             Name="luQuellLagerplatz"
@@ -2012,7 +2012,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="350"
+            TabIndex="460"
             Text="{Binding releaseFreeText}" />
         <TextBox
             x:Name="TxtfreightCarrierFreeText"
@@ -2042,7 +2042,7 @@
             VerticalContentAlignment="Center"
             KeyDown="TxtSupplier_OnKeyDown"
             LostFocus="TxtSupplier_OnLostFocus"
-            TabIndex="350"
+            TabIndex="360"
             Text="{Binding supplierBusinessIdentifier}" />
         <TextBox
             x:Name="textBox47_Copy"
@@ -2052,7 +2052,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             VerticalContentAlignment="Center"
-            TabIndex="350"
+            TabIndex="370"
             Text="{Binding supplierFreeText}" />
         <xctk:SplitButton
             x:Name="splitButton2_Copy"

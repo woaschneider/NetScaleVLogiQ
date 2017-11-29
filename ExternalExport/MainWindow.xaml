@@ -328,17 +328,17 @@
                 x:Name="FilePad"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Header="File">
+                Header="Datei">
 
                 <Separator />
                 <MenuItem
                     x:Name="FileExitItem"
                     Click="FileExitItem_Click"
-                    Header="Exit" />
+                    Header="Beenden" />
             </MenuItem>
 
         </Menu>
-        <Image x:Name="image" Source="Images/Logo_Hamburger_Waagenbau_300dpi.bmp" HorizontalAlignment="Left" Height="88" Margin="270,45,0,0" VerticalAlignment="Top" Width="110"/>
+        <Image x:Name="image" Source="Images/Logo_Hamburger_Waagenbau_300dpi.bmp" HorizontalAlignment="Center"  Height="88" Margin="322,37,258,0" VerticalAlignment="Top"/>
         <Grid HorizontalAlignment="Left" Height="149" Margin="0,0,0,0" VerticalAlignment="Top" Width="642" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="63*"/>

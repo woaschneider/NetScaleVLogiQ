@@ -25,9 +25,9 @@
     <Content Include="SetupMsi.wax" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NetScale\NetScale.csproj">
-      <Name>NetScale</Name>
-      <Project>{5f3347fb-8dc4-41d7-85d4-4687c77f9c50}</Project>
+    <ProjectReference Include="..\ExternalExport\ExternalExport.csproj">
+      <Name>ExternalExport</Name>
+      <Project>{a87de250-355b-422b-8ea1-5bda608e9aa0}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>

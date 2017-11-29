@@ -465,7 +465,7 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="locationName" Type="varchar" MaxLength="64" />
           <Property Name="locationFullname" Type="varchar" MaxLength="254" />
           <Property Name="product" Type="varchar" MaxLength="64" />
-          <Property Name="productdescription" Type="char" MaxLength="64" />
+          <Property Name="productdescription" Type="varchar" MaxLength="64" />
           <Property Name="number" Type="varchar" MaxLength="256" />
           <Property Name="kindOfGoodDescription" Type="varchar" MaxLength="64" />
           <Property Name="kindOfGoodId" Type="varchar" MaxLength="64" />
@@ -545,6 +545,7 @@ warning 6002: The table/view 'NetScaleV2_5RMLogiQ.dbo.Classes' does not have a p
           <Property Name="vehicle" Type="varchar" MaxLength="32" />
           <Property Name="vehicle2" Type="varchar" MaxLength="32" />
           <Property Name="ContainerNo" Type="nvarchar" MaxLength="22" />
+          <Property Name="actualStorageAreaName" Type="nvarchar" MaxLength="64" />
         </EntityType>
         <EntityType Name="Planningdivision">
           <Key>
@@ -1507,7 +1508,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="locationName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="locationFullname" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Name="product" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="productdescription" Type="String" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Name="productdescription" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="number" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="kindOfGoodDescription" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="kindOfGoodId" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
@@ -1589,6 +1590,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <Property Name="vehicle" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="vehicle2" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="ContainerNo" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+          <Property Name="actualStorageAreaName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="Artikel_hat_Attribute">
           <End Type="HWB.NETSCALE.BOEF.OrderItemserviceEntity" Role="OrderItemservice" Multiplicity="0..1">
@@ -2340,6 +2342,7 @@ FROM [dbo].[Classes] AS [Classes]</DefiningQuery>
           <EntitySetMapping Name="OrderItemserviceEntities">
             <EntityTypeMapping TypeName="HWB.NETSCALE.BOEF.OrderItemserviceEntity">
               <MappingFragment StoreEntitySet="OrderItemservice">
+                <ScalarProperty Name="actualStorageAreaName" ColumnName="actualStorageAreaName" />
                 <ScalarProperty Name="ContainerNo" ColumnName="ContainerNo" />
                 <ScalarProperty Name="vehicle2" ColumnName="vehicle2" />
                 <ScalarProperty Name="vehicle" ColumnName="vehicle" />

@@ -23,6 +23,9 @@ namespace NetScalePolosIO.Import.AuftragsImport
         private OrderItemservice _boOis;
         private OrderItemserviceEntity _boOise;
 
+        private Lagerplaetze _boL;
+        private LagerplaetzeEntity _boLe;
+
 
         private int _totalresult;
         private ImportExportPolos _oIO;
@@ -46,6 +49,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 {
                     request.AddQueryParameter("status", "READY_TO_DISPATCH");
                 }
+                _boL = new Lagerplaetze();
                 Einstellungen boE = new Einstellungen();
                 EinstellungenEntity boEe = boE.GetEinstellungen();
                 client.Authenticator = OAuth1Authenticator.ForProtectedResource(boEe.ConsumerKey.Trim(),
@@ -296,13 +300,21 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         _boOise.identifierOItemService = orderItemService.identifier;
                                                         _boOise.remark = orderItemService.remark;
 
-                                                        _boOise.actualStorageAreaId =
-                                                            orderItemService.actualStorageAreaId;
+                                                        if (orderItemService.actualStorageAreaId != null)
+                                                        {
+                                                            _boOise.actualStorageAreaId =
+                                                                orderItemService.actualStorageAreaId;
+                                                            _boOise.actualStorageAreaName =
+                                                                _boL.GetById(_boOise.actualStorageAreaId).fullname;
+                                                        }
                                                         _boOise.targetStorageAreaId =
                                                             orderItemService.targetStorageAreaId;
                                                         //  _boOise.IstQuellLagerPlatzId 
                                                         _boOise.product = orderItem.product.id;
-                                                        _boOise.productdescription = orderItem.product.description;
+                                                        if (orderItem.product.description != null)
+                                                        {
+                                                            _boOise.productdescription = orderItem.product.description.Trim();
+                                                        }
                                                         _boOise.serviceId = orderItemService.service.id;
 
 

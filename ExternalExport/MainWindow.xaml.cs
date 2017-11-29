@@ -10,8 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using HWB.Logging;
 using OakLeaf.MM.Main.WPF;
+// ReSharper disable once RedundantUsingDirective
 using NetScalePolosIO;
 
 namespace HWB.EXTERNALEXPORT
@@ -29,18 +30,17 @@ namespace HWB.EXTERNALEXPORT
         private ImportExportPolos _oIO;
 
         #endregion
+
         public MainWindow()
         {
             InitializeComponent();
-            _oIO =  new ImportExportPolos();
+            _oIO = new ImportExportPolos();
             DataContext = _oIO;
             _oIO.IOStatusHasChanged += IOStatusHasChanged;
         }
 
         private void IOStatusHasChanged(object sender, EventArgs e)
         {
-            
-          
             if (!_oIO.ExportIsRunning && !_oIO.ImportAuftrageIsRunning && !_oIO.ImportStammdatenIsRunning)
             {
                 CloseApplication();
@@ -52,9 +52,10 @@ namespace HWB.EXTERNALEXPORT
             _oIO.IOStatusHasChanged -= IOStatusHasChanged;
             _oIO = null;
             DataContext = null;
-         //   Thread.Sleep(2000);
-       //    Application.Current.Dispatcher.Invoke(new Action(() => { Close(); }));
-           Close(); 
+            //   Thread.Sleep(2000);
+            //    Application.Current.Dispatcher.Invoke(new Action(() => { Close(); }));
+            Log.Instance.Info("External IO Prg beendet!");
+            Close();
         }
 
         /// <summary>
@@ -114,17 +115,17 @@ namespace HWB.EXTERNALEXPORT
         /// <param name="e"></param>
         private void FileExitItem_Click(object sender, RoutedEventArgs e)
         {
-
-           CloseApplication();
+            CloseApplication();
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-
-       _oIO.ExportAll();
-      //      Thread.Sleep(200);
+            Log.Instance.Info("External IO Prg gestartet!");
+            WindowExtensions.HideCloseButton(this);
+            _oIO.ExportAll();
+            //      Thread.Sleep(200);
             _oIO.ImportStammdaten();
-      //      Thread.Sleep(200);
+            //      Thread.Sleep(200);
             _oIO.ImportAuftraege(false);
         }
     }

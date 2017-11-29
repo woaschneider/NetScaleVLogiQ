@@ -1463,6 +1463,10 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
                     _boW.ClearFrachtFuehrerInWaege(_boWe);
                 }
             }
+            else
+            {
+                _boW.ClearFrachtFuehrerInWaege(_boWe);
+            }
         }
 
 

@@ -16,7 +16,9 @@
 		<Directory Id="TARGETDIR" Name="SourceDir">
 		
 				<Directory Id="INSTALLDIR" Name="NetScaleLogIQ">
-				  <Directory Id="ANOTHERLOCATION" />
+				  <Directory Id="ANOTHERLOCATION">
+				    <Directory Id="Sub1" Name="ExternalIO" />
+          </Directory>
 				  <Directory Id="bin" Name="bin">
 				    <Directory Id="bin_Debug" Name="Debug">
 				      <Directory Id="bin_Debug_de" Name="de" />
@@ -75,6 +77,8 @@
 			</Component>
 			<Component Id="YeomanExport.pdb" Guid="08de0e67-013e-4268-8f3e-945456a814a1">
 			  <File Id="YeomanExport.pdb" Name="YeomanExport.pdb" Source="$(var.NetScale_TargetDir)YeomanExport.pdb" />
+      
+			  
 			</Component>
 			
 			
