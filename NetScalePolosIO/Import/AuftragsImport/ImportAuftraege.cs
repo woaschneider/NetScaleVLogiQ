@@ -572,6 +572,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                                                         }
                                                         catch (Exception e)
                                                         {
+                                                            Log.Instance.Info("Nummer:" + _boOe.number + " /  " + _boOise.sequenceOItemService);
                                                             Log.Instance.Error("Fehler im Auftrags-Import: " + e.Message +" " + e.InnerException + " " + e.Source +" " +e.StackTrace);
                                                         }
                                                         
@@ -586,7 +587,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                             }
                         }
                         catch (Exception ee)
-                        {
+                        {  Log.Instance.Info("Nummer:" + _boOe.number +" /  " +_boOise.sequenceOItemService);
                             Log.Instance.Error("Fehler im Auftrags-Import: " + ee.Message+ " "+ ee.InnerException + " " + ee.Source + " " + ee.StackTrace);
                             return false;
                         }
