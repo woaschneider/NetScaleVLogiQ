@@ -510,7 +510,6 @@
             VerticalContentAlignment="Center"
             KeyDown="TxtFrachtführer_OnKeyDown"
             LostFocus="TxtFrachtführer_OnLostFocus"
-           
             TabIndex="140"
             Text="{Binding ffBusinessIdentifier}" />
         <Label
@@ -2267,5 +2266,7 @@
             CharacterCasing="Upper"
             TabIndex="110"
             Text="{Binding ContainerNo}" />
+        <mmwpf:mmAutoCompleteTextBox x:Name="ffautoFillTxt"  HorizontalAlignment="Left" Margin="279,232,0,0" VerticalAlignment="Top" Width="74" SearchStringChanged="ffautoFillTxt_SearchStringChanged" SearchStringSelected="ffautoFillTxt_SearchStringSelected"/>
+
     </Grid>
 </mmwpf:mmBusinessWindow>

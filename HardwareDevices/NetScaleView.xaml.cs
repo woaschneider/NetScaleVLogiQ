@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using HardwareDevices.LedIt;
 using HardwareDevices.Schenck.Disomat.MODBUSTCP;
 using HardwareDevices.Schenck.Disomat.RS232;
+using HardwareDevices.Schenck.Disomat.UDP;
 using HardwareDevices.Systec;
 using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
@@ -427,6 +428,13 @@ namespace HardwareDevices
 
                     case "70": // Systec TCP  
                         _w1 = new SystecTcp2Adm(oWE.W1_IP_NUMMER, "1234");
+                        break;
+                    case "80": // Tersus UDP NMW1
+                        _w1 = new UDPTersus(oWE.W1_IP_NUMMER, 350);
+                        break;
+
+                    case "81": // Tersus UDP NMW2
+                        _w1 = new UDPTersus(oWE.W1_IP_NUMMER, 351);
                         break;
                 }
             }

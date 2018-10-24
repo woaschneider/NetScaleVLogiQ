@@ -5,6 +5,13 @@ namespace HardwareDevices
     // "Hilfs"-Klassen
     public class Weight
     {
+        public bool Stillstand { get; set; }
+        public bool Ueberbereich { get; set; }
+        public bool Unterbereich { get; set; }
+        public bool GenauNull { get; set; }
+        public bool TaraGesetzt { get; set; }
+        public bool TaraErrechnet { get; set; }
+        public bool GewichtUngueltig { get; set; }
 
         private decimal _weightValue;
         private string _status;

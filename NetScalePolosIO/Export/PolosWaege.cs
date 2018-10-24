@@ -54,7 +54,8 @@ namespace NetScalePolosIO.Export
         public string orderItemServiceId { get; set; }
         public string carrierBusinessIdentifier { get; set; }
         public string customerBusinessIdentifier { get; set; }
-
+        public string receiverBusinessIdentifier { get; set; }
+        
 
         public string carrierVehicle { get; set; }
 

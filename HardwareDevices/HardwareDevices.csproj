@@ -107,6 +107,7 @@
     <Compile Include="Schenck\Disomat\RS232\PortCom.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Schenck\Disomat\UDP\UDPTersus.cs" />
     <Compile Include="Systec\SystecTCP_1_ADM.cs" />
     <Compile Include="Systec\SystecTCP_2_ADM.cs" />
     <Compile Include="utils.cs" />
@@ -172,7 +173,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.Increment.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

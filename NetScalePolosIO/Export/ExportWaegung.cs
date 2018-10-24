@@ -41,7 +41,8 @@ namespace NetScalePolosIO.Export
                 carrierBusinessIdentifier = boWe.ffBusinessIdentifier,
                 carrierVehicle = boWe.Fahrzeug,
                 carrierVehicle2 = boWe.Fahrzeug2,
-                ContainerNo = boWe.ContainerNo
+                ContainerNo = boWe.ContainerNo,
+               
                 
             };
 
@@ -57,6 +58,8 @@ namespace NetScalePolosIO.Export
 
             oWEx2.customerBusinessIdentifier = boWe.customerBusinessIdentifier;
 
+            if (!string.IsNullOrEmpty(boWe.receiverBusinessIdentifier))
+                oWEx2.receiverBusinessIdentifier = boWe.receiverBusinessIdentifier;
 
             // Artikel       
             oWEx2.articleInstance = new ArticleInstance {article = new Article {id = boWe.articleId}};

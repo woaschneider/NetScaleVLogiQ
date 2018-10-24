@@ -14,6 +14,7 @@ using HWB.NETSCALE.BOEF;
 using HWB.NETSCALE.GLOBAL;
 using NetScalePolosIO;
 using OakLeaf.MM.Main.Business;
+using OakLeaf.MM.Main.WPF;
 using Xceed.Wpf.Toolkit;
 using MessageBox = System.Windows.MessageBox;
 
@@ -31,6 +32,7 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
         private int _wiegeStatus;
         private mmSaveDataResult _result;
         private ImportExportPolos _oIO;
+        private Adressen _oAp;
 
        
         #endregion
@@ -115,7 +117,8 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             SetWeightBindingFormat();
             FillIncoterms();
       
-
+            // Test Auto Compleed
+            _oAp= new Adressen();
           
             //   new ImportExportPolos().ImportStammdaten();
             //   new ImportExportPolos().ImportAuftraege(false);
@@ -1799,7 +1802,21 @@ namespace HWB.NETSCALE.FRONTEND.WPF.Forms
             ExportWaegungen();
         }
 
+        private void ffautoFillTxt_SearchStringChanged(object sender, OakLeaf.MM.Main.WPF.SearchStringChangedEventArgs e)
+        {
+            mmAutoCompleteTextBox ffautoFillTx = (mmAutoCompleteTextBox)sender;
 
-     
+            // Call a method on the Customer controller object and store it in the AutoComplete TextBox's BindingList
+           ffautoFillTx.BindingList = this._oAp.GetByMatchCodeAndRole(e.SearchString,"FF");
+        
+
+           
+
+        }
+
+        private void ffautoFillTxt_SearchStringSelected(object sender, SearchStringSelectedEventArgs e)
+        {
+
+        }
     }
 }

@@ -862,10 +862,14 @@ namespace HWB.NETSCALE.BOEF
 
         public mmBindingList<WaegeEntity> GetHofListe()
         {
-            IQueryable<WaegeEntity> query = from Waege in this.ObjectContext.WaegeEntities
-                where Waege.Waegung == 1
-                select Waege;
-            return this.GetEntityList(query);
+           
+                IQueryable<WaegeEntity> query = from Waege in this.ObjectContext.WaegeEntities
+                    where Waege.Waegung == 1
+                    select Waege;
+                return this.GetEntityList(query);
+         
+          
+          
         }
 
         public mmBindingList<WaegeEntity> PendingListToPolos()

@@ -41,7 +41,7 @@ namespace NetScalePolosIO.Import.AuftragsImport
                 client.ClearHandlers();
                 client.AddHandler("application/json", new JsonDeserializer());
                 //  var request = new RestRequest("/rest/order/query/200/1?status=NEW");
-                client.Timeout = 15000;
+               client.Timeout = 300000;
                 var request = new RestRequest(url + "200/1") {Method = Method.GET};
                 request.AddHeader("X-location-Id", location);
                 request.AddHeader("Accept-Language", "de");
